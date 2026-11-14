@@ -1,0 +1,284 @@
+[
+  {
+    "id": "q_merlin_01",
+    "name": "Um Palmo Fora do Lugar",
+    "giver": "merlin_mago",
+    "kind": "talk",
+    "targets": [
+      "astronoma_dalia"
+    ],
+    "count": 1,
+    "description": "«Ah, você! Tem cara de quem enxerga. Eu não — perdi os óculos de novo. Faz um favor a um velho: pergunte à Dália, a astrônoma-chefe, quanto a lua andou este mês. Se ela disser 'um palmo', é pior do que eu pensava.»",
+    "hint": "Fale com Dália, a Astrônoma-Chefe, em Astrália (perto da casa dela, ao norte da praça).",
+    "min_level": 20,
+    "reward_xp": 30000,
+    "reward_coins": 230,
+    "category": "historia",
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ]
+  },
+  {
+    "id": "q_merlin_02",
+    "name": "Uivos Fora de Hora",
+    "giver": "merlin_mago",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_lobisomem"
+    ],
+    "count": 1,
+    "description": "«Um palmo. Eu sabia. Com a lua fora do lugar os lobisomens da Mata uivam a qualquer hora e mordem qualquer um. Derrube 5. E… já que vai ficar sabendo de qualquer jeito: fui eu que tirei a lua do lugar. Há muito tempo. Volte que eu explico.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 21,
+    "reward_xp": 42000,
+    "reward_coins": 845,
+    "category": "historia",
+    "requires": "q_merlin_01",
+    "map": "mata_dos_enforcados",
+    "reward_flags": [
+      "merlin:floresta"
+    ],
+    "radius": 20,
+    "x": 28.1,
+    "y": -25.4,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_merlin_03",
+    "name": "A Floresta do Ensaio",
+    "giver": "merlin_mago",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_saci"
+    ],
+    "count": 1,
+    "description": "«Quando eu era jovem lancei o Grande Arranjo, para pôr o céu em ordem. Antes, ensaiei numa floresta — e ela sumiu do mapa. É a Floresta Oculta. Eu deixei uma garrafa de sacis lá, para guardar o lugar. A garrafa quebrou. Eu te levo: derrube 8 sacis.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 21,
+    "reward_xp": 48000,
+    "reward_coins": 500,
+    "category": "historia",
+    "requires": "q_merlin_02",
+    "map": "floresta_oculta",
+    "reward_items": [
+      "consumable_c05_tonico_forte*3"
+    ],
+    "radius": 20,
+    "x": 2.1,
+    "y": 2.6,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_merlin_04",
+    "name": "A Torre Torta",
+    "giver": "merlin_mago",
+    "kind": "boss",
+    "targets": [
+      "monster_merlin_reflexo"
+    ],
+    "count": 1,
+    "description": "«O Arranjo entortou até a minha torre: a parte de cima virou outro lugar. Os livros mordem, meus aprendizes viraram fantasmas e tem alguém lá no alto usando a minha cara — o meu Reflexo, que saiu do espelho no dia do feitiço. Ele guarda o Caderno do Grande Arranjo. Derrube-o e traga o caderno. Cuidado: quando ele cansa, faz chover estrela.»",
+    "hint": "Entre no Observatório (porta da torre, em Astrália), pegue o portal da esquerda e derrube o Reflexo de Merlin no alto da Torre Torta.",
+    "min_level": 22,
+    "reward_xp": 70000,
+    "reward_coins": 1755,
+    "category": "historia",
+    "requires": "q_merlin_03",
+    "map": "merlin_torre_torta",
+    "accept_flags": [
+      "merlin:dg1"
+    ],
+    "reward_items": [
+      "consumable_c05_tonico_forte*3"
+    ]
+  },
+  {
+    "id": "q_merlin_05",
+    "name": "Ouvir as Estrelas",
+    "giver": "merlin_mago",
+    "kind": "defend",
+    "targets": [
+      "monster_canions_escorpiao",
+      "monster_canions_morcego"
+    ],
+    "count": 3,
+    "description": "«O caderno está escrito em estrela — só dá para ler ouvindo o céu. Montei um círculo de pedras nos Cânions. Os bichos de lá acham que é um restaurante. Fique no círculo e segure três investidas enquanto eu escuto.»",
+    "hint": "Cânions dos Suplicantes: fique no círculo marcado e aguente 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 24,
+    "reward_xp": 60000,
+    "reward_coins": 890,
+    "category": "historia",
+    "requires": "q_merlin_04",
+    "map": "canions_suplicantes",
+    "x": 27.2,
+    "y": 37.8,
+    "radius": 6,
+    "reward_items": [
+      "consumable_c05_tonico_forte*3"
+    ]
+  },
+  {
+    "id": "q_merlin_06",
+    "name": "O Arquivo Confiscado",
+    "giver": "merlin_mago",
+    "kind": "escort",
+    "targets": [
+      "monster_canions_esqueleto_mineiro",
+      "monster_canions_escorpiao",
+      "monster_canions_esqueleto_mineiro"
+    ],
+    "count": 3,
+    "description": "«A Academia de Astrália confiscou minhas anotações anos atrás — acharam que eu estava louco. Estavam certos, mas as anotações são minhas. Uma carroça com o arquivo vem pelos Cânions. Ande junto dela: papel de mago atrai bicho como queijo atrai rato.»",
+    "hint": "Cânions dos Suplicantes: a carroça só anda com você perto e com o caminho limpo. Limpe as 3 emboscadas.",
+    "min_level": 25,
+    "reward_xp": 65000,
+    "reward_coins": 885,
+    "category": "historia",
+    "requires": "q_merlin_05",
+    "map": "canions_suplicantes",
+    "x": 12.0,
+    "y": 44.0,
+    "to_x": 52.0,
+    "to_y": 2.0,
+    "reward_items": [
+      "consumable_c05_tonico_forte*3"
+    ]
+  },
+  {
+    "id": "q_merlin_07",
+    "name": "A Página Lida ao Contrário",
+    "giver": "merlin_mago",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_mumia"
+    ],
+    "count": 1,
+    "description": "«Falta uma página no arquivo: a que diz onde caíram as quatro estrelas. Uma múmia dos Cânions arrancou e está lendo de trás para frente. Se ela chegar no começo, desfaz o feitiço errado. Ache a múmia grande — ela deixa faixas pelo caminho.»",
+    "hint": "Cânions dos Suplicantes: siga o rastro de faixas até a Múmia alfa e derrube-a.",
+    "min_level": 26,
+    "reward_xp": 80000,
+    "reward_coins": 1080,
+    "category": "historia",
+    "requires": "q_merlin_06",
+    "map": "canions_suplicantes",
+    "x": 36.0,
+    "y": -30.0,
+    "radius": 14,
+    "reward_items": [
+      "consumable_c05_tonico_forte*4"
+    ]
+  },
+  {
+    "id": "q_merlin_08",
+    "name": "O Poço das Estrelas",
+    "giver": "merlin_mago",
+    "kind": "boss",
+    "targets": [
+      "monster_merlin_visitante_caido"
+    ],
+    "count": 1,
+    "description": "«A página diz: uma das estrelas que sumiram caiu num poço embaixo do meu observatório. Só que estrela não tem olhos — e aquela tem. É alguém do céu de um dos reinos, jogado para fora quando eu dobrei tudo. Desça pelo portal do meio e… derrube-o com carinho.»",
+    "hint": "No Observatório, entre no portal do meio (O Poço das Estrelas) e derrube o Visitante que Caiu do Céu.",
+    "min_level": 28,
+    "reward_xp": 120000,
+    "reward_coins": 2475,
+    "category": "historia",
+    "requires": "q_merlin_07",
+    "map": "merlin_poco_estrelas",
+    "accept_flags": [
+      "merlin:dg2"
+    ],
+    "reward_flags": [
+      "merlin:fabula"
+    ],
+    "reward_items": [
+      "consumable_c05_tonico_forte*5"
+    ]
+  },
+  {
+    "id": "q_merlin_09",
+    "name": "A Aprendiz que Sabia",
+    "giver": "merlin_mago",
+    "kind": "talk",
+    "targets": [
+      "sibila_vidente"
+    ],
+    "count": 1,
+    "description": "«Agora vem a parte difícil, e não é luta. A Sibila, a vidente do Porto, foi minha aprendiz. Ela descobriu o Arranjo sozinha e achou outro jeito de espiar os reinos, pelos livros. Eu nunca pedi desculpas. Vá até ela. Diga que o velho quer desfazer.»",
+    "hint": "Fale com a Sibila, a Vidente, no Porto das Cinzas.",
+    "min_level": 30,
+    "reward_xp": 60000,
+    "reward_coins": 365,
+    "category": "historia",
+    "requires": "q_merlin_08"
+  },
+  {
+    "id": "q_merlin_10",
+    "name": "Pó de Estrela para a Ampulheta",
+    "giver": "merlin_mago",
+    "kind": "collect",
+    "targets": [
+      "mat_po_estrela"
+    ],
+    "count": 10,
+    "description": "«A Sibila disse… muita coisa. A útil: para entrar num sonho sem ficar preso lá, é preciso parar o tempo — e a minha ampulheta só corre com pó de estrela, o que sobra quando um feitiço termina. A Torre Torta está cheia disso. Dez pitadas. Não espirre perto.»",
+    "hint": "Junte 10 Pós de Estrela (caem na Torre Torta: livros, fantasmas, armadura e o Reflexo) e entregue ao Merlin.",
+    "min_level": 31,
+    "reward_xp": 95000,
+    "reward_coins": 1335,
+    "category": "historia",
+    "requires": "q_merlin_09",
+    "reward_items": [
+      "consumable_c05_tonico_forte*4"
+    ]
+  },
+  {
+    "id": "q_merlin_11",
+    "name": "O Sonho do Dragão Adormecido",
+    "giver": "merlin_mago",
+    "kind": "boss",
+    "targets": [
+      "monster_merlin_dragao_sonho"
+    ],
+    "count": 1,
+    "description": "«Quem dobra o mundo precisa de alguém que segure a dobra. Pedi ao dragão mais velho que existe. Ele segura — dormindo. Enquanto ele sonhar, as quatro portas ficam fechadas. O portal da direita entra no sonho. Lá dentro ontem e amanhã brigam. Acorde o dragão.»",
+    "hint": "No Observatório, entre no portal da direita (O Sonho do Dragão Adormecido) e derrube o Dragão do Sonho.",
+    "min_level": 33,
+    "reward_xp": 220000,
+    "reward_coins": 3170,
+    "category": "historia",
+    "requires": "q_merlin_10",
+    "map": "merlin_sonho_dragao",
+    "accept_flags": [
+      "merlin:dg3"
+    ],
+    "reward_items": [
+      "consumable_c05_tonico_forte*6"
+    ]
+  },
+  {
+    "id": "q_merlin_12",
+    "name": "Desfazer o Grande Arranjo",
+    "giver": "merlin_mago",
+    "kind": "visit",
+    "targets": [],
+    "count": 1,
+    "description": "«O dragão acordou e soltou a dobra. Falta o último giro: o astrolábio grande do Observatório. Gire-o você — eu já girei uma vez, e olha no que deu. Depois disso, é só me pedir: eu te levo à Lua Vermelha, à Transilvânia, ao Inferno ou à Cidade Celestial.»",
+    "hint": "Observatório de Merlin: chegue ao astrolábio grande no meio da sala. Depois peça a viagem ao Merlin, na porta da torre.",
+    "min_level": 35,
+    "reward_xp": 150000,
+    "reward_coins": 440,
+    "category": "historia",
+    "requires": "q_merlin_11",
+    "map": "torre_merlin",
+    "x": 0.0,
+    "y": -1.4,
+    "radius": 2.6,
+    "reward_flags": [
+      "merlin:reinos"
+    ],
+    "reward_items": [
+      "consumable_c05_tonico_forte*10"
+    ]
+  }
+]

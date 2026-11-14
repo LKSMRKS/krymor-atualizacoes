@@ -1,0 +1,135 @@
+[
+  {
+    "id": "pet_tartaruga",
+    "display_name": "Tico, a Tartaruga",
+    "subtype": "tartaruga",
+    "base_stats": {
+      "armor": 25,
+      "max_health": 20
+    },
+    "icon_asset_id": "icon_pet_tartaruga",
+    "model_asset_id": "pet_tartaruga",
+    "summary": "Lenta e teimosa: se esconde no casco e te ensina a aguentar. Passivo: +25 de armadura e +20 de vida. Coloque no espaço de pet para ele vir junto.",
+    "price": 600,
+    "source": "Bia, a Tratadora (Porto das Cinzas).",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_coelho",
+    "display_name": "Pipoca, o Coelho",
+    "subtype": "coelho",
+    "base_stats": {
+      "attack_speed_pct": 0.06
+    },
+    "icon_asset_id": "icon_pet_coelho",
+    "model_asset_id": "pet_coelho",
+    "summary": "Não para quieto um segundo — e você também não. Passivo: +6% de velocidade de ataque. Coloque no espaço de pet para ele vir junto.",
+    "price": 800,
+    "source": "Bia, a Tratadora (Porto das Cinzas).",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_grilo",
+    "display_name": "Cri, o Grilo da Sorte",
+    "subtype": "grilo",
+    "base_stats": {
+      "crit_pct": 0.03
+    },
+    "icon_asset_id": "icon_pet_grilo",
+    "model_asset_id": "pet_grilo",
+    "summary": "Canta quando o golpe vai entrar bem. Passivo: +3% de chance de crítico. Coloque no espaço de pet para ele vir junto.",
+    "price": 500,
+    "source": "Bia, a Tratadora (Porto das Cinzas).",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_macaco",
+    "display_name": "Bananinha, o Macaco",
+    "subtype": "macaco",
+    "base_stats": {
+      "move_speed_pct": 0.03,
+      "dodge_pct": 0.03
+    },
+    "icon_asset_id": "icon_pet_macaco",
+    "model_asset_id": "pet_macaco",
+    "summary": "Ligeiro, abusado e ótimo em sair do caminho. Passivo: +3% de velocidade e +3% de esquiva. Coloque no espaço de pet para ele vir junto.",
+    "price": 900,
+    "source": "Bia, a Tratadora (Porto das Cinzas).",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_aguia",
+    "display_name": "Rajada, a Águia",
+    "subtype": "aguia",
+    "base_stats": {
+      "hit_pct": 0.04,
+      "xp_pct": 0.03
+    },
+    "icon_asset_id": "icon_pet_aguia",
+    "model_asset_id": "pet_aguia",
+    "summary": "Plana alto e vê tudo antes de você. Passivo: +4% de precisão e +3% de experiência. Coloque no espaço de pet para ele vir junto.",
+    "price": 1200,
+    "source": "Bia, a Tratadora (Porto das Cinzas).",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  }
+]

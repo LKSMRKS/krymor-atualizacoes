@@ -1,0 +1,2178 @@
+[
+  {
+    "id": "arm_runico_capacete",
+    "display_name": "Capuz Rúnico",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 18,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 61,
+      "max_health": 27,
+      "cdr_pct": 0.036,
+      "xp_pct": 0.036,
+      "resource_regen_pct": 0.22
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_runico_capacete",
+    "model_asset_id": "arm_runico:capacete",
+    "summary": "Armadura +34, vida +27, recarga -4%, experiência +4%, regeneração +22%. Só para Mago.",
+    "price": 5200,
+    "source": "Raro: chefes da Mata dos Enforcados e da Cripta do Sino (17–20).",
+    "set": "set_arm_runico",
+    "set_bonus": {
+      "2": {
+        "max_health": 8,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 10
+      },
+      "4": {
+        "armor": 16,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 12,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_runico_peitoral",
+    "display_name": "Couraça Rúnica",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 18,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 173,
+      "max_health": 67,
+      "thorns_pct": 0.064,
+      "damage_reduction_pct": 0.026,
+      "resource_regen_pct": 0.43
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_runico_peitoral",
+    "model_asset_id": "arm_runico:peitoral",
+    "summary": "Armadura +84, vida +67, espinhos +6%, redução de dano +3%, regeneração +43%. Só para Mago.",
+    "price": 11000,
+    "source": "Raro: chefes da Mata dos Enforcados e da Cripta do Sino (17–20).",
+    "set": "set_arm_runico",
+    "set_bonus": {
+      "2": {
+        "max_health": 8,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 10
+      },
+      "4": {
+        "armor": 16,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 12,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_runico_calca",
+    "display_name": "Manto Rúnico",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 18,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 87,
+      "max_health": 35,
+      "stamina_regen_pct": 0.13
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_runico_calca",
+    "model_asset_id": "arm_runico:calca",
+    "summary": "Armadura +38, vida +35, fôlego +13%. Só para Mago.",
+    "price": 3500,
+    "source": "Raro: chefes da Mata dos Enforcados e da Cripta do Sino (17–20).",
+    "set": "set_arm_runico",
+    "set_bonus": {
+      "2": {
+        "max_health": 8,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 10
+      },
+      "4": {
+        "armor": 16,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 12,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_runico_luvas",
+    "display_name": "Braçadeiras Rúnicas",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 18,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 57,
+      "max_health": 20,
+      "power_pct": 0.026,
+      "attack_speed_pct": 0.048,
+      "crit_pct": 0.014
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_runico_luvas",
+    "model_asset_id": "arm_runico:luvas",
+    "summary": "Armadura +25, vida +20, poder +3%, vel. de ataque +5%, crítico +1%. Só para Mago.",
+    "price": 3500,
+    "source": "Raro: chefes da Mata dos Enforcados e da Cripta do Sino (17–20).",
+    "set": "set_arm_runico",
+    "set_bonus": {
+      "2": {
+        "max_health": 8,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 10
+      },
+      "4": {
+        "armor": 16,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 12,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_runico_botas",
+    "display_name": "Botas Rúnicas",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 18,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 69,
+      "max_health": 24,
+      "move_speed_pct": 0.034,
+      "dodge_pct": 0.024
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_runico_botas",
+    "model_asset_id": "arm_runico:botas",
+    "summary": "Armadura +29, vida +24, velocidade +3%, esquiva +2%. Só para Mago.",
+    "price": 3300,
+    "source": "Raro: chefes da Mata dos Enforcados e da Cripta do Sino (17–20).",
+    "set": "set_arm_runico",
+    "set_bonus": {
+      "2": {
+        "max_health": 8,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 10
+      },
+      "4": {
+        "armor": 16,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 12,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_lendario_capacete",
+    "display_name": "Capuz Lendário",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 25,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 79,
+      "max_health": 35,
+      "cdr_pct": 0.041,
+      "xp_pct": 0.041,
+      "resource_regen_pct": 0.23
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_lendario_capacete",
+    "model_asset_id": "arm_lendario:capacete",
+    "summary": "Armadura +45, vida +35, recarga -4%, experiência +4%, regeneração +23%. Só para Mago.",
+    "price": 10000,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_lendario",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_lendario_peitoral",
+    "display_name": "Peitoral Lendário",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 25,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 227,
+      "max_health": 88,
+      "thorns_pct": 0.076,
+      "damage_reduction_pct": 0.031,
+      "resource_regen_pct": 0.46
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_lendario_peitoral",
+    "model_asset_id": "arm_lendario:peitoral",
+    "summary": "Armadura +112, vida +88, espinhos +8%, redução de dano +3%, regeneração +46%. Só para Mago.",
+    "price": 23000,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_lendario",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_lendario_calca",
+    "display_name": "Manto Lendário",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 25,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 114,
+      "max_health": 46,
+      "stamina_regen_pct": 0.16
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_lendario_calca",
+    "model_asset_id": "arm_lendario:calca",
+    "summary": "Armadura +50, vida +46, fôlego +16%. Só para Mago.",
+    "price": 6900,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_lendario",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_lendario_luvas",
+    "display_name": "Manoplas Lendárias",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 25,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 75,
+      "max_health": 26,
+      "power_pct": 0.031,
+      "attack_speed_pct": 0.055,
+      "crit_pct": 0.018
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_lendario_luvas",
+    "model_asset_id": "arm_lendario:luvas",
+    "summary": "Armadura +34, vida +26, poder +3%, vel. de ataque +6%, crítico +2%. Só para Mago.",
+    "price": 7300,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_lendario",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_lendario_botas",
+    "display_name": "Botas Lendárias",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 25,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 91,
+      "max_health": 31,
+      "move_speed_pct": 0.037,
+      "dodge_pct": 0.028
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_lendario_botas",
+    "model_asset_id": "arm_lendario:botas",
+    "summary": "Armadura +39, vida +31, velocidade +4%, esquiva +3%. Só para Mago.",
+    "price": 6700,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_lendario",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_selvagem_capacete",
+    "display_name": "Capuz de Galhada",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 25,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 79,
+      "max_health": 35,
+      "cdr_pct": 0.041,
+      "xp_pct": 0.041,
+      "resource_regen_pct": 0.23
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_selvagem_capacete",
+    "model_asset_id": "arm_selvagem:capacete",
+    "summary": "Armadura +45, vida +35, recarga -4%, experiência +4%, regeneração +23%. Só para Bruxa.",
+    "price": 10000,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_selvagem",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_selvagem_peitoral",
+    "display_name": "Corpete de Ossos",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 25,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 227,
+      "max_health": 88,
+      "thorns_pct": 0.076,
+      "damage_reduction_pct": 0.031,
+      "resource_regen_pct": 0.46
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_selvagem_peitoral",
+    "model_asset_id": "arm_selvagem:peitoral",
+    "summary": "Armadura +112, vida +88, espinhos +8%, redução de dano +3%, regeneração +46%. Só para Bruxa.",
+    "price": 23000,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_selvagem",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_selvagem_calca",
+    "display_name": "Saia Esfarrapada",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 25,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 114,
+      "max_health": 46,
+      "stamina_regen_pct": 0.16
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_selvagem_calca",
+    "model_asset_id": "arm_selvagem:calca",
+    "summary": "Armadura +50, vida +46, fôlego +16%. Só para Bruxa.",
+    "price": 6900,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_selvagem",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_selvagem_luvas",
+    "display_name": "Braçadeiras de Osso",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 25,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 75,
+      "max_health": 26,
+      "power_pct": 0.031,
+      "attack_speed_pct": 0.055,
+      "crit_pct": 0.018
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_selvagem_luvas",
+    "model_asset_id": "arm_selvagem:luvas",
+    "summary": "Armadura +34, vida +26, poder +3%, vel. de ataque +6%, crítico +2%. Só para Bruxa.",
+    "price": 7300,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_selvagem",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_selvagem_botas",
+    "display_name": "Botas de Pele",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 25,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 91,
+      "max_health": 31,
+      "move_speed_pct": 0.037,
+      "dodge_pct": 0.028
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_selvagem_botas",
+    "model_asset_id": "arm_selvagem:botas",
+    "summary": "Armadura +39, vida +31, velocidade +4%, esquiva +3%. Só para Bruxa.",
+    "price": 6700,
+    "source": "Raro: elites dos Cânions dos Suplicantes e Galerias da Piedade (20–30).",
+    "set": "set_arm_selvagem",
+    "set_bonus": {
+      "2": {
+        "max_health": 11,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 14
+      },
+      "4": {
+        "armor": 22,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 16,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_grao_mestre_capacete",
+    "display_name": "Elmo Alado do Grão-Mestre",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 32,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 98,
+      "max_health": 43,
+      "cdr_pct": 0.046,
+      "xp_pct": 0.046,
+      "resource_regen_pct": 0.24
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_grao_mestre_capacete",
+    "model_asset_id": "arm_grao_mestre:capacete",
+    "summary": "Armadura +56, vida +43, recarga -5%, experiência +5%, regeneração +24%. Só para Mago.",
+    "price": 18000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_grao_mestre",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_grao_mestre_peitoral",
+    "display_name": "Couraça do Grão-Mestre",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 32,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 281,
+      "max_health": 108,
+      "thorns_pct": 0.089,
+      "damage_reduction_pct": 0.037,
+      "resource_regen_pct": 0.48
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_grao_mestre_peitoral",
+    "model_asset_id": "arm_grao_mestre:peitoral",
+    "summary": "Armadura +140, vida +108, espinhos +9%, redução de dano +4%, regeneração +48%. Só para Mago.",
+    "price": 40000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_grao_mestre",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_grao_mestre_calca",
+    "display_name": "Manto do Grão-Mestre",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 32,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 141,
+      "max_health": 56,
+      "stamina_regen_pct": 0.18
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_grao_mestre_calca",
+    "model_asset_id": "arm_grao_mestre:calca",
+    "summary": "Armadura +63, vida +56, fôlego +18%. Só para Mago.",
+    "price": 12000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_grao_mestre",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_grao_mestre_luvas",
+    "display_name": "Manoplas do Grão-Mestre",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 32,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 93,
+      "max_health": 32,
+      "power_pct": 0.037,
+      "attack_speed_pct": 0.062,
+      "crit_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_grao_mestre_luvas",
+    "model_asset_id": "arm_grao_mestre:luvas",
+    "summary": "Armadura +42, vida +32, poder +4%, vel. de ataque +6%, crítico +2%. Só para Mago.",
+    "price": 13000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_grao_mestre",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_grao_mestre_botas",
+    "display_name": "Botas do Grão-Mestre",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 32,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 112,
+      "max_health": 38,
+      "move_speed_pct": 0.041,
+      "dodge_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_grao_mestre_botas",
+    "model_asset_id": "arm_grao_mestre:botas",
+    "summary": "Armadura +49, vida +38, velocidade +4%, esquiva +3%. Só para Mago.",
+    "price": 12000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_grao_mestre",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_quitina_capacete",
+    "display_name": "Elmo Chifrudo de Quitina",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 32,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 98,
+      "max_health": 43,
+      "cdr_pct": 0.046,
+      "xp_pct": 0.046,
+      "resource_regen_pct": 0.24
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_quitina_capacete",
+    "model_asset_id": "arm_quitina:capacete",
+    "summary": "Armadura +56, vida +43, recarga -5%, experiência +5%, regeneração +24%. Só para Bruxa.",
+    "price": 18000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_quitina",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_quitina_peitoral",
+    "display_name": "Couraça de Quitina",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 32,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 281,
+      "max_health": 108,
+      "thorns_pct": 0.089,
+      "damage_reduction_pct": 0.037,
+      "resource_regen_pct": 0.48
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_quitina_peitoral",
+    "model_asset_id": "arm_quitina:peitoral",
+    "summary": "Armadura +140, vida +108, espinhos +9%, redução de dano +4%, regeneração +48%. Só para Bruxa.",
+    "price": 40000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_quitina",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_quitina_calca",
+    "display_name": "Faldas de Quitina",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 32,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 141,
+      "max_health": 56,
+      "stamina_regen_pct": 0.18
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_quitina_calca",
+    "model_asset_id": "arm_quitina:calca",
+    "summary": "Armadura +63, vida +56, fôlego +18%. Só para Bruxa.",
+    "price": 12000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_quitina",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_quitina_luvas",
+    "display_name": "Garras de Quitina",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 32,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 93,
+      "max_health": 32,
+      "power_pct": 0.037,
+      "attack_speed_pct": 0.062,
+      "crit_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_quitina_luvas",
+    "model_asset_id": "arm_quitina:luvas",
+    "summary": "Armadura +42, vida +32, poder +4%, vel. de ataque +6%, crítico +2%. Só para Bruxa.",
+    "price": 13000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_quitina",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_quitina_botas",
+    "display_name": "Grevas de Quitina",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 32,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 112,
+      "max_health": 38,
+      "move_speed_pct": 0.041,
+      "dodge_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_quitina_botas",
+    "model_asset_id": "arm_quitina:botas",
+    "summary": "Armadura +49, vida +38, velocidade +4%, esquiva +3%. Só para Bruxa.",
+    "price": 12000,
+    "source": "Raro: Mosteiro Afundado e chefes do Brejo da Viúva (28–36).",
+    "set": "set_arm_quitina",
+    "set_bonus": {
+      "2": {
+        "max_health": 14,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 17
+      },
+      "4": {
+        "armor": 27,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 21,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_dragonico_capacete",
+    "display_name": "Elmo Dracônico",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 242,
+      "max_health": 58,
+      "cdr_pct": 0.052,
+      "xp_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_dragonico_capacete",
+    "model_asset_id": "arm_dragonico:capacete",
+    "summary": "Armadura +125, vida +58, recarga -5%, experiência +5%. Só para Guerreiro.",
+    "price": 25000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_dragonico",
+    "set_bonus": {
+      "2": {
+        "max_health": 32,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 39
+      },
+      "4": {
+        "armor": 61,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 47,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_dragonico_peitoral",
+    "display_name": "Couraça Dracônica",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 692,
+      "max_health": 144,
+      "thorns_pct": 0.103,
+      "damage_reduction_pct": 0.042,
+      "move_speed_pct": -0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_dragonico_peitoral",
+    "model_asset_id": "arm_dragonico:peitoral",
+    "summary": "Armadura +312, vida +144, espinhos +10%, redução de dano +4%, velocidade -3%. Só para Guerreiro.",
+    "price": 46000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_dragonico",
+    "set_bonus": {
+      "2": {
+        "max_health": 32,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 39
+      },
+      "4": {
+        "armor": 61,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 47,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_dragonico_calca",
+    "display_name": "Coxotes Dracônicos",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 346,
+      "max_health": 75,
+      "stamina_regen_pct": 0.21
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_dragonico_calca",
+    "model_asset_id": "arm_dragonico:calca",
+    "summary": "Armadura +140, vida +75, fôlego +21%. Só para Guerreiro.",
+    "price": 19000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_dragonico",
+    "set_bonus": {
+      "2": {
+        "max_health": 32,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 39
+      },
+      "4": {
+        "armor": 61,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 47,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_dragonico_luvas",
+    "display_name": "Manoplas Dracônicas",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 228,
+      "max_health": 43,
+      "power_pct": 0.042,
+      "attack_speed_pct": 0.07,
+      "crit_pct": 0.025
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_dragonico_luvas",
+    "model_asset_id": "arm_dragonico:luvas",
+    "summary": "Armadura +94, vida +43, poder +4%, vel. de ataque +7%, crítico +2%. Só para Guerreiro.",
+    "price": 23000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_dragonico",
+    "set_bonus": {
+      "2": {
+        "max_health": 32,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 39
+      },
+      "4": {
+        "armor": 61,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 47,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_dragonico_botas",
+    "display_name": "Grevas Dracônicas",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 277,
+      "max_health": 50,
+      "move_speed_pct": 0.045,
+      "dodge_pct": 0.035
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_dragonico_botas",
+    "model_asset_id": "arm_dragonico:botas",
+    "summary": "Armadura +109, vida +50, velocidade +4%, esquiva +4%. Só para Guerreiro.",
+    "price": 19000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_dragonico",
+    "set_bonus": {
+      "2": {
+        "max_health": 32,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 39
+      },
+      "4": {
+        "armor": 61,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 47,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_musa_capacete",
+    "display_name": "Elmo de Penas da Musa",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 40,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 172,
+      "max_health": 54,
+      "cdr_pct": 0.052,
+      "xp_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_musa_capacete",
+    "model_asset_id": "arm_musa:capacete",
+    "summary": "Armadura +88, vida +54, recarga -5%, experiência +5%. Só para Arqueiro.",
+    "price": 25000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_musa",
+    "set_bonus": {
+      "2": {
+        "max_health": 23,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 28
+      },
+      "4": {
+        "armor": 43,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 33,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_musa_peitoral",
+    "display_name": "Couraça de Vidro",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 40,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 492,
+      "max_health": 136,
+      "thorns_pct": 0.103,
+      "damage_reduction_pct": 0.042,
+      "move_speed_pct": 0.02
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_musa_peitoral",
+    "model_asset_id": "arm_musa:peitoral",
+    "summary": "Armadura +220, vida +136, espinhos +10%, redução de dano +4%, velocidade +2%. Só para Arqueiro.",
+    "price": 48000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_musa",
+    "set_bonus": {
+      "2": {
+        "max_health": 23,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 28
+      },
+      "4": {
+        "armor": 43,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 33,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_musa_calca",
+    "display_name": "Faldas da Musa",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 40,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 246,
+      "max_health": 71,
+      "stamina_regen_pct": 0.21
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_musa_calca",
+    "model_asset_id": "arm_musa:calca",
+    "summary": "Armadura +99, vida +71, fôlego +21%. Só para Arqueiro.",
+    "price": 19000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_musa",
+    "set_bonus": {
+      "2": {
+        "max_health": 23,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 28
+      },
+      "4": {
+        "armor": 43,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 33,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_musa_luvas",
+    "display_name": "Braçadeiras de Vidro",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 40,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 162,
+      "max_health": 41,
+      "power_pct": 0.042,
+      "attack_speed_pct": 0.07,
+      "crit_pct": 0.025
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_musa_luvas",
+    "model_asset_id": "arm_musa:luvas",
+    "summary": "Armadura +66, vida +41, poder +4%, vel. de ataque +7%, crítico +2%. Só para Arqueiro.",
+    "price": 23000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_musa",
+    "set_bonus": {
+      "2": {
+        "max_health": 23,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 28
+      },
+      "4": {
+        "armor": 43,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 33,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_musa_botas",
+    "display_name": "Botas da Musa",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 40,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 197,
+      "max_health": 48,
+      "move_speed_pct": 0.045,
+      "dodge_pct": 0.035
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_musa_botas",
+    "model_asset_id": "arm_musa:botas",
+    "summary": "Armadura +77, vida +48, velocidade +4%, esquiva +4%. Só para Arqueiro.",
+    "price": 19000,
+    "source": "Raro: Mercado dos Mortos e chefes da Véspera (34–44).",
+    "set": "set_arm_musa",
+    "set_bonus": {
+      "2": {
+        "max_health": 23,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 28
+      },
+      "4": {
+        "armor": 43,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 33,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mestre_almas_capacete",
+    "display_name": "Máscara do Mestre das Almas",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 50,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 147,
+      "max_health": 64,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "resource_regen_pct": 0.28
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mestre_almas_capacete",
+    "model_asset_id": "arm_mestre_almas:capacete",
+    "summary": "Armadura +85, vida +64, recarga -6%, experiência +6%, regeneração +28%. Só para Mago.",
+    "price": 56000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_mestre_almas",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mestre_almas_peitoral",
+    "display_name": "Couraça do Mestre das Almas",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 50,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 420,
+      "max_health": 160,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "resource_regen_pct": 0.55
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mestre_almas_peitoral",
+    "model_asset_id": "arm_mestre_almas:peitoral",
+    "summary": "Armadura +212, vida +160, espinhos +12%, redução de dano +5%, regeneração +55%. Só para Mago.",
+    "price": 120000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_mestre_almas",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mestre_almas_calca",
+    "display_name": "Manto do Mestre das Almas",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 50,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 210,
+      "max_health": 83,
+      "stamina_regen_pct": 0.25
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mestre_almas_calca",
+    "model_asset_id": "arm_mestre_almas:calca",
+    "summary": "Armadura +95, vida +83, fôlego +25%. Só para Mago.",
+    "price": 32000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_mestre_almas",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mestre_almas_luvas",
+    "display_name": "Manoplas do Mestre das Almas",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 50,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 139,
+      "max_health": 48,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mestre_almas_luvas",
+    "model_asset_id": "arm_mestre_almas:luvas",
+    "summary": "Armadura +64, vida +48, poder +5%, vel. de ataque +8%, crítico +3%. Só para Mago.",
+    "price": 40000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_mestre_almas",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mestre_almas_botas",
+    "display_name": "Botas do Mestre das Almas",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 50,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 168,
+      "max_health": 56,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mestre_almas_botas",
+    "model_asset_id": "arm_mestre_almas:botas",
+    "summary": "Armadura +74, vida +56, velocidade +5%, esquiva +4%. Só para Mago.",
+    "price": 33000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_mestre_almas",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_rainha_sangue_capacete",
+    "display_name": "Coroa Chifruda de Sangue",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 50,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 147,
+      "max_health": 64,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "resource_regen_pct": 0.28
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_rainha_sangue_capacete",
+    "model_asset_id": "arm_rainha_sangue:capacete",
+    "summary": "Armadura +85, vida +64, recarga -6%, experiência +6%, regeneração +28%. Só para Bruxa.",
+    "price": 56000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_rainha_sangue",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_rainha_sangue_peitoral",
+    "display_name": "Couraça da Rainha de Sangue",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 50,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 420,
+      "max_health": 160,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "resource_regen_pct": 0.55
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_rainha_sangue_peitoral",
+    "model_asset_id": "arm_rainha_sangue:peitoral",
+    "summary": "Armadura +212, vida +160, espinhos +12%, redução de dano +5%, regeneração +55%. Só para Bruxa.",
+    "price": 120000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_rainha_sangue",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_rainha_sangue_calca",
+    "display_name": "Saia da Rainha de Sangue",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 50,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 210,
+      "max_health": 83,
+      "stamina_regen_pct": 0.25
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_rainha_sangue_calca",
+    "model_asset_id": "arm_rainha_sangue:calca",
+    "summary": "Armadura +95, vida +83, fôlego +25%. Só para Bruxa.",
+    "price": 32000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_rainha_sangue",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_rainha_sangue_luvas",
+    "display_name": "Garras da Rainha de Sangue",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 50,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 139,
+      "max_health": 48,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_rainha_sangue_luvas",
+    "model_asset_id": "arm_rainha_sangue:luvas",
+    "summary": "Armadura +64, vida +48, poder +5%, vel. de ataque +8%, crítico +3%. Só para Bruxa.",
+    "price": 40000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_rainha_sangue",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_rainha_sangue_botas",
+    "display_name": "Botas da Rainha de Sangue",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 50,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 168,
+      "max_health": 56,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_rainha_sangue_botas",
+    "model_asset_id": "arm_rainha_sangue:botas",
+    "summary": "Armadura +74, vida +56, velocidade +5%, esquiva +4%. Só para Bruxa.",
+    "price": 33000,
+    "source": "Raro: Fornalha e chefes do Mar de Escória (48–56).",
+    "set": "set_arm_rainha_sangue",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 27
+      },
+      "4": {
+        "armor": 41,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 32,
+        "power_pct": 0.05,
+        "crit_pct": 0.04,
+        "double_pct": 0.03
+      }
+    }
+  }
+]

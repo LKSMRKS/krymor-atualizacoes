@@ -1,0 +1,190 @@
+[
+  {
+    "id": "pet_raposa",
+    "display_name": "Fagulha, a Raposa",
+    "subtype": "raposa",
+    "base_stats": {
+      "crit_pct": 0.05,
+      "move_speed_pct": 0.04
+    },
+    "icon_asset_id": "icon_pet_raposa",
+    "model_asset_id": "pet_raposa",
+    "summary": "Raposa de cauda de brasa: fareja o ponto fraco. +5% de crítico, +4% de velocidade.",
+    "price": 15000,
+    "source": "Dimas, o Tratador (Cânions).",
+    "min_level": 25,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_coruja",
+    "display_name": "Sábia, a Coruja",
+    "subtype": "coruja",
+    "base_stats": {
+      "xp_pct": 0.08,
+      "cdr_pct": 0.04
+    },
+    "icon_asset_id": "icon_pet_coruja",
+    "model_asset_id": "pet_coruja",
+    "summary": "Coruja que nunca dorme: aprende com você. +8% de experiência, -4% de recarga.",
+    "price": 45000,
+    "source": "Nina, a Tratadora (Brejo).",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_dragao_anciao",
+    "display_name": "Ignis, o Dragão Ancião",
+    "subtype": "dragao_anciao",
+    "base_stats": {
+      "power_pct": 0.08,
+      "armor": 60,
+      "max_health": 120
+    },
+    "icon_asset_id": "icon_pet_dragao_anciao",
+    "model_asset_id": "pet_dragao_anciao",
+    "summary": "Dragão de verdade, já crescido: cospe fogo e protege. +8% de ataque, +60 de armadura, +120 de vida.",
+    "price": 150000,
+    "source": "Tratador da Fênix (Mar de Escória).",
+    "min_level": 55,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_morcego",
+    "display_name": "Nico, o Morceguinho",
+    "subtype": "morcego",
+    "base_stats": {
+      "dodge_pct": 0.02,
+      "move_speed_pct": 0.02
+    },
+    "icon_asset_id": "icon_pet_morcego",
+    "model_asset_id": "pet_morcego",
+    "summary": "Morceguinho que dorme de cabeça para baixo no seu ombro.",
+    "price": 6000,
+    "source": "Bia, a Tratadora (Porto).",
+    "min_level": 10,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_lobinho",
+    "display_name": "Uivo, o Lobinho",
+    "subtype": "lobinho",
+    "base_stats": {
+      "power_pct": 0.03
+    },
+    "icon_asset_id": "icon_pet_lobinho",
+    "model_asset_id": "pet_lobinho",
+    "summary": "Filhote de lobo valente: morde o calcanhar dos inimigos.",
+    "price": 11000,
+    "source": "Dimas, o Tratador (Cânions).",
+    "min_level": 18,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_sapinho",
+    "display_name": "Ouro, o Sapinho",
+    "subtype": "sapinho",
+    "base_stats": {
+      "xp_pct": 0.03,
+      "max_health": 30
+    },
+    "icon_asset_id": "icon_pet_sapinho",
+    "model_asset_id": "pet_sapinho",
+    "summary": "Sapinho dourado da sorte: dizem que atrai moedas.",
+    "price": 13000,
+    "source": "Nina, a Tratadora (Brejo).",
+    "min_level": 22,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  },
+  {
+    "id": "pet_corvo",
+    "display_name": "Agouro, o Corvo",
+    "subtype": "corvo",
+    "base_stats": {
+      "crit_pct": 0.04
+    },
+    "icon_asset_id": "icon_pet_corvo",
+    "model_asset_id": "pet_corvo",
+    "summary": "Corvo de olhos roxos: avisa onde o inimigo é fraco.",
+    "price": 22000,
+    "source": "Nina, a Tratadora (Brejo).",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "category": "pet"
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "q_bobo_goblins",
+    "name": "Desafio do Bobo: Narizes Verdes",
+    "giver": "bobo_tiao",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_goblin_arqueiro"
+    ],
+    "count": 5,
+    "description": "Narizes verdes com arco! Derrube 5 Goblins Arqueiros e eu canto seu nome na praça.",
+    "hint": "Goblins Arqueiros nas Dunas e na estrada das rochas.",
+    "min_level": 2,
+    "reward_xp": 400,
+    "reward_coins": 80,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "repeatable": true,
+    "daily": true,
+    "category": "diaria",
+    "map": "costa_do_cal",
+    "max_level": 6
+  },
+  {
+    "id": "q_bobo_gosma",
+    "name": "Desafio do Bobo: Rabo de Rato",
+    "giver": "bobo_tiao",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_rato_do_cais"
+    ],
+    "count": 6,
+    "description": "Aposto um chapéu que você não pega 6 Ratos do Cais! Eles roem as cordas dos barcos, ha!",
+    "hint": "Ratos do Cais na Costa do Cal: perto do portão sul (oeste) e em volta do Acampamento das Dunas. Volte ao Bobo na praça do Porto.",
+    "min_level": 4,
+    "reward_xp": 600,
+    "reward_coins": 55,
+    "reward_items": [
+      "consumable_c03_frasco_mana"
+    ],
+    "repeatable": true,
+    "daily": true,
+    "category": "diaria",
+    "map": "costa_do_cal",
+    "max_level": 6
+  },
+  {
+    "id": "q_bobo_cascas",
+    "name": "Desafio do Bobo: Chapéu de Cascas",
+    "giver": "bobo_tiao",
+    "kind": "collect",
+    "targets": [
+      "mat_casca_cal"
+    ],
+    "count": 8,
+    "description": "Quero um chapéu novo de cascas de cal! Traga 8 e eu pago bem — mais do que o pescador!",
+    "hint": "Cascas de Cal caem dos caranguejos da Costa. Leve 8 ao Bobo na praça do Porto.",
+    "min_level": 1,
+    "reward_xp": 250,
+    "reward_coins": 40,
+    "reward_items": [],
+    "repeatable": true,
+    "daily": true,
+    "category": "diaria",
+    "map": "costa_do_cal",
+    "max_level": 6
+  }
+]

@@ -1,0 +1,215 @@
+{
+  "id": "casarao_andar2",
+  "display_name": "Casarão — 2º andar",
+  "half_size": 10,
+  "spawn_x": -6.5,
+  "spawn_y": 0.2,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "casarao",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": 16.2,
+  "exit_y": -13.6,
+  "zones": [
+    {
+      "id": "casarao2",
+      "name": "Casarão — 2º andar",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 16,
+      "h": 12
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0,
+      "y": -6.1,
+      "w": 16.4,
+      "h": 0.5,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0,
+      "y": 6.1,
+      "w": 16.4,
+      "h": 0.5,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -8.1,
+      "y": 0,
+      "w": 0.5,
+      "h": 12.4,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 8.1,
+      "y": 0,
+      "w": 0.5,
+      "h": 12.4,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -5.5,
+      "y": 2.5,
+      "w": 0.15,
+      "h": 3.9,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -7.45,
+      "y": 2.5,
+      "w": 0.15,
+      "h": 3.9,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -6.5,
+      "y": 4.3,
+      "w": 2.1,
+      "h": 0.15,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.6,
+      "y": -4.7,
+      "w": 0.3,
+      "h": 1.9,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.6,
+      "y": -2.15,
+      "w": 0.3,
+      "h": 1.9,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 1.5,
+      "y": -1.3,
+      "w": 2.2,
+      "h": 0.3,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 5.5,
+      "y": -1.3,
+      "w": 4.2,
+      "h": 0.3,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 7.05,
+      "y": -2.2,
+      "w": 0.9,
+      "h": 1.4,
+      "r": 0,
+      "height": 2.2
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "mesa_cartas",
+      "x": 3.8,
+      "y": 1.9,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_banqueta",
+      "x": 2.6,
+      "y": 2.9,
+      "yaw": 215
+    },
+    {
+      "kind": "movel_banqueta",
+      "x": 3.8,
+      "y": 3.3,
+      "yaw": 180
+    },
+    {
+      "kind": "movel_banqueta",
+      "x": 5.0,
+      "y": 2.9,
+      "yaw": 145
+    }
+  ],
+  "portals": [
+    {
+      "id": "casarao_descer",
+      "x": -6.5,
+      "y": 3.8,
+      "radius": 0.8,
+      "to_map": "porto_das_cinzas",
+      "to_x": 13.5,
+      "to_y": -12.85,
+      "label": "Descer a escada"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [
+    {
+      "id": "dona_celeste",
+      "name": "Dona Celeste",
+      "role": "morador",
+      "x": -2,
+      "y": 2,
+      "facing": 200,
+      "greeting": "Lá de cima a gente vê o porto inteiro. Dizem que meu avô guardava um mapa da Costa por aqui... nunca achei.",
+      "look": "aldeao"
+    },
+    {
+      "id": "dado_crupie",
+      "name": "Dado, o Crupiê",
+      "role": "vinteum",
+      "x": 3.8,
+      "y": 0.45,
+      "facing": 0,
+      "greeting": "Vinte-e-Um, regras de cassino: banca para no 17, blackjack paga 3 por 2, dá pra dobrar e separar. A casa sempre tem um tiquinho de vantagem... mas a sorte é de quem senta.",
+      "look": "aldeao"
+    }
+  ],
+  "objects": [],
+  "checkpoints": []
+}

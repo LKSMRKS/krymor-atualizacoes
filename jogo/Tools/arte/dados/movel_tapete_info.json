@@ -1,0 +1,18 @@
+{
+ "asset_id": "movel_tapete",
+ "nome": "Tapete tecido com losango e franjas",
+ "colisao": null,
+ "luz": null,
+ "notas": "sem colisão; só visual",
+ "posicao_no_conjunto_godot": [
+  -0.0,
+  -0.004,
+  0.0
+ ],
+ "tris": 5000,
+ "dims_m": [
+  2.602,
+  1.6,
+  0.022
+ ]
+}

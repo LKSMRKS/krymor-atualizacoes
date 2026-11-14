@@ -1,0 +1,1058 @@
+[
+  {
+    "id": "tomo_guerreiro_golpe_de_cunha",
+    "display_name": "Esfera: Golpe de Cunha",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 200,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_golpe_de_cunha",
+    "min_level": 1,
+    "summary": "Ensina ao Guerreiro: Golpe de Cunha (nível 1+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_guarda_de_escudo",
+    "display_name": "Esfera: Guarda de Escudo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 300,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_guarda_de_escudo",
+    "min_level": 3,
+    "summary": "Ensina ao Guerreiro: Guarda de Escudo (nível 3+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_giro",
+    "display_name": "Esfera: Giro de Lâmina",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 1200,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_giro",
+    "min_level": 6,
+    "summary": "Ensina ao Guerreiro: Giro de Lâmina (nível 6+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_salto",
+    "display_name": "Esfera: Salto Esmagador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 3500,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_salto",
+    "min_level": 10,
+    "summary": "Ensina ao Guerreiro: Salto Esmagador (nível 10+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_furia_colosso",
+    "display_name": "Esfera: Fúria do Colosso",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 9000,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_furia_colosso",
+    "min_level": 14,
+    "summary": "Ensina ao Guerreiro: Fúria do Colosso (nível 14+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_explosao_de_cinzas",
+    "display_name": "Livro: Explosão de Cinzas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 200,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_explosao_de_cinzas",
+    "min_level": 1,
+    "summary": "Ensina ao Mago: Explosão de Cinzas (nível 1+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_passo_etereo",
+    "display_name": "Livro: Passo Etéreo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 300,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_passo_etereo",
+    "min_level": 3,
+    "summary": "Ensina ao Mago: Passo Etéreo (nível 3+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_lanca_gelo",
+    "display_name": "Livro: Estaca de Gelo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 1200,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_lanca_gelo",
+    "min_level": 6,
+    "summary": "Ensina ao Mago: Estaca de Gelo (nível 6+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_chuva_meteoros",
+    "display_name": "Livro: Chuva de Meteoros",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 3500,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_chuva_meteoros",
+    "min_level": 10,
+    "summary": "Ensina ao Mago: Chuva de Meteoros (nível 10+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_cometa",
+    "display_name": "Livro: Cometa",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 9000,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_cometa",
+    "min_level": 14,
+    "summary": "Ensina ao Mago: Cometa (nível 14+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_toque_alquimico",
+    "display_name": "Grimório: Toque Alquímico",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 200,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_toque_alquimico",
+    "min_level": 1,
+    "summary": "Ensina à Bruxa: Toque Alquímico (nível 1+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_barreira_de_eter",
+    "display_name": "Grimório: Barreira de Éter",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 300,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_barreira_de_eter",
+    "min_level": 3,
+    "summary": "Ensina à Bruxa: Barreira de Éter (nível 3+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_aura_primal",
+    "display_name": "Grimório: Aura Primal",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 700,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_aura_primal",
+    "min_level": 5,
+    "summary": "Ensina à Bruxa: Aura Primal (nível 5+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_espinhos",
+    "display_name": "Grimório: Espinhos da Terra",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 2000,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_espinhos",
+    "min_level": 8,
+    "summary": "Ensina à Bruxa: Espinhos da Terra (nível 8+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_floresta_viva",
+    "display_name": "Grimório: Floresta Viva",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 9000,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_floresta_viva",
+    "min_level": 14,
+    "summary": "Ensina à Bruxa: Floresta Viva (nível 14+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_emboscada",
+    "display_name": "Pergaminho: Tiro de Emboscada",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 200,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_emboscada",
+    "min_level": 1,
+    "summary": "Ensina ao Arqueiro: Tiro de Emboscada (nível 1+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_passos_fantasma",
+    "display_name": "Pergaminho: Passos Fantasma",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 300,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_passos_fantasma",
+    "min_level": 3,
+    "summary": "Ensina ao Arqueiro: Passos Fantasma (nível 3+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_olhar_do_cacador",
+    "display_name": "Pergaminho: Olhar do Caçador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 700,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_olhar_do_cacador",
+    "min_level": 5,
+    "summary": "Ensina ao Arqueiro: Olhar do Caçador (nível 5+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_rajada",
+    "display_name": "Pergaminho: Rajada Tripla",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 1200,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_rajada",
+    "min_level": 6,
+    "summary": "Ensina ao Arqueiro: Rajada Tripla (nível 6+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_flecha_perfurante",
+    "display_name": "Pergaminho: Flecha Perfurante",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 2000,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_flecha_perfurante",
+    "min_level": 8,
+    "summary": "Ensina ao Arqueiro: Flecha Perfurante (nível 8+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_chuva",
+    "display_name": "Pergaminho: Chuva de Flechas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 3500,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_chuva",
+    "min_level": 10,
+    "summary": "Ensina ao Arqueiro: Chuva de Flechas (nível 10+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_fenix",
+    "display_name": "Pergaminho: Fênix de Fogo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 9000,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_fenix",
+    "min_level": 14,
+    "summary": "Ensina ao Arqueiro: Fênix de Fogo (nível 14+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_serpente",
+    "display_name": "Pergaminho: Serpente do Mar",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 12000,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_serpente",
+    "min_level": 16,
+    "summary": "Ensina ao Arqueiro: Serpente do Mar (nível 16+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_golpe_de_cunha_ii",
+    "display_name": "Esfera II: Golpe de Cunha",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_golpe_de_cunha",
+    "min_level": 15,
+    "summary": "Nível 2 de Golpe de Cunha: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_guarda_de_escudo_ii",
+    "display_name": "Esfera II: Guarda de Escudo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_guarda_de_escudo",
+    "min_level": 15,
+    "summary": "Nível 2 de Guarda de Escudo: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_giro_ii",
+    "display_name": "Esfera II: Giro de Lâmina",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_giro",
+    "min_level": 15,
+    "summary": "Nível 2 de Giro de Lâmina: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_salto_ii",
+    "display_name": "Esfera II: Salto Esmagador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 17500,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_salto",
+    "min_level": 15,
+    "summary": "Nível 2 de Salto Esmagador: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_furia_colosso_ii",
+    "display_name": "Esfera II: Fúria do Colosso",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 45000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_furia_colosso",
+    "min_level": 15,
+    "summary": "Nível 2 de Fúria do Colosso: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_explosao_de_cinzas_ii",
+    "display_name": "Livro II: Explosão de Cinzas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_explosao_de_cinzas",
+    "min_level": 15,
+    "summary": "Nível 2 de Explosão de Cinzas: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_passo_etereo_ii",
+    "display_name": "Livro II: Passo Etéreo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_passo_etereo",
+    "min_level": 15,
+    "summary": "Nível 2 de Passo Etéreo: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_lanca_gelo_ii",
+    "display_name": "Livro II: Estaca de Gelo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_lanca_gelo",
+    "min_level": 15,
+    "summary": "Nível 2 de Estaca de Gelo: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_chuva_meteoros_ii",
+    "display_name": "Livro II: Chuva de Meteoros",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 17500,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_chuva_meteoros",
+    "min_level": 15,
+    "summary": "Nível 2 de Chuva de Meteoros: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_cometa_ii",
+    "display_name": "Livro II: Cometa",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 45000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_cometa",
+    "min_level": 15,
+    "summary": "Nível 2 de Cometa: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_toque_alquimico_ii",
+    "display_name": "Grimório II: Toque Alquímico",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_toque_alquimico",
+    "min_level": 15,
+    "summary": "Nível 2 de Toque Alquímico: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_barreira_de_eter_ii",
+    "display_name": "Grimório II: Barreira de Éter",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_barreira_de_eter",
+    "min_level": 15,
+    "summary": "Nível 2 de Barreira de Éter: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_aura_primal_ii",
+    "display_name": "Grimório II: Aura Primal",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_aura_primal",
+    "min_level": 15,
+    "summary": "Nível 2 de Aura Primal: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_espinhos_ii",
+    "display_name": "Grimório II: Espinhos da Terra",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 10000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_espinhos",
+    "min_level": 15,
+    "summary": "Nível 2 de Espinhos da Terra: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_floresta_viva_ii",
+    "display_name": "Grimório II: Floresta Viva",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 45000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_floresta_viva",
+    "min_level": 15,
+    "summary": "Nível 2 de Floresta Viva: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_emboscada_ii",
+    "display_name": "Pergaminho II: Tiro de Emboscada",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_emboscada",
+    "min_level": 15,
+    "summary": "Nível 2 de Tiro de Emboscada: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_passos_fantasma_ii",
+    "display_name": "Pergaminho II: Passos Fantasma",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_passos_fantasma",
+    "min_level": 15,
+    "summary": "Nível 2 de Passos Fantasma: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_olhar_do_cacador_ii",
+    "display_name": "Pergaminho II: Olhar do Caçador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_olhar_do_cacador",
+    "min_level": 15,
+    "summary": "Nível 2 de Olhar do Caçador: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_rajada_ii",
+    "display_name": "Pergaminho II: Rajada Tripla",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_rajada",
+    "min_level": 15,
+    "summary": "Nível 2 de Rajada Tripla: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_flecha_perfurante_ii",
+    "display_name": "Pergaminho II: Flecha Perfurante",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 10000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_flecha_perfurante",
+    "min_level": 15,
+    "summary": "Nível 2 de Flecha Perfurante: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_chuva_ii",
+    "display_name": "Pergaminho II: Chuva de Flechas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 17500,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_chuva",
+    "min_level": 15,
+    "summary": "Nível 2 de Chuva de Flechas: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_fenix_ii",
+    "display_name": "Pergaminho II: Fênix de Fogo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 45000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_fenix",
+    "min_level": 15,
+    "summary": "Nível 2 de Fênix de Fogo: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_serpente_ii",
+    "display_name": "Pergaminho II: Serpente do Mar",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 60000,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_serpente",
+    "min_level": 15,
+    "summary": "Nível 2 de Serpente do Mar: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_estocada",
+    "display_name": "Esfera: Estocada de Lança",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 700,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_estocada",
+    "min_level": 5,
+    "summary": "Ensina ao Guerreiro: Estocada de Lança (nível 5+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_estocada_ii",
+    "display_name": "Esfera II: Estocada de Lança",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_estocada",
+    "min_level": 15,
+    "summary": "Nível 2 de Estocada de Lança: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_laminas_sangue",
+    "display_name": "Esfera: Lâminas de Sangue",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 2000,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_laminas_sangue",
+    "min_level": 8,
+    "summary": "Ensina ao Guerreiro: Lâminas de Sangue (nível 8+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_laminas_sangue_ii",
+    "display_name": "Esfera II: Lâminas de Sangue",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 10000,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_laminas_sangue",
+    "min_level": 15,
+    "summary": "Nível 2 de Lâminas de Sangue: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_guerreiro_chuva_espadas",
+    "display_name": "Esfera: Chuva de Espadas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 5500,
+    "classes": [
+      "guerreiro"
+    ],
+    "teach_skill": "skill_guerreiro_chuva_espadas",
+    "min_level": 12,
+    "summary": "Ensina ao Guerreiro: Chuva de Espadas (nível 12+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_guerreiro_chuva_espadas_ii",
+    "display_name": "Esfera II: Chuva de Espadas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 27500,
+    "classes": [
+      "guerreiro"
+    ],
+    "upgrade_skill": "skill_guerreiro_chuva_espadas",
+    "min_level": 15,
+    "summary": "Nível 2 de Chuva de Espadas: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_esfera_protecao",
+    "display_name": "Livro: Esfera de Proteção",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 700,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_esfera_protecao",
+    "min_level": 5,
+    "summary": "Ensina ao Mago: Esfera de Proteção (nível 5+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_esfera_protecao_ii",
+    "display_name": "Livro II: Esfera de Proteção",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_esfera_protecao",
+    "min_level": 15,
+    "summary": "Nível 2 de Esfera de Proteção: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_prisao_gelo",
+    "display_name": "Livro: Prisão de Gelo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 2000,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_prisao_gelo",
+    "min_level": 8,
+    "summary": "Ensina ao Mago: Prisão de Gelo (nível 8+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_prisao_gelo_ii",
+    "display_name": "Livro II: Prisão de Gelo",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 10000,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_prisao_gelo",
+    "min_level": 15,
+    "summary": "Nível 2 de Prisão de Gelo: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_mago_anel_chamas",
+    "display_name": "Livro: Anel de Chamas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 5500,
+    "classes": [
+      "mago"
+    ],
+    "teach_skill": "skill_mago_anel_chamas",
+    "min_level": 12,
+    "summary": "Ensina ao Mago: Anel de Chamas (nível 12+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_mago_anel_chamas_ii",
+    "display_name": "Livro II: Anel de Chamas",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 27500,
+    "classes": [
+      "mago"
+    ],
+    "upgrade_skill": "skill_mago_anel_chamas",
+    "min_level": 15,
+    "summary": "Nível 2 de Anel de Chamas: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_raizes",
+    "display_name": "Grimório: Raízes que Prendem",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 1200,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_raizes",
+    "min_level": 6,
+    "summary": "Ensina à Bruxa: Raízes que Prendem (nível 6+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_raizes_ii",
+    "display_name": "Grimório II: Raízes que Prendem",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 6000,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_raizes",
+    "min_level": 15,
+    "summary": "Nível 2 de Raízes que Prendem: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_tronco",
+    "display_name": "Grimório: Tronco Esmagador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 3500,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_tronco",
+    "min_level": 10,
+    "summary": "Ensina à Bruxa: Tronco Esmagador (nível 10+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_tronco_ii",
+    "display_name": "Grimório II: Tronco Esmagador",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 17500,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_tronco",
+    "min_level": 15,
+    "summary": "Nível 2 de Tronco Esmagador: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_bruxa_vinhas",
+    "display_name": "Grimório: Vinhas Chicote",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 5500,
+    "classes": [
+      "bruxa"
+    ],
+    "teach_skill": "skill_bruxa_vinhas",
+    "min_level": 12,
+    "summary": "Ensina à Bruxa: Vinhas Chicote (nível 12+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_bruxa_vinhas_ii",
+    "display_name": "Grimório II: Vinhas Chicote",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 27500,
+    "classes": [
+      "bruxa"
+    ],
+    "upgrade_skill": "skill_bruxa_vinhas",
+    "min_level": 15,
+    "summary": "Nível 2 de Vinhas Chicote: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  },
+  {
+    "id": "tomo_arqueiro_tiro_certeiro",
+    "display_name": "Pergaminho: Tiro Certeiro",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 5500,
+    "classes": [
+      "arqueiro"
+    ],
+    "teach_skill": "skill_arqueiro_tiro_certeiro",
+    "min_level": 12,
+    "summary": "Ensina ao Arqueiro: Tiro Certeiro (nível 12+). Use na mochila; depois escolha a tecla no Livro de Poderes (K)."
+  },
+  {
+    "id": "tomo_arqueiro_tiro_certeiro_ii",
+    "display_name": "Pergaminho II: Tiro Certeiro",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "tomo",
+    "cooldown_ms": 0,
+    "stack_limit": 5,
+    "price": 27500,
+    "classes": [
+      "arqueiro"
+    ],
+    "upgrade_skill": "skill_arqueiro_tiro_certeiro",
+    "min_level": 15,
+    "summary": "Nível 2 de Tiro Certeiro: +40% de força e recarga 20% menor. Só depois da troca de classe (nível 15); precisa já saber o poder."
+  }
+]

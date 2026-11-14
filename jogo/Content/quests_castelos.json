@@ -1,0 +1,53 @@
+[
+  {
+    "id": "q_castelo_vespera",
+    "name": "O Senhor do Castelo",
+    "giver": "arauto_vespera",
+    "kind": "boss",
+    "targets": [
+      "monster_castelo_lorde_vespera"
+    ],
+    "count": 1,
+    "map": "castelo_vespera",
+    "min_level": 42,
+    "description": "«Compre o selo, atravesse o portão a leste e derrube Lorde Vesperino, o Insone no salão do trono. Quem volta de lá volta rico — de fama, pelo menos.»",
+    "hint": "Compre o Selo do Castelo de Véspera com o Arauto Vesperino (60.000 moedas) e entre pelo portão a leste do campo. Derrube Lorde Vesperino. o Insone.",
+    "reward_xp": 211680,
+    "reward_coins": 4155,
+    "category": "historia"
+  },
+  {
+    "id": "q_fortaleza_geada",
+    "name": "O Senhor do Fortaleza",
+    "giver": "arauto_geada",
+    "kind": "boss",
+    "targets": [
+      "monster_castelo_rei_gelo"
+    ],
+    "count": 1,
+    "map": "fortaleza_geada",
+    "min_level": 50,
+    "description": "«Compre o selo, atravesse o portão a leste e derrube O Rei de Gelo no salão do trono. Quem volta de lá volta rico — de fama, pelo menos.»",
+    "hint": "Compre o Selo da Fortaleza do Rei de Gelo com o Arauta Runhild (150.000 moedas) e entre pelo portão a leste do campo. Derrube O Rei de Gelo.",
+    "reward_xp": 300000,
+    "reward_coins": 4990,
+    "category": "historia"
+  },
+  {
+    "id": "q_cidadela_escoria",
+    "name": "O Senhor do Cidadela",
+    "giver": "arauto_escoria",
+    "kind": "boss",
+    "targets": [
+      "monster_castelo_senhor_escoria"
+    ],
+    "count": 1,
+    "map": "cidadela_escoria",
+    "min_level": 56,
+    "description": "«Compre o selo, atravesse o portão a leste e derrube O Senhor da Escória no salão do trono. Quem volta de lá volta rico — de fama, pelo menos.»",
+    "hint": "Compre o Selo da Cidadela de Escória com o Arauto de Cinzas (300.000 moedas) e entre pelo portão a leste do campo. Derrube O Senhor da Escória.",
+    "reward_xp": 376320,
+    "reward_coins": 5755,
+    "category": "historia"
+  }
+]

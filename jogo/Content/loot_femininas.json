@@ -1,0 +1,70 @@
+[
+  {
+    "id": "loot_monster_harpia",
+    "entries": [
+      {
+        "chance": 0.5,
+        "item": "mat_pena_harpia"
+      },
+      {
+        "chance": 0.12,
+        "item": "consumable_bandagem"
+      },
+      {
+        "chance": 0.04,
+        "item": "consumable_panaceia"
+      }
+    ]
+  },
+  {
+    "id": "loot_monster_medusa",
+    "entries": [
+      {
+        "chance": 0.5,
+        "item": "mat_escama_medusa"
+      },
+      {
+        "chance": 0.12,
+        "item": "consumable_agua_benta"
+      },
+      {
+        "chance": 0.04,
+        "item": "consumable_panaceia"
+      }
+    ]
+  },
+  {
+    "id": "loot_monster_vampira",
+    "entries": [
+      {
+        "chance": 0.5,
+        "item": "mat_presa_vampira"
+      },
+      {
+        "chance": 0.12,
+        "item": "consumable_bandagem"
+      },
+      {
+        "chance": 0.04,
+        "item": "consumable_panaceia"
+      }
+    ]
+  },
+  {
+    "id": "loot_monster_esfinge",
+    "entries": [
+      {
+        "chance": 1.0,
+        "item": "mat_po_esfinge"
+      },
+      {
+        "chance": 0.12,
+        "item": "consumable_agua_benta"
+      },
+      {
+        "chance": 0.25,
+        "item": "consumable_panaceia"
+      }
+    ]
+  }
+]

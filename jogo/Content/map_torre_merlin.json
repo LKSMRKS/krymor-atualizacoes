@@ -1,0 +1,388 @@
+{
+  "id": "torre_merlin",
+  "display_name": "Observatório de Merlin",
+  "half_size": 15,
+  "spawn_x": 0,
+  "spawn_y": 10.5,
+  "safe_radius": 40,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "astralia",
+  "theme": "biblioteca",
+  "no_mount": true,
+  "exit_map": "astralia",
+  "exit_x": 0.0,
+  "exit_y": 11.48,
+  "zones": [
+    {
+      "id": "salao",
+      "name": "Observatório de Merlin",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": -14.5,
+      "w": 30,
+      "h": 1,
+      "r": 0,
+      "height": 5.5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": 14.5,
+      "w": 30,
+      "h": 1,
+      "r": 0,
+      "height": 5.5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -14.5,
+      "y": 0,
+      "w": 1,
+      "h": 30,
+      "r": 0,
+      "height": 5.5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 14.5,
+      "y": 0,
+      "w": 1,
+      "h": 30,
+      "r": 0,
+      "height": 5.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -13.6,
+      "y": -6,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -13.6,
+      "y": 0,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -13.6,
+      "y": 6,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -13.6,
+      "y": 11,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 13.6,
+      "y": -6,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 13.6,
+      "y": 0,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 13.6,
+      "y": 6,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 13.6,
+      "y": 11,
+      "w": 1.2,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "astrolabio",
+      "shape": "circle",
+      "x": 0.0,
+      "y": -3.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.3,
+      "height": 2.2
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "waypoints": [],
+  "checkpoints": [],
+  "objects": [
+    {
+      "id": "merlin_livro_diario",
+      "kind": "livro",
+      "x": -6.0,
+      "y": 4.6,
+      "label": "Diário do Merlin (página solta)",
+      "text": "Dia 1 do Grande Arranjo. O céu está bagunçado: estrelas tortas, uma lua que sobra, quatro reinos atrapalhando as constelações. Hoje eu arrumo tudo. Ensaiei na floresta e deu certíssimo — a floresta sumiu inteirinha. Perfeito."
+    },
+    {
+      "id": "merlin_livro_estrelas",
+      "kind": "livro",
+      "x": 6.0,
+      "y": 4.6,
+      "label": "Almanaque das Estrelas (riscado)",
+      "text": "Quatro estrelas faltando nos mapas novos. Nos antigos, cada uma está em cima de um reino: a Lua Vermelha, a Transilvânia, o Inferno e a Cidade Celestial. Embaixo, na letra do Merlin: «culpa minha»."
+    },
+    {
+      "id": "merlin_livro_portas",
+      "kind": "livro",
+      "x": 0.0,
+      "y": -5.4,
+      "label": "As Quatro Portas",
+      "text": "Quem dobra o mundo precisa de alguém que segure a dobra. Pedi ao dragão mais velho que existe. Ele aceitou, desde que pudesse dormir. Enquanto ele sonhar, as portas ficam fechadas. Para abrir, é preciso entrar no sonho — e sair acordado."
+    },
+    {
+      "id": "porta_torre_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 13.0,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:torre_merlin_saida"
+    }
+  ],
+  "props": [
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": 0.0,
+      "y": -3.0,
+      "yaw": 0,
+      "scale": 1.4
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": 3,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_mesa_estudo",
+      "x": -6,
+      "y": 3,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": 6,
+      "y": 3,
+      "yaw": -90
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": -7.5,
+      "y": 5,
+      "yaw": 30
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 7.6,
+      "y": 6,
+      "yaw": 200
+    },
+    {
+      "kind": "glb:dg/dg_estatua_sabio",
+      "x": 0,
+      "y": -13,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -13.6,
+      "y": -6,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 13.6,
+      "y": -6,
+      "yaw": -90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -13.6,
+      "y": 0,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 13.6,
+      "y": 0,
+      "yaw": -90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -13.6,
+      "y": 6,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 13.6,
+      "y": 6,
+      "yaw": -90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -13.6,
+      "y": 11,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 13.6,
+      "y": 11,
+      "yaw": -90
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -4,
+      "y": 9,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 4,
+      "y": 9,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -11,
+      "y": -11,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 11,
+      "y": -11,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -4,
+      "y": -6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 4,
+      "y": -6,
+      "yaw": 0
+    }
+  ],
+  "npcs": [
+    {
+      "id": "coruja_arquimedes",
+      "name": "Arquimedes, a Coruja da Torre",
+      "role": "missoes",
+      "x": 3.0,
+      "y": -3.0,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "Hu-hu. Os portais acendem conforme o Merlin confia em você. Ele confia em pouca gente. Em mim, por exemplo, não."
+    }
+  ],
+  "portals": [
+    {
+      "id": "torre_merlin_saida",
+      "x": 0,
+      "y": 13.0,
+      "radius": 1.4,
+      "to_map": "astralia",
+      "to_x": 0.0,
+      "to_y": 11.48,
+      "label": "Sair para Astrália",
+      "por_porta": true
+    },
+    {
+      "id": "torre_para_merlin_torre_torta",
+      "x": -8.0,
+      "y": -9.5,
+      "radius": 1.6,
+      "to_map": "merlin_torre_torta",
+      "to_x": 3.5,
+      "to_y": 36.4,
+      "label": "A Torre Torta de Merlin",
+      "requires_flag": "merlin:dg1",
+      "min_level": 21
+    },
+    {
+      "id": "torre_para_merlin_poco_estrelas",
+      "x": 0.0,
+      "y": -11.5,
+      "radius": 1.6,
+      "to_map": "merlin_poco_estrelas",
+      "to_x": -4.0,
+      "to_y": 33.6,
+      "label": "O Poço das Estrelas",
+      "requires_flag": "merlin:dg2",
+      "min_level": 27
+    },
+    {
+      "id": "torre_para_merlin_sonho_dragao",
+      "x": 8.0,
+      "y": -9.5,
+      "radius": 1.6,
+      "to_map": "merlin_sonho_dragao",
+      "to_x": 3.5,
+      "to_y": 36.4,
+      "label": "O Sonho do Dragão Adormecido",
+      "requires_flag": "merlin:dg3",
+      "min_level": 33
+    }
+  ]
+}

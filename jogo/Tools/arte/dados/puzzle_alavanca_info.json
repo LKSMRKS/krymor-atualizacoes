@@ -1,0 +1,18 @@
+{
+ "asset_id": "puzzle_alavanca",
+ "nome": "Alavanca (montada, para prévia)",
+ "colisao": null,
+ "luz": null,
+ "notas": null,
+ "posicao_no_conjunto_godot": [
+  0.0,
+  0.0,
+  -0.0
+ ],
+ "tris": 668,
+ "dims_m": [
+  0.5,
+  0.4,
+  1.355
+ ]
+}

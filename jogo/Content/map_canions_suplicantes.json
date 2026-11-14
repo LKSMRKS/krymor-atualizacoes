@@ -1,0 +1,7010 @@
+{
+  "id": "canions_suplicantes",
+  "display_name": "Cânions dos Suplicantes",
+  "half_size": 75,
+  "spawn_x": 0,
+  "spawn_y": 62,
+  "safe_radius": 6,
+  "xp_multiplier": 2.5,
+  "kind": "campo",
+  "region": "canions",
+  "theme": "canion",
+  "zones": [
+    {
+      "id": "hub",
+      "name": "Posto do Elevador",
+      "kind": "refugio",
+      "x": 0,
+      "y": 58,
+      "w": 24,
+      "h": 14
+    },
+    {
+      "id": "estrada",
+      "name": "Estrada",
+      "kind": "caminho",
+      "x": 0,
+      "y": 4,
+      "w": 5,
+      "h": 96
+    },
+    {
+      "id": "bolsao0",
+      "name": "Território: Escorpiões e Morcego",
+      "kind": "fraco",
+      "x": -42,
+      "y": 34,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao1",
+      "name": "Território: Morcegos e Esqueleto",
+      "kind": "medio",
+      "x": 42,
+      "y": 34,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao2",
+      "name": "Território: Esqueletos e Espectro",
+      "kind": "medio",
+      "x": -42,
+      "y": -10,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao3",
+      "name": "Território: Espectros e Troll",
+      "kind": "forte",
+      "x": 42,
+      "y": -10,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "covil",
+      "name": "Covil do Escorpião-Rei",
+      "kind": "perigoso",
+      "x": 0,
+      "y": 14,
+      "w": 24,
+      "h": 18
+    },
+    {
+      "id": "trono_canions",
+      "name": "Trono: Rei dos Cânions",
+      "kind": "chefe",
+      "x": -42.0,
+      "y": -48.0,
+      "w": 18,
+      "h": 18
+    },
+    {
+      "id": "lugar0",
+      "name": "Pouso dos Mineiros",
+      "kind": "lugar",
+      "x": 54.3,
+      "y": -4.0,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar1",
+      "name": "Altar do Suplicante",
+      "kind": "lugar",
+      "x": 41.6,
+      "y": 46.3,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar2",
+      "name": "Ruína da Escavação",
+      "kind": "lugar",
+      "x": -37.2,
+      "y": 46.7,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar3",
+      "name": "Covas dos Escravos",
+      "kind": "lugar",
+      "x": -4.9,
+      "y": -30.0,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar4",
+      "name": "Mirante do Abismo",
+      "kind": "lugar",
+      "x": -58.4,
+      "y": -6.3,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "secreto",
+      "name": "Veio Esquecido",
+      "kind": "secreto",
+      "x": -66,
+      "y": 64,
+      "w": 10,
+      "h": 10
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 52.33,
+      "y": -51.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 59.84,
+      "y": -40.92,
+      "w": 0,
+      "h": 0,
+      "r": 2.03,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": 7.62,
+      "y": 6.32,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 47.07,
+      "y": -19.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 68.44,
+      "y": -49.7,
+      "w": 0,
+      "h": 0,
+      "r": 1.24,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 8.16,
+      "y": 12.99,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 44.01,
+      "y": 59.65,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 36.58,
+      "y": 41.12,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -49.7,
+      "y": -34.83,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -33.93,
+      "y": -27.07,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -33.36,
+      "y": -36.87,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -60.94,
+      "y": 56.31,
+      "w": 0,
+      "h": 0,
+      "r": 2.28,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -53.8,
+      "y": 18.72,
+      "w": 0,
+      "h": 0,
+      "r": 1.84,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 52.0,
+      "y": 12.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -27.73,
+      "y": 65.03,
+      "w": 0,
+      "h": 0,
+      "r": 2.13,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -53.02,
+      "y": 50.86,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -48.59,
+      "y": 11.08,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -66.85,
+      "y": -31.22,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -8.15,
+      "y": 47.11,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -16.46,
+      "y": 24.39,
+      "w": 0,
+      "h": 0,
+      "r": 1.62,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -7.55,
+      "y": 12.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -43.74,
+      "y": -45.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -20.45,
+      "y": -18.78,
+      "w": 0,
+      "h": 0,
+      "r": 2.35,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 22.88,
+      "y": 67.05,
+      "w": 0,
+      "h": 0,
+      "r": 1.62,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 20.22,
+      "y": -8.73,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -53.99,
+      "y": -40.27,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 27.62,
+      "y": 0.9,
+      "w": 0,
+      "h": 0,
+      "r": 1.56,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -29.31,
+      "y": 15.06,
+      "w": 0,
+      "h": 0,
+      "r": 1.58,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -24.6,
+      "y": 10.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 7.7,
+      "y": -36.39,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 41.83,
+      "y": -45.61,
+      "w": 0,
+      "h": 0,
+      "r": 1.78,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -23.72,
+      "y": 42.78,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -33.43,
+      "y": 40.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -28.29,
+      "y": -0.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 67.48,
+      "y": 35.68,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -42.83,
+      "y": -15.49,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 34.61,
+      "y": 11.32,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 64.59,
+      "y": 57.64,
+      "w": 0,
+      "h": 0,
+      "r": 2.19,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": 67.41,
+      "y": 7.09,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -67.27,
+      "y": 59.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": 51.53,
+      "y": 51.02,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "nicho_almas",
+      "shape": "circle",
+      "x": -25.27,
+      "y": -19.72,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 14.61,
+      "y": 27.48,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -19.38,
+      "y": 68.97,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -53.4,
+      "y": 12.68,
+      "w": 0,
+      "h": 0,
+      "r": 2.01,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -11.87,
+      "y": -23.21,
+      "w": 0,
+      "h": 0,
+      "r": 2.05,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -70.29,
+      "y": -73.38,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.74,
+      "y": 72.47,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -70.51,
+      "y": -71.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 73.26,
+      "y": -70.97,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -61.6,
+      "y": -73.34,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -62.76,
+      "y": 73.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -72.15,
+      "y": -63.19,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 73.04,
+      "y": -62.18,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -51.93,
+      "y": -73.21,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -51.8,
+      "y": 71.08,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -72.71,
+      "y": -52.79,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.24,
+      "y": -51.74,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -44.63,
+      "y": -72.09,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -42.56,
+      "y": 71.42,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.61,
+      "y": -43.69,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.65,
+      "y": -44.24,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -34.23,
+      "y": -73.41,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -33.78,
+      "y": 72.22,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -70.87,
+      "y": -33.76,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 72.98,
+      "y": -34.21,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -27.05,
+      "y": -71.24,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -26.39,
+      "y": 71.8,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.65,
+      "y": -27.37,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 73.11,
+      "y": -27.48,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -18.24,
+      "y": -71.96,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -17.81,
+      "y": 73.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.93,
+      "y": -17.91,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.62,
+      "y": -16.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -7.91,
+      "y": -72.88,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -7.33,
+      "y": 72.16,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -72.67,
+      "y": -8.96,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 72.58,
+      "y": -7.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.33,
+      "y": 0.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.75,
+      "y": 1.57,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 9.36,
+      "y": -72.92,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 8.58,
+      "y": 72.97,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.54,
+      "y": 10.52,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.85,
+      "y": 11.34,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 19.29,
+      "y": -70.52,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 19.07,
+      "y": 71.61,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.37,
+      "y": 19.03,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 72.87,
+      "y": 18.31,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 27.93,
+      "y": -73.42,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 26.85,
+      "y": 72.54,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -70.67,
+      "y": 27.16,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.04,
+      "y": 26.9,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 37.23,
+      "y": 71.58,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -72.54,
+      "y": 36.82,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.17,
+      "y": 37.82,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 47.25,
+      "y": 71.23,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.34,
+      "y": 45.91,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 71.69,
+      "y": 47.12,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 54.76,
+      "y": -70.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 53.85,
+      "y": 73.34,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -73.21,
+      "y": 56.23,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 70.52,
+      "y": 55.64,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 63.43,
+      "y": -71.66,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 63.43,
+      "y": 72.97,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -71.14,
+      "y": 64.57,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 73.44,
+      "y": 62.69,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.87,
+      "y": 19.22,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 4.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 50.11,
+      "y": 65.77,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 4.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 2.49,
+      "y": 4.74,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 4.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -7.75,
+      "y": -41.19,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 59.16,
+      "y": 13.8,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 4.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -14.69,
+      "y": -35.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 5.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 22.87,
+      "y": 62.96,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 5.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 48.02,
+      "y": -54.32,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 4.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -35.08,
+      "y": 19.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 4.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -13.31,
+      "y": -39.23,
+      "w": 0,
+      "h": 0,
+      "r": 0.66,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 60.11,
+      "y": 43.15,
+      "w": 0,
+      "h": 0,
+      "r": 1.12,
+      "height": 1.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 2.56,
+      "y": -22.36,
+      "w": 0,
+      "h": 0,
+      "r": 0.77,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -54.14,
+      "y": 2.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.17,
+      "height": 2.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -29.43,
+      "y": -50.12,
+      "w": 0,
+      "h": 0,
+      "r": 0.69,
+      "height": 0.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 38.83,
+      "y": -23.87,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 52.42,
+      "y": -37.81,
+      "w": 0,
+      "h": 0,
+      "r": 1.33,
+      "height": 2.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -36.59,
+      "y": 67.18,
+      "w": 0,
+      "h": 0,
+      "r": 0.89,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -4.31,
+      "y": -6.84,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -26.99,
+      "y": 2.36,
+      "w": 0,
+      "h": 0,
+      "r": 0.67,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -53.2,
+      "y": 34.86,
+      "w": 0,
+      "h": 0,
+      "r": 1.15,
+      "height": 1.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -27.75,
+      "y": -32.35,
+      "w": 0,
+      "h": 0,
+      "r": 1.32,
+      "height": 1.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -2.26,
+      "y": 28.09,
+      "w": 0,
+      "h": 0,
+      "r": 0.88,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 21.75,
+      "y": -23.17,
+      "w": 0,
+      "h": 0,
+      "r": 0.84,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 44.43,
+      "y": -51.64,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 68.7,
+      "y": -56.48,
+      "w": 0,
+      "h": 0,
+      "r": 0.87,
+      "height": 0.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 20.77,
+      "y": 58.91,
+      "w": 0,
+      "h": 0,
+      "r": 1.02,
+      "height": 1.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 34.61,
+      "y": -2.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -61.2,
+      "y": -15.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 1.2,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 63.11,
+      "y": -50.64,
+      "w": 0,
+      "h": 0,
+      "r": 1.08,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 47.4,
+      "y": 6.06,
+      "w": 0,
+      "h": 0,
+      "r": 0.63,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 42.25,
+      "y": 70.18,
+      "w": 0,
+      "h": 0,
+      "r": 0.96,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -5.6,
+      "y": -13.26,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 0.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.36,
+      "y": 8.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.82,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 23.34,
+      "y": 48.93,
+      "w": 0,
+      "h": 0,
+      "r": 0.65,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 14.71,
+      "y": 13.04,
+      "w": 0,
+      "h": 0,
+      "r": 1.35,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 51.73,
+      "y": -68.65,
+      "w": 0,
+      "h": 0,
+      "r": 0.71,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 35.26,
+      "y": -48.09,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -43.75,
+      "y": -66.49,
+      "w": 0,
+      "h": 0,
+      "r": 0.95,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 2.56,
+      "y": 28.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.86,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 1.27,
+      "y": -49.93,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 10.82,
+      "y": -35.46,
+      "w": 0,
+      "h": 0,
+      "r": 0.86,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 14.36,
+      "y": 36.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 36.42,
+      "y": -37.76,
+      "w": 0,
+      "h": 0,
+      "r": 0.98,
+      "height": 1.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -50.21,
+      "y": 21.76,
+      "w": 0,
+      "h": 0,
+      "r": 1.05,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -8.63,
+      "y": -55.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.98,
+      "height": 1.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -60.82,
+      "y": 10.3,
+      "w": 0,
+      "h": 0,
+      "r": 0.59,
+      "height": 0.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -27.43,
+      "y": -7.81,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -48.33,
+      "y": 59.61,
+      "w": 0,
+      "h": 0,
+      "r": 1.26,
+      "height": 1.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 23.26,
+      "y": -29.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.73,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 64.05,
+      "y": 32.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.72,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 30.84,
+      "y": 40.07,
+      "w": 0,
+      "h": 0,
+      "r": 1.05,
+      "height": 1.2,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -41.35,
+      "y": -21.15,
+      "w": 0,
+      "h": 0,
+      "r": 1.07,
+      "height": 1.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 50.42,
+      "y": -22.32,
+      "w": 0,
+      "h": 0,
+      "r": 0.99,
+      "height": 1.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 64.02,
+      "y": 9.44,
+      "w": 0,
+      "h": 0,
+      "r": 1.36,
+      "height": 1.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -22.41,
+      "y": 6.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.71,
+      "height": 0.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -43.41,
+      "y": 5.85,
+      "w": 0,
+      "h": 0,
+      "r": 0.62,
+      "height": 0.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -65.12,
+      "y": 32.22,
+      "w": 0,
+      "h": 0,
+      "r": 1.0,
+      "height": 1.5,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 66.99,
+      "y": -27.34,
+      "w": 0,
+      "h": 0,
+      "r": 0.81,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": -21.39,
+      "y": 53.19,
+      "w": 3.68,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": -15.31,
+      "y": 53.19,
+      "w": 3.68,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": -18.35,
+      "y": 57.62,
+      "w": 9.75,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": -23.22,
+      "y": 55.4,
+      "w": 0.2,
+      "h": 4.43,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": -13.47,
+      "y": 55.4,
+      "w": 0.2,
+      "h": 4.43,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 29.6,
+      "y": 51.33,
+      "w": 8.21,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 29.6,
+      "y": 56.49,
+      "w": 8.21,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 25.5,
+      "y": 52.02,
+      "w": 0.2,
+      "h": 1.38,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 25.5,
+      "y": 55.8,
+      "w": 0.2,
+      "h": 1.38,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 33.71,
+      "y": 53.91,
+      "w": 0.2,
+      "h": 5.16,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 2.04,
+      "y": 35.17,
+      "w": 1.85,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 6.29,
+      "y": 35.17,
+      "w": 1.85,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 4.16,
+      "y": 40.28,
+      "w": 6.1,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 1.11,
+      "y": 37.73,
+      "w": 0.2,
+      "h": 5.11,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 7.21,
+      "y": 37.73,
+      "w": 0.2,
+      "h": 5.11,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "muralha",
+      "x": -19.7,
+      "y": -62,
+      "w": 110.6,
+      "h": 1.4,
+      "r": 0
+    },
+    {
+      "kind": "muralha",
+      "x": 60.3,
+      "y": -62,
+      "w": 29.4,
+      "h": 1.4,
+      "r": 0
+    },
+    {
+      "id": "sala_secreta_fundo",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -60.0,
+      "y": -28.2,
+      "w": 0,
+      "h": 0,
+      "r": 2.0,
+      "height": 3.2
+    },
+    {
+      "id": "sala_secreta_esq",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -62.3,
+      "y": -26.4,
+      "w": 0,
+      "h": 0,
+      "r": 1.5,
+      "height": 2.4
+    },
+    {
+      "id": "sala_secreta_dir",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -57.7,
+      "y": -26.4,
+      "w": 0,
+      "h": 0,
+      "r": 1.5,
+      "height": 2.4
+    },
+    {
+      "id": "sala_secreta_fe",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -61.85,
+      "y": -24.1,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 1.8
+    },
+    {
+      "id": "sala_secreta_fd",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -58.15,
+      "y": -24.1,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 1.8
+    },
+    {
+      "id": "sala_secreta_bau_canions_segredo_fundo",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -66,
+      "y": 61.9,
+      "w": 0,
+      "h": 0,
+      "r": 2.0,
+      "height": 3.2
+    },
+    {
+      "id": "sala_secreta_bau_canions_segredo_esq",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -68.3,
+      "y": 63.7,
+      "w": 0,
+      "h": 0,
+      "r": 1.5,
+      "height": 2.4
+    },
+    {
+      "id": "sala_secreta_bau_canions_segredo_dir",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -63.7,
+      "y": 63.7,
+      "w": 0,
+      "h": 0,
+      "r": 1.5,
+      "height": 2.4
+    },
+    {
+      "id": "sala_secreta_bau_canions_segredo_fe",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -67.85,
+      "y": 66.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 1.8
+    },
+    {
+      "id": "sala_secreta_bau_canions_segredo_fd",
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -64.15,
+      "y": 66.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 1.8
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -15.41,
+      "y": 10.68,
+      "w": 3.57,
+      "h": 3.06,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    }
+  ],
+  "gates": [
+    {
+      "id": "passagem_canions",
+      "flag": "selo:elevador",
+      "x": 40.6,
+      "y": -62,
+      "w": 10,
+      "h": 1.4,
+      "lever_x": 40.6,
+      "lever_y": -58,
+      "kind": "selo",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_racha",
+      "flag": "parede:canions_suplicantes",
+      "x": -60.0,
+      "y": -23.9,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -60.0,
+      "lever_y": -22.6,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_racha_bau_canions_segredo",
+      "flag": "caverna:canions_suplicantes:bau_canions_segredo",
+      "x": -66,
+      "y": 66.2,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -66,
+      "lever_y": 67.5,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_isca1",
+      "flag": "pedra:canions_suplicantes:1",
+      "x": -59.3,
+      "y": 43.1,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -59.3,
+      "lever_y": 44.4,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_isca2",
+      "flag": "pedra:canions_suplicantes:2",
+      "x": -40.4,
+      "y": 34.7,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -40.4,
+      "lever_y": 36.0,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_isca3",
+      "flag": "pedra:canions_suplicantes:3",
+      "x": -43.7,
+      "y": 16.9,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -43.7,
+      "lever_y": 18.2,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_isca4",
+      "flag": "pedra:canions_suplicantes:4",
+      "x": -21.9,
+      "y": -24.1,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": -21.9,
+      "lever_y": -22.8,
+      "kind": "pedra_secreta",
+      "lever": false
+    },
+    {
+      "id": "sala_secreta_isca5",
+      "flag": "pedra:canions_suplicantes:5",
+      "x": 12.7,
+      "y": -24.3,
+      "w": 1.8,
+      "h": 1.6,
+      "lever_x": 12.7,
+      "lever_y": -23.0,
+      "kind": "pedra_secreta",
+      "lever": false
+    }
+  ],
+  "chests": [
+    {
+      "id": "bau_canions_segredo",
+      "x": -66,
+      "y": 64,
+      "loot_table": "bau_canions",
+      "facing": 135,
+      "secret": true
+    },
+    {
+      "id": "sala_secreta_bau",
+      "x": -60.0,
+      "y": -26.1,
+      "loot_table": "loot_sala_secreta_3",
+      "facing": 180,
+      "secret": true
+    }
+  ],
+  "spawns": [
+    {
+      "id": "canions_0_0_0",
+      "monster": "monster_canions_escorpiao",
+      "x": -52.0,
+      "y": 28.0,
+      "level": 20,
+      "group": "canions_0_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_0_0_1",
+      "monster": "monster_canions_morcego",
+      "x": -49.8,
+      "y": 29.5,
+      "level": 21,
+      "group": "canions_0_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_0_1_0",
+      "monster": "monster_canions_escorpiao",
+      "x": -42.0,
+      "y": 40.0,
+      "level": 20,
+      "group": "canions_0_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_0_1_1",
+      "monster": "monster_canions_morcego",
+      "x": -39.8,
+      "y": 41.5,
+      "level": 21,
+      "group": "canions_0_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_0_2_0",
+      "monster": "monster_canions_escorpiao",
+      "x": -32.0,
+      "y": 28.0,
+      "level": 20,
+      "group": "canions_0_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_0_2_1",
+      "monster": "monster_canions_morcego",
+      "x": -29.8,
+      "y": 29.5,
+      "level": 21,
+      "group": "canions_0_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_0_0",
+      "monster": "monster_canions_morcego",
+      "x": 32.0,
+      "y": 28.0,
+      "level": 23,
+      "group": "canions_1_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_0_1",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": 34.2,
+      "y": 29.5,
+      "level": 24,
+      "group": "canions_1_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_1_0",
+      "monster": "monster_canions_morcego",
+      "x": 42.0,
+      "y": 40.0,
+      "level": 23,
+      "group": "canions_1_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_1_1",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": 44.2,
+      "y": 41.5,
+      "level": 24,
+      "group": "canions_1_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_2_0",
+      "monster": "monster_canions_morcego",
+      "x": 52.0,
+      "y": 28.0,
+      "level": 23,
+      "group": "canions_1_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_1_2_1",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": 54.2,
+      "y": 29.5,
+      "level": 24,
+      "group": "canions_1_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_0_0",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": -52.0,
+      "y": -16.0,
+      "level": 27,
+      "group": "canions_2_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_0_1",
+      "monster": "monster_canions_espectro",
+      "x": -49.8,
+      "y": -14.5,
+      "level": 28,
+      "group": "canions_2_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_1_0",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": -42.0,
+      "y": -4.0,
+      "level": 27,
+      "group": "canions_2_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_1_1",
+      "monster": "monster_canions_espectro",
+      "x": -39.8,
+      "y": -2.5,
+      "level": 28,
+      "group": "canions_2_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_2_0",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": -32.0,
+      "y": -16.0,
+      "level": 27,
+      "group": "canions_2_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_2_2_1",
+      "monster": "monster_canions_espectro",
+      "x": -29.8,
+      "y": -14.5,
+      "level": 28,
+      "group": "canions_2_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_0_0",
+      "monster": "monster_canions_espectro",
+      "x": 32.0,
+      "y": -16.0,
+      "level": 30,
+      "group": "canions_3_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_0_1",
+      "monster": "monster_canions_troll",
+      "x": 34.2,
+      "y": -14.5,
+      "level": 30,
+      "group": "canions_3_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_1_0",
+      "monster": "monster_canions_espectro",
+      "x": 42.0,
+      "y": -4.0,
+      "level": 30,
+      "group": "canions_3_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_1_1",
+      "monster": "monster_canions_troll",
+      "x": 44.2,
+      "y": -2.5,
+      "level": 30,
+      "group": "canions_3_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_2_0",
+      "monster": "monster_canions_espectro",
+      "x": 52.0,
+      "y": -16.0,
+      "level": 30,
+      "group": "canions_3_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_3_2_1",
+      "monster": "monster_canions_troll",
+      "x": 54.2,
+      "y": -14.5,
+      "level": 30,
+      "group": "canions_3_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "canions_elite",
+      "monster": "monster_canions_escorpiao_rei",
+      "x": 0,
+      "y": 14,
+      "level": 29,
+      "group": "canions_elite",
+      "respawn_seconds": 180
+    },
+    {
+      "id": "canions_elite_add0",
+      "monster": "monster_canions_troll",
+      "x": -4,
+      "y": 17,
+      "level": 30,
+      "group": "canions_elite",
+      "respawn_seconds": 60
+    },
+    {
+      "id": "canions_elite_add1",
+      "monster": "monster_canions_troll",
+      "x": 4,
+      "y": 17,
+      "level": 30,
+      "group": "canions_elite",
+      "respawn_seconds": 60
+    },
+    {
+      "id": "canions_raro",
+      "monster": "monster_canions_morcego_albino",
+      "x": 62,
+      "y": 50,
+      "level": 27,
+      "group": "canions_raro",
+      "respawn_seconds": 600,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          62,
+          50
+        ],
+        [
+          -62,
+          50
+        ],
+        [
+          60,
+          -30
+        ],
+        [
+          -60,
+          15
+        ]
+      ]
+    },
+    {
+      "id": "f0_0",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": -52.5,
+      "y": -70.1,
+      "level": 33,
+      "group": "fill0",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f1_0",
+      "monster": "monster_canions_espectro",
+      "x": 57.1,
+      "y": -68.8,
+      "level": 36,
+      "group": "fill1",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f2_0",
+      "monster": "monster_canions_espectro",
+      "x": 18.6,
+      "y": -67.3,
+      "level": 36,
+      "group": "fill2",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f3_0",
+      "monster": "monster_canions_esqueleto_mineiro",
+      "x": -28.8,
+      "y": -54.5,
+      "level": 33,
+      "group": "fill3",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f4_0",
+      "monster": "monster_canions_espectro",
+      "x": 3.0,
+      "y": -40.3,
+      "level": 36,
+      "group": "fill4",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f4_1",
+      "monster": "monster_canions_espectro",
+      "x": 3.3,
+      "y": -39.0,
+      "level": 36,
+      "group": "fill4",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f5_0",
+      "monster": "monster_canions_espectro",
+      "x": 28.0,
+      "y": -51.3,
+      "level": 36,
+      "group": "fill5",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f6_0",
+      "monster": "monster_canions_espectro",
+      "x": -6.1,
+      "y": -28.3,
+      "level": 34,
+      "group": "fill6",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f7_0",
+      "monster": "monster_canions_espectro",
+      "x": 46.0,
+      "y": -40.7,
+      "level": 36,
+      "group": "fill7",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "b0_0",
+      "monster": "monster_bst_mumia",
+      "x": -20.7,
+      "y": -37.8,
+      "level": 27,
+      "group": "bst0",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b1_0",
+      "monster": "monster_bst_mumia",
+      "x": -69.9,
+      "y": 5.2,
+      "level": 26,
+      "group": "bst1",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b2_0",
+      "monster": "monster_bst_mumia",
+      "x": -29.6,
+      "y": -65.1,
+      "level": 27,
+      "group": "bst2",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b2_1",
+      "monster": "monster_bst_mumia",
+      "x": -31.2,
+      "y": -67.0,
+      "level": 27,
+      "group": "bst2",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b3_0",
+      "monster": "monster_bst_verme_gigante",
+      "x": 66.6,
+      "y": 26.7,
+      "level": 24,
+      "group": "bst3",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b4_0",
+      "monster": "monster_bst_verme_gigante",
+      "x": 67.3,
+      "y": 62.1,
+      "level": 24,
+      "group": "bst4",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b4_1",
+      "monster": "monster_bst_verme_gigante",
+      "x": 67.8,
+      "y": 60.4,
+      "level": 24,
+      "group": "bst4",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b5_0",
+      "monster": "monster_bst_verme_gigante",
+      "x": 34.2,
+      "y": 60.9,
+      "level": 25,
+      "group": "bst5",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b6_0",
+      "monster": "monster_bst_visitante",
+      "x": 60.4,
+      "y": 4.8,
+      "level": 32,
+      "group": "bst6",
+      "respawn_seconds": 120,
+      "fill": true
+    },
+    {
+      "id": "cc_canions_rei_dos_canions",
+      "monster": "monster_canions_rei_dos_canions",
+      "x": -42.0,
+      "y": -48.0,
+      "level": 35,
+      "group": "cc_canions_rei_dos_canions",
+      "respawn_seconds": 720
+    },
+    {
+      "id": "canions_suplicantes_dourado",
+      "monster": "monster_canions_suplicantes_dourado",
+      "x": -49.8,
+      "y": -14.5,
+      "level": 36,
+      "group": "canions_suplicantes_dourado",
+      "respawn_seconds": 300,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          -49.8,
+          -14.5
+        ],
+        [
+          45.0,
+          18.0
+        ],
+        [
+          -45.0,
+          13.5
+        ],
+        [
+          22.5,
+          -45.0
+        ],
+        [
+          -27.0,
+          -36.0
+        ]
+      ]
+    },
+    {
+      "id": "fem_monster_harpia_0",
+      "monster": "monster_harpia",
+      "x": 45.5,
+      "y": -12.0,
+      "level": 29,
+      "group": "fem_monster_harpia",
+      "respawn_seconds": 40
+    },
+    {
+      "id": "fem_monster_harpia_1",
+      "monster": "monster_harpia",
+      "x": 53.7,
+      "y": -4.1,
+      "level": 28,
+      "group": "fem_monster_harpia",
+      "respawn_seconds": 40
+    },
+    {
+      "id": "fem_monster_harpia_2",
+      "monster": "monster_harpia",
+      "x": 40.2,
+      "y": -0.4,
+      "level": 28,
+      "group": "fem_monster_harpia",
+      "respawn_seconds": 40
+    },
+    {
+      "id": "fem_monster_harpia_3",
+      "monster": "monster_harpia",
+      "x": 35.1,
+      "y": -6.1,
+      "level": 29,
+      "group": "fem_monster_harpia",
+      "respawn_seconds": 40
+    },
+    {
+      "id": "fem_monster_harpia_4",
+      "monster": "monster_harpia",
+      "x": 37.0,
+      "y": 2.3,
+      "level": 28,
+      "group": "fem_monster_harpia",
+      "respawn_seconds": 40
+    },
+    {
+      "id": "fab_dentuco_0",
+      "monster": "monster_fab_dentuco",
+      "x": -42.5,
+      "y": 44.9,
+      "level": 23,
+      "group": "fab_dent_0",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_1",
+      "monster": "monster_fab_dentuco",
+      "x": -41.7,
+      "y": 52.0,
+      "level": 24,
+      "group": "fab_dent_0",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_2",
+      "monster": "monster_fab_dentuco",
+      "x": -36.3,
+      "y": 47.6,
+      "level": 25,
+      "group": "fab_dent_1",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_3",
+      "monster": "monster_fab_dentuco",
+      "x": -36.4,
+      "y": 42.4,
+      "level": 23,
+      "group": "fab_dent_1",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_4",
+      "monster": "monster_fab_dentuco",
+      "x": -43.8,
+      "y": 43.0,
+      "level": 24,
+      "group": "fab_dent_2",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_5",
+      "monster": "monster_fab_dentuco",
+      "x": -36.6,
+      "y": 52.8,
+      "level": 25,
+      "group": "fab_dent_2",
+      "respawn_seconds": 50,
+      "fab": true
+    },
+    {
+      "id": "fab_dentuco_pai",
+      "monster": "monster_fab_dentuco_pai",
+      "x": -44,
+      "y": 52,
+      "level": 27,
+      "group": "fab_dentuco_pai",
+      "respawn_seconds": 240,
+      "fab": true
+    }
+  ],
+  "props": [
+    {
+      "kind": "fogueira",
+      "x": 0,
+      "y": 57,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": -12,
+      "y": 56,
+      "yaw": 90
+    },
+    {
+      "kind": "poste",
+      "x": 12,
+      "y": 56,
+      "yaw": -90
+    },
+    {
+      "kind": "cranios",
+      "x": 55.4,
+      "y": -46.7,
+      "yaw": 145
+    },
+    {
+      "kind": "tocha",
+      "x": 37.5,
+      "y": -21.2,
+      "yaw": 304
+    },
+    {
+      "kind": "cranios",
+      "x": -42.6,
+      "y": 64.3,
+      "yaw": 38
+    },
+    {
+      "kind": "tocha",
+      "x": 43.5,
+      "y": 32.3,
+      "yaw": 280
+    },
+    {
+      "kind": "cranios",
+      "x": 48.7,
+      "y": 9.4,
+      "yaw": 221
+    },
+    {
+      "kind": "tocha",
+      "x": -26.2,
+      "y": -56.2,
+      "yaw": 119
+    },
+    {
+      "kind": "cranios",
+      "x": 17.5,
+      "y": 14.3,
+      "yaw": 260
+    },
+    {
+      "kind": "tocha",
+      "x": -22.0,
+      "y": 55.1,
+      "yaw": 263
+    },
+    {
+      "kind": "tocha",
+      "x": 12.1,
+      "y": -5.1,
+      "yaw": 67
+    },
+    {
+      "kind": "cranios",
+      "x": 31.5,
+      "y": 13.9,
+      "yaw": 77
+    },
+    {
+      "kind": "tocha",
+      "x": 62.1,
+      "y": -52.4,
+      "yaw": 76
+    },
+    {
+      "kind": "ossada",
+      "x": -22.13,
+      "y": -42.56,
+      "yaw": 274,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 16.33,
+      "y": -19.73,
+      "yaw": 147,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 19.91,
+      "y": 15.49,
+      "yaw": 343,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.96,
+      "y": 46.2,
+      "yaw": 309,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": -28.11,
+      "y": -43.82,
+      "yaw": 246,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": -30.84,
+      "y": -31.35,
+      "yaw": 245,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": -26.11,
+      "y": 56.21,
+      "yaw": 178,
+      "deco": true
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": -43.11,
+      "y": -56.29,
+      "yaw": 12,
+      "deco": true
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": -1.88,
+      "y": -10.26,
+      "yaw": 118,
+      "deco": true
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 51.9,
+      "y": -6.7,
+      "yaw": 132,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "fogueira",
+      "x": 57.8,
+      "y": -4.7,
+      "yaw": 12,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "caixotes",
+      "x": 53.2,
+      "y": -0.6,
+      "yaw": 252,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 46.3,
+      "y": 45.1,
+      "yaw": 14,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 44.6,
+      "y": 48.3,
+      "yaw": 325,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "tocha",
+      "x": 40.6,
+      "y": 49.7,
+      "yaw": 253,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "tocha",
+      "x": 38.0,
+      "y": 46.4,
+      "yaw": 181,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "cranios",
+      "x": 47.6,
+      "y": 46.8,
+      "yaw": 355,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -34.8,
+      "y": 44.1,
+      "yaw": 48,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -31.6,
+      "y": 48.7,
+      "yaw": 341,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -35.6,
+      "y": 49.9,
+      "yaw": 297,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "ossada",
+      "x": -40.5,
+      "y": 48.3,
+      "yaw": 207,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "lapide",
+      "x": -1.5,
+      "y": -28.9,
+      "yaw": 341,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "lapide",
+      "x": -4.9,
+      "y": -26.4,
+      "yaw": 270,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "lapide",
+      "x": -8.3,
+      "y": -28.9,
+      "yaw": 198,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "ossada",
+      "x": -7.0,
+      "y": -32.9,
+      "yaw": 126,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "tocha",
+      "x": -2.7,
+      "y": -32.9,
+      "yaw": 54,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "placa",
+      "x": -57.9,
+      "y": -9.9,
+      "yaw": 83,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "estandarte",
+      "x": -54.8,
+      "y": -5.8,
+      "yaw": 353,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -58.8,
+      "y": -2.7,
+      "yaw": 263,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "tocha",
+      "x": -61.9,
+      "y": -6.7,
+      "yaw": 173,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "cadaver",
+      "x": -35.9,
+      "y": 32.7,
+      "yaw": 275,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -35.9,
+      "y": 31.5,
+      "yaw": 179,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 40.1,
+      "y": 31.9,
+      "yaw": 352,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 41.3,
+      "y": 32.2,
+      "yaw": 76,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -48.4,
+      "y": -9.4,
+      "yaw": 237,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -47.2,
+      "y": -9.6,
+      "yaw": 99,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 31.6,
+      "y": -1.3,
+      "yaw": 318,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 32.8,
+      "y": -1.4,
+      "yaw": 92,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -6.2,
+      "y": 13.8,
+      "yaw": 159,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -5.4,
+      "y": 12.9,
+      "yaw": 136,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -7.0,
+      "y": 19.3,
+      "yaw": 287,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -7.3,
+      "y": 18.1,
+      "yaw": 193,
+      "poi": "vida"
+    },
+    {
+      "kind": "cranios",
+      "x": -7.2,
+      "y": 9.0,
+      "yaw": 45,
+      "poi": "vida"
+    },
+    {
+      "kind": "cranios",
+      "x": -0.3,
+      "y": 16.6,
+      "yaw": 95,
+      "poi": "vida"
+    },
+    {
+      "kind": "placa",
+      "x": -56.1,
+      "y": -38.9,
+      "yaw": 233,
+      "poi": "vida",
+      "texto": "→ Galerias da Piedade · nível 23+"
+    },
+    {
+      "kind": "tenda",
+      "x": 16.17,
+      "y": 56.91,
+      "yaw": 270,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tenda",
+      "x": -7.86,
+      "y": 68.25,
+      "yaw": 180,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -14.15,
+      "y": 51.0,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -13.2,
+      "y": 66.2,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 13.87,
+      "y": 51.07,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 13.2,
+      "y": 66.2,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": -12.45,
+      "y": 53.47,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": 13.5,
+      "y": 53.0,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "caixotes",
+      "x": -14.71,
+      "y": 62.67,
+      "yaw": 95.1,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "caixotes",
+      "x": -14.85,
+      "y": 64.83,
+      "yaw": 165.9,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "caixotes",
+      "x": 15.35,
+      "y": 53.05,
+      "yaw": 53.5,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "barril",
+      "x": -12.71,
+      "y": 51.88,
+      "yaw": 91.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -34.08,
+      "y": -45.58,
+      "yaw": 197.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -44.42,
+      "y": -40.08,
+      "yaw": 287.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -45.88,
+      "y": -55.31,
+      "yaw": 62.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -39.58,
+      "y": -55.92,
+      "yaw": 107.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "cranios",
+      "x": -47.73,
+      "y": -54.09,
+      "yaw": 337.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -46.55,
+      "y": -46.76,
+      "yaw": 77.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -47.7,
+      "y": -46.78,
+      "yaw": 265.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -47.4,
+      "y": -46.62,
+      "yaw": 311.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -37.23,
+      "y": -43.52,
+      "yaw": 101.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -45.18,
+      "y": -46.75,
+      "yaw": 233.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_a",
+      "x": -50.89,
+      "y": -58.16,
+      "yaw": 48.8,
+      "amb": true,
+      "solid": 0.59
+    },
+    {
+      "kind": "ossada",
+      "x": 56.71,
+      "y": -2.17,
+      "yaw": 7.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 50.44,
+      "y": -2.87,
+      "yaw": 310.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "barril",
+      "x": 52.57,
+      "y": 0.87,
+      "yaw": 114.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 56.98,
+      "y": -5.86,
+      "yaw": 105.6,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 58.84,
+      "y": -5.91,
+      "yaw": 245.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tenda_goblin",
+      "x": 57.02,
+      "y": -8.78,
+      "yaw": 119.6,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tenda_goblin",
+      "x": 57.08,
+      "y": 0.74,
+      "yaw": 239.6,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "barril",
+      "x": 54.37,
+      "y": -7.86,
+      "yaw": 222.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/canion_vagonete_tombado",
+      "x": 60.47,
+      "y": -8.14,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.81
+    },
+    {
+      "kind": "estandarte",
+      "x": 50.1,
+      "y": 0.2,
+      "yaw": 175.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 59.65,
+      "y": -0.75,
+      "yaw": 45.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 49.87,
+      "y": -8.48,
+      "yaw": 225.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "caixote",
+      "x": 60.38,
+      "y": -2.08,
+      "yaw": 205.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_a",
+      "x": 41.6,
+      "y": 46.3,
+      "yaw": 228.1,
+      "amb": true,
+      "solid": 0.59
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 47.43,
+      "y": 48.5,
+      "yaw": 13.7,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 43.0,
+      "y": 51.1,
+      "yaw": 73.7,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 38.14,
+      "y": 49.91,
+      "yaw": 133.7,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 36.74,
+      "y": 45.11,
+      "yaw": 193.7,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 43.95,
+      "y": 45.82,
+      "yaw": 228.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 39.81,
+      "y": 47.9,
+      "yaw": 228.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cranios",
+      "x": 44.55,
+      "y": 47.55,
+      "yaw": 14.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 41.33,
+      "y": 49.49,
+      "yaw": 234.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 38.48,
+      "y": 47.02,
+      "yaw": 168.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 39.95,
+      "y": 43.56,
+      "yaw": 230.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 43.01,
+      "y": 45.25,
+      "yaw": 221.8,
+      "amb": true
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -32.52,
+      "y": 43.17,
+      "yaw": 334.3,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "estandarte",
+      "x": -32.64,
+      "y": 51.88,
+      "yaw": 308.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "lapide",
+      "x": -9.09,
+      "y": -32.22,
+      "yaw": 77.3,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -9.58,
+      "y": -30.1,
+      "yaw": 70.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -9.77,
+      "y": -26.77,
+      "yaw": 78.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -2.93,
+      "y": -24.47,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -9.78,
+      "y": -25.48,
+      "yaw": 227.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": -8.24,
+      "y": -32.87,
+      "yaw": 93.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_a",
+      "x": -58.4,
+      "y": -6.3,
+      "yaw": 6.2,
+      "amb": true,
+      "solid": 0.59
+    },
+    {
+      "kind": "estandarte",
+      "x": -55.4,
+      "y": -4.3,
+      "yaw": 6.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": -61.4,
+      "y": -4.3,
+      "yaw": 6.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "banco_praca",
+      "x": -57.21,
+      "y": -8.3,
+      "yaw": 186.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": -54.4,
+      "y": -9.3,
+      "yaw": 6.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -53.85,
+      "y": -2.47,
+      "yaw": 40.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -63.99,
+      "y": -4.28,
+      "yaw": 160.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -57.36,
+      "y": -12.16,
+      "yaw": 280.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "lapide",
+      "x": -70.68,
+      "y": 61.18,
+      "yaw": 316.3,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -70.38,
+      "y": 66.67,
+      "yaw": 317.5,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -62.33,
+      "y": 66.75,
+      "yaw": 304.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -61.38,
+      "y": 61.26,
+      "yaw": 322.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -60.71,
+      "y": 67.64,
+      "yaw": 304.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -61.46,
+      "y": 65.4,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -63.88,
+      "y": 69.65,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -70.86,
+      "y": 67.98,
+      "yaw": 227.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -70.54,
+      "y": 62.6,
+      "yaw": 287.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -62.64,
+      "y": 60.74,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -61.64,
+      "y": 68.71,
+      "yaw": 315.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": -61.77,
+      "y": 61.38,
+      "yaw": 314.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -63.44,
+      "y": 61.63,
+      "yaw": 10.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_elevador_mina",
+      "x": -15.41,
+      "y": 10.68,
+      "yaw": 0,
+      "amb": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -8.43,
+      "y": 38.87,
+      "yaw": 325.7,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -21.32,
+      "y": 27.44,
+      "yaw": 332.6,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -48.44,
+      "y": -52.11,
+      "yaw": 80.0,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -31.11,
+      "y": -49.56,
+      "yaw": 79.1,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -16.66,
+      "y": -59.24,
+      "yaw": 69.0,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 26.83,
+      "y": -71.73,
+      "yaw": 82.2,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": 47.19,
+      "y": -67.01,
+      "yaw": 301.2,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": 7.12,
+      "y": 69.08,
+      "yaw": 247.7,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": -61.01,
+      "y": -53.43,
+      "yaw": 187.6,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": 55.53,
+      "y": 18.02,
+      "yaw": 290.4,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "rocha",
+      "x": 67.52,
+      "y": 68.6,
+      "yaw": 188.9,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 1.08
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 67.79,
+      "y": -54.21,
+      "yaw": 282.0,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 0.62
+    },
+    {
+      "kind": "rocha",
+      "x": -41.23,
+      "y": -65.13,
+      "yaw": 351.7,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 1.06
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 54.46,
+      "y": 66.17,
+      "yaw": 116.3,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "rocha",
+      "x": 65.4,
+      "y": 37.28,
+      "yaw": 105.3,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.87
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -58.55,
+      "y": -65.32,
+      "yaw": 211.5,
+      "amb": true,
+      "scale": 1.01,
+      "solid": 0.51
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -16.99,
+      "y": -66.07,
+      "yaw": 252.6,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "rocha",
+      "x": -68.03,
+      "y": 19.22,
+      "yaw": 330.7,
+      "amb": true,
+      "scale": 1.14,
+      "solid": 1.14
+    },
+    {
+      "kind": "rocha",
+      "x": -70.48,
+      "y": 41.89,
+      "yaw": 324.6,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.18
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 67.05,
+      "y": -30.81,
+      "yaw": 34.8,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.57
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 67.74,
+      "y": -63.6,
+      "yaw": 254.1,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.46
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 65.63,
+      "y": 16.75,
+      "yaw": 96.4,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "rocha",
+      "x": 45.97,
+      "y": 62.72,
+      "yaw": 101.1,
+      "amb": true,
+      "solid": 1.0
+    },
+    {
+      "kind": "rocha",
+      "x": -11.89,
+      "y": -66.21,
+      "yaw": 165.3,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 1.06
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -50.56,
+      "y": -65.51,
+      "yaw": 235.9,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "rocha",
+      "x": 30.2,
+      "y": 68.75,
+      "yaw": 219.7,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.87
+    },
+    {
+      "kind": "rocha",
+      "x": 63.13,
+      "y": 42.66,
+      "yaw": 266.8,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 1.08
+    },
+    {
+      "kind": "rocha",
+      "x": 27.37,
+      "y": -64.73,
+      "yaw": 358.8,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 0.98
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 69.02,
+      "y": 31.29,
+      "yaw": 160.5,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.48
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 68.78,
+      "y": -12.55,
+      "yaw": 127.5,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.52
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -66.17,
+      "y": -37.12,
+      "yaw": 163.8,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.59
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -5.37,
+      "y": -66.0,
+      "yaw": 354.2,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.6
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 62.11,
+      "y": 29.35,
+      "yaw": 221.8,
+      "amb": true,
+      "scale": 0.94,
+      "solid": 0.47
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -24.19,
+      "y": -64.24,
+      "yaw": 10.6,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 0.58
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -64.88,
+      "y": 56.03,
+      "yaw": 198.6,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 0.53
+    },
+    {
+      "kind": "rocha",
+      "x": -46.08,
+      "y": -68.39,
+      "yaw": 12.4,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.11
+    },
+    {
+      "kind": "rocha",
+      "x": -32.21,
+      "y": 67.4,
+      "yaw": 105.3,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 0.91
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -54.33,
+      "y": 64.86,
+      "yaw": 351.3,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.52
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -68.8,
+      "y": -15.15,
+      "yaw": 291.5,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.51
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 57.89,
+      "y": 62.2,
+      "yaw": 312.2,
+      "amb": true,
+      "scale": 1.25,
+      "solid": 0.62
+    },
+    {
+      "kind": "rocha",
+      "x": 70.23,
+      "y": 4.7,
+      "yaw": 109.2,
+      "amb": true,
+      "scale": 1.01,
+      "solid": 1.01
+    },
+    {
+      "kind": "rocha",
+      "x": -66.91,
+      "y": 48.74,
+      "yaw": 196.5,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 1.12
+    },
+    {
+      "kind": "rocha",
+      "x": -70.84,
+      "y": -20.57,
+      "yaw": 80.1,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 1.04
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 62.52,
+      "y": -42.9,
+      "yaw": 351.1,
+      "amb": true,
+      "scale": 1.09,
+      "solid": 0.54
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -67.23,
+      "y": 12.87,
+      "yaw": 290.2,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 0.58
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -63.24,
+      "y": 48.22,
+      "yaw": 192.1,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 0.53
+    },
+    {
+      "kind": "rocha",
+      "x": -69.82,
+      "y": 53.84,
+      "yaw": 229.9,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.86
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -68.4,
+      "y": 33.65,
+      "yaw": 308.8,
+      "amb": true,
+      "scale": 1.22,
+      "solid": 0.61
+    },
+    {
+      "kind": "rocha",
+      "x": 64.38,
+      "y": 70.09,
+      "yaw": 258.4,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 1.05
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 68.61,
+      "y": 47.16,
+      "yaw": 54.5,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 0.49
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 13.74,
+      "y": -64.33,
+      "yaw": 156.1,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.59
+    },
+    {
+      "kind": "rocha",
+      "x": 62.01,
+      "y": -57.63,
+      "yaw": 97.7,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.9
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 58.39,
+      "y": 63.99,
+      "yaw": 322.2,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.47
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 68.35,
+      "y": 55.62,
+      "yaw": 285.8,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 0.54
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 69.66,
+      "y": -66.9,
+      "yaw": 91.3,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 0.62
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 24.43,
+      "y": 62.03,
+      "yaw": 154.0,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 0.52
+    },
+    {
+      "kind": "rocha",
+      "x": -0.6,
+      "y": -70.56,
+      "yaw": 197.7,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.96
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -21.27,
+      "y": -70.78,
+      "yaw": 132.4,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.47
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 46.01,
+      "y": 67.04,
+      "yaw": 172.6,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 69.77,
+      "y": -6.05,
+      "yaw": 107.9,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 0.57
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -66.89,
+      "y": -67.43,
+      "yaw": 318.1,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.45
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 20.05,
+      "y": 67.82,
+      "yaw": 349.0,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.51
+    },
+    {
+      "kind": "rocha",
+      "x": -68.33,
+      "y": 38.55,
+      "yaw": 272.6,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 1.08
+    },
+    {
+      "kind": "rocha",
+      "x": 64.38,
+      "y": 14.13,
+      "yaw": 313.6,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.96
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -38.1,
+      "y": 69.63,
+      "yaw": 124.1,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 0.53
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -57.62,
+      "y": -68.76,
+      "yaw": 160.0,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 0.49
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -15.42,
+      "y": -66.03,
+      "yaw": 186.2,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 0.54
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -45.92,
+      "y": 64.28,
+      "yaw": 132.4,
+      "amb": true,
+      "scale": 1.22,
+      "solid": 0.61
+    },
+    {
+      "kind": "rocha",
+      "x": -38.02,
+      "y": -65.29,
+      "yaw": 272.0,
+      "amb": true,
+      "scale": 1.14,
+      "solid": 1.14
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -62.87,
+      "y": 52.51,
+      "yaw": 39.8,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 0.56
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -68.86,
+      "y": 24.11,
+      "yaw": 29.1,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.57
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 67.4,
+      "y": 53.35,
+      "yaw": 289.4,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 0.49
+    },
+    {
+      "kind": "rocha",
+      "x": 68.41,
+      "y": -33.63,
+      "yaw": 181.0,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.11
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -23.02,
+      "y": -49.19,
+      "yaw": 200.3,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 0.48
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 27.35,
+      "y": 58.53,
+      "yaw": 236.6,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.4
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 6.25,
+      "y": 50.53,
+      "yaw": 235.5,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.4
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 14.13,
+      "y": 1.06,
+      "yaw": 126.3,
+      "amb": true,
+      "scale": 1.14,
+      "solid": 0.57
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -23.69,
+      "y": 50.82,
+      "yaw": 167.4,
+      "amb": true,
+      "scale": 1.09,
+      "solid": 0.55
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 23.51,
+      "y": 21.8,
+      "yaw": 248.6,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 0.45
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 12.13,
+      "y": -52.94,
+      "yaw": 213.0,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.6
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -15.86,
+      "y": -7.87,
+      "yaw": 187.4,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.43
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -19.3,
+      "y": 32.02,
+      "yaw": 210.5,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.4
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -54.0,
+      "y": -58.19,
+      "yaw": 8.3,
+      "amb": true,
+      "scale": 0.82,
+      "solid": 0.41
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 10.09,
+      "y": 30.75,
+      "yaw": 308.2,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.59
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 4.0,
+      "y": 34.36,
+      "yaw": 119.1,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 0.49
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 23.56,
+      "y": -32.65,
+      "yaw": 21.8,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.51
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 20.61,
+      "y": -26.03,
+      "yaw": 36.6,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.6
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 18.05,
+      "y": 41.35,
+      "yaw": 323.9,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.41
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 13.71,
+      "y": -50.64,
+      "yaw": 48.7,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.51
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 11.99,
+      "y": 35.57,
+      "yaw": 330.2,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.44
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 17.06,
+      "y": -34.36,
+      "yaw": 358.7,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.47
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 5.62,
+      "y": 38.14,
+      "yaw": 5.9,
+      "amb": true,
+      "scale": 0.95,
+      "solid": 0.48
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -32.07,
+      "y": -45.08,
+      "yaw": 338.9,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 0.42
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 8.33,
+      "y": 26.94,
+      "yaw": 48.3,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 0.53
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 16.1,
+      "y": 0.36,
+      "yaw": 304.5,
+      "amb": true,
+      "scale": 0.83,
+      "solid": 0.42
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 38.95,
+      "y": -47.56,
+      "yaw": 90.1,
+      "amb": true,
+      "scale": 0.83,
+      "solid": 0.41
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -13.52,
+      "y": -2.76,
+      "yaw": 200.9,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.44
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -7.11,
+      "y": -47.38,
+      "yaw": 204.4,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.43
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 26.03,
+      "y": -30.8,
+      "yaw": 50.4,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.58
+    },
+    {
+      "kind": "rocha",
+      "x": 10.57,
+      "y": -11.64,
+      "yaw": 288.3,
+      "amb": true,
+      "scale": 0.51,
+      "solid": 0.51
+    },
+    {
+      "kind": "rocha",
+      "x": 10.1,
+      "y": -13.54,
+      "yaw": 18.0,
+      "amb": true,
+      "scale": 0.8,
+      "solid": 0.8
+    },
+    {
+      "kind": "rocha",
+      "x": 7.78,
+      "y": -12.37,
+      "yaw": 325.4,
+      "amb": true,
+      "scale": 0.94,
+      "solid": 0.94
+    },
+    {
+      "kind": "rocha",
+      "x": 15.23,
+      "y": -16.36,
+      "yaw": 63.2,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 0.98
+    },
+    {
+      "kind": "rocha",
+      "x": 15.16,
+      "y": -13.59,
+      "yaw": 115.7,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 1.16
+    },
+    {
+      "kind": "rocha",
+      "x": -66.41,
+      "y": -7.01,
+      "yaw": 131.7,
+      "amb": true,
+      "scale": 0.83,
+      "solid": 0.83
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -24.22,
+      "y": 58.47,
+      "yaw": 106.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -11.56,
+      "y": 0.16,
+      "yaw": 53.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -24.03,
+      "y": -32.73,
+      "yaw": 25.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 64.83,
+      "y": 65.97,
+      "yaw": 37.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 20.94,
+      "y": -64.12,
+      "yaw": 284.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -36.25,
+      "y": -8.49,
+      "yaw": 119.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 30.02,
+      "y": 61.45,
+      "yaw": 56.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 23.65,
+      "y": -30.86,
+      "yaw": 322.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -12.17,
+      "y": -12.03,
+      "yaw": 253.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 44.1,
+      "y": 9.37,
+      "yaw": 41.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -20.43,
+      "y": 50.41,
+      "yaw": 305.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -58.74,
+      "y": 8.83,
+      "yaw": 185.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 50.47,
+      "y": -45.08,
+      "yaw": 309.1,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 54.68,
+      "y": 47.4,
+      "yaw": 92.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 48.55,
+      "y": -17.61,
+      "yaw": 347.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 8.33,
+      "y": -49.14,
+      "yaw": 176.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 19.74,
+      "y": 42.06,
+      "yaw": 116.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -50.44,
+      "y": -59.92,
+      "yaw": 309.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -10.11,
+      "y": -67.87,
+      "yaw": 311.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -13.04,
+      "y": -6.07,
+      "yaw": 121.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -27.6,
+      "y": 51.72,
+      "yaw": 158.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -10.98,
+      "y": 65.37,
+      "yaw": 74.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 47.74,
+      "y": -49.7,
+      "yaw": 46.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 17.62,
+      "y": -60.91,
+      "yaw": 253.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 31.79,
+      "y": 4.29,
+      "yaw": 145.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 53.73,
+      "y": 67.13,
+      "yaw": 283.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 70.37,
+      "y": 8.22,
+      "yaw": 105.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 58.94,
+      "y": 66.44,
+      "yaw": 351.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -30.26,
+      "y": 13.09,
+      "yaw": 1.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -10.49,
+      "y": 22.31,
+      "yaw": 234.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -48.63,
+      "y": -70.69,
+      "yaw": 45.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 27.46,
+      "y": 31.41,
+      "yaw": 190.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -26.28,
+      "y": -33.01,
+      "yaw": 353.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 27.41,
+      "y": 54.57,
+      "yaw": 141.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 12.3,
+      "y": 35.93,
+      "yaw": 275.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 49.18,
+      "y": 43.09,
+      "yaw": 227.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 2.02,
+      "y": -44.18,
+      "yaw": 97.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 53.9,
+      "y": 46.8,
+      "yaw": 206.9,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -36.59,
+      "y": -47.5,
+      "yaw": 62.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -65.35,
+      "y": 28.49,
+      "yaw": 213.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -11.73,
+      "y": 68.39,
+      "yaw": 299.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 58.71,
+      "y": 30.95,
+      "yaw": 187.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 13.85,
+      "y": -16.65,
+      "yaw": 121.2,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -57.71,
+      "y": -8.13,
+      "yaw": 112.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 18.3,
+      "y": 6.26,
+      "yaw": 76.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -8.97,
+      "y": 70.24,
+      "yaw": 76.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -67.77,
+      "y": -14.02,
+      "yaw": 113.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -49.38,
+      "y": 2.48,
+      "yaw": 189.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 33.8,
+      "y": -23.1,
+      "yaw": 306.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -22.47,
+      "y": -33.86,
+      "yaw": 206.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -47.28,
+      "y": -40.16,
+      "yaw": 190.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 57.43,
+      "y": -57.93,
+      "yaw": 184.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 26.5,
+      "y": 46.37,
+      "yaw": 173.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 63.66,
+      "y": -43.4,
+      "yaw": 144.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -16.19,
+      "y": 8.65,
+      "yaw": 275.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 68.87,
+      "y": 5.96,
+      "yaw": 115.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -69.37,
+      "y": -3.25,
+      "yaw": 265.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 19.48,
+      "y": -39.82,
+      "yaw": 177.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.04,
+      "y": 4.22,
+      "yaw": 254.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -42.41,
+      "y": 8.07,
+      "yaw": 237.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 49.11,
+      "y": 7.76,
+      "yaw": 100.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 26.73,
+      "y": -31.39,
+      "yaw": 101.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 7.07,
+      "y": 25.15,
+      "yaw": 348.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 37.34,
+      "y": -26.46,
+      "yaw": 318.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -70.6,
+      "y": 12.19,
+      "yaw": 25.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -70.46,
+      "y": -0.69,
+      "yaw": 80.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -24.68,
+      "y": 58.89,
+      "yaw": 97.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -48.13,
+      "y": 42.1,
+      "yaw": 193.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.43,
+      "y": 37.58,
+      "yaw": 202.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -48.97,
+      "y": 16.11,
+      "yaw": 195.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -21.18,
+      "y": 3.03,
+      "yaw": 220.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -36.41,
+      "y": 63.06,
+      "yaw": 167.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 1.46,
+      "y": -0.54,
+      "yaw": 233.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -20.71,
+      "y": -34.46,
+      "yaw": 209.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -56.65,
+      "y": -57.91,
+      "yaw": 78.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -13.29,
+      "y": 12.05,
+      "yaw": 340.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 66.11,
+      "y": -26.58,
+      "yaw": 202.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 1.89,
+      "y": -31.83,
+      "yaw": 144.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 29.47,
+      "y": -36.94,
+      "yaw": 269.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 11.32,
+      "y": -46.51,
+      "yaw": 142.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -6.26,
+      "y": -69.43,
+      "yaw": 312.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 10.33,
+      "y": 42.34,
+      "yaw": 134.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 61.36,
+      "y": 27.75,
+      "yaw": 89.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 18.7,
+      "y": -10.66,
+      "yaw": 120.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -62.07,
+      "y": 24.3,
+      "yaw": 352.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -37.66,
+      "y": -31.48,
+      "yaw": 218.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 33.33,
+      "y": 52.84,
+      "yaw": 330.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -37.15,
+      "y": -8.68,
+      "yaw": 323.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 8.87,
+      "y": -46.19,
+      "yaw": 317.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 22.68,
+      "y": 38.05,
+      "yaw": 281.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.86,
+      "y": -24.78,
+      "yaw": 14.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 62.38,
+      "y": -39.0,
+      "yaw": 273.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -26.67,
+      "y": -11.6,
+      "yaw": 299.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -10.29,
+      "y": -52.96,
+      "yaw": 198.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -64.12,
+      "y": -57.75,
+      "yaw": 24.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -44.12,
+      "y": 31.34,
+      "yaw": 161.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 53.58,
+      "y": 43.86,
+      "yaw": 48.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -27.71,
+      "y": -35.46,
+      "yaw": 32.9,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -37.65,
+      "y": 3.46,
+      "yaw": 240.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 67.44,
+      "y": -20.19,
+      "yaw": 350.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -67.7,
+      "y": -39.66,
+      "yaw": 282.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -9.71,
+      "y": -4.28,
+      "yaw": 161.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 61.94,
+      "y": 68.41,
+      "yaw": 237.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -32.34,
+      "y": -19.89,
+      "yaw": 289.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -26.37,
+      "y": -63.75,
+      "yaw": 15.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 70.25,
+      "y": -65.61,
+      "yaw": 310.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 20.92,
+      "y": -18.92,
+      "yaw": 240.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 42.14,
+      "y": 64.95,
+      "yaw": 104.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 68.26,
+      "y": 30.55,
+      "yaw": 140.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -49.48,
+      "y": -68.3,
+      "yaw": 8.0,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 66.34,
+      "y": 67.43,
+      "yaw": 72.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -58.27,
+      "y": -17.21,
+      "yaw": 71.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 46.47,
+      "y": 60.37,
+      "yaw": 208.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -11.9,
+      "y": 44.1,
+      "yaw": 165.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 2.86,
+      "y": -30.49,
+      "yaw": 188.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 20.25,
+      "y": 28.18,
+      "yaw": 146.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 67.39,
+      "y": -58.31,
+      "yaw": 161.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 18.14,
+      "y": 60.46,
+      "yaw": 96.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 26.14,
+      "y": -66.11,
+      "yaw": 143.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -16.45,
+      "y": -4.04,
+      "yaw": 340.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 34.62,
+      "y": 12.73,
+      "yaw": 355.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 54.68,
+      "y": -57.24,
+      "yaw": 15.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 11.79,
+      "y": -59.19,
+      "yaw": 34.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 17.19,
+      "y": -13.02,
+      "yaw": 195.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 7.93,
+      "y": -37.52,
+      "yaw": 67.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 4.85,
+      "y": -57.9,
+      "yaw": 51.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 60.78,
+      "y": 0.15,
+      "yaw": 127.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 8.48,
+      "y": 5.52,
+      "yaw": 170.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 63.21,
+      "y": 39.16,
+      "yaw": 6.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -54.08,
+      "y": -41.52,
+      "yaw": 55.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 62.82,
+      "y": -10.73,
+      "yaw": 11.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -23.35,
+      "y": -6.67,
+      "yaw": 34.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -25.43,
+      "y": -15.08,
+      "yaw": 30.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 29.54,
+      "y": 65.65,
+      "yaw": 83.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -52.99,
+      "y": -11.69,
+      "yaw": 98.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 17.63,
+      "y": -18.16,
+      "yaw": 28.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 65.91,
+      "y": 8.37,
+      "yaw": 189.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 62.69,
+      "y": 62.85,
+      "yaw": 102.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -37.5,
+      "y": 9.46,
+      "yaw": 308.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -33.8,
+      "y": 67.7,
+      "yaw": 69.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -20.26,
+      "y": -63.54,
+      "yaw": 280.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 27.0,
+      "y": -26.65,
+      "yaw": 61.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -54.83,
+      "y": -50.89,
+      "yaw": 36.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -22.19,
+      "y": 3.36,
+      "yaw": 267.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 67.94,
+      "y": -13.45,
+      "yaw": 197.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.15,
+      "y": -60.42,
+      "yaw": 228.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 35.0,
+      "y": -43.25,
+      "yaw": 352.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 67.05,
+      "y": -12.78,
+      "yaw": 241.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -24.85,
+      "y": -41.33,
+      "yaw": 272.2,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -66.64,
+      "y": -51.41,
+      "yaw": 217.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -27.26,
+      "y": -27.05,
+      "yaw": 168.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -21.73,
+      "y": -64.07,
+      "yaw": 282.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 65.4,
+      "y": -69.59,
+      "yaw": 258.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 3.74,
+      "y": 30.72,
+      "yaw": 259.9,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -35.91,
+      "y": -17.27,
+      "yaw": 132.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 5.52,
+      "y": -6.22,
+      "yaw": 90.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 17.36,
+      "y": 24.27,
+      "yaw": 70.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 29.18,
+      "y": -44.7,
+      "yaw": 100.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 6.07,
+      "y": 8.69,
+      "yaw": 93.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 63.42,
+      "y": -41.66,
+      "yaw": 196.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -68.74,
+      "y": -33.57,
+      "yaw": 245.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 43.04,
+      "y": 34.79,
+      "yaw": 2.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -8.51,
+      "y": 37.42,
+      "yaw": 267.2,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -51.73,
+      "y": 53.75,
+      "yaw": 82.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 41.23,
+      "y": -48.35,
+      "yaw": 253.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -64.55,
+      "y": 22.19,
+      "yaw": 40.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": -61.25,
+      "y": -5.87,
+      "yaw": 343.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 40.23,
+      "y": 47.78,
+      "yaw": 54.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -29.01,
+      "y": 1.05,
+      "yaw": 302.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 17.32,
+      "y": 25.74,
+      "yaw": 230.2,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 6.41,
+      "y": 36.66,
+      "yaw": 219.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 36.38,
+      "y": 14.05,
+      "yaw": 126.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -44.27,
+      "y": 63.03,
+      "yaw": 53.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -44.78,
+      "y": -58.77,
+      "yaw": 28.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 37.35,
+      "y": -60.76,
+      "yaw": 37.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 22.61,
+      "y": -19.03,
+      "yaw": 76.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -69.61,
+      "y": 25.25,
+      "yaw": 156.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 12.84,
+      "y": 29.57,
+      "yaw": 150.9,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 13.52,
+      "y": -37.86,
+      "yaw": 157.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 69.04,
+      "y": 67.47,
+      "yaw": 62.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 35.82,
+      "y": -34.68,
+      "yaw": 336.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 23.25,
+      "y": -0.81,
+      "yaw": 89.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 21.0,
+      "y": -12.89,
+      "yaw": 325.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 19.63,
+      "y": 24.9,
+      "yaw": 350.1,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -47.13,
+      "y": 40.22,
+      "yaw": 93.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -20.03,
+      "y": 61.06,
+      "yaw": 259.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -2.19,
+      "y": 29.69,
+      "yaw": 61.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -27.24,
+      "y": -4.83,
+      "yaw": 94.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 23.76,
+      "y": 25.39,
+      "yaw": 307.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 56.03,
+      "y": -30.5,
+      "yaw": 21.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 17.83,
+      "y": 49.25,
+      "yaw": 133.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -26.95,
+      "y": -45.53,
+      "yaw": 1.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 47.46,
+      "y": -60.17,
+      "yaw": 154.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -60.06,
+      "y": 14.67,
+      "yaw": 173.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/canion_suplicante_b",
+      "x": 62.98,
+      "y": 22.89,
+      "yaw": 312.7,
+      "amb": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "canions_saida_norte",
+      "x": 40.6,
+      "y": -71,
+      "radius": 2.2,
+      "to_map": "brejo_da_viuva",
+      "to_x": 0,
+      "to_y": 62,
+      "label": "Brejo da Viúva",
+      "min_level": 27,
+      "level_lock": true,
+      "ajuste": true
+    },
+    {
+      "id": "canions_volta",
+      "x": 0,
+      "y": 72,
+      "radius": 2.2,
+      "to_map": "astralia",
+      "to_x": 28.5,
+      "to_y": 0.0,
+      "label": "Astrália",
+      "via_cidade": "astralia"
+    },
+    {
+      "id": "canions_dungeon",
+      "x": -62,
+      "y": -46,
+      "radius": 2.0,
+      "to_map": "galerias_piedade",
+      "to_x": 3.5,
+      "to_y": 36.4,
+      "label": "Galerias da Piedade",
+      "min_level": 23,
+      "requires_flag": "acesso:galerias",
+      "level_lock": true
+    },
+    {
+      "id": "canions_suplicantes_para_garganta_colosso",
+      "x": 48.5,
+      "y": 15.4,
+      "radius": 2.0,
+      "to_map": "garganta_colosso",
+      "to_x": 0.0,
+      "to_y": 46.0,
+      "label": "Garganta do Colosso",
+      "min_level": 29,
+      "level_lock": true
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_canions",
+      "name": "Posto do Elevador",
+      "x": 0,
+      "y": 55.5
+    },
+    {
+      "id": "wp_canions_suplicantes_atalho",
+      "name": "Covas dos Escravos",
+      "x": -4.9,
+      "y": -30.0
+    }
+  ],
+  "npcs": [
+    {
+      "id": "zelador_ascanio",
+      "name": "Ascânio, o Zelador",
+      "role": "missoes",
+      "x": -10.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Cada nicho guarda uma alma. Algumas só querem ser lembradas.",
+      "look": "aldeao"
+    },
+    {
+      "id": "mineiro_bras2",
+      "name": "Teodoro, o Mineiro",
+      "role": "missoes",
+      "x": -5.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "O ferro daqui escuta. Leve a picareta e ouça.",
+      "look": "ferreiro"
+    },
+    {
+      "id": "tratador_dimas",
+      "name": "Dimas, o Tratador",
+      "role": "missoes",
+      "x": 0.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Um corcel preso no cânion. Se alguém o soltar, ele segue quem o salvou.",
+      "look": "guarda",
+      "shop": "loja_pets_canions"
+    },
+    {
+      "id": "alma_ligia",
+      "name": "Lígia, alma do nicho",
+      "role": "missoes",
+      "x": 5.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Meu medalhão... os mortos levaram.",
+      "look": "arcanista"
+    },
+    {
+      "id": "quadro_canion",
+      "name": "Quadro de Contratos",
+      "role": "contratos",
+      "x": 10.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Pedidos do posto — pagos ao entregar.",
+      "look": "quadro"
+    },
+    {
+      "id": "fallen_canions",
+      "name": "Fallen, o Capitão",
+      "role": "missoes",
+      "x": 15.0,
+      "y": 62.0,
+      "facing": 180,
+      "look": "fallen",
+      "greeting": "O último trecho. O Rei Escorpião guarda a passagem — e o meu passado.",
+      "requires_flag": "fallen:4"
+    },
+    {
+      "id": "bobo_canions",
+      "name": "Eco, o Bobo dos Cânions",
+      "role": "missoes",
+      "x": 6.0,
+      "y": 59.0,
+      "facing": 180,
+      "look": "bobo",
+      "greeting": "Desafios diários do bobo! Três variações — conforme você cresce, eu peço coisa mais difícil e pago mais."
+    }
+  ],
+  "objects": [
+    {
+      "id": "canions_veio0",
+      "kind": "veio",
+      "x": -30,
+      "y": 46,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "canions_veio1",
+      "kind": "veio",
+      "x": 30,
+      "y": 46,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "canions_veio2",
+      "kind": "veio",
+      "x": -47.0,
+      "y": -37.5,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "canions_veio3",
+      "kind": "veio",
+      "x": 55,
+      "y": -28,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "canions_erva0",
+      "kind": "veio",
+      "x": -14,
+      "y": 48,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "canions_erva1",
+      "kind": "veio",
+      "x": 14,
+      "y": 48,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "canions_erva2",
+      "kind": "veio",
+      "x": -35.8,
+      "y": 16.5,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "canions_erva3",
+      "kind": "veio",
+      "x": 22,
+      "y": 2,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "canions_panela",
+      "kind": "panela",
+      "x": -9,
+      "y": 54,
+      "label": "Panela"
+    },
+    {
+      "id": "canions_caldeirao",
+      "kind": "caldeirao",
+      "x": 9,
+      "y": 54,
+      "label": "Caldeirão"
+    },
+    {
+      "id": "achado_canions_1",
+      "kind": "reliquia",
+      "x": -36.0,
+      "y": 40.0,
+      "label": "Lamparina do desabamento"
+    },
+    {
+      "id": "achado_canions_2",
+      "kind": "reliquia",
+      "x": 48.0,
+      "y": 40.0,
+      "label": "Lamparina do desabamento"
+    },
+    {
+      "id": "achado_canions_3",
+      "kind": "reliquia",
+      "x": 48.0,
+      "y": -4.0,
+      "label": "Lamparina do desabamento"
+    },
+    {
+      "id": "garrafa_triangulo_3",
+      "kind": "reliquia",
+      "x": -55.0,
+      "y": -55.0,
+      "label": "Garrafa com mapa"
+    },
+    {
+      "id": "pista_canions_1",
+      "kind": "reliquia",
+      "x": -62.0,
+      "y": 6.0,
+      "label": "Pavio queimado"
+    },
+    {
+      "id": "pista_canions_2",
+      "kind": "reliquia",
+      "x": 60.0,
+      "y": -20.0,
+      "label": "Picareta com o nome raspado"
+    },
+    {
+      "id": "pista_canions_3",
+      "kind": "reliquia",
+      "x": -10.0,
+      "y": -60.0,
+      "label": "Bilhete rasgado"
+    },
+    {
+      "id": "altar_oferenda_canions_suplicantes",
+      "kind": "altar",
+      "x": 16.9,
+      "y": 68.2,
+      "label": "Altar de Oferenda (Escorpião-Rei)",
+      "consumes": "mat_reagente",
+      "consume_qty": 15,
+      "summons": "monster_canions_escorpiao_rei",
+      "summon_level": 29
+    },
+    {
+      "id": "sala_secreta_parede",
+      "kind": "pedra_oca",
+      "x": -60.0,
+      "y": -22.7,
+      "label": "Rocha",
+      "grant_flag": "parede:canions_suplicantes",
+      "text": "cheia"
+    },
+    {
+      "id": "sala_secreta_parede_bau_canions_segredo",
+      "kind": "pedra_oca",
+      "x": -66,
+      "y": 67.4,
+      "label": "Rocha",
+      "grant_flag": "caverna:canions_suplicantes:bau_canions_segredo",
+      "text": "cheia"
+    },
+    {
+      "id": "sala_secreta_isca1_obj",
+      "kind": "pedra_oca",
+      "x": -59.3,
+      "y": 44.4,
+      "label": "Rocha",
+      "grant_flag": "pedra:canions_suplicantes:1",
+      "text": "vazia"
+    },
+    {
+      "id": "sala_secreta_isca2_obj",
+      "kind": "pedra_oca",
+      "x": -40.4,
+      "y": 36.0,
+      "label": "Rocha",
+      "grant_flag": "pedra:canions_suplicantes:2",
+      "text": "vazia"
+    },
+    {
+      "id": "sala_secreta_isca3_obj",
+      "kind": "pedra_oca",
+      "x": -43.7,
+      "y": 18.2,
+      "label": "Rocha",
+      "grant_flag": "pedra:canions_suplicantes:3",
+      "text": "vazia"
+    },
+    {
+      "id": "sala_secreta_isca4_obj",
+      "kind": "pedra_oca",
+      "x": -21.9,
+      "y": -22.8,
+      "label": "Rocha",
+      "grant_flag": "pedra:canions_suplicantes:4",
+      "text": "vazia"
+    },
+    {
+      "id": "sala_secreta_isca5_obj",
+      "kind": "pedra_oca",
+      "x": 12.7,
+      "y": -23.0,
+      "label": "Rocha",
+      "grant_flag": "pedra:canions_suplicantes:5",
+      "text": "vazia"
+    },
+    {
+      "id": "esfera_macaco_3",
+      "kind": "esfera",
+      "x": -59.0,
+      "y": 64.1,
+      "label": "Esfera do Macaco (3 estrelas)",
+      "grant_flag": "esfera:3",
+      "text": "Uma esfera alaranjada, quente, com estrelas vermelhas dentro."
+    },
+    {
+      "id": "amb_canions_suplicantes_lugar0",
+      "kind": "livro",
+      "x": 58.12,
+      "y": -1.99,
+      "label": "Diário largado",
+      "text": "Brasas ainda mornas e três sacos de dormir. Quem estava aqui saiu correndo — a panela ficou no fogo.",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_lugar1",
+      "kind": "contemplar",
+      "x": 45.36,
+      "y": 50.29,
+      "label": "Observar",
+      "text": "Há oferendas recentes: um dente, uma moeda partida, uma fita. Alguém ainda acredita.",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_lugar4",
+      "kind": "contemplar",
+      "x": -60.76,
+      "y": -8.67,
+      "label": "Observar",
+      "text": "Daqui se vê a região inteira. Lá longe, uma coluna de fumaça — e mais longe ainda, o Porto.",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio0",
+      "kind": "veio",
+      "x": 59.63,
+      "y": -14.57,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio1",
+      "kind": "veio",
+      "x": 40.47,
+      "y": 35.15,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio2",
+      "kind": "veio",
+      "x": -48.14,
+      "y": 50.52,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio3",
+      "kind": "veio",
+      "x": -5.57,
+      "y": -41.22,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio4",
+      "kind": "veio",
+      "x": -67.07,
+      "y": -11.55,
+      "label": "Veio de ferro de eco",
+      "yields": "mat_ferro_eco",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_canions_suplicantes_veio5",
+      "kind": "veio",
+      "x": -57.89,
+      "y": 68.69,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    }
+  ],
+  "checkpoints": [],
+  "roads": [
+    {
+      "points": [
+        [
+          0,
+          62
+        ],
+        [
+          0.0,
+          61.59
+        ],
+        [
+          0.0,
+          60.78
+        ],
+        [
+          0.0,
+          59.56
+        ],
+        [
+          0.0,
+          57.94
+        ],
+        [
+          0.0,
+          56.72
+        ],
+        [
+          0.0,
+          55.91
+        ],
+        [
+          0,
+          55.5
+        ]
+      ],
+      "width": 3.2
+    },
+    {
+      "points": [
+        [
+          0,
+          62
+        ],
+        [
+          0.0,
+          62.62
+        ],
+        [
+          0.0,
+          63.88
+        ],
+        [
+          0.0,
+          65.75
+        ],
+        [
+          0.0,
+          68.25
+        ],
+        [
+          0.0,
+          70.12
+        ],
+        [
+          0.0,
+          71.38
+        ],
+        [
+          0,
+          72
+        ]
+      ],
+      "width": 3.2
+    },
+    {
+      "points": [
+        [
+          0.0,
+          55.5
+        ],
+        [
+          -2.29,
+          52.09
+        ],
+        [
+          -4.65,
+          48.73
+        ],
+        [
+          -7.04,
+          45.38
+        ],
+        [
+          -9.42,
+          42.03
+        ],
+        [
+          -11.73,
+          38.64
+        ],
+        [
+          -13.96,
+          35.19
+        ],
+        [
+          -16.07,
+          31.66
+        ],
+        [
+          -18.06,
+          28.07
+        ],
+        [
+          -19.96,
+          24.41
+        ],
+        [
+          -21.81,
+          20.72
+        ],
+        [
+          -23.65,
+          17.02
+        ],
+        [
+          -25.53,
+          13.35
+        ],
+        [
+          -27.52,
+          9.75
+        ],
+        [
+          -29.64,
+          6.23
+        ],
+        [
+          -31.9,
+          2.81
+        ],
+        [
+          -34.3,
+          -0.52
+        ],
+        [
+          -36.79,
+          -3.8
+        ],
+        [
+          -39.36,
+          -7.04
+        ],
+        [
+          -41.94,
+          -10.27
+        ],
+        [
+          -44.47,
+          -13.52
+        ],
+        [
+          -46.92,
+          -16.84
+        ],
+        [
+          -49.22,
+          -20.25
+        ],
+        [
+          -51.39,
+          -23.74
+        ],
+        [
+          -53.45,
+          -27.29
+        ],
+        [
+          -55.38,
+          -30.94
+        ],
+        [
+          -57.22,
+          -34.62
+        ],
+        [
+          -58.95,
+          -38.37
+        ],
+        [
+          -60.43,
+          -42.2
+        ],
+        [
+          -62.0,
+          -46.0
+        ]
+      ],
+      "width": 2.6
+    },
+    {
+      "points": [
+        [
+          -62.0,
+          -46.0
+        ],
+        [
+          -58.05,
+          -47.22
+        ],
+        [
+          -54.06,
+          -48.29
+        ],
+        [
+          -50.03,
+          -49.19
+        ],
+        [
+          -45.95,
+          -49.91
+        ],
+        [
+          -41.84,
+          -50.52
+        ],
+        [
+          -37.73,
+          -51.09
+        ],
+        [
+          -33.63,
+          -51.72
+        ],
+        [
+          -29.57,
+          -52.5
+        ],
+        [
+          -25.54,
+          -53.49
+        ],
+        [
+          -21.59,
+          -54.7
+        ],
+        [
+          -17.68,
+          -56.07
+        ],
+        [
+          -13.79,
+          -57.56
+        ],
+        [
+          -9.92,
+          -59.06
+        ],
+        [
+          -6.06,
+          -60.6
+        ],
+        [
+          -3.64,
+          -63.6
+        ],
+        [
+          13.77,
+          -67.31
+        ],
+        [
+          40.6,
+          -71.0
+        ]
+      ],
+      "width": 2.6
+    }
+  ],
+  "_roads_curved": true,
+  "elevations": [
+    {
+      "x": 0.0,
+      "y": 14.0,
+      "w": 14.4,
+      "h": 10.8,
+      "height": 1.1,
+      "ramp": 5.0
+    },
+    {
+      "x": -35.3,
+      "y": 41.0,
+      "w": 10.6,
+      "h": 7.8,
+      "height": 1.41,
+      "ramp": 6.1
+    },
+    {
+      "x": 51.3,
+      "y": 27.9,
+      "w": 10.4,
+      "h": 9.1,
+      "height": 1.57,
+      "ramp": 5.2
+    },
+    {
+      "x": -42.4,
+      "y": -5.3,
+      "w": 10.0,
+      "h": 7.9,
+      "height": 1.25,
+      "ramp": 5.7
+    },
+    {
+      "x": 35.7,
+      "y": -15.8,
+      "w": 10.9,
+      "h": 7.0,
+      "height": 1.79,
+      "ramp": 5.7
+    },
+    {
+      "x": -6.1,
+      "y": -28.3,
+      "w": 10.3,
+      "h": 9.5,
+      "height": 0.93,
+      "ramp": 7.3
+    },
+    {
+      "x": -35.8,
+      "y": 16.5,
+      "w": 8.3,
+      "h": 7.2,
+      "height": 1.27,
+      "ramp": 5.5
+    },
+    {
+      "x": -47.0,
+      "y": -37.5,
+      "w": 9.4,
+      "h": 9.7,
+      "height": 1.97,
+      "ramp": 6.8
+    },
+    {
+      "x": 38.6,
+      "y": -46.6,
+      "w": 10.1,
+      "h": 9.1,
+      "height": 1.9,
+      "ramp": 8.4
+    }
+  ]
+}

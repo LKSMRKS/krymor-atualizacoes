@@ -1,0 +1,355 @@
+[
+  {
+    "id": "q_forma_lobo_1",
+    "name": "O Chamado da Lua",
+    "giver": "sibila_vidente",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_lobisomem"
+    ],
+    "count": 12,
+    "min_level": 35,
+    "description": "Tenho sonhado com uivos. Na Mata dos Enforcados há uma alcateia que não é de lobos comuns. Derrube 10 lobisomens e me traga o que restar da lua neles. (Só para quem ainda está na 1ª classe.)",
+    "hint": "Peça à Sibila (Porto) a passagem para A Lua Vermelha. Os lobisomens de lá são nível 35–37.",
+    "reward_xp": 60000,
+    "reward_coins": 1085,
+    "category": "opcional",
+    "requires_flag": "livro:lobisomem",
+    "class": "guerreiro",
+    "only_first_class": true
+  },
+  {
+    "id": "q_forma_lobo_2",
+    "name": "Sangue de Lua",
+    "giver": "sibila_vidente",
+    "kind": "collect",
+    "targets": [
+      "mat_sangue_lunar"
+    ],
+    "count": 5,
+    "min_level": 35,
+    "requires": "q_forma_lobo_1",
+    "description": "O sangue deles ainda brilha prata. Traga 5 frascos e eu faço o colar. Mas saiba: quem usa a presa não volta o mesmo — não por muito tempo. (Só para quem ainda está na 1ª classe.)",
+    "hint": "Cai dos lobisomens de A Lua Vermelha (chance de 25%).",
+    "reward_xp": 80000,
+    "reward_coins": 0,
+    "category": "opcional",
+    "class": "guerreiro",
+    "only_first_class": true
+  },
+  {
+    "id": "q_forma_vamp_1",
+    "name": "Convite para o Jantar",
+    "giver": "sibila_vidente",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_vampiro"
+    ],
+    "count": 12,
+    "min_level": 35,
+    "description": "Um nobre de Véspera manda convites escritos em sangue. Os servos dele caçam à noite. Derrube 8 e ele vai querer conhecer você.",
+    "hint": "Peça à Sibila (Porto) a passagem para Transilvânia. Os vampiros de lá são nível 35–37.",
+    "reward_xp": 60000,
+    "reward_coins": 2510,
+    "category": "opcional",
+    "class": "arqueiro",
+    "requires_flag": "livro:vampiro"
+  },
+  {
+    "id": "q_forma_vamp_2",
+    "name": "O Cálice",
+    "giver": "sibila_vidente",
+    "kind": "collect",
+    "targets": [
+      "mat_cinza_vampirica"
+    ],
+    "count": 6,
+    "min_level": 35,
+    "requires": "q_forma_vamp_1",
+    "description": "A cinza deles enche o cálice. Seis punhados e o cálice é seu. Cuidado com o sol.",
+    "hint": "Cai dos vampiros de Transilvânia (chance de 25%).",
+    "reward_xp": 80000,
+    "reward_coins": 0,
+    "category": "opcional",
+    "class": "arqueiro"
+  },
+  {
+    "id": "q_forma_ceif_1",
+    "name": "Quem Bate à Porta",
+    "giver": "sibila_vidente",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_a_morte"
+    ],
+    "count": 10,
+    "min_level": 35,
+    "description": "Vi a Morte andando no Brejo e ela não estava sozinha. Enfrente 5 delas. Se sobreviver, ela deixa você ficar com a foice um pouco.",
+    "hint": "Peça à Sibila (Porto) a passagem para O Inferno. Os Ceifadores (A Morte) de lá são nível 35–37.",
+    "reward_xp": 60000,
+    "reward_coins": 2515,
+    "category": "opcional",
+    "class": "mago",
+    "requires_flag": "livro:ceifador"
+  },
+  {
+    "id": "q_forma_ceif_2",
+    "name": "Fio da Foice",
+    "giver": "sibila_vidente",
+    "kind": "collect",
+    "targets": [
+      "mat_osso_lunar"
+    ],
+    "count": 4,
+    "min_level": 35,
+    "requires": "q_forma_ceif_1",
+    "description": "Quatro lascas de osso lunar e eu afio a sua foice. Ela vai te cobrar em vida o que você tirar dos outros.",
+    "hint": "Cai dos Mortes de O Inferno (chance de 25%).",
+    "reward_xp": 80000,
+    "reward_coins": 0,
+    "category": "opcional",
+    "class": "mago"
+  },
+  {
+    "id": "q_forma_anjo_1",
+    "name": "A Queda",
+    "giver": "sibila_vidente",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_anjo"
+    ],
+    "count": 10,
+    "min_level": 35,
+    "description": "Na Acrópole, anjos caídos guardam o que sobrou do céu. Vença 5 e prove que merece as penas.",
+    "hint": "Peça à Sibila (Porto) a passagem para a Cidade Celestial. Os anjos de lá são nível 35–37.",
+    "reward_xp": 60000,
+    "reward_coins": 3435,
+    "category": "opcional",
+    "class": "bruxa",
+    "requires_flag": "livro:anjo"
+  },
+  {
+    "id": "q_forma_anjo_2",
+    "name": "Pena de Serafim",
+    "giver": "sibila_vidente",
+    "kind": "boss",
+    "targets": [
+      "monster_ceu_demonio_invasor"
+    ],
+    "count": 1,
+    "min_level": 35,
+    "requires": "q_forma_anjo_1",
+    "description": "Os anjos aceitaram você. Agora prove: um demônio rompeu os portões da Cidade Celestial e se instalou no fundo dela. Derrube-o e a pena do serafim é sua.",
+    "hint": "O Demônio Invasor (nível 38) fica no covil, no fundo da Cidade Celestial.",
+    "reward_xp": 230000,
+    "reward_coins": 3070,
+    "reward_items": [
+      "reliquia_pena_serafim"
+    ],
+    "category": "opcional",
+    "class": "bruxa"
+  },
+  {
+    "id": "q_mascara_1",
+    "name": "A Máscara que Ria",
+    "giver": "bobo_tiao",
+    "kind": "collect",
+    "targets": [
+      "mat_gorro_saci"
+    ],
+    "count": 1,
+    "min_level": 20,
+    "description": "Psiu, chega mais. Meu bisavô contava de uma máscara entalhada na casca de uma árvore velha, onde mora uma serpente. Quem vestia virava o Pandemônio: ria, rodava, ninguém segurava. Ela sumiu num naufrágio. Mas o feitiço pra fazer outra ficou na família! Primeiro: o riso. E riso de verdade só tem no gorro de um Saci. Um gorro. Boa sorte, que ele não dá fácil. Hihi.",
+    "hint": "Fale com o Tião (Porto): ele leva você à Floresta Oculta. O Gorro do Saci é raro (2% em cada Saci derrotado).",
+    "reward_xp": 60000,
+    "reward_coins": 390,
+    "category": "opcional",
+    "requires_flag": "livro:mascara"
+  },
+  {
+    "id": "q_mascara_2",
+    "name": "A Casca da Árvore Velha",
+    "giver": "bobo_tiao",
+    "kind": "collect",
+    "targets": [
+      "mat_casca_serpente"
+    ],
+    "count": 3,
+    "min_level": 20,
+    "requires": "q_mascara_1",
+    "description": "Agora a madeira. Não serve qualquer uma: tem que ser casca da Árvore da Serpente, na Mata dos Enforcados. Arranque três lascas. A cobra não gosta. Nem um pouco. Com as cascas, o feitiço está pronto: fabrique a máscara na bancada (Gorro + 3 Cascas + 2 Madeiras Verdes).",
+    "hint": "A Árvore da Serpente fica na Floresta Oculta (leste do covil). Cada lasca leva 3 s para arrancar e a árvore solta uma por vez.",
+    "reward_xp": 80000,
+    "reward_coins": 0,
+    "category": "opcional",
+    "reward_flags": [
+      "receita:mascara"
+    ]
+  },
+  {
+    "id": "q_forma_lobo_3",
+    "name": "O Senhor de A Lua Vermelha",
+    "giver": "sibila_vidente",
+    "kind": "boss",
+    "targets": [
+      "monster_lua_lobisomem_alfa"
+    ],
+    "count": 1,
+    "min_level": 35,
+    "requires": "q_forma_lobo_2",
+    "category": "opcional",
+    "class": "guerreiro",
+    "description": "O material está pronto, mas a relíquia só desperta com o sangue de quem manda lá: o Lobisomem Alfa. Ele é nível 38 e não perdoa. Leve gente, ou leve poção. (Só para quem ainda está na 1ª classe.)",
+    "hint": "O Lobisomem Alfa fica no covil, no fundo de A Lua Vermelha (respawn de 10 min).",
+    "reward_xp": 150000,
+    "reward_coins": 3070,
+    "reward_items": [
+      "reliquia_presa_lunar"
+    ],
+    "only_first_class": true
+  },
+  {
+    "id": "q_forma_vamp_3",
+    "name": "O Senhor de Transilvânia",
+    "giver": "sibila_vidente",
+    "kind": "boss",
+    "targets": [
+      "monster_trans_conde"
+    ],
+    "count": 1,
+    "min_level": 35,
+    "requires": "q_forma_vamp_2",
+    "category": "opcional",
+    "class": "arqueiro",
+    "description": "O material está pronto, mas a relíquia só desperta com o sangue de quem manda lá: o Conde da Transilvânia. Ele é nível 38 e não perdoa. Leve gente, ou leve poção.",
+    "hint": "O Conde da Transilvânia fica no covil, no fundo de Transilvânia (respawn de 10 min).",
+    "reward_xp": 150000,
+    "reward_coins": 3070,
+    "reward_items": [
+      "reliquia_calice_rubro"
+    ]
+  },
+  {
+    "id": "q_forma_ceif_3",
+    "name": "O Senhor de O Inferno",
+    "giver": "sibila_vidente",
+    "kind": "boss",
+    "targets": [
+      "monster_inferno_ceifador_rei"
+    ],
+    "count": 1,
+    "min_level": 35,
+    "requires": "q_forma_ceif_2",
+    "category": "opcional",
+    "class": "mago",
+    "description": "O material está pronto, mas a relíquia só desperta com o sangue de quem manda lá: o Rei Ceifador. Ele é nível 38 e não perdoa. Leve gente, ou leve poção.",
+    "hint": "O Rei Ceifador fica no covil, no fundo de O Inferno (respawn de 10 min).",
+    "reward_xp": 150000,
+    "reward_coins": 3070,
+    "reward_items": [
+      "reliquia_foice_de_osso"
+    ]
+  },
+  {
+    "id": "q_lua_prata",
+    "name": "Pedras de Prata",
+    "giver": "selene_eremita",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_chupa_cabra"
+    ],
+    "count": 6,
+    "map": "reino_lua",
+    "min_level": 35,
+    "description": "«Os chupa-cabras roem as pedras de prata que seguram a alcateia longe da minha cabana. Seis a menos e eu durmo uma lua inteira.»",
+    "hint": "Chupa-cabras (nível 35–37) na Lua Vermelha. Volte à Selene, na chegada.",
+    "reward_xp": 60000,
+    "reward_coins": 685,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_trans_igor",
+    "name": "O Que o Conde Não Sabe",
+    "giver": "igor_criado",
+    "kind": "defend",
+    "targets": [
+      "monster_bst_vampiro"
+    ],
+    "count": 3,
+    "map": "reino_transilvania",
+    "min_level": 35,
+    "description": "«Os servos do Conde me tratam como tapete. Derruba dez e eu te conto onde ele esconde a chave da cripta.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 65000,
+    "reward_coins": 1955,
+    "category": "opcional",
+    "radius": 6,
+    "x": 4.6,
+    "y": 0.3,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_inferno_pedagio",
+    "name": "O Pedágio de Caronte",
+    "giver": "caronte_barqueiro",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_demonio"
+    ],
+    "count": 3,
+    "map": "reino_inferno",
+    "min_level": 36,
+    "description": "«Três demônios fugiram sem pagar a travessia. Traz o pedágio deles — do jeito que você souber cobrar.»",
+    "hint": "Demônios (nível 35–37) no Inferno. Volte ao Caronte, na chegada.",
+    "reward_xp": 70000,
+    "reward_coins": 1710,
+    "category": "opcional"
+  },
+  {
+    "id": "q_ceu_portoes",
+    "name": "Os Portões Arrombados",
+    "giver": "serafina_porteira",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_anjo"
+    ],
+    "count": 1,
+    "map": "reino_celeste",
+    "min_level": 35,
+    "description": "«Os anjos que deviam guardar os portões enlouqueceram com a invasão. Acalme oito deles — com a lâmina, se precisar.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 65000,
+    "reward_coins": 3005,
+    "category": "opcional",
+    "radius": 20,
+    "x": 0.2,
+    "y": 2.7,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_curupira_sacis",
+    "name": "Saci Demais",
+    "giver": "curupira",
+    "kind": "defend",
+    "targets": [
+      "monster_bst_saci"
+    ],
+    "count": 3,
+    "map": "floresta_oculta",
+    "min_level": 20,
+    "description": "«Saci gosta de bagunça, mas dez já é festa demais. Põe ordem que eu te mostro onde a casca da serpente cresce mais grossa.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 20000,
+    "reward_coins": 500,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "opcional",
+    "radius": 6,
+    "x": 2.1,
+    "y": 2.6,
+    "regulada": "kill→defend"
+  }
+]

@@ -1,0 +1,823 @@
+{
+  "id": "fornalha",
+  "display_name": "Fornalha dos Nascidos do Fogo",
+  "half_size": 45,
+  "spawn_x": -4.0,
+  "spawn_y": 33.6,
+  "safe_radius": 5,
+  "xp_multiplier": 4.02,
+  "kind": "dungeon",
+  "region": "escoria",
+  "theme": "gruta",
+  "instanced": true,
+  "no_mount": true,
+  "exit_map": "mar_de_escoria",
+  "exit_x": -58,
+  "exit_y": -46,
+  "zones": [
+    {
+      "id": "entrada",
+      "name": "Vestíbulo",
+      "kind": "seguro",
+      "x": -4.0,
+      "y": 36.0,
+      "w": 5.6,
+      "h": 5.6
+    },
+    {
+      "id": "ala",
+      "name": "Ala Baixa",
+      "kind": "medio",
+      "x": 32.0,
+      "y": 8.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "lateral",
+      "name": "Câmara Lateral",
+      "kind": "segredo",
+      "x": -12.0,
+      "y": -36.0,
+      "w": 6.8,
+      "h": 6.8
+    },
+    {
+      "id": "guarda",
+      "name": "Sala da Guarda",
+      "kind": "forte",
+      "x": -16.0,
+      "y": 16.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "antessala",
+      "name": "Antessala",
+      "kind": "seguro",
+      "x": -36.0,
+      "y": -4.0,
+      "w": 5.2,
+      "h": 5.2
+    },
+    {
+      "id": "trono",
+      "name": "Salão do Chefe",
+      "kind": "chefe",
+      "x": -32.0,
+      "y": -16.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "labirinto",
+      "name": "Labirinto",
+      "kind": "caminho",
+      "x": 0.0,
+      "y": 0.0,
+      "w": 80.0,
+      "h": 80.0
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 24.0,
+      "w": 49.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": 24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -24.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -36.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 4.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": 16.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": 32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -4.0,
+      "y": 32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 32.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -12.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -12.0,
+      "y": 0.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 12.0,
+      "y": 0.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": -8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -36.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 41.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": -16.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 16.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": -16.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -16.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 8.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": 20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": 20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 16.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    }
+  ],
+  "gates": [],
+  "chests": [
+    {
+      "id": "bau_fornalha",
+      "x": -12.0,
+      "y": -38.0,
+      "loot_table": "bau_fornalha",
+      "facing": 90
+    }
+  ],
+  "spawns": [
+    {
+      "id": "fornalha_ala0",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": 33.9,
+      "y": 2.2,
+      "level": 54,
+      "group": "ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_ala1",
+      "monster": "monster_escoria_golem_fornalha",
+      "x": 27.9,
+      "y": 4.6,
+      "level": 56,
+      "group": "ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_ala2",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": 35.6,
+      "y": 5.9,
+      "level": 54,
+      "group": "ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_ala3",
+      "monster": "monster_escoria_golem_fornalha",
+      "x": 34.0,
+      "y": 13.7,
+      "level": 56,
+      "group": "ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_ala4",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": 27.1,
+      "y": 2.4,
+      "level": 54,
+      "group": "ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_lat0",
+      "monster": "monster_escoria_golem_fornalha",
+      "x": -11.6,
+      "y": -37.6,
+      "level": 57,
+      "group": "lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_lat1",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": -11.2,
+      "y": -34.3,
+      "level": 55,
+      "group": "lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_lat2",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": -12.7,
+      "y": -35.7,
+      "level": 55,
+      "group": "lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "mini",
+      "monster": "monster_escoria_ferreiro_corrompido",
+      "x": -17.9,
+      "y": 13.7,
+      "level": 57,
+      "group": "guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_guarda0",
+      "monster": "monster_escoria_elemental_fornalha",
+      "x": -11.9,
+      "y": 20.2,
+      "level": 55,
+      "group": "guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fornalha_guarda1",
+      "monster": "monster_escoria_golem_fornalha",
+      "x": -14.1,
+      "y": 19.4,
+      "level": 57,
+      "group": "guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "boss",
+      "monster": "monster_escoria_coracao_escoria",
+      "x": -36.0,
+      "y": -12.0,
+      "level": 58,
+      "group": "boss",
+      "respawn_seconds": 30
+    }
+  ],
+  "props": [
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 15.04,
+      "y": 28.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 16.96,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 23.04,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 0.96,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 7.04,
+      "y": 20.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -16.96,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -31.04,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -32.96,
+      "y": -12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "cranios",
+      "x": 27.59,
+      "y": 10.18,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_caldeirao_forja",
+      "x": -31.8,
+      "y": 3.74,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_caldeirao_forja",
+      "x": -24.03,
+      "y": -31.58,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_caldeirao_forja",
+      "x": 37.22,
+      "y": 24.83,
+      "yaw": 90,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_caldeirao_forja",
+      "x": -33.62,
+      "y": -30.36,
+      "yaw": 180,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_grade_ferro",
+      "x": 19.98,
+      "y": 20.04,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_grade_ferro",
+      "x": -25.17,
+      "y": -37.15,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_grade_ferro",
+      "x": -3.99,
+      "y": 15.9,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_grade_ferro",
+      "x": -30.25,
+      "y": -30.31,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_poca_lava",
+      "x": 0.76,
+      "y": 20.21,
+      "yaw": 180,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_poca_lava",
+      "x": -38.02,
+      "y": -27.89,
+      "yaw": 90,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_poca_lava",
+      "x": 13.07,
+      "y": -17.62,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_poca_lava",
+      "x": 37.77,
+      "y": 38.85,
+      "yaw": 90,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_poca_lava",
+      "x": 38.36,
+      "y": -22.11,
+      "yaw": 90,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_chefe",
+      "x": -35.93,
+      "y": -8.5,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_saida",
+      "x": 0.97,
+      "y": 36.23,
+      "yaw": 0,
+      "acervo": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "fornalha_saida",
+      "x": -4.0,
+      "y": 38.6,
+      "radius": 1.8,
+      "to_map": "mar_de_escoria",
+      "to_x": -58,
+      "to_y": -46,
+      "label": "Saída"
+    },
+    {
+      "id": "fornalha_fim",
+      "x": -20.0,
+      "y": -4.0,
+      "radius": 1.8,
+      "to_map": "mar_de_escoria",
+      "to_x": -58,
+      "to_y": -46,
+      "label": "Saída"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [],
+  "checkpoints": [
+    {
+      "id": "antessala",
+      "x": -36.0,
+      "y": -4.0,
+      "radius": 3,
+      "label": "Antessala"
+    }
+  ],
+  "first_clear_loot": "primeira_fornalha",
+  "first_clear_boss": "monster_escoria_coracao_escoria"
+}

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>CinzasDaMare.ServerHost</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Server\CinzasDaMare.Server.csproj" />
+    <ProjectReference Include="..\Shared\CinzasDaMare.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Content\*.json" Link="Content\%(Filename)%(Extension)" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+</Project>

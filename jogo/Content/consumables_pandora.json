@@ -1,0 +1,57 @@
+[
+  {
+    "id": "caixa_pandora_1",
+    "display_name": "Caixa de Pandora +1",
+    "price": 800,
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "caixa",
+    "cooldown_ms": 500,
+    "stack_limit": 20,
+    "summary": "JOGUE NO CHÃO para abrir (como a Caixa do Kundun do MU): ela estoura e espalha 3 a 5 itens da faixa 1–12 — equipamento da sua classe (incomum, raro, épico, Excelente ★), joias de refino, moedas. Qualquer um perto pode pegar: abra num lugar seguro!"
+  },
+  {
+    "id": "caixa_pandora_2",
+    "display_name": "Caixa de Pandora +2",
+    "price": 3000,
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "caixa",
+    "cooldown_ms": 500,
+    "stack_limit": 20,
+    "summary": "JOGUE NO CHÃO para abrir (como a Caixa do Kundun do MU): ela estoura e espalha 4 a 6 itens da faixa 13–24 — equipamento da sua classe (incomum, raro, épico, Excelente ★), joias de refino, moedas. Qualquer um perto pode pegar: abra num lugar seguro!"
+  },
+  {
+    "id": "caixa_pandora_3",
+    "display_name": "Caixa de Pandora +3",
+    "price": 8000,
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "caixa",
+    "cooldown_ms": 500,
+    "stack_limit": 20,
+    "summary": "JOGUE NO CHÃO para abrir (como a Caixa do Kundun do MU): ela estoura e espalha 5 a 7 itens da faixa 25–36 — equipamento da sua classe (incomum, raro, épico, Excelente ★), joias de refino, moedas. Qualquer um perto pode pegar: abra num lugar seguro!"
+  },
+  {
+    "id": "caixa_pandora_4",
+    "display_name": "Caixa de Pandora +4",
+    "price": 18000,
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "caixa",
+    "cooldown_ms": 500,
+    "stack_limit": 20,
+    "summary": "JOGUE NO CHÃO para abrir (como a Caixa do Kundun do MU): ela estoura e espalha 6 a 8 itens da faixa 37–48 — equipamento da sua classe (incomum, raro, épico, Excelente ★), joias de refino, moedas, e às vezes asa/capa/skin rara da coleção. Qualquer um perto pode pegar: abra num lugar seguro!"
+  },
+  {
+    "id": "caixa_pandora_5",
+    "display_name": "Caixa de Pandora +5",
+    "price": 38000,
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "caixa",
+    "cooldown_ms": 500,
+    "stack_limit": 20,
+    "summary": "JOGUE NO CHÃO para abrir (como a Caixa do Kundun do MU): ela estoura e espalha 7 a 9 itens da faixa 49–60 — equipamento da sua classe (incomum, raro, épico, Excelente ★), joias de refino, moedas, e às vezes asa/capa/skin rara da coleção. Qualquer um perto pode pegar: abra num lugar seguro!"
+  }
+]

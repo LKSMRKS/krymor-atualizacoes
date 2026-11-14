@@ -1,0 +1,218 @@
+[
+  {
+    "id": "q_bosque_corujas_1",
+    "name": "Olhos no Escuro",
+    "giver": "guarda_florestal_iris",
+    "kind": "kill",
+    "targets": [
+      "monster_bosque_coruja"
+    ],
+    "count": 8,
+    "map": "bosque_corujas",
+    "min_level": 19,
+    "description": "«Oito corujas-fantasma a menos e o Corujão fica cego de um lado.»",
+    "hint": "No(a) Bosque das Corujas. Volte ao acampamento.",
+    "reward_xp": 25270,
+    "reward_coins": 755,
+    "category": "historia"
+  },
+  {
+    "id": "q_bosque_corujas_2",
+    "name": "Penas de Prata",
+    "giver": "guarda_florestal_iris",
+    "kind": "interact",
+    "targets": [
+      "bosque_corujas_achado_1",
+      "bosque_corujas_achado_2",
+      "bosque_corujas_achado_3"
+    ],
+    "count": 3,
+    "map": "bosque_corujas",
+    "min_level": 20,
+    "requires": "q_bosque_corujas_1",
+    "description": "«Três penas de coruja prateada caíram pelo bosque. Com elas eu faço um apito que espanta o Corujão.»",
+    "hint": "Três achados nos cantos de Bosque das Corujas. Aperte F em cada um.",
+    "reward_xp": 28000,
+    "reward_coins": 285,
+    "category": "historia"
+  },
+  {
+    "id": "q_bosque_corujas_3",
+    "name": "O Corujão de Mil Olhos",
+    "giver": "guarda_florestal_iris",
+    "kind": "boss",
+    "targets": [
+      "monster_bosque_corujao"
+    ],
+    "count": 1,
+    "map": "bosque_corujas",
+    "min_level": 23,
+    "requires": "q_bosque_corujas_2",
+    "description": "«Agora o pior: O Corujão de Mil Olhos. Leve tônicos — e amigos.»",
+    "hint": "O Corujão de Mil Olhos no covil de Bosque das Corujas.",
+    "reward_xp": 80640,
+    "reward_coins": 1755,
+    "reward_items": [
+      "consumable_c05_tonico_forte*4"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_garganta_colosso_1",
+    "name": "Ferrões na Mina",
+    "giver": "velho_minerador_galdino",
+    "kind": "kill",
+    "targets": [
+      "monster_garganta_escorpiao"
+    ],
+    "count": 8,
+    "map": "garganta_colosso",
+    "min_level": 30,
+    "description": "«Os escorpiões tomaram a mina velha. Oito, e a gente volta a cavar.»",
+    "hint": "No(a) Garganta do Colosso. Volte ao acampamento.",
+    "reward_xp": 63000,
+    "reward_coins": 1280,
+    "category": "historia"
+  },
+  {
+    "id": "q_garganta_colosso_2",
+    "name": "Os Elos da Corrente",
+    "giver": "velho_minerador_galdino",
+    "kind": "interact",
+    "targets": [
+      "garganta_colosso_achado_1",
+      "garganta_colosso_achado_2",
+      "garganta_colosso_achado_3"
+    ],
+    "count": 3,
+    "map": "garganta_colosso",
+    "min_level": 31,
+    "requires": "q_garganta_colosso_1",
+    "description": "«Três elos da corrente do Colosso caíram pela garganta. Traga e eu te conto quem acorrentou ele.»",
+    "hint": "Três achados nos cantos de Garganta do Colosso. Aperte F em cada um.",
+    "reward_xp": 67270,
+    "reward_coins": 475,
+    "category": "historia"
+  },
+  {
+    "id": "q_garganta_colosso_3",
+    "name": "Carcereiro do Colosso",
+    "giver": "velho_minerador_galdino",
+    "kind": "boss",
+    "targets": [
+      "monster_garganta_carcereiro"
+    ],
+    "count": 1,
+    "map": "garganta_colosso",
+    "min_level": 35,
+    "requires": "q_garganta_colosso_2",
+    "description": "«Agora o pior: Carcereiro do Colosso. Leve tônicos — e amigos.»",
+    "hint": "Carcereiro do Colosso no covil de Garganta do Colosso.",
+    "reward_xp": 181440,
+    "reward_coins": 2865,
+    "reward_items": [
+      "consumable_c05_tonico_forte*4"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_garganta_colosso_tita",
+    "name": "O Impossível: Gorath",
+    "giver": "velho_minerador_galdino",
+    "kind": "boss",
+    "targets": [
+      "monster_tita_colosso"
+    ],
+    "count": 1,
+    "map": "garganta_colosso",
+    "min_level": 60,
+    "requires": "q_garganta_colosso_3",
+    "description": "«Gorath, o Colosso Que Não Cai. Ninguém derrubou. Talvez ninguém derrube. Se um dia você conseguir, volta aqui — e eu escrevo o seu nome na pedra, por cima de todos os 'quase'.»",
+    "hint": "Gorath, o Colosso Que Não Cai, no fundo de Garganta do Colosso. Nível 99.",
+    "reward_xp": 0,
+    "reward_coins": 11645,
+    "reward_flags": [
+      "tita_vencido:monster_tita_colosso"
+    ],
+    "category": "desafio"
+  },
+  {
+    "id": "q_caldeira_tita_1",
+    "name": "Salamandras no Fole",
+    "giver": "forjadora_ignea",
+    "kind": "kill",
+    "targets": [
+      "monster_caldeira_salamandra"
+    ],
+    "count": 8,
+    "map": "caldeira_tita",
+    "min_level": 54,
+    "description": "«As salamandras entram no fole e explodem a forja. Oito delas, por favor.»",
+    "hint": "No(a) Caldeira do Titã. Volte ao acampamento.",
+    "reward_xp": 204120,
+    "reward_coins": 2725,
+    "category": "historia"
+  },
+  {
+    "id": "q_caldeira_tita_2",
+    "name": "Escamas de Magma",
+    "giver": "forjadora_ignea",
+    "kind": "interact",
+    "targets": [
+      "caldeira_tita_achado_1",
+      "caldeira_tita_achado_2",
+      "caldeira_tita_achado_3"
+    ],
+    "count": 3,
+    "map": "caldeira_tita",
+    "min_level": 55,
+    "requires": "q_caldeira_tita_1",
+    "description": "«Três escamas que caíram do Titã quando ele se mexeu. Quem sabe um dia viram a lâmina que o fere.»",
+    "hint": "Três achados nos cantos de Caldeira do Titã. Aperte F em cada um.",
+    "reward_xp": 211750,
+    "reward_coins": 1000,
+    "category": "historia"
+  },
+  {
+    "id": "q_caldeira_tita_3",
+    "name": "O Guardião da Caldeira",
+    "giver": "forjadora_ignea",
+    "kind": "boss",
+    "targets": [
+      "monster_caldeira_guardiao"
+    ],
+    "count": 1,
+    "map": "caldeira_tita",
+    "min_level": 59,
+    "requires": "q_caldeira_tita_2",
+    "description": "«Agora o pior: O Guardião da Caldeira. Leve tônicos — e amigos.»",
+    "hint": "O Guardião da Caldeira no covil de Caldeira do Titã.",
+    "reward_xp": 504000,
+    "reward_coins": 5625,
+    "reward_items": [
+      "consumable_c05_tonico_forte*4"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_caldeira_tita_tita",
+    "name": "O Impossível: Ignaroth",
+    "giver": "forjadora_ignea",
+    "kind": "boss",
+    "targets": [
+      "monster_tita_magma"
+    ],
+    "count": 1,
+    "map": "caldeira_tita",
+    "min_level": 60,
+    "requires": "q_caldeira_tita_3",
+    "description": "«Ignaroth, o Titã de Magma. Ninguém derrubou. Talvez ninguém derrube. Se um dia você conseguir, volta aqui — e eu escrevo o seu nome na pedra, por cima de todos os 'quase'.»",
+    "hint": "Ignaroth, o Titã de Magma, no fundo de Caldeira do Titã. Nível 99.",
+    "reward_xp": 0,
+    "reward_coins": 11645,
+    "reward_flags": [
+      "tita_vencido:monster_tita_magma"
+    ],
+    "category": "desafio"
+  }
+]

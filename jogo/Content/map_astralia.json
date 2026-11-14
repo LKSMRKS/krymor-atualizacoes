@@ -1,0 +1,2073 @@
+{
+  "id": "astralia",
+  "display_name": "Astrália, a Cidade das Lunetas",
+  "half_size": 36,
+  "spawn_x": 0,
+  "spawn_y": -2.5,
+  "safe_radius": 72,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "astralia",
+  "theme": "acropole",
+  "no_mount": false,
+  "zones": [
+    {
+      "id": "cidade",
+      "name": "Astrália, a Cidade das Lunetas",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 72,
+      "h": 72
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.0,
+      "y": 18.79,
+      "w": 7.4,
+      "h": 7.82,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.0,
+      "y": 4.5,
+      "w": 2.4,
+      "h": 2.4,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.91,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -26.09,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -18.91,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -19.09,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.91,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -12.08,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.09,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.92,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 19.09,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 18.91,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 26.09,
+      "y": -4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 25.91,
+      "y": 4.61,
+      "w": 4.05,
+      "h": 1.99,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -4.0,
+      "y": 9.0,
+      "w": 1.01,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 4.0,
+      "y": 9.0,
+      "w": 1.01,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -4.0,
+      "y": -8.0,
+      "w": 1.01,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 4.0,
+      "y": -8.0,
+      "w": 1.01,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.0,
+      "y": 10.6,
+      "w": 2.3,
+      "h": 0.9,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -12.35,
+      "y": 13.28,
+      "w": 2.7,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.4,
+      "y": 13.28,
+      "w": 1.4,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.25,
+      "y": 13.28,
+      "w": 2.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.75,
+      "y": 13.28,
+      "w": 2.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -23.6,
+      "y": 13.28,
+      "w": 1.4,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.65,
+      "y": 13.28,
+      "w": 2.7,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -13.18,
+      "y": 24.72,
+      "w": 4.35,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.0,
+      "y": 24.72,
+      "w": 1.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -19.4,
+      "y": 24.72,
+      "w": 5.5,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -22.8,
+      "y": 24.72,
+      "w": 1.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.22,
+      "y": 24.72,
+      "w": 3.55,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.28,
+      "y": 17.2,
+      "w": 0.55,
+      "h": 7.3,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.28,
+      "y": 21.5,
+      "w": 0.55,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.28,
+      "y": 23.3,
+      "w": 0.55,
+      "h": 2.3,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -26.72,
+      "y": 14.55,
+      "w": 0.55,
+      "h": 2.0,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -26.72,
+      "y": 16.2,
+      "w": 0.55,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -26.72,
+      "y": 20.65,
+      "w": 0.55,
+      "h": 7.6,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.4,
+      "y": 19.8,
+      "w": 0.5,
+      "h": 0.5,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.6,
+      "y": 19.8,
+      "w": 0.5,
+      "h": 0.5,
+      "r": 0,
+      "height": 4.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -17.0,
+      "y": 11.1,
+      "w": 0.45,
+      "h": 0.45,
+      "r": 0,
+      "height": 4.0
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.0,
+      "y": 11.1,
+      "w": 0.45,
+      "h": 0.45,
+      "r": 0,
+      "height": 4.0
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.8,
+      "y": 23.0,
+      "w": 4.2,
+      "h": 0.9,
+      "r": 0,
+      "height": 1.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -22.0,
+      "y": 17.8,
+      "w": 1.4,
+      "h": 4.2,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -17.5,
+      "y": 16.4,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.95,
+      "y": 20.6,
+      "w": 1.0,
+      "h": 2.8,
+      "r": 0,
+      "height": 2.8
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -13.45,
+      "y": 16.67,
+      "w": 0.15,
+      "h": 3.45,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.0,
+      "y": 18.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 25.0,
+      "y": 16.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.72,
+      "y": -13.75,
+      "w": 1.45,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.1,
+      "y": -13.75,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.67,
+      "y": -13.75,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 19.33,
+      "y": -13.75,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 20.9,
+      "y": -13.75,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.28,
+      "y": -13.75,
+      "w": 1.45,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.95,
+      "y": -22.25,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.5,
+      "y": -22.25,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.0,
+      "y": -22.25,
+      "w": 5.8,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 20.5,
+      "y": -22.25,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.05,
+      "y": -22.25,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.25,
+      "y": -15.67,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.25,
+      "y": -18.0,
+      "w": 0.5,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.25,
+      "y": -20.33,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.75,
+      "y": -14.95,
+      "w": 0.5,
+      "h": 1.9,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.75,
+      "y": -16.5,
+      "w": 0.5,
+      "h": 1.2,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.75,
+      "y": -19.55,
+      "w": 0.5,
+      "h": 4.9,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.3,
+      "y": -12.0,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 18.7,
+      "y": -12.0,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.0,
+      "y": -17.0,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.8,
+      "y": -16.6,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 16.0,
+      "y": -19.6,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 20.6,
+      "y": -19.3,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.0,
+      "y": -20.9,
+      "w": 3.6,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.05,
+      "y": -19.6,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -20.0,
+      "y": -17.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -11.0,
+      "y": -16.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -28.0,
+      "y": -15.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -8,
+      "y": 15,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 8,
+      "y": 15,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -10,
+      "y": -10,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 10,
+      "y": -10,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 2
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -29.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -21.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -13.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -5.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 2.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 10.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 18.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 26.5,
+      "y": 33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": 33.5,
+      "w": 3.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -29.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -21.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -13.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -5.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 2.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 10.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 18.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 26.5,
+      "y": -33.5,
+      "w": 8.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": -33.5,
+      "w": 3.0,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": -29.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": -21.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": -13.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": -7.0,
+      "w": 1.2,
+      "h": 5.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": 5.5,
+      "w": 1.2,
+      "h": 2.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": 10.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": 18.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": 26.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.5,
+      "y": 32.0,
+      "w": 1.2,
+      "h": 3.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": -29.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": -21.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": -13.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": -7.0,
+      "w": 1.2,
+      "h": 5.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": 5.5,
+      "w": 1.2,
+      "h": 2.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": 10.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": 18.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": 26.5,
+      "w": 1.2,
+      "h": 8.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.5,
+      "y": 32.0,
+      "w": 1.2,
+      "h": 3.0,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 0.33,
+      "y": -16.89,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -31.1,
+      "y": 27.7,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -29.29,
+      "y": 31.84,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -3.72,
+      "y": 29.23,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -0.16,
+      "y": -24.59,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -30.51,
+      "y": 15.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -24.01,
+      "y": 27.39,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -21.69,
+      "y": 14.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -0.98,
+      "y": -20.04,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -27.22,
+      "y": -19.37,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 30.0,
+      "y": 25.21,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 31.28,
+      "y": -27.46,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -19.13,
+      "y": 27.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 31.67,
+      "y": -7.26,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 13.82,
+      "y": 30.87,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 7.85,
+      "y": -20.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 8.1,
+      "y": 21.35,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -12.38,
+      "y": -25.39,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 27.08,
+      "y": -20.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -8.01,
+      "y": 11.73,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -16.54,
+      "y": 26.74,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 29.53,
+      "y": 5.79,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -0.58,
+      "y": -7.96,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 27.92,
+      "y": -16.26,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -25,
+      "y": -8.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 2
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "glb:cenario/astralia_observatorio",
+      "x": 0,
+      "y": 19,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_estatua_juramento",
+      "x": 0,
+      "y": 4.5,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -26,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -26,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -19,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -19,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -12,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": -12,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 12,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 12,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 19,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 19,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 26,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_coluna_b",
+      "x": 26,
+      "y": 4.6,
+      "yaw": 180
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": -4,
+      "y": 9,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": 4,
+      "y": 9,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": -4,
+      "y": -8,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": 4,
+      "y": -8,
+      "yaw": 0
+    },
+    {
+      "kind": "casarao_cidade",
+      "x": -19,
+      "y": 19,
+      "yaw": 180
+    },
+    {
+      "kind": "sobrado",
+      "x": 17,
+      "y": 18,
+      "yaw": 180
+    },
+    {
+      "kind": "sobrado",
+      "x": 25,
+      "y": 16,
+      "yaw": 180
+    },
+    {
+      "kind": "taverna_grande",
+      "x": 17,
+      "y": -18,
+      "yaw": 0
+    },
+    {
+      "kind": "sobrado",
+      "x": -20,
+      "y": -17,
+      "yaw": 0
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -11,
+      "y": -16,
+      "yaw": 0
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -28,
+      "y": -15,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": -8,
+      "y": 15,
+      "yaw": 45
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": 8,
+      "y": 15,
+      "yaw": 45
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": -10,
+      "y": -10,
+      "yaw": 45
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": 10,
+      "y": -10,
+      "yaw": 45
+    },
+    {
+      "kind": "floreira",
+      "x": 0.33,
+      "y": -16.89,
+      "yaw": 0
+    },
+    {
+      "kind": "banco_praca",
+      "x": -31.1,
+      "y": 27.7,
+      "yaw": 195
+    },
+    {
+      "kind": "poste",
+      "x": -29.29,
+      "y": 31.84,
+      "yaw": 345
+    },
+    {
+      "kind": "estandarte",
+      "x": -3.72,
+      "y": 29.23,
+      "yaw": 255
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -0.16,
+      "y": -24.59,
+      "yaw": 165
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -30.51,
+      "y": 15.43,
+      "yaw": 30
+    },
+    {
+      "kind": "floreira",
+      "x": -24.01,
+      "y": 27.39,
+      "yaw": 210
+    },
+    {
+      "kind": "banco_praca",
+      "x": -21.69,
+      "y": 14.62,
+      "yaw": 180
+    },
+    {
+      "kind": "poste",
+      "x": -0.98,
+      "y": -20.04,
+      "yaw": 15
+    },
+    {
+      "kind": "estandarte",
+      "x": -27.22,
+      "y": -19.37,
+      "yaw": 315
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 30.0,
+      "y": 25.21,
+      "yaw": 270
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 31.28,
+      "y": -27.46,
+      "yaw": 255
+    },
+    {
+      "kind": "floreira",
+      "x": -19.13,
+      "y": 27.08,
+      "yaw": 255
+    },
+    {
+      "kind": "banco_praca",
+      "x": 31.67,
+      "y": -7.26,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": 13.82,
+      "y": 30.87,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": 7.85,
+      "y": -20.44,
+      "yaw": 75
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 8.1,
+      "y": 21.35,
+      "yaw": 150
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -12.38,
+      "y": -25.39,
+      "yaw": 30
+    },
+    {
+      "kind": "floreira",
+      "x": 27.08,
+      "y": -20.86,
+      "yaw": 195
+    },
+    {
+      "kind": "banco_praca",
+      "x": -8.01,
+      "y": 11.73,
+      "yaw": 315
+    },
+    {
+      "kind": "poste",
+      "x": -16.54,
+      "y": 26.74,
+      "yaw": 75
+    },
+    {
+      "kind": "estandarte",
+      "x": 29.53,
+      "y": 5.79,
+      "yaw": 165
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -0.58,
+      "y": -7.96,
+      "yaw": 105
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 27.92,
+      "y": -16.26,
+      "yaw": 255
+    },
+    {
+      "kind": "bancada",
+      "x": -25,
+      "y": -8.5,
+      "yaw": 0
+    }
+  ],
+  "portals": [
+    {
+      "id": "astralia_para_mata_dos_enforcados",
+      "x": -33.0,
+      "y": 0.0,
+      "radius": 2.2,
+      "to_map": "mata_dos_enforcados",
+      "to_x": 22.0,
+      "to_y": -67.7,
+      "label": "Mata dos Enforcados"
+    },
+    {
+      "id": "astralia_para_canions_suplicantes",
+      "x": 33.0,
+      "y": 0.0,
+      "radius": 2.2,
+      "to_map": "canions_suplicantes",
+      "to_x": 0.0,
+      "to_y": 68.5,
+      "label": "Cânions dos Suplicantes"
+    },
+    {
+      "id": "astralia_observatorio",
+      "x": 0.0,
+      "y": 14.33,
+      "radius": 1.2,
+      "to_map": "torre_merlin",
+      "to_x": 0,
+      "to_y": 10.5,
+      "label": "Observatório de Merlin",
+      "por_porta": true
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_astralia",
+      "name": "Praça das Lunetas",
+      "x": -5.5,
+      "y": -3.5
+    }
+  ],
+  "npcs": [
+    {
+      "id": "astronoma_dalia",
+      "name": "Dália, a Astrônoma-Chefe",
+      "role": "missoes",
+      "x": 14,
+      "y": 12.5,
+      "facing": 180,
+      "look": "arcanista",
+      "greeting": "«Os mapas do céu não fecham. Faltam quatro estrelas — e a lua anda um palmo fora do lugar. Alguém mexeu no céu.»"
+    },
+    {
+      "id": "alfaiate_lorena",
+      "name": "Lorena, a Alfaiate das Estrelas",
+      "role": "loja",
+      "x": -20,
+      "y": -11.5,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "«Mantos, capuzes e elmos que não se acham em lugar nenhum. Feitos aqui, com linha de estrela.»",
+      "shop": "loja_astralia_alfaiate"
+    },
+    {
+      "id": "irma_vesper",
+      "name": "Irmã Vésper, a Boticária",
+      "role": "curandeira",
+      "x": 9,
+      "y": -3.5,
+      "facing": 0,
+      "look": "curandeira",
+      "greeting": "«Tônicos destilados à luz da lua. Funcionam igual aos outros, só são mais bonitos.»",
+      "shop": "loja_curandeira"
+    },
+    {
+      "id": "escriba_tobias",
+      "name": "Tobias, o Escriba",
+      "role": "missoes",
+      "x": -14,
+      "y": 11.5,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "«Copio os mapas do céu desde menino. Os antigos têm quatro reinos desenhados nas bordas. Os novos, não. Curioso, né?»"
+    },
+    {
+      "id": "capitao_orion",
+      "name": "Capitão Órion, da Guarda",
+      "role": "morador",
+      "x": -29,
+      "y": 3,
+      "facing": 90,
+      "look": "guarda",
+      "greeting": "«A oeste, a Mata dos Enforcados. A leste, os Cânions. Astrália fica no meio e olha pro céu, que é mais bonito.»"
+    },
+    {
+      "id": "menina_estela",
+      "name": "Estela",
+      "role": "morador",
+      "x": 5,
+      "y": 1.5,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "«O Merlin me deixou olhar pela luneta grande! Vi um castelo de cabeça para baixo na lua. Ninguém acredita.»"
+    },
+    {
+      "id": "taverneiro_cometa",
+      "name": "Bóris, do Cometa",
+      "role": "morador",
+      "x": 17.0,
+      "y": -11.2,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "«Hidromel de cometa: uma caneca e você vê estrelas. Duas, e você vira uma.»"
+    },
+    {
+      "id": "merlin_mago",
+      "name": "Merlin, o Mago das Estrelas",
+      "role": "missoes",
+      "x": 3.2,
+      "y": 12.68,
+      "facing": 200,
+      "look": "merlin",
+      "greeting": "«Ah! Você chegou na hora certa. Ou errada. Com estrelas é difícil saber. Preciso de alguém que enxergue — perdi os óculos.»",
+      "travel": [
+        {
+          "id": "coracao_reinos",
+          "label": "Ir ao Coração dos Reinos (os Reinos Ocultos)",
+          "to_map": "reinos_ocultos",
+          "to_x": 0,
+          "to_y": 11,
+          "price": 150,
+          "min_level": 20
+        },
+        {
+          "id": "merlin_floresta",
+          "label": "Feitiço de caminho: a Floresta do Ensaio (Floresta Oculta)",
+          "to_map": "floresta_oculta",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 100,
+          "requires_flag": "merlin:floresta",
+          "min_level": 20
+        },
+        {
+          "id": "merlin_reino_fabula",
+          "label": "O Livro dos Contos: Era Uma Vez (o reino que caiu junto com a estrela)",
+          "to_map": "reino_fabula",
+          "to_x": 0.0,
+          "to_y": 60.0,
+          "price": 300,
+          "requires_flag": "merlin:fabula",
+          "min_level": 24
+        },
+        {
+          "id": "merlin_reino_lua",
+          "label": "Portal das estrelas: a Lua Vermelha",
+          "to_map": "reino_lua",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "merlin:reinos",
+          "min_level": 35
+        },
+        {
+          "id": "merlin_reino_transilvania",
+          "label": "Portal das estrelas: a Transilvânia",
+          "to_map": "reino_transilvania",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "merlin:reinos",
+          "min_level": 35
+        },
+        {
+          "id": "merlin_reino_inferno",
+          "label": "Portal das estrelas: o Inferno",
+          "to_map": "reino_inferno",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "merlin:reinos",
+          "min_level": 35
+        },
+        {
+          "id": "merlin_reino_celeste",
+          "label": "Portal das estrelas: a Cidade Celestial",
+          "to_map": "reino_celeste",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "merlin:reinos",
+          "min_level": 35
+        }
+      ]
+    },
+    {
+      "id": "aurelio_asas",
+      "name": "Aurélio, o Mestre das Asas",
+      "role": "mercador",
+      "x": -9,
+      "y": 0,
+      "facing": 90,
+      "greeting": "Asas de pano, de penas, de cristal... e capas para quem ainda não voa. As raras? Essas só os chefes e os cristais.",
+      "look": "arcanista",
+      "shop": "loja_astralia_asas"
+    }
+  ],
+  "objects": [
+    {
+      "id": "astralia_porta_0",
+      "kind": "porta",
+      "x": -19.0,
+      "y": 12.35,
+      "label": "Academia Estelar",
+      "text": "Corredores cheios de mapas do céu. Alguém riscou um deles: «Faltam quatro estrelas aqui. Ninguém sabe por quê.»"
+    },
+    {
+      "id": "astralia_porta_1",
+      "kind": "porta",
+      "x": 17.0,
+      "y": 15.25,
+      "label": "Casa da Astrônoma",
+      "text": "Uma luneta aponta pela janela. Na porta: «Volto quando a lua estiver no lugar.»"
+    },
+    {
+      "id": "astralia_porta_2",
+      "kind": "porta",
+      "x": 17.0,
+      "y": -13.15,
+      "label": "Taverna do Cometa",
+      "text": "Cantoria e canecas. Na parede, um cometa pintado com a cauda torta."
+    },
+    {
+      "id": "astralia_porta_3",
+      "kind": "porta",
+      "x": -20.0,
+      "y": -14.25,
+      "label": "Ateliê da Alfaiate",
+      "text": "Tecidos azuis bordados de estrelas. «Roupa de herói se mede pela coragem, não pela barriga.»"
+    },
+    {
+      "id": "astralia_ceu0",
+      "kind": "contemplar",
+      "x": -30,
+      "y": 10,
+      "label": "Olhar o céu",
+      "text": "Pela luneta pública dá para ver a lua — um palmo fora do lugar de sempre, dizem os astrônomos."
+    },
+    {
+      "id": "astralia_ceu1",
+      "kind": "contemplar",
+      "x": 30,
+      "y": 10,
+      "label": "Olhar o céu",
+      "text": "Quatro pontos escuros no céu, onde deveria haver estrelas. Os mapas antigos têm. Os novos, não."
+    },
+    {
+      "id": "astralia_ceu2",
+      "kind": "contemplar",
+      "x": -30,
+      "y": -10,
+      "label": "Olhar o céu",
+      "text": "Uma estrela cadente risca o céu e some para os lados dos Cânions."
+    },
+    {
+      "id": "astralia_ceu3",
+      "kind": "contemplar",
+      "x": 30,
+      "y": -10,
+      "label": "Olhar o céu",
+      "text": "O Observatório pisca uma luz azul lá no alto. O velho Merlin nunca dorme."
+    },
+    {
+      "id": "astralia_bancada",
+      "kind": "bancada",
+      "x": -25,
+      "y": -9.9,
+      "label": "Bancada da Academia"
+    },
+    {
+      "id": "porta_observatorio",
+      "kind": "porta",
+      "x": 0.0,
+      "y": 14.33,
+      "label": "Observatório de Merlin",
+      "grant_flag": "porta:portal:astralia_observatorio",
+      "text": "A porta azul abre sozinha. Lá de cima, alguém grita: «Limpe os pés! E não mexa no astrolábio!»"
+    }
+  ],
+  "checkpoints": [],
+  "roads": [
+    {
+      "points": [
+        [
+          -33,
+          0
+        ],
+        [
+          33,
+          0
+        ]
+      ],
+      "width": 6
+    },
+    {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          13
+        ]
+      ],
+      "width": 5
+    }
+  ]
+}

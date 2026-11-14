@@ -1,0 +1,92 @@
+[
+  {
+    "id": "loja_tomos_guerreiro",
+    "name": "Biblioteca do Mestre Dorval",
+    "items": [
+      "tomo_guerreiro_golpe_de_cunha",
+      "tomo_guerreiro_guarda_de_escudo",
+      "tomo_guerreiro_giro",
+      "tomo_guerreiro_salto",
+      "tomo_guerreiro_furia_colosso",
+      "tomo_guerreiro_golpe_de_cunha_ii",
+      "tomo_guerreiro_guarda_de_escudo_ii",
+      "tomo_guerreiro_giro_ii",
+      "tomo_guerreiro_salto_ii",
+      "tomo_guerreiro_furia_colosso_ii",
+      "tomo_guerreiro_estocada",
+      "tomo_guerreiro_estocada_ii",
+      "tomo_guerreiro_laminas_sangue",
+      "tomo_guerreiro_laminas_sangue_ii",
+      "tomo_guerreiro_chuva_espadas",
+      "tomo_guerreiro_chuva_espadas_ii"
+    ]
+  },
+  {
+    "id": "loja_tomos_mago",
+    "name": "Grimórios de Isaura",
+    "items": [
+      "tomo_mago_explosao_de_cinzas",
+      "tomo_mago_passo_etereo",
+      "tomo_mago_lanca_gelo",
+      "tomo_mago_chuva_meteoros",
+      "tomo_mago_cometa",
+      "tomo_mago_explosao_de_cinzas_ii",
+      "tomo_mago_passo_etereo_ii",
+      "tomo_mago_lanca_gelo_ii",
+      "tomo_mago_chuva_meteoros_ii",
+      "tomo_mago_cometa_ii",
+      "tomo_mago_esfera_protecao",
+      "tomo_mago_esfera_protecao_ii",
+      "tomo_mago_prisao_gelo",
+      "tomo_mago_prisao_gelo_ii",
+      "tomo_mago_anel_chamas",
+      "tomo_mago_anel_chamas_ii"
+    ]
+  },
+  {
+    "id": "loja_tomos_bruxa",
+    "name": "Cadernos de Hazel",
+    "items": [
+      "tomo_bruxa_toque_alquimico",
+      "tomo_bruxa_barreira_de_eter",
+      "tomo_bruxa_aura_primal",
+      "tomo_bruxa_espinhos",
+      "tomo_bruxa_floresta_viva",
+      "tomo_bruxa_toque_alquimico_ii",
+      "tomo_bruxa_barreira_de_eter_ii",
+      "tomo_bruxa_aura_primal_ii",
+      "tomo_bruxa_espinhos_ii",
+      "tomo_bruxa_floresta_viva_ii",
+      "tomo_bruxa_raizes",
+      "tomo_bruxa_raizes_ii",
+      "tomo_bruxa_tronco",
+      "tomo_bruxa_tronco_ii",
+      "tomo_bruxa_vinhas",
+      "tomo_bruxa_vinhas_ii"
+    ]
+  },
+  {
+    "id": "loja_tomos_arqueiro",
+    "name": "Manuais de Kaelen",
+    "items": [
+      "tomo_arqueiro_emboscada",
+      "tomo_arqueiro_passos_fantasma",
+      "tomo_arqueiro_olhar_do_cacador",
+      "tomo_arqueiro_rajada",
+      "tomo_arqueiro_flecha_perfurante",
+      "tomo_arqueiro_chuva",
+      "tomo_arqueiro_fenix",
+      "tomo_arqueiro_serpente",
+      "tomo_arqueiro_emboscada_ii",
+      "tomo_arqueiro_passos_fantasma_ii",
+      "tomo_arqueiro_olhar_do_cacador_ii",
+      "tomo_arqueiro_rajada_ii",
+      "tomo_arqueiro_flecha_perfurante_ii",
+      "tomo_arqueiro_chuva_ii",
+      "tomo_arqueiro_fenix_ii",
+      "tomo_arqueiro_serpente_ii",
+      "tomo_arqueiro_tiro_certeiro",
+      "tomo_arqueiro_tiro_certeiro_ii"
+    ]
+  }
+]

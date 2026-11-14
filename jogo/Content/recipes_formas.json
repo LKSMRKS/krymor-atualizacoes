@@ -1,0 +1,25 @@
+[
+  {
+    "id": "rec_mascara_pandemonio",
+    "name": "Máscara do Pandemônio",
+    "station": "bancada",
+    "inputs": [
+      {
+        "item": "mat_gorro_saci",
+        "qty": 1
+      },
+      {
+        "item": "mat_casca_serpente",
+        "qty": 3
+      },
+      {
+        "item": "mat_madeira_verde",
+        "qty": 2
+      }
+    ],
+    "output": "mascara_pandemonio",
+    "output_qty": 1,
+    "min_level": 30,
+    "requires_flag": "receita:mascara"
+  }
+]

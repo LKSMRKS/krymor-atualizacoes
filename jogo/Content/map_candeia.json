@@ -1,0 +1,1795 @@
+{
+  "id": "candeia",
+  "display_name": "Candeia, a Vila das Lanternas",
+  "half_size": 34,
+  "spawn_x": 0,
+  "spawn_y": 3.5,
+  "safe_radius": 68,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "candeia",
+  "theme": "brejo",
+  "no_mount": false,
+  "zones": [
+    {
+      "id": "cidade",
+      "name": "Candeia, a Vila das Lanternas",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 68,
+      "h": 68
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.0,
+      "y": 22.0,
+      "w": 12.0,
+      "h": 3.44,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.0,
+      "y": -6.0,
+      "w": 6.28,
+      "h": 2.08,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 10.72,
+      "y": -13.75,
+      "w": 1.45,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.1,
+      "y": -13.75,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.67,
+      "y": -13.75,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 18.33,
+      "y": -13.75,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 19.9,
+      "y": -13.75,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.28,
+      "y": -13.75,
+      "w": 1.45,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 10.95,
+      "y": -22.25,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.5,
+      "y": -22.25,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 16.0,
+      "y": -22.25,
+      "w": 5.8,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 19.5,
+      "y": -22.25,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.05,
+      "y": -22.25,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 10.25,
+      "y": -15.67,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 10.25,
+      "y": -18.0,
+      "w": 0.5,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 10.25,
+      "y": -20.33,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.75,
+      "y": -14.95,
+      "w": 0.5,
+      "h": 1.9,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.75,
+      "y": -16.5,
+      "w": 0.5,
+      "h": 1.2,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.75,
+      "y": -19.55,
+      "w": 0.5,
+      "h": 4.9,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.3,
+      "y": -12.0,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.7,
+      "y": -12.0,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.0,
+      "y": -17.0,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 16.8,
+      "y": -16.6,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.0,
+      "y": -19.6,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 19.6,
+      "y": -19.3,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.0,
+      "y": -20.9,
+      "w": 3.6,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.05,
+      "y": -19.6,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.0,
+      "y": 15.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -26.0,
+      "y": 14.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.0,
+      "y": 16.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 24.0,
+      "y": 14.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -15.0,
+      "y": -15.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.0,
+      "y": -15.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 8.0,
+      "y": -6.5,
+      "w": 3.5,
+      "h": 2.71,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -9.0,
+      "y": -7.0,
+      "w": 3.5,
+      "h": 2.71,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -30.03,
+      "y": 21.98,
+      "w": 2.14,
+      "h": 1.92,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 28.97,
+      "y": 23.01,
+      "w": 2.11,
+      "h": 1.79,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -30.03,
+      "y": -24.02,
+      "w": 2.14,
+      "h": 1.92,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 27.97,
+      "y": -25.99,
+      "w": 2.05,
+      "h": 1.63,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 6.03,
+      "y": 26.98,
+      "w": 2.12,
+      "h": 2.07,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -6.98,
+      "y": 28.03,
+      "w": 2.06,
+      "h": 2.13,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 21.01,
+      "y": 5.03,
+      "w": 2.02,
+      "h": 2.13,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -19.99,
+      "y": 4.03,
+      "w": 2.11,
+      "h": 2.1,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 11.97,
+      "y": 24.99,
+      "w": 1.41,
+      "h": 1.81,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -28.75,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -23.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -17.75,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -12.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -6.75,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -1.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 4.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 9.75,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 15.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 20.75,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 26.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 30.25,
+      "y": 31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -28.75,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -23.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -17.75,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -12.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -6.75,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -1.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 4.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 9.75,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 15.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 20.75,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 26.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 30.25,
+      "y": -31.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": -28.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": -23.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": -17.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": -12.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": -7.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 5.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 9.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 15.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 20.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 26.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.5,
+      "y": 30.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": -28.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": -23.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": -17.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": -12.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": -7.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 5.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 9.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 15.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 20.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 26.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -31.5,
+      "y": 30.25,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -7.14,
+      "y": -16.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 24.12,
+      "y": -6.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -29.44,
+      "y": -15.06,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -3.64,
+      "y": -20.7,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 28.8,
+      "y": -10.87,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 9.28,
+      "y": 7.25,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -22.81,
+      "y": 5.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 22.01,
+      "y": 20.46,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -25.64,
+      "y": -8.39,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -22.5,
+      "y": 10.2,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -24.08,
+      "y": -21.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -19.07,
+      "y": 23.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -11.92,
+      "y": -21.25,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -24.39,
+      "y": -28.71,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -0.4,
+      "y": -6.31,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -24.85,
+      "y": -25.33,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -13.22,
+      "y": -28.31,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 9.31,
+      "y": -10.69,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 18.43,
+      "y": 12.97,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 14.98,
+      "y": 6.54,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 6.07,
+      "y": -24.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -16.76,
+      "y": -8.21,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 10.8,
+      "y": -5.36,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 7.36,
+      "y": 17.26,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -17.14,
+      "y": -20.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -15.55,
+      "y": 29.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 4.02,
+      "y": -20.69,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 13.3,
+      "y": 19.36,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 5.92,
+      "y": 12.78,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 16.42,
+      "y": -6.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -9,
+      "y": -9,
+      "w": 0,
+      "h": 0,
+      "r": 1.1,
+      "height": 2
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "glb:cenario_ponte_arcos",
+      "x": 0,
+      "y": 22,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/cenario_ponte_reparada",
+      "x": -22,
+      "y": -6,
+      "yaw": 90
+    },
+    {
+      "kind": "taverna_grande",
+      "x": 16,
+      "y": -18,
+      "yaw": 0
+    },
+    {
+      "kind": "sobrado",
+      "x": -16,
+      "y": 15,
+      "yaw": 180
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -26,
+      "y": 14,
+      "yaw": 180
+    },
+    {
+      "kind": "casa_pequena",
+      "x": 15,
+      "y": 16,
+      "yaw": 180
+    },
+    {
+      "kind": "sobrado",
+      "x": 24,
+      "y": 14,
+      "yaw": 180
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -15,
+      "y": -15,
+      "yaw": 0
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -25,
+      "y": -15,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/costa_barraca_pescador",
+      "x": 8,
+      "y": -6.5,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/costa_barraca_pescador",
+      "x": -9,
+      "y": -7,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": -30,
+      "y": 22,
+      "yaw": 150
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": 29,
+      "y": 23,
+      "yaw": 203
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": -30,
+      "y": -24,
+      "yaw": 150
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": 28,
+      "y": -26,
+      "yaw": 196
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": 6,
+      "y": 27,
+      "yaw": 42
+    },
+    {
+      "kind": "glb:cenario/cenario_arvore_seca",
+      "x": -7,
+      "y": 28,
+      "yaw": 311
+    },
+    {
+      "kind": "glb:cenario/cenario_rocha_1",
+      "x": 21,
+      "y": 5,
+      "yaw": 55
+    },
+    {
+      "kind": "glb:cenario/cenario_rocha_1",
+      "x": -20,
+      "y": 4,
+      "yaw": 44
+    },
+    {
+      "kind": "glb:cenario/cenario_rocha_1",
+      "x": 12,
+      "y": 25,
+      "yaw": 275
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -7.14,
+      "y": -16.16,
+      "yaw": 75
+    },
+    {
+      "kind": "poste",
+      "x": 24.12,
+      "y": -6.86,
+      "yaw": 330
+    },
+    {
+      "kind": "barril",
+      "x": -29.44,
+      "y": -15.06,
+      "yaw": 0
+    },
+    {
+      "kind": "caixote",
+      "x": -3.64,
+      "y": -20.7,
+      "yaw": 60
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 28.8,
+      "y": -10.87,
+      "yaw": 120
+    },
+    {
+      "kind": "estandarte",
+      "x": 9.28,
+      "y": 7.25,
+      "yaw": 15
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -22.81,
+      "y": 5.27,
+      "yaw": 195
+    },
+    {
+      "kind": "poste",
+      "x": 22.01,
+      "y": 20.46,
+      "yaw": 90
+    },
+    {
+      "kind": "barril",
+      "x": -25.64,
+      "y": -8.39,
+      "yaw": 225
+    },
+    {
+      "kind": "caixote",
+      "x": -22.5,
+      "y": 10.2,
+      "yaw": 45
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -24.08,
+      "y": -21.38,
+      "yaw": 75
+    },
+    {
+      "kind": "estandarte",
+      "x": -19.07,
+      "y": 23.27,
+      "yaw": 15
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -11.92,
+      "y": -21.25,
+      "yaw": 315
+    },
+    {
+      "kind": "poste",
+      "x": -24.39,
+      "y": -28.71,
+      "yaw": 315
+    },
+    {
+      "kind": "barril",
+      "x": -0.4,
+      "y": -6.31,
+      "yaw": 0
+    },
+    {
+      "kind": "caixote",
+      "x": -24.85,
+      "y": -25.33,
+      "yaw": 345
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -13.22,
+      "y": -28.31,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": 9.31,
+      "y": -10.69,
+      "yaw": 60
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 18.43,
+      "y": 12.97,
+      "yaw": 345
+    },
+    {
+      "kind": "poste",
+      "x": 14.98,
+      "y": 6.54,
+      "yaw": 195
+    },
+    {
+      "kind": "barril",
+      "x": 6.07,
+      "y": -24.03,
+      "yaw": 105
+    },
+    {
+      "kind": "caixote",
+      "x": -16.76,
+      "y": -8.21,
+      "yaw": 210
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 10.8,
+      "y": -5.36,
+      "yaw": 210
+    },
+    {
+      "kind": "estandarte",
+      "x": 7.36,
+      "y": 17.26,
+      "yaw": 135
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -17.14,
+      "y": -20.14,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": -15.55,
+      "y": 29.27,
+      "yaw": 255
+    },
+    {
+      "kind": "barril",
+      "x": 4.02,
+      "y": -20.69,
+      "yaw": 150
+    },
+    {
+      "kind": "caixote",
+      "x": 13.3,
+      "y": 19.36,
+      "yaw": 210
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 5.92,
+      "y": 12.78,
+      "yaw": 255
+    },
+    {
+      "kind": "estandarte",
+      "x": 16.42,
+      "y": -6.43,
+      "yaw": 165
+    },
+    {
+      "kind": "capim_alto",
+      "x": 8.37,
+      "y": -28.5,
+      "yaw": 120
+    },
+    {
+      "kind": "capim_alto",
+      "x": -3.05,
+      "y": -13.31,
+      "yaw": 0
+    },
+    {
+      "kind": "capim_alto",
+      "x": -8.46,
+      "y": -9.36,
+      "yaw": 120
+    },
+    {
+      "kind": "capim_alto",
+      "x": 2.17,
+      "y": 28.39,
+      "yaw": 180
+    },
+    {
+      "kind": "capim_alto",
+      "x": 7.72,
+      "y": 23.13,
+      "yaw": 165
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.64,
+      "y": -25.21,
+      "yaw": 105
+    },
+    {
+      "kind": "capim_alto",
+      "x": -20.24,
+      "y": -8.68,
+      "yaw": 315
+    },
+    {
+      "kind": "capim_alto",
+      "x": -13.98,
+      "y": 26.2,
+      "yaw": 300
+    },
+    {
+      "kind": "capim_alto",
+      "x": 2.05,
+      "y": -15.31,
+      "yaw": 210
+    },
+    {
+      "kind": "capim_alto",
+      "x": 11.08,
+      "y": 20.57,
+      "yaw": 15
+    },
+    {
+      "kind": "capim_alto",
+      "x": -16.26,
+      "y": -28.07,
+      "yaw": 150
+    },
+    {
+      "kind": "capim_alto",
+      "x": -5.93,
+      "y": -26.03,
+      "yaw": 270
+    },
+    {
+      "kind": "bancada",
+      "x": -9,
+      "y": -9,
+      "yaw": 0
+    }
+  ],
+  "portals": [
+    {
+      "id": "candeia_para_brejo_da_viuva",
+      "x": -31.0,
+      "y": 0.0,
+      "radius": 2.2,
+      "to_map": "brejo_da_viuva",
+      "to_x": 39.4,
+      "to_y": -68.0,
+      "label": "Brejo da Viúva"
+    },
+    {
+      "id": "candeia_para_vespera",
+      "x": 31.0,
+      "y": 0.0,
+      "radius": 2.2,
+      "to_map": "vespera",
+      "to_x": 0.0,
+      "to_y": 68.5,
+      "label": "Véspera"
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_candeia",
+      "name": "Lampião da Praça",
+      "x": -5.0,
+      "y": 5.5
+    }
+  ],
+  "npcs": [
+    {
+      "id": "lanterneira_ilda",
+      "name": "Ilda, a Lanterneira",
+      "role": "missoes",
+      "x": -13,
+      "y": 10.5,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "«Lanterna acesa espanta afogado. Lanterna apagada chama. Por isso aqui ninguém dorme no escuro.»"
+    },
+    {
+      "id": "vigia_teodoro",
+      "name": "Teodoro, o Vigia da Véspera",
+      "role": "missoes",
+      "x": 25,
+      "y": 2.5,
+      "facing": 270,
+      "look": "guarda",
+      "greeting": "«Do lado de lá o sol não se põe nem nasce. Fica parado, vermelho, olhando. E as coisas que andam lá não gostam de luz.»"
+    },
+    {
+      "id": "boticario_anselmo",
+      "name": "Anselmo, o Boticário",
+      "role": "loja",
+      "x": 4,
+      "y": -3.5,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "«Água benta, antídoto de sapo e panaceia. Quem vai à Véspera leva os três. Quem volta, compra de novo.»",
+      "shop": "loja_candeia_boticario"
+    },
+    {
+      "id": "curandeira_marta",
+      "name": "Marta, a Rezadeira",
+      "role": "curandeira",
+      "x": -9,
+      "y": -3.5,
+      "facing": 0,
+      "look": "curandeira",
+      "greeting": "«Tônico e reza. O tônico fecha a ferida; a reza é pra você não ficar com medo de voltar.»",
+      "shop": "loja_curandeira"
+    },
+    {
+      "id": "ferreiro_brunilda",
+      "name": "Brunilda, a Ferreira",
+      "role": "ferreiro",
+      "x": 21,
+      "y": -9,
+      "facing": 270,
+      "look": "ferreiro",
+      "greeting": "«Prata no fio da lâmina. Vampiro não gosta. Eu também não gosto de vampiro.»",
+      "shop": "loja_ferreiro"
+    },
+    {
+      "id": "taverneiro_lume",
+      "name": "Lume, da Última Luz",
+      "role": "morador",
+      "x": 16.0,
+      "y": -11.2,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "«Sopa de raiz do brejo e vinho da Véspera. O vinho é por sua conta — e por seu risco.»"
+    },
+    {
+      "id": "menina_faisca",
+      "name": "Faísca",
+      "role": "morador",
+      "x": 3,
+      "y": 12,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "«Eu conto lanternas. Ontem eram 412. Hoje 411. Alguém levou uma pra Véspera e não voltou.»"
+    }
+  ],
+  "objects": [
+    {
+      "id": "candeia_porta_0",
+      "kind": "porta",
+      "x": 16.0,
+      "y": -13.15,
+      "label": "Estalagem da Última Luz",
+      "text": "Cada mesa tem uma lanterna acesa. «Aqui ninguém apaga a luz. Nunca. Nem pra dormir.»"
+    },
+    {
+      "id": "candeia_porta_1",
+      "kind": "porta",
+      "x": -16.0,
+      "y": 12.25,
+      "label": "Casa do Lanterneiro",
+      "text": "Centenas de lanternas penduradas no teto, todas acesas. «Entra devagar, que vidro quebra.»",
+      "grant_flag": "porta:entra"
+    },
+    {
+      "id": "candeia_porta_2",
+      "kind": "porta",
+      "x": -26.0,
+      "y": 11.45,
+      "label": "Porta",
+      "text": "Uma vela na janela e um bilhete: «Volto antes de escurecer. (Aqui nunca escurece.)»"
+    },
+    {
+      "id": "candeia_porta_3",
+      "kind": "porta",
+      "x": 24.0,
+      "y": 11.25,
+      "label": "Capela da Vigília",
+      "text": "Velas por toda parte e um sino sem badalo. «Rezamos pelos que a Véspera levou.»"
+    },
+    {
+      "id": "candeia_bancada",
+      "kind": "bancada",
+      "x": -9,
+      "y": -10.4,
+      "label": "Bancada das Lanternas"
+    }
+  ],
+  "checkpoints": [],
+  "roads": [
+    {
+      "points": [
+        [
+          -31,
+          0
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "width": 5
+    },
+    {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "width": 4
+    }
+  ]
+}

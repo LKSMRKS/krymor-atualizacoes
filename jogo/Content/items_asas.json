@@ -1,0 +1,110 @@
+[
+  {
+    "id": "wings_dragao",
+    "display_name": "Asas do Dragão Rubro",
+    "category": "wings",
+    "subtype": "dragao",
+    "min_level": 35,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.161,
+      "move_speed_pct": 0.15,
+      "armor": 60,
+      "max_health": 189,
+      "resource_regen_pct": 0.2
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_wings_dragao",
+    "model_asset_id": "wings_dragao",
+    "summary": "Couro de dragão esticado em ossos de ferro, garras nas pontas. Asas de 2º nível da classe: ataque +16%, velocidade +15%, armadura +60, vida +190, regeneração +20%. G = voar.",
+    "price": 82000,
+    "source": "Máquina do Caos (Asas de Ferro + joias) — e no Santuário (adm)."
+  },
+  {
+    "id": "wings_abismo",
+    "display_name": "Asas do Abismo Rúnico",
+    "category": "wings",
+    "subtype": "abismo",
+    "min_level": 35,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.161,
+      "move_speed_pct": 0.15,
+      "armor": 60,
+      "max_health": 189,
+      "resource_regen_pct": 0.2
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_wings_abismo",
+    "model_asset_id": "wings_abismo",
+    "summary": "Membrana roxa de morcego com runas verdes acesas e crânios de dragão. Asas de 2º nível da classe: ataque +16%, velocidade +15%, armadura +60, vida +190, regeneração +20%. G = voar.",
+    "price": 82000,
+    "source": "Máquina do Caos (Asas de Ferro + joias) — e no Santuário (adm)."
+  },
+  {
+    "id": "wings_aguia",
+    "display_name": "Asas da Águia Real",
+    "category": "wings",
+    "subtype": "aguia",
+    "min_level": 35,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.161,
+      "move_speed_pct": 0.15,
+      "armor": 60,
+      "max_health": 189,
+      "resource_regen_pct": 0.2
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_wings_aguia",
+    "model_asset_id": "wings_aguia",
+    "summary": "Penas de águia com lâminas de aço nas pontas e garras no ombro. Asas de 2º nível da classe: ataque +16%, velocidade +15%, armadura +60, vida +190, regeneração +20%. G = voar.",
+    "price": 82000,
+    "source": "Máquina do Caos (Asas de Ferro + joias) — e no Santuário (adm)."
+  },
+  {
+    "id": "wings_cristal",
+    "display_name": "Asas de Cristal Celeste",
+    "category": "wings",
+    "subtype": "cristal",
+    "min_level": 35,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.161,
+      "move_speed_pct": 0.15,
+      "armor": 60,
+      "max_health": 189,
+      "resource_regen_pct": 0.2
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_wings_cristal",
+    "model_asset_id": "wings_cristal",
+    "summary": "Penas turquesa e ouro, com cristais flutuando entre elas. Asas de 2º nível da classe: ataque +16%, velocidade +15%, armadura +60, vida +190, regeneração +20%. G = voar.",
+    "price": 82000,
+    "source": "Máquina do Caos (Asas de Ferro + joias) — e no Santuário (adm)."
+  }
+]

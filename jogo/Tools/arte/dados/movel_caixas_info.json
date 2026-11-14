@@ -1,0 +1,25 @@
+{
+ "asset_id": "movel_caixas",
+ "nome": "Pilha de caixas de mercadoria com sacos",
+ "colisao": [
+  {
+   "caixa_m": [
+    1.6,
+    0.9
+   ]
+  }
+ ],
+ "luz": null,
+ "notas": null,
+ "posicao_no_conjunto_godot": [
+  0.219,
+  -0.02,
+  0.196
+ ],
+ "tris": 2432,
+ "dims_m": [
+  1.849,
+  1.104,
+  1.22
+ ]
+}

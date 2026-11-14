@@ -1,0 +1,1627 @@
+[
+  {
+    "id": "arsenal_faca_enferrujada",
+    "display_name": "Faca Enferrujada",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 9,
+      "attack_interval_ms": 650
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_faca_enferrujada",
+    "model_asset_id": "arma_faca_enferrujada",
+    "summary": "Uma mão, ataque a cada 0,65 s.",
+    "price": 140,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_faca_comum",
+    "display_name": "Faca",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 19,
+      "attack_interval_ms": 650
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_faca_comum",
+    "model_asset_id": "arma_faca_comum",
+    "summary": "Uma mão, ataque a cada 0,65 s.",
+    "price": 1000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_faca_refinada",
+    "display_name": "Faca Refinada",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 41,
+      "attack_interval_ms": 650
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_faca_refinada",
+    "model_asset_id": "arma_faca_refinada",
+    "summary": "Uma mão, ataque a cada 0,65 s.",
+    "price": 6000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_faca_excelente",
+    "display_name": "Faca Primorosa",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 70,
+      "attack_interval_ms": 650
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_faca_excelente",
+    "model_asset_id": "arma_faca_excelente",
+    "summary": "Uma mão, ataque a cada 0,65 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_adaga_enferrujada",
+    "display_name": "Adaga Enferrujada",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 10,
+      "attack_interval_ms": 750
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_adaga_enferrujada",
+    "model_asset_id": "arma_adaga_enferrujada",
+    "summary": "Uma mão, ataque a cada 0,75 s.",
+    "price": 130,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_adaga_comum",
+    "display_name": "Adaga",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 22,
+      "attack_interval_ms": 750
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_adaga_comum",
+    "model_asset_id": "arma_adaga_comum",
+    "summary": "Uma mão, ataque a cada 0,75 s.",
+    "price": 1000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_adaga_refinada",
+    "display_name": "Adaga Refinada",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 48,
+      "attack_interval_ms": 750
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_adaga_refinada",
+    "model_asset_id": "arma_adaga_refinada",
+    "summary": "Uma mão, ataque a cada 0,75 s.",
+    "price": 6200,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_adaga_excelente",
+    "display_name": "Adaga Primorosa",
+    "category": "weapon",
+    "subtype": "dagger",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 81,
+      "attack_interval_ms": 750
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_adaga_excelente",
+    "model_asset_id": "arma_adaga_excelente",
+    "summary": "Uma mão, ataque a cada 0,75 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_curta_enferrujada",
+    "display_name": "Espada Curta Enferrujada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 12,
+      "attack_interval_ms": 950
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_curta_enferrujada",
+    "model_asset_id": "arma_espada_curta_enferrujada",
+    "summary": "Uma mão, ataque a cada 0,95 s.",
+    "price": 120,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_curta_comum",
+    "display_name": "Espada Curta",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 27,
+      "attack_interval_ms": 950
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_curta_comum",
+    "model_asset_id": "arma_espada_curta_comum",
+    "summary": "Uma mão, ataque a cada 0,95 s.",
+    "price": 960,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_curta_refinada",
+    "display_name": "Espada Curta Refinada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 60,
+      "attack_interval_ms": 950
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_curta_refinada",
+    "model_asset_id": "arma_espada_curta_refinada",
+    "summary": "Uma mão, ataque a cada 0,95 s.",
+    "price": 6000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_curta_excelente",
+    "display_name": "Espada Curta Primorosa",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 103,
+      "attack_interval_ms": 950
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_curta_excelente",
+    "model_asset_id": "arma_espada_curta_excelente",
+    "summary": "Uma mão, ataque a cada 0,95 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_longa_enferrujada",
+    "display_name": "Espada Longa Enferrujada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 17,
+      "attack_interval_ms": 1150,
+      "reach_m": 0.4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_longa_enferrujada",
+    "model_asset_id": "arma_espada_longa_enferrujada",
+    "summary": "Duas mãos, ataque a cada 1,15 s.",
+    "price": 150,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_longa_comum",
+    "display_name": "Espada Longa",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 33,
+      "attack_interval_ms": 1150,
+      "reach_m": 0.4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_longa_comum",
+    "model_asset_id": "arma_espada_longa_comum",
+    "summary": "Duas mãos, ataque a cada 1,15 s.",
+    "price": 970,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_longa_refinada",
+    "display_name": "Espada Longa Refinada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 73,
+      "attack_interval_ms": 1150,
+      "reach_m": 0.4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_longa_refinada",
+    "model_asset_id": "arma_espada_longa_refinada",
+    "summary": "Duas mãos, ataque a cada 1,15 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_espada_longa_excelente",
+    "display_name": "Espada Longa Primorosa",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 124,
+      "attack_interval_ms": 1150,
+      "reach_m": 0.4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_espada_longa_excelente",
+    "model_asset_id": "arma_espada_longa_excelente",
+    "summary": "Duas mãos, ataque a cada 1,15 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_katana_enferrujada",
+    "display_name": "Katana Enferrujada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 15,
+      "attack_interval_ms": 1000,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_katana_enferrujada",
+    "model_asset_id": "arma_katana_enferrujada",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 150,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_katana_comum",
+    "display_name": "Katana",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 29,
+      "attack_interval_ms": 1000,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_katana_comum",
+    "model_asset_id": "arma_katana_comum",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 990,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_katana_refinada",
+    "display_name": "Katana Refinada",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 64,
+      "attack_interval_ms": 1000,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_katana_refinada",
+    "model_asset_id": "arma_katana_refinada",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 6200,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_katana_excelente",
+    "display_name": "Katana Primorosa",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 108,
+      "attack_interval_ms": 1000,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_katana_excelente",
+    "model_asset_id": "arma_katana_excelente",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_clava_enferrujada",
+    "display_name": "Clava Enferrujada",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 13,
+      "attack_interval_ms": 1000,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_clava_enferrujada",
+    "model_asset_id": "arma_clava_enferrujada",
+    "summary": "Uma mão, ataque a cada 1,00 s.",
+    "price": 120,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_clava_comum",
+    "display_name": "Clava",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 29,
+      "attack_interval_ms": 1000,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_clava_comum",
+    "model_asset_id": "arma_clava_comum",
+    "summary": "Uma mão, ataque a cada 1,00 s.",
+    "price": 990,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_clava_refinada",
+    "display_name": "Clava Refinada",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 64,
+      "attack_interval_ms": 1000,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_clava_refinada",
+    "model_asset_id": "arma_clava_refinada",
+    "summary": "Uma mão, ataque a cada 1,00 s.",
+    "price": 6200,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_clava_excelente",
+    "display_name": "Clava Primorosa",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 108,
+      "attack_interval_ms": 1000,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_clava_excelente",
+    "model_asset_id": "arma_clava_excelente",
+    "summary": "Uma mão, ataque a cada 1,00 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_maca_enferrujada",
+    "display_name": "Maça de Aletas Enferrujada",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 14,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_maca_enferrujada",
+    "model_asset_id": "arma_maca_enferrujada",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 120,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_maca_comum",
+    "display_name": "Maça de Aletas",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 32,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_maca_comum",
+    "model_asset_id": "arma_maca_comum",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 990,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_maca_refinada",
+    "display_name": "Maça de Aletas Refinada",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 70,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_maca_refinada",
+    "model_asset_id": "arma_maca_refinada",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_maca_excelente",
+    "display_name": "Maça de Aletas Primorosa",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 119,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_maca_excelente",
+    "model_asset_id": "arma_maca_excelente",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_mao_enferrujada",
+    "display_name": "Machadinha Enferrujada",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 14,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_mao_enferrujada",
+    "model_asset_id": "arma_machado_mao_enferrujada",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 120,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_mao_comum",
+    "display_name": "Machadinha",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 32,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_mao_comum",
+    "model_asset_id": "arma_machado_mao_comum",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 990,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_mao_refinada",
+    "display_name": "Machadinha Refinada",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 70,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_mao_refinada",
+    "model_asset_id": "arma_machado_mao_refinada",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_mao_excelente",
+    "display_name": "Machadinha Primorosa",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 119,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_mao_excelente",
+    "model_asset_id": "arma_machado_mao_excelente",
+    "summary": "Uma mão, ataque a cada 1,10 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_guerra_enferrujada",
+    "display_name": "Machado de Guerra Enferrujado",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 20,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_guerra_enferrujada",
+    "model_asset_id": "arma_machado_guerra_enferrujada",
+    "summary": "Duas mãos, ataque a cada 1,30 s.",
+    "price": 160,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_guerra_comum",
+    "display_name": "Machado de Guerra",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 37,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_guerra_comum",
+    "model_asset_id": "arma_machado_guerra_comum",
+    "summary": "Duas mãos, ataque a cada 1,30 s.",
+    "price": 960,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_guerra_refinada",
+    "display_name": "Machado de Guerra Refinado",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 83,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_guerra_refinada",
+    "model_asset_id": "arma_machado_guerra_refinada",
+    "summary": "Duas mãos, ataque a cada 1,30 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_machado_guerra_excelente",
+    "display_name": "Machado de Guerra Primoroso",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 140,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_guerra_excelente",
+    "model_asset_id": "arma_machado_guerra_excelente",
+    "summary": "Duas mãos, ataque a cada 1,30 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_lanca_enferrujada",
+    "display_name": "Lança Enferrujada",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 2,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 15,
+      "attack_interval_ms": 1050,
+      "reach_m": 1.3,
+      "basic_arc": 55
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_lanca_enferrujada",
+    "model_asset_id": "arma_lanca_enferrujada",
+    "summary": "Duas mãos, ataque a cada 1,05 s.",
+    "price": 140,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_lanca_comum",
+    "display_name": "Lança",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 30,
+      "attack_interval_ms": 1050,
+      "reach_m": 1.3,
+      "basic_arc": 55
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_lanca_comum",
+    "model_asset_id": "arma_lanca_comum",
+    "summary": "Duas mãos, ataque a cada 1,05 s.",
+    "price": 970,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_lanca_refinada",
+    "display_name": "Lança Refinada",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 67,
+      "attack_interval_ms": 1050,
+      "reach_m": 1.3,
+      "basic_arc": 55
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_lanca_refinada",
+    "model_asset_id": "arma_lanca_refinada",
+    "summary": "Duas mãos, ataque a cada 1,05 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_lanca_excelente",
+    "display_name": "Lança Primorosa",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 113,
+      "attack_interval_ms": 1050,
+      "reach_m": 1.3,
+      "basic_arc": 55
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_lanca_excelente",
+    "model_asset_id": "arma_lanca_excelente",
+    "summary": "Duas mãos, ataque a cada 1,05 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_curto_enferrujada",
+    "display_name": "Arco Curto Enferrujado",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 2,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 12,
+      "attack_interval_ms": 850,
+      "projectile_speed_pct": 0.1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_curto_enferrujada",
+    "model_asset_id": "arma_arco_curto_enferrujada",
+    "summary": "Duas mãos, ataque a cada 0,85 s.",
+    "price": 140,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_curto_comum",
+    "display_name": "Arco Curto",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 24,
+      "attack_interval_ms": 850,
+      "projectile_speed_pct": 0.1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_curto_comum",
+    "model_asset_id": "arma_arco_curto_comum",
+    "summary": "Duas mãos, ataque a cada 0,85 s.",
+    "price": 950,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_curto_refinada",
+    "display_name": "Arco Curto Refinado",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 54,
+      "attack_interval_ms": 850,
+      "projectile_speed_pct": 0.1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_curto_refinada",
+    "model_asset_id": "arma_arco_curto_refinada",
+    "summary": "Duas mãos, ataque a cada 0,85 s.",
+    "price": 6100,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_curto_excelente",
+    "display_name": "Arco Curto Primoroso",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 34,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 92,
+      "attack_interval_ms": 850,
+      "projectile_speed_pct": 0.1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_curto_excelente",
+    "model_asset_id": "arma_arco_curto_excelente",
+    "summary": "Duas mãos, ataque a cada 0,85 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_longo_enferrujada",
+    "display_name": "Arco Longo Enferrujado",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 2,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 14,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_longo_enferrujada",
+    "model_asset_id": "arma_arco_longo_enferrujada",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 140,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_longo_comum",
+    "display_name": "Arco Longo",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 29,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_longo_comum",
+    "model_asset_id": "arma_arco_longo_comum",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 990,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_longo_refinada",
+    "display_name": "Arco Longo Refinado",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 64,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_longo_refinada",
+    "model_asset_id": "arma_arco_longo_refinada",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 6200,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_arco_longo_excelente",
+    "display_name": "Arco Longo Primoroso",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 34,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 108,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.3
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arco_longo_excelente",
+    "model_asset_id": "arma_arco_longo_excelente",
+    "summary": "Duas mãos, ataque a cada 1,00 s.",
+    "price": 20000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_graveto",
+    "display_name": "Graveto",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 8,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_graveto",
+    "model_asset_id": "arma_graveto",
+    "summary": "Melhor que nada.",
+    "price": 51,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_graveto_pregos",
+    "display_name": "Graveto com Pregos",
+    "category": "weapon",
+    "subtype": "club",
+    "min_level": 4,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 18,
+      "attack_interval_ms": 1000,
+      "basic_stagger": 1
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_graveto_pregos",
+    "model_asset_id": "arma_graveto_pregos",
+    "summary": "Pregos tortos. Machuca.",
+    "price": 310,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_varinha_n1",
+    "display_name": "Varinha de Galho",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 3,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 15,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.2
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_varinha_bruxa_n1",
+    "model_asset_id": "arma_varinha_bruxa_n1",
+    "summary": "Varinha da Bruxa (no lugar do talismã).",
+    "price": 220,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_varinha_n2",
+    "display_name": "Varinha de Osso Entalhado",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 14,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 39,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.2
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_varinha_bruxa_n2",
+    "model_asset_id": "arma_varinha_bruxa_n2",
+    "summary": "Varinha da Bruxa (no lugar do talismã).",
+    "price": 2800,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "arsenal_varinha_n3",
+    "display_name": "Varinha do Cristal Flutuante",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 30,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 74,
+      "attack_interval_ms": 1000,
+      "projectile_speed_pct": 0.2
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_varinha_bruxa_n3",
+    "model_asset_id": "arma_varinha_bruxa_n3",
+    "summary": "Varinha da Bruxa (no lugar do talismã).",
+    "price": 13000,
+    "source": "Cai de monstros do nível certo."
+  },
+  {
+    "id": "lendaria_machado_presa_javali",
+    "display_name": "Machado de Presa de Javali",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 59,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3,
+      "proc_every": 6
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_presa_javali",
+    "model_asset_id": "arma_machado_presa_javali",
+    "summary": "Arma lendária (início). Duas mãos. · Lendária: Rachar o Chão (a cada 6 golpes, racha o chão e quebra a preparação de quem estiver perto).",
+    "price": 4100,
+    "source": "Lendária: chefes e elites a partir do nível 12.",
+    "proc_skill": "skill_lend_rachar"
+  },
+  {
+    "id": "lendaria_martelo_chifre_carneiro",
+    "display_name": "Martelo de Chifre de Carneiro",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 15,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 68,
+      "attack_interval_ms": 1250,
+      "basic_stagger": 1,
+      "reach_m": 0.3,
+      "proc_every": 7
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_martelo_chifre_carneiro",
+    "model_asset_id": "arma_martelo_chifre_carneiro",
+    "summary": "Arma lendária (início). Duas mãos. · Lendária: Terremoto (a cada 7 golpes, um terremoto em volta do alvo).",
+    "price": 6300,
+    "source": "Lendária: chefes e elites a partir do nível 15.",
+    "proc_skill": "skill_lend_terremoto"
+  },
+  {
+    "id": "lendaria_maca_escorpiao",
+    "display_name": "Maça do Escorpião",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 18,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 69,
+      "attack_interval_ms": 1100,
+      "basic_stagger": 1,
+      "proc_every": 7
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_maca_escorpiao",
+    "model_asset_id": "arma_maca_escorpiao",
+    "summary": "Arma lendária (início). Uma mão. · Lendária: Terremoto (a cada 7 golpes, um terremoto em volta do alvo).",
+    "price": 8800,
+    "source": "Lendária: chefes e elites a partir do nível 18.",
+    "proc_skill": "skill_lend_terremoto"
+  },
+  {
+    "id": "lendaria_machado_lobo_sombrio",
+    "display_name": "Machado do Lobo Sombrio",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 26,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 113,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3,
+      "proc_every": 6
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_lobo_sombrio",
+    "model_asset_id": "arma_machado_lobo_sombrio",
+    "summary": "Arma lendária (meio). Duas mãos. · Lendária: Rachar o Chão (a cada 6 golpes, racha o chão e quebra a preparação de quem estiver perto).",
+    "price": 19000,
+    "source": "Lendária: chefes e elites a partir do nível 26.",
+    "proc_skill": "skill_lend_rachar"
+  },
+  {
+    "id": "lendaria_cajado_cobra_verde",
+    "display_name": "Cajado da Cobra Verde",
+    "category": "weapon",
+    "subtype": "staff",
+    "min_level": 28,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 80,
+      "attack_interval_ms": 1000,
+      "aoe_radius_bonus": 0.6,
+      "resource_regen_pct": 0.15,
+      "proc_every": 5
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_cajado_cobra_verde",
+    "model_asset_id": "arma_cajado_cobra_verde",
+    "summary": "Arma lendária (meio). Duas mãos. · Lendária: Eco Arcano (a cada 5 golpes, a magia ecoa em volta do alvo).",
+    "price": 27000,
+    "source": "Lendária: chefes e elites a partir do nível 28.",
+    "proc_skill": "skill_lend_eco"
+  },
+  {
+    "id": "lendaria_lanca_valquiria",
+    "display_name": "Lança Alada da Valquíria",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 32,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 110,
+      "attack_interval_ms": 1050,
+      "reach_m": 1.3,
+      "basic_arc": 55,
+      "proc_every": 4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_lanca_valquiria",
+    "model_asset_id": "arma_lanca_valquiria",
+    "summary": "Arma lendária (meio). Duas mãos. · Lendária: Perfurar (a cada 4 golpes, uma estocada que atravessa (muito dano)).",
+    "price": 30000,
+    "source": "Lendária: chefes e elites a partir do nível 32.",
+    "proc_skill": "skill_lend_perfurar"
+  },
+  {
+    "id": "lendaria_glaive_carmesim",
+    "display_name": "Glaive Gêmea Carmesim",
+    "category": "weapon",
+    "subtype": "spear",
+    "min_level": 36,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 117,
+      "attack_interval_ms": 1000,
+      "reach_m": 1.0,
+      "basic_arc": 80,
+      "proc_every": 4
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_glaive_carmesim",
+    "model_asset_id": "arma_glaive_carmesim",
+    "summary": "Arma lendária (meio). Duas mãos. · Lendária: Perfurar (a cada 4 golpes, uma estocada que atravessa (muito dano)).",
+    "price": 39000,
+    "source": "Lendária: chefes e elites a partir do nível 36.",
+    "proc_skill": "skill_lend_perfurar"
+  },
+  {
+    "id": "lendaria_cutelo_abissal",
+    "display_name": "Cutelo Abissal do Tubarão",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 44,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 134,
+      "attack_interval_ms": 950,
+      "reach_m": 0.3,
+      "proc_every": 5
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_cutelo_abissal",
+    "model_asset_id": "arma_cutelo_abissal",
+    "summary": "Arma lendária (fim de jogo). Uma mão. · Lendária: Corte Fantasma (a cada 5 golpes, um corte fantasma acerta tudo em volta do alvo).",
+    "price": 60000,
+    "source": "Lendária: chefes e elites a partir do nível 44.",
+    "proc_skill": "skill_lend_corte_fantasma"
+  },
+  {
+    "id": "lendaria_machado_leao_dourado",
+    "display_name": "Machado do Leão Dourado",
+    "category": "weapon",
+    "subtype": "axe",
+    "min_level": 48,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 199,
+      "attack_interval_ms": 1300,
+      "basic_stagger": 1,
+      "reach_m": 0.3,
+      "proc_every": 6
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_machado_leao_dourado",
+    "model_asset_id": "arma_machado_leao_dourado",
+    "summary": "Arma lendária (fim de jogo). Duas mãos. · Lendária: Rachar o Chão (a cada 6 golpes, racha o chão e quebra a preparação de quem estiver perto).",
+    "price": 74000,
+    "source": "Lendária: chefes e elites a partir do nível 48.",
+    "proc_skill": "skill_lend_rachar"
+  },
+  {
+    "id": "lendaria_martelo_carneiro_fundido",
+    "display_name": "Martelo Fundido do Carneiro",
+    "category": "weapon",
+    "subtype": "hammer",
+    "min_level": 53,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 210,
+      "attack_interval_ms": 1250,
+      "basic_stagger": 1,
+      "reach_m": 0.3,
+      "proc_every": 7
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_martelo_carneiro_fundido",
+    "model_asset_id": "arma_martelo_carneiro_fundido",
+    "summary": "Arma lendária (fim de jogo). Duas mãos. · Lendária: Terremoto (a cada 7 golpes, um terremoto em volta do alvo).",
+    "price": 93000,
+    "source": "Lendária: chefes e elites a partir do nível 53.",
+    "proc_skill": "skill_lend_terremoto"
+  },
+  {
+    "id": "lendaria_montante_dragao_rubro",
+    "display_name": "Montante do Dragão Rubro",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 58,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 210,
+      "attack_interval_ms": 1150,
+      "reach_m": 0.5,
+      "proc_every": 5
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_montante_dragao_rubro",
+    "model_asset_id": "arma_montante_dragao_rubro",
+    "summary": "Arma lendária (fim de jogo). Duas mãos. · Lendária: Corte Fantasma (a cada 5 golpes, um corte fantasma acerta tudo em volta do alvo).",
+    "price": 110000,
+    "source": "Lendária: chefes e elites a partir do nível 58.",
+    "proc_skill": "skill_lend_corte_fantasma"
+  }
+]

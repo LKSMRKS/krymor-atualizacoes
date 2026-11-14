@@ -1,0 +1,23 @@
+{
+ "nome": "Armadura Abissal",
+ "pecas": {
+  "capacete": 7000,
+  "peitoral": 11000,
+  "bracadeiras": 6000,
+  "luvas": 3000,
+  "perneiras": 8000,
+  "botas": 4000
+ },
+ "pose_da_fonte": {
+  "braco_graus": 57.0,
+  "antebraco_graus": 6.0
+ },
+ "esqueleto": "manequim_masc (mixamorig, mesma pose de repouso)",
+ "asset_id": "armadura_abissal",
+ "tris": 39000,
+ "clips": [
+  "Idle",
+  "Running",
+  "Walking"
+ ]
+}

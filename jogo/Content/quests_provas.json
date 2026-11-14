@@ -1,0 +1,318 @@
+[
+  {
+    "id": "q_prova_g_1",
+    "name": "Prova da Força (1/4)",
+    "giver": "mestre_dorval",
+    "kind": "hunt",
+    "targets": [
+      "monster_monte_cabra"
+    ],
+    "count": 25,
+    "description": "«Um Campeão não cansa. Suba o Monte do Prefeito e derrube 25 Cabras-da-Serra — elas chifram feito touro.»",
+    "hint": "Mate 25 Cabras-da-Serra no Monte do Prefeito. — prova 1 de 4 para virar Campeão.",
+    "min_level": 11,
+    "class": "guerreiro",
+    "reward_xp": 3500,
+    "reward_coins": 425,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "monte_prefeito"
+  },
+  {
+    "id": "q_prova_g_2",
+    "name": "Prova do Troféu (2/4)",
+    "giver": "mestre_dorval",
+    "kind": "collect",
+    "targets": [
+      "mat_chifre_cabra"
+    ],
+    "count": 8,
+    "description": "«Agora me traga 8 Chifres de Cabra. Vou fazer o elmo do seu juramento com eles.»",
+    "hint": "Traga 8 Chifres de Cabra (caem das Cabras-da-Serra). — prova 2 de 4 para virar Campeão.",
+    "min_level": 12,
+    "class": "guerreiro",
+    "reward_xp": 4200,
+    "reward_coins": 410,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "monte_prefeito",
+    "requires": "q_prova_g_1"
+  },
+  {
+    "id": "q_prova_g_3",
+    "name": "Prova da Memória (3/4)",
+    "giver": "mestre_dorval",
+    "kind": "interact",
+    "targets": [
+      "elmo_primeiro_campeao"
+    ],
+    "count": 1,
+    "description": "«O primeiro Campeão caiu no Fosso do Capataz, no Vale. O elmo dele ainda está lá. Traga-o.»",
+    "hint": "Pegue o elmo no Fosso do Capataz (Vale das Cinzas). — prova 3 de 4 para virar Campeão.",
+    "min_level": 13,
+    "class": "guerreiro",
+    "reward_xp": 5000,
+    "reward_coins": 180,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "vale_das_cinzas",
+    "requires": "q_prova_g_2"
+  },
+  {
+    "id": "q_prova_g_4",
+    "name": "A Provação do Campeão (4/4)",
+    "giver": "mestre_dorval",
+    "kind": "boss",
+    "targets": [
+      "monster_r2_guardiao_galeria"
+    ],
+    "count": 1,
+    "description": "«Última prova: desça à Galeria Funda e derrube o Guardião. Volte de pé e eu te ajoelho Campeão.»",
+    "hint": "Vença o Guardião da Galeria (Galeria Funda, na Costa do Cal). — prova 4 de 4 para virar Campeão.",
+    "min_level": 14,
+    "class": "guerreiro",
+    "reward_xp": 7000,
+    "reward_coins": 825,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "galeria_funda",
+    "requires": "q_prova_g_3"
+  },
+  {
+    "id": "q_prova_m_1",
+    "name": "Prova do Silêncio (1/4)",
+    "giver": "isaura_arcanista",
+    "kind": "hunt",
+    "targets": [
+      "monster_cal_fantasma"
+    ],
+    "count": 25,
+    "description": "«Arcanista que se preze não teme fantasma. Desfaça 25 Fantasmas de Calcário na Costa (saem mais à noite).»",
+    "hint": "Mate 25 Fantasmas de Calcário (Costa do Cal ou Galeria Funda). — prova 1 de 4 para virar Arcanista.",
+    "min_level": 11,
+    "class": "mago",
+    "reward_xp": 3500,
+    "reward_coins": 350,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_prova_m_2",
+    "name": "Prova do Cristal (2/4)",
+    "giver": "isaura_arcanista",
+    "kind": "collect",
+    "targets": [
+      "mat_fragmento_veio"
+    ],
+    "count": 10,
+    "description": "«Traga 10 Fragmentos de Veio. O cajado de quem lê o vento é feito do que brilha no escuro.»",
+    "hint": "Traga 10 Fragmentos de Veio (caem de vários bichos da Costa e da Galeria). — prova 2 de 4 para virar Arcanista.",
+    "min_level": 12,
+    "class": "mago",
+    "reward_xp": 4200,
+    "reward_coins": 460,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "costa_do_cal",
+    "requires": "q_prova_m_1"
+  },
+  {
+    "id": "q_prova_m_3",
+    "name": "Prova da Leitura (3/4)",
+    "giver": "isaura_arcanista",
+    "kind": "interact",
+    "targets": [
+      "grimorio_afogado"
+    ],
+    "count": 1,
+    "description": "«Um grimório afundou na Enseada Escondida. Dizem que só aparece atrás de uma parede que não existe.»",
+    "hint": "Ache o grimório na Enseada Escondida (leste da Costa, atrás da parede rachada). — prova 3 de 4 para virar Arcanista.",
+    "min_level": 13,
+    "class": "mago",
+    "reward_xp": 5000,
+    "reward_coins": 180,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "costa_do_cal",
+    "requires": "q_prova_m_2"
+  },
+  {
+    "id": "q_prova_m_4",
+    "name": "A Provação Arcana (4/4)",
+    "giver": "isaura_arcanista",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_tirano_da_mare"
+    ],
+    "count": 1,
+    "description": "«O Tirano da Maré acorda quando a água sobe. Derrube-o e volte: você será Arcanista.»",
+    "hint": "Vença o Tirano da Maré (Costa do Cal). — prova 4 de 4 para virar Arcanista.",
+    "min_level": 14,
+    "class": "mago",
+    "reward_xp": 7000,
+    "reward_coins": 825,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "costa_do_cal",
+    "requires": "q_prova_m_3"
+  },
+  {
+    "id": "q_prova_b_1",
+    "name": "Prova da Colheita (1/4)",
+    "giver": "bruxa_hazel",
+    "kind": "hunt",
+    "targets": [
+      "monster_vale_espantalho"
+    ],
+    "count": 25,
+    "description": "«Os espantalhos do Vale andam sozinhos. Desmanche 25 — a palha deles é boa para os meus chás.»",
+    "hint": "Mate 25 Espantalhos no Vale das Cinzas. — prova 1 de 4 para virar Matriarca do Éter.",
+    "min_level": 11,
+    "class": "bruxa",
+    "reward_xp": 3500,
+    "reward_coins": 460,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "vale_das_cinzas"
+  },
+  {
+    "id": "q_prova_b_2",
+    "name": "Prova das Asas (2/4)",
+    "giver": "bruxa_hazel",
+    "kind": "collect",
+    "targets": [
+      "mat_membrana"
+    ],
+    "count": 6,
+    "description": "«Traga 6 Membranas dos Gaviões-Pedreiros do Monte. Éter se costura com asa.»",
+    "hint": "Traga 6 Membranas (caem dos Gaviões-Pedreiros, Monte do Prefeito). — prova 2 de 4 para virar Matriarca do Éter.",
+    "min_level": 12,
+    "class": "bruxa",
+    "reward_xp": 4200,
+    "reward_coins": 355,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "monte_prefeito",
+    "requires": "q_prova_b_1"
+  },
+  {
+    "id": "q_prova_b_3",
+    "name": "Prova da Fome (3/4)",
+    "giver": "bruxa_hazel",
+    "kind": "hunt",
+    "targets": [
+      "monster_cal_carnical"
+    ],
+    "count": 15,
+    "description": "«Os Carniçais da Costa comem o que a maré traz. Mostre que você come primeiro: 15 deles.»",
+    "hint": "Mate 15 Carniçais (Costa do Cal ou Galeria Funda). — prova 3 de 4 para virar Matriarca do Éter.",
+    "min_level": 13,
+    "class": "bruxa",
+    "reward_xp": 5000,
+    "reward_coins": 350,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "costa_do_cal",
+    "requires": "q_prova_b_2"
+  },
+  {
+    "id": "q_prova_b_4",
+    "name": "A Provação do Éter (4/4)",
+    "giver": "bruxa_hazel",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_capataz_da_pedreira"
+    ],
+    "count": 1,
+    "description": "«O Capataz da Pedreira bate em quem não pode bater de volta. Vá lá e bata de volta.»",
+    "hint": "Vença o Capataz da Pedreira (Vale das Cinzas). — prova 4 de 4 para virar Matriarca do Éter.",
+    "min_level": 14,
+    "class": "bruxa",
+    "reward_xp": 7000,
+    "reward_coins": 690,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "vale_das_cinzas",
+    "requires": "q_prova_b_3"
+  },
+  {
+    "id": "q_prova_a_1",
+    "name": "Prova do Olho (1/4)",
+    "giver": "batedor_kaelen",
+    "kind": "hunt",
+    "targets": [
+      "monster_monte_gaviao"
+    ],
+    "count": 25,
+    "description": "«Gavião voa, gavião desvia. Derrube 25 Gaviões-Pedreiros no Monte sem perder a calma.»",
+    "hint": "Mate 25 Gaviões-Pedreiros no Monte do Prefeito. — prova 1 de 4 para virar Batedor das Sombras.",
+    "min_level": 11,
+    "class": "arqueiro",
+    "reward_xp": 3500,
+    "reward_coins": 460,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "monte_prefeito"
+  },
+  {
+    "id": "q_prova_a_2",
+    "name": "Prova do Couro (2/4)",
+    "giver": "batedor_kaelen",
+    "kind": "collect",
+    "targets": [
+      "mat_couro"
+    ],
+    "count": 10,
+    "description": "«Traga 10 Couros Grossos. Batedor de verdade faz a própria aljava.»",
+    "hint": "Traga 10 Couros Grossos (Javalis da Duna, Cabras-da-Serra). — prova 2 de 4 para virar Batedor das Sombras.",
+    "min_level": 12,
+    "class": "arqueiro",
+    "reward_xp": 4200,
+    "reward_coins": 460,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "monte_prefeito",
+    "requires": "q_prova_a_1"
+  },
+  {
+    "id": "q_prova_a_3",
+    "name": "Prova da Paciência (3/4)",
+    "giver": "batedor_kaelen",
+    "kind": "hunt",
+    "targets": [
+      "monster_vale_verme_broca"
+    ],
+    "count": 15,
+    "description": "«Os Vermes-Broca do Vale só põem a cabeça para fora quando você não está olhando. Pegue 15.»",
+    "hint": "Mate 15 Vermes-Broca no Vale das Cinzas. — prova 3 de 4 para virar Batedor das Sombras.",
+    "min_level": 13,
+    "class": "arqueiro",
+    "reward_xp": 5000,
+    "reward_coins": 540,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "vale_das_cinzas",
+    "requires": "q_prova_a_2"
+  },
+  {
+    "id": "q_prova_a_4",
+    "name": "A Provação das Sombras (4/4)",
+    "giver": "batedor_kaelen",
+    "kind": "boss",
+    "targets": [
+      "monster_r2_guardiao_galeria"
+    ],
+    "count": 1,
+    "description": "«O Guardião da Galeria não vê quem anda nas sombras. Prove: derrube-o e volte.»",
+    "hint": "Vença o Guardião da Galeria (Galeria Funda, na Costa do Cal). — prova 4 de 4 para virar Batedor das Sombras.",
+    "min_level": 14,
+    "class": "arqueiro",
+    "reward_xp": 7000,
+    "reward_coins": 825,
+    "reward_flags": [],
+    "category": "classe",
+    "map": "galeria_funda",
+    "requires": "q_prova_a_3"
+  }
+]

@@ -1,0 +1,397 @@
+[
+  {
+    "id": "q_cad_mata_1",
+    "name": "As Raízes que Andam",
+    "giver": "carpinteiro_jorge",
+    "kind": "defend",
+    "targets": [
+      "monster_mata_raiz_andante"
+    ],
+    "count": 3,
+    "map": "mata_dos_enforcados",
+    "min_level": 21,
+    "description": "«As raízes andantes estão arrancando as cercas da plantação da Benta. Corta oito antes que cheguem ao poço.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 30870,
+    "reward_coins": 755,
+    "category": "historia",
+    "radius": 6,
+    "x": 18.0,
+    "y": -26.2,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_cad_mata_2",
+    "name": "As Cordas da Mata",
+    "giver": "carpinteiro_jorge",
+    "kind": "interact",
+    "targets": [
+      "achado_mata_1",
+      "achado_mata_2",
+      "achado_mata_3"
+    ],
+    "count": 3,
+    "map": "mata_dos_enforcados",
+    "min_level": 22,
+    "requires": "q_cad_mata_1",
+    "description": "«Ninguém sabe por que chamam isto aqui de Mata dos Enforcados. Eu sei: três galhos ainda têm a corda. Ache os três e me diga o que está escrito na casca.»",
+    "hint": "Três achados espalhados pela Mata dos Enforcados (oeste, leste e sudeste). Aperte F em cada um.",
+    "reward_xp": 33880,
+    "reward_coins": 320,
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_mata_3",
+    "name": "O Guardião Retorcido",
+    "giver": "carpinteiro_jorge",
+    "kind": "boss",
+    "targets": [
+      "monster_mata_guardiao_retorcido"
+    ],
+    "count": 1,
+    "map": "mata_dos_enforcados",
+    "min_level": 23,
+    "requires": "q_cad_mata_2",
+    "description": "«As cordas foram um aviso do Guardião Retorcido. Ele protege a mata de gente — inclusive de nós. Derrube-o e a mata respira.»",
+    "hint": "O Guardião Retorcido na Mata dos Enforcados. Vá preparado (tônicos e, se puder, um grupo).",
+    "reward_xp": 74060,
+    "reward_coins": 1505,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_mata_4",
+    "name": "Teias no Poço",
+    "giver": "agricultora_benta",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_aranha_toca"
+    ],
+    "count": 10,
+    "map": "mata_dos_enforcados",
+    "min_level": 24,
+    "description": "«As aranhas da toca encheram o poço de teia. Dez delas e a água volta.»",
+    "hint": "Na Mata dos Enforcados. Volte a quem pediu, no acampamento.",
+    "reward_xp": 40320,
+    "reward_coins": 810,
+    "category": "opcional"
+  },
+  {
+    "id": "q_cad_canions_1",
+    "name": "Os Mineiros Que Não Pararam",
+    "giver": "zelador_ascanio",
+    "kind": "hunt",
+    "targets": [
+      "monster_canions_esqueleto_mineiro"
+    ],
+    "count": 1,
+    "map": "canions_suplicantes",
+    "min_level": 25,
+    "description": "«Os mineiros morreram no desabamento e continuam cavando. Oito deles precisam descansar.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 43750,
+    "reward_coins": 985,
+    "category": "historia",
+    "radius": 20,
+    "x": -9.3,
+    "y": -7.5,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_cad_canions_2",
+    "name": "As Lamparinas Perdidas",
+    "giver": "zelador_ascanio",
+    "kind": "interact",
+    "targets": [
+      "achado_canions_1",
+      "achado_canions_2",
+      "achado_canions_3"
+    ],
+    "count": 3,
+    "map": "canions_suplicantes",
+    "min_level": 27,
+    "requires": "q_cad_canions_1",
+    "description": "«Quando a mina desabou, três lamparinas ficaram acesas lá dentro. Dizem que enquanto queimarem, as almas não sobem. Apague as três.»",
+    "hint": "Três achados espalhados pela Cânions dos Suplicantes (oeste, leste e sudeste). Aperte F em cada um.",
+    "reward_xp": 51030,
+    "reward_coins": 405,
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_canions_3",
+    "name": "O Rei dos Cânions",
+    "giver": "zelador_ascanio",
+    "kind": "boss",
+    "targets": [
+      "monster_canions_rei_dos_canions"
+    ],
+    "count": 1,
+    "map": "canions_suplicantes",
+    "min_level": 33,
+    "requires": "q_cad_canions_2",
+    "description": "«Com as lamparinas apagadas, o Rei dos Cânions acordou. Ele é o último a precisar descansar.»",
+    "hint": "O Rei dos Cânions na Cânions dos Suplicantes. Vá preparado (tônicos e, se puder, um grupo).",
+    "reward_xp": 152460,
+    "reward_coins": 2765,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_canions_4",
+    "name": "Os Suplicantes",
+    "giver": "mineiro_bras2",
+    "kind": "kill",
+    "targets": [
+      "monster_canions_espectro"
+    ],
+    "count": 10,
+    "map": "canions_suplicantes",
+    "min_level": 30,
+    "description": "«Os espectros pedem, choram, suplicam. Dez deles — com respeito, mas com firmeza.»",
+    "hint": "Na Cânions dos Suplicantes. Volte a quem pediu, no acampamento.",
+    "reward_xp": 63000,
+    "reward_coins": 1235,
+    "category": "opcional"
+  },
+  {
+    "id": "q_cad_brejo_1",
+    "name": "Serpentes no Cartório",
+    "giver": "escrivao_tadeu",
+    "kind": "hunt",
+    "targets": [
+      "monster_brejo_serpente"
+    ],
+    "count": 1,
+    "map": "brejo_da_viuva",
+    "min_level": 31,
+    "description": "«As serpentes do brejo invadiram o arquivo e comeram duas certidões de casamento. Oito delas, por favor.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 67270,
+    "reward_coins": 1335,
+    "category": "historia",
+    "radius": 20,
+    "x": -8.4,
+    "y": 36.2,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_cad_brejo_2",
+    "name": "As Cartas da Viúva",
+    "giver": "escrivao_tadeu",
+    "kind": "interact",
+    "targets": [
+      "achado_brejo_1",
+      "achado_brejo_2",
+      "achado_brejo_3"
+    ],
+    "count": 3,
+    "map": "brejo_da_viuva",
+    "min_level": 34,
+    "requires": "q_cad_brejo_1",
+    "description": "«A Viúva do brejo escrevia ao marido todo dia. Três cartas ainda boiam pelo pântano. Traga-as — talvez ela descanse.»",
+    "hint": "Três achados espalhados pela Brejo da Viúva (oeste, leste e sudeste). Aperte F em cada um.",
+    "reward_xp": 80920,
+    "reward_coins": 535,
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_brejo_3",
+    "name": "A Viúva Negra",
+    "giver": "escrivao_tadeu",
+    "kind": "boss",
+    "targets": [
+      "monster_brejo_viuva_negra"
+    ],
+    "count": 1,
+    "map": "brejo_da_viuva",
+    "min_level": 39,
+    "requires": "q_cad_brejo_2",
+    "description": "«As cartas acordaram a Viúva Negra. Ela não quer descansar: quer companhia. Não seja a companhia.»",
+    "hint": "A Viúva Negra na Brejo da Viúva. Vá preparado (tônicos e, se puder, um grupo).",
+    "reward_xp": 212940,
+    "reward_coins": 3380,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_brejo_4",
+    "name": "Seda de Tecelã",
+    "giver": "costureira_alba",
+    "kind": "kill",
+    "targets": [
+      "monster_brejo_tecela"
+    ],
+    "count": 10,
+    "map": "brejo_da_viuva",
+    "min_level": 37,
+    "description": "«A seda das tecelãs é a melhor do continente — se você conseguir arrancar. Dez tecelãs.»",
+    "hint": "Na Brejo da Viúva. Volte a quem pediu, no acampamento.",
+    "reward_xp": 95830,
+    "reward_coins": 1705,
+    "category": "opcional"
+  },
+  {
+    "id": "q_cad_vespera_1",
+    "name": "Correio Atrasado",
+    "giver": "carteiro_espectral",
+    "kind": "hunt",
+    "targets": [
+      "monster_vespera_carnical_vespera"
+    ],
+    "count": 1,
+    "map": "vespera",
+    "min_level": 38,
+    "description": "«Os carniçais comem as cartas antes que eu entregue. Oito a menos e o correio dos mortos volta a andar.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 101080,
+    "reward_coins": 1720,
+    "category": "historia",
+    "radius": 20,
+    "x": -15.7,
+    "y": 38.5,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_cad_vespera_2",
+    "name": "Os Três Sinos",
+    "giver": "carteiro_espectral",
+    "kind": "interact",
+    "targets": [
+      "achado_vespera_1",
+      "achado_vespera_2",
+      "achado_vespera_3"
+    ],
+    "count": 3,
+    "map": "vespera",
+    "min_level": 41,
+    "requires": "q_cad_vespera_1",
+    "description": "«Véspera tinha três sinos. Quando tocavam juntos, os mortos lembravam quem eram. Ache os três sinos rachados e toque cada um.»",
+    "hint": "Três achados espalhados pela Véspera (oeste, leste e sudeste). Aperte F em cada um.",
+    "reward_xp": 117670,
+    "reward_coins": 675,
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_vespera_3",
+    "name": "O Prefeito Sem Rosto",
+    "giver": "carteiro_espectral",
+    "kind": "boss",
+    "targets": [
+      "monster_vespera_prefeito_sem_rosto"
+    ],
+    "count": 1,
+    "map": "vespera",
+    "min_level": 46,
+    "requires": "q_cad_vespera_2",
+    "description": "«Os sinos lembraram aos mortos quem os governa: o Prefeito Sem Rosto. Hora de uma eleição.»",
+    "hint": "O Prefeito Sem Rosto na Véspera. Vá preparado (tônicos e, se puder, um grupo).",
+    "reward_xp": 296240,
+    "reward_coins": 4270,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_vespera_4",
+    "name": "Necromancia Ilegal",
+    "giver": "guia_aurelio",
+    "kind": "kill",
+    "targets": [
+      "monster_vespera_necromante"
+    ],
+    "count": 8,
+    "map": "vespera",
+    "min_level": 45,
+    "description": "«Necromantes reabrindo túmulos sem licença. Oito, e o cemitério volta a ter paz.»",
+    "hint": "Na Véspera. Volte a quem pediu, no acampamento.",
+    "reward_xp": 141750,
+    "reward_coins": 1955,
+    "category": "opcional"
+  },
+  {
+    "id": "q_cad_coroa_1",
+    "name": "Os Que Não Esfriam",
+    "giver": "batedora_runa",
+    "kind": "defend",
+    "targets": [
+      "monster_geada_draugr"
+    ],
+    "count": 3,
+    "map": "coroa_da_geada",
+    "min_level": 45,
+    "description": "«Os draugr marcham para a caravana todas as noites. Oito deles e a gente dorme.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 141750,
+    "reward_coins": 2135,
+    "category": "historia",
+    "radius": 6,
+    "x": -8.5,
+    "y": 36.1,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_cad_coroa_2",
+    "name": "As Runas do Juramento",
+    "giver": "batedora_runa",
+    "kind": "interact",
+    "targets": [
+      "achado_coroa_1",
+      "achado_coroa_2",
+      "achado_coroa_3"
+    ],
+    "count": 3,
+    "map": "coroa_da_geada",
+    "min_level": 48,
+    "requires": "q_cad_coroa_1",
+    "description": "«Três runas do Primeiro Juramento estão presas no gelo. Quebre o gelo de cada uma (F) e leia o que elas prometem.»",
+    "hint": "Três achados espalhados pela Coroa da Geada (oeste, leste e sudeste). Aperte F em cada um.",
+    "reward_xp": 161280,
+    "reward_coins": 830,
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_coroa_3",
+    "name": "O Rei Draugr",
+    "giver": "batedora_runa",
+    "kind": "boss",
+    "targets": [
+      "monster_geada_rei_draugr"
+    ],
+    "count": 1,
+    "map": "coroa_da_geada",
+    "min_level": 51,
+    "requires": "q_cad_coroa_2",
+    "description": "«As runas falam do Rei Draugr, que quebrou o juramento. Faça ele cumprir — de joelhos.»",
+    "hint": "O Rei Draugr na Coroa da Geada. Vá preparado (tônicos e, se puder, um grupo).",
+    "reward_xp": 364140,
+    "reward_coins": 4505,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cad_coroa_4",
+    "name": "Carne de Troll",
+    "giver": "cozinheira_hild",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_troll_gelo"
+    ],
+    "count": 8,
+    "map": "coroa_da_geada",
+    "min_level": 50,
+    "description": "«Carne de troll de gelo rende um ensopado que aquece até a alma. Oito, e eu cozinho para a caravana inteira.»",
+    "hint": "Na Coroa da Geada. Volte a quem pediu, no acampamento.",
+    "reward_xp": 175000,
+    "reward_coins": 2265,
+    "category": "opcional"
+  }
+]

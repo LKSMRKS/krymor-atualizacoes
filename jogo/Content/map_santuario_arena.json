@@ -1,0 +1,215 @@
+{
+  "id": "santuario_arena",
+  "display_name": "Arena de Teste",
+  "half_size": 34,
+  "spawn_x": 0,
+  "spawn_y": -24,
+  "safe_radius": 4,
+  "xp_multiplier": 1,
+  "kind": "campo",
+  "region": "porto",
+  "theme": "cidade",
+  "no_mount": false,
+  "zones": [
+    {
+      "name": "Arena",
+      "kind": "medio",
+      "x": 0,
+      "y": 4,
+      "w": 56,
+      "h": 44
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": -33.4,
+      "w": 66.8,
+      "h": 1.2,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": 33.4,
+      "w": 66.8,
+      "h": 1.2,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -33.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 66.8,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 33.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 66.8,
+      "r": 0,
+      "height": 4
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [
+    {
+      "id": "ar0",
+      "monster": "monster_r0_caranguejinho",
+      "x": -18.0,
+      "y": -8,
+      "level": 1,
+      "group": "ar0",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar1",
+      "monster": "monster_r1_saqueador_da_vigilia",
+      "x": -6.0,
+      "y": -8,
+      "level": 4,
+      "group": "ar1",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar2",
+      "monster": "monster_bst_rato_gigante",
+      "x": 6.0,
+      "y": -8,
+      "level": 9,
+      "group": "ar2",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar3",
+      "monster": "monster_vale_espantalho",
+      "x": 18.0,
+      "y": -8,
+      "level": 12,
+      "group": "ar3",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar4",
+      "monster": "monster_mata_saqueador_mata",
+      "x": -18.0,
+      "y": 4,
+      "level": 19,
+      "group": "ar4",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar5",
+      "monster": "monster_bst_mumia",
+      "x": -6.0,
+      "y": 4,
+      "level": 26,
+      "group": "ar5",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar6",
+      "monster": "monster_brejo_serpente",
+      "x": 6.0,
+      "y": 4,
+      "level": 31,
+      "group": "ar6",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar7",
+      "monster": "monster_vespera_carnical_vespera",
+      "x": 18.0,
+      "y": 4,
+      "level": 38,
+      "group": "ar7",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar8",
+      "monster": "monster_bst_a_morte",
+      "x": -18.0,
+      "y": 16,
+      "level": 46,
+      "group": "ar8",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar9",
+      "monster": "monster_geada_campeao_draugr",
+      "x": -6.0,
+      "y": 16,
+      "level": 50,
+      "group": "ar9",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar10",
+      "monster": "monster_acropole_harpia",
+      "x": 6.0,
+      "y": 16,
+      "level": 57,
+      "group": "ar10",
+      "respawn_seconds": 8
+    },
+    {
+      "id": "ar11",
+      "monster": "monster_acropole_minotauro_juramento",
+      "x": 18.0,
+      "y": 16,
+      "level": 60,
+      "group": "ar11",
+      "respawn_seconds": 8
+    }
+  ],
+  "props": [],
+  "portals": [
+    {
+      "id": "arena_sant",
+      "x": 0,
+      "y": -30,
+      "radius": 1.6,
+      "to_map": "santuario_ceu",
+      "to_x": 0,
+      "to_y": -8,
+      "label": "Santuário"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [
+    {
+      "id": "brutus_arena",
+      "name": "Brutus, o Mestre da Arena",
+      "role": "missoes",
+      "x": -4.0,
+      "y": -22.5,
+      "facing": 0,
+      "look": "mentor",
+      "greeting": "Aqui ninguém morre de verdade — só o orgulho. Escolha um adversário e mostre o que aprendeu."
+    },
+    {
+      "id": "lena_apostas",
+      "name": "Lena das Apostas",
+      "role": "aldeao",
+      "x": 4.0,
+      "y": -22.5,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "Aposto dez moedas que você não dura um minuto contra o de nível 60. Brincadeira. Ou não."
+    }
+  ],
+  "objects": [],
+  "checkpoints": []
+}

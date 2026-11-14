@@ -1,0 +1,1616 @@
+[
+  {
+    "id": "q_tut_viagem",
+    "name": "Pedras de Viagem",
+    "giver": "guia_teo",
+    "kind": "use",
+    "targets": [
+      "viagem"
+    ],
+    "count": 1,
+    "description": "Na Costa do Cal, no Acampamento das Dunas, tem outra pedra azul. Chegue perto dela: o cristal acende, ela fica descoberta. Depois, em qualquer pedra acesa, aperte F — abre o mapa — e escolha para onde ir. Só dá para ir às pedras que você já acendeu.",
+    "hint": "1) Chegue perto da pedra azul do Acampamento das Dunas (Costa do Cal) até o cristal acender. 2) Numa pedra acesa, aperte F e escolha o destino no mapa.",
+    "min_level": 1,
+    "reward_xp": 150,
+    "reward_coins": 20,
+    "category": "historia",
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_tut_bau",
+    "name": "O Armazém",
+    "giver": "zeca_armazem",
+    "kind": "use",
+    "targets": [
+      "bau"
+    ],
+    "count": 1,
+    "description": "O armazém comunitário fica aqui do lado. Chegue perto e aperte F: arraste itens da mochila para guardar e de volta para tirar. O que fica lá não se perde quando você morre.",
+    "hint": "Chegue perto do Armazém comunitário (ao lado do Zeca, no Porto) e aperte F.",
+    "min_level": 2,
+    "reward_xp": 60,
+    "reward_coins": 30,
+    "category": "historia",
+    "map": "porto_das_cinzas"
+  },
+  {
+    "id": "q_tomo_a",
+    "name": "O Primeiro Rastro",
+    "giver": "batedor_kaelen",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 4,
+    "description": "Mostre pontaria. Derrube 4 Esqueletos de Goblin no Areal (portão norte) — de longe, sem deixar que cheguem perto — e o Manual da Emboscada é seu.",
+    "hint": "Areal da Maré (Costa do Cal, portão norte): os esqueletos de goblin rondam entre os caranguejos. Depois, volte ao seu mentor no Porto.",
+    "min_level": 1,
+    "class": "arqueiro",
+    "reward_xp": 120,
+    "reward_coins": 75,
+    "reward_items": [
+      "tomo_arqueiro_emboscada"
+    ],
+    "category": "historia",
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_tomo_b",
+    "name": "As Mãos que Curam",
+    "giver": "bruxa_hazel",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 5,
+    "description": "Sinta o éter na luta. Quebre 5 esqueletos de goblin no Areal e eu te dou o caderno do Toque Alquímico.",
+    "hint": "Areal da Maré (Costa do Cal, portão norte): os esqueletos de goblin rondam entre os caranguejos. Depois, volte ao seu mentor no Porto.",
+    "min_level": 1,
+    "class": "bruxa",
+    "reward_xp": 120,
+    "reward_coins": 80,
+    "reward_items": [
+      "tomo_bruxa_toque_alquimico"
+    ],
+    "category": "historia",
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_tomo_m",
+    "name": "A Primeira Chama",
+    "giver": "isaura_arcanista",
+    "kind": "collect",
+    "targets": [
+      "mat_retalho"
+    ],
+    "count": 2,
+    "description": "Magia se aprende fazendo — e todo mago precisa de pano para os pergaminhos. Traga 2 Retalhos (caem dos goblins e esqueletos de goblin do Areal) e o Tomo da Explosão é seu.",
+    "hint": "Retalhos caem dos goblins e esqueletos de goblin do Areal da Maré (Costa do Cal, portão norte). Traga 2 ao seu mentor no Porto.",
+    "min_level": 1,
+    "class": "mago",
+    "reward_xp": 120,
+    "reward_coins": 40,
+    "reward_items": [
+      "tomo_mago_explosao_de_cinzas"
+    ],
+    "category": "historia",
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_tomo_g",
+    "name": "O Primeiro Golpe",
+    "giver": "mestre_dorval",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 3,
+    "description": "Um guerreiro aprende batendo em quem bate de volta. Derrube 3 Esqueletos de Goblin no Areal (portão norte) e a Esfera do Golpe de Cunha é sua. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 1,
+    "class": "guerreiro",
+    "reward_xp": 120,
+    "reward_coins": 105,
+    "reward_items": [
+      "tomo_guerreiro_golpe_de_cunha"
+    ],
+    "category": "historia",
+    "map": "costa_do_cal",
+    "radius": 6,
+    "x": 43.5,
+    "y": 0.9,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_evo_b1",
+    "name": "O Caderno Afogado",
+    "giver": "bruxa_hazel",
+    "kind": "interact",
+    "targets": [
+      "grimorio_afogado"
+    ],
+    "count": 1,
+    "description": "Minha mestra perdeu um caderno de ervas na Enseada Escondida da Costa. Só aparece a quem procura atrás de uma parede que não existe.",
+    "hint": "Ache o caderno na Enseada Escondida (leste da Costa, atrás da parede rachada).",
+    "min_level": 20,
+    "class": "bruxa",
+    "reward_xp": 5000
+  },
+  {
+    "id": "q_evo_b2",
+    "name": "A Provação da Matriarca",
+    "giver": "bruxa_hazel",
+    "kind": "boss",
+    "targets": [
+      "monster_mata_guardiao_sino"
+    ],
+    "count": 1,
+    "description": "Agora prove que protege: derrube o Guardião do Sino. Prova de honra do mentor: vale um bom prêmio (a troca de classe agora é só falar com ele no nível 20).",
+    "hint": "Vença o Guardião do Sino no fim da Cripta do Sino (Mata dos Enforcados).",
+    "min_level": 20,
+    "requires": "q_evo_b1",
+    "class": "bruxa",
+    "reward_xp": 10000,
+    "reward_flags": [],
+    "map": "cripta_do_sino",
+    "reward_coins": 1590
+  },
+  {
+    "id": "q_evo_a1",
+    "name": "A Presa do Capataz",
+    "giver": "batedor_kaelen",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_capataz_da_pedreira"
+    ],
+    "count": 1,
+    "description": "Todo batedor começa caçando o que ninguém quer enfrentar. Derrube o Capataz da Pedreira de novo, agora sem ser visto antes do primeiro tiro.",
+    "hint": "Vença o Capataz da Pedreira (chefe do Vale das Cinzas).",
+    "min_level": 20,
+    "class": "arqueiro",
+    "reward_xp": 5000
+  },
+  {
+    "id": "q_evo_a2",
+    "name": "A Provação do Batedor",
+    "giver": "batedor_kaelen",
+    "kind": "boss",
+    "targets": [
+      "monster_mata_guardiao_sino"
+    ],
+    "count": 1,
+    "description": "O Guardião do Sino é a última prova. Prova de honra do mentor: vale um bom prêmio (a troca de classe agora é só falar com ele no nível 20).",
+    "hint": "Vença o Guardião do Sino no fim da Cripta do Sino (Mata dos Enforcados).",
+    "min_level": 20,
+    "requires": "q_evo_a1",
+    "class": "arqueiro",
+    "reward_xp": 10000,
+    "reward_flags": [],
+    "map": "cripta_do_sino",
+    "reward_coins": 1590
+  },
+  {
+    "id": "q_caca_javali",
+    "name": "O Javali da Duna",
+    "giver": "batedora_lia",
+    "kind": "hunt",
+    "targets": [
+      "monster_r1_javali_duna"
+    ],
+    "count": 1,
+    "description": "Tem um javali enorme, de presa quebrada, derrubando as cercas das dunas a oeste. Ele se esconde no capim alto. Dizem que é o maior da manada.",
+    "hint": "Javali Alfa no capim alto das Dunas Salgadas (oeste da Costa do Cal).",
+    "min_level": 4,
+    "reward_xp": 900,
+    "reward_coins": 205,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*3"
+    ],
+    "map": "costa_do_cal",
+    "x": -88,
+    "y": 24,
+    "radius": 14,
+    "category": "opcional"
+  },
+  {
+    "id": "q_defesa_carroca",
+    "name": "Segure a Barraca",
+    "giver": "mascate_bento",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_goblin_saqueador",
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 3,
+    "description": "Os goblins querem a minha mercadoria! Fique no meu ponto de troca, no Areal, e segure três investidas. Se sair de lá, eles voltam.",
+    "hint": "Areal da Maré, a leste do portão norte: fique no ponto e aguente 3 ondas de goblins. Sair para longe cancela a onda.",
+    "min_level": 2,
+    "reward_xp": 700,
+    "reward_coins": 140,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "x": 24,
+    "y": 68,
+    "radius": 6,
+    "category": "opcional"
+  },
+  {
+    "id": "q_escolta_minerio",
+    "name": "Carga do Mineiro",
+    "giver": "mineiro_otavio",
+    "kind": "escort",
+    "targets": [
+      "monster_r1_goblin_saqueador",
+      "monster_r1_caranguejo_de_cal",
+      "monster_r1_goblin_saqueador"
+    ],
+    "count": 3,
+    "description": "Minha carroça de minério precisa chegar ao acampamento das rochas brancas, a sudoeste. Ande junto dela — ela só segue com você por perto e com o caminho limpo.",
+    "hint": "Costa do Cal: a carroça sai a sudoeste do Areal. Fique perto (ela para longe de você) e limpe as emboscadas.",
+    "min_level": 5,
+    "reward_xp": 1200,
+    "reward_coins": 175,
+    "reward_items": [
+      "consumable_c02_tonico_medio*2"
+    ],
+    "map": "costa_do_cal",
+    "x": -20,
+    "y": 50,
+    "to_x": -55,
+    "to_y": 22,
+    "category": "opcional"
+  },
+  {
+    "id": "q_caca_saci",
+    "name": "O Saci Ladrão",
+    "giver": "guarda_rui",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_saci"
+    ],
+    "count": 1,
+    "description": "Um saci vem roubando as ferramentas do posto. Não é qualquer um — é o maior do bando. Ache o redemoinho perto das pedras do leste e pegue ele.",
+    "hint": "Saci do redemoinho perto das pedras do leste (Vale das Cinzas).",
+    "min_level": 12,
+    "reward_xp": 6000,
+    "reward_coins": 500,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "map": "vale_das_cinzas",
+    "x": 20,
+    "y": -14,
+    "radius": 22,
+    "category": "opcional"
+  },
+  {
+    "id": "q_defesa_horta",
+    "name": "A Horta Cercada",
+    "giver": "agricultora_benta",
+    "kind": "defend",
+    "targets": [
+      "monster_mata_lobo_cinzento",
+      "monster_mata_javali_ferro"
+    ],
+    "count": 4,
+    "description": "Lobos e javalis estão rondando as roças a oeste da clareira. Fique na cerca velha e segure quatro investidas até eles desistirem.",
+    "hint": "Mata dos Enforcados, cerca velha a oeste: aguente 4 ondas sem sair do ponto.",
+    "min_level": 17,
+    "reward_xp": 40000,
+    "reward_coins": 710,
+    "reward_items": [
+      "mat_couro*4"
+    ],
+    "map": "mata_dos_enforcados",
+    "x": -40,
+    "y": 36,
+    "radius": 6,
+    "category": "opcional"
+  },
+  {
+    "id": "q_troca_g",
+    "name": "Troca de Classe: Campeão",
+    "giver": "mestre_dorval",
+    "kind": "evolve",
+    "targets": [],
+    "count": 1,
+    "description": "Você já aguenta o peso do aço. Ajoelhe-se: a partir de hoje é um Campeão — o leão da Costa. Novas esferas (nível 2) passam a servir em você.",
+    "hint": "Termine as 4 provas do seu mentor (a partir do nível 11) e fale com ele no nível 15.",
+    "min_level": 15,
+    "class": "guerreiro",
+    "reward_xp": 0,
+    "reward_flags": [
+      "evo:campeao"
+    ],
+    "forbid_flag": "evo:campeao",
+    "category": "historia",
+    "requires": "q_prova_g_4"
+  },
+  {
+    "id": "q_troca_m",
+    "name": "Troca de Classe: Arcanista",
+    "giver": "isaura_arcanista",
+    "kind": "evolve",
+    "targets": [],
+    "count": 1,
+    "description": "As cinzas já obedecem à sua voz. Feche os olhos: quando abrir, será Arcanista — o corvo que lê o vento. Novas esferas (nível 2) passam a servir em você.",
+    "hint": "Termine as 4 provas do seu mentor (a partir do nível 11) e fale com ele no nível 15.",
+    "min_level": 15,
+    "class": "mago",
+    "reward_xp": 0,
+    "reward_flags": [
+      "evo:arcanista"
+    ],
+    "forbid_flag": "evo:arcanista",
+    "category": "historia",
+    "requires": "q_prova_m_4"
+  },
+  {
+    "id": "q_troca_b",
+    "name": "Troca de Classe: Matriarca do Éter",
+    "giver": "bruxa_hazel",
+    "kind": "evolve",
+    "targets": [],
+    "count": 1,
+    "description": "O éter já reconhece suas mãos. Beba isto: a partir de hoje é Matriarca do Éter — os olhos do gato veem o que ninguém vê. Novas esferas (nível 2) passam a servir em você.",
+    "hint": "Termine as 4 provas do seu mentor (a partir do nível 11) e fale com ele no nível 15.",
+    "min_level": 15,
+    "class": "bruxa",
+    "reward_xp": 0,
+    "reward_flags": [
+      "evo:matriarca"
+    ],
+    "forbid_flag": "evo:matriarca",
+    "category": "historia",
+    "requires": "q_prova_b_4"
+  },
+  {
+    "id": "q_troca_a",
+    "name": "Troca de Classe: Batedor das Sombras",
+    "giver": "batedor_kaelen",
+    "kind": "evolve",
+    "targets": [],
+    "count": 1,
+    "description": "Seus passos já não fazem barulho. Tire o capuz: a partir de hoje é Batedor das Sombras — a serpente que espera. Novas esferas (nível 2) passam a servir em você.",
+    "hint": "Termine as 4 provas do seu mentor (a partir do nível 11) e fale com ele no nível 15.",
+    "min_level": 15,
+    "class": "arqueiro",
+    "reward_xp": 0,
+    "reward_flags": [
+      "evo:batedor"
+    ],
+    "forbid_flag": "evo:batedor",
+    "category": "historia",
+    "requires": "q_prova_a_4"
+  },
+  {
+    "id": "q_pip",
+    "name": "Uma Luz no Caminho",
+    "giver": "batedora_lia",
+    "kind": "hunt",
+    "targets": [
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 1,
+    "description": "Um vagalume perdido anda me seguindo, tremendo de medo dos Esqueletos de Goblin do Areal. Quebre 5 deles e ele vai querer ir com você. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 1,
+    "reward_xp": 90,
+    "reward_coins": 105,
+    "reward_items": [],
+    "reward_flags": [
+      "pet:vagalume"
+    ],
+    "category": "companheiro",
+    "map": "costa_do_cal",
+    "radius": 20,
+    "x": 43.5,
+    "y": 0.9,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_cr_pedra",
+    "name": "Pedras que Andam",
+    "giver": "batedora_lia",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_caranguejo_de_pedra"
+    ],
+    "count": 3,
+    "description": "No Rochedo do Cal as pedras andam. Quando um deles se fecha na carapaça, recue: os espinhos voam para todo lado. Bata quando ele levantar, que fica aberto. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 5,
+    "reward_xp": 1100,
+    "reward_coins": 240,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*3"
+    ],
+    "map": "costa_do_cal",
+    "radius": 6,
+    "x": 85.0,
+    "y": 75.4,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_cr_ermitao",
+    "name": "Barris do Naufrágio",
+    "giver": "batedora_lia",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_caranguejo_ermitao"
+    ],
+    "count": 5,
+    "description": "Os Ermitões fizeram casa nos barris de pólvora do navio que encalhou no leste. Eles arremessam barris que explodem — saia da marca no chão. De frente o barril segura o golpe; pegue-os pelas costas.",
+    "hint": "Praia dos Destroços (leste da Costa). Saia da marca vermelha do barril; ataque pelas costas.",
+    "min_level": 6,
+    "reward_xp": 1500,
+    "reward_coins": 215,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*3"
+    ],
+    "map": "costa_do_cal"
+  },
+  {
+    "id": "q_cr_escavador",
+    "name": "O Chão que Morde",
+    "giver": "mineiro_otavio",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_caranguejo_escavador"
+    ],
+    "count": 3,
+    "description": "Perto do Altar das Cascas o chão anda. Quando vir o monte de terra vindo atrás de você, corra para o lado: ele sai de baixo e fica tonto um instante. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 8,
+    "reward_xp": 2600,
+    "reward_coins": 350,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*4"
+    ],
+    "map": "costa_do_cal",
+    "radius": 6,
+    "x": -74.7,
+    "y": -32.3,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_cr_tirano",
+    "name": "O Tirano da Maré",
+    "giver": "mineiro_otavio",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_tirano_da_mare"
+    ],
+    "count": 3,
+    "description": "Na enseada do sul, depois da ponte, vive o maior caranguejo que já vi. Ele ergue a pinça como escudo — não bata de frente nessa hora. Leve amigos ou equipamento melhor. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 11,
+    "requires": "q_cr_escavador",
+    "reward_xp": 6000,
+    "reward_coins": 460,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*5"
+    ],
+    "category": "historia",
+    "map": "costa_do_cal",
+    "radius": 6,
+    "x": 90.0,
+    "y": -91.0,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_gnomos",
+    "name": "Ladrões de Semente",
+    "giver": "agricultora_rosa",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_gnomo_do_areal"
+    ],
+    "count": 3,
+    "description": "Uns gnomos do areal estão roubando minhas sementes e jogando pedrinhas em quem chega perto! Espante 5 deles. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 2,
+    "reward_xp": 260,
+    "reward_coins": 140,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "category": "regiao",
+    "radius": 6,
+    "x": -9.6,
+    "y": 66.2,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_explosivos",
+    "name": "Pólvora e Pavio",
+    "giver": "nara_explosiva",
+    "kind": "collect",
+    "targets": [
+      "mat_retalho"
+    ],
+    "count": 4,
+    "description": "Tenho pavio, mas meus barris de pólvora ficaram escondidos na enseada do leste, atrás da pedra grande — só quem tem força empurra. Traga 4 Retalhos de Saqueador para o pavio e a parede rachada do muro, aqui atrás, não aguenta.",
+    "hint": "Os Goblins Saqueadores derrubam Retalhos. Depois: 1) empurre a pedra da enseada (leste da Costa, precisa de Força); 2) pegue um barril lá dentro (F); 3) leve até a rachadura do muro e ponha no chão (F); 4) acenda o pavio (F) e corra!",
+    "min_level": 5,
+    "reward_xp": 500,
+    "reward_coins": 135,
+    "reward_flags": [
+      "explosivo:parede"
+    ],
+    "map": "costa_do_cal",
+    "category": "historia"
+  },
+  {
+    "id": "q_portao",
+    "name": "Abra o Portão",
+    "giver": "sargento_ivo",
+    "kind": "visit",
+    "targets": [],
+    "count": 1,
+    "description": "O portão do atalho foi trancado por dentro depois do ataque, e a alavanca fica do lado de lá. A Nara, a mineira, diz que dá pra abrir caminho pela parede rachada. Entre e puxe a alavanca do portão.",
+    "hint": "Entre pelo muro (missão da Nara) e chegue à alavanca do portão, do lado de dentro. Depois puxe (F).",
+    "min_level": 5,
+    "x": 36.8,
+    "y": -2.9,
+    "radius": 3.0,
+    "reward_xp": 700,
+    "reward_coins": 60,
+    "map": "costa_do_cal",
+    "category": "historia"
+  },
+  {
+    "id": "q_bolsa_1",
+    "name": "Bolsa Maior I",
+    "giver": "pescador_tiberio",
+    "kind": "collect",
+    "targets": [
+      "mat_retalho"
+    ],
+    "count": 6,
+    "description": "Rede de pescador costura qualquer bolsa. Traga 6 e eu aumento a sua mochila em mais uma fileira.",
+    "hint": "Retalhos caem dos goblins do Areal e das Dunas (Costa do Cal). Depois volte ao Tibério, no Porto.",
+    "min_level": 3,
+    "reward_xp": 0,
+    "reward_coins": 0,
+    "cost_coins": 300,
+    "reward_flags": [
+      "mochila:1"
+    ],
+    "forbid_flag": "mochila:1",
+    "category": "opcional"
+  },
+  {
+    "id": "q_bolsa_2",
+    "name": "Bolsa Maior II",
+    "giver": "pescador_tiberio",
+    "kind": "collect",
+    "targets": [
+      "mat_couro"
+    ],
+    "count": 8,
+    "description": "Rede de pescador costura qualquer bolsa. Traga 8 e eu aumento a sua mochila em mais uma fileira.",
+    "hint": "Couro cai dos Javalis da Duna (Dunas, Costa do Cal). Depois volte ao Tibério, no Porto.",
+    "min_level": 8,
+    "reward_xp": 0,
+    "reward_coins": 0,
+    "cost_coins": 1500,
+    "reward_flags": [
+      "mochila:2"
+    ],
+    "forbid_flag": "mochila:2",
+    "category": "opcional",
+    "requires": "q_bolsa_1"
+  },
+  {
+    "id": "q_bolsa_3",
+    "name": "Bolsa Maior III",
+    "giver": "pescador_tiberio",
+    "kind": "collect",
+    "targets": [
+      "mat_seda"
+    ],
+    "count": 10,
+    "description": "Rede de pescador costura qualquer bolsa. Traga 10 e eu aumento a sua mochila em mais uma fileira.",
+    "hint": "Seda cai das aranhas (Vale e Mata). Depois volte ao Tibério, no Porto.",
+    "min_level": 15,
+    "reward_xp": 0,
+    "reward_coins": 0,
+    "cost_coins": 5000,
+    "reward_flags": [
+      "mochila:3"
+    ],
+    "forbid_flag": "mochila:3",
+    "category": "opcional",
+    "requires": "q_bolsa_2"
+  },
+  {
+    "id": "q_bolsa_4",
+    "name": "Bolsa Maior IV",
+    "giver": "pescador_tiberio",
+    "kind": "collect",
+    "targets": [
+      "mat_couro"
+    ],
+    "count": 20,
+    "description": "Rede de pescador costura qualquer bolsa. Traga 20 e eu aumento a sua mochila em mais uma fileira.",
+    "hint": "Couro grosso de feras maiores: lobos e javalis de ferro da Mata, trolls dos Cânions. Depois volte ao Tibério, no Porto.",
+    "min_level": 25,
+    "reward_xp": 0,
+    "reward_coins": 0,
+    "cost_coins": 15000,
+    "reward_flags": [
+      "mochila:4"
+    ],
+    "forbid_flag": "mochila:4",
+    "category": "opcional",
+    "requires": "q_bolsa_3"
+  },
+  {
+    "id": "q_ratos_pao",
+    "name": "Ratos no Pão da Tropa",
+    "giver": "batedora_lia",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_rato_do_cais"
+    ],
+    "count": 8,
+    "description": "Os ratos do cais furaram o saco de pão da tropa — e agora estão gordos e atrevidos, bem ali atrás de mim. Mate 8 antes que roam as cordas da ponte também.",
+    "hint": "Ratos do Cais logo a oeste da Lia (Costa do Cal). São fracos, mas vêm em bando.",
+    "min_level": 1,
+    "reward_xp": 180,
+    "reward_coins": 105,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "x": -16.0,
+    "y": 16.0,
+    "radius": 6,
+    "category": "regiao"
+  },
+  {
+    "id": "q_caes",
+    "name": "Cães Sarnentos",
+    "giver": "mascate_bento",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_cao_sarnento"
+    ],
+    "count": 1,
+    "description": "Uma matilha de cães sarnentos rodeia a estrada e morde a pata da minha mula. Ela empaca e eu perco freguês! Espante 5 deles. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 3,
+    "reward_xp": 420,
+    "reward_coins": 140,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "x": 6.4,
+    "y": 18.0,
+    "radius": 20,
+    "category": "regiao",
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_resgate_joca",
+    "name": "Resgate do Joca",
+    "giver": "pescador_tiberio",
+    "kind": "interact",
+    "targets": [
+      "joca_amarrado"
+    ],
+    "count": 1,
+    "description": "Meu sobrinho Joca foi buscar lenha nas dunas e não voltou. Um batedor viu os goblins arrastando um rapaz para o acampamento deles, a oeste. Traga ele de volta — vivo.",
+    "hint": "Acampamento goblin a oeste da Costa do Cal (perto do capim alto). Derrube os saqueadores e desamarre o Joca (F).",
+    "min_level": 5,
+    "reward_xp": 900,
+    "reward_coins": 75,
+    "reward_items": [
+      "consumable_c02_tonico_medio*2"
+    ],
+    "map": "costa_do_cal",
+    "x": -66.5,
+    "y": 10.5,
+    "radius": 4,
+    "category": "historia"
+  },
+  {
+    "id": "q_capataz",
+    "name": "A Cabeça do Capataz",
+    "giver": "sargento_ivo",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_capataz_da_pedreira"
+    ],
+    "count": 1,
+    "description": "O Capataz da Pedreira, no Vale das Cinzas, manda os saqueadores para cá. Enquanto ele estiver de pé, a Costa não descansa. Vá até a pedreira e acabe com isso.",
+    "hint": "Vale das Cinzas (atravesse a ponte da ravina, ao sul). Chefe nível 10: leve tônicos e um amigo.",
+    "min_level": 14,
+    "reward_xp": 5000,
+    "reward_coins": 690,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_renascer",
+    "name": "Renascer das Cinzas",
+    "giver": "mestre_dorval",
+    "kind": "reset",
+    "targets": [],
+    "count": 1,
+    "description": "No nível 60, o mestre te ensina o rito do Porto: você volta ao nível 1 — com seus itens e seus atributos — e ganha 40 pontos de atributo a mais. Cada renascimento te deixa mais forte que antes (como o reset do MU).",
+    "hint": "Fale com o Mestre Dorval no Porto (nível 60).",
+    "min_level": 60,
+    "repeatable": true,
+    "reward_xp": 0,
+    "category": "opcional"
+  },
+  {
+    "id": "q_caca_carnical",
+    "name": "Caçada: Carniçais Cáusticos",
+    "giver": "sargento_ivo",
+    "kind": "kill",
+    "targets": [
+      "monster_cal_carnical"
+    ],
+    "count": 6,
+    "description": "Mortos de cal andando pela Costa, com capacete de mineiro e tudo. Eram da pedreira... agora são só fome. Derrube 6 antes que cheguem à estrada.",
+    "hint": "Carniçais Cáusticos perto dos monstros mais fortes da Costa (de noite saem mais).",
+    "min_level": 6,
+    "reward_xp": 1620,
+    "reward_coins": 300,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "x": 52.9,
+    "y": -20.5,
+    "radius": 8,
+    "category": "regiao"
+  },
+  {
+    "id": "q_caca_fantasma",
+    "name": "Caçada: Fantasmas de Calcário",
+    "giver": "mineiro_otavio",
+    "kind": "defend",
+    "targets": [
+      "monster_cal_fantasma"
+    ],
+    "count": 3,
+    "description": "Pó de cal com olhos. Eles sussurram o nome dos meus companheiros que ficaram na mina. Faça-os calar: 5 Fantasmas de Calcário. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 7,
+    "reward_xp": 1660,
+    "reward_coins": 350,
+    "reward_items": [
+      "joia_mare"
+    ],
+    "map": "costa_do_cal",
+    "x": -1.3,
+    "y": -35.3,
+    "radius": 6,
+    "category": "regiao",
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_caca_inseto",
+    "name": "Besouros da Meleca",
+    "giver": "batedora_lia",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_inseto_lodo"
+    ],
+    "count": 1,
+    "description": "As melecas trouxeram companhia: besourinhos de olho verde que roem bota. Pise em 6 deles. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 3,
+    "reward_xp": 630,
+    "reward_coins": 170,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "map": "costa_do_cal",
+    "x": -25.3,
+    "y": -33.9,
+    "radius": 20,
+    "category": "regiao",
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_caca_gargulito",
+    "name": "Pedras que Mordem",
+    "giver": "nara_explosiva",
+    "kind": "kill",
+    "targets": [
+      "monster_cal_gargulito"
+    ],
+    "count": 6,
+    "description": "Lá embaixo, na Galeria Funda, as estalagmites criaram dente e rabo. Gargulitos! Andam em bando. Traga paz para a minha galeria: 6 deles.",
+    "hint": "Gargulitos de Estalagmite em bandos de 3 na Galeria Funda (entrada pela gruta da Costa).",
+    "min_level": 7,
+    "reward_xp": 1990,
+    "reward_coins": 265,
+    "reward_items": [
+      "joia_mare"
+    ],
+    "map": "galeria_funda",
+    "x": -2.6,
+    "y": 7.3,
+    "radius": 8,
+    "category": "regiao"
+  },
+  {
+    "id": "q_caca_rastejante",
+    "name": "O Rastejante Cego",
+    "giver": "nara_explosiva",
+    "kind": "kill",
+    "targets": [
+      "monster_cal_rastejante"
+    ],
+    "count": 3,
+    "description": "Não tem olho, mas ouve tudo. Boca vertical, garras de palmo. Três Rastejantes de Gesso rondam a Galeria. Cuidado com o bote.",
+    "hint": "Rastejantes de Gesso sozinhos nas salas da Galeria Funda. Dão bote rápido: esquive.",
+    "min_level": 8,
+    "reward_xp": 1190,
+    "reward_coins": 225,
+    "reward_items": [
+      "joia_mare"
+    ],
+    "map": "galeria_funda",
+    "x": -6.3,
+    "y": -20.0,
+    "radius": 8,
+    "category": "regiao"
+  },
+  {
+    "id": "q_caca_espantalho",
+    "name": "Espantalhos que Andam",
+    "giver": "guarda_rui",
+    "kind": "kill",
+    "targets": [
+      "monster_vale_espantalho"
+    ],
+    "count": 3,
+    "description": "Os espantalhos dos campos velhos do Vale se mexem quando ninguém olha. Agora mexem quando a gente olha também. Derrube 3.",
+    "hint": "Espantalhos parados nos campos do Vale — acordam quando você chega perto.",
+    "min_level": 11,
+    "reward_xp": 1830,
+    "reward_coins": 295,
+    "reward_items": [
+      "joia_mare"
+    ],
+    "map": "vale_das_cinzas",
+    "x": -31.5,
+    "y": 15.6,
+    "radius": 8,
+    "category": "regiao"
+  },
+  {
+    "id": "q_caca_verme",
+    "name": "A Broca Debaixo da Terra",
+    "giver": "guarda_rui",
+    "kind": "defend",
+    "targets": [
+      "monster_vale_verme_broca"
+    ],
+    "count": 3,
+    "description": "A terra treme perto dos anões. Um verme com broca na cabeça — dois, na verdade. Elite. Leve alguém junto. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 12,
+    "reward_xp": 1370,
+    "reward_coins": 540,
+    "reward_items": [
+      "joia_mare"
+    ],
+    "map": "vale_das_cinzas",
+    "x": 16.8,
+    "y": -8.2,
+    "radius": 6,
+    "category": "regiao",
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_duelo_cael",
+    "name": "O Marinheiro Rebelde",
+    "giver": "marinheiro_cael",
+    "kind": "kill",
+    "targets": [
+      "monster_cael_rebelde"
+    ],
+    "count": 1,
+    "description": "Cael cansou de receber ordens no cais e quer provar que é melhor que você. Ele sumiu pela Costa do Cal e vai te esperar escondido num canto qualquer — cada vez num lugar. Ache ele e encare: um contra um.",
+    "hint": "Cael está em algum lugar da Costa do Cal (a bússola mostra a área, não o ponto exato). Procure, vença o duelo e volte a falar com ele no cais.",
+    "min_level": 4,
+    "reward_xp": 220,
+    "reward_coins": 100,
+    "category": "opcional",
+    "map": "costa_do_cal",
+    "x": 6,
+    "y": 90
+  },
+  {
+    "id": "q_pedra_portal",
+    "name": "A Pedra de Portal",
+    "giver": "guia_teo",
+    "kind": "use",
+    "targets": [
+      "portal"
+    ],
+    "count": 1,
+    "description": "Agora você já anda com as próprias pernas. Compre comigo a Pedra de Portal e use: longe de qualquer pedra azul, fora de combate, abra o mapa (M) e escolha uma pedra que você já descobriu. Depois ela é sua para sempre.",
+    "hint": "Compre a Pedra de Portal na loja do Téo (Porto), afaste-se das pedras azuis, abra o mapa (M) e viaje.",
+    "min_level": 7,
+    "reward_xp": 200,
+    "reward_coins": 80,
+    "category": "historia",
+    "map": "porto_das_cinzas"
+  },
+  {
+    "id": "q_mesa_vinteum",
+    "name": "Convite para a Mesa",
+    "giver": "dado_crupie",
+    "kind": "talk",
+    "targets": [
+      "taverneira_gilda"
+    ],
+    "count": 1,
+    "description": "«Aqui em cima só senta quem tem nome no Porto. A Gilda, a taverneira — fica aqui embaixo, no térreo deste casarão — sabe quem paga as dívidas. Passe lá, diga que vem da minha parte, e volte: eu guardo a sua cadeira.»",
+    "hint": "Desça a escada do casarão: a Gilda fica no térreo, atrás do balcão. Fale com ela e volte ao Dado, no 2º andar do casarão.",
+    "min_level": 8,
+    "reward_xp": 600,
+    "reward_coins": 90,
+    "reward_flags": [
+      "vinteum"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_montaria_trovao",
+    "name": "Trovão, o Cavalo da Estrada",
+    "giver": "agricultora_rosa",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_saqueador_da_vigilia"
+    ],
+    "count": 6,
+    "description": "\"O Trovão é manso, forte e está parado no estábulo desde que os Saqueadores da Vigília levaram a sela dele na estrada da Costa. Espante seis deles e o cavalo é seu — quem cuida bem, anda longe.\"",
+    "hint": "Derrote 6 Saqueadores da Vigília na Costa do Cal e volte à Rosa. Depois, V monta (fora de combate).",
+    "map": "costa_do_cal",
+    "min_level": 10,
+    "reward_xp": 3000,
+    "reward_coins": 145,
+    "reward_flags": [
+      "mount:corcel"
+    ],
+    "category": "companheiro"
+  },
+  {
+    "id": "q_sac_mortos_cal",
+    "name": "Descanso aos Mortos do Cal",
+    "giver": "irma_clarabela",
+    "kind": "kill",
+    "targets": [
+      "monster_cal_fantasma"
+    ],
+    "count": 8,
+    "description": "\"Os Fantasmas de Calcário eram pescadores que a maré não devolveu. Eles não querem machucar ninguém — só não sabem que morreram. Liberte oito deles e eu rezo pelos nomes.\"",
+    "hint": "Derrote 8 Fantasmas de Calcário na Costa do Cal (à noite eles saem mais) e volte à Irmã Clarabela.",
+    "map": "costa_do_cal",
+    "min_level": 8,
+    "reward_xp": 2600,
+    "reward_coins": 350,
+    "category": "historia"
+  },
+  {
+    "id": "q_sac_sino_calado",
+    "name": "O Sino Calado",
+    "giver": "irma_clarabela",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_guardiao_sino"
+    ],
+    "count": 1,
+    "description": "\"Quando um sino cala, alguém lá embaixo tomou o lugar dele. Desça à Cripta do Sino, debaixo da Mata dos Enforcados, e derrube o Guardião que se senta no campanário. Leve gente: ele não está sozinho.\"",
+    "hint": "Faça a dungeon Cripta do Sino (Mata dos Enforcados) e derrote o Guardião do Sino. Depois volte à Biblioteca.",
+    "min_level": 19,
+    "requires": "q_sac_mortos_cal",
+    "reward_xp": 52000,
+    "reward_coins": 445,
+    "category": "historia"
+  },
+  {
+    "id": "q_sac_abadessa",
+    "name": "A Abadessa do Lodo",
+    "giver": "irma_clarabela",
+    "kind": "kill",
+    "targets": [
+      "monster_brejo_abadessa_lodo"
+    ],
+    "count": 1,
+    "description": "\"Ela era a mais santa de nós. Rezou tanto pelo brejo que o brejo respondeu. Hoje a Abadessa do Lodo guarda o Mosteiro Afundado e reza para algo que não é deus nenhum. Dê a ela o descanso que eu não consegui dar.\"",
+    "hint": "Faça a dungeon Mosteiro Afundado (Brejo da Viúva) e derrote a Abadessa do Lodo.",
+    "min_level": 34,
+    "requires": "q_sac_sino_calado",
+    "reward_xp": 95000,
+    "reward_coins": 860,
+    "category": "historia"
+  },
+  {
+    "id": "q_filha_bento",
+    "name": "Onde Está a Marina?",
+    "giver": "mascate_bento",
+    "kind": "interact",
+    "targets": [
+      "marina_amarrada"
+    ],
+    "count": 1,
+    "description": "\"Minha filha foi buscar sal no acampamento abandonado, a sudeste daqui, e não voltou. Os goblins andam por lá... Por favor, siga a trilha e traga a Marina de volta.\"",
+    "hint": "Siga a trilha do Acampamento das Dunas até o acampamento abandonado (sudeste), solte a Marina e volte ao Bento.",
+    "map": "costa_do_cal",
+    "min_level": 5,
+    "reward_xp": 900,
+    "reward_coins": 75,
+    "category": "historia"
+  },
+  {
+    "id": "q_chefe_dunas",
+    "name": "O Chefe das Dunas",
+    "giver": "sargento_ivo",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_goblin_chefe"
+    ],
+    "count": 1,
+    "description": "\"Os goblins das dunas só atacam porque o Chefe manda. Derrube o Chefe Goblin no acampamento deles, a oeste, e a estrada fica em paz por um bom tempo.\"",
+    "hint": "Derrote o Chefe Goblin no acampamento goblin das Dunas Salgadas (oeste) e volte ao Sargento Ivo.",
+    "map": "costa_do_cal",
+    "min_level": 7,
+    "reward_xp": 1800,
+    "reward_coins": 490,
+    "category": "historia",
+    "reward_flags": [
+      "fallen:1"
+    ]
+  },
+  {
+    "id": "q_cais_paginas",
+    "name": "Páginas que o Mar Levou",
+    "giver": "bibliotecaria_ines",
+    "kind": "interact",
+    "targets": [
+      "pagina_molhada_1",
+      "pagina_molhada_2",
+      "pagina_molhada_3"
+    ],
+    "count": 3,
+    "description": "\"Uma onda entrou pela janela e levou três páginas do Livro do Cais. Um pescador jura que o vento carregou tudo para o norte, até o casarão abandonado da Costa, no caminho do Vale. Pode recolher para mim?\"",
+    "hint": "As 3 Páginas molhadas estão dentro do casarão em ruínas (norte da Costa do Cal, a caminho do portal do Vale das Cinzas). Depois volte à Inês.",
+    "map": "costa_do_cal",
+    "min_level": 7,
+    "reward_xp": 500,
+    "reward_coins": 100,
+    "category": "historia"
+  },
+  {
+    "id": "q_cais_faroleiro",
+    "name": "O Diário do Faroleiro",
+    "giver": "bibliotecaria_ines",
+    "kind": "interact",
+    "targets": [
+      "diario_faroleiro"
+    ],
+    "count": 1,
+    "requires": "q_cais_paginas",
+    "description": "\"As páginas falam do último faroleiro: ele escrevia tudo num diário e o levou consigo para as Ruínas do Farol, a leste. Se o diário ainda existir, ele diz o que apagou a luz.\"",
+    "hint": "Ache o Diário do Faroleiro nas Ruínas do Farol (leste da Costa, área forte) e leve à Inês.",
+    "map": "costa_do_cal",
+    "min_level": 8,
+    "reward_xp": 2400,
+    "reward_coins": 110,
+    "reward_flags": [
+      "segredo:caranguejo_dourado"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_cais_dourado",
+    "name": "(Secreta) O Caranguejo de Ouro",
+    "giver": "bibliotecaria_ines",
+    "kind": "hunt",
+    "targets": [
+      "monster_r1_caranguejo_dourado"
+    ],
+    "count": 1,
+    "requires_flag": "segredo:caranguejo_dourado",
+    "description": "\"No fim do diário, o faroleiro jura ter visto um caranguejo de casca dourada carregando a lente do farol para as dunas do Areal Fundo. Ninguém acreditou nele. Eu acredito.\" (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "map": "costa_do_cal",
+    "min_level": 8,
+    "reward_xp": 3200,
+    "reward_coins": 205,
+    "category": "opcional",
+    "radius": 20,
+    "x": -54.4,
+    "y": -32.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_cais_biblioteca",
+    "name": "A Biblioteca Perdida",
+    "giver": "bibliotecaria_ines",
+    "kind": "talk",
+    "targets": [
+      "arquivista_severo"
+    ],
+    "count": 1,
+    "requires": "q_cais_faroleiro",
+    "description": "\"Esta biblioteca é pequena: só sabe do Cais. A grande — a Biblioteca do Continente — guarda tudo de KRYMOR, e o diário diz onde: 'no Vale das Cinzas, a muralha do oeste tem uma pedra que não é pedra'. Encontre o Arquivista e diga que a Inês do Cais mandou lembranças.\"",
+    "hint": "No Vale das Cinzas, atravesse a muralha falsa do oeste, desça a escada escondida e fale com Severo, o Arquivista. Depois volte à Inês.",
+    "min_level": 11,
+    "reward_xp": 6000,
+    "reward_coins": 120,
+    "category": "historia"
+  },
+  {
+    "id": "q_classe3_g",
+    "name": "A Terceira Provação: o Leão",
+    "giver": "mestre_dorval",
+    "kind": "boss",
+    "targets": [
+      "monster_escoria_colosso_escoria"
+    ],
+    "count": 1,
+    "description": "\"Poucos chegam aqui. Dentro de você mora uma fera maior que a primeira — o Leão de KRYMOR. Para acordá-lo, derrube o Colosso de Escória no Mar de Escória e volte. Depois disso, ninguém mais te confunde com gente.\"",
+    "hint": "Derrote o Colosso de Escória (Mar de Escória) e volte ao seu mentor no Porto.",
+    "min_level": 55,
+    "class": "guerreiro",
+    "reward_xp": 0,
+    "reward_flags": [
+      "classe3"
+    ],
+    "forbid_flag": "classe3",
+    "category": "historia",
+    "requires_flag": "evo:campeao"
+  },
+  {
+    "id": "q_classe3_m",
+    "name": "A Terceira Provação: o Leão",
+    "giver": "isaura_arcanista",
+    "kind": "boss",
+    "targets": [
+      "monster_escoria_colosso_escoria"
+    ],
+    "count": 1,
+    "description": "\"Poucos chegam aqui. Dentro de você mora uma fera maior que a primeira — o Leão de KRYMOR. Para acordá-lo, derrube o Colosso de Escória no Mar de Escória e volte. Depois disso, ninguém mais te confunde com gente.\"",
+    "hint": "Derrote o Colosso de Escória (Mar de Escória) e volte ao seu mentor no Porto.",
+    "min_level": 55,
+    "class": "mago",
+    "reward_xp": 0,
+    "reward_flags": [
+      "classe3"
+    ],
+    "forbid_flag": "classe3",
+    "category": "historia",
+    "requires_flag": "evo:arcanista"
+  },
+  {
+    "id": "q_classe3_b",
+    "name": "A Terceira Provação: o Leão",
+    "giver": "bruxa_hazel",
+    "kind": "boss",
+    "targets": [
+      "monster_escoria_colosso_escoria"
+    ],
+    "count": 1,
+    "description": "\"Poucos chegam aqui. Dentro de você mora uma fera maior que a primeira — o Leão de KRYMOR. Para acordá-lo, derrube o Colosso de Escória no Mar de Escória e volte. Depois disso, ninguém mais te confunde com gente.\"",
+    "hint": "Derrote o Colosso de Escória (Mar de Escória) e volte ao seu mentor no Porto.",
+    "min_level": 55,
+    "class": "bruxa",
+    "reward_xp": 0,
+    "reward_flags": [
+      "classe3"
+    ],
+    "forbid_flag": "classe3",
+    "category": "historia",
+    "requires_flag": "evo:matriarca"
+  },
+  {
+    "id": "q_classe3_a",
+    "name": "A Terceira Provação: o Leão",
+    "giver": "batedor_kaelen",
+    "kind": "boss",
+    "targets": [
+      "monster_escoria_colosso_escoria"
+    ],
+    "count": 1,
+    "description": "\"Poucos chegam aqui. Dentro de você mora uma fera maior que a primeira — o Leão de KRYMOR. Para acordá-lo, derrube o Colosso de Escória no Mar de Escória e volte. Depois disso, ninguém mais te confunde com gente.\"",
+    "hint": "Derrote o Colosso de Escória (Mar de Escória) e volte ao seu mentor no Porto.",
+    "min_level": 55,
+    "class": "arqueiro",
+    "reward_xp": 0,
+    "reward_flags": [
+      "classe3"
+    ],
+    "forbid_flag": "classe3",
+    "category": "historia",
+    "requires_flag": "evo:batedor"
+  },
+  {
+    "id": "q_goblin_acampamento",
+    "name": "Limpar o Acampamento",
+    "giver": "batedora_lia",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_goblin_saqueador",
+      "monster_r1_goblin_arqueiro"
+    ],
+    "count": 8,
+    "description": "\"Antes de alguém encarar o Chefe, o acampamento dele precisa ficar mais vazio. Derrube 8 goblins das Dunas Salgadas — saqueadores ou arqueiros, tanto faz.\"",
+    "hint": "Goblins saqueadores e arqueiros nas Dunas Salgadas (oeste da Costa). Depois volte à Lia, no Acampamento das Dunas.",
+    "map": "costa_do_cal",
+    "min_level": 6,
+    "reward_xp": 1300,
+    "reward_coins": 170,
+    "reward_items": [
+      "consumable_c02_tonico_medio*2"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_goblin_estandarte",
+    "name": "O Estandarte do Chefe",
+    "giver": "mascate_bento",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_goblin_chefe"
+    ],
+    "count": 1,
+    "requires": "q_goblin_acampamento",
+    "description": "\"Quem derruba o Chefe Goblin fica com o estandarte dele — e com o respeito de toda a estrada. Eu pago bem por essa prova. Cuidado: ele grita e chama reforço.\"",
+    "hint": "Derrote o Chefe Goblin no acampamento das Dunas Salgadas (oeste). Ele chama goblins: limpe os reforços primeiro. Depois volte ao Bento.",
+    "map": "costa_do_cal",
+    "min_level": 6,
+    "reward_xp": 2000,
+    "reward_coins": 490,
+    "category": "opcional"
+  },
+  {
+    "id": "q_fallen_1",
+    "name": "Pólvora e Sal",
+    "giver": "fallen_costa",
+    "kind": "defend",
+    "targets": [
+      "monster_r1_saqueador_da_vigilia"
+    ],
+    "count": 3,
+    "map": "costa_do_cal",
+    "min_level": 7,
+    "description": "«Os Saqueadores da Vigília roubaram dois barris da minha pólvora. Pólvora molhada não dispara, e eles guardam tudo na beira do mar. Derrube seis e eu sigo viagem — com você, se aguentar o ritmo.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 1600,
+    "reward_coins": 170,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "reward_flags": [
+      "fallen:2"
+    ],
+    "category": "historia",
+    "radius": 6,
+    "x": 51.4,
+    "y": -54.4,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_fallen_2",
+    "name": "O Rastro do Desertor",
+    "giver": "fallen_vale",
+    "kind": "hunt",
+    "targets": [
+      "monster_r1_saqueador_da_vigilia"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 13,
+    "description": "«Eu servia a um capitão que vendeu a tripulação inteira para a Vigília. Os saqueadores daqui ainda usam o brasão dele. Oito a menos, e ele vai saber que estou chegando.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 9000,
+    "reward_coins": 170,
+    "reward_flags": [
+      "fallen:3"
+    ],
+    "category": "historia",
+    "radius": 20,
+    "x": 14.7,
+    "y": 0.8,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_fallen_3",
+    "name": "Caçada na Mata",
+    "giver": "fallen_mata",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_saqueador_mata"
+    ],
+    "count": 8,
+    "map": "mata_dos_enforcados",
+    "min_level": 19,
+    "description": "«O desertor contratou os bandoleiros da Mata dos Enforcados. Eu atiro de longe; você segura quem chegar perto. Oito deles.»",
+    "hint": "Saqueadores da Mata (nível 20) na Mata dos Enforcados. Volte ao Fallen, na entrada da Mata.",
+    "reward_xp": 30000,
+    "reward_coins": 755,
+    "reward_flags": [
+      "fallen:4"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_fallen_4",
+    "name": "O Rifle e o Escorpião",
+    "giver": "fallen_canions",
+    "kind": "boss",
+    "targets": [
+      "monster_canions_escorpiao_rei"
+    ],
+    "count": 1,
+    "map": "canions_suplicantes",
+    "min_level": 28,
+    "description": "«O desertor pagou o Rei Escorpião para fechar o cânion. Derrube a fera e o caminho — e a minha dívida — ficam livres. Depois disso, você tem um amigo com um rifle. Para sempre.»",
+    "hint": "O Rei Escorpião (nível 29) nos Cânions dos Suplicantes. Volte ao Fallen.",
+    "reward_xp": 90000,
+    "reward_coins": 2195,
+    "reward_flags": [
+      "fallen:5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_vacho_1",
+    "name": "Rato no Barril",
+    "giver": "vacho_porto",
+    "kind": "defend",
+    "targets": [
+      "monster_bst_rato_do_cais"
+    ],
+    "count": 3,
+    "map": "costa_do_cal",
+    "min_level": 2,
+    "description": "«Os ratos do cais roeram o fundo do meu barril! Derruba cinco lá na Costa que eu juro que nunca mais me escondo aqui. Juro de dedinho. Dentro do barril.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 250,
+    "reward_coins": 105,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*2"
+    ],
+    "reward_flags": [
+      "vacho:1"
+    ],
+    "category": "opcional",
+    "radius": 6,
+    "x": -16.8,
+    "y": 29.1,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_vacho_2",
+    "name": "Barril Furado",
+    "giver": "vacho_costa",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_meleca"
+    ],
+    "count": 4,
+    "map": "costa_do_cal",
+    "min_level": 5,
+    "description": "«Rolei até o Acampamento das Dunas! Mas umas melecas grudaram no barril e agora tá tudo pegajoso. Tira quatro delas daqui?»",
+    "hint": "Melecas (nível 5) na Costa do Cal. Volte ao Vacho, no barril do Acampamento das Dunas.",
+    "reward_xp": 800,
+    "reward_coins": 145,
+    "reward_flags": [
+      "vacho:2"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_vacho_3",
+    "name": "Ladeira Abaixo",
+    "giver": "vacho_vale",
+    "kind": "hunt",
+    "targets": [
+      "monster_vale_espantalho"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 12,
+    "description": "«Os espantalhos do Vale ficam me OLHANDO. Mesmo de dentro do barril eu sinto. Derruba três?» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 5000,
+    "reward_coins": 460,
+    "reward_flags": [
+      "vacho:3"
+    ],
+    "category": "opcional",
+    "radius": 20,
+    "x": -11.6,
+    "y": 7.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_vacho_4",
+    "name": "Aranhas no Barril",
+    "giver": "vacho_mata",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_aranha_toca"
+    ],
+    "count": 6,
+    "map": "mata_dos_enforcados",
+    "min_level": 19,
+    "description": "«Ok, isso não é engraçado. Tem aranha do tamanho de um cachorro querendo entrar no barril. Seis. Por favor.»",
+    "hint": "Aranhas da Toca (nível 19) na Mata dos Enforcados. Volte ao Vacho, na entrada da Mata.",
+    "reward_xp": 22000,
+    "reward_coins": 610,
+    "reward_items": [
+      "consumable_c02_tonico_medio*4"
+    ],
+    "reward_flags": [
+      "vacho:4"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_vale_raiz",
+    "name": "Raiz que Morde",
+    "giver": "cotinha_curandeira",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_planta_carnivora"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 11,
+    "description": "«As plantas carnívoras subiram até a trilha do acampamento. Uma delas comeu meu avental — com o bolso de agulhas dentro. Corta cinco pra mim.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 3500,
+    "reward_coins": 460,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "opcional",
+    "radius": 20,
+    "x": 19.3,
+    "y": 5.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_vale_cachimbo",
+    "name": "O Saci Levou meu Cachimbo",
+    "giver": "cotinha_curandeira",
+    "kind": "interact",
+    "targets": [
+      "cachimbo_cotinha"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 12,
+    "requires": "q_vale_raiz",
+    "description": "«Quarenta anos com aquele cachimbo e um saci levou numa ventania. Eles largam o que roubam nas Ruínas do Posto. Me traz de volta e eu te ensino um segredo de chá.»",
+    "hint": "Procure o cachimbo nas Ruínas do Posto (leste do Vale), entre os sacis. Aperte F nele.",
+    "reward_xp": 4200,
+    "reward_coins": 165,
+    "reward_items": [
+      "consumable_c06_ataduras*4"
+    ],
+    "category": "opcional"
+  },
+  {
+    "id": "q_vale_ferramentas",
+    "name": "Ferramentas Roubadas",
+    "giver": "anselmo_pedreiro",
+    "kind": "interact",
+    "targets": [
+      "caixa_ferramentas_1",
+      "caixa_ferramentas_2",
+      "caixa_ferramentas_3"
+    ],
+    "count": 3,
+    "map": "vale_das_cinzas",
+    "min_level": 12,
+    "description": "«Os anões esconderam minhas três caixas de ferramentas pela Trilha da Pedreira. Sem elas o Posto não se reergue. Acha as três?»",
+    "hint": "Três caixas de ferramentas espalhadas pela Trilha da Pedreira (oeste do Vale). Aperte F em cada uma e volte ao Anselmo.",
+    "reward_xp": 4500,
+    "reward_coins": 165,
+    "category": "historia"
+  },
+  {
+    "id": "q_vale_anoes",
+    "name": "A Pedreira é Nossa",
+    "giver": "anselmo_pedreiro",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_anao_minerador"
+    ],
+    "count": 6,
+    "map": "vale_das_cinzas",
+    "min_level": 13,
+    "requires": "q_vale_ferramentas",
+    "description": "«Ferramenta na mão, agora falta o lugar. Os anões mineradores não vão sair por bem. Seis deles fora da pedreira e o Posto volta a ter pedra.»",
+    "hint": "Anões mineradores (nível 14–15) na Trilha da Pedreira. Depois volte ao Anselmo.",
+    "reward_xp": 6500,
+    "reward_coins": 465,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_vale_acolitos",
+    "name": "Os Que Ainda Rezam",
+    "giver": "irma_celeste",
+    "kind": "hunt",
+    "targets": [
+      "monster_r1_acolito_das_cinzas"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 13,
+    "description": "«Meus antigos irmãos ainda acendem fogo para as Cinzas no Pátio das Colunas. Eu não consigo levantar a mão contra eles. Você consegue?» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 6000,
+    "reward_coins": 170,
+    "category": "historia",
+    "radius": 20,
+    "x": 5.0,
+    "y": -5.8,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_vale_marcos",
+    "name": "Marcos de Cinza",
+    "giver": "irma_celeste",
+    "kind": "interact",
+    "targets": [
+      "marco_cinza_1",
+      "marco_cinza_2",
+      "marco_cinza_3"
+    ],
+    "count": 3,
+    "map": "vale_das_cinzas",
+    "min_level": 14,
+    "requires": "q_vale_acolitos",
+    "description": "«Eles marcaram três pedras com cinza para chamar o Capataz. Apague os três marcos — no pátio, nas ruínas e na beira do fosso — e ele fica sem proteção. E repare: a muralha do oeste… nunca foi muralha.»",
+    "hint": "Três Marcos de Cinza: Pátio das Colunas, Ruínas do Posto e a beira do Fosso do Capataz. Aperte F em cada um. (Dica da Irmã: a muralha do oeste esconde um caminho.)",
+    "reward_xp": 8000,
+    "reward_coins": 195,
+    "category": "historia"
+  },
+  {
+    "id": "q_vale_capataz_celeste",
+    "name": "O Fim do Capataz",
+    "giver": "irma_celeste",
+    "kind": "boss",
+    "targets": [
+      "monster_r1_capataz_da_pedreira"
+    ],
+    "count": 1,
+    "map": "vale_das_cinzas",
+    "min_level": 15,
+    "requires": "q_vale_marcos",
+    "description": "«Sem os marcos, o Capataz é só um homem grande com um martelo maior ainda. Desça ao fosso. Eu rezo por você — do jeito novo.»",
+    "hint": "O Capataz da Pedreira (nível 16) no Fosso, ao sul do Vale. Leve tônicos. Volte à Irmã Celeste.",
+    "reward_xp": 15000,
+    "reward_coins": 690,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  }
+]

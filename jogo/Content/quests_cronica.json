@@ -1,0 +1,172 @@
+[
+  {
+    "id": "q_cronica_1",
+    "name": "Crônica I · A Pedreira",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:1"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 14,
+    "requires": "q_capataz",
+    "description": "«Você terminou 'A Cabeça do Capataz'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 1 de 8. Termine a missão 'A Cabeça do Capataz' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 7260,
+    "reward_coins": 155
+  },
+  {
+    "id": "q_cronica_2",
+    "name": "Crônica II · A Mata que Enforca",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:2"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 20,
+    "requires": "q_m16",
+    "description": "«Você terminou 'A Raiz na Estrada'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 2 de 8. Termine a missão 'A Raiz na Estrada' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 24000,
+    "reward_coins": 230,
+    "requires_flag": "cronica:1"
+  },
+  {
+    "id": "q_cronica_3",
+    "name": "Crônica III · O Rei dos Suplicantes",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:3"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 33,
+    "requires": "q_cad_canions_3",
+    "description": "«Você terminou 'O Rei dos Cânions'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 3 de 8. Termine a missão 'O Rei dos Cânions' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 65340,
+    "reward_coins": 410,
+    "requires_flag": "cronica:2"
+  },
+  {
+    "id": "q_cronica_4",
+    "name": "Crônica IV · A Abadessa",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:4"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 33,
+    "requires": "q_m32",
+    "description": "«Você terminou 'O Mosteiro Afundado'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 4 de 8. Termine a missão 'O Mosteiro Afundado' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 86640,
+    "reward_coins": 410,
+    "requires_flag": "cronica:3"
+  },
+  {
+    "id": "q_cronica_5",
+    "name": "Crônica V · O Prefeito Sem Rosto",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:5"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 46,
+    "requires": "q_cad_vespera_3",
+    "description": "«Você terminou 'O Prefeito Sem Rosto'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 5 de 8. Termine a missão 'O Prefeito Sem Rosto' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 132540,
+    "reward_coins": 630,
+    "requires_flag": "cronica:4"
+  },
+  {
+    "id": "q_cronica_6",
+    "name": "Crônica VI · A Coroa de Gelo",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:6"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 48,
+    "requires": "q_m44",
+    "description": "«Você terminou 'O Rei do Passo'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 6 de 8. Termine a missão 'O Rei do Passo' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 150000,
+    "reward_coins": 665,
+    "requires_flag": "cronica:5"
+  },
+  {
+    "id": "q_cronica_7",
+    "name": "Crônica VII · O Mar que Queima",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:7"
+    ],
+    "kind": "talk",
+    "targets": [
+      "bibliotecaria_ines"
+    ],
+    "count": 1,
+    "min_level": 54,
+    "requires": "q_m55",
+    "description": "«Você terminou 'O Colosso de Escória'. Conte-me como foi — cada região vencida é um capítulo da Crônica de KRYMOR.»",
+    "hint": "Capítulo 7 de 8. Termine a missão 'O Colosso de Escória' e volte à Inês (Biblioteca do Cais, Porto).",
+    "reward_xp": 188160,
+    "reward_coins": 780,
+    "requires_flag": "cronica:6"
+  },
+  {
+    "id": "q_cronica_8",
+    "name": "Crônica VIII · As Cinzas da Maré",
+    "giver": "bibliotecaria_ines",
+    "category": "historia_principal",
+    "reward_flags": [
+      "cronica:8"
+    ],
+    "kind": "boss",
+    "targets": [
+      "monster_acropole_tita_bronze"
+    ],
+    "count": 1,
+    "map": "acropole_das_cinzas",
+    "min_level": 60,
+    "description": "«Na Acrópole está o Titã que acendeu o primeiro fogo. Derrube-o e as cinzas param de cair. Volte — eu escrevo o fim.»",
+    "hint": "Capítulo final. Vença o Titã de Bronze na Acrópole e volte à Inês.",
+    "reward_xp": 576000,
+    "reward_coins": 6155,
+    "reward_items": [
+      "consumable_c05_tonico_forte*20"
+    ],
+    "requires_flag": "cronica:7"
+  }
+]

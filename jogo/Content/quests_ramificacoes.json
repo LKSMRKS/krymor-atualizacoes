@@ -1,0 +1,475 @@
+[
+  {
+    "id": "q_pref_1",
+    "name": "As Cabras do Prefeito",
+    "giver": "prefeito_belmiro",
+    "kind": "hunt",
+    "targets": [
+      "monster_monte_cabra"
+    ],
+    "count": 1,
+    "map": "monte_prefeito",
+    "min_level": 10,
+    "description": "«As cabras-da-serra comeram o jardim da prefeitura. Oito a menos e eu começo a gostar de você.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 7000,
+    "reward_coins": 425,
+    "category": "historia",
+    "radius": 20,
+    "x": -29.6,
+    "y": 9.8,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_pref_2",
+    "name": "Os Marcos de Divisa",
+    "giver": "prefeito_belmiro",
+    "kind": "interact",
+    "targets": [
+      "monte_prefeito_achado_1",
+      "monte_prefeito_achado_2",
+      "monte_prefeito_achado_3"
+    ],
+    "count": 3,
+    "map": "monte_prefeito",
+    "min_level": 12,
+    "requires": "q_pref_1",
+    "description": "«Para vender um terreno, preciso saber onde ele termina. Ache os três marcos de divisa do Monte.»",
+    "hint": "Três marcos de divisa nos cantos do Monte. Aperte F em cada um.",
+    "reward_xp": 10080,
+    "reward_coins": 165,
+    "category": "historia"
+  },
+  {
+    "id": "q_pref_3",
+    "name": "Ermitões Grileiros",
+    "giver": "prefeito_belmiro",
+    "kind": "defend",
+    "targets": [
+      "monster_monte_ermitao"
+    ],
+    "count": 3,
+    "map": "monte_prefeito",
+    "min_level": 14,
+    "requires": "q_pref_2",
+    "description": "«Os ermitões da serra arrancaram os marcos e dizem que o terreno é deles. Seis argumentos contrários, por favor.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 13720,
+    "reward_coins": 540,
+    "category": "historia",
+    "radius": 6,
+    "x": 35.0,
+    "y": -11.4,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_pref_4",
+    "name": "O Urso das Pedras",
+    "giver": "prefeito_belmiro",
+    "kind": "boss",
+    "targets": [
+      "monster_monte_urso"
+    ],
+    "count": 1,
+    "map": "monte_prefeito",
+    "min_level": 15,
+    "requires": "q_pref_3",
+    "description": "«Último problema: um urso do tamanho de uma casa dorme bem onde eu queria vender casas. Acorde-o — e não deixe ele acordar de novo.»",
+    "hint": "O Urso das Pedras (16) no covil do Monte.",
+    "reward_xp": 35840,
+    "reward_coins": 1115,
+    "category": "historia"
+  },
+  {
+    "id": "q_pref_casa",
+    "name": "A Escritura",
+    "giver": "prefeito_belmiro",
+    "kind": "talk",
+    "targets": [
+      "zuleica_decoracao"
+    ],
+    "count": 1,
+    "map": "monte_prefeito",
+    "min_level": 15,
+    "requires": "q_pref_4",
+    "cost_coins": 15000,
+    "description": "«Você limpou o Monte; eu cumpro a palavra. Por 15 mil moedas, a casa do Porto (a porta atrás da praça) é sua — e lá você planta, guarda, decora e recebe o grupo. Pegue as chaves com a Zuleica.»",
+    "hint": "Aceite com o Belmiro (paga 15.000 moedas, nível 15) e pegue as chaves com a Zuleica, ao lado dele.",
+    "reward_xp": 0,
+    "reward_coins": 0,
+    "reward_flags": [
+      "casa:propria"
+    ],
+    "forbid_flag": "casa:propria",
+    "category": "casa"
+  },
+  {
+    "id": "q_ruinas_automatos_1",
+    "name": "Sentinelas Acordadas",
+    "giver": "engenheira_ada",
+    "kind": "defend",
+    "targets": [
+      "monster_auto_sentinela"
+    ],
+    "count": 3,
+    "map": "ruinas_automatos",
+    "min_level": 39,
+    "description": "«As esferas-sentinela acordaram e varrem as ruínas com raios. Desligue oito — de qualquer jeito.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 106470,
+    "reward_coins": 1775,
+    "category": "historia",
+    "radius": 6,
+    "x": -32.1,
+    "y": 7.0,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_ruinas_automatos_2",
+    "name": "As Engrenagens-Mestras",
+    "giver": "engenheira_ada",
+    "kind": "interact",
+    "targets": [
+      "ruinas_automatos_achado_1",
+      "ruinas_automatos_achado_2",
+      "ruinas_automatos_achado_3"
+    ],
+    "count": 3,
+    "map": "ruinas_automatos",
+    "min_level": 40,
+    "requires": "q_ruinas_automatos_1",
+    "description": "«Três engrenagens-mestras controlam as máquinas. Tire as três do lugar e elas param de se consertar.»",
+    "hint": "Três achados nos cantos de Ruínas dos Autômatos. Aperte F em cada um.",
+    "reward_xp": 112000,
+    "reward_coins": 655,
+    "category": "historia"
+  },
+  {
+    "id": "q_ruinas_automatos_3",
+    "name": "O Centurião a Vapor",
+    "giver": "engenheira_ada",
+    "kind": "boss",
+    "targets": [
+      "monster_auto_centuriao"
+    ],
+    "count": 1,
+    "map": "ruinas_automatos",
+    "min_level": 46,
+    "requires": "q_ruinas_automatos_2",
+    "description": "«O Centurião a Vapor comanda todos os autômatos das ruínas. Enquanto ele funcionar, os outros nunca param. Leve tônicos — e amigos, se tiver.»",
+    "hint": "Centurião a Vapor no covil de Ruínas dos Autômatos.",
+    "reward_xp": 309260,
+    "reward_coins": 4040,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_triangulo_demonio_1",
+    "name": "Marujos Que Não Descansam",
+    "giver": "vigia_marujo",
+    "kind": "defend",
+    "targets": [
+      "monster_tri_afogado"
+    ],
+    "count": 3,
+    "map": "triangulo_demonio",
+    "min_level": 45,
+    "description": "«Meus colegas afogados ainda tentam embarcar. Mande oito de volta para o fundo.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 141750,
+    "reward_coins": 2135,
+    "category": "historia",
+    "radius": 6,
+    "x": -5.3,
+    "y": 3.4,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_triangulo_demonio_2",
+    "name": "Os Diários de Bordo",
+    "giver": "vigia_marujo",
+    "kind": "interact",
+    "targets": [
+      "triangulo_demonio_achado_1",
+      "triangulo_demonio_achado_2",
+      "triangulo_demonio_achado_3"
+    ],
+    "count": 3,
+    "map": "triangulo_demonio",
+    "min_level": 46,
+    "requires": "q_triangulo_demonio_1",
+    "description": "«Três diários de bordo contam onde fica a passagem para o fundo. Recolha os três.»",
+    "hint": "Três achados nos cantos de Triângulo do Demônio. Aperte F em cada um.",
+    "reward_xp": 148120,
+    "reward_coins": 785,
+    "category": "historia"
+  },
+  {
+    "id": "q_triangulo_demonio_3",
+    "name": "O Capitão do Navio Fantasma",
+    "giver": "vigia_marujo",
+    "kind": "boss",
+    "targets": [
+      "monster_tri_capitao"
+    ],
+    "count": 1,
+    "map": "triangulo_demonio",
+    "min_level": 50,
+    "requires": "q_triangulo_demonio_2",
+    "description": "«Agora o pior: Capitão do Navio Fantasma. Leve tônicos — e amigos, se tiver.»",
+    "hint": "Capitão do Navio Fantasma no covil de Triângulo do Demônio.",
+    "reward_xp": 364140,
+    "reward_coins": 4505,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_fundo_triangulo_1",
+    "name": "Lanças de Tritão",
+    "giver": "sereia_lia",
+    "kind": "defend",
+    "targets": [
+      "monster_fundo_tritao"
+    ],
+    "count": 3,
+    "map": "fundo_triangulo",
+    "min_level": 50,
+    "description": "«Os tritões guardam a passagem para a ilha. Oito deles, e eu abro o caminho.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 175000,
+    "reward_coins": 2455,
+    "category": "historia",
+    "radius": 6,
+    "x": 23.9,
+    "y": 4.9,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_fundo_triangulo_2",
+    "name": "As Conchas que Cantam",
+    "giver": "sereia_lia",
+    "kind": "interact",
+    "targets": [
+      "fundo_triangulo_achado_1",
+      "fundo_triangulo_achado_2",
+      "fundo_triangulo_achado_3"
+    ],
+    "count": 3,
+    "map": "fundo_triangulo",
+    "min_level": 51,
+    "requires": "q_fundo_triangulo_1",
+    "description": "«Três conchas cantam o caminho até a ilha. Encontre as três e escute.»",
+    "hint": "Três achados nos cantos de Fundo do Triângulo. Aperte F em cada um.",
+    "reward_xp": 182070,
+    "reward_coins": 900,
+    "category": "historia"
+  },
+  {
+    "id": "q_fundo_triangulo_3",
+    "name": "O Leviatã das Profundezas",
+    "giver": "sereia_lia",
+    "kind": "boss",
+    "targets": [
+      "monster_fundo_leviata"
+    ],
+    "count": 1,
+    "map": "fundo_triangulo",
+    "min_level": 54,
+    "requires": "q_fundo_triangulo_2",
+    "description": "«Agora o pior: Leviatã das Profundezas. Leve tônicos — e amigos, se tiver.»",
+    "hint": "Leviatã das Profundezas no covil de Fundo do Triângulo.",
+    "reward_xp": 423500,
+    "reward_coins": 4990,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_ilha_serpente_1",
+    "name": "Prova de Coragem",
+    "giver": "chefe_tribo",
+    "kind": "hunt",
+    "targets": [
+      "monster_ilha_guerreiro"
+    ],
+    "count": 1,
+    "map": "ilha_serpente",
+    "min_level": 55,
+    "description": "«Oito dos meus guerreiros querem testar você. Não precisa matar — mas eles não vão facilitar.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 211750,
+    "reward_coins": 2795,
+    "category": "historia",
+    "radius": 20,
+    "x": 1.7,
+    "y": 7.2,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_ilha_serpente_2",
+    "name": "Escamas da Serpente",
+    "giver": "chefe_tribo",
+    "kind": "interact",
+    "targets": [
+      "ilha_serpente_achado_1",
+      "ilha_serpente_achado_2",
+      "ilha_serpente_achado_3"
+    ],
+    "count": 3,
+    "map": "ilha_serpente",
+    "min_level": 56,
+    "requires": "q_ilha_serpente_1",
+    "description": "«Três escamas da Serpente Marinha estão pela ilha. Traga as três e eu mostro onde ela dorme.»",
+    "hint": "Três achados nos cantos de Ilha da Serpente Marinha. Aperte F em cada um.",
+    "reward_xp": 219520,
+    "reward_coins": 1025,
+    "category": "historia"
+  },
+  {
+    "id": "q_ilha_serpente_3",
+    "name": "A Serpente Marinha",
+    "giver": "chefe_tribo",
+    "kind": "boss",
+    "targets": [
+      "monster_ilha_serpente"
+    ],
+    "count": 1,
+    "map": "ilha_serpente",
+    "min_level": 60,
+    "requires": "q_ilha_serpente_2",
+    "description": "«A Serpente Marinha cerca a ilha e afunda todo barco que tenta sair. A tribo depende de você. Leve tônicos — e amigos, se tiver.»",
+    "hint": "Serpente Marinha no covil de Ilha da Serpente Marinha.",
+    "reward_xp": 520940,
+    "reward_coins": 5755,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_pico_vento_1",
+    "name": "Lobos do Vento",
+    "giver": "eremita_vento",
+    "kind": "kill",
+    "targets": [
+      "monster_pico_lobo"
+    ],
+    "count": 8,
+    "map": "pico_vento",
+    "min_level": 46,
+    "description": "«Os lobos do vento uivam a noite inteira no Pico, e o uivo traz nevasca. Oito deles a menos e eu volto a dormir — e o céu volta a abrir.»",
+    "hint": "No(a) Pico do Vento. Volte a Eremita, no acampamento.",
+    "reward_xp": 148120,
+    "reward_coins": 2200,
+    "category": "historia"
+  },
+  {
+    "id": "q_pico_vento_2",
+    "name": "Penas de Grifo",
+    "giver": "eremita_vento",
+    "kind": "interact",
+    "targets": [
+      "pico_vento_achado_1",
+      "pico_vento_achado_2",
+      "pico_vento_achado_3"
+    ],
+    "count": 3,
+    "map": "pico_vento",
+    "min_level": 47,
+    "requires": "q_pico_vento_1",
+    "description": "«Três penas de grifo, presas nas pedras. Com elas eu teço um amuleto que te leva às nuvens — se você tiver asas.»",
+    "hint": "Três achados nos cantos de Pico do Vento. Aperte F em cada um.",
+    "reward_xp": 154630,
+    "reward_coins": 810,
+    "category": "historia"
+  },
+  {
+    "id": "q_pico_vento_3",
+    "name": "O Gigante do Pico",
+    "giver": "eremita_vento",
+    "kind": "boss",
+    "targets": [
+      "monster_pico_gigante"
+    ],
+    "count": 1,
+    "map": "pico_vento",
+    "min_level": 49,
+    "requires": "q_pico_vento_2",
+    "description": "«O Gigante do Pico segura a nevasca com as próprias mãos. Derrube-o e o caminho para o céu abre. Leve tônicos — e amigos, se tiver.»",
+    "hint": "Gigante do Pico no covil de Pico do Vento.",
+    "reward_xp": 350000,
+    "reward_coins": 4390,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_caminho_serpente_1",
+    "name": "Harpias na Ponte",
+    "giver": "guardia_ponte",
+    "kind": "defend",
+    "targets": [
+      "monster_serp_harpia"
+    ],
+    "count": 3,
+    "map": "caminho_serpente",
+    "min_level": 49,
+    "description": "«As harpias derrubam quem atravessa. Oito delas a menos e a ponte volta a ser ponte.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 168070,
+    "reward_coins": 2390,
+    "category": "historia",
+    "radius": 6,
+    "x": -30.5,
+    "y": 24.2,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_caminho_serpente_2",
+    "name": "As Plumas Douradas",
+    "giver": "guardia_ponte",
+    "kind": "interact",
+    "targets": [
+      "caminho_serpente_achado_1",
+      "caminho_serpente_achado_2",
+      "caminho_serpente_achado_3"
+    ],
+    "count": 3,
+    "map": "caminho_serpente",
+    "min_level": 50,
+    "requires": "q_caminho_serpente_1",
+    "description": "«Três plumas douradas marcam o caminho da cabeça da serpente. Ache as três.»",
+    "hint": "Três achados nos cantos de Caminho da Serpente. Aperte F em cada um.",
+    "reward_xp": 175000,
+    "reward_coins": 880,
+    "category": "historia"
+  },
+  {
+    "id": "q_caminho_serpente_3",
+    "name": "A Serpente Celeste",
+    "giver": "guardia_ponte",
+    "kind": "boss",
+    "targets": [
+      "monster_serp_serpente"
+    ],
+    "count": 1,
+    "map": "caminho_serpente",
+    "min_level": 55,
+    "requires": "q_caminho_serpente_2",
+    "description": "«A Serpente Celeste dorme no fim da ponte. Quem a vence leva as escamas dela nas costas — as melhores asas de KRYMOR.»",
+    "hint": "Serpente Celeste no covil de Caminho da Serpente.",
+    "reward_xp": 439040,
+    "reward_coins": 5115,
+    "reward_items": [
+      "wings_serpente",
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  }
+]

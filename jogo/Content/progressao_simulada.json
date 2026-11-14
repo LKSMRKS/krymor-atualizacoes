@@ -1,0 +1,252 @@
+{
+  "_sobre": "Só para Tools/simular_progressao.py (o jogo NÃO lê este arquivo): equipamento que um jogador típico tem em cada nível e hábitos de farm.",
+  "deslocamento_s": 8,
+  "fracao_recuperacao_parada": 0.5,
+  "pausa_entre_golpes_ms": 120,
+  "equipamento": {
+    "guerreiro": {
+      "1": {},
+      "2": {
+        "arma": "weapon_guerreiro_sword_p1",
+        "armaduras": [
+          "helmet_gorro_couro"
+        ]
+      },
+      "3": {
+        "arma": "weapon_guerreiro_sword_p1",
+        "armaduras": [
+          "helmet_gorro_couro",
+          "armor_gibao_acolchoado"
+        ]
+      },
+      "4": {
+        "arma": "weapon_guerreiro_sword_p1",
+        "armaduras": [
+          "helmet_gorro_couro",
+          "armor_gibao_acolchoado",
+          "shield_guerreiro_tabuas"
+        ]
+      },
+      "5": {
+        "arma": "weapon_guerreiro_machadinha_p1",
+        "armaduras": [
+          "helmet_gorro_couro",
+          "armor_gibao_acolchoado",
+          "shield_guerreiro_tabuas"
+        ]
+      },
+      "6": {
+        "arma": "weapon_guerreiro_spear_p2",
+        "armaduras": [
+          "helmet_elmo_ferro",
+          "armor_gibao_acolchoado",
+          "shield_guerreiro_tabuas"
+        ]
+      },
+      "7": {
+        "arma": "weapon_guerreiro_spear_p2",
+        "armaduras": [
+          "helmet_elmo_ferro",
+          "armor_cota_de_malha",
+          "shield_guerreiro_tabuas"
+        ]
+      },
+      "9": {
+        "arma": "weapon_guerreiro_lamina_galeria",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_couraca_galeria",
+          "shield_guerreiro_tabuas"
+        ]
+      },
+      "10": {
+        "arma": "weapon_guerreiro_garra_rei",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_couraca_galeria",
+          "shield_guerreiro_pedracal"
+        ]
+      },
+      "12": {
+        "arma": "weapon_guerreiro_espada_vigilia",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_cota_reforcada",
+          "shield_guerreiro_pedracal"
+        ]
+      },
+      "16": {
+        "arma": "weapon_guerreiro_malho_capataz",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_cota_reforcada",
+          "shield_guerreiro_pedracal"
+        ]
+      },
+      "17": {
+        "arma": "weapon_guerreiro_espada_mata",
+        "armaduras": [
+          "helmet_mata",
+          "armor_guerreiro_mata",
+          "shield_guerreiro_mata"
+        ]
+      },
+      "24": {
+        "arma": "weapon_guerreiro_espada_canion",
+        "armaduras": [
+          "helmet_canion",
+          "armor_guerreiro_canion",
+          "shield_guerreiro_canion"
+        ]
+      },
+      "30": {
+        "arma": "weapon_guerreiro_espada_brejo",
+        "armaduras": [
+          "helmet_brejo",
+          "armor_guerreiro_brejo",
+          "shield_guerreiro_brejo"
+        ]
+      },
+      "36": {
+        "arma": "weapon_guerreiro_espada_vespera",
+        "armaduras": [
+          "helmet_vespera",
+          "armor_guerreiro_vespera",
+          "shield_guerreiro_vespera"
+        ]
+      },
+      "44": {
+        "arma": "weapon_guerreiro_espada_geada",
+        "armaduras": [
+          "helmet_geada",
+          "armor_guerreiro_geada",
+          "shield_guerreiro_geada"
+        ]
+      },
+      "50": {
+        "arma": "weapon_guerreiro_espada_escoria",
+        "armaduras": [
+          "helmet_escoria",
+          "armor_guerreiro_escoria",
+          "shield_guerreiro_escoria"
+        ]
+      },
+      "56": {
+        "arma": "weapon_guerreiro_espada_acropole",
+        "armaduras": [
+          "helmet_acropole",
+          "armor_guerreiro_acropole",
+          "shield_guerreiro_acropole"
+        ]
+      }
+    },
+    "mago": {
+      "1": {},
+      "2": {
+        "arma": "staff_mago_aprendiz",
+        "armaduras": [
+          "helmet_gorro_couro"
+        ]
+      },
+      "3": {
+        "arma": "staff_mago_aprendiz",
+        "armaduras": [
+          "helmet_gorro_couro",
+          "armor_gibao_acolchoado"
+        ]
+      },
+      "5": {
+        "arma": "staff_mago_coral_p1",
+        "armaduras": [
+          "helmet_gorro_couro",
+          "armor_gibao_acolchoado"
+        ]
+      },
+      "6": {
+        "arma": "staff_mago_brasa",
+        "armaduras": [
+          "helmet_capuz_acolito",
+          "armor_manto_acolito"
+        ]
+      },
+      "9": {
+        "arma": "staff_mago_cajado_galeria",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_tunica_veio"
+        ]
+      },
+      "10": {
+        "arma": "staff_mago_concha_rei",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_tunica_veio"
+        ]
+      },
+      "12": {
+        "arma": "staff_mago_cinza_viva",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_manto_de_cinzas"
+        ]
+      },
+      "16": {
+        "arma": "staff_mago_cetro_capataz",
+        "armaduras": [
+          "helmet_elmo_guardiao",
+          "armor_manto_de_cinzas"
+        ]
+      },
+      "17": {
+        "arma": "staff_mago_cajado_mata",
+        "armaduras": [
+          "helmet_mata",
+          "armor_mago_mata"
+        ]
+      },
+      "24": {
+        "arma": "staff_mago_cajado_canion",
+        "armaduras": [
+          "helmet_canion",
+          "armor_mago_canion"
+        ]
+      },
+      "30": {
+        "arma": "staff_mago_cajado_brejo",
+        "armaduras": [
+          "helmet_brejo",
+          "armor_mago_brejo"
+        ]
+      },
+      "36": {
+        "arma": "staff_mago_cajado_vespera",
+        "armaduras": [
+          "helmet_vespera",
+          "armor_mago_vespera"
+        ]
+      },
+      "44": {
+        "arma": "staff_mago_cajado_geada",
+        "armaduras": [
+          "helmet_geada",
+          "armor_mago_geada"
+        ]
+      },
+      "50": {
+        "arma": "staff_mago_cajado_escoria",
+        "armaduras": [
+          "helmet_escoria",
+          "armor_mago_escoria"
+        ]
+      },
+      "56": {
+        "arma": "staff_mago_cajado_acropole",
+        "armaduras": [
+          "helmet_acropole",
+          "armor_mago_acropole"
+        ]
+      }
+    }
+  },
+  "entrada_dungeon_s": 120
+}

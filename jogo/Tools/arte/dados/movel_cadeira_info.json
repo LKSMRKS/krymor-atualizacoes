@@ -1,0 +1,25 @@
+{
+ "asset_id": "movel_cadeira",
+ "nome": "Cadeira de madeira",
+ "colisao": [
+  {
+   "caixa_m": [
+    0.5,
+    0.5
+   ]
+  }
+ ],
+ "luz": null,
+ "notas": "sentar: assento a 0,47 m; virada para +Z",
+ "posicao_no_conjunto_godot": [
+  0.0,
+  0.0,
+  -0.0
+ ],
+ "tris": 1980,
+ "dims_m": [
+  0.46,
+  0.44,
+  0.995
+ ]
+}

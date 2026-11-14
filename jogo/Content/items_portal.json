@@ -1,0 +1,26 @@
+[
+  {
+    "id": "portal_viagem",
+    "display_name": "Pedra de Portal",
+    "category": "relic",
+    "subtype": "portal",
+    "min_level": 7,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {},
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "bound",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_portal_viagem",
+    "model_asset_id": "portal_viagem",
+    "summary": "Vinculada a você (não vende nem cai). Do nível 7 em diante, depois da missão do Téo (A Pedra de Portal): abra o mapa (M) e viaje de onde estiver para qualquer pedra de viagem que você já descobriu — fora de combate e fora de dungeon.",
+    "price": 780,
+    "source": "Téo, o Guia (Porto)."
+  }
+]

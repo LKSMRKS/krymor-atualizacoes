@@ -1,0 +1,9 @@
+bracelete_tubarao: armor 20→23, max_health 149→164
+bracelete_lava: armor 27→30, max_health 197→216
+capa_amaldicoada: armor 50→55, max_health 91→100
+capa_lava: armor 64→70, max_health 115→127
+capa_dragao: armor 81→89, max_health 146→161
+capa_celestial: armor 84→93, max_health 153→168
+capa_morte: armor 91→100, max_health 165→182
+capa_luz: armor 98→108, max_health 177→195
+capa_tempo: armor 105→115, max_health 190→209

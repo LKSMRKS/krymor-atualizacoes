@@ -1,0 +1,2354 @@
+[
+  {
+    "id": "q_m03",
+    "name": "Remédio do Areal",
+    "giver": "curandeira_ilma",
+    "kind": "mine",
+    "targets": [
+      "mat_erva_tonico"
+    ],
+    "count": 8,
+    "description": "Colha 8 Ervas de Tônico nas moitas espalhadas pelo Areal e pelas Dunas (segure F perto da moita). Cada moita só volta depois de 1 hora. Ilma ensina o tônico.",
+    "hint": "Colha Ervas de Tônico nas moitas da Costa (perto do portão).",
+    "min_level": 2,
+    "reward_xp": 1584,
+    "reward_coins": 95,
+    "reward_items": [
+      "mat_frasco*3",
+      "mat_residuo_larva*2"
+    ],
+    "reward_flags": [
+      "receita:tonico"
+    ],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m04",
+    "name": "Primeira Mistura",
+    "giver": "curandeira_ilma",
+    "kind": "craft",
+    "targets": [
+      "rec_tonico_simples"
+    ],
+    "count": 1,
+    "description": "No caldeirão da praça (F), prepare o Tônico Simples: 2 ervas, 1 resíduo de larva e 1 frasco.",
+    "hint": "Prepare um Tônico Simples no caldeirão do Porto.",
+    "min_level": 2,
+    "reward_xp": 1584,
+    "reward_coins": 60,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m03"
+  },
+  {
+    "id": "q_m05",
+    "name": "Ferramenta Emprestada",
+    "giver": "ferreiro_bras",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_raso"
+    ],
+    "count": 3,
+    "description": "Leve minha picareta (já é sua) e tire 3 Ferros Rasos dos veios da Costa. Levar golpe interrompe a coleta.",
+    "hint": "Minere Ferro Raso nos veios da Costa do Cal.",
+    "min_level": 4,
+    "reward_xp": 4896,
+    "reward_coins": 100,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:placa"
+    ],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_flags": [
+      "tool:picareta"
+    ]
+  },
+  {
+    "id": "q_m06",
+    "name": "Placa de Chapa",
+    "giver": "ferreiro_bras",
+    "kind": "collect",
+    "targets": [
+      "mat_placa_chapa"
+    ],
+    "count": 1,
+    "description": "Na forja (F), faça uma Placa de Chapa com 3 Ferros Rasos e 2 Cascas de Cal. Traga e faço sua peça.",
+    "hint": "Forje uma Placa de Chapa e entregue ao Brás.",
+    "min_level": 4,
+    "reward_xp": 4080,
+    "reward_coins": 85,
+    "reward_items": [
+      "@classe:shield_guerreiro_tabuas|staff_mago_coral_p1|talisma_bruxa_coral_p1|arco_arqueiro_coral_p1"
+    ],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m05"
+  },
+  {
+    "id": "q_m07",
+    "name": "Sob as Hortas",
+    "giver": "agricultora_rosa",
+    "kind": "harvest",
+    "targets": [
+      "mat_raiz_vigilia"
+    ],
+    "count": 2,
+    "description": "Plante as sementes na horta comunitária (F), regue e volte quando crescer (uns 3 minutos; vá caçar enquanto isso).",
+    "hint": "Plante, regue e colha Raiz da Vigília na horta do Porto.",
+    "min_level": 3,
+    "reward_xp": 2520,
+    "reward_coins": 75,
+    "reward_items": [
+      "semente_erva*2",
+      "semente_raiz*2"
+    ],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_items": [
+      "semente_raiz*2"
+    ]
+  },
+  {
+    "id": "q_s01",
+    "name": "O Anel do Poço",
+    "giver": "pescador_tiberio",
+    "kind": "kill",
+    "targets": [
+      "monster_r1_goblin_esqueleto"
+    ],
+    "count": 8,
+    "description": "Um esqueleto de goblin arrancou o anel da minha filha e sumiu no areal. Quebre 8 desses ossos andantes; um deles há de largar.",
+    "hint": "Esqueletos de Goblin rondam o Areal (portão norte), entre os caranguejos.",
+    "min_level": 2,
+    "reward_xp": 1056,
+    "reward_coins": 105,
+    "reward_items": [
+      "consumable_c01_tonico_fraco*3"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_m09",
+    "name": "A Colheita Não Volta",
+    "giver": "agricultora_benta",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_saqueador_mata"
+    ],
+    "count": 6,
+    "description": "«Os saqueadores da Mata reviraram a horta da vila atrás de sementes — e levaram até as cercas. Derrube seis deles nos bolsões do leste e a gente replanta.»",
+    "hint": "Saqueadores da Mata (bolsões a leste).",
+    "min_level": 17,
+    "reward_xp": 34272,
+    "reward_coins": 645,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m10",
+    "name": "Plantar para Recomeçar",
+    "giver": "agricultora_benta",
+    "kind": "harvest",
+    "targets": [
+      "mat_raiz_vigilia"
+    ],
+    "count": 3,
+    "description": "Plante as sementes nos canteiros da vila, regue e colha 3 Raízes da Vigília.",
+    "hint": "Plante, regue e colha na Vila do Moinho.",
+    "min_level": 17,
+    "reward_xp": 34272,
+    "reward_coins": 400,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:ensopado"
+    ],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m09",
+    "accept_items": [
+      "semente_raiz*3"
+    ]
+  },
+  {
+    "id": "q_m11",
+    "name": "Jantar da Vigília",
+    "giver": "cozinheiro_ivo",
+    "kind": "craft",
+    "targets": [
+      "rec_ensopado"
+    ],
+    "count": 1,
+    "description": "Na panela da vila: 1 Carne de Javali e 2 Raízes. O Ensopado dá força por 10 minutos (um efeito por vez).",
+    "hint": "Cozinhe o Ensopado da Vigília na panela.",
+    "min_level": 17,
+    "reward_xp": 34272,
+    "reward_coins": 380,
+    "reward_items": [
+      "food_ensopado_vigilia*2"
+    ],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m10"
+  },
+  {
+    "id": "q_m12",
+    "name": "Madeira para a Ponte",
+    "giver": "carpinteiro_jorge",
+    "kind": "collect",
+    "targets": [
+      "mat_resina"
+    ],
+    "count": 4,
+    "description": "«As raízes andantes soltam uma resina grossa quando caem. É a melhor cola que existe para tábua. Traga quatro e eu fecho as frestas das casas antes do inverno.»",
+    "hint": "Resina das Raízes Andantes.",
+    "min_level": 18,
+    "reward_xp": 38232,
+    "reward_coins": 465,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m13",
+    "name": "Rebites que Faltam",
+    "giver": "carpinteiro_jorge",
+    "kind": "craft",
+    "targets": [
+      "mat_rebites"
+    ],
+    "count": 3,
+    "description": "Forje 3 rebites (2 Ferros Rasos cada fornada) — a forja do Porto serve. A ponte leste fica pronta para você.",
+    "hint": "Forje Rebites.",
+    "min_level": 18,
+    "reward_xp": 38232,
+    "reward_coins": 405,
+    "reward_items": [],
+    "reward_flags": [
+      "ponte:mata"
+    ],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m12"
+  },
+  {
+    "id": "q_m14",
+    "name": "O Sino Enterrado",
+    "giver": "mentora_selene",
+    "kind": "visit",
+    "targets": [
+      "cripta_do_sino"
+    ],
+    "count": 1,
+    "description": "Desça à Cripta do Sino (entrada a sudoeste da Mata) e veja a inscrição.",
+    "hint": "Entre na Cripta do Sino.",
+    "min_level": 18,
+    "reward_xp": 38232,
+    "reward_coins": 205,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:insignia"
+    ],
+    "category": "regiao",
+    "repeatable": false,
+    "map": "cripta_do_sino",
+    "x": 0,
+    "y": 26,
+    "radius": 7
+  },
+  {
+    "id": "q_m15",
+    "name": "Insígnia do Juramento",
+    "giver": "mentora_selene",
+    "kind": "craft",
+    "targets": [
+      "mat_insignia"
+    ],
+    "count": 1,
+    "description": "Na bancada do Porto, faça a Insígnia do Juramento. É o que o mentor da sua classe vai pedir.",
+    "hint": "Faça a Insígnia na bancada.",
+    "min_level": 19,
+    "reward_xp": 42408,
+    "reward_coins": 430,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m14"
+  },
+  {
+    "id": "q_m16",
+    "name": "A Raiz na Estrada",
+    "giver": "mentora_selene",
+    "kind": "boss",
+    "targets": [
+      "monster_mata_guardiao_retorcido"
+    ],
+    "count": 1,
+    "description": "O Guardião Retorcido fecha a estrada dos Cânions. Vença-o (com grupo ou bem preparado) e o selo é seu.",
+    "hint": "Vença o Guardião Retorcido no norte da Mata.",
+    "min_level": 20,
+    "reward_xp": 117000,
+    "reward_coins": 1505,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false
+  },
+  {
+    "id": "q_s02",
+    "name": "Uma Lâmina sem Dono",
+    "giver": "carpinteiro_jorge",
+    "kind": "interact",
+    "targets": [
+      "mata_espada"
+    ],
+    "count": 1,
+    "description": "«Tem uma espada cravada numa árvore oca, no oeste. Ninguém conseguiu tirar. Dizem que era de um cavaleiro enforcado aqui. Talvez ela ainda corte — e talvez escolha você.»",
+    "hint": "Examine a espada na árvore oca.",
+    "min_level": 18,
+    "reward_xp": 38232,
+    "reward_coins": 255,
+    "reward_items": [
+      "@classe:weapon_guerreiro_espada_mata|staff_mago_cajado_mata|talisma_bruxa_mata|arco_arqueiro_mata"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_s03",
+    "name": "O Lobo que Não Uiva",
+    "giver": "agricultora_benta",
+    "kind": "hunt",
+    "targets": [
+      "monster_mata_lobo_branco"
+    ],
+    "count": 1,
+    "description": "Um lobo branco ronda a mata sem uivar. Dizem que aparece em cantos diferentes. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 18,
+    "reward_xp": 50976,
+    "reward_coins": 755,
+    "reward_items": [
+      "mat_couro*4"
+    ],
+    "reward_flags": [
+      "receita:sela"
+    ],
+    "category": "opcional",
+    "repeatable": false,
+    "radius": 20,
+    "map": "mata_dos_enforcados",
+    "x": 62.0,
+    "y": 50.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_s04",
+    "name": "A Colmeia no Caminho",
+    "giver": "cozinheiro_ivo",
+    "kind": "collect",
+    "targets": [
+      "mat_cera"
+    ],
+    "count": 3,
+    "description": "Aranhas de toca guardam cera de colmeia. Traga 3 — serve de vela em Véspera.",
+    "hint": "Cera das Aranhas de Toca.",
+    "min_level": 18,
+    "reward_xp": 31860,
+    "reward_coins": 425,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_m17",
+    "name": "Vozes na Pedra",
+    "giver": "zelador_ascanio",
+    "kind": "visit",
+    "targets": [
+      "nicho"
+    ],
+    "count": 1,
+    "description": "«O nicho grande do leste guarda a história do elevador que levava os mineiros ao fundo. Vá até lá, olhe as marcas na pedra e me conte se ainda dá para usar.»",
+    "hint": "Visite o Nicho Grande (leste dos Cânions).",
+    "min_level": 20,
+    "reward_xp": 46800,
+    "reward_coins": 230,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false,
+    "map": "canions_suplicantes",
+    "x": 55,
+    "y": 8,
+    "radius": 6
+  },
+  {
+    "id": "q_m18",
+    "name": "O Ferro que Escuta",
+    "giver": "mineiro_bras2",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_eco"
+    ],
+    "count": 4,
+    "description": "«Ferro de Eco só nasce nos veios do cânion, onde o som bate e volta. Quatro pedaços e eu forjo ferramentas que não quebram.»",
+    "hint": "Minere Ferro de Eco.",
+    "min_level": 21,
+    "reward_xp": 51408,
+    "reward_coins": 555,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:ressonador"
+    ],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m19",
+    "name": "Um Pedido de Piedade",
+    "giver": "alma_ligia",
+    "kind": "kill",
+    "targets": [
+      "monster_canions_esqueleto_mineiro"
+    ],
+    "count": 6,
+    "description": "«Os esqueletos mineiros levaram o meu medalhão quando eu caí. Era a única coisa que eu tinha da minha filha. Seis deles… um deve estar com ele.»",
+    "hint": "Esqueletos Mineiros.",
+    "min_level": 22,
+    "reward_xp": 56232,
+    "reward_coins": 840,
+    "reward_items": [
+      "mat_memoria_selada"
+    ],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m20",
+    "name": "Sela de Estrada",
+    "giver": "tratador_dimas",
+    "kind": "craft",
+    "targets": [
+      "rec_sela"
+    ],
+    "count": 1,
+    "description": "Couro de lobo ou javali, retalhos e rebites: faça uma sela na bancada.",
+    "hint": "Faça a Sela Simples na bancada.",
+    "min_level": 21,
+    "reward_xp": 51408,
+    "reward_coins": 480,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:sela"
+    ]
+  },
+  {
+    "id": "q_m21",
+    "name": "Um Companheiro de Viagem",
+    "giver": "tratador_dimas",
+    "kind": "collect",
+    "targets": [
+      "mat_sela"
+    ],
+    "count": 1,
+    "description": "O lobo cinzento só aceita sela feita à mão. Traga a sua e ele segue você — tecla V monta (fora de combate), mais rápido que o corcel.",
+    "hint": "Entregue a Sela ao Dimas.",
+    "min_level": 25,
+    "reward_xp": 93720,
+    "reward_coins": 500,
+    "reward_items": [],
+    "reward_flags": [
+      "mount:lobo"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m20"
+  },
+  {
+    "id": "q_m22",
+    "name": "Ressonador de Lamentos",
+    "giver": "zelador_ascanio",
+    "kind": "craft",
+    "targets": [
+      "rec_ressonador"
+    ],
+    "count": 1,
+    "description": "Ferro de eco e a memória selada: o ressonador abre as Galerias da Piedade.",
+    "hint": "Faça o Ressonador na bancada.",
+    "min_level": 23,
+    "reward_xp": 61272,
+    "reward_coins": 535,
+    "reward_items": [],
+    "reward_flags": [
+      "acesso:galerias"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m19"
+  },
+  {
+    "id": "q_m23",
+    "name": "O Carcereiro das Almas",
+    "giver": "zelador_ascanio",
+    "kind": "boss",
+    "targets": [
+      "monster_canions_carcereiro_almas"
+    ],
+    "count": 1,
+    "description": "No fundo das Galerias, o Carcereiro prende as almas e o elevador. Vença-o.",
+    "hint": "Vença o Carcereiro (Galerias da Piedade).",
+    "min_level": 26,
+    "reward_xp": 194220,
+    "reward_coins": 2380,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m22"
+  },
+  {
+    "id": "q_m24",
+    "name": "Entrega à Vila Suspensa",
+    "giver": "zelador_ascanio",
+    "kind": "talk",
+    "targets": [
+      "curandeira_odete"
+    ],
+    "count": 1,
+    "description": "«O elevador desce até o Brejo da Viúva. A curandeira Odete, na vila suspensa, precisa saber que o caminho reabriu. Leve a notícia — ela vai ter trabalho para você.»",
+    "hint": "Fale com Odete na Vila Suspensa (Brejo).",
+    "min_level": 27,
+    "reward_xp": 83592,
+    "reward_coins": 320,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m23"
+  },
+  {
+    "id": "q_s05",
+    "name": "Um Nome no Cânion",
+    "giver": "alma_ligia",
+    "kind": "collect",
+    "targets": [
+      "mat_osso_antigo"
+    ],
+    "count": 8,
+    "description": "«Os ossos espalhados pelo cânion são de gente que eu conhecia. Junte-os e eu vou lembrando os nomes, um por um. Alguém precisa lembrar.»",
+    "hint": "Ossos Antigos (esqueletos).",
+    "min_level": 23,
+    "reward_xp": 51060,
+    "reward_coins": 830,
+    "reward_items": [
+      "helmet_canion"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_s06",
+    "name": "A Mina Esquecida",
+    "giver": "mineiro_bras2",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_eco"
+    ],
+    "count": 8,
+    "description": "«Tem uma veia funda que ninguém tira faz anos — dizem que geme quando a picareta bate. Eu não tenho coragem. Você tem?»",
+    "hint": "Minere Ferro de Eco.",
+    "min_level": 24,
+    "reward_xp": 55440,
+    "reward_coins": 870,
+    "reward_items": [
+      "mat_ferro_eco*4"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_m25",
+    "name": "Água Amarga",
+    "giver": "curandeira_odete",
+    "kind": "mine",
+    "targets": [
+      "mat_folha_amarga"
+    ],
+    "count": 3,
+    "description": "«As moitas perto das fontes dão a Folha Amarga — a base de todo remédio do brejo. Colha as amostras que eu preciso para descobrir o que está deixando a vila doente.»",
+    "hint": "Colha Folha Amarga nas moitas do Brejo.",
+    "min_level": 28,
+    "reward_xp": 89712,
+    "reward_coins": 705,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m26",
+    "name": "Ferrão e Folha",
+    "giver": "curandeira_odete",
+    "kind": "collect",
+    "targets": [
+      "mat_ferrao"
+    ],
+    "count": 4,
+    "description": "«Para o antídoto preciso de ferrões frescos: serpente e escorpião. Quatro. Cuidado — o que tem no ferrão é exatamente o que estamos tentando curar.»",
+    "hint": "Ferrões (serpentes do Brejo).",
+    "min_level": 29,
+    "reward_xp": 96048,
+    "reward_coins": 810,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:antidoto"
+    ],
+    "category": "regiao",
+    "repeatable": false,
+    "requires": "q_m25"
+  },
+  {
+    "id": "q_m27",
+    "name": "Antídoto para os Vivos",
+    "giver": "curandeira_odete",
+    "kind": "craft",
+    "targets": [
+      "rec_antidoto"
+    ],
+    "count": 1,
+    "description": "«No caldeirão da vila: duas Folhas Amargas, um Ferrão e um Frasco. Mexa devagar. Se der certo, a vila inteira volta a dormir sem febre.»",
+    "hint": "Prepare o Antídoto do Brejo.",
+    "min_level": 29,
+    "reward_xp": 96048,
+    "reward_coins": 705,
+    "reward_items": [
+      "consumable_c07_antidoto*2"
+    ],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "requires": "q_m26"
+  },
+  {
+    "id": "q_m28",
+    "name": "O Canteiro Alagado",
+    "giver": "agricultor_caio",
+    "kind": "harvest",
+    "targets": [
+      "mat_folha_amarga"
+    ],
+    "count": 2,
+    "description": "«Abri a comporta e a água voltou aos canteiros. Plante a folha amarga, regue e colha — se crescer aqui, a curandeira nunca mais depende das moitas.»",
+    "hint": "Plante e colha Folha Amarga.",
+    "min_level": 29,
+    "reward_xp": 96048,
+    "reward_coins": 665,
+    "reward_items": [
+      "semente_cogumelo*2",
+      "semente_flor*2"
+    ],
+    "reward_flags": [
+      "receita:caldo"
+    ],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_items": [
+      "semente_folha*2"
+    ]
+  },
+  {
+    "id": "q_m29",
+    "name": "Tecidos para os Feridos",
+    "giver": "costureira_alba",
+    "kind": "craft",
+    "targets": [
+      "rec_ataduras"
+    ],
+    "count": 1,
+    "description": "«Duas sedas de tecelã e um retalho viram ataduras na bancada. Nos brejos ninguém anda sem atadura — sanguessuga não perdoa.»",
+    "hint": "Faça Ataduras na bancada.",
+    "min_level": 30,
+    "reward_xp": 102600,
+    "reward_coins": 730,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m30",
+    "name": "A Reforma da Casa",
+    "giver": "escrivao_tadeu",
+    "kind": "visit",
+    "targets": [
+      "casa_porto"
+    ],
+    "count": 1,
+    "description": "Sua casa no Porto precisa de reforma: mais canteiros nos fundos e o telhado novo. Vá até a porta; ao voltar, pague 6000 moedas e a obra começa.",
+    "hint": "Vá até a porta da sua casa no Porto e volte ao Tadeu.",
+    "min_level": 30,
+    "reward_xp": 102600,
+    "reward_coins": 0,
+    "reward_items": [],
+    "reward_flags": [
+      "casa:canteiros4"
+    ],
+    "category": "casa",
+    "repeatable": false,
+    "map": "porto_das_cinzas",
+    "x": 26,
+    "y": 8,
+    "radius": 4,
+    "cost_coins": 6000,
+    "requires_flag": "casa:propria",
+    "forbid_flag": "casa:canteiros4"
+  },
+  {
+    "id": "q_m31a",
+    "name": "O Draco Ferido",
+    "giver": "tratadora_nina",
+    "kind": "interact",
+    "targets": [
+      "brejo_draco"
+    ],
+    "count": 1,
+    "description": "«Um pequeno draco caiu entre as raízes, ao norte da vila, com a asa machucada. Ele morde quem chega rápido. Vá devagar e acalme-o (F).»",
+    "hint": "Encontre o draco ferido.",
+    "min_level": 30,
+    "reward_xp": 102600,
+    "reward_coins": 460,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "companheiro",
+    "repeatable": false
+  },
+  {
+    "id": "q_m31",
+    "name": "A Centelha que Respira",
+    "giver": "tratadora_nina",
+    "kind": "collect",
+    "targets": [
+      "mat_refeicao_vinculo"
+    ],
+    "count": 1,
+    "description": "Ele só aceita comida feita por quem o salvou: carne, flor de vínculo e reagente, na panela.",
+    "hint": "Prepare a Refeição de Vínculo.",
+    "min_level": 31,
+    "reward_xp": 182280,
+    "reward_coins": 650,
+    "reward_items": [],
+    "reward_flags": [
+      "pet:dragao"
+    ],
+    "category": "companheiro",
+    "repeatable": false,
+    "requires": "q_m31a",
+    "accept_flags": [
+      "receita:vinculo"
+    ]
+  },
+  {
+    "id": "q_m32",
+    "name": "O Mosteiro Afundado",
+    "giver": "curandeira_odete",
+    "kind": "boss",
+    "targets": [
+      "monster_brejo_abadessa_lodo"
+    ],
+    "count": 1,
+    "description": "A Abadessa do Lodo envenena a água. Vença-a no Mosteiro e traga o sinete: ele abre o rito para Véspera.",
+    "hint": "Vença a Abadessa (Mosteiro Afundado).",
+    "min_level": 33,
+    "reward_xp": 308880,
+    "reward_coins": 3070,
+    "reward_items": [],
+    "reward_flags": [
+      "rito:vespera"
+    ],
+    "category": "historia",
+    "repeatable": false
+  },
+  {
+    "id": "q_m33",
+    "name": "Véspera Não Amanhece",
+    "giver": "guia_aurelio",
+    "kind": "visit",
+    "targets": [
+      "praca_sinos"
+    ],
+    "count": 1,
+    "description": "Ande até o grande sino no centro da cidade. Lá você entende onde está.",
+    "hint": "Vá ao Sino Grande de Véspera.",
+    "min_level": 34,
+    "reward_xp": 130968,
+    "reward_coins": 425,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false,
+    "map": "vespera",
+    "x": 0,
+    "y": 14,
+    "radius": 6
+  },
+  {
+    "id": "q_m34",
+    "name": "Cartas Nunca Entregues",
+    "giver": "carteiro_espectral",
+    "kind": "collect",
+    "targets": [
+      "mat_carta_perdida"
+    ],
+    "count": 5,
+    "description": "«Os afogados guardam cartas nos bolsos — cartas que nunca foram entregues. Traga cinco. Carteiro que é carteiro entrega, mesmo depois da morte.»",
+    "hint": "Cartas dos Afogados.",
+    "min_level": 35,
+    "reward_xp": 138600,
+    "reward_coins": 1105,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m35",
+    "name": "O Mercado Ainda Cobra",
+    "giver": "mercador_espectral",
+    "kind": "collect",
+    "targets": [
+      "mat_ficha_mercado"
+    ],
+    "count": 6,
+    "description": "«Os soldados espectrais carregam fichas de pagamento que ninguém nunca cobrou. Traga as fichas e eu reabro a minha banca — com desconto para você.»",
+    "hint": "Fichas dos Soldados Espectrais.",
+    "min_level": 36,
+    "reward_xp": 146448,
+    "reward_coins": 1240,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m36",
+    "name": "O Banquete dos Ausentes",
+    "giver": "cozinheiro_espectral",
+    "kind": "craft",
+    "targets": [
+      "rec_banquete"
+    ],
+    "count": 1,
+    "description": "«Cogumelo, carne e flor de vínculo: o banquete memorial que Véspera fazia para lembrar os mortos. Faz cem anos que ninguém cozinha. Cozinhe na panela da vila.»",
+    "hint": "Cozinhe o Banquete na panela.",
+    "min_level": 36,
+    "reward_xp": 146448,
+    "reward_coins": 915,
+    "reward_items": [
+      "food_banquete_ausentes*2"
+    ],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:banquete"
+    ]
+  },
+  {
+    "id": "q_m37",
+    "name": "Ferro que Lembra",
+    "giver": "ferreiro_espectral",
+    "kind": "craft",
+    "targets": [
+      "rec_base_reliquia"
+    ],
+    "count": 1,
+    "description": "Fragmentos de relíquia (Mercado dos Mortos) e ferro de eco viram a base.",
+    "hint": "Forje a Base de Relíquia.",
+    "min_level": 37,
+    "reward_xp": 154512,
+    "reward_coins": 950,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:reliquia"
+    ]
+  },
+  {
+    "id": "q_m38",
+    "name": "O Regente Não Parte",
+    "giver": "guia_aurelio",
+    "kind": "boss",
+    "targets": [
+      "monster_vespera_regente_vespera"
+    ],
+    "count": 1,
+    "description": "O Regente prende a cidade. Vença-o no Mercado dos Mortos; a 1ª vitória dá o Núcleo Lendário.",
+    "hint": "Vença o Regente.",
+    "min_level": 39,
+    "reward_xp": 428220,
+    "reward_coins": 3815,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m37"
+  },
+  {
+    "id": "q_m39",
+    "name": "Uma Arma com História",
+    "giver": "ferreiro_espectral",
+    "kind": "collect",
+    "targets": [
+      "mat_nucleo_lendario"
+    ],
+    "count": 1,
+    "description": "«Base, núcleo e o que a sua classe pede. Na minha bigorna isso vira a sua primeira relíquia — e relíquia não se perde nem na morte.»",
+    "hint": "Entregue o Núcleo Lendário.",
+    "min_level": 39,
+    "reward_xp": 570960,
+    "reward_coins": 860,
+    "reward_items": [
+      "@classe:legend_espada_sino_partido|legend_cajado_ultimas_vozes|legend_talisma_ultimas_vozes|legend_arco_sino_partido"
+    ],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m38"
+  },
+  {
+    "id": "q_m40",
+    "name": "O Passo dos Mortos",
+    "giver": "guia_aurelio",
+    "kind": "interact",
+    "targets": [
+      "vespera_marco"
+    ],
+    "count": 1,
+    "description": "Ative o marco do passo, ao norte. A sentinela liberta abre o caminho para a Geada.",
+    "hint": "Ative o Marco do Passo.",
+    "min_level": 40,
+    "reward_xp": 180000,
+    "reward_coins": 655,
+    "reward_items": [],
+    "reward_flags": [
+      "passo:geada"
+    ],
+    "category": "historia",
+    "repeatable": false
+  },
+  {
+    "id": "q_s07",
+    "name": "O Banquete de Ninguém",
+    "giver": "carteiro_espectral",
+    "kind": "collect",
+    "targets": [
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "«Os moradores de Véspera esqueceram o gosto de comida. Leve dois ensopados para eles provarem. Às vezes a memória volta pelo gosto.»",
+    "hint": "Leve 2 Ensopados.",
+    "min_level": 36,
+    "reward_xp": 122040,
+    "reward_coins": 870,
+    "reward_items": [
+      "semente_flor*2"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_s08",
+    "name": "O Cavaleiro que Espera",
+    "giver": "guia_aurelio",
+    "kind": "hunt",
+    "targets": [
+      "monster_vespera_cavaleiro_sem_rosto"
+    ],
+    "count": 1,
+    "description": "«Um cavaleiro sem rosto espera no covil do centro. Ele desafia todo vivo que passa e nunca perdeu. Ainda.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 42,
+    "reward_xp": 264096,
+    "reward_coins": 2015,
+    "reward_items": [
+      "@classe:weapon_guerreiro_machado_vespera|staff_mago_cajado_vespera|talisma_bruxa_vespera|arco_arqueiro_vespera"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false,
+    "radius": 20,
+    "map": "vespera",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_m41",
+    "name": "Gente Perdida na Neve",
+    "giver": "batedora_runa",
+    "kind": "interact",
+    "targets": [
+      "geada_sobrevivente"
+    ],
+    "count": 1,
+    "description": "Um grupo se perdeu a oeste. Encontre o sobrevivente e mostre o caminho.",
+    "hint": "Encontre o sobrevivente.",
+    "min_level": 42,
+    "reward_xp": 198072,
+    "reward_coins": 700,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false
+  },
+  {
+    "id": "q_m42",
+    "name": "Minério Sob o Gelo",
+    "giver": "ferreiro_caravana",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_geada"
+    ],
+    "count": 4,
+    "description": "«Ferro de Geada só nos veios guardados pelos draugr — eles vigiam o metal como se fosse ouro. Traga o minério e a caravana segue armada.»",
+    "hint": "Minere Ferro de Geada.",
+    "min_level": 43,
+    "reward_xp": 207432,
+    "reward_coins": 1325,
+    "reward_items": [],
+    "reward_flags": [
+      "receita:liga_geada"
+    ],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m43",
+    "name": "Comida para a Travessia",
+    "giver": "cozinheira_hild",
+    "kind": "craft",
+    "targets": [
+      "rec_travessia"
+    ],
+    "count": 1,
+    "description": "«Carne, raiz e erva de inverno: a refeição da travessia. Quem come isso atravessa a Coroa sem congelar os dedos. Cozinhe na panela da caravana.»",
+    "hint": "Cozinhe a Refeição da Travessia.",
+    "min_level": 43,
+    "reward_xp": 207432,
+    "reward_coins": 1150,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:travessia"
+    ]
+  },
+  {
+    "id": "q_m44",
+    "name": "O Rei do Passo",
+    "giver": "batedora_runa",
+    "kind": "boss",
+    "targets": [
+      "monster_geada_rei_draugr"
+    ],
+    "count": 1,
+    "description": "O Rei Draugr fecha o passo para o Mar de Escória. Com ele vencido, o selo é seu.",
+    "hint": "Vença o Rei Draugr.",
+    "min_level": 48,
+    "reward_xp": 643680,
+    "reward_coins": 4505,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false
+  },
+  {
+    "id": "q_m45",
+    "name": "Membrana e Metal",
+    "giver": "artesa_ilse",
+    "kind": "craft",
+    "targets": [
+      "rec_estrutura_asas"
+    ],
+    "count": 1,
+    "description": "«Três ligas de geada, três membranas e retalhos: essa é a estrutura das asas. Faça na bancada. Ainda não voa — mas já tem forma de céu.»",
+    "hint": "Faça a Estrutura das Asas.",
+    "min_level": 45,
+    "reward_xp": 226800,
+    "reward_coins": 1220,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:asas"
+    ]
+  },
+  {
+    "id": "q_m46",
+    "name": "O Jötunn Acorrentado",
+    "giver": "artesa_ilse",
+    "kind": "boss",
+    "targets": [
+      "monster_geada_jotunn"
+    ],
+    "count": 1,
+    "description": "«O núcleo que sustenta as asas está preso ao Jötunn, no Salão da Geada. Ele não vai entregar por bem.»",
+    "hint": "Vença o Jötunn (Salão da Geada).",
+    "min_level": 47,
+    "reward_xp": 617580,
+    "reward_coins": 4625,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m45"
+  },
+  {
+    "id": "q_m47",
+    "name": "Asas de Neve",
+    "giver": "artesa_ilse",
+    "kind": "collect",
+    "targets": [
+      "mat_nucleo_sustentacao"
+    ],
+    "count": 1,
+    "description": "Com o núcleo do Jötunn, as asas de gelo ficam inteiras — mais fortes que as de ferro. Tecla G: voar.",
+    "hint": "Entregue o Núcleo de Sustentação.",
+    "min_level": 48,
+    "reward_xp": 858240,
+    "reward_coins": 1130,
+    "reward_items": [],
+    "reward_flags": [
+      "wings:neve"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m46"
+  },
+  {
+    "id": "q_m48",
+    "name": "O Segundo Juramento",
+    "giver": "mentor_harald",
+    "kind": "craft",
+    "targets": [
+      "mat_foco_juramento"
+    ],
+    "count": 1,
+    "description": "Forje o Foco do Segundo Juramento. Depois escolha seu caminho — só um.",
+    "hint": "Forje o Foco do Segundo Juramento.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 1405,
+    "reward_items": [],
+    "reward_flags": [
+      "juramento:50"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:foco"
+    ]
+  },
+  {
+    "id": "q_spec_vanguarda",
+    "name": "Caminho da Vanguarda",
+    "giver": "mentor_harald",
+    "kind": "defend",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 3,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Vanguarda — proteção e postura (armadura +25%, mais vida). A escolha não volta atrás. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:vanguarda"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "guerreiro",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:quebra_selos",
+    "radius": 6,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_spec_quebra_selos",
+    "name": "Caminho do Quebra-Selos",
+    "giver": "mentor_harald",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Quebra-Selos — impacto e pressão (+12% de dano em tudo). A escolha não volta atrás.",
+    "hint": "Vença o Draugr Campeão (covil central).",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 1195,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:quebra_selos"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "guerreiro",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:vanguarda"
+  },
+  {
+    "id": "q_spec_piromante",
+    "name": "Caminho do Piromante",
+    "giver": "mentor_harald",
+    "kind": "hunt",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Piromante — explosões (+30% de dano da Explosão). A escolha não volta atrás. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:piromante"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "mago",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:tecelao",
+    "radius": 20,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_spec_tecelao",
+    "name": "Caminho do Tecelão Espectral",
+    "giver": "mentor_harald",
+    "kind": "hunt",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Tecelão Espectral — projéteis (+20% de dano de projéteis). A escolha não volta atrás. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:tecelao"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "mago",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:piromante",
+    "radius": 20,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_spec_guardia",
+    "name": "Caminho da Guardiã",
+    "giver": "mentor_harald",
+    "kind": "defend",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 3,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Guardiã — proteção (cura e barreira +30%). A escolha não volta atrás. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:guardia"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "bruxa",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:maldicao",
+    "radius": 6,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_spec_maldicao",
+    "name": "Caminho da Maldição",
+    "giver": "mentor_harald",
+    "kind": "hunt",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Maldição — maldição (+12% de dano; a Aura enfraquece mais). A escolha não volta atrás. (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:maldicao"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "bruxa",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:guardia",
+    "radius": 20,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_spec_atirador",
+    "name": "Caminho do Atirador",
+    "giver": "mentor_harald",
+    "kind": "defend",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 3,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Atirador — precisão (+20% de dano de flechas). A escolha não volta atrás. (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 2390,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:atirador"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "arqueiro",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:sombra",
+    "radius": 6,
+    "map": "coroa_da_geada",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_spec_sombra",
+    "name": "Caminho da Sombra",
+    "giver": "mentor_harald",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Prova pessoal: vença o Draugr Campeão. Ao entregar, você vira Sombra — emboscada (emboscada +50%, Passos Fantasma +2 s). A escolha não volta atrás.",
+    "hint": "Vença o Draugr Campeão (covil central).",
+    "min_level": 50,
+    "reward_xp": 465000,
+    "reward_coins": 1195,
+    "reward_items": [],
+    "reward_flags": [
+      "spec:sombra"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "class": "arqueiro",
+    "requires_flag": "juramento:50",
+    "forbid_flag": "spec:atirador"
+  },
+  {
+    "id": "q_s09",
+    "name": "Plumas na Neve",
+    "giver": "artesa_ilse",
+    "kind": "collect",
+    "targets": [
+      "mat_pluma_neve"
+    ],
+    "count": 3,
+    "description": "Plumas brancas para forrar as asas de neve contra o vento do passo. A Ilse paga em tônicos.",
+    "hint": "Plumas (lobos antigos e harpias).",
+    "min_level": 48,
+    "reward_xp": 214560,
+    "reward_coins": 1395,
+    "reward_items": [
+      "consumable_c05_tonico_forte*5"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false,
+    "requires": "q_m47"
+  },
+  {
+    "id": "q_m49",
+    "name": "Onde a Pedra Ferve",
+    "giver": "mestre_forja",
+    "kind": "visit",
+    "targets": [
+      "passagem_calor"
+    ],
+    "count": 1,
+    "description": "«A leste do refúgio sai uma passagem de calor que não estava ali ontem. Vá ver o que se abriu — e não encoste nas paredes.»",
+    "hint": "Vá à passagem de calor (leste).",
+    "min_level": 48,
+    "reward_xp": 257472,
+    "reward_coins": 665,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false,
+    "map": "mar_de_escoria",
+    "x": 58,
+    "y": 10,
+    "radius": 6
+  },
+  {
+    "id": "q_m50",
+    "name": "Ferro que Não Cede",
+    "giver": "mestre_forja",
+    "kind": "mine",
+    "targets": [
+      "mat_basalto"
+    ],
+    "count": 4,
+    "description": "«Basalto férreo, quatro pedaços. Junto com o ferro de geada vira a liga que aguenta o calor do Mar de Escória.»",
+    "hint": "Minere Basalto Férreo.",
+    "min_level": 49,
+    "reward_xp": 268128,
+    "reward_coins": 1570,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false
+  },
+  {
+    "id": "q_m51",
+    "name": "Caldo de Cinzas",
+    "giver": "cozinheira_brasa",
+    "kind": "craft",
+    "targets": [
+      "rec_caldo"
+    ],
+    "count": 1,
+    "description": "«Cogumelo de cinza e raiz: um caldo que protege do calor por dentro. Cozinhe na panela do refúgio — sem ele, a escória queima até a respiração.»",
+    "hint": "Cozinhe o Caldo de Cinzas.",
+    "min_level": 49,
+    "reward_xp": 268128,
+    "reward_coins": 1365,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "oficio",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:caldo"
+    ]
+  },
+  {
+    "id": "q_m52",
+    "name": "Um Ninho nas Brasas",
+    "giver": "tratador_fenix",
+    "kind": "interact",
+    "targets": [
+      "escoria_ninho"
+    ],
+    "count": 1,
+    "description": "«O ninho da fênix fica numa ilha de rocha a oeste. Vá ver se o ovo ainda pulsa. Se pulsar, a fênix ainda pode voltar.»",
+    "hint": "Encontre o ninho de fênix.",
+    "min_level": 50,
+    "reward_xp": 279000,
+    "reward_coins": 880,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "companheiro",
+    "repeatable": false
+  },
+  {
+    "id": "q_m53",
+    "name": "A Brasa que Renasce",
+    "giver": "tratador_fenix",
+    "kind": "collect",
+    "targets": [
+      "mat_alimento_brasa"
+    ],
+    "count": 1,
+    "description": "Com a brasa de vínculo (Fornalha) e cogumelo, prepare o alimento no caldeirão. A fênix escolhe você.",
+    "hint": "Prepare o Alimento de Brasa.",
+    "min_level": 52,
+    "reward_xp": 502320,
+    "reward_coins": 1260,
+    "reward_items": [],
+    "reward_flags": [
+      "pet:fenix"
+    ],
+    "category": "companheiro",
+    "repeatable": false,
+    "requires": "q_m52",
+    "accept_flags": [
+      "receita:brasa"
+    ]
+  },
+  {
+    "id": "q_m54",
+    "name": "A Liga do Juramento",
+    "giver": "mestre_forja",
+    "kind": "craft",
+    "targets": [
+      "rec_liga_lendaria"
+    ],
+    "count": 1,
+    "description": "Basalto, geada e um fragmento da Fornalha: a liga que reacende relíquias.",
+    "hint": "Forje a Liga Lendária.",
+    "min_level": 52,
+    "reward_xp": 301392,
+    "reward_coins": 1480,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:liga_lendaria"
+    ]
+  },
+  {
+    "id": "q_m55",
+    "name": "O Colosso de Escória",
+    "giver": "mestre_forja",
+    "kind": "boss",
+    "targets": [
+      "monster_escoria_colosso_escoria"
+    ],
+    "count": 1,
+    "description": "«O Colosso de Escória guarda a ponte de corrente para a Acrópole. Ninguém atravessou ainda. Seja o primeiro.»",
+    "hint": "Vença o Colosso de Escória.",
+    "min_level": 54,
+    "reward_xp": 811620,
+    "reward_coins": 5240,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false
+  },
+  {
+    "id": "q_m56",
+    "name": "Caravana Entre Cinzas",
+    "giver": "caravaneira_lu",
+    "kind": "talk",
+    "targets": [
+      "sentinela_acropole"
+    ],
+    "count": 1,
+    "description": "Com a ponte aberta, leve a notícia à Sentinela da Acrópole. A caravana segue você.",
+    "hint": "Fale com a Sentinela (Acrópole).",
+    "min_level": 55,
+    "reward_xp": 336600,
+    "reward_coins": 800,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m55"
+  },
+  {
+    "id": "q_s10",
+    "name": "A Dívida do Ferreiro",
+    "giver": "mestre_forja",
+    "kind": "kill",
+    "targets": [
+      "monster_escoria_ferreiro_corrompido"
+    ],
+    "count": 1,
+    "description": "«O Ferreiro Corrompido, lá na Fornalha, levou o meu molde mais antigo. Sem ele não faço a lâmina que prometi. Traga de volta.»",
+    "hint": "Vença o Ferreiro Corrompido.",
+    "min_level": 53,
+    "reward_xp": 417216,
+    "reward_coins": 1465,
+    "reward_items": [
+      "@classe:weapon_guerreiro_machado_escoria|staff_mago_cajado_escoria|talisma_bruxa_escoria|arco_arqueiro_escoria"
+    ],
+    "reward_flags": [],
+    "category": "opcional",
+    "repeatable": false
+  },
+  {
+    "id": "q_m57",
+    "name": "Juramentos em Ruínas",
+    "giver": "sentinela_acropole",
+    "kind": "hunt",
+    "targets": [
+      "monster_acropole_guardiao_bronze"
+    ],
+    "count": 1,
+    "description": "«Os guardiões de bronze ainda cumprem as ordens de um rei que morreu faz mil anos: não deixar ninguém subir. Seis deles, e a escada é nossa.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 55,
+    "reward_xp": 336600,
+    "reward_coins": 2865,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false,
+    "radius": 20,
+    "map": "acropole_das_cinzas",
+    "x": 1.1,
+    "y": 10.8,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_m58",
+    "name": "Bronze e Memória",
+    "giver": "artesa_acropole",
+    "kind": "craft",
+    "targets": [
+      "rec_chave_bronze"
+    ],
+    "count": 1,
+    "description": "«Bronze antigo e uma memória: com isso faço a chave do Labirinto. Traga o bronze; a memória é você quem tem.»",
+    "hint": "Faça a Chave de Bronze.",
+    "min_level": 56,
+    "reward_xp": 348768,
+    "reward_coins": 1635,
+    "reward_items": [],
+    "reward_flags": [
+      "chave:labirinto"
+    ],
+    "category": "historia",
+    "repeatable": false,
+    "accept_flags": [
+      "receita:chave"
+    ]
+  },
+  {
+    "id": "q_m59",
+    "name": "Três Provas da Acrópole",
+    "giver": "sentinela_acropole",
+    "kind": "hunt",
+    "targets": [
+      "monster_acropole_guardiao_ritual"
+    ],
+    "count": 1,
+    "description": "«O Guardião do Ritual protege o estandarte da Acrópole. Sem o estandarte, o Labirinto não abre. Vença-o.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "min_level": 57,
+    "reward_xp": 601920,
+    "reward_coins": 3080,
+    "reward_items": [
+      "@classe:weapon_guerreiro_espada_acropole|staff_mago_cajado_acropole|talisma_bruxa_acropole|arco_arqueiro_acropole"
+    ],
+    "reward_flags": [],
+    "category": "regiao",
+    "repeatable": false,
+    "radius": 20,
+    "map": "acropole_das_cinzas",
+    "x": 0.0,
+    "y": 14.0,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_m60",
+    "name": "O Minotauro do Juramento",
+    "giver": "sentinela_acropole",
+    "kind": "kill",
+    "targets": [
+      "monster_acropole_minotauro_juramento"
+    ],
+    "count": 1,
+    "description": "«No Labirinto, o Minotauro guarda o atalho para o centro. Ele conhece cada parede. Você só precisa conhecer ele.»",
+    "hint": "Vença o Minotauro do Juramento.",
+    "min_level": 58,
+    "reward_xp": 747504,
+    "reward_coins": 1575,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m58"
+  },
+  {
+    "id": "q_m61",
+    "name": "A Quimera de Bronze",
+    "giver": "sentinela_acropole",
+    "kind": "boss",
+    "targets": [
+      "monster_acropole_quimera_bronze"
+    ],
+    "count": 1,
+    "description": "«No fim do Labirinto espera a Quimera de Bronze, a última guardiã do juramento. É o fim da estrada — e o começo da lenda.»",
+    "hint": "Vença a Quimera de Bronze.",
+    "min_level": 59,
+    "reward_xp": 1288560,
+    "reward_coins": 5625,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m60"
+  },
+  {
+    "id": "q_m62",
+    "name": "Relíquia Reacesa",
+    "giver": "ferreiro_bras",
+    "kind": "collect",
+    "targets": [
+      "mat_nucleo_superior"
+    ],
+    "count": 1,
+    "description": "Traga o Núcleo Superior: reacendo a sua relíquia (a nova substitui a antiga).",
+    "hint": "Leve o Núcleo Superior ao Brás (Porto).",
+    "min_level": 59,
+    "reward_xp": 966420,
+    "reward_coins": 1495,
+    "reward_items": [
+      "@classe:legend_espada_sino_reacesa|legend_cajado_vozes_reaceso|legend_talisma_reaceso|legend_arco_sino_reaceso"
+    ],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m61"
+  },
+  {
+    "id": "q_m63",
+    "name": "Um Lar Depois da Guerra",
+    "giver": "agricultora_rosa",
+    "kind": "collect",
+    "targets": [
+      "mat_liga_lendaria"
+    ],
+    "count": 1,
+    "description": "«Uma liga lendária vira a ferragem do baú grande da sua casa. Traga uma — e nunca mais falta espaço para guardar tesouro.»",
+    "hint": "Leve uma Liga Lendária à Rosa.",
+    "min_level": 52,
+    "reward_xp": 251160,
+    "reward_coins": 1260,
+    "reward_items": [],
+    "reward_flags": [
+      "casa:bau48"
+    ],
+    "category": "casa",
+    "repeatable": false,
+    "requires_flag": "casa:propria"
+  },
+  {
+    "id": "q_m64",
+    "name": "O Horizonte Ainda Chama",
+    "giver": "capita_ondina",
+    "kind": "visit",
+    "targets": [
+      "praca"
+    ],
+    "count": 1,
+    "description": "Volte à praça do Porto e registre seus feitos. O mundo além da Acrópole ainda não foi mapeado.",
+    "hint": "Volte à praça do Porto.",
+    "min_level": 60,
+    "reward_xp": 666000,
+    "reward_coins": 900,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "historia",
+    "repeatable": false,
+    "requires": "q_m61",
+    "map": "porto_das_cinzas",
+    "x": 0,
+    "y": 2,
+    "radius": 5
+  },
+  {
+    "id": "q_ct_mata_caca",
+    "name": "Contrato: Patrulha (Mata dos Enforcados)",
+    "giver": "quadro_mata",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_lobo_cinzento",
+      "monster_mata_saqueador_mata"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Lobo Cinzento e Saqueador da Mata.",
+    "hint": "Contrato de caça.",
+    "min_level": 18,
+    "reward_xp": 14280,
+    "reward_coins": 450,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_mata_veio",
+    "name": "Contrato: Minério (Mata dos Enforcados)",
+    "giver": "quadro_mata",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_raso"
+    ],
+    "count": 4,
+    "description": "Minere 4 Ferro Raso.",
+    "hint": "Contrato de mineração.",
+    "min_level": 17,
+    "reward_xp": 11424,
+    "reward_coins": 265,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_mata_elite",
+    "name": "Contrato: Javali Ancião",
+    "giver": "quadro_mata",
+    "kind": "kill",
+    "targets": [
+      "monster_mata_javali_anciao"
+    ],
+    "count": 1,
+    "description": "Vença o Javali Ancião do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 19,
+    "reward_xp": 25488,
+    "reward_coins": 240,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_mata_cozinha",
+    "name": "Contrato: Suprimentos (Mata dos Enforcados)",
+    "giver": "quadro_mata",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 17,
+    "reward_xp": 11424,
+    "reward_coins": 230,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_canions_caca",
+    "name": "Contrato: Patrulha (Cânions dos Suplicantes)",
+    "giver": "quadro_canion",
+    "kind": "kill",
+    "targets": [
+      "monster_canions_escorpiao",
+      "monster_canions_troll"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Escorpião das Fendas e Troll das Fendas.",
+    "hint": "Contrato de caça.",
+    "min_level": 25,
+    "reward_xp": 19500,
+    "reward_coins": 705,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_canions_veio",
+    "name": "Contrato: Minério (Cânions dos Suplicantes)",
+    "giver": "quadro_canion",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_eco"
+    ],
+    "count": 4,
+    "description": "Minere 4 Ferro de Eco.",
+    "hint": "Contrato de mineração.",
+    "min_level": 20,
+    "reward_xp": 15600,
+    "reward_coins": 315,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_canions_elite",
+    "name": "Contrato: Escorpião-Rei",
+    "giver": "quadro_canion",
+    "kind": "kill",
+    "targets": [
+      "monster_canions_escorpiao_rei"
+    ],
+    "count": 1,
+    "description": "Vença o Escorpião-Rei do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 28,
+    "reward_xp": 34272,
+    "reward_coins": 370,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_canions_cozinha",
+    "name": "Contrato: Suprimentos (Cânions dos Suplicantes)",
+    "giver": "quadro_canion",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 20,
+    "reward_xp": 15600,
+    "reward_coins": 275,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_brejo_caca",
+    "name": "Contrato: Patrulha (Brejo da Viúva)",
+    "giver": "quadro_brejo",
+    "kind": "kill",
+    "targets": [
+      "monster_brejo_sapo",
+      "monster_brejo_tecela"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Sapo do Lodo e Tecelã do Brejo.",
+    "hint": "Contrato de caça.",
+    "min_level": 32,
+    "reward_xp": 37380,
+    "reward_coins": 895,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_brejo_veio",
+    "name": "Contrato: Minério (Brejo da Viúva)",
+    "giver": "quadro_brejo",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_eco"
+    ],
+    "count": 4,
+    "description": "Minere 4 Ferro de Eco.",
+    "hint": "Contrato de mineração.",
+    "min_level": 28,
+    "reward_xp": 29904,
+    "reward_coins": 465,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_brejo_elite",
+    "name": "Contrato: Basilisco",
+    "giver": "quadro_brejo",
+    "kind": "kill",
+    "targets": [
+      "monster_brejo_basilisco"
+    ],
+    "count": 1,
+    "description": "Vença o Basilisco do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 34,
+    "reward_xp": 64032,
+    "reward_coins": 465,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_brejo_cozinha",
+    "name": "Contrato: Suprimentos (Brejo da Viúva)",
+    "giver": "quadro_brejo",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 28,
+    "reward_xp": 29904,
+    "reward_coins": 405,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_vespera_caca",
+    "name": "Contrato: Patrulha (Véspera)",
+    "giver": "quadro_vespera",
+    "kind": "kill",
+    "targets": [
+      "monster_vespera_afogado",
+      "monster_vespera_necromante"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Afogado e Necromante.",
+    "hint": "Contrato de caça.",
+    "min_level": 39,
+    "reward_xp": 54570,
+    "reward_coins": 1170,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_vespera_veio",
+    "name": "Contrato: Minério (Véspera)",
+    "giver": "quadro_vespera",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_eco"
+    ],
+    "count": 4,
+    "description": "Minere 4 Ferro de Eco.",
+    "hint": "Contrato de mineração.",
+    "min_level": 34,
+    "reward_xp": 43656,
+    "reward_coins": 590,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_vespera_elite",
+    "name": "Contrato: Cavaleiro Sem Rosto",
+    "giver": "quadro_vespera",
+    "kind": "kill",
+    "targets": [
+      "monster_vespera_cavaleiro_sem_rosto"
+    ],
+    "count": 1,
+    "description": "Vença o Cavaleiro Sem Rosto do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 42,
+    "reward_xp": 92400,
+    "reward_coins": 605,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_vespera_cozinha",
+    "name": "Contrato: Suprimentos (Véspera)",
+    "giver": "quadro_vespera",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 34,
+    "reward_xp": 43656,
+    "reward_coins": 510,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_geada_caca",
+    "name": "Contrato: Patrulha (Coroa da Geada)",
+    "giver": "quadro_geada",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_lobo_gelo",
+      "monster_geada_gigante"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Lobo de Gelo e Gigante da Neve.",
+    "hint": "Contrato de caça.",
+    "min_level": 46,
+    "reward_xp": 82530,
+    "reward_coins": 1435,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_geada_veio",
+    "name": "Contrato: Minério (Coroa da Geada)",
+    "giver": "quadro_geada",
+    "kind": "mine",
+    "targets": [
+      "mat_ferro_geada"
+    ],
+    "count": 4,
+    "description": "Minere 4 Ferro de Geada.",
+    "hint": "Contrato de mineração.",
+    "min_level": 42,
+    "reward_xp": 66024,
+    "reward_coins": 770,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_geada_elite",
+    "name": "Contrato: Draugr Campeão",
+    "giver": "quadro_geada",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_draugr_campeao"
+    ],
+    "count": 1,
+    "description": "Vença o Draugr Campeão do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 48,
+    "reward_xp": 138288,
+    "reward_coins": 715,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_geada_cozinha",
+    "name": "Contrato: Suprimentos (Coroa da Geada)",
+    "giver": "quadro_geada",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 42,
+    "reward_xp": 66024,
+    "reward_coins": 670,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_escoria_caca",
+    "name": "Contrato: Patrulha (Mar de Escória)",
+    "giver": "quadro_escoria",
+    "kind": "kill",
+    "targets": [
+      "monster_escoria_besouro_brasa",
+      "monster_escoria_golem"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Besouro de Brasa e Golem de Basalto.",
+    "hint": "Contrato de caça.",
+    "min_level": 52,
+    "reward_xp": 107280,
+    "reward_coins": 1675,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_escoria_veio",
+    "name": "Contrato: Minério (Mar de Escória)",
+    "giver": "quadro_escoria",
+    "kind": "mine",
+    "targets": [
+      "mat_basalto"
+    ],
+    "count": 4,
+    "description": "Minere 4 Basalto Férreo.",
+    "hint": "Contrato de mineração.",
+    "min_level": 48,
+    "reward_xp": 85824,
+    "reward_coins": 915,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_escoria_elite",
+    "name": "Contrato: Ferreiro de Brasa",
+    "giver": "quadro_escoria",
+    "kind": "kill",
+    "targets": [
+      "monster_escoria_ferreiro_brasa"
+    ],
+    "count": 1,
+    "description": "Vença o Ferreiro de Brasa do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 53,
+    "reward_xp": 178752,
+    "reward_coins": 820,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_escoria_cozinha",
+    "name": "Contrato: Suprimentos (Mar de Escória)",
+    "giver": "quadro_escoria",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 48,
+    "reward_xp": 85824,
+    "reward_coins": 800,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_acropole_caca",
+    "name": "Contrato: Patrulha (Acrópole das Cinzas)",
+    "giver": "quadro_acropole",
+    "kind": "kill",
+    "targets": [
+      "monster_acropole_guardiao_bronze",
+      "monster_acropole_minotauro_jovem"
+    ],
+    "count": 8,
+    "description": "Elimine 8 entre Guardião de Bronze e Minotauro Jovem.",
+    "hint": "Contrato de caça.",
+    "min_level": 57,
+    "reward_xp": 140250,
+    "reward_coins": 1845,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_acropole_veio",
+    "name": "Contrato: Minério (Acrópole das Cinzas)",
+    "giver": "quadro_acropole",
+    "kind": "mine",
+    "targets": [
+      "mat_bronze"
+    ],
+    "count": 4,
+    "description": "Minere 4 Bronze Antigo.",
+    "hint": "Contrato de mineração.",
+    "min_level": 55,
+    "reward_xp": 112200,
+    "reward_coins": 1100,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_acropole_elite",
+    "name": "Contrato: Guardião do Ritual",
+    "giver": "quadro_acropole",
+    "kind": "kill",
+    "targets": [
+      "monster_acropole_guardiao_ritual"
+    ],
+    "count": 1,
+    "description": "Vença o Guardião do Ritual do covil central.",
+    "hint": "Contrato de elite.",
+    "min_level": 58,
+    "reward_xp": 232512,
+    "reward_coins": 925,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  },
+  {
+    "id": "q_ct_acropole_cozinha",
+    "name": "Contrato: Suprimentos (Acrópole das Cinzas)",
+    "giver": "quadro_acropole",
+    "kind": "craft",
+    "targets": [
+      "consumable_c01_tonico_fraco",
+      "consumable_c03_frasco_mana",
+      "consumable_c06_ataduras",
+      "food_ensopado_vigilia"
+    ],
+    "count": 2,
+    "description": "Prepare 2 suprimentos (tônico, frasco de mana, ataduras ou ensopado).",
+    "hint": "Contrato de preparo.",
+    "min_level": 55,
+    "reward_xp": 112200,
+    "reward_coins": 960,
+    "reward_items": [],
+    "reward_flags": [],
+    "category": "contrato",
+    "repeatable": true
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "guerreiro",
+    "display_name": "Guerreiro",
+    "primary_attribute": "strength",
+    "resource": "folego",
+    "resource_max": 100,
+    "resource_regen_combat": 0,
+    "resource_regen_idle": 0,
+    "description": "Corpo a corpo com espada e escudo. Aguenta pancada, quebra a postura do inimigo com o Golpe de Cunha e bloqueia de frente com a Guarda.",
+    "resource_name": "Fúria",
+    "starting_primary": 10,
+    "starting_vigor": 10,
+    "starter_equipment": [],
+    "loadout": {
+      "basic": "skill_guerreiro_corte",
+      "skill1": "skill_guerreiro_golpe_de_cunha",
+      "skill2": "skill_guerreiro_guarda_de_escudo"
+    },
+    "starting_level": 1,
+    "unarmed_basic": "skill_guerreiro_soco",
+    "primary_name": "Força",
+    "evolved_name": "Campeão",
+    "evolution_flag": "evo:campeao",
+    "evolution_skill": "skill_campeao_investida"
+  },
+  {
+    "id": "mago",
+    "display_name": "Mago",
+    "primary_attribute": "attunement",
+    "resource": "mana",
+    "resource_max": 100,
+    "resource_regen_combat": 2.5,
+    "resource_regen_idle": 5,
+    "description": "Ataca à distância com setas de brasa, explode áreas com cinzas e escapa com o Passo Etéreo. Frágil de perto.",
+    "resource_name": "Mana",
+    "starting_primary": 12,
+    "starting_vigor": 7,
+    "starter_equipment": [],
+    "loadout": {
+      "basic": "skill_mago_seta_de_brasa",
+      "skill1": "skill_mago_explosao_de_cinzas",
+      "skill2": "skill_mago_passo_etereo"
+    },
+    "starting_level": 1,
+    "unarmed_basic": "skill_mago_faisca",
+    "primary_name": "Sintonia",
+    "evolved_name": "Arcanista",
+    "evolution_flag": "evo:arcanista",
+    "evolution_skill": "skill_arcanista_lanca"
+  }
+]

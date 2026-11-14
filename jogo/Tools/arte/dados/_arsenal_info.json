@@ -1,0 +1,828 @@
+{
+ "arma_faca_enferrujada": {
+  "asset_id": "arma_faca_enferrujada",
+  "nome": "Faquinha Enferrujada",
+  "tipo": "faca",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.079,
+   0.04,
+   0.363
+  ]
+ },
+ "arma_faca_comum": {
+  "asset_id": "arma_faca_comum",
+  "nome": "Faquinha Comum",
+  "tipo": "faca",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.079,
+   0.04,
+   0.363
+  ]
+ },
+ "arma_faca_refinada": {
+  "asset_id": "arma_faca_refinada",
+  "nome": "Faquinha Refinada",
+  "tipo": "faca",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.079,
+   0.04,
+   0.363
+  ]
+ },
+ "arma_faca_excelente": {
+  "asset_id": "arma_faca_excelente",
+  "nome": "Faquinha Excelente",
+  "tipo": "faca",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3670,
+  "dims_m": [
+   0.079,
+   1.0,
+   0.363
+  ]
+ },
+ "arma_adaga_enferrujada": {
+  "asset_id": "arma_adaga_enferrujada",
+  "nome": "Adaga Enferrujada",
+  "tipo": "adaga",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.144,
+   0.042,
+   0.461
+  ]
+ },
+ "arma_adaga_comum": {
+  "asset_id": "arma_adaga_comum",
+  "nome": "Adaga Comum",
+  "tipo": "adaga",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.164,
+   0.042,
+   0.461
+  ]
+ },
+ "arma_adaga_refinada": {
+  "asset_id": "arma_adaga_refinada",
+  "nome": "Adaga Refinada",
+  "tipo": "adaga",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.184,
+   0.042,
+   0.461
+  ]
+ },
+ "arma_adaga_excelente": {
+  "asset_id": "arma_adaga_excelente",
+  "nome": "Adaga Excelente",
+  "tipo": "adaga",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3746,
+  "dims_m": [
+   0.204,
+   1.003,
+   0.461
+  ]
+ },
+ "arma_espada_curta_enferrujada": {
+  "asset_id": "arma_espada_curta_enferrujada",
+  "nome": "Espada Curta Enferrujada",
+  "tipo": "espada",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.231,
+   0.052,
+   0.873
+  ]
+ },
+ "arma_espada_curta_comum": {
+  "asset_id": "arma_espada_curta_comum",
+  "nome": "Espada Curta Comum",
+  "tipo": "espada",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.261,
+   0.052,
+   0.873
+  ]
+ },
+ "arma_espada_curta_refinada": {
+  "asset_id": "arma_espada_curta_refinada",
+  "nome": "Espada Curta Refinada",
+  "tipo": "espada",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.291,
+   0.052,
+   0.873
+  ]
+ },
+ "arma_espada_curta_excelente": {
+  "asset_id": "arma_espada_curta_excelente",
+  "nome": "Espada Curta Excelente",
+  "tipo": "espada",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3746,
+  "dims_m": [
+   0.321,
+   1.004,
+   0.873
+  ]
+ },
+ "arma_espada_longa_enferrujada": {
+  "asset_id": "arma_espada_longa_enferrujada",
+  "nome": "Espada Longa Enferrujada",
+  "tipo": "espada",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.296,
+   0.06,
+   1.238
+  ]
+ },
+ "arma_espada_longa_comum": {
+  "asset_id": "arma_espada_longa_comum",
+  "nome": "Espada Longa Comum",
+  "tipo": "espada",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.336,
+   0.06,
+   1.238
+  ]
+ },
+ "arma_espada_longa_refinada": {
+  "asset_id": "arma_espada_longa_refinada",
+  "nome": "Espada Longa Refinada",
+  "tipo": "espada",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.376,
+   0.06,
+   1.238
+  ]
+ },
+ "arma_espada_longa_excelente": {
+  "asset_id": "arma_espada_longa_excelente",
+  "nome": "Espada Longa Excelente",
+  "tipo": "espada",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "duas mãos",
+  "tris": 3746,
+  "dims_m": [
+   0.416,
+   1.005,
+   1.238
+  ]
+ },
+ "arma_katana_enferrujada": {
+  "asset_id": "arma_katana_enferrujada",
+  "nome": "Katana Enferrujada",
+  "tipo": "katana",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "duas mãos",
+  "tris": 3499,
+  "dims_m": [
+   0.117,
+   0.077,
+   1.037
+  ]
+ },
+ "arma_katana_comum": {
+  "asset_id": "arma_katana_comum",
+  "nome": "Katana Comum",
+  "tipo": "katana",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "duas mãos",
+  "tris": 3499,
+  "dims_m": [
+   0.117,
+   0.077,
+   1.037
+  ]
+ },
+ "arma_katana_refinada": {
+  "asset_id": "arma_katana_refinada",
+  "nome": "Katana Refinada",
+  "tipo": "katana",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "duas mãos",
+  "tris": 3499,
+  "dims_m": [
+   0.117,
+   0.077,
+   1.037
+  ]
+ },
+ "arma_katana_excelente": {
+  "asset_id": "arma_katana_excelente",
+  "nome": "Katana Excelente",
+  "tipo": "katana",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "duas mãos",
+  "tris": 3591,
+  "dims_m": [
+   0.117,
+   0.077,
+   1.037
+  ]
+ },
+ "arma_clava_enferrujada": {
+  "asset_id": "arma_clava_enferrujada",
+  "nome": "Clava Enferrujada",
+  "tipo": "clava",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.124,
+   0.123,
+   0.771
+  ]
+ },
+ "arma_clava_comum": {
+  "asset_id": "arma_clava_comum",
+  "nome": "Clava Comum",
+  "tipo": "clava",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.125,
+   0.13,
+   0.771
+  ]
+ },
+ "arma_clava_refinada": {
+  "asset_id": "arma_clava_refinada",
+  "nome": "Clava Refinada",
+  "tipo": "clava",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.221,
+   0.205,
+   0.771
+  ]
+ },
+ "arma_clava_excelente": {
+  "asset_id": "arma_clava_excelente",
+  "nome": "Clava Excelente",
+  "tipo": "clava",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.216,
+   0.213,
+   0.806
+  ]
+ },
+ "arma_maca_enferrujada": {
+  "asset_id": "arma_maca_enferrujada",
+  "nome": "Maça de Aletas Enferrujada",
+  "tipo": "maca",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.169,
+   0.156,
+   0.799
+  ]
+ },
+ "arma_maca_comum": {
+  "asset_id": "arma_maca_comum",
+  "nome": "Maça de Aletas Comum",
+  "tipo": "maca",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.169,
+   0.156,
+   0.799
+  ]
+ },
+ "arma_maca_refinada": {
+  "asset_id": "arma_maca_refinada",
+  "nome": "Maça de Aletas Refinada",
+  "tipo": "maca",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.169,
+   0.169,
+   0.799
+  ]
+ },
+ "arma_maca_excelente": {
+  "asset_id": "arma_maca_excelente",
+  "nome": "Maça de Aletas Excelente",
+  "tipo": "maca",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3576,
+  "dims_m": [
+   0.169,
+   1.0,
+   0.799
+  ]
+ },
+ "arma_machado_mao_enferrujada": {
+  "asset_id": "arma_machado_mao_enferrujada",
+  "nome": "Machadinha Enferrujada",
+  "tipo": "machado",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.185,
+   0.05,
+   0.678
+  ]
+ },
+ "arma_machado_mao_comum": {
+  "asset_id": "arma_machado_mao_comum",
+  "nome": "Machadinha Comum",
+  "tipo": "machado",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.185,
+   0.05,
+   0.678
+  ]
+ },
+ "arma_machado_mao_refinada": {
+  "asset_id": "arma_machado_mao_refinada",
+  "nome": "Machadinha Refinada",
+  "tipo": "machado",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "uma mão",
+  "tris": 3498,
+  "dims_m": [
+   0.254,
+   0.05,
+   0.678
+  ]
+ },
+ "arma_machado_mao_excelente": {
+  "asset_id": "arma_machado_mao_excelente",
+  "nome": "Machadinha Excelente",
+  "tipo": "machado",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "uma mão",
+  "tris": 3554,
+  "dims_m": [
+   0.254,
+   0.05,
+   0.678
+  ]
+ },
+ "arma_machado_guerra_enferrujada": {
+  "asset_id": "arma_machado_guerra_enferrujada",
+  "nome": "Machado de Guerra Enferrujada",
+  "tipo": "machado",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "duas mãos",
+  "tris": 3500,
+  "dims_m": [
+   0.325,
+   0.07,
+   1.351
+  ]
+ },
+ "arma_machado_guerra_comum": {
+  "asset_id": "arma_machado_guerra_comum",
+  "nome": "Machado de Guerra Comum",
+  "tipo": "machado",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "duas mãos",
+  "tris": 3500,
+  "dims_m": [
+   0.325,
+   0.07,
+   1.351
+  ]
+ },
+ "arma_machado_guerra_refinada": {
+  "asset_id": "arma_machado_guerra_refinada",
+  "nome": "Machado de Guerra Refinada",
+  "tipo": "machado",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "duas mãos",
+  "tris": 3500,
+  "dims_m": [
+   0.58,
+   0.07,
+   1.351
+  ]
+ },
+ "arma_machado_guerra_excelente": {
+  "asset_id": "arma_machado_guerra_excelente",
+  "nome": "Machado de Guerra Excelente",
+  "tipo": "machado",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "duas mãos",
+  "tris": 3578,
+  "dims_m": [
+   0.58,
+   1.0,
+   1.351
+  ]
+ },
+ "arma_lanca_enferrujada": {
+  "asset_id": "arma_lanca_enferrujada",
+  "nome": "Lança Enferrujada",
+  "tipo": "lanca",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.06,
+   0.05,
+   2.162
+  ]
+ },
+ "arma_lanca_comum": {
+  "asset_id": "arma_lanca_comum",
+  "nome": "Lança Comum",
+  "tipo": "lanca",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.06,
+   0.05,
+   2.162
+  ]
+ },
+ "arma_lanca_refinada": {
+  "asset_id": "arma_lanca_refinada",
+  "nome": "Lança Refinada",
+  "tipo": "lanca",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "duas mãos",
+  "tris": 3498,
+  "dims_m": [
+   0.154,
+   0.05,
+   2.162
+  ]
+ },
+ "arma_lanca_excelente": {
+  "asset_id": "arma_lanca_excelente",
+  "nome": "Lança Excelente",
+  "tipo": "lanca",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "duas mãos",
+  "tris": 3590,
+  "dims_m": [
+   0.165,
+   0.05,
+   2.162
+  ]
+ },
+ "arma_arco_curto_enferrujada": {
+  "asset_id": "arma_arco_curto_enferrujada",
+  "nome": "Arco Curto Enferrujada",
+  "tipo": "arco",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.197,
+   1.163
+  ]
+ },
+ "arma_arco_curto_comum": {
+  "asset_id": "arma_arco_curto_comum",
+  "nome": "Arco Curto Comum",
+  "tipo": "arco",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.197,
+   1.163
+  ]
+ },
+ "arma_arco_curto_refinada": {
+  "asset_id": "arma_arco_curto_refinada",
+  "nome": "Arco Curto Refinada",
+  "tipo": "arco",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.232,
+   1.164
+  ]
+ },
+ "arma_arco_curto_excelente": {
+  "asset_id": "arma_arco_curto_excelente",
+  "nome": "Arco Curto Excelente",
+  "tipo": "arco",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "mão esquerda",
+  "tris": 3650,
+  "dims_m": [
+   0.061,
+   1.0,
+   1.164
+  ]
+ },
+ "arma_arco_longo_enferrujada": {
+  "asset_id": "arma_arco_longo_enferrujada",
+  "nome": "Arco Longo Enferrujada",
+  "tipo": "arco",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.197,
+   1.413
+  ]
+ },
+ "arma_arco_longo_comum": {
+  "asset_id": "arma_arco_longo_comum",
+  "nome": "Arco Longo Comum",
+  "tipo": "arco",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.197,
+   1.413
+  ]
+ },
+ "arma_arco_longo_refinada": {
+  "asset_id": "arma_arco_longo_refinada",
+  "nome": "Arco Longo Refinada",
+  "tipo": "arco",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "mão esquerda",
+  "tris": 3500,
+  "dims_m": [
+   0.061,
+   0.232,
+   1.414
+  ]
+ },
+ "arma_arco_longo_excelente": {
+  "asset_id": "arma_arco_longo_excelente",
+  "nome": "Arco Longo Excelente",
+  "tipo": "arco",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "mão esquerda",
+  "tris": 3650,
+  "dims_m": [
+   0.061,
+   1.0,
+   1.414
+  ]
+ },
+ "arma_graveto": {
+  "asset_id": "arma_graveto",
+  "nome": "Graveto",
+  "tipo": "clava",
+  "qualidade": "Enferrujada",
+  "nivel_sugerido": "1–5",
+  "empunhadura": "uma mão",
+  "tris": 1016,
+  "dims_m": [
+   0.129,
+   0.076,
+   0.844
+  ]
+ },
+ "arma_graveto_pregos": {
+  "asset_id": "arma_graveto_pregos",
+  "nome": "Graveto com Pregos",
+  "tipo": "clava",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "uma mão",
+  "tris": 3500,
+  "dims_m": [
+   0.129,
+   0.093,
+   0.844
+  ]
+ },
+ "arma_aljava_comum": {
+  "asset_id": "arma_aljava_comum",
+  "nome": "Aljava Comum",
+  "tipo": "aljava",
+  "qualidade": "Comum",
+  "nivel_sugerido": "5–15",
+  "empunhadura": "costas",
+  "tris": 836,
+  "dims_m": [
+   0.15,
+   0.176,
+   0.666
+  ]
+ },
+ "arma_aljava_refinada": {
+  "asset_id": "arma_aljava_refinada",
+  "nome": "Aljava Refinada",
+  "tipo": "aljava",
+  "qualidade": "Refinada",
+  "nivel_sugerido": "15–30",
+  "empunhadura": "costas",
+  "tris": 920,
+  "dims_m": [
+   0.15,
+   0.176,
+   0.652
+  ]
+ },
+ "arma_aljava_excelente": {
+  "asset_id": "arma_aljava_excelente",
+  "nome": "Aljava Excelente",
+  "tipo": "aljava",
+  "qualidade": "Excelente",
+  "nivel_sugerido": "30+",
+  "empunhadura": "costas",
+  "tris": 1082,
+  "dims_m": [
+   0.15,
+   1.0,
+   0.665
+  ]
+ },
+ "arma_varinha_bruxa_n1": {
+  "asset_id": "arma_varinha_bruxa_n1",
+  "nome": "Varinha de Galho",
+  "tipo": "varinha",
+  "qualidade": "Nível 1",
+  "nivel_sugerido": "1–10",
+  "empunhadura": "uma mão (Bruxa)",
+  "tris": 3522,
+  "dims_m": [
+   0.035,
+   0.029,
+   0.479
+  ]
+ },
+ "arma_talisma_bruxa_n1": {
+  "asset_id": "arma_talisma_bruxa_n1",
+  "nome": "Talismã de Dente",
+  "tipo": "talisma",
+  "qualidade": "Nível 1",
+  "nivel_sugerido": "1–10",
+  "empunhadura": "mão esquerda (Bruxa)",
+  "tris": 3500,
+  "dims_m": [
+   0.05,
+   0.039,
+   0.299
+  ]
+ },
+ "arma_varinha_bruxa_n2": {
+  "asset_id": "arma_varinha_bruxa_n2",
+  "nome": "Varinha de Osso Entalhado",
+  "tipo": "varinha",
+  "qualidade": "Nível 2",
+  "nivel_sugerido": "10–25",
+  "empunhadura": "uma mão (Bruxa)",
+  "tris": 352,
+  "dims_m": [
+   0.049,
+   0.057,
+   0.489
+  ]
+ },
+ "arma_talisma_bruxa_n2": {
+  "asset_id": "arma_talisma_bruxa_n2",
+  "nome": "Talismã da Lua Prateada",
+  "tipo": "talisma",
+  "qualidade": "Nível 2",
+  "nivel_sugerido": "10–25",
+  "empunhadura": "mão esquerda (Bruxa)",
+  "tris": 3596,
+  "dims_m": [
+   0.104,
+   1.0,
+   0.28
+  ]
+ },
+ "arma_varinha_bruxa_n3": {
+  "asset_id": "arma_varinha_bruxa_n3",
+  "nome": "Varinha do Cristal Flutuante",
+  "tipo": "varinha",
+  "qualidade": "Nível 3",
+  "nivel_sugerido": "25+",
+  "empunhadura": "uma mão (Bruxa)",
+  "tris": 3582,
+  "dims_m": [
+   0.094,
+   0.097,
+   0.501
+  ]
+ },
+ "arma_talisma_bruxa_n3": {
+  "asset_id": "arma_talisma_bruxa_n3",
+  "nome": "Talismã do Olho Carmesim",
+  "tipo": "talisma",
+  "qualidade": "Nível 3",
+  "nivel_sugerido": "25+",
+  "empunhadura": "mão esquerda (Bruxa)",
+  "tris": 3576,
+  "dims_m": [
+   0.152,
+   1.0,
+   0.277
+  ]
+ }
+}

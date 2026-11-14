@@ -1,0 +1,25 @@
+{
+ "asset_id": "movel_balcao",
+ "nome": "Balcão de taverna (canecas e barril com torneira)",
+ "colisao": [
+  {
+   "caixa_m": [
+    2.8,
+    0.75
+   ]
+  }
+ ],
+ "luz": null,
+ "notas": "o taverneiro fica atrás (+Y aqui = -Z do Godot)",
+ "posicao_no_conjunto_godot": [
+  0.05,
+  0.0,
+  0.02
+ ],
+ "tris": 5716,
+ "dims_m": [
+  2.9,
+  0.76,
+  1.59
+ ]
+}

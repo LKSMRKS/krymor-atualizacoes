@@ -1,0 +1,13 @@
+{
+ "nome": "Gargulito de Estalagmite",
+ "altura_m": 1.1,
+ "corpo": "manequim_masc reforçado leve, em pedra",
+ "notas": "chifres de estalagmite, asinhas de pedra (não voa), rabo, olhos vermelhos brilhando. Usa os clipes do manequim",
+ "asset_id": "mo_gargulito",
+ "tris": 37233,
+ "clips": [
+  "Idle",
+  "Running",
+  "Walking"
+ ]
+}

@@ -1,0 +1,141 @@
+{
+  "id": "consultorio_arcanjo",
+  "display_name": "Consultório do Doutor Arcanjo",
+  "half_size": 6,
+  "spawn_x": 0,
+  "spawn_y": 3.4,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "casarao",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": 7.0,
+  "exit_y": 18.549999999999997,
+  "zones": [
+    {
+      "id": "sala",
+      "name": "Consultório do Doutor Arcanjo",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 12
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": -5.5,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": 5.5,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": -5.5,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 5.5,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.8
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "waypoints": [],
+  "checkpoints": [],
+  "objects": [
+    {
+      "id": "porta_consultorio_arcanjo_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 4.4,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:consultorio_arcanjo_saida"
+    }
+  ],
+  "props": [
+    {
+      "kind": "cadeira_dentista",
+      "x": 1.6,
+      "y": -2.6,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_prateleira",
+      "x": -4.8,
+      "y": -2.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_mesa",
+      "x": -2.6,
+      "y": -3.4,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 4.2,
+      "y": -4.2,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": 1.6,
+      "yaw": 0
+    }
+  ],
+  "npcs": [
+    {
+      "id": "oficio_dentista_porto",
+      "name": "Doutor Arcanjo, o Dentista",
+      "role": "aldeao",
+      "x": 0.0,
+      "y": -3.2,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "Abre a boca... hmm. Quem mastiga carne de caranguejo de cal assim? Volte em seis meses."
+    }
+  ],
+  "portals": [
+    {
+      "id": "consultorio_arcanjo_saida",
+      "x": 0,
+      "y": 4.4,
+      "radius": 1.2,
+      "to_map": "porto_das_cinzas",
+      "to_x": 7.0,
+      "to_y": 17.15,
+      "label": "Rua",
+      "por_porta": true
+    }
+  ]
+}

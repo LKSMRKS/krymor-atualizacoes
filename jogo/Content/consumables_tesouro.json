@@ -1,0 +1,14 @@
+[
+  {
+    "id": "mapa_tesouro",
+    "display_name": "Mapa do Tesouro",
+    "heal_percent_max_health": 0,
+    "heal_duration_ms": 0,
+    "cooldown_group": "mapa",
+    "cooldown_ms": 1000,
+    "stack_limit": 10,
+    "price": 250,
+    "min_level": 1,
+    "summary": "Pergaminho velho com um X. Use para revelar o lugar (um mapa aberto da sua faixa); chegue até lá e o tesouro sai do chão: Caixa das Cinzas, joias e moedas. Cai de monstros (elites e raros caem mais)."
+  }
+]

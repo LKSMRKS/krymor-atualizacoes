@@ -1,0 +1,179 @@
+{
+  "id": "casa_pequena",
+  "display_name": "Casa de Morador",
+  "half_size": 7,
+  "spawn_x": 0,
+  "spawn_y": 3.5,
+  "safe_radius": 20,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "casarao",
+  "instanced": true,
+  "instance_scope": "personal",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": 0,
+  "exit_y": 10,
+  "zones": [
+    {
+      "id": "casa",
+      "name": "Casa de Morador",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 12
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": -6,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": 6,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": -6,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.6
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 6,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.6
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "waypoints": [],
+  "checkpoints": [],
+  "objects": [
+    {
+      "id": "porta_casa_pequena_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 5.2,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:casa_pequena_saida"
+    }
+  ],
+  "props": [
+    {
+      "kind": "movel_lareira",
+      "x": 1.8,
+      "y": -5.2,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": -1.5,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_mesa",
+      "x": 0,
+      "y": -1.5,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": -1.2,
+      "y": -1.5,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": 1.2,
+      "y": -1.5,
+      "yaw": -90
+    },
+    {
+      "kind": "movel_cama",
+      "x": 4.4,
+      "y": 2.8,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_prateleira",
+      "x": -5.2,
+      "y": -2.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_caixas",
+      "x": -4.4,
+      "y": 4.2,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_banqueta",
+      "x": 3.0,
+      "y": -3.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -4.6,
+      "y": -4.6,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": -5.0,
+      "y": 0.8,
+      "yaw": 30
+    }
+  ],
+  "portals": [
+    {
+      "id": "casa_pequena_saida",
+      "x": 0,
+      "y": 5.2,
+      "radius": 1.2,
+      "to_map": "porto_das_cinzas",
+      "to_x": 0,
+      "to_y": 10,
+      "label": "Rua",
+      "por_porta": true
+    }
+  ],
+  "npcs": [
+    {
+      "id": "morador_casa",
+      "name": "Dona Zuza, a Moradora",
+      "role": "morador",
+      "x": -1.6,
+      "y": -3.4,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "«Entra, entra, mas limpa o pé! Aqui no Porto a gente vive de pouco: um fogo, uma mesa e as histórias de quem passa. Senta um pouco, viajante.»"
+    }
+  ]
+}

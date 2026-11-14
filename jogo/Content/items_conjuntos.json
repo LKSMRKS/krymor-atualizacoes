@@ -1,0 +1,4657 @@
+[
+  {
+    "id": "arm_guerreiro_capacete",
+    "display_name": "Capacete do Recruta",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 58,
+      "max_health": 19,
+      "cdr_pct": 0.03,
+      "xp_pct": 0.03,
+      "mana_cost_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_guerreiro_capacete",
+    "model_asset_id": "arm_guerreiro:capacete",
+    "summary": "Armadura +38, vida +19, recarga -3%, experiência +3%. Só para Guerreiro.",
+    "price": 920,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_guerreiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 10,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 12
+      },
+      "4": {
+        "armor": 19,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_guerreiro_peitoral",
+    "display_name": "Peitoral do Recruta",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 166,
+      "max_health": 48,
+      "move_speed_pct": -0.04,
+      "thorns_pct": 0.05,
+      "damage_reduction_pct": 0.02,
+      "healing_received_pct": 0.031,
+      "magic_resist_pct": 0.025
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_guerreiro_peitoral",
+    "model_asset_id": "arm_guerreiro:peitoral",
+    "summary": "Armadura +96, vida +48, velocidade -4%, espinhos (devolve dano) +5%, redução de dano +2%. Só para Guerreiro.",
+    "price": 1700,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_guerreiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 10,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 12
+      },
+      "4": {
+        "armor": 19,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_guerreiro_calca",
+    "display_name": "Calça do Recruta",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 83,
+      "max_health": 25,
+      "stamina_regen_pct": 0.1,
+      "stun_resist_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_guerreiro_calca",
+    "model_asset_id": "arm_guerreiro:calca",
+    "summary": "Armadura +43, vida +25, fôlego +10%. Só para Guerreiro.",
+    "price": 750,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_guerreiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 10,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 12
+      },
+      "4": {
+        "armor": 19,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_guerreiro_luvas",
+    "display_name": "Luvas do Recruta",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 55,
+      "max_health": 14,
+      "power_pct": 0.02,
+      "attack_speed_pct": 0.04,
+      "crit_pct": 0.01,
+      "hit_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_guerreiro_luvas",
+    "model_asset_id": "arm_guerreiro:luvas",
+    "summary": "Armadura +29, vida +14, ataque +2%, vel. de ataque +4%, crítico +1%. Só para Guerreiro.",
+    "price": 770,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_guerreiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 10,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 12
+      },
+      "4": {
+        "armor": 19,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_guerreiro_botas",
+    "display_name": "Botas do Recruta",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 66,
+      "max_health": 17,
+      "move_speed_pct": 0.03,
+      "dodge_pct": 0.02,
+      "tenacity_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_guerreiro_botas",
+    "model_asset_id": "arm_guerreiro:botas",
+    "summary": "Armadura +34, vida +17, velocidade +3%, esquiva +2%. Só para Guerreiro.",
+    "price": 730,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_guerreiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 10,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 12
+      },
+      "4": {
+        "armor": 19,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_cavaleiro_capacete",
+    "display_name": "Capacete do Cavaleiro Azul",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 127,
+      "max_health": 37,
+      "cdr_pct": 0.05,
+      "xp_pct": 0.05,
+      "mana_cost_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_cavaleiro_capacete",
+    "model_asset_id": "arm_cavaleiro:capacete",
+    "summary": "Armadura +69, vida +37, recarga -5%, experiência +5%. Só para Guerreiro.",
+    "price": 6200,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_cavaleiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 18,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 22
+      },
+      "4": {
+        "armor": 34,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 26,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_cavaleiro_peitoral",
+    "display_name": "Peitoral do Cavaleiro Azul",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 363,
+      "max_health": 92,
+      "move_speed_pct": -0.03,
+      "thorns_pct": 0.08,
+      "damage_reduction_pct": 0.03,
+      "healing_received_pct": 0.047,
+      "magic_resist_pct": 0.038
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_cavaleiro_peitoral",
+    "model_asset_id": "arm_cavaleiro:peitoral",
+    "summary": "Armadura +172, vida +92, velocidade -3%, espinhos (devolve dano) +8%, redução de dano +3%. Só para Guerreiro.",
+    "price": 11000,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_cavaleiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 18,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 22
+      },
+      "4": {
+        "armor": 34,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 26,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_cavaleiro_calca",
+    "display_name": "Calça do Cavaleiro Azul",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 182,
+      "max_health": 48,
+      "stamina_regen_pct": 0.18,
+      "stun_resist_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_cavaleiro_calca",
+    "model_asset_id": "arm_cavaleiro:calca",
+    "summary": "Armadura +77, vida +48, fôlego +18%. Só para Guerreiro.",
+    "price": 4300,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_cavaleiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 18,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 22
+      },
+      "4": {
+        "armor": 34,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 26,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_cavaleiro_luvas",
+    "display_name": "Luvas do Cavaleiro Azul",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 120,
+      "max_health": 28,
+      "power_pct": 0.04,
+      "attack_speed_pct": 0.06,
+      "crit_pct": 0.02,
+      "hit_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_cavaleiro_luvas",
+    "model_asset_id": "arm_cavaleiro:luvas",
+    "summary": "Armadura +52, vida +28, ataque +4%, vel. de ataque +6%, crítico +2%. Só para Guerreiro.",
+    "price": 5300,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_cavaleiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 18,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 22
+      },
+      "4": {
+        "armor": 34,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 26,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_cavaleiro_botas",
+    "display_name": "Botas do Cavaleiro Azul",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 145,
+      "max_health": 32,
+      "move_speed_pct": 0.04,
+      "dodge_pct": 0.03,
+      "tenacity_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_cavaleiro_botas",
+    "model_asset_id": "arm_cavaleiro:botas",
+    "summary": "Armadura +60, vida +32, velocidade +4%, esquiva +3%. Só para Guerreiro.",
+    "price": 4600,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_cavaleiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 18,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 22
+      },
+      "4": {
+        "armor": 34,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 26,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_patrulheiro_capacete",
+    "display_name": "Capacete do Patrulheiro",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 47,
+      "max_health": 18,
+      "cdr_pct": 0.03,
+      "xp_pct": 0.03,
+      "mana_cost_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_patrulheiro_capacete",
+    "model_asset_id": "arm_patrulheiro:capacete",
+    "summary": "Armadura +27, vida +18, recarga -3%, experiência +3%. Só para Arqueiro.",
+    "price": 910,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_patrulheiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 8
+      },
+      "4": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_patrulheiro_peitoral",
+    "display_name": "Peitoral do Patrulheiro",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 135,
+      "max_health": 44,
+      "move_speed_pct": 0.01,
+      "thorns_pct": 0.05,
+      "damage_reduction_pct": 0.02,
+      "healing_received_pct": 0.031,
+      "magic_resist_pct": 0.025
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_patrulheiro_peitoral",
+    "model_asset_id": "arm_patrulheiro:peitoral",
+    "summary": "Armadura +68, vida +44, velocidade +1%, espinhos (devolve dano) +5%, redução de dano +2%. Só para Arqueiro.",
+    "price": 1700,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_patrulheiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 8
+      },
+      "4": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_patrulheiro_calca",
+    "display_name": "Calça do Patrulheiro",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 68,
+      "max_health": 23,
+      "stamina_regen_pct": 0.1,
+      "stun_resist_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_patrulheiro_calca",
+    "model_asset_id": "arm_patrulheiro:calca",
+    "summary": "Armadura +31, vida +23, fôlego +10%. Só para Arqueiro.",
+    "price": 760,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_patrulheiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 8
+      },
+      "4": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_patrulheiro_luvas",
+    "display_name": "Luvas do Patrulheiro",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 45,
+      "max_health": 13,
+      "power_pct": 0.02,
+      "attack_speed_pct": 0.04,
+      "crit_pct": 0.01,
+      "hit_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_patrulheiro_luvas",
+    "model_asset_id": "arm_patrulheiro:luvas",
+    "summary": "Armadura +20, vida +13, ataque +2%, vel. de ataque +4%, crítico +1%. Só para Arqueiro.",
+    "price": 780,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_patrulheiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 8
+      },
+      "4": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_patrulheiro_botas",
+    "display_name": "Botas do Patrulheiro",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 54,
+      "max_health": 15,
+      "move_speed_pct": 0.03,
+      "dodge_pct": 0.02,
+      "tenacity_pct": 0.031
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_patrulheiro_botas",
+    "model_asset_id": "arm_patrulheiro:botas",
+    "summary": "Armadura +24, vida +15, velocidade +3%, esquiva +2%. Só para Arqueiro.",
+    "price": 740,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_patrulheiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 8
+      },
+      "4": {
+        "armor": 14,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_elfico_capacete",
+    "display_name": "Capacete Élfico de Folhas",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 94,
+      "max_health": 34,
+      "cdr_pct": 0.05,
+      "xp_pct": 0.05,
+      "mana_cost_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_elfico_capacete",
+    "model_asset_id": "arm_elfico:capacete",
+    "summary": "Armadura +48, vida +34, recarga -5%, experiência +5%. Só para Arqueiro.",
+    "price": 6100,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_elfico",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 15
+      },
+      "4": {
+        "armor": 24,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 18,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_elfico_peitoral",
+    "display_name": "Peitoral Élfico de Folhas",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 269,
+      "max_health": 84,
+      "move_speed_pct": 0.02,
+      "thorns_pct": 0.08,
+      "damage_reduction_pct": 0.03,
+      "healing_received_pct": 0.047,
+      "magic_resist_pct": 0.038
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_elfico_peitoral",
+    "model_asset_id": "arm_elfico:peitoral",
+    "summary": "Armadura +120, vida +84, velocidade +2%, espinhos (devolve dano) +8%, redução de dano +3%. Só para Arqueiro.",
+    "price": 11000,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_elfico",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 15
+      },
+      "4": {
+        "armor": 24,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 18,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_elfico_calca",
+    "display_name": "Calça Élfico de Folhas",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 135,
+      "max_health": 43,
+      "stamina_regen_pct": 0.18,
+      "stun_resist_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_elfico_calca",
+    "model_asset_id": "arm_elfico:calca",
+    "summary": "Armadura +54, vida +43, fôlego +18%. Só para Arqueiro.",
+    "price": 4300,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_elfico",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 15
+      },
+      "4": {
+        "armor": 24,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 18,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_elfico_luvas",
+    "display_name": "Luvas Élfico de Folhas",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 89,
+      "max_health": 25,
+      "power_pct": 0.04,
+      "attack_speed_pct": 0.06,
+      "crit_pct": 0.02,
+      "hit_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_elfico_luvas",
+    "model_asset_id": "arm_elfico:luvas",
+    "summary": "Armadura +36, vida +25, ataque +4%, vel. de ataque +6%, crítico +2%. Só para Arqueiro.",
+    "price": 5300,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_elfico",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 15
+      },
+      "4": {
+        "armor": 24,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 18,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_elfico_botas",
+    "display_name": "Botas Élfico de Folhas",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 20,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 108,
+      "max_health": 29,
+      "move_speed_pct": 0.04,
+      "dodge_pct": 0.03,
+      "tenacity_pct": 0.047
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_elfico_botas",
+    "model_asset_id": "arm_elfico:botas",
+    "summary": "Armadura +42, vida +29, velocidade +4%, esquiva +3%. Só para Arqueiro.",
+    "price": 4600,
+    "source": "Raro: chefes (Capataz, Rei das Pinças, Sentinela, Guardião, Rainha das Cascas, Tirano) e Caranguejo-Geodo.",
+    "set": "set_arm_elfico",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 15
+      },
+      "4": {
+        "armor": 24,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 18,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mago_capacete",
+    "display_name": "Capacete do Aprendiz Arcano",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 10,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 39,
+      "max_health": 18,
+      "resource_regen_pct": 0.2,
+      "cdr_pct": 0.03,
+      "xp_pct": 0.03,
+      "mana_cost_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mago_capacete",
+    "model_asset_id": "arm_mago:capacete",
+    "summary": "Armadura +21, vida +18, regeneração +20%, recarga -3%, experiência +3%. Só para Mago.",
+    "price": 1700,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_mago",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mago_peitoral",
+    "display_name": "Peitoral do Aprendiz Arcano",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 10,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 112,
+      "max_health": 44,
+      "resource_regen_pct": 0.4,
+      "thorns_pct": 0.05,
+      "damage_reduction_pct": 0.02,
+      "healing_received_pct": 0.033,
+      "magic_resist_pct": 0.026
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mago_peitoral",
+    "model_asset_id": "arm_mago:peitoral",
+    "summary": "Armadura +52, vida +44, regeneração +40%, espinhos (devolve dano) +5%, redução de dano +2%. Só para Mago.",
+    "price": 3600,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_mago",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mago_calca",
+    "display_name": "Calça do Aprendiz Arcano",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 10,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 56,
+      "max_health": 23,
+      "stamina_regen_pct": 0.1,
+      "stun_resist_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mago_calca",
+    "model_asset_id": "arm_mago:calca",
+    "summary": "Armadura +23, vida +23, fôlego +10%. Só para Mago.",
+    "price": 1100,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_mago",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mago_luvas",
+    "display_name": "Luvas do Aprendiz Arcano",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 10,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 37,
+      "max_health": 13,
+      "power_pct": 0.02,
+      "attack_speed_pct": 0.04,
+      "crit_pct": 0.01,
+      "hit_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mago_luvas",
+    "model_asset_id": "arm_mago:luvas",
+    "summary": "Armadura +16, vida +13, ataque +2%, vel. de ataque +4%, crítico +1%. Só para Mago.",
+    "price": 1200,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_mago",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_mago_botas",
+    "display_name": "Botas do Aprendiz Arcano",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 10,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 45,
+      "max_health": 15,
+      "move_speed_pct": 0.03,
+      "dodge_pct": 0.02,
+      "tenacity_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_mago_botas",
+    "model_asset_id": "arm_mago:botas",
+    "summary": "Armadura +18, vida +15, velocidade +3%, esquiva +2%. Só para Mago.",
+    "price": 1100,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_mago",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_feiticeiro_capacete",
+    "display_name": "Capacete da Feiticeira Sombria",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 10,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 39,
+      "max_health": 18,
+      "resource_regen_pct": 0.2,
+      "cdr_pct": 0.03,
+      "xp_pct": 0.03,
+      "mana_cost_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_feiticeiro_capacete",
+    "model_asset_id": "arm_feiticeiro:capacete",
+    "summary": "Armadura +21, vida +18, regeneração +20%, recarga -3%, experiência +3%. Só para Bruxa.",
+    "price": 1700,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_feiticeiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_feiticeiro_peitoral",
+    "display_name": "Peitoral da Feiticeira Sombria",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 10,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 112,
+      "max_health": 44,
+      "resource_regen_pct": 0.4,
+      "thorns_pct": 0.05,
+      "damage_reduction_pct": 0.02,
+      "healing_received_pct": 0.033,
+      "magic_resist_pct": 0.026
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_feiticeiro_peitoral",
+    "model_asset_id": "arm_feiticeiro:peitoral",
+    "summary": "Armadura +52, vida +44, regeneração +40%, espinhos (devolve dano) +5%, redução de dano +2%. Só para Bruxa.",
+    "price": 3600,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_feiticeiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_feiticeiro_calca",
+    "display_name": "Calça da Feiticeira Sombria",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 10,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 56,
+      "max_health": 23,
+      "stamina_regen_pct": 0.1,
+      "stun_resist_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_feiticeiro_calca",
+    "model_asset_id": "arm_feiticeiro:calca",
+    "summary": "Armadura +23, vida +23, fôlego +10%. Só para Bruxa.",
+    "price": 1100,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_feiticeiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_feiticeiro_luvas",
+    "display_name": "Luvas da Feiticeira Sombria",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 10,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 37,
+      "max_health": 13,
+      "power_pct": 0.02,
+      "attack_speed_pct": 0.04,
+      "crit_pct": 0.01,
+      "hit_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_feiticeiro_luvas",
+    "model_asset_id": "arm_feiticeiro:luvas",
+    "summary": "Armadura +16, vida +13, ataque +2%, vel. de ataque +4%, crítico +1%. Só para Bruxa.",
+    "price": 1200,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_feiticeiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "arm_feiticeiro_botas",
+    "display_name": "Botas da Feiticeira Sombria",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 10,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 45,
+      "max_health": 15,
+      "move_speed_pct": 0.03,
+      "dodge_pct": 0.02,
+      "tenacity_pct": 0.033
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_arm_feiticeiro_botas",
+    "model_asset_id": "arm_feiticeiro:botas",
+    "summary": "Armadura +18, vida +15, velocidade +3%, esquiva +2%. Só para Bruxa.",
+    "price": 1100,
+    "source": "Brás, o Ferreiro (Porto).",
+    "set": "set_arm_feiticeiro",
+    "set_bonus": {
+      "2": {
+        "max_health": 9,
+        "power_pct": 0.03
+      },
+      "3": {
+        "double_pct": 0.04,
+        "armor": 6
+      },
+      "4": {
+        "armor": 10,
+        "power_pct": 0.04,
+        "crit_pct": 0.03
+      },
+      "5": {
+        "armor": 8,
+        "power_pct": 0.04,
+        "crit_pct": 0.03,
+        "double_pct": 0.03
+      }
+    }
+  },
+  {
+    "id": "armadura_dragao_capacete",
+    "display_name": "Capacete do Dragão Rubro",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 185,
+      "max_health": 45,
+      "cdr_pct": 0.05,
+      "xp_pct": 0.05,
+      "mana_cost_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_dragao_capacete",
+    "model_asset_id": "armadura_dragao:capacete",
+    "summary": "Armadura +98, vida +45, recarga -5%, experiência +5%. Só para Guerreiro.",
+    "price": 15000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_dragao",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_dragao_peitoral",
+    "display_name": "Peitoral do Dragão Rubro",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 528,
+      "max_health": 112,
+      "move_speed_pct": -0.02,
+      "thorns_pct": 0.08,
+      "damage_reduction_pct": 0.03,
+      "healing_received_pct": 0.06,
+      "magic_resist_pct": 0.048
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_dragao_peitoral",
+    "model_asset_id": "armadura_dragao:peitoral",
+    "summary": "Armadura +246, vida +112, velocidade -2%, espinhos (devolve dano) +8%, redução de dano +3%. Só para Guerreiro.",
+    "price": 27000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_dragao",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_dragao_calca",
+    "display_name": "Calça do Dragão Rubro",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 264,
+      "max_health": 58,
+      "stamina_regen_pct": 0.18,
+      "stun_resist_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_dragao_calca",
+    "model_asset_id": "armadura_dragao:perneiras",
+    "summary": "Armadura +111, vida +58, fôlego +18%. Só para Guerreiro.",
+    "price": 10000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_dragao",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_dragao_luvas",
+    "display_name": "Luvas do Dragão Rubro",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 174,
+      "max_health": 33,
+      "power_pct": 0.04,
+      "attack_speed_pct": 0.06,
+      "crit_pct": 0.02,
+      "hit_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_dragao_luvas",
+    "model_asset_id": "armadura_dragao:luvas+bracadeiras",
+    "summary": "Armadura +74, vida +33, ataque +4%, vel. de ataque +6%, crítico +2%. Só para Guerreiro.",
+    "price": 13000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_dragao",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_dragao_botas",
+    "display_name": "Botas do Dragão Rubro",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 211,
+      "max_health": 39,
+      "move_speed_pct": 0.04,
+      "dodge_pct": 0.03,
+      "tenacity_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_dragao_botas",
+    "model_asset_id": "armadura_dragao:botas",
+    "summary": "Armadura +86, vida +39, velocidade +4%, esquiva +3%. Só para Guerreiro.",
+    "price": 11000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_dragao",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_abissal_capacete",
+    "display_name": "Capacete Abissal",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 300,
+      "max_health": 60,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "mana_cost_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_abissal_capacete",
+    "model_asset_id": "armadura_abissal:capacete",
+    "summary": "Armadura +158, vida +60, recarga -6%, experiência +6%. Só para Guerreiro.",
+    "price": 51000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_abissal",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_abissal_peitoral",
+    "display_name": "Peitoral Abissal",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 857,
+      "max_health": 151,
+      "move_speed_pct": -0.02,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "healing_received_pct": 0.087,
+      "magic_resist_pct": 0.07
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_abissal_peitoral",
+    "model_asset_id": "armadura_abissal:peitoral",
+    "summary": "Armadura +394, vida +151, velocidade -2%, espinhos (devolve dano) +12%, redução de dano +5%. Só para Guerreiro.",
+    "price": 100000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_abissal",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_abissal_calca",
+    "display_name": "Calça Abissal",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 428,
+      "max_health": 78,
+      "stamina_regen_pct": 0.25,
+      "stun_resist_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_abissal_calca",
+    "model_asset_id": "armadura_abissal:perneiras",
+    "summary": "Armadura +177, vida +78, fôlego +25%. Só para Guerreiro.",
+    "price": 31000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_abissal",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_abissal_luvas",
+    "display_name": "Luvas Abissal",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 283,
+      "max_health": 45,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03,
+      "hit_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_abissal_luvas",
+    "model_asset_id": "armadura_abissal:luvas+bracadeiras",
+    "summary": "Armadura +118, vida +45, ataque +5%, vel. de ataque +8%, crítico +3%. Só para Guerreiro.",
+    "price": 46000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_abissal",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_abissal_botas",
+    "display_name": "Botas Abissal",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 343,
+      "max_health": 53,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04,
+      "tenacity_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_abissal_botas",
+    "model_asset_id": "armadura_abissal:botas",
+    "summary": "Armadura +138, vida +53, velocidade +5%, esquiva +4%. Só para Guerreiro.",
+    "price": 37000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_abissal",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_lobo_capacete",
+    "display_name": "Capacete do Lobo Sombrio",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 30,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 133,
+      "max_health": 45,
+      "cdr_pct": 0.05,
+      "xp_pct": 0.05,
+      "mana_cost_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_lobo_capacete",
+    "model_asset_id": "armadura_lobo:capacete",
+    "summary": "Armadura +98, vida +45, recarga -5%, experiência +5%. Só para Arqueiro.",
+    "price": 15000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_lobo_peitoral",
+    "display_name": "Peitoral do Lobo Sombrio",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 30,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 381,
+      "max_health": 112,
+      "move_speed_pct": 0.03,
+      "thorns_pct": 0.08,
+      "damage_reduction_pct": 0.03,
+      "healing_received_pct": 0.06,
+      "magic_resist_pct": 0.048
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_lobo_peitoral",
+    "model_asset_id": "armadura_lobo:peitoral",
+    "summary": "Armadura +246, vida +112, velocidade +3%, espinhos (devolve dano) +8%, redução de dano +3%. Só para Arqueiro.",
+    "price": 28000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_lobo_calca",
+    "display_name": "Calça do Lobo Sombrio",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 30,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 190,
+      "max_health": 58,
+      "stamina_regen_pct": 0.18,
+      "stun_resist_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_lobo_calca",
+    "model_asset_id": "armadura_lobo:perneiras",
+    "summary": "Armadura +111, vida +58, fôlego +18%. Só para Arqueiro.",
+    "price": 10000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_lobo_luvas",
+    "display_name": "Luvas do Lobo Sombrio",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 30,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 126,
+      "max_health": 33,
+      "power_pct": 0.04,
+      "attack_speed_pct": 0.06,
+      "crit_pct": 0.02,
+      "hit_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_lobo_luvas",
+    "model_asset_id": "armadura_lobo:luvas+bracadeiras",
+    "summary": "Armadura +74, vida +33, ataque +4%, vel. de ataque +6%, crítico +2%. Só para Arqueiro.",
+    "price": 13000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_lobo_botas",
+    "display_name": "Botas do Lobo Sombrio",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 30,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 152,
+      "max_health": 39,
+      "move_speed_pct": 0.04,
+      "dodge_pct": 0.03,
+      "tenacity_pct": 0.06
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_lobo_botas",
+    "model_asset_id": "armadura_lobo:botas",
+    "summary": "Armadura +86, vida +39, velocidade +4%, esquiva +3%. Só para Arqueiro.",
+    "price": 11000,
+    "source": "Lendário: chefes e elites a partir do nível 30.",
+    "set": "set_armadura_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 28,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 49
+      },
+      "4": {
+        "armor": 62,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 49,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_fenix_capacete",
+    "display_name": "Capacete da Valquíria Fênix",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 50,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 211,
+      "max_health": 60,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "mana_cost_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_fenix_capacete",
+    "model_asset_id": "armadura_fenix:capacete",
+    "summary": "Armadura +158, vida +60, recarga -6%, experiência +6%. Só para Arqueiro.",
+    "price": 51000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_fenix",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_fenix_peitoral",
+    "display_name": "Peitoral da Valquíria Fênix",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 50,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 604,
+      "max_health": 151,
+      "move_speed_pct": 0.03,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "healing_received_pct": 0.087,
+      "magic_resist_pct": 0.07
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_fenix_peitoral",
+    "model_asset_id": "armadura_fenix:peitoral",
+    "summary": "Armadura +394, vida +151, velocidade +3%, espinhos (devolve dano) +12%, redução de dano +5%. Só para Arqueiro.",
+    "price": 110000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_fenix",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_fenix_calca",
+    "display_name": "Calça da Valquíria Fênix",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 50,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 302,
+      "max_health": 78,
+      "stamina_regen_pct": 0.25,
+      "stun_resist_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_fenix_calca",
+    "model_asset_id": "armadura_fenix:perneiras",
+    "summary": "Armadura +177, vida +78, fôlego +25%. Só para Arqueiro.",
+    "price": 32000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_fenix",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_fenix_luvas",
+    "display_name": "Luvas da Valquíria Fênix",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 50,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 199,
+      "max_health": 45,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03,
+      "hit_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_fenix_luvas",
+    "model_asset_id": "armadura_fenix:luvas+bracadeiras",
+    "summary": "Armadura +118, vida +45, ataque +5%, vel. de ataque +8%, crítico +3%. Só para Arqueiro.",
+    "price": 46000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_fenix",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_fenix_botas",
+    "display_name": "Botas da Valquíria Fênix",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 50,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 241,
+      "max_health": 53,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04,
+      "tenacity_pct": 0.087
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_fenix_botas",
+    "model_asset_id": "armadura_fenix:botas",
+    "summary": "Armadura +138, vida +53, velocidade +5%, esquiva +4%. Só para Arqueiro.",
+    "price": 37000,
+    "source": "Lendário: chefes e elites a partir do nível 50.",
+    "set": "set_armadura_fenix",
+    "set_bonus": {
+      "2": {
+        "max_health": 38,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 79
+      },
+      "4": {
+        "armor": 98,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 79,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_anjo_capacete",
+    "display_name": "Capacete do Anjo Alado",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 40,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 120,
+      "max_health": 58,
+      "resource_regen_pct": 0.25,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "mana_cost_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_anjo_capacete",
+    "model_asset_id": "armadura_anjo:capacete",
+    "summary": "Armadura +77, vida +58, regeneração +25%, recarga -6%, experiência +6%. Só para Mago.",
+    "price": 36000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_anjo",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_anjo_peitoral",
+    "display_name": "Peitoral do Anjo Alado",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 40,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 343,
+      "max_health": 144,
+      "resource_regen_pct": 0.5,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "healing_received_pct": 0.073,
+      "magic_resist_pct": 0.058
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_anjo_peitoral",
+    "model_asset_id": "armadura_anjo:peitoral",
+    "summary": "Armadura +192, vida +144, regeneração +50%, espinhos (devolve dano) +12%, redução de dano +5%. Só para Mago.",
+    "price": 82000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_anjo",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_anjo_calca",
+    "display_name": "Calça do Anjo Alado",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 40,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 171,
+      "max_health": 75,
+      "stamina_regen_pct": 0.25,
+      "stun_resist_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_anjo_calca",
+    "model_asset_id": "armadura_anjo:perneiras",
+    "summary": "Armadura +86, vida +75, fôlego +25%. Só para Mago.",
+    "price": 19000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_anjo",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_anjo_luvas",
+    "display_name": "Luvas do Anjo Alado",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 40,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 113,
+      "max_health": 43,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03,
+      "hit_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_anjo_luvas",
+    "model_asset_id": "armadura_anjo:luvas+bracadeiras",
+    "summary": "Armadura +58, vida +43, ataque +5%, vel. de ataque +8%, crítico +3%. Só para Mago.",
+    "price": 27000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_anjo",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_anjo_botas",
+    "display_name": "Botas do Anjo Alado",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 40,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 137,
+      "max_health": 51,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04,
+      "tenacity_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_anjo_botas",
+    "model_asset_id": "armadura_anjo:botas",
+    "summary": "Armadura +67, vida +51, velocidade +5%, esquiva +4%. Só para Mago.",
+    "price": 22000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_anjo",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_serpente_capacete",
+    "display_name": "Capacete da Serpente",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 40,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 120,
+      "max_health": 58,
+      "resource_regen_pct": 0.25,
+      "cdr_pct": 0.06,
+      "xp_pct": 0.06,
+      "mana_cost_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_serpente_capacete",
+    "model_asset_id": "armadura_serpente:capacete",
+    "summary": "Armadura +77, vida +58, regeneração +25%, recarga -6%, experiência +6%. Só para Bruxa.",
+    "price": 36000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_serpente",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_serpente_peitoral",
+    "display_name": "Peitoral da Serpente",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 40,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 343,
+      "max_health": 144,
+      "resource_regen_pct": 0.5,
+      "thorns_pct": 0.12,
+      "damage_reduction_pct": 0.05,
+      "healing_received_pct": 0.073,
+      "magic_resist_pct": 0.058
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_serpente_peitoral",
+    "model_asset_id": "armadura_serpente:peitoral",
+    "summary": "Armadura +192, vida +144, regeneração +50%, espinhos (devolve dano) +12%, redução de dano +5%. Só para Bruxa.",
+    "price": 82000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_serpente",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_serpente_calca",
+    "display_name": "Calça da Serpente",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 40,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 171,
+      "max_health": 75,
+      "stamina_regen_pct": 0.25,
+      "stun_resist_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_serpente_calca",
+    "model_asset_id": "armadura_serpente:perneiras",
+    "summary": "Armadura +86, vida +75, fôlego +25%. Só para Bruxa.",
+    "price": 19000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_serpente",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_serpente_luvas",
+    "display_name": "Luvas da Serpente",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 40,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 113,
+      "max_health": 43,
+      "power_pct": 0.05,
+      "attack_speed_pct": 0.08,
+      "crit_pct": 0.03,
+      "hit_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_serpente_luvas",
+    "model_asset_id": "armadura_serpente:luvas+bracadeiras",
+    "summary": "Armadura +58, vida +43, ataque +5%, vel. de ataque +8%, crítico +3%. Só para Bruxa.",
+    "price": 27000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_serpente",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "armadura_serpente_botas",
+    "display_name": "Botas da Serpente",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 40,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 137,
+      "max_health": 51,
+      "move_speed_pct": 0.05,
+      "dodge_pct": 0.04,
+      "tenacity_pct": 0.073
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_serpente_botas",
+    "model_asset_id": "armadura_serpente:botas",
+    "summary": "Armadura +67, vida +51, velocidade +5%, esquiva +4%. Só para Bruxa.",
+    "price": 22000,
+    "source": "Lendário: chefes e elites a partir do nível 40.",
+    "set": "set_armadura_serpente",
+    "set_bonus": {
+      "2": {
+        "max_health": 36,
+        "power_pct": 0.04
+      },
+      "3": {
+        "double_pct": 0.06,
+        "armor": 38
+      },
+      "4": {
+        "armor": 48,
+        "power_pct": 0.05,
+        "crit_pct": 0.05
+      },
+      "5": {
+        "armor": 38,
+        "power_pct": 0.06,
+        "crit_pct": 0.05,
+        "double_pct": 0.04
+      }
+    },
+    "lendario": true
+  },
+  {
+    "id": "anel_cobre",
+    "display_name": "Anel de Cobre",
+    "category": "ring",
+    "subtype": "ring",
+    "min_level": 3,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "max_health": 20
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_anel_cobre",
+    "model_asset_id": "anel_cobre",
+    "summary": "Vida +20. Dá para usar dois anéis.",
+    "price": 160,
+    "source": "Brás, o Ferreiro (Porto)."
+  },
+  {
+    "id": "anel_mare",
+    "display_name": "Anel da Maré",
+    "category": "ring",
+    "subtype": "ring",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "resource_regen_pct": 0.1
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_anel_mare",
+    "model_asset_id": "anel_mare",
+    "summary": "Regeneração do recurso +10%.",
+    "price": 790,
+    "source": "Raro: chefes e Caranguejo-Geodo."
+  },
+  {
+    "id": "anel_brasa",
+    "display_name": "Anel de Brasa",
+    "category": "ring",
+    "subtype": "ring",
+    "min_level": 15,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.03,
+      "max_health": 25
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_anel_brasa",
+    "model_asset_id": "anel_brasa",
+    "summary": "Ataque +3%, vida +25.",
+    "price": 2800,
+    "source": "Raro: chefes e Caranguejo-Geodo."
+  },
+  {
+    "id": "colar_conchas",
+    "display_name": "Colar de Conchas",
+    "category": "amulet",
+    "subtype": "amulet",
+    "min_level": 3,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 10,
+      "max_health": 15
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_colar_conchas",
+    "model_asset_id": "colar_conchas",
+    "summary": "Armadura +10, vida +15.",
+    "price": 200,
+    "source": "Brás, o Ferreiro (Porto)."
+  },
+  {
+    "id": "colar_farol",
+    "display_name": "Colar do Farol",
+    "category": "amulet",
+    "subtype": "amulet",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.03,
+      "max_health": 30
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_colar_farol",
+    "model_asset_id": "colar_farol",
+    "summary": "Ataque +3%, vida +30.",
+    "price": 2100,
+    "source": "Raro: chefes e Caranguejo-Geodo."
+  },
+  {
+    "id": "capa_viajante",
+    "display_name": "Capa de Viajante",
+    "category": "cape",
+    "subtype": "viajante",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 12,
+      "move_speed_pct": 0.02,
+      "max_health": 20
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_viajante",
+    "model_asset_id": "capa_viajante",
+    "summary": "Armadura +8, velocidade +2%. Vai no espaço de asas (asa OU capa).",
+    "price": 500,
+    "source": "Brás, o Ferreiro (Porto)."
+  },
+  {
+    "id": "capa_rubra",
+    "display_name": "Capa Rubra",
+    "category": "cape",
+    "subtype": "rubra",
+    "min_level": 15,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 25,
+      "max_health": 45
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_rubra",
+    "model_asset_id": "capa_rubra",
+    "summary": "Armadura +20, vida +40. Vai no espaço de asas (asa OU capa).",
+    "price": 3500,
+    "source": "Raro: chefes e Caranguejo-Geodo."
+  },
+  {
+    "id": "armadura_acolchoada_capacete",
+    "display_name": "Capuz Padded",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 4,
+      "max_health": 4,
+      "mana_cost_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_acolchoada_capacete",
+    "model_asset_id": "armadura_acolchoada:capacete",
+    "summary": "Armadura +4, vida +4.",
+    "price": 31,
+    "source": "Brás, o Ferreiro (Porto) e drops comuns da costa.",
+    "set": "set_armadura_acolchoada",
+    "set_bonus": {
+      "2": {
+        "max_health": 1,
+        "power_pct": 0.019
+      },
+      "3": {
+        "armor": 0,
+        "double_pct": 0.022
+      },
+      "4": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "power_pct": 0.029
+      },
+      "5": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "double_pct": 0.019,
+        "power_pct": 0.022
+      }
+    }
+  },
+  {
+    "id": "armadura_acolchoada_peitoral",
+    "display_name": "Gibão Padded",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 9,
+      "max_health": 9,
+      "healing_received_pct": 0.021,
+      "magic_resist_pct": 0.017
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_acolchoada_peitoral",
+    "model_asset_id": "armadura_acolchoada:peitoral",
+    "summary": "Armadura +9, vida +9.",
+    "price": 56,
+    "source": "Brás, o Ferreiro (Porto) e drops comuns da costa.",
+    "set": "set_armadura_acolchoada",
+    "set_bonus": {
+      "2": {
+        "max_health": 1,
+        "power_pct": 0.019
+      },
+      "3": {
+        "armor": 0,
+        "double_pct": 0.022
+      },
+      "4": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "power_pct": 0.029
+      },
+      "5": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "double_pct": 0.019,
+        "power_pct": 0.022
+      }
+    }
+  },
+  {
+    "id": "armadura_acolchoada_luvas",
+    "display_name": "Luvas Padded",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 3,
+      "max_health": 3,
+      "attack_speed_pct": 0.02,
+      "hit_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_acolchoada_luvas",
+    "model_asset_id": "armadura_acolchoada:luvas",
+    "summary": "Armadura +3, vida +3, vel. de ataque +2%.",
+    "price": 26,
+    "source": "Brás, o Ferreiro (Porto) e drops comuns da costa.",
+    "set": "set_armadura_acolchoada",
+    "set_bonus": {
+      "2": {
+        "max_health": 1,
+        "power_pct": 0.019
+      },
+      "3": {
+        "armor": 0,
+        "double_pct": 0.022
+      },
+      "4": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "power_pct": 0.029
+      },
+      "5": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "double_pct": 0.019,
+        "power_pct": 0.022
+      }
+    }
+  },
+  {
+    "id": "armadura_acolchoada_calca",
+    "display_name": "Calça Padded",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 4,
+      "max_health": 5,
+      "stun_resist_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_acolchoada_calca",
+    "model_asset_id": "armadura_acolchoada:perneiras",
+    "summary": "Armadura +4, vida +5.",
+    "price": 32,
+    "source": "Brás, o Ferreiro (Porto) e drops comuns da costa.",
+    "set": "set_armadura_acolchoada",
+    "set_bonus": {
+      "2": {
+        "max_health": 1,
+        "power_pct": 0.019
+      },
+      "3": {
+        "armor": 0,
+        "double_pct": 0.022
+      },
+      "4": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "power_pct": 0.029
+      },
+      "5": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "double_pct": 0.019,
+        "power_pct": 0.022
+      }
+    }
+  },
+  {
+    "id": "armadura_acolchoada_botas",
+    "display_name": "Botas Padded",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 3,
+      "max_health": 3,
+      "move_speed_pct": 0.02,
+      "tenacity_pct": 0.021
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_acolchoada_botas",
+    "model_asset_id": "armadura_acolchoada:botas",
+    "summary": "Armadura +3, vida +3, velocidade +2%.",
+    "price": 28,
+    "source": "Brás, o Ferreiro (Porto) e drops comuns da costa.",
+    "set": "set_armadura_acolchoada",
+    "set_bonus": {
+      "2": {
+        "max_health": 1,
+        "power_pct": 0.019
+      },
+      "3": {
+        "armor": 0,
+        "double_pct": 0.022
+      },
+      "4": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "power_pct": 0.029
+      },
+      "5": {
+        "armor": 1,
+        "crit_pct": 0.014,
+        "double_pct": 0.019,
+        "power_pct": 0.022
+      }
+    }
+  },
+  {
+    "id": "armadura_couro_bronze_capacete",
+    "display_name": "Elmo Bronzehide",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 36,
+      "max_health": 12,
+      "mana_cost_pct": 0.027
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_couro_bronze_capacete",
+    "model_asset_id": "armadura_couro_bronze:capacete",
+    "summary": "Armadura +16, vida +12.",
+    "price": 340,
+    "source": "Brás, o Ferreiro (Porto) e Saqueadores da Vigília.",
+    "set": "set_armadura_couro_bronze",
+    "set_bonus": {
+      "2": {
+        "max_health": 6,
+        "power_pct": 0.026
+      },
+      "3": {
+        "armor": 4,
+        "double_pct": 0.033
+      },
+      "4": {
+        "armor": 7,
+        "crit_pct": 0.024,
+        "power_pct": 0.036
+      },
+      "5": {
+        "armor": 5,
+        "crit_pct": 0.024,
+        "double_pct": 0.026,
+        "power_pct": 0.033
+      }
+    }
+  },
+  {
+    "id": "armadura_couro_bronze_peitoral",
+    "display_name": "Peitoral Bronzehide",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 102,
+      "max_health": 30,
+      "thorns_pct": 0.02,
+      "healing_received_pct": 0.027,
+      "magic_resist_pct": 0.022
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_couro_bronze_peitoral",
+    "model_asset_id": "armadura_couro_bronze:peitoral",
+    "summary": "Armadura +39, vida +30, espinhos (devolve dano) +2%.",
+    "price": 650,
+    "source": "Brás, o Ferreiro (Porto) e Saqueadores da Vigília.",
+    "set": "set_armadura_couro_bronze",
+    "set_bonus": {
+      "2": {
+        "max_health": 6,
+        "power_pct": 0.026
+      },
+      "3": {
+        "armor": 4,
+        "double_pct": 0.033
+      },
+      "4": {
+        "armor": 7,
+        "crit_pct": 0.024,
+        "power_pct": 0.036
+      },
+      "5": {
+        "armor": 5,
+        "crit_pct": 0.024,
+        "double_pct": 0.026,
+        "power_pct": 0.033
+      }
+    }
+  },
+  {
+    "id": "armadura_couro_bronze_luvas",
+    "display_name": "Luvas Bronzehide",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 34,
+      "max_health": 9,
+      "hit_pct": 0.027
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_couro_bronze_luvas",
+    "model_asset_id": "armadura_couro_bronze:luvas",
+    "summary": "Armadura +12, vida +9.",
+    "price": 260,
+    "source": "Brás, o Ferreiro (Porto) e Saqueadores da Vigília.",
+    "set": "set_armadura_couro_bronze",
+    "set_bonus": {
+      "2": {
+        "max_health": 6,
+        "power_pct": 0.026
+      },
+      "3": {
+        "armor": 4,
+        "double_pct": 0.033
+      },
+      "4": {
+        "armor": 7,
+        "crit_pct": 0.024,
+        "power_pct": 0.036
+      },
+      "5": {
+        "armor": 5,
+        "crit_pct": 0.024,
+        "double_pct": 0.026,
+        "power_pct": 0.033
+      }
+    }
+  },
+  {
+    "id": "armadura_couro_bronze_calca",
+    "display_name": "Calça Bronzehide",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 51,
+      "max_health": 16,
+      "stun_resist_pct": 0.027
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_couro_bronze_calca",
+    "model_asset_id": "armadura_couro_bronze:perneiras",
+    "summary": "Armadura +18, vida +16.",
+    "price": 340,
+    "source": "Brás, o Ferreiro (Porto) e Saqueadores da Vigília.",
+    "set": "set_armadura_couro_bronze",
+    "set_bonus": {
+      "2": {
+        "max_health": 6,
+        "power_pct": 0.026
+      },
+      "3": {
+        "armor": 4,
+        "double_pct": 0.033
+      },
+      "4": {
+        "armor": 7,
+        "crit_pct": 0.024,
+        "power_pct": 0.036
+      },
+      "5": {
+        "armor": 5,
+        "crit_pct": 0.024,
+        "double_pct": 0.026,
+        "power_pct": 0.033
+      }
+    }
+  },
+  {
+    "id": "armadura_couro_bronze_botas",
+    "display_name": "Botas Bronzehide",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 41,
+      "max_health": 10,
+      "move_speed_pct": 0.03,
+      "tenacity_pct": 0.027
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_couro_bronze_botas",
+    "model_asset_id": "armadura_couro_bronze:botas",
+    "summary": "Armadura +14, vida +10, velocidade +3%.",
+    "price": 320,
+    "source": "Brás, o Ferreiro (Porto) e Saqueadores da Vigília.",
+    "set": "set_armadura_couro_bronze",
+    "set_bonus": {
+      "2": {
+        "max_health": 6,
+        "power_pct": 0.026
+      },
+      "3": {
+        "armor": 4,
+        "double_pct": 0.033
+      },
+      "4": {
+        "armor": 7,
+        "crit_pct": 0.024,
+        "power_pct": 0.036
+      },
+      "5": {
+        "armor": 5,
+        "crit_pct": 0.024,
+        "double_pct": 0.026,
+        "power_pct": 0.033
+      }
+    }
+  },
+  {
+    "id": "armadura_soldado_ferro_capacete",
+    "display_name": "Elmo do Soldado de Ferro",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 81,
+      "max_health": 23,
+      "mana_cost_pct": 0.036
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_soldado_ferro_capacete",
+    "model_asset_id": "armadura_soldado_ferro:capacete",
+    "summary": "Armadura +35, vida +23. Só para Guerreiro.",
+    "price": 1600,
+    "source": "Raro: Capataz da Pedreira, Sentinela e Guardião da Galeria.",
+    "set": "set_armadura_soldado_ferro",
+    "set_bonus": {
+      "2": {
+        "max_health": 12,
+        "power_pct": 0.031
+      },
+      "3": {
+        "armor": 11,
+        "double_pct": 0.042
+      },
+      "4": {
+        "armor": 18,
+        "crit_pct": 0.032,
+        "power_pct": 0.041
+      },
+      "5": {
+        "armor": 14,
+        "crit_pct": 0.032,
+        "double_pct": 0.031,
+        "power_pct": 0.042
+      }
+    }
+  },
+  {
+    "id": "armadura_soldado_ferro_peitoral",
+    "display_name": "Peitoral do Soldado de Ferro",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 232,
+      "max_health": 57,
+      "damage_reduction_pct": 0.02,
+      "healing_received_pct": 0.036,
+      "magic_resist_pct": 0.029
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_soldado_ferro_peitoral",
+    "model_asset_id": "armadura_soldado_ferro:peitoral",
+    "summary": "Armadura +88, vida +57, redução de dano +2%. Só para Guerreiro.",
+    "price": 3200,
+    "source": "Raro: Capataz da Pedreira, Sentinela e Guardião da Galeria.",
+    "set": "set_armadura_soldado_ferro",
+    "set_bonus": {
+      "2": {
+        "max_health": 12,
+        "power_pct": 0.031
+      },
+      "3": {
+        "armor": 11,
+        "double_pct": 0.042
+      },
+      "4": {
+        "armor": 18,
+        "crit_pct": 0.032,
+        "power_pct": 0.041
+      },
+      "5": {
+        "armor": 14,
+        "crit_pct": 0.032,
+        "double_pct": 0.031,
+        "power_pct": 0.042
+      }
+    }
+  },
+  {
+    "id": "armadura_soldado_ferro_luvas",
+    "display_name": "Luvas do Soldado de Ferro",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 77,
+      "max_health": 17,
+      "hit_pct": 0.036
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_soldado_ferro_luvas",
+    "model_asset_id": "armadura_soldado_ferro:luvas",
+    "summary": "Armadura +27, vida +17. Só para Guerreiro.",
+    "price": 1200,
+    "source": "Raro: Capataz da Pedreira, Sentinela e Guardião da Galeria.",
+    "set": "set_armadura_soldado_ferro",
+    "set_bonus": {
+      "2": {
+        "max_health": 12,
+        "power_pct": 0.031
+      },
+      "3": {
+        "armor": 11,
+        "double_pct": 0.042
+      },
+      "4": {
+        "armor": 18,
+        "crit_pct": 0.032,
+        "power_pct": 0.041
+      },
+      "5": {
+        "armor": 14,
+        "crit_pct": 0.032,
+        "double_pct": 0.031,
+        "power_pct": 0.042
+      }
+    }
+  },
+  {
+    "id": "armadura_soldado_ferro_calca",
+    "display_name": "Calça do Soldado de Ferro",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 116,
+      "max_health": 30,
+      "stamina_regen_pct": 0.08,
+      "stun_resist_pct": 0.036
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_soldado_ferro_calca",
+    "model_asset_id": "armadura_soldado_ferro:perneiras",
+    "summary": "Armadura +39, vida +30, fôlego +8%. Só para Guerreiro.",
+    "price": 1600,
+    "source": "Raro: Capataz da Pedreira, Sentinela e Guardião da Galeria.",
+    "set": "set_armadura_soldado_ferro",
+    "set_bonus": {
+      "2": {
+        "max_health": 12,
+        "power_pct": 0.031
+      },
+      "3": {
+        "armor": 11,
+        "double_pct": 0.042
+      },
+      "4": {
+        "armor": 18,
+        "crit_pct": 0.032,
+        "power_pct": 0.041
+      },
+      "5": {
+        "armor": 14,
+        "crit_pct": 0.032,
+        "double_pct": 0.031,
+        "power_pct": 0.042
+      }
+    }
+  },
+  {
+    "id": "armadura_soldado_ferro_botas",
+    "display_name": "Botas do Soldado de Ferro",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 93,
+      "max_health": 20,
+      "tenacity_pct": 0.036
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_soldado_ferro_botas",
+    "model_asset_id": "armadura_soldado_ferro:botas",
+    "summary": "Armadura +31, vida +20. Só para Guerreiro.",
+    "price": 1400,
+    "source": "Raro: Capataz da Pedreira, Sentinela e Guardião da Galeria.",
+    "set": "set_armadura_soldado_ferro",
+    "set_bonus": {
+      "2": {
+        "max_health": 12,
+        "power_pct": 0.031
+      },
+      "3": {
+        "armor": 11,
+        "double_pct": 0.042
+      },
+      "4": {
+        "armor": 18,
+        "crit_pct": 0.032,
+        "power_pct": 0.041
+      },
+      "5": {
+        "armor": 14,
+        "crit_pct": 0.032,
+        "double_pct": 0.031,
+        "power_pct": 0.042
+      }
+    }
+  },
+  {
+    "id": "armadura_escamas_verdes_capacete",
+    "display_name": "Elmo de Escamas Verdes",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 18,
+    "allowed_classes": [
+      "arqueiro",
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 86,
+      "max_health": 31,
+      "mana_cost_pct": 0.044
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_escamas_verdes_capacete",
+    "model_asset_id": "armadura_escamas_verdes:capacete",
+    "summary": "Armadura +51, vida +31. Só para Arqueiro e Bruxa.",
+    "price": 3500,
+    "source": "Raro: Rainha das Cascas e elites do brejo.",
+    "set": "set_armadura_escamas_verdes",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.034
+      },
+      "3": {
+        "armor": 19,
+        "double_pct": 0.047
+      },
+      "4": {
+        "armor": 28,
+        "crit_pct": 0.037,
+        "power_pct": 0.044
+      },
+      "5": {
+        "armor": 21,
+        "crit_pct": 0.037,
+        "double_pct": 0.034,
+        "power_pct": 0.047
+      }
+    }
+  },
+  {
+    "id": "armadura_escamas_verdes_peitoral",
+    "display_name": "Peitoral de Escamas Verdes",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 18,
+    "allowed_classes": [
+      "arqueiro",
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 247,
+      "max_health": 77,
+      "healing_received_pct": 0.044,
+      "magic_resist_pct": 0.035
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_escamas_verdes_peitoral",
+    "model_asset_id": "armadura_escamas_verdes:peitoral",
+    "summary": "Armadura +128, vida +77. Só para Arqueiro e Bruxa.",
+    "price": 6600,
+    "source": "Raro: Rainha das Cascas e elites do brejo.",
+    "set": "set_armadura_escamas_verdes",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.034
+      },
+      "3": {
+        "armor": 19,
+        "double_pct": 0.047
+      },
+      "4": {
+        "armor": 28,
+        "crit_pct": 0.037,
+        "power_pct": 0.044
+      },
+      "5": {
+        "armor": 21,
+        "crit_pct": 0.037,
+        "double_pct": 0.034,
+        "power_pct": 0.047
+      }
+    }
+  },
+  {
+    "id": "armadura_escamas_verdes_luvas",
+    "display_name": "Luvas de Escamas Verdes",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 18,
+    "allowed_classes": [
+      "arqueiro",
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 81,
+      "max_health": 23,
+      "crit_pct": 0.02,
+      "hit_pct": 0.044
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_escamas_verdes_luvas",
+    "model_asset_id": "armadura_escamas_verdes:luvas",
+    "summary": "Armadura +39, vida +23, crítico +2%. Só para Arqueiro e Bruxa.",
+    "price": 2900,
+    "source": "Raro: Rainha das Cascas e elites do brejo.",
+    "set": "set_armadura_escamas_verdes",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.034
+      },
+      "3": {
+        "armor": 19,
+        "double_pct": 0.047
+      },
+      "4": {
+        "armor": 28,
+        "crit_pct": 0.037,
+        "power_pct": 0.044
+      },
+      "5": {
+        "armor": 21,
+        "crit_pct": 0.037,
+        "double_pct": 0.034,
+        "power_pct": 0.047
+      }
+    }
+  },
+  {
+    "id": "armadura_escamas_verdes_calca",
+    "display_name": "Calça de Escamas Verdes",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 18,
+    "allowed_classes": [
+      "arqueiro",
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 123,
+      "max_health": 40,
+      "stun_resist_pct": 0.044
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_escamas_verdes_calca",
+    "model_asset_id": "armadura_escamas_verdes:perneiras",
+    "summary": "Armadura +57, vida +40. Só para Arqueiro e Bruxa.",
+    "price": 3500,
+    "source": "Raro: Rainha das Cascas e elites do brejo.",
+    "set": "set_armadura_escamas_verdes",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.034
+      },
+      "3": {
+        "armor": 19,
+        "double_pct": 0.047
+      },
+      "4": {
+        "armor": 28,
+        "crit_pct": 0.037,
+        "power_pct": 0.044
+      },
+      "5": {
+        "armor": 21,
+        "crit_pct": 0.037,
+        "double_pct": 0.034,
+        "power_pct": 0.047
+      }
+    }
+  },
+  {
+    "id": "armadura_escamas_verdes_botas",
+    "display_name": "Botas de Escamas Verdes",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 18,
+    "allowed_classes": [
+      "arqueiro",
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 99,
+      "max_health": 27,
+      "dodge_pct": 0.03,
+      "tenacity_pct": 0.044
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_escamas_verdes_botas",
+    "model_asset_id": "armadura_escamas_verdes:botas",
+    "summary": "Armadura +45, vida +27, esquiva +3%. Só para Arqueiro e Bruxa.",
+    "price": 3400,
+    "source": "Raro: Rainha das Cascas e elites do brejo.",
+    "set": "set_armadura_escamas_verdes",
+    "set_bonus": {
+      "2": {
+        "max_health": 17,
+        "power_pct": 0.034
+      },
+      "3": {
+        "armor": 19,
+        "double_pct": 0.047
+      },
+      "4": {
+        "armor": 28,
+        "crit_pct": 0.037,
+        "power_pct": 0.044
+      },
+      "5": {
+        "armor": 21,
+        "crit_pct": 0.037,
+        "double_pct": 0.034,
+        "power_pct": 0.047
+      }
+    }
+  },
+  {
+    "id": "armadura_barbaro_lobo_capacete",
+    "display_name": "Elmo do Bárbaro Lobo",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 110,
+      "max_health": 38,
+      "mana_cost_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_barbaro_lobo_capacete",
+    "model_asset_id": "armadura_barbaro_lobo:capacete",
+    "summary": "Armadura +67, vida +38. Só para Guerreiro e Arqueiro.",
+    "price": 6500,
+    "source": "Raro: lobos alfa e chefes da Mata dos Enforcados.",
+    "set": "set_armadura_barbaro_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.035
+      },
+      "3": {
+        "armor": 27,
+        "double_pct": 0.05
+      },
+      "4": {
+        "armor": 38,
+        "crit_pct": 0.04,
+        "power_pct": 0.045
+      },
+      "5": {
+        "armor": 29,
+        "crit_pct": 0.04,
+        "double_pct": 0.035,
+        "power_pct": 0.05
+      }
+    }
+  },
+  {
+    "id": "armadura_barbaro_lobo_peitoral",
+    "display_name": "Peitoral do Bárbaro Lobo",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 314,
+      "max_health": 95,
+      "thorns_pct": 0.04,
+      "healing_received_pct": 0.052,
+      "magic_resist_pct": 0.042
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_barbaro_lobo_peitoral",
+    "model_asset_id": "armadura_barbaro_lobo:peitoral",
+    "summary": "Armadura +166, vida +95, espinhos (devolve dano) +4%. Só para Guerreiro e Arqueiro.",
+    "price": 14000,
+    "source": "Raro: lobos alfa e chefes da Mata dos Enforcados.",
+    "set": "set_armadura_barbaro_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.035
+      },
+      "3": {
+        "armor": 27,
+        "double_pct": 0.05
+      },
+      "4": {
+        "armor": 38,
+        "crit_pct": 0.04,
+        "power_pct": 0.045
+      },
+      "5": {
+        "armor": 29,
+        "crit_pct": 0.04,
+        "double_pct": 0.035,
+        "power_pct": 0.05
+      }
+    }
+  },
+  {
+    "id": "armadura_barbaro_lobo_luvas",
+    "display_name": "Luvas do Bárbaro Lobo",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 104,
+      "max_health": 28,
+      "attack_speed_pct": 0.05,
+      "hit_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_barbaro_lobo_luvas",
+    "model_asset_id": "armadura_barbaro_lobo:luvas",
+    "summary": "Armadura +50, vida +28, vel. de ataque +5%. Só para Guerreiro e Arqueiro.",
+    "price": 6200,
+    "source": "Raro: lobos alfa e chefes da Mata dos Enforcados.",
+    "set": "set_armadura_barbaro_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.035
+      },
+      "3": {
+        "armor": 27,
+        "double_pct": 0.05
+      },
+      "4": {
+        "armor": 38,
+        "crit_pct": 0.04,
+        "power_pct": 0.045
+      },
+      "5": {
+        "armor": 29,
+        "crit_pct": 0.04,
+        "double_pct": 0.035,
+        "power_pct": 0.05
+      }
+    }
+  },
+  {
+    "id": "armadura_barbaro_lobo_calca",
+    "display_name": "Calça do Bárbaro Lobo",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 157,
+      "max_health": 49,
+      "stun_resist_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_barbaro_lobo_calca",
+    "model_asset_id": "armadura_barbaro_lobo:perneiras",
+    "summary": "Armadura +75, vida +49. Só para Guerreiro e Arqueiro.",
+    "price": 6300,
+    "source": "Raro: lobos alfa e chefes da Mata dos Enforcados.",
+    "set": "set_armadura_barbaro_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.035
+      },
+      "3": {
+        "armor": 27,
+        "double_pct": 0.05
+      },
+      "4": {
+        "armor": 38,
+        "crit_pct": 0.04,
+        "power_pct": 0.045
+      },
+      "5": {
+        "armor": 29,
+        "crit_pct": 0.04,
+        "double_pct": 0.035,
+        "power_pct": 0.05
+      }
+    }
+  },
+  {
+    "id": "armadura_barbaro_lobo_botas",
+    "display_name": "Botas do Bárbaro Lobo",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 125,
+      "max_health": 33,
+      "tenacity_pct": 0.052
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_barbaro_lobo_botas",
+    "model_asset_id": "armadura_barbaro_lobo:botas",
+    "summary": "Armadura +58, vida +33. Só para Guerreiro e Arqueiro.",
+    "price": 5500,
+    "source": "Raro: lobos alfa e chefes da Mata dos Enforcados.",
+    "set": "set_armadura_barbaro_lobo",
+    "set_bonus": {
+      "2": {
+        "max_health": 22,
+        "power_pct": 0.035
+      },
+      "3": {
+        "armor": 27,
+        "double_pct": 0.05
+      },
+      "4": {
+        "armor": 38,
+        "crit_pct": 0.04,
+        "power_pct": 0.045
+      },
+      "5": {
+        "armor": 29,
+        "crit_pct": 0.04,
+        "double_pct": 0.035,
+        "power_pct": 0.05
+      }
+    }
+  },
+  {
+    "id": "armadura_cavaleiro_aco_capacete",
+    "display_name": "Elmo do Cavaleiro de Aço",
+    "category": "helmet",
+    "subtype": "capacete",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 173,
+      "max_health": 42,
+      "cdr_pct": 0.03,
+      "mana_cost_pct": 0.057
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_cavaleiro_aco_capacete",
+    "model_asset_id": "armadura_cavaleiro_aco:capacete",
+    "summary": "Armadura +77, vida +42, recarga +3%. Só para Guerreiro.",
+    "price": 10000,
+    "source": "Raro: chefes e elites a partir do nível 28.",
+    "set": "set_armadura_cavaleiro_aco",
+    "set_bonus": {
+      "2": {
+        "max_health": 25,
+        "power_pct": 0.036
+      },
+      "3": {
+        "armor": 33,
+        "double_pct": 0.053
+      },
+      "4": {
+        "armor": 44,
+        "crit_pct": 0.042,
+        "power_pct": 0.047
+      },
+      "5": {
+        "armor": 35,
+        "crit_pct": 0.042,
+        "double_pct": 0.036,
+        "power_pct": 0.053
+      }
+    }
+  },
+  {
+    "id": "armadura_cavaleiro_aco_peitoral",
+    "display_name": "Peitoral do Cavaleiro de Aço",
+    "category": "armor",
+    "subtype": "peitoral",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 495,
+      "max_health": 106,
+      "damage_reduction_pct": 0.03,
+      "healing_received_pct": 0.057,
+      "magic_resist_pct": 0.046
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_cavaleiro_aco_peitoral",
+    "model_asset_id": "armadura_cavaleiro_aco:peitoral",
+    "summary": "Armadura +192, vida +106, redução de dano +3%. Só para Guerreiro.",
+    "price": 20000,
+    "source": "Raro: chefes e elites a partir do nível 28.",
+    "set": "set_armadura_cavaleiro_aco",
+    "set_bonus": {
+      "2": {
+        "max_health": 25,
+        "power_pct": 0.036
+      },
+      "3": {
+        "armor": 33,
+        "double_pct": 0.053
+      },
+      "4": {
+        "armor": 44,
+        "crit_pct": 0.042,
+        "power_pct": 0.047
+      },
+      "5": {
+        "armor": 35,
+        "crit_pct": 0.042,
+        "double_pct": 0.036,
+        "power_pct": 0.053
+      }
+    }
+  },
+  {
+    "id": "armadura_cavaleiro_aco_luvas",
+    "display_name": "Luvas do Cavaleiro de Aço",
+    "category": "gloves",
+    "subtype": "luvas",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 163,
+      "max_health": 31,
+      "hit_pct": 0.057
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_cavaleiro_aco_luvas",
+    "model_asset_id": "armadura_cavaleiro_aco:luvas",
+    "summary": "Armadura +58, vida +31. Só para Guerreiro.",
+    "price": 7100,
+    "source": "Raro: chefes e elites a partir do nível 28.",
+    "set": "set_armadura_cavaleiro_aco",
+    "set_bonus": {
+      "2": {
+        "max_health": 25,
+        "power_pct": 0.036
+      },
+      "3": {
+        "armor": 33,
+        "double_pct": 0.053
+      },
+      "4": {
+        "armor": 44,
+        "crit_pct": 0.042,
+        "power_pct": 0.047
+      },
+      "5": {
+        "armor": 35,
+        "crit_pct": 0.042,
+        "double_pct": 0.036,
+        "power_pct": 0.053
+      }
+    }
+  },
+  {
+    "id": "armadura_cavaleiro_aco_calca",
+    "display_name": "Calça do Cavaleiro de Aço",
+    "category": "pants",
+    "subtype": "calca",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 247,
+      "max_health": 55,
+      "stun_resist_pct": 0.057
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_cavaleiro_aco_calca",
+    "model_asset_id": "armadura_cavaleiro_aco:perneiras",
+    "summary": "Armadura +86, vida +55. Só para Guerreiro.",
+    "price": 8700,
+    "source": "Raro: chefes e elites a partir do nível 28.",
+    "set": "set_armadura_cavaleiro_aco",
+    "set_bonus": {
+      "2": {
+        "max_health": 25,
+        "power_pct": 0.036
+      },
+      "3": {
+        "armor": 33,
+        "double_pct": 0.053
+      },
+      "4": {
+        "armor": 44,
+        "crit_pct": 0.042,
+        "power_pct": 0.047
+      },
+      "5": {
+        "armor": 35,
+        "crit_pct": 0.042,
+        "double_pct": 0.036,
+        "power_pct": 0.053
+      }
+    }
+  },
+  {
+    "id": "armadura_cavaleiro_aco_botas",
+    "display_name": "Botas do Cavaleiro de Aço",
+    "category": "boots",
+    "subtype": "botas",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 198,
+      "max_health": 37,
+      "move_speed_pct": 0.03,
+      "tenacity_pct": 0.057
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_armadura_cavaleiro_aco_botas",
+    "model_asset_id": "armadura_cavaleiro_aco:botas",
+    "summary": "Armadura +67, vida +37, velocidade +3%. Só para Guerreiro.",
+    "price": 8400,
+    "source": "Raro: chefes e elites a partir do nível 28.",
+    "set": "set_armadura_cavaleiro_aco",
+    "set_bonus": {
+      "2": {
+        "max_health": 25,
+        "power_pct": 0.036
+      },
+      "3": {
+        "armor": 33,
+        "double_pct": 0.053
+      },
+      "4": {
+        "armor": 44,
+        "crit_pct": 0.042,
+        "power_pct": 0.047
+      },
+      "5": {
+        "armor": 35,
+        "crit_pct": 0.042,
+        "double_pct": 0.036,
+        "power_pct": 0.053
+      }
+    }
+  }
+]

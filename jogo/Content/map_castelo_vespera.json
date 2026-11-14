@@ -1,0 +1,852 @@
+{
+  "id": "castelo_vespera",
+  "display_name": "Castelo de Véspera",
+  "half_size": 45,
+  "spawn_x": -4.0,
+  "spawn_y": 33.6,
+  "safe_radius": 5,
+  "xp_multiplier": 4.45,
+  "kind": "dungeon",
+  "region": "vespera",
+  "theme": "fantasma",
+  "instanced": true,
+  "no_mount": true,
+  "exit_map": "vespera",
+  "exit_x": 58.099999999999994,
+  "exit_y": -49.9,
+  "zones": [
+    {
+      "id": "entrada",
+      "name": "Vestíbulo",
+      "kind": "seguro",
+      "x": -4.0,
+      "y": 36.0,
+      "w": 5.6,
+      "h": 5.6
+    },
+    {
+      "id": "ala",
+      "name": "Ala Baixa",
+      "kind": "medio",
+      "x": -8.0,
+      "y": 16.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "lateral",
+      "name": "Câmara Lateral",
+      "kind": "segredo",
+      "x": -36.0,
+      "y": 12.0,
+      "w": 6.8,
+      "h": 6.8
+    },
+    {
+      "id": "guarda",
+      "name": "Sala da Guarda",
+      "kind": "forte",
+      "x": 16.0,
+      "y": -8.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "antessala",
+      "name": "Antessala",
+      "kind": "seguro",
+      "x": -20.0,
+      "y": -20.0,
+      "w": 5.2,
+      "h": 5.2
+    },
+    {
+      "id": "trono",
+      "name": "Salão do Trono: Lorde Vesperino, o Insone",
+      "kind": "chefe",
+      "x": -16.0,
+      "y": -32.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "labirinto",
+      "name": "Labirinto",
+      "kind": "caminho",
+      "x": 0.0,
+      "y": 0.0,
+      "w": 80.0,
+      "h": 80.0
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 0.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": 0.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": -8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": -8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": 24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -4.0,
+      "y": 24.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": 24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": 8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": 8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -24.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -12.0,
+      "y": 32.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": 32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -36.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 16.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": -16.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": -24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": -28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": 8.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 25.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 32.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": -28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": -12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 16.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    }
+  ],
+  "gates": [],
+  "chests": [
+    {
+      "id": "bau_mercado_mortos",
+      "x": -36.0,
+      "y": 10.0,
+      "loot_table": "bau_mercado_mortos",
+      "facing": 90
+    }
+  ],
+  "spawns": [
+    {
+      "id": "castelo_vespera_mercado_mortos_ala0",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": -11.6,
+      "y": 12.4,
+      "level": 42,
+      "group": "castelo_vespera_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_ala1",
+      "monster": "monster_vespera_necromante_mercado",
+      "x": -5.5,
+      "y": 13.5,
+      "level": 44,
+      "group": "castelo_vespera_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_ala2",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": -14.1,
+      "y": 18.5,
+      "level": 42,
+      "group": "castelo_vespera_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_ala3",
+      "monster": "monster_vespera_necromante_mercado",
+      "x": -4.1,
+      "y": 10.4,
+      "level": 44,
+      "group": "castelo_vespera_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_ala4",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": -1.6,
+      "y": 12.1,
+      "level": 42,
+      "group": "castelo_vespera_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_lat0",
+      "monster": "monster_vespera_necromante_mercado",
+      "x": -37.7,
+      "y": 11.8,
+      "level": 45,
+      "group": "castelo_vespera_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_lat1",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": -36.8,
+      "y": 13.4,
+      "level": 43,
+      "group": "castelo_vespera_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_lat2",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": -34.5,
+      "y": 11.2,
+      "level": 43,
+      "group": "castelo_vespera_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mini",
+      "monster": "monster_vespera_cobrador_sem_rosto",
+      "x": 11.6,
+      "y": -10.5,
+      "level": 45,
+      "group": "castelo_vespera_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_guarda0",
+      "monster": "monster_vespera_soldado_mercado",
+      "x": 9.7,
+      "y": -13.1,
+      "level": 43,
+      "group": "castelo_vespera_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_mercado_mortos_guarda1",
+      "monster": "monster_vespera_necromante_mercado",
+      "x": 18.6,
+      "y": -3.6,
+      "level": 45,
+      "group": "castelo_vespera_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "castelo_vespera_boss",
+      "monster": "monster_castelo_lorde_vespera",
+      "x": -20.0,
+      "y": -28.0,
+      "level": 47,
+      "group": "castelo_vespera_boss",
+      "respawn_seconds": 30
+    }
+  ],
+  "props": [
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 15.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 8.96,
+      "y": 20.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 31.04,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 16.96,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 7.04,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -15.04,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -24.96,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -31.04,
+      "y": -12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -16.96,
+      "y": -28.0,
+      "yaw": 0
+    },
+    {
+      "kind": "cranios",
+      "x": -10.94,
+      "y": 18.18,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_placa_chefe",
+      "x": -19.43,
+      "y": -24.55,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_saida",
+      "x": 0.73,
+      "y": 35.79,
+      "yaw": 0,
+      "acervo": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "castelo_vespera_saida",
+      "x": -4.0,
+      "y": 38.6,
+      "radius": 1.8,
+      "to_map": "vespera",
+      "to_x": 58.099999999999994,
+      "to_y": -49.9,
+      "label": "Saída"
+    },
+    {
+      "id": "castelo_vespera_fim",
+      "x": 4.0,
+      "y": -36.0,
+      "radius": 1.8,
+      "to_map": "vespera",
+      "to_x": 58.099999999999994,
+      "to_y": -49.9,
+      "label": "Saída"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [],
+  "checkpoints": [
+    {
+      "id": "antessala",
+      "x": -20.0,
+      "y": -20.0,
+      "radius": 3,
+      "label": "Antessala"
+    }
+  ],
+  "first_clear_loot": "primeira_mercado_mortos",
+  "first_clear_boss": "monster_castelo_lorde_vespera"
+}

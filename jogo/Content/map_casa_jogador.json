@@ -1,0 +1,232 @@
+{
+  "id": "casa_jogador",
+  "display_name": "Sua Casa",
+  "half_size": 12,
+  "spawn_x": 0,
+  "spawn_y": 6,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "cidade",
+  "instanced": true,
+  "instance_scope": "personal",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": 20,
+  "exit_y": 24.5,
+  "zones": [
+    {
+      "id": "casa",
+      "name": "Sua Casa",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 20,
+      "h": 20
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": -10,
+      "w": 20,
+      "h": 1,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": 10,
+      "w": 20,
+      "h": 1,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": -10,
+      "y": 0,
+      "w": 1,
+      "h": 20,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 10,
+      "y": 0,
+      "w": 1,
+      "h": 20,
+      "r": 0,
+      "height": 4
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "barril",
+      "x": -7,
+      "y": -7,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": 7,
+      "y": -8,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": 0,
+      "y": -9,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_lareira",
+      "x": 2.6,
+      "y": -9.0,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": -3.5,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_mesa",
+      "x": 0,
+      "y": -3.5,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": -1.2,
+      "y": -3.5,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": 1.2,
+      "y": -3.5,
+      "yaw": -90
+    },
+    {
+      "kind": "movel_cama",
+      "x": 8.4,
+      "y": 5.2,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_prateleira",
+      "x": -9.2,
+      "y": -3.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_caixas",
+      "x": -8.2,
+      "y": 8.0,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_banqueta",
+      "x": 4.6,
+      "y": -6.0,
+      "yaw": 0
+    }
+  ],
+  "portals": [
+    {
+      "id": "casa_saida",
+      "x": 0,
+      "y": 9,
+      "radius": 1.4,
+      "to_map": "porto_das_cinzas",
+      "to_x": 20,
+      "to_y": 24.5,
+      "label": "Porto",
+      "por_porta": true
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [
+    {
+      "id": "casa_bau",
+      "kind": "bau_casa",
+      "x": -6,
+      "y": -6,
+      "label": "Baú da casa"
+    },
+    {
+      "id": "casa_bancada",
+      "kind": "bancada",
+      "x": 6,
+      "y": -6,
+      "label": "Bancada"
+    },
+    {
+      "id": "casa_caldeirao",
+      "kind": "caldeirao",
+      "x": 6,
+      "y": 0,
+      "label": "Caldeirão"
+    },
+    {
+      "id": "casa_canteiro0",
+      "kind": "canteiro",
+      "x": -6,
+      "y": 1,
+      "label": "Canteiro da casa"
+    },
+    {
+      "id": "casa_canteiro1",
+      "kind": "canteiro",
+      "x": -3,
+      "y": 1,
+      "label": "Canteiro da casa"
+    },
+    {
+      "id": "casa_canteiro2",
+      "kind": "canteiro",
+      "x": -6,
+      "y": 4,
+      "label": "Canteiro extra",
+      "requires_flag": "casa:canteiros4"
+    },
+    {
+      "id": "casa_canteiro3",
+      "kind": "canteiro",
+      "x": -3,
+      "y": 4,
+      "label": "Canteiro extra",
+      "requires_flag": "casa:canteiros4"
+    },
+    {
+      "id": "porta_casa_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 9,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:casa_saida"
+    },
+    {
+      "id": "casa_jogador_cama1",
+      "kind": "cama",
+      "x": 8.4,
+      "y": 6.4,
+      "label": "Dormir na sua cama"
+    }
+  ],
+  "checkpoints": []
+}

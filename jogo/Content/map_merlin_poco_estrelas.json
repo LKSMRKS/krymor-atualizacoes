@@ -1,0 +1,873 @@
+{
+  "id": "merlin_poco_estrelas",
+  "display_name": "O Poço das Estrelas",
+  "half_size": 45,
+  "spawn_x": -4.0,
+  "spawn_y": 33.6,
+  "safe_radius": 5,
+  "xp_multiplier": 2.88,
+  "kind": "dungeon",
+  "region": "astralia",
+  "theme": "lua",
+  "instanced": true,
+  "no_mount": true,
+  "exit_map": "torre_merlin",
+  "exit_x": 0.0,
+  "exit_y": -8.5,
+  "zones": [
+    {
+      "id": "entrada",
+      "name": "Vestíbulo",
+      "kind": "seguro",
+      "x": -4.0,
+      "y": 36.0,
+      "w": 5.6,
+      "h": 5.6
+    },
+    {
+      "id": "ala",
+      "name": "Ala Baixa",
+      "kind": "medio",
+      "x": 0.0,
+      "y": 0.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "lateral",
+      "name": "Câmara Lateral",
+      "kind": "segredo",
+      "x": -36.0,
+      "y": 12.0,
+      "w": 6.8,
+      "h": 6.8
+    },
+    {
+      "id": "guarda",
+      "name": "Sala da Guarda",
+      "kind": "forte",
+      "x": -8.0,
+      "y": -32.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "antessala",
+      "name": "Antessala",
+      "kind": "seguro",
+      "x": -4.0,
+      "y": -36.0,
+      "w": 5.2,
+      "h": 5.2
+    },
+    {
+      "id": "trono",
+      "name": "Fundo do Poço: o Visitante que Caiu",
+      "kind": "chefe",
+      "x": 0.0,
+      "y": -24.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "labirinto",
+      "name": "Labirinto",
+      "kind": "caminho",
+      "x": 0.0,
+      "y": 0.0,
+      "w": 80.0,
+      "h": 80.0
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -12.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": 8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -4.0,
+      "y": 8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": -8.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": -8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 32.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 4.0,
+      "y": 32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": 32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -36.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 4.0,
+      "y": -16.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -20.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 4.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": -32.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": 24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -4.0,
+      "y": 24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 20.0,
+      "y": 24.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -36.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 16.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 16.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": 16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": 0.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": 0.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": -8.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": -24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 8.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 25.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": -28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 25.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 36.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 32.0,
+      "y": 20.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    }
+  ],
+  "gates": [],
+  "chests": [
+    {
+      "id": "merlin_poco_estrelas_bau_galerias_piedade",
+      "x": -36.0,
+      "y": 10.0,
+      "loot_table": "bau_galerias_piedade",
+      "facing": 90
+    }
+  ],
+  "spawns": [
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_ala0",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": 3.5,
+      "y": -4.0,
+      "level": 26,
+      "group": "merlin_poco_estrelas_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_ala1",
+      "monster": "monster_merlin_estrela_cadente",
+      "x": 4.8,
+      "y": -2.2,
+      "level": 28,
+      "group": "merlin_poco_estrelas_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_ala2",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": -5.3,
+      "y": -3.1,
+      "level": 26,
+      "group": "merlin_poco_estrelas_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_ala3",
+      "monster": "monster_merlin_estrela_cadente",
+      "x": -3.7,
+      "y": 4.8,
+      "level": 28,
+      "group": "merlin_poco_estrelas_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_ala4",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": 1.9,
+      "y": 5.6,
+      "level": 26,
+      "group": "merlin_poco_estrelas_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_lat0",
+      "monster": "monster_merlin_estrela_cadente",
+      "x": -34.8,
+      "y": 13.1,
+      "level": 29,
+      "group": "merlin_poco_estrelas_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_lat1",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": -37.7,
+      "y": 11.8,
+      "level": 27,
+      "group": "merlin_poco_estrelas_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_lat2",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": -35.6,
+      "y": 10.3,
+      "level": 27,
+      "group": "merlin_poco_estrelas_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_mini",
+      "monster": "monster_merlin_morcego_lunar",
+      "x": -36.0,
+      "y": 12.0,
+      "level": 30,
+      "group": "merlin_poco_estrelas_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_guarda0",
+      "monster": "monster_merlin_lobo_lua_nova",
+      "x": -36.0,
+      "y": 4.0,
+      "level": 27,
+      "group": "merlin_poco_estrelas_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_galerias_piedade_guarda1",
+      "monster": "monster_merlin_estrela_cadente",
+      "x": -28.0,
+      "y": -4.0,
+      "level": 29,
+      "group": "merlin_poco_estrelas_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "merlin_poco_estrelas_boss",
+      "monster": "monster_merlin_visitante_caido",
+      "x": 0.0,
+      "y": -24.0,
+      "level": 32,
+      "group": "merlin_poco_estrelas_boss",
+      "respawn_seconds": 30,
+      "grant_flag": "selo:elevador"
+    }
+  ],
+  "props": [
+    {
+      "kind": "glb:dg/dg_cristais_cal",
+      "x": -4.63,
+      "y": -6.54,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": -1.51,
+      "y": 5.4,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 7.04,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_estalagmites",
+      "x": -11.42,
+      "y": -35.65,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 24.96,
+      "y": 20.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 3.59,
+      "y": 2.06,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 23.04,
+      "y": -12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_cristais_cal",
+      "x": -4.01,
+      "y": -34.42,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": -28.0,
+      "yaw": 0
+    },
+    {
+      "kind": "cranios",
+      "x": -9.85,
+      "y": -30.2,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_placa_chefe",
+      "x": -2.08,
+      "y": -26.93,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_saida",
+      "x": -5.91,
+      "y": -27.58,
+      "yaw": 0,
+      "acervo": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "merlin_poco_estrelas_saida",
+      "x": -4.0,
+      "y": 38.6,
+      "radius": 1.8,
+      "to_map": "torre_merlin",
+      "to_x": 0.0,
+      "to_y": -8.5,
+      "label": "Voltar ao Observatório"
+    },
+    {
+      "id": "merlin_poco_estrelas_fim",
+      "x": -12.0,
+      "y": -28.0,
+      "radius": 1.8,
+      "to_map": "torre_merlin",
+      "to_x": 0.0,
+      "to_y": -8.5,
+      "label": "Voltar ao Observatório"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [],
+  "checkpoints": [
+    {
+      "id": "antessala",
+      "x": -4.0,
+      "y": -36.0,
+      "radius": 3,
+      "label": "Antessala"
+    }
+  ],
+  "first_clear_loot": "primeira_galerias_piedade",
+  "first_clear_boss": "monster_merlin_visitante_caido"
+}

@@ -1,0 +1,931 @@
+[
+  {
+    "id": "asas_pano",
+    "display_name": "Asas de Pano",
+    "category": "wings",
+    "subtype": "asa_pano",
+    "min_level": 25,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.086,
+      "move_speed_pct": 0.083,
+      "armor": 32,
+      "max_health": 101
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_pano",
+    "model_asset_id": "asas_pano",
+    "summary": "Comum. Retalhos de lona costurados em varetas, puídos nas pontas. ataque +8.6%, velocidade +8.3%, armadura +32, vida +101. G = voar.",
+    "price": 29000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_penas",
+    "display_name": "Asas de Penas",
+    "category": "wings",
+    "subtype": "asa_penas",
+    "min_level": 26,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.09,
+      "move_speed_pct": 0.086,
+      "armor": 33,
+      "max_health": 105,
+      "dodge_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_penas",
+    "model_asset_id": "asas_penas",
+    "summary": "Comum. Penas marrons de gavião, simples e leves. ataque +9%, velocidade +8.6%, armadura +33, vida +105, esquiva +2%. G = voar.",
+    "price": 33000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_morcego",
+    "display_name": "Asas de Morcego",
+    "category": "wings",
+    "subtype": "asa_morcego",
+    "min_level": 27,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.093,
+      "move_speed_pct": 0.088,
+      "armor": 34,
+      "max_health": 109,
+      "crit_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_morcego",
+    "model_asset_id": "asas_morcego",
+    "summary": "Comum. Membrana vermelha esticada em dedos finos. ataque +9.3%, velocidade +8.8%, armadura +34, vida +109, crítico +2%. G = voar.",
+    "price": 36000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_inseto",
+    "display_name": "Asas de Inseto",
+    "category": "wings",
+    "subtype": "asa_inseto",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.097,
+      "move_speed_pct": 0.091,
+      "armor": 36,
+      "max_health": 113,
+      "attack_speed_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_inseto",
+    "model_asset_id": "asas_inseto",
+    "summary": "Comum. Quatro lâminas transparentes e azuladas, com veias. ataque +9.7%, velocidade +9.1%, armadura +36, vida +113, vel. de ataque +3%. G = voar.",
+    "price": 41000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_anjo",
+    "display_name": "Asas de Anjo Simples",
+    "category": "wings",
+    "subtype": "asa_anjo",
+    "min_level": 29,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.1,
+      "move_speed_pct": 0.095,
+      "armor": 37,
+      "max_health": 117,
+      "hp_regen_pct": 0.001
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_anjo",
+    "model_asset_id": "asas_anjo",
+    "summary": "Comum. Penas brancas, limpas, de anjo de capela. ataque +10%, velocidade +9.5%, armadura +37, vida +117, regeneração de vida +0.1%. G = voar.",
+    "price": 43000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_folhas",
+    "display_name": "Asas de Folhas",
+    "category": "wings",
+    "subtype": "asa_folhas",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.117,
+      "move_speed_pct": 0.111,
+      "armor": 43,
+      "max_health": 138,
+      "hp_regen_pct": 0.0015
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_folhas",
+    "model_asset_id": "asas_folhas",
+    "summary": "Incomum. Folhas presas num galho, com florzinhas brancas; soltam folhas pelo caminho. ataque +11.7%, velocidade +11.1%, armadura +43, vida +138, regeneração de vida +0.15%. G = voar.",
+    "price": 50000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_cristal",
+    "display_name": "Asas de Cristal",
+    "category": "wings",
+    "subtype": "asa_cristal",
+    "min_level": 32,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.125,
+      "move_speed_pct": 0.117,
+      "armor": 46,
+      "max_health": 147,
+      "magic_resist_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_cristal",
+    "model_asset_id": "asas_cristal",
+    "summary": "Incomum. Lâminas de cristal azul que brilham por dentro. ataque +12.5%, velocidade +11.7%, armadura +46, vida +147, resistência mágica +5%. G = voar.",
+    "price": 62000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_vapor",
+    "display_name": "Asas de Vapor",
+    "category": "wings",
+    "subtype": "asa_vapor",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.133,
+      "move_speed_pct": 0.124,
+      "armor": 49,
+      "max_health": 156,
+      "dodge_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_vapor",
+    "model_asset_id": "asas_vapor",
+    "summary": "Incomum. Nuvens enroladas em redemoinho, macias como fumaça. ataque +13.3%, velocidade +12.4%, armadura +49, vida +156, esquiva +3%. G = voar.",
+    "price": 72000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_borboleta",
+    "display_name": "Asas de Borboleta",
+    "category": "wings",
+    "subtype": "asa_borboleta",
+    "min_level": 36,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.141,
+      "move_speed_pct": 0.161,
+      "armor": 52,
+      "max_health": 165
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_borboleta",
+    "model_asset_id": "asas_borboleta",
+    "summary": "Incomum. Laranja e roxo com pintas brancas na borda. ataque +14.1%, velocidade +16.1%, armadura +52, vida +165. G = voar.",
+    "price": 83000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_ossos",
+    "display_name": "Asas de Ossos",
+    "category": "wings",
+    "subtype": "asa_ossos",
+    "min_level": 38,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.149,
+      "move_speed_pct": 0.138,
+      "armor": 55,
+      "max_health": 174,
+      "crit_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_ossos",
+    "model_asset_id": "asas_ossos",
+    "summary": "Incomum. Só o esqueleto da asa: úmero e quatro dedos com garra. ataque +14.9%, velocidade +13.8%, armadura +55, vida +174, crítico +3%. G = voar.",
+    "price": 97000,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "asas_tempestade",
+    "display_name": "Asas de Tempestade",
+    "category": "wings",
+    "subtype": "asa_tempestade",
+    "min_level": 40,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.184,
+      "move_speed_pct": 0.17,
+      "armor": 68,
+      "max_health": 216,
+      "attack_speed_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_tempestade",
+    "model_asset_id": "asas_tempestade",
+    "summary": "Rara. Raios azuis no lugar das penas, estalando sem parar. ataque +18.4%, velocidade +17%, armadura +68, vida +216, vel. de ataque +5%. G = voar.",
+    "price": 110000,
+    "source": "RARA: chefes do nível 36 ao 46; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_gelo",
+    "display_name": "Asas de Gelo",
+    "category": "wings",
+    "subtype": "asa_gelo",
+    "min_level": 42,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.193,
+      "move_speed_pct": 0.178,
+      "armor": 71,
+      "max_health": 227,
+      "magic_resist_pct": 0.07
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_gelo",
+    "model_asset_id": "asas_gelo",
+    "summary": "Rara. Penas de gelo com brilho de geada. ataque +19.3%, velocidade +17.8%, armadura +71, vida +227, resistência mágica +7%. G = voar.",
+    "price": 120000,
+    "source": "RARA: chefes do nível 38 ao 48; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_fogo",
+    "display_name": "Asas de Fogo",
+    "category": "wings",
+    "subtype": "asa_fogo",
+    "min_level": 44,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.222,
+      "move_speed_pct": 0.186,
+      "armor": 75,
+      "max_health": 238
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_fogo",
+    "model_asset_id": "asas_fogo",
+    "summary": "Rara. Penas em brasa que pulsam e soltam faíscas. ataque +22.2%, velocidade +18.6%, armadura +75, vida +238. G = voar.",
+    "price": 140000,
+    "source": "RARA: chefes do nível 40 ao 50; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_sombrias",
+    "display_name": "Asas Sombrias",
+    "category": "wings",
+    "subtype": "asa_sombrias",
+    "min_level": 46,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.212,
+      "move_speed_pct": 0.194,
+      "armor": 78,
+      "max_health": 248,
+      "dodge_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_sombrias",
+    "model_asset_id": "asas_sombrias",
+    "summary": "Rara. Penas roxo-escuras que deixam um rastro de sombra. ataque +21.2%, velocidade +19.4%, armadura +78, vida +248, esquiva +4%. G = voar.",
+    "price": 150000,
+    "source": "RARA: chefes do nível 42 ao 52; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_celestiais",
+    "display_name": "Asas Celestiais",
+    "category": "wings",
+    "subtype": "asa_celestiais",
+    "min_level": 48,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.221,
+      "move_speed_pct": 0.202,
+      "armor": 82,
+      "max_health": 259,
+      "resource_regen_pct": 0.12
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_celestiais",
+    "model_asset_id": "asas_celestiais",
+    "summary": "Rara. Penas douradas com uma auréola de luz por cima. ataque +22.1%, velocidade +20.2%, armadura +82, vida +259, regeneração de recurso +12%. G = voar.",
+    "price": 170000,
+    "source": "RARA: chefes do nível 44 ao 54; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_draconicas",
+    "display_name": "Asas Dracônicas",
+    "category": "wings",
+    "subtype": "asa_draconicas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.253,
+      "move_speed_pct": 0.22,
+      "armor": 94,
+      "max_health": 297,
+      "damage_reduction_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_draconicas",
+    "model_asset_id": "asas_draconicas",
+    "summary": "Épica. Couro de dragão vermelho com bordas douradas. ataque +25.3%, velocidade +22%, armadura +94, vida +297, redução de dano +3%. G = voar.",
+    "price": 180000,
+    "source": "ÉPICA: chefes do nível 46 ao 56; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_demoniacas",
+    "display_name": "Asas Demoníacas",
+    "category": "wings",
+    "subtype": "asa_demoniacas",
+    "min_level": 52,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.263,
+      "move_speed_pct": 0.22,
+      "armor": 97,
+      "max_health": 309,
+      "crit_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_demoniacas",
+    "model_asset_id": "asas_demoniacas",
+    "summary": "Épica. Membrana negra com veias de fogo e o selo do olho vermelho. ataque +26.3%, velocidade +22%, armadura +97, vida +309, crítico +5%. G = voar.",
+    "price": 200000,
+    "source": "ÉPICA: chefes do nível 48 ao 58; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_vazio",
+    "display_name": "Asas do Vazio",
+    "category": "wings",
+    "subtype": "asa_vazio",
+    "min_level": 54,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.273,
+      "move_speed_pct": 0.22,
+      "armor": 101,
+      "max_health": 321,
+      "cdr_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_vazio",
+    "model_asset_id": "asas_vazio",
+    "summary": "Épica. Um céu estrelado roxo dentro da asa e um buraco negro nas costas. ataque +27.3%, velocidade +22%, armadura +101, vida +321, recarga +5%. G = voar.",
+    "price": 220000,
+    "source": "ÉPICA: chefes do nível 50 ao 60; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_runicas",
+    "display_name": "Asas Rúnicas",
+    "category": "wings",
+    "subtype": "asa_runicas",
+    "min_level": 55,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.278,
+      "move_speed_pct": 0.22,
+      "armor": 103,
+      "max_health": 327,
+      "resource_regen_pct": 0.18
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_runicas",
+    "model_asset_id": "asas_runicas",
+    "summary": "Épica. Pedra escura com runas ciano que correm pela asa. ataque +27.8%, velocidade +22%, armadura +103, vida +327, regeneração de recurso +18%. G = voar.",
+    "price": 230000,
+    "source": "ÉPICA: chefes do nível 51 ao 61; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_arcanjo",
+    "display_name": "Asas do Arcanjo",
+    "category": "wings",
+    "subtype": "asa_arcanjo",
+    "min_level": 56,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.283,
+      "move_speed_pct": 0.22,
+      "armor": 105,
+      "max_health": 333,
+      "healing_received_pct": 0.1,
+      "hp_regen_pct": 0.002
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_arcanjo",
+    "model_asset_id": "asas_arcanjo",
+    "summary": "Épica. Grandes, brancas e douradas, com auréola e uma gema azul. ataque +28.3%, velocidade +22%, armadura +105, vida +333, cura recebida +10%, regeneração de vida +0.2%. G = voar.",
+    "price": 240000,
+    "source": "ÉPICA: chefes do nível 52 ao 62; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_dragao_anciao",
+    "display_name": "Asas de Dragão Ancião",
+    "category": "wings",
+    "subtype": "asa_dragao_anciao",
+    "min_level": 58,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.33,
+      "move_speed_pct": 0.22,
+      "armor": 118,
+      "max_health": 376,
+      "damage_reduction_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_dragao_anciao",
+    "model_asset_id": "asas_dragao_anciao",
+    "summary": "Lendária. Escamas negras rachadas com lava viva por dentro. ataque +33%, velocidade +22%, armadura +118, vida +376, redução de dano +3%. G = voar.",
+    "price": 260000,
+    "source": "LENDÁRIA: chefes do nível 54 ao 64; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_fenrir",
+    "display_name": "Asas do Fenrir",
+    "category": "wings",
+    "subtype": "asa_fenrir",
+    "min_level": 58,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.3,
+      "move_speed_pct": 0.24,
+      "armor": 118,
+      "max_health": 376,
+      "attack_speed_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_fenrir",
+    "model_asset_id": "asas_fenrir",
+    "summary": "Lendária. Gelo em forma de asa com duas cabeças de lobo uivando. ataque +30%, velocidade +24%, armadura +118, vida +376, vel. de ataque +6%. G = voar.",
+    "price": 260000,
+    "source": "LENDÁRIA: chefes do nível 54 ao 64; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_eclipse",
+    "display_name": "Asas do Eclipse",
+    "category": "wings",
+    "subtype": "asa_eclipse",
+    "min_level": 59,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.32,
+      "move_speed_pct": 0.22,
+      "armor": 120,
+      "max_health": 382,
+      "crit_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_eclipse",
+    "model_asset_id": "asas_eclipse",
+    "summary": "Lendária. Metade sol dourado, metade noite roxa, e o sol negro no meio. ataque +32%, velocidade +22%, armadura +120, vida +382, crítico +6%. G = voar.",
+    "price": 270000,
+    "source": "LENDÁRIA: chefes do nível 55 ao 65; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_tempo",
+    "display_name": "Asas do Tempo",
+    "category": "wings",
+    "subtype": "asa_tempo",
+    "min_level": 60,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.3,
+      "move_speed_pct": 0.22,
+      "armor": 122,
+      "max_health": 389,
+      "cdr_pct": 0.08
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_tempo",
+    "model_asset_id": "asas_tempo",
+    "summary": "Lendária. Penas de ouro e azul com engrenagens e o relógio parado nas costas. ataque +30%, velocidade +22%, armadura +122, vida +389, recarga +8%. G = voar.",
+    "price": 280000,
+    "source": "LENDÁRIA: chefes do nível 56 ao 66; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_criacao",
+    "display_name": "Asas da Criação",
+    "category": "wings",
+    "subtype": "asa_criacao",
+    "min_level": 60,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.3,
+      "move_speed_pct": 0.22,
+      "armor": 122,
+      "max_health": 389,
+      "xp_pct": 0.05,
+      "hp_regen_pct": 0.002,
+      "resource_regen_pct": 0.15
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_criacao",
+    "model_asset_id": "asas_criacao",
+    "summary": "Lendária. Todas as cores da luz, auréola e o sol nascendo nas costas. ataque +30%, velocidade +22%, armadura +122, vida +389, XP +5%, regeneração de vida +0.2%, regeneração de recurso +15%. G = voar.",
+    "price": 280000,
+    "source": "LENDÁRIA: chefes do nível 56 ao 66; Loja de Cristais (menu do TAB)."
+  },
+  {
+    "id": "asas_set_cavaleiro_sagrado",
+    "display_name": "Asas do Cavaleiro Sagrado",
+    "category": "wings",
+    "subtype": "pack:arm_cavaleiro_sagrado_asas",
+    "min_level": 45,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.228,
+      "move_speed_pct": 0.209,
+      "armor": 84,
+      "max_health": 267,
+      "healing_received_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_cavaleiro_sagrado",
+    "model_asset_id": "asas_set_cavaleiro_sagrado",
+    "summary": "Épica. Penas brancas e douradas do conjunto Sagrado. ataque +22.8%, velocidade +20.9%, armadura +84, vida +267, cura recebida +6%. G = voar.",
+    "price": 140000,
+    "source": "ÉPICA: chefes do nível 41 ao 51 (junto do conjunto); Loja de Cristais."
+  },
+  {
+    "id": "asas_set_gelo_eterno",
+    "display_name": "Asas de Gelo Eterno",
+    "category": "wings",
+    "subtype": "pack:arm_gelo_eterno_asas",
+    "min_level": 45,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.228,
+      "move_speed_pct": 0.209,
+      "armor": 84,
+      "max_health": 267,
+      "magic_resist_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_gelo_eterno",
+    "model_asset_id": "asas_set_gelo_eterno",
+    "summary": "Épica. Lascas de gelo do conjunto Gelo Eterno. ataque +22.8%, velocidade +20.9%, armadura +84, vida +267, resistência mágica +6%. G = voar.",
+    "price": 140000,
+    "source": "ÉPICA: chefes do nível 41 ao 51 (junto do conjunto); Loja de Cristais."
+  },
+  {
+    "id": "asas_set_dragao_fogo",
+    "display_name": "Asas do Dragão de Fogo",
+    "category": "wings",
+    "subtype": "pack:arm_dragao_fogo_asas",
+    "min_level": 48,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.263,
+      "move_speed_pct": 0.22,
+      "armor": 90,
+      "max_health": 285
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_dragao_fogo",
+    "model_asset_id": "asas_set_dragao_fogo",
+    "summary": "Épica. Membrana de lava rachada do conjunto Dragão de Fogo. ataque +26.3%, velocidade +22%, armadura +90, vida +285. G = voar.",
+    "price": 170000,
+    "source": "ÉPICA: chefes do nível 44 ao 54 (junto do conjunto); Loja de Cristais."
+  },
+  {
+    "id": "asas_set_celestial",
+    "display_name": "Asas Celestiais do Arqueiro",
+    "category": "wings",
+    "subtype": "pack:arm_celestial_asas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.253,
+      "move_speed_pct": 0.22,
+      "armor": 94,
+      "max_health": 297,
+      "crit_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_celestial",
+    "model_asset_id": "asas_set_celestial",
+    "summary": "Épica. Penas de prata e ouro do conjunto Celestial. ataque +25.3%, velocidade +22%, armadura +94, vida +297, crítico +3%. G = voar.",
+    "price": 180000,
+    "source": "ÉPICA: chefes do nível 46 ao 56 (junto do conjunto); Loja de Cristais."
+  },
+  {
+    "id": "asas_set_demoniaco",
+    "display_name": "Asas do Demoníaco",
+    "category": "wings",
+    "subtype": "pack:arm_demoniaco_asas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.253,
+      "move_speed_pct": 0.22,
+      "armor": 94,
+      "max_health": 297,
+      "crit_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_demoniaco",
+    "model_asset_id": "asas_set_demoniaco",
+    "summary": "Épica. Membrana negra com veias de fogo do conjunto Demoníaco. ataque +25.3%, velocidade +22%, armadura +94, vida +297, crítico +4%. G = voar.",
+    "price": 180000,
+    "source": "ÉPICA: chefes do nível 46 ao 56 (junto do conjunto); Loja de Cristais."
+  },
+  {
+    "id": "asas_set_anjo_caido",
+    "display_name": "Asas do Anjo Caído",
+    "category": "wings",
+    "subtype": "pack:arm_anjo_caido_asas",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.253,
+      "move_speed_pct": 0.22,
+      "armor": 94,
+      "max_health": 297,
+      "dodge_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_asas_set_anjo_caido",
+    "model_asset_id": "asas_set_anjo_caido",
+    "summary": "Épica. Penas negras do conjunto Anjo Caído. ataque +25.3%, velocidade +22%, armadura +94, vida +297, esquiva +4%. G = voar.",
+    "price": 180000,
+    "source": "ÉPICA: chefes do nível 46 ao 56 (junto do conjunto); Loja de Cristais."
+  }
+]

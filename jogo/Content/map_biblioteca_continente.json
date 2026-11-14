@@ -1,0 +1,811 @@
+{
+  "id": "biblioteca_continente",
+  "display_name": "Biblioteca do Continente",
+  "half_size": 26,
+  "spawn_x": 0,
+  "spawn_y": 5.0,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "vale",
+  "theme": "biblioteca",
+  "no_mount": true,
+  "exit_map": "vale_das_cinzas",
+  "exit_x": -41.8,
+  "exit_y": -2,
+  "zones": [
+    {
+      "id": "salao",
+      "name": "Grande Salão",
+      "kind": "seguro",
+      "x": 0,
+      "y": -8,
+      "w": 16,
+      "h": 30
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "parede_bib",
+      "shape": "box",
+      "x": -8.5,
+      "y": -8.0,
+      "w": 1.0,
+      "h": 31.0,
+      "r": 0,
+      "height": 7
+    },
+    {
+      "kind": "parede_bib",
+      "shape": "box",
+      "x": 8.5,
+      "y": -8.0,
+      "w": 1.0,
+      "h": 31.0,
+      "r": 0,
+      "height": 7
+    },
+    {
+      "kind": "parede_bib",
+      "shape": "box",
+      "x": 0,
+      "y": -23.5,
+      "w": 18.0,
+      "h": 1.0,
+      "r": 0,
+      "height": 7
+    },
+    {
+      "kind": "parede_bib",
+      "shape": "box",
+      "x": -5.3,
+      "y": 7.5,
+      "w": 7.4,
+      "h": 1.0,
+      "r": 0,
+      "height": 7
+    },
+    {
+      "kind": "parede_bib",
+      "shape": "box",
+      "x": 5.3,
+      "y": 7.5,
+      "w": 7.4,
+      "h": 1.0,
+      "r": 0,
+      "height": 7
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -7.5,
+      "y": -21.5,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -7.5,
+      "y": -16.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -7.5,
+      "y": -10.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -7.5,
+      "y": -4.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -7.5,
+      "y": 2.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -5.6,
+      "y": -16.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -5.6,
+      "y": -10.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": -5.6,
+      "y": -4.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 7.5,
+      "y": -21.5,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 7.5,
+      "y": -16.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 7.5,
+      "y": -10.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 7.5,
+      "y": -4.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 7.5,
+      "y": 2.0,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 5.6,
+      "y": -16.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 5.6,
+      "y": -10.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 5.6,
+      "y": -4.0,
+      "w": 2.8,
+      "h": 0.7,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "estante",
+      "shape": "box",
+      "x": 0,
+      "y": -22.4,
+      "w": 5.0,
+      "h": 0.8,
+      "r": 0,
+      "height": 4.5
+    },
+    {
+      "kind": "vitrine",
+      "shape": "box",
+      "x": -2.8,
+      "y": -14.0,
+      "w": 1.2,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "vitrine",
+      "shape": "box",
+      "x": -2.8,
+      "y": -6.0,
+      "w": 1.2,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "vitrine",
+      "shape": "box",
+      "x": 2.8,
+      "y": -14.0,
+      "w": 1.2,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.3
+    },
+    {
+      "kind": "vitrine",
+      "shape": "box",
+      "x": 2.8,
+      "y": -6.0,
+      "w": 1.2,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.3
+    }
+  ],
+  "gates": [
+    {
+      "id": "grade_ala1_o",
+      "flag": "biblio:ala1",
+      "x": -4.35,
+      "y": -1.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": -3.48,
+      "lever_y": 1.15,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala1_l",
+      "flag": "biblio:ala1",
+      "x": 4.35,
+      "y": -1.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": 3.48,
+      "lever_y": 1.15,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala2_o",
+      "flag": "biblio:ala2",
+      "x": -4.35,
+      "y": -7.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": -3.48,
+      "lever_y": -4.85,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala2_l",
+      "flag": "biblio:ala2",
+      "x": 4.35,
+      "y": -7.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": 3.48,
+      "lever_y": -4.85,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala3_o",
+      "flag": "biblio:ala3",
+      "x": -4.35,
+      "y": -13.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": -3.48,
+      "lever_y": -10.85,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala3_l",
+      "flag": "biblio:ala3",
+      "x": 4.35,
+      "y": -13.0,
+      "w": 0.3,
+      "h": 5.3,
+      "lever_x": 3.48,
+      "lever_y": -10.85,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala4_o",
+      "flag": "biblio:ala4",
+      "x": -4.35,
+      "y": -19.6,
+      "w": 0.3,
+      "h": 6.4,
+      "lever_x": -3.48,
+      "lever_y": -16.9,
+      "kind": "portao",
+      "lever": false
+    },
+    {
+      "id": "grade_ala4_l",
+      "flag": "biblio:ala4",
+      "x": 4.35,
+      "y": -19.6,
+      "w": 0.3,
+      "h": 6.4,
+      "lever_x": 3.48,
+      "lever_y": -16.9,
+      "kind": "portao",
+      "lever": false
+    }
+  ],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "movel_balcao",
+      "x": 0,
+      "y": -19.6,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_mesa",
+      "x": 0,
+      "y": -10.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": -1.1,
+      "y": -10.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": 1.1,
+      "y": -10.0,
+      "yaw": -90
+    },
+    {
+      "kind": "movel_mesa",
+      "x": 0,
+      "y": -2.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": -1.1,
+      "y": -2.0,
+      "yaw": 90
+    },
+    {
+      "kind": "movel_cadeira",
+      "x": 1.1,
+      "y": -2.0,
+      "yaw": -90
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": 3.2,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": -16.5,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 9.9,
+      "y": 1.5,
+      "yaw": 90.0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -9.9,
+      "y": -22.5,
+      "yaw": 270.0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 9.9,
+      "y": -4.5,
+      "yaw": 90.0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 7.1,
+      "y": 5.5,
+      "yaw": 270.0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": -7.1,
+      "y": 5.5,
+      "yaw": 90.0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 9.9,
+      "y": -8.5,
+      "yaw": 90.0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": -9.9,
+      "y": -2.5,
+      "yaw": 270.0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 9.9,
+      "y": -20.5,
+      "yaw": 90.0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 9.9,
+      "y": -12.5,
+      "yaw": 90.0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 9.9,
+      "y": -16.5,
+      "yaw": 90.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -9.9,
+      "y": -18.5,
+      "yaw": 270.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -9.9,
+      "y": -14.5,
+      "yaw": 270.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -9.9,
+      "y": -10.5,
+      "yaw": 270.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 6.0,
+      "y": -22.1,
+      "yaw": 0.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -8.0,
+      "y": 8.9,
+      "yaw": 0.0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -9.9,
+      "y": -6.5,
+      "yaw": 270.0
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": -18.9,
+      "y": -0.5,
+      "yaw": 101,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": -5.4,
+      "y": 16.5,
+      "yaw": 183,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": -3.1,
+      "y": -19.8,
+      "yaw": 258,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:dg/dg_estatua_sabio",
+      "x": -17.7,
+      "y": 4.0,
+      "yaw": 8,
+      "solid": 0.5
+    },
+    {
+      "kind": "glb:dg/dg_estatua_sabio",
+      "x": 13.2,
+      "y": -2.1,
+      "yaw": 73,
+      "solid": 0.5
+    },
+    {
+      "kind": "glb:dg/dg_coluna_gotica",
+      "x": 4.3,
+      "y": 14.6,
+      "yaw": 260,
+      "solid": 0.45
+    },
+    {
+      "kind": "glb:dg/dg_coluna_gotica",
+      "x": -19.2,
+      "y": 21.7,
+      "yaw": 54,
+      "solid": 0.45
+    },
+    {
+      "kind": "glb:dg/dg_mesa_estudo",
+      "x": 14.6,
+      "y": -7.6,
+      "yaw": 274,
+      "solid": 0.7
+    },
+    {
+      "kind": "glb:dg/dg_mesa_estudo",
+      "x": 19.6,
+      "y": 3.7,
+      "yaw": 141,
+      "solid": 0.7
+    }
+  ],
+  "portals": [
+    {
+      "id": "biblioteca_saida",
+      "x": 0,
+      "y": 7.6,
+      "radius": 1.1,
+      "to_map": "vale_das_cinzas",
+      "to_x": -41.8,
+      "to_y": -2,
+      "label": "Sair para o Vale"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [
+    {
+      "id": "arquivista_severo",
+      "name": "Severo, o Arquivista",
+      "role": "biblioteca_continente",
+      "x": 0.0,
+      "y": -20.9,
+      "facing": 0,
+      "greeting": "Pouca gente acha a porta. Menos ainda volta para ler. Aqui está tudo o que sabemos de KRYMOR: cada criatura, cada terra, e alguns caminhos que não estão em mapa nenhum. Os livros nos atris contam o resto.",
+      "look": "arcanista"
+    },
+    {
+      "id": "irma_clarabela",
+      "name": "Clarabela, a Sacerdotisa",
+      "role": "missoes",
+      "x": 3.4,
+      "y": 1.6,
+      "facing": 270,
+      "greeting": "Os sacerdotes guardam esta casa desde antes do Porto ter nome. Se tiver coragem, há trabalho: mortos que não descansam, sinos que não tocam e uma abadessa que nunca saiu do lodo.",
+      "look": "curandeira"
+    }
+  ],
+  "objects": [
+    {
+      "id": "livro_krypta",
+      "kind": "livro",
+      "x": -4.2,
+      "y": 4.0,
+      "label": "Crônica da Krypta",
+      "text": "No princípio havia apenas a Krypta, o abismo de cristal onde os primeiros despertaram. Aqueles que dominaram seus segredos ficaram conhecidos como os Kryptor, e a vastidão inexplorada que reivindicaram recebeu o nome eterno de KRYMOR.\n\nOs cronistas dizem que a Krypta não foi esquecida: ela dorme debaixo das oito terras, e cada fenda de cristal azul que brota numa rocha é ela respirando. Quem junta cristais demais escuta um chamado. Ninguém que seguiu o chamado escreveu de volta."
+    },
+    {
+      "id": "livro_terras",
+      "kind": "livro",
+      "x": -6.7,
+      "y": -1.0,
+      "label": "As Oito Terras de KRYMOR",
+      "text": "1. Costa do Cal — praia branca de cal, caranguejos e goblins; o Porto das Cinzas guarda a entrada.\n2. Vale das Cinzas — pedreira e ruínas de um campeão antigo.\n3. Mata dos Enforcados — árvores que gemem; sob a mata, a Cripta do Sino.\n4. Cânions dos Suplicantes — vento que corta e galerias de piedade.\n5. Brejo da Viúva — lodo, serpentes e um mosteiro afundado.\n6. Véspera — a cidade que morreu ao anoitecer e o Mercado dos Mortos.\n7. Coroa da Geada — gelo eterno e o Salão da Geada.\n8. Mar de Escória e Acrópole das Cinzas — fogo, juramentos e o labirinto final.\n\nNa margem do livro, à mão: \"o caminho principal nem sempre é o do meio\"."
+    },
+    {
+      "id": "livro_atlas",
+      "kind": "livro",
+      "x": -6.7,
+      "y": -7.0,
+      "label": "Atlas dos Caminhos Esquecidos",
+      "text": "Anotações de um batedor que não assinou:\n\n— No Vale, a muralha do oeste tem uma pedra que não é pedra. Atrás dela há um nicho, um baú e a escada para esta casa.\n— No cais do Porto, o barqueiro Ezequiel fala de um triângulo no mar onde as bússolas giram sozinhas. Ele só conta a quem já viu o fundo de uma dungeon.\n— Na Mata dos Enforcados existe uma árvore com uma serpente enrolada no tronco. A casca dela serve para coisas que não se deve fazer.\n— Trilhas de chão batido quase sempre levam a algum lugar: um acampamento, um baú, uma armadilha ou alguém que precisa de ajuda."
+    },
+    {
+      "id": "livro_bestiario",
+      "kind": "livro",
+      "x": 6.7,
+      "y": -1.0,
+      "label": "Bestiário dos Tipos",
+      "text": "Os sábios separam as criaturas por natureza:\n\n• Aquáticos — caranguejos, serpentes e o que vem da maré.\n• Pedra — geodos, gárgulas e golens: duros por fora.\n• Fantasmas e mortos — espectros, carniçais, múmias.\n• Feras — lobos, javalis, ratos e cães.\n• Humanos e goblins — saqueadores, acólitos, bandidos.\n• Insetos e pragas — lodos, melecas, enxames.\n• Fogo e gelo — o que nasce na escória e na geada.\n\nDizem que cada natureza teme alguma coisa. O Arquivista mostra a natureza de cada criatura no catálogo dele."
+    },
+    {
+      "id": "livro_uivo",
+      "kind": "livro",
+      "x": -6.7,
+      "y": -13.0,
+      "label": "O Uivo sob a Lua",
+      "text": "Há muitos invernos, um caçador do Vale foi mordido por um lobo grande demais para ser lobo. Na lua seguinte, ele correu mais que os cavalos e rasgou um urso com as mãos. Depois chorou, porque não lembrava de nada.\n\nA Sibila do Porto diz que a fera pode ser domada: quem sobe à Lua Vermelha, caça a alcateia de lá e derruba o Alfa ganha um colar com a presa lunar — e escolhe quando virar fera.\n\n(Ao fechar o livro, você sente um arrepio. Só um guerreiro de nível 35 aguenta a fera. A Sibila, a vidente do Porto, sabe o caminho até a Lua.)",
+      "grant_flag": "livro:lobisomem"
+    },
+    {
+      "id": "livro_mascara",
+      "kind": "livro",
+      "x": 6.7,
+      "y": -7.0,
+      "label": "A Máscara que Ria",
+      "text": "Entalhada na casca de uma árvore velha onde mora uma serpente, a máscara verde dá a quem a veste a força do Pandemônio: mais força nos golpes e um furacão verde que gira em volta e não deixa ninguém de pé. A original afundou num naufrágio.\n\nO bisavô do Tião, o bobo da praça, guardou o feitiço para fazer outra. Pede um gorro de saci — coisa raríssima — e a casca da tal árvore.\n\n(Qualquer um a partir do nível 20 aguenta a máscara. Talvez o Tião conte o resto.)",
+      "grant_flag": "livro:mascara"
+    },
+    {
+      "id": "livro_cerbero",
+      "kind": "livro",
+      "x": 6.7,
+      "y": -19.0,
+      "label": "Do Cão de Três Cabeças",
+      "text": "Nas portas de baixo há sempre um guardião. O mais velho deles tem três cabeças: uma que dorme, uma que vigia e uma que tem fome. Dizem que uma música o faz dormir inteiro — mas ninguém em KRYMOR sabe tocá-la.\n\nOs que desceram contam que ele não guarda tesouro: guarda a saída."
+    },
+    {
+      "id": "livro_clarabela",
+      "kind": "livro",
+      "x": 3.6,
+      "y": 4.0,
+      "label": "Diário da Irmã Clarabela",
+      "text": "Dia 1: os mortos do cal não descansam; vou pedir ajuda aos que passam.\nDia 9: o sino da cripta calou. Quando um sino cala, alguém lá embaixo tomou o lugar dele.\nDia 30: a Abadessa do Lodo ainda reza no mosteiro afundado — para quem, não sei.\n\nSe você leu até aqui, fale comigo. Os sacerdotes pagam bem, e o mundo fica um pouco menos escuro."
+    },
+    {
+      "id": "livro_noite",
+      "kind": "livro",
+      "x": 6.7,
+      "y": -13.0,
+      "label": "Cartas de um Conde",
+      "text": "Três cartas, lacre de cera preta, letra bonita demais.\n\n\"Venha à Transilvânia. Os portões abrem para quem caça de longe e acerta no escuro. Traga flechas; aqui o sol não entra.\"\n\nNa última carta, só uma linha: \"O cálice espera.\"\n\n(Só um arqueiro de nível 35 sustenta o cálice. A Sibila do Porto sabe abrir o caminho.)",
+      "grant_flag": "livro:vampiro"
+    },
+    {
+      "id": "livro_foice",
+      "kind": "livro",
+      "x": -6.7,
+      "y": -19.0,
+      "label": "O Livro da Foice",
+      "text": "Escrito ao contrário, como se fosse para ser lido de dentro do espelho.\n\nNo Inferno não há demônio que mande: quem manda é o Rei Ceifador. Ele aceita aprendizes — só os que entendem de magia, porque a foice corta o fio entre o corpo e a alma, e esse fio é feito de mana.\n\n(Só um mago de nível 35 empunha a foice de osso. A Sibila do Porto conhece a descida.)",
+      "grant_flag": "livro:ceifador"
+    },
+    {
+      "id": "livro_asas",
+      "kind": "livro",
+      "x": 6.7,
+      "y": -20.4,
+      "label": "Hinário da Cidade Celestial",
+      "text": "Há uma cidade acima das nuvens. Os anjos de lá não são mansos: julgam. Quem quiser asas precisa primeiro sobreviver ao julgamento, e depois expulsar o demônio que arrombou os portões.\n\nCurioso: os anjos só ensinam o voo a quem conhece feitiço de raiz — as bruxas.\n\n(Só uma bruxa de nível 35 recebe a pena do serafim. A Sibila do Porto sabe subir até lá.)",
+      "grant_flag": "livro:anjo"
+    },
+    {
+      "id": "livro_macaco",
+      "kind": "livro",
+      "x": -6.7,
+      "y": -2.3,
+      "label": "A Lenda do Rei Macaco",
+      "text": "Contam os monges do Porto que o Rei Macaco Vermelho, cansado de lutar, quebrou o próprio bastão em cinco esferas alaranjadas e as jogou do céu.\n\nUma caiu na Costa, perto de onde o mar guarda segredos. Outra na Mata, entre os enforcados. A terceira nos Cânions, a quarta no Brejo da Viúva e a última em Véspera — sempre junto dos lugares que ninguém visita.\n\nQuem juntar as cinco ouve de novo o riso do Rei e ganha a força dele. O Velho Wu, no Porto, sabe o resto."
+    },
+    {
+      "id": "placa_ala1_o",
+      "kind": "contemplar",
+      "x": -3.39,
+      "y": 1.05,
+      "label": "Grade da Ala I",
+      "text": "Ala I — fechada. Abre no nível 10, depois da missão \"Descanso aos Mortos do Cal\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala1_l",
+      "kind": "contemplar",
+      "x": 3.39,
+      "y": 1.05,
+      "label": "Grade da Ala I",
+      "text": "Ala I — fechada. Abre no nível 10, depois da missão \"Descanso aos Mortos do Cal\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala2_o",
+      "kind": "contemplar",
+      "x": -3.39,
+      "y": -4.95,
+      "label": "Grade da Ala II",
+      "text": "Ala II — fechada. Abre no nível 20, depois da missão \"O Sino Calado\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala2_l",
+      "kind": "contemplar",
+      "x": 3.39,
+      "y": -4.95,
+      "label": "Grade da Ala II",
+      "text": "Ala II — fechada. Abre no nível 20, depois da missão \"O Sino Calado\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala3_o",
+      "kind": "contemplar",
+      "x": -3.39,
+      "y": -10.95,
+      "label": "Grade da Ala III",
+      "text": "Ala III — fechada. Abre no nível 35, depois da missão \"A Abadessa do Lodo\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala3_l",
+      "kind": "contemplar",
+      "x": 3.39,
+      "y": -10.95,
+      "label": "Grade da Ala III",
+      "text": "Ala III — fechada. Abre no nível 35, depois da missão \"A Abadessa do Lodo\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala4_o",
+      "kind": "contemplar",
+      "x": -3.39,
+      "y": -17.0,
+      "label": "Grade da Ala IV",
+      "text": "Ala IV — fechada. Abre no nível 42, depois da missão \"A Abadessa do Lodo\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    },
+    {
+      "id": "placa_ala4_l",
+      "kind": "contemplar",
+      "x": 3.39,
+      "y": -17.0,
+      "label": "Grade da Ala IV",
+      "text": "Ala IV — fechada. Abre no nível 42, depois da missão \"A Abadessa do Lodo\" da Irmã Clarabela (aqui na entrada). Volte quando cumprir as duas coisas."
+    }
+  ],
+  "checkpoints": []
+}

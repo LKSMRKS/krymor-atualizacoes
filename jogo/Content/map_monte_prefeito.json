@@ -1,0 +1,4476 @@
+{
+  "id": "monte_prefeito",
+  "display_name": "Monte do Prefeito",
+  "half_size": 58,
+  "spawn_x": 0,
+  "spawn_y": 46,
+  "safe_radius": 8,
+  "xp_multiplier": 1.1,
+  "kind": "campo",
+  "region": "vale",
+  "theme": "vale",
+  "zones": [
+    {
+      "id": "chegada",
+      "name": "Acampamento",
+      "kind": "seguro",
+      "x": 0,
+      "y": 44,
+      "w": 18,
+      "h": 12
+    },
+    {
+      "id": "trilha",
+      "name": "Trilha",
+      "kind": "caminho",
+      "x": 0,
+      "y": 6,
+      "w": 5,
+      "h": 72
+    },
+    {
+      "id": "bolsao0",
+      "name": "Território: Cabra-da-Serra",
+      "kind": "medio",
+      "x": -30,
+      "y": 24,
+      "w": 22,
+      "h": 20
+    },
+    {
+      "id": "bolsao1",
+      "name": "Território: Gavião-Pedreiro",
+      "kind": "medio",
+      "x": 30,
+      "y": 22,
+      "w": 22,
+      "h": 20
+    },
+    {
+      "id": "bolsao2",
+      "name": "Território: Cabra-da-Serra",
+      "kind": "medio",
+      "x": -32,
+      "y": -10,
+      "w": 22,
+      "h": 20
+    },
+    {
+      "id": "bolsao3",
+      "name": "Território: Ermitão da Serra",
+      "kind": "medio",
+      "x": 32,
+      "y": -12,
+      "w": 22,
+      "h": 20
+    },
+    {
+      "id": "covil",
+      "name": "Covil: Urso das Pedras",
+      "kind": "chefe",
+      "x": 0,
+      "y": -30,
+      "w": 22,
+      "h": 14
+    },
+    {
+      "id": "lugar0",
+      "name": "Mirante do Vale",
+      "kind": "lugar",
+      "x": 40.4,
+      "y": -1.4,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar1",
+      "name": "Covas do Vale",
+      "kind": "lugar",
+      "x": 4.3,
+      "y": 14.2,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar2",
+      "name": "Ruína do Pedreiro",
+      "kind": "lugar",
+      "x": -36.7,
+      "y": -42.9,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar3",
+      "name": "Acampamento dos Peregrinos",
+      "kind": "lugar",
+      "x": 32.6,
+      "y": 45.9,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "secreto",
+      "name": "Câmara Soterrada",
+      "kind": "secreto",
+      "x": -45.6,
+      "y": 44.5,
+      "w": 10,
+      "h": 10
+    },
+    {
+      "id": "prefeitura",
+      "name": "Prefeitura do Monte",
+      "kind": "seguro",
+      "x": -6.0,
+      "y": 12.5,
+      "w": 16,
+      "h": 14
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -38.9,
+      "y": 0.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.94,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -49.67,
+      "y": 27.98,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 22.31,
+      "y": -6.01,
+      "w": 0,
+      "h": 0,
+      "r": 1.78,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 38.57,
+      "y": 13.79,
+      "w": 0,
+      "h": 0,
+      "r": 2.58,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 15.33,
+      "y": -4.49,
+      "w": 0,
+      "h": 0,
+      "r": 2.14,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -51.02,
+      "y": 40.48,
+      "w": 0,
+      "h": 0,
+      "r": 2.55,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 12.29,
+      "y": -17.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.9,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -29.56,
+      "y": -43.58,
+      "w": 0,
+      "h": 0,
+      "r": 2.21,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -7.19,
+      "y": 2.21,
+      "w": 0,
+      "h": 0,
+      "r": 2.04,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -42.99,
+      "y": 17.59,
+      "w": 0,
+      "h": 0,
+      "r": 2.6,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -50.84,
+      "y": 19.45,
+      "w": 0,
+      "h": 0,
+      "r": 0.83,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.94,
+      "y": -33.31,
+      "w": 0,
+      "h": 0,
+      "r": 0.92,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -24.74,
+      "y": 45.53,
+      "w": 0,
+      "h": 0,
+      "r": 0.94,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 24.48,
+      "y": -18.23,
+      "w": 0,
+      "h": 0,
+      "r": 0.98,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -43.4,
+      "y": -43.0,
+      "w": 0,
+      "h": 0,
+      "r": 0.82,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 50.55,
+      "y": 51.09,
+      "w": 0,
+      "h": 0,
+      "r": 0.91,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -13.59,
+      "y": 10.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.81,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 15.13,
+      "y": 5.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.72,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 20.55,
+      "y": -47.19,
+      "w": 0,
+      "h": 0,
+      "r": 2.28,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 16.05,
+      "y": -9.11,
+      "w": 0,
+      "h": 0,
+      "r": 0.88,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 13.83,
+      "y": 40.23,
+      "w": 0,
+      "h": 0,
+      "r": 2.21,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 26.44,
+      "y": 43.73,
+      "w": 0,
+      "h": 0,
+      "r": 1.71,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -25.66,
+      "y": -28.81,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -29.15,
+      "y": 42.7,
+      "w": 0,
+      "h": 0,
+      "r": 2.58,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -21.33,
+      "y": -1.19,
+      "w": 0,
+      "h": 0,
+      "r": 0.88,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -49.51,
+      "y": -9.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.58,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -50.33,
+      "y": -1.24,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 45.23,
+      "y": 37.85,
+      "w": 0,
+      "h": 0,
+      "r": 2.56,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 43.08,
+      "y": 48.53,
+      "w": 0,
+      "h": 0,
+      "r": 2.16,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -26.06,
+      "y": -52.72,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 50.07,
+      "y": -3.72,
+      "w": 0,
+      "h": 0,
+      "r": 0.87,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -23.94,
+      "y": 6.8,
+      "w": 0,
+      "h": 0,
+      "r": 2.03,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 39.84,
+      "y": -30.78,
+      "w": 0,
+      "h": 0,
+      "r": 2.25,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -22.46,
+      "y": 12.62,
+      "w": 0,
+      "h": 0,
+      "r": 1.96,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -14.15,
+      "y": -43.53,
+      "w": 0,
+      "h": 0,
+      "r": 2.7,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 22.18,
+      "y": -10.54,
+      "w": 0,
+      "h": 0,
+      "r": 2.74,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -31.39,
+      "y": -23.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.37,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 25.92,
+      "y": -29.03,
+      "w": 0,
+      "h": 0,
+      "r": 2.72,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 31.07,
+      "y": 11.8,
+      "w": 0,
+      "h": 0,
+      "r": 0.99,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 52.15,
+      "y": -8.92,
+      "w": 0,
+      "h": 0,
+      "r": 0.85,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 46.64,
+      "y": 4.12,
+      "w": 0,
+      "h": 0,
+      "r": 0.79,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -29.74,
+      "y": -35.87,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -38.91,
+      "y": -47.05,
+      "w": 0,
+      "h": 0,
+      "r": 0.82,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 27.94,
+      "y": 39.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.95,
+      "height": 4.0
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 28.18,
+      "y": -52.65,
+      "w": 0,
+      "h": 0,
+      "r": 0.83,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -38.73,
+      "y": -22.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.5,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.17,
+      "y": -55.13,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -54.51,
+      "y": 55.34,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.75,
+      "y": -55.05,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.89,
+      "y": -55.86,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -47.2,
+      "y": -55.14,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -48.96,
+      "y": 55.69,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.56,
+      "y": -47.73,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.52,
+      "y": -47.18,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -40.1,
+      "y": -55.37,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -41.92,
+      "y": 56.52,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.74,
+      "y": -41.27,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.87,
+      "y": -40.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -34.83,
+      "y": -56.99,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -33.7,
+      "y": 55.89,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.23,
+      "y": -33.62,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.77,
+      "y": -33.63,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -26.6,
+      "y": -55.79,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -27.5,
+      "y": 55.69,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.77,
+      "y": -27.14,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.63,
+      "y": -26.39,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -19.04,
+      "y": -56.22,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -19.07,
+      "y": 56.46,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.46,
+      "y": -20.18,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.61,
+      "y": -19.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -12.06,
+      "y": -55.4,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -12.98,
+      "y": 56.31,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.01,
+      "y": -13.28,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.71,
+      "y": -12.68,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -5.47,
+      "y": -56.2,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -5.85,
+      "y": 55.87,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.13,
+      "y": -5.94,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.45,
+      "y": -5.62,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 0.11,
+      "y": -56.93,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 1.57,
+      "y": 55.64,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.95,
+      "y": 0.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.05,
+      "y": 1.35,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 7.35,
+      "y": -55.13,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 7.68,
+      "y": 55.91,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.96,
+      "y": 7.17,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.21,
+      "y": 8.92,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 14.49,
+      "y": -55.64,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 14.22,
+      "y": 55.53,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.56,
+      "y": 15.67,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.07,
+      "y": 15.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 22.24,
+      "y": -55.82,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 22.82,
+      "y": 55.78,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.47,
+      "y": 21.56,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.77,
+      "y": 22.1,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 29.68,
+      "y": -56.41,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 29.44,
+      "y": 55.09,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.26,
+      "y": 28.39,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.01,
+      "y": 28.95,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 35.75,
+      "y": -56.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 35.1,
+      "y": 56.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.13,
+      "y": 35.59,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.27,
+      "y": 36.28,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 43.36,
+      "y": -56.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 43.75,
+      "y": 56.56,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.48,
+      "y": 43.3,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.56,
+      "y": 43.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 50.41,
+      "y": -56.77,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 49.93,
+      "y": 56.58,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -56.14,
+      "y": 49.57,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 55.99,
+      "y": 50.02,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "id": "prefeitura_casa",
+      "kind": "invisivel",
+      "x": -6.0,
+      "y": 8.8,
+      "w": 6.6,
+      "h": 5.1
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0.0,
+      "y": -41.5,
+      "w": 3.82,
+      "h": 3.57,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 39.87,
+      "y": 42.27,
+      "w": 3.82,
+      "h": 2.21,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 7.75,
+      "y": 7.51,
+      "w": 2.86,
+      "h": 3.06,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [
+    {
+      "id": "monte_prefeito_0_0",
+      "monster": "monster_monte_cabra",
+      "x": -25.8,
+      "y": 25.9,
+      "level": 12,
+      "group": "monte_prefeito_g0_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_0_1",
+      "monster": "monster_monte_cabra",
+      "x": -32.1,
+      "y": 19.1,
+      "level": 12,
+      "group": "monte_prefeito_g0_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_0_2",
+      "monster": "monster_monte_cabra",
+      "x": -26.1,
+      "y": 29.5,
+      "level": 12,
+      "group": "monte_prefeito_g0_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_0_3",
+      "monster": "monster_monte_cabra",
+      "x": -30.2,
+      "y": 28.5,
+      "level": 10,
+      "group": "monte_prefeito_g0_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_0_4",
+      "monster": "monster_monte_cabra",
+      "x": -24.3,
+      "y": 21.2,
+      "level": 12,
+      "group": "monte_prefeito_g0_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_0_5",
+      "monster": "monster_monte_cabra",
+      "x": -29.3,
+      "y": 26.2,
+      "level": 12,
+      "group": "monte_prefeito_g0_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_0",
+      "monster": "monster_monte_gaviao",
+      "x": 33.4,
+      "y": 24.6,
+      "level": 11,
+      "group": "monte_prefeito_g1_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_1",
+      "monster": "monster_monte_gaviao",
+      "x": 23.4,
+      "y": 20.6,
+      "level": 11,
+      "group": "monte_prefeito_g1_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_2",
+      "monster": "monster_monte_gaviao",
+      "x": 24.3,
+      "y": 20.7,
+      "level": 12,
+      "group": "monte_prefeito_g1_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_3",
+      "monster": "monster_monte_gaviao",
+      "x": 27.6,
+      "y": 27.0,
+      "level": 11,
+      "group": "monte_prefeito_g1_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_4",
+      "monster": "monster_monte_gaviao",
+      "x": 27.4,
+      "y": 23.2,
+      "level": 12,
+      "group": "monte_prefeito_g1_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_1_5",
+      "monster": "monster_monte_gaviao",
+      "x": 22.3,
+      "y": 26.2,
+      "level": 12,
+      "group": "monte_prefeito_g1_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_2_0",
+      "monster": "monster_monte_cabra",
+      "x": -39.4,
+      "y": -7.4,
+      "level": 13,
+      "group": "monte_prefeito_g2_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_2_1",
+      "monster": "monster_monte_cabra",
+      "x": -37.9,
+      "y": -9.5,
+      "level": 12,
+      "group": "monte_prefeito_g2_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_2_2",
+      "monster": "monster_monte_cabra",
+      "x": -28.3,
+      "y": -11.0,
+      "level": 13,
+      "group": "monte_prefeito_g2_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_2_3",
+      "monster": "monster_monte_cabra",
+      "x": -24.3,
+      "y": -5.8,
+      "level": 13,
+      "group": "monte_prefeito_g2_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_2_4",
+      "monster": "monster_monte_cabra",
+      "x": -27.4,
+      "y": -8.4,
+      "level": 13,
+      "group": "monte_prefeito_g2_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_0",
+      "monster": "monster_monte_ermitao",
+      "x": 38.8,
+      "y": -5.1,
+      "level": 14,
+      "group": "monte_prefeito_g3_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_1",
+      "monster": "monster_monte_ermitao",
+      "x": 36.7,
+      "y": -15.5,
+      "level": 14,
+      "group": "monte_prefeito_g3_0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_2",
+      "monster": "monster_monte_ermitao",
+      "x": 30.8,
+      "y": -5.3,
+      "level": 14,
+      "group": "monte_prefeito_g3_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_3",
+      "monster": "monster_monte_ermitao",
+      "x": 31.6,
+      "y": -17.1,
+      "level": 14,
+      "group": "monte_prefeito_g3_1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_4",
+      "monster": "monster_monte_ermitao",
+      "x": 36.1,
+      "y": -6.5,
+      "level": 15,
+      "group": "monte_prefeito_g3_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_3_5",
+      "monster": "monster_monte_ermitao",
+      "x": 35.7,
+      "y": -18.9,
+      "level": 14,
+      "group": "monte_prefeito_g3_2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "monte_prefeito_chefe",
+      "monster": "monster_monte_urso",
+      "x": 0,
+      "y": -30,
+      "level": 16,
+      "group": "monte_prefeito_chefe",
+      "respawn_seconds": 720
+    },
+    {
+      "id": "monte_prefeito_dourado",
+      "monster": "monster_monte_prefeito_dourado",
+      "x": -25.8,
+      "y": 25.9,
+      "level": 13,
+      "group": "monte_prefeito_dourado",
+      "respawn_seconds": 300,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          -25.8,
+          25.9
+        ],
+        [
+          34.8,
+          13.9
+        ],
+        [
+          -34.8,
+          10.4
+        ],
+        [
+          17.4,
+          -34.8
+        ],
+        [
+          -20.9,
+          -27.8
+        ]
+      ]
+    }
+  ],
+  "props": [
+    {
+      "kind": "fogueira",
+      "x": 0,
+      "y": 40,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -6,
+      "y": 47,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 6,
+      "y": 47,
+      "yaw": 0
+    },
+    {
+      "kind": "pinheiros",
+      "x": 41.5,
+      "y": 36.4,
+      "yaw": 141
+    },
+    {
+      "kind": "placa",
+      "x": -23.2,
+      "y": 2.9,
+      "yaw": 249
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 47.2,
+      "y": -46.5,
+      "yaw": 7
+    },
+    {
+      "kind": "placa",
+      "x": 15.3,
+      "y": 11.5,
+      "yaw": 186
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 7.3,
+      "y": 47.6,
+      "yaw": 78
+    },
+    {
+      "kind": "pinheiros",
+      "x": 24.6,
+      "y": 38.4,
+      "yaw": 179
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -16.3,
+      "y": -6.7,
+      "yaw": 122
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -14.7,
+      "y": 28.7,
+      "yaw": 184
+    },
+    {
+      "kind": "placa",
+      "x": 37.2,
+      "y": 0.3,
+      "yaw": 208,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "estandarte",
+      "x": 42.3,
+      "y": -7.1,
+      "yaw": 72,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 43.6,
+      "y": -3.1,
+      "yaw": 28,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "tocha",
+      "x": 42.1,
+      "y": 1.8,
+      "yaw": 298,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "lapide",
+      "x": 4.8,
+      "y": 17.7,
+      "yaw": 280,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "lapide",
+      "x": 1.1,
+      "y": 15.8,
+      "yaw": 208,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "lapide",
+      "x": 1.7,
+      "y": 11.6,
+      "yaw": 136,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "ossada",
+      "x": 5.8,
+      "y": 10.9,
+      "yaw": 64,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "tocha",
+      "x": 7.8,
+      "y": 14.7,
+      "yaw": 352,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -35.2,
+      "y": -46.2,
+      "yaw": 66,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -33.4,
+      "y": -41.5,
+      "yaw": 336,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -42.3,
+      "y": -40.9,
+      "yaw": 200,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "ossada",
+      "x": -40.0,
+      "y": -44.4,
+      "yaw": 156,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 35.1,
+      "y": 43.4,
+      "yaw": 45,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "fogueira",
+      "x": 35.1,
+      "y": 48.5,
+      "yaw": 315,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "barril",
+      "x": 30.0,
+      "y": 48.5,
+      "yaw": 225,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "caixotes",
+      "x": 30.0,
+      "y": 43.4,
+      "yaw": 135,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "ossada",
+      "x": -43.1,
+      "y": 44.5,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "cranios",
+      "x": -46.8,
+      "y": 46.7,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "tocha",
+      "x": -46.8,
+      "y": 42.3,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "cadaver",
+      "x": -28.0,
+      "y": 16.1,
+      "yaw": 212,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -28.9,
+      "y": 15.3,
+      "yaw": 230,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 32.2,
+      "y": 19.7,
+      "yaw": 124,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 33.3,
+      "y": 19.2,
+      "yaw": 114,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -34.7,
+      "y": -12.9,
+      "yaw": 297,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -35.8,
+      "y": -13.1,
+      "yaw": 261,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 34.0,
+      "y": -14.6,
+      "yaw": 82,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 32.9,
+      "y": -15.1,
+      "yaw": 247,
+      "poi": "vida"
+    },
+    {
+      "kind": "casa_enxaimel",
+      "x": -6.0,
+      "y": 8.8,
+      "yaw": 0,
+      "poi": "prefeitura"
+    },
+    {
+      "kind": "movel_mesa",
+      "x": -6.0,
+      "y": 15.4,
+      "yaw": 0,
+      "poi": "prefeitura"
+    },
+    {
+      "kind": "estandarte",
+      "x": -8.6,
+      "y": 14.6,
+      "yaw": 0,
+      "poi": "prefeitura"
+    },
+    {
+      "kind": "estandarte",
+      "x": -3.4,
+      "y": 14.6,
+      "yaw": 0,
+      "poi": "prefeitura"
+    },
+    {
+      "kind": "placa",
+      "x": -2.4,
+      "y": 16.2,
+      "yaw": 180,
+      "poi": "prefeitura",
+      "texto": "Prefeitura do Monte"
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 4.11,
+      "y": -25.04,
+      "yaw": 230.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -0.6,
+      "y": -23.59,
+      "yaw": 275.4,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -4.96,
+      "y": -25.89,
+      "yaw": 320.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -6.41,
+      "y": -30.6,
+      "yaw": 5.4,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -4.11,
+      "y": -34.96,
+      "yaw": 50.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 0.6,
+      "y": -36.41,
+      "yaw": 95.4,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 4.96,
+      "y": -34.11,
+      "yaw": 140.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 6.41,
+      "y": -29.4,
+      "yaw": 185.4,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "cranios",
+      "x": -3.39,
+      "y": -28.78,
+      "yaw": 339.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 3.59,
+      "y": -30.62,
+      "yaw": 200.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.25,
+      "y": -28.17,
+      "yaw": 87.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 4.96,
+      "y": -29.95,
+      "yaw": 2.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 2.41,
+      "y": -32.41,
+      "yaw": 49.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.52,
+      "y": -30.13,
+      "yaw": 104.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/vale_estatua_guerreiro",
+      "x": 0.0,
+      "y": -41.5,
+      "yaw": 90,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/vale_estatua_guerreiro",
+      "x": 39.93,
+      "y": 0.32,
+      "yaw": 178.0,
+      "amb": true,
+      "scale": 0.65,
+      "solid": 1.23
+    },
+    {
+      "kind": "estandarte",
+      "x": 43.4,
+      "y": 0.6,
+      "yaw": 178.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": 35.92,
+      "y": 1.81,
+      "yaw": 178.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": 44.4,
+      "y": -4.4,
+      "yaw": 178.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 44.95,
+      "y": 2.43,
+      "yaw": 40.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 34.81,
+      "y": 0.62,
+      "yaw": 160.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "lapide",
+      "x": 3.29,
+      "y": 12.85,
+      "yaw": 251.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 3.02,
+      "y": 16.48,
+      "yaw": 246.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 4.3,
+      "y": 11.52,
+      "yaw": 251.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 4.55,
+      "y": 16.13,
+      "yaw": 247.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 6.36,
+      "y": 13.12,
+      "yaw": 257.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 6.3,
+      "y": 17.02,
+      "yaw": 263.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 8.75,
+      "y": 11.33,
+      "yaw": 255.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 9.88,
+      "y": 14.29,
+      "yaw": 253.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 8.77,
+      "y": 16.82,
+      "yaw": 265.0,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 10.65,
+      "y": 16.17,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 5.77,
+      "y": 20.68,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 3.59,
+      "y": 7.01,
+      "yaw": 347.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 9.18,
+      "y": 9.68,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 9.2,
+      "y": 19.1,
+      "yaw": 253.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": 3.79,
+      "y": 17.06,
+      "yaw": 258.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 1.17,
+      "y": 10.7,
+      "yaw": 343.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 1.04,
+      "y": 11.5,
+      "yaw": 315.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -0.54,
+      "y": 18.56,
+      "yaw": 210.2,
+      "amb": true
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -36.09,
+      "y": -48.47,
+      "yaw": 276.2,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -37.31,
+      "y": -37.33,
+      "yaw": 96.2,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "ossada",
+      "x": -40.6,
+      "y": -42.69,
+      "yaw": 184.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": -31.8,
+      "y": -38.7,
+      "yaw": 49.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "fogueira",
+      "x": 32.6,
+      "y": 45.9,
+      "yaw": 274.8,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "panela",
+      "x": 33.8,
+      "y": 45.3,
+      "yaw": 13.5,
+      "amb": true
+    },
+    {
+      "kind": "carnes_penduradas",
+      "x": 31.0,
+      "y": 46.9,
+      "yaw": 107.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cesto_peixe",
+      "x": 29.86,
+      "y": 46.06,
+      "yaw": 105.6,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cesto_peixe",
+      "x": 34.97,
+      "y": 45.78,
+      "yaw": 249.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": 32.89,
+      "y": 43.17,
+      "yaw": 329.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": 37.21,
+      "y": 44.09,
+      "yaw": 125.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cesto_peixe",
+      "x": 27.9,
+      "y": 49.98,
+      "yaw": 222.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tenda",
+      "x": 26.37,
+      "y": 47.83,
+      "yaw": 326.3,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tenda",
+      "x": 32.24,
+      "y": 40.41,
+      "yaw": 86.3,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tenda",
+      "x": 38.46,
+      "y": 49.89,
+      "yaw": 206.3,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "barril",
+      "x": 33.43,
+      "y": 48.36,
+      "yaw": 87.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 30.75,
+      "y": 44.81,
+      "yaw": 334.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vale_carroca_pedreiro",
+      "x": 39.87,
+      "y": 42.27,
+      "yaw": 270,
+      "amb": true
+    },
+    {
+      "kind": "estandarte",
+      "x": 28.26,
+      "y": 51.57,
+      "yaw": 234.6,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 38.76,
+      "y": 47.21,
+      "yaw": 12.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "lapide",
+      "x": -49.81,
+      "y": 44.47,
+      "yaw": 304.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -49.98,
+      "y": 46.83,
+      "yaw": 322.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -46.92,
+      "y": 40.82,
+      "yaw": 309.0,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -47.51,
+      "y": 44.28,
+      "yaw": 317.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -48.11,
+      "y": 48.35,
+      "yaw": 320.5,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -45.16,
+      "y": 41.83,
+      "yaw": 318.0,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -45.38,
+      "y": 44.4,
+      "yaw": 311.3,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -43.56,
+      "y": 41.71,
+      "yaw": 304.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -44.93,
+      "y": 43.17,
+      "yaw": 317.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -43.2,
+      "y": 47.33,
+      "yaw": 307.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -41.06,
+      "y": 41.67,
+      "yaw": 325.0,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -41.11,
+      "y": 44.45,
+      "yaw": 327.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": -41.43,
+      "y": 47.4,
+      "yaw": 321.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -41.06,
+      "y": 45.9,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -44.55,
+      "y": 49.13,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -45.17,
+      "y": 38.77,
+      "yaw": 347.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -42.72,
+      "y": 39.96,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -40.63,
+      "y": 48.58,
+      "yaw": 315.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": -47.42,
+      "y": 43.52,
+      "yaw": 158.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -45.35,
+      "y": 41.13,
+      "yaw": 308.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -47.74,
+      "y": 46.44,
+      "yaw": 121.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -45.57,
+      "y": 45.93,
+      "yaw": 287.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/vale_estatua_guerreiro",
+      "x": 7.75,
+      "y": 7.51,
+      "yaw": 0,
+      "amb": true,
+      "scale": 0.8
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -0.57,
+      "y": 27.93,
+      "yaw": 333.0,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": -7.49,
+      "y": 52.73,
+      "yaw": 92.1,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 1.35,
+      "y": -47.33,
+      "yaw": 79.6,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 0.42
+    },
+    {
+      "kind": "pinheiros",
+      "x": 36.36,
+      "y": -46.52,
+      "yaw": 148.3,
+      "amb": true,
+      "scale": 1.25,
+      "solid": 1.37
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 47.6,
+      "y": 48.78,
+      "yaw": 338.3,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 0.41
+    },
+    {
+      "kind": "pinheiros",
+      "x": 47.3,
+      "y": -43.28,
+      "yaw": 83.6,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.06
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 46.14,
+      "y": -6.62,
+      "yaw": 42.1,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.38
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -51.78,
+      "y": 20.97,
+      "yaw": 12.2,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 0.41
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -26.08,
+      "y": 51.11,
+      "yaw": 292.0,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.48
+    },
+    {
+      "kind": "pinheiros",
+      "x": 9.01,
+      "y": -49.45,
+      "yaw": 58.9,
+      "amb": true,
+      "solid": 1.1
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 51.51,
+      "y": -49.58,
+      "yaw": 142.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 53.68,
+      "y": -23.02,
+      "yaw": 288.1,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 0.42
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -46.59,
+      "y": -46.62,
+      "yaw": 285.3,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.42
+    },
+    {
+      "kind": "pinheiros",
+      "x": -46.18,
+      "y": -40.86,
+      "yaw": 268.4,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.99
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -8.84,
+      "y": -50.71,
+      "yaw": 34.0,
+      "amb": true,
+      "scale": 0.95,
+      "solid": 0.38
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -28.76,
+      "y": -52.68,
+      "yaw": 121.3,
+      "amb": true,
+      "scale": 1.25,
+      "solid": 0.5
+    },
+    {
+      "kind": "pinheiros",
+      "x": -48.78,
+      "y": 0.61,
+      "yaw": 347.6,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 1.14
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 52.14,
+      "y": 10.23,
+      "yaw": 159.5,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 0.37
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -46.59,
+      "y": 32.01,
+      "yaw": 239.8,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.37
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 47.06,
+      "y": 19.9,
+      "yaw": 46.6,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 0.39
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 46.3,
+      "y": 41.06,
+      "yaw": 311.1,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.35
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 52.97,
+      "y": 45.39,
+      "yaw": 155.7,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 0.47
+    },
+    {
+      "kind": "pinheiros",
+      "x": 46.34,
+      "y": 52.61,
+      "yaw": 291.3,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 1.32
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 46.22,
+      "y": -32.21,
+      "yaw": 346.7,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 0.42
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -53.73,
+      "y": 51.79,
+      "yaw": 182.3,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 0.43
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -50.28,
+      "y": 10.3,
+      "yaw": 70.8,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.38
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -48.01,
+      "y": 28.83,
+      "yaw": 17.2,
+      "amb": true,
+      "scale": 1.01,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": -1.62,
+      "y": -52.63,
+      "yaw": 16.9,
+      "amb": true,
+      "scale": 1.22,
+      "solid": 1.35
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -46.44,
+      "y": -38.94,
+      "yaw": 263.0,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 0.42
+    },
+    {
+      "kind": "pinheiros",
+      "x": -46.15,
+      "y": -43.81,
+      "yaw": 116.0,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.95
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 45.39,
+      "y": 7.34,
+      "yaw": 249.5,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 0.44
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -8.87,
+      "y": -52.13,
+      "yaw": 55.3,
+      "amb": true,
+      "scale": 1.21,
+      "solid": 0.48
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 53.4,
+      "y": 31.86,
+      "yaw": 121.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -32.71,
+      "y": 50.9,
+      "yaw": 353.6,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": -45.84,
+      "y": -36.14,
+      "yaw": 165.1,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 1.08
+    },
+    {
+      "kind": "pinheiros",
+      "x": -14.6,
+      "y": -49.64,
+      "yaw": 4.8,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 1.13
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 52.8,
+      "y": -2.67,
+      "yaw": 81.2,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.39
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 52.67,
+      "y": -50.88,
+      "yaw": 41.0,
+      "amb": true,
+      "scale": 1.08,
+      "solid": 0.43
+    },
+    {
+      "kind": "pinheiros",
+      "x": 50.15,
+      "y": -41.44,
+      "yaw": 320.2,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.06
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 53.22,
+      "y": 48.55,
+      "yaw": 260.5,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 0.39
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -7.07,
+      "y": -47.88,
+      "yaw": 191.7,
+      "amb": true,
+      "scale": 1.14,
+      "solid": 0.46
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 20.32,
+      "y": 47.88,
+      "yaw": 85.3,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.48
+    },
+    {
+      "kind": "pinheiros",
+      "x": -1.14,
+      "y": -48.81,
+      "yaw": 285.8,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 1.01
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -45.25,
+      "y": -32.37,
+      "yaw": 175.2,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 0.45
+    },
+    {
+      "kind": "pinheiros",
+      "x": -34.34,
+      "y": -51.02,
+      "yaw": 119.5,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 1.37
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -52.62,
+      "y": 47.81,
+      "yaw": 122.7,
+      "amb": true,
+      "scale": 0.88,
+      "solid": 0.35
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 51.18,
+      "y": -52.5,
+      "yaw": 227.6,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.48
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -22.06,
+      "y": 47.04,
+      "yaw": 351.5,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 0.45
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 4.14,
+      "y": -53.4,
+      "yaw": 350.6,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.36
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -45.86,
+      "y": 14.55,
+      "yaw": 258.9,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 0.45
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 53.19,
+      "y": 15.19,
+      "yaw": 225.8,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 0.44
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 3.71,
+      "y": -6.92,
+      "yaw": 218.8,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.46
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 8.18,
+      "y": -14.83,
+      "yaw": 182.1,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.36
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -38.72,
+      "y": -28.94,
+      "yaw": 101.7,
+      "amb": true,
+      "scale": 1.01,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -5.11,
+      "y": -43.04,
+      "yaw": 115.8,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.48
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": 9.47,
+      "y": 27.11,
+      "yaw": 311.8,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.34
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -15.67,
+      "y": -15.05,
+      "yaw": 263.5,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.37
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": -3.54,
+      "y": -38.91,
+      "yaw": 311.3,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 0.45
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -15.8,
+      "y": 24.08,
+      "yaw": 170.8,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.39
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -3.11,
+      "y": -7.06,
+      "yaw": 255.8,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.42
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 8.27,
+      "y": 30.71,
+      "yaw": 291.6,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.48
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -14.28,
+      "y": -15.67,
+      "yaw": 79.5,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.59
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -18.73,
+      "y": -17.28,
+      "yaw": 33.8,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.59
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_b",
+      "x": -10.33,
+      "y": -9.14,
+      "yaw": 278.6,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 0.51
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -10.54,
+      "y": -12.73,
+      "yaw": 272.8,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 0.43
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 8.38,
+      "y": -26.8,
+      "yaw": 153.5,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 0.55
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_b",
+      "x": 1.42,
+      "y": 0.4,
+      "yaw": 242.6,
+      "amb": true,
+      "scale": 0.84,
+      "solid": 0.38
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 2.47,
+      "y": -21.44,
+      "yaw": 252.9,
+      "amb": true,
+      "scale": 0.94,
+      "solid": 0.38
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_c",
+      "x": -14.65,
+      "y": -17.71,
+      "yaw": 32.4,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 0.39
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_b",
+      "x": 33.25,
+      "y": 3.23,
+      "yaw": 103.3,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 0.51
+    },
+    {
+      "kind": "glb:cenario/vale_arvore_queimada_a",
+      "x": 10.04,
+      "y": 1.53,
+      "yaw": 97.1,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.47
+    },
+    {
+      "kind": "rocha",
+      "x": 9.92,
+      "y": -31.77,
+      "yaw": 168.0,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.93
+    },
+    {
+      "kind": "rocha",
+      "x": 8.79,
+      "y": -34.84,
+      "yaw": 128.7,
+      "amb": true,
+      "scale": 0.76,
+      "solid": 0.76
+    },
+    {
+      "kind": "rocha",
+      "x": 7.08,
+      "y": -35.65,
+      "yaw": 189.0,
+      "amb": true,
+      "scale": 0.54,
+      "solid": 0.54
+    },
+    {
+      "kind": "rocha",
+      "x": 4.97,
+      "y": -14.76,
+      "yaw": 251.0,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 1.13
+    },
+    {
+      "kind": "rocha",
+      "x": 2.94,
+      "y": -11.35,
+      "yaw": 303.2,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 0.85
+    },
+    {
+      "kind": "rocha",
+      "x": 5.4,
+      "y": -10.83,
+      "yaw": 220.6,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 1.03
+    },
+    {
+      "kind": "rocha",
+      "x": 19.79,
+      "y": 4.05,
+      "yaw": 281.7,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 1.16
+    },
+    {
+      "kind": "rocha",
+      "x": 23.7,
+      "y": 4.76,
+      "yaw": 330.6,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.07
+    },
+    {
+      "kind": "capim_alto",
+      "x": 41.49,
+      "y": 16.55,
+      "yaw": 278.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 22.26,
+      "y": -19.93,
+      "yaw": 270.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -44.1,
+      "y": -18.88,
+      "yaw": 73.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 49.7,
+      "y": -9.27,
+      "yaw": 267.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -32.22,
+      "y": 34.51,
+      "yaw": 55.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 38.76,
+      "y": 35.65,
+      "yaw": 239.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 14.69,
+      "y": 10.32,
+      "yaw": 163.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -46.62,
+      "y": 39.73,
+      "yaw": 168.6,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -13.34,
+      "y": 17.6,
+      "yaw": 172.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 30.43,
+      "y": 19.28,
+      "yaw": 135.9,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -17.23,
+      "y": 21.52,
+      "yaw": 121.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 16.93,
+      "y": -36.15,
+      "yaw": 260.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 35.49,
+      "y": -49.52,
+      "yaw": 291.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -17.37,
+      "y": 2.57,
+      "yaw": 302.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -11.7,
+      "y": -51.46,
+      "yaw": 202.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -16.87,
+      "y": 0.99,
+      "yaw": 15.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 3.69,
+      "y": 1.08,
+      "yaw": 84.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 39.05,
+      "y": -41.93,
+      "yaw": 258.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 25.97,
+      "y": 8.94,
+      "yaw": 241.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 21.15,
+      "y": -17.81,
+      "yaw": 39.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -52.13,
+      "y": -42.51,
+      "yaw": 33.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -44.3,
+      "y": -22.02,
+      "yaw": 66.5,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 9.5,
+      "y": -34.65,
+      "yaw": 225.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -52.58,
+      "y": -29.14,
+      "yaw": 39.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -25.85,
+      "y": -33.57,
+      "yaw": 123.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -53.09,
+      "y": -9.27,
+      "yaw": 188.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -49.63,
+      "y": 15.33,
+      "yaw": 249.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -20.05,
+      "y": 39.96,
+      "yaw": 69.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -26.26,
+      "y": -47.63,
+      "yaw": 193.4,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -34.46,
+      "y": 52.11,
+      "yaw": 260.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 30.03,
+      "y": -28.95,
+      "yaw": 257.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 41.86,
+      "y": 45.11,
+      "yaw": 227.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 26.72,
+      "y": 35.72,
+      "yaw": 288.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 2.22,
+      "y": 9.63,
+      "yaw": 302.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 48.88,
+      "y": -7.91,
+      "yaw": 170.0,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -43.39,
+      "y": -5.35,
+      "yaw": 354.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 30.65,
+      "y": 31.89,
+      "yaw": 138.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -4.96,
+      "y": -44.0,
+      "yaw": 349.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 41.46,
+      "y": -8.93,
+      "yaw": 140.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -15.0,
+      "y": 47.34,
+      "yaw": 270.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -38.21,
+      "y": -52.49,
+      "yaw": 128.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 14.68,
+      "y": -22.33,
+      "yaw": 22.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -43.81,
+      "y": -23.03,
+      "yaw": 278.7,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 22.17,
+      "y": 6.98,
+      "yaw": 100.6,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 7.47,
+      "y": -6.97,
+      "yaw": 212.4,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 24.72,
+      "y": -38.54,
+      "yaw": 113.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -36.43,
+      "y": 28.11,
+      "yaw": 75.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 22.18,
+      "y": 9.31,
+      "yaw": 132.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.39,
+      "y": -4.48,
+      "yaw": 245.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 53.91,
+      "y": 28.83,
+      "yaw": 212.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -39.24,
+      "y": -16.86,
+      "yaw": 246.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -29.46,
+      "y": -27.85,
+      "yaw": 292.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -36.08,
+      "y": 17.47,
+      "yaw": 260.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 2.31,
+      "y": 13.56,
+      "yaw": 355.4,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 4.86,
+      "y": -44.31,
+      "yaw": 311.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 46.64,
+      "y": -30.66,
+      "yaw": 2.6,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -41.71,
+      "y": -24.97,
+      "yaw": 139.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.89,
+      "y": 37.02,
+      "yaw": 304.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 24.51,
+      "y": 53.03,
+      "yaw": 187.7,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -15.45,
+      "y": -0.05,
+      "yaw": 204.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -47.65,
+      "y": -28.54,
+      "yaw": 184.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.01,
+      "y": -6.09,
+      "yaw": 61.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 42.48,
+      "y": 27.71,
+      "yaw": 48.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 41.55,
+      "y": 4.35,
+      "yaw": 37.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 47.01,
+      "y": -18.9,
+      "yaw": 160.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 45.76,
+      "y": -44.25,
+      "yaw": 292.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -4.5,
+      "y": -12.92,
+      "yaw": 72.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -28.94,
+      "y": 0.52,
+      "yaw": 307.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 39.84,
+      "y": 22.03,
+      "yaw": 96.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 39.32,
+      "y": 52.92,
+      "yaw": 5.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 13.8,
+      "y": -11.17,
+      "yaw": 320.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 52.99,
+      "y": -15.66,
+      "yaw": 23.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -17.31,
+      "y": 5.01,
+      "yaw": 239.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -50.52,
+      "y": -36.14,
+      "yaw": 24.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -16.85,
+      "y": -4.05,
+      "yaw": 68.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 49.12,
+      "y": -29.6,
+      "yaw": 189.0,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 53.24,
+      "y": -19.89,
+      "yaw": 322.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -4.47,
+      "y": 40.38,
+      "yaw": 187.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -44.7,
+      "y": -36.34,
+      "yaw": 277.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -20.58,
+      "y": 29.44,
+      "yaw": 304.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 10.06,
+      "y": 2.72,
+      "yaw": 26.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 18.55,
+      "y": -8.02,
+      "yaw": 358.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -38.89,
+      "y": -50.13,
+      "yaw": 265.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -10.11,
+      "y": 4.09,
+      "yaw": 71.5,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -48.52,
+      "y": -12.59,
+      "yaw": 204.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -13.91,
+      "y": -34.64,
+      "yaw": 118.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -5.15,
+      "y": -48.96,
+      "yaw": 115.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 42.1,
+      "y": -41.9,
+      "yaw": 42.3,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 44.38,
+      "y": 8.23,
+      "yaw": 220.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 12.14,
+      "y": 31.15,
+      "yaw": 232.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 43.8,
+      "y": -28.79,
+      "yaw": 38.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 52.61,
+      "y": 45.7,
+      "yaw": 183.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -44.05,
+      "y": 32.59,
+      "yaw": 168.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -30.84,
+      "y": 15.77,
+      "yaw": 347.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -2.66,
+      "y": -0.31,
+      "yaw": 183.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 18.68,
+      "y": -5.4,
+      "yaw": 106.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -32.6,
+      "y": -26.74,
+      "yaw": 271.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -40.3,
+      "y": -21.33,
+      "yaw": 275.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -43.5,
+      "y": 51.3,
+      "yaw": 183.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 16.36,
+      "y": -12.43,
+      "yaw": 82.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 32.82,
+      "y": 10.85,
+      "yaw": 316.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 25.33,
+      "y": 1.73,
+      "yaw": 164.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 15.17,
+      "y": -49.42,
+      "yaw": 59.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 45.12,
+      "y": 48.66,
+      "yaw": 264.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 19.41,
+      "y": 31.98,
+      "yaw": 293.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -2.1,
+      "y": 36.95,
+      "yaw": 52.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 37.7,
+      "y": 43.46,
+      "yaw": 95.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 15.14,
+      "y": -51.09,
+      "yaw": 19.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -41.23,
+      "y": 49.22,
+      "yaw": 333.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -43.78,
+      "y": 11.78,
+      "yaw": 81.3,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 23.34,
+      "y": 13.72,
+      "yaw": 239.9,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -2.4,
+      "y": -43.27,
+      "yaw": 213.3,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 29.43,
+      "y": -41.86,
+      "yaw": 36.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -13.34,
+      "y": -25.42,
+      "yaw": 97.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 29.18,
+      "y": -0.2,
+      "yaw": 314.3,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -27.55,
+      "y": 14.26,
+      "yaw": 105.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 27.98,
+      "y": 15.12,
+      "yaw": 115.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 48.26,
+      "y": -9.43,
+      "yaw": 149.6,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 28.2,
+      "y": -39.11,
+      "yaw": 31.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 19.68,
+      "y": -45.27,
+      "yaw": 288.6,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 10.02,
+      "y": -52.75,
+      "yaw": 278.7,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -37.37,
+      "y": 36.78,
+      "yaw": 256.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -21.24,
+      "y": 39.16,
+      "yaw": 136.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -20.77,
+      "y": 4.07,
+      "yaw": 220.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -49.95,
+      "y": -39.44,
+      "yaw": 58.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -7.73,
+      "y": 53.21,
+      "yaw": 222.8,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 15.91,
+      "y": 24.26,
+      "yaw": 99.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -30.09,
+      "y": 45.23,
+      "yaw": 215.4,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 24.22,
+      "y": -6.55,
+      "yaw": 81.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 53.09,
+      "y": 43.05,
+      "yaw": 72.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -15.52,
+      "y": -21.21,
+      "yaw": 224.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -10.83,
+      "y": 48.69,
+      "yaw": 115.0,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -13.53,
+      "y": 3.93,
+      "yaw": 151.8,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 52.21,
+      "y": -39.99,
+      "yaw": 45.9,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -46.38,
+      "y": 35.56,
+      "yaw": 340.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -51.08,
+      "y": 36.82,
+      "yaw": 63.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -10.97,
+      "y": -42.96,
+      "yaw": 21.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 4.76,
+      "y": 24.1,
+      "yaw": 282.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -11.02,
+      "y": 8.0,
+      "yaw": 133.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.38,
+      "y": 52.26,
+      "yaw": 216.2,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -52.14,
+      "y": 12.3,
+      "yaw": 178.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -18.35,
+      "y": 34.22,
+      "yaw": 192.1,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 48.78,
+      "y": 16.23,
+      "yaw": 116.9,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": -12.17,
+      "y": 42.09,
+      "yaw": 112.5,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 26.75,
+      "y": -39.17,
+      "yaw": 259.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 52.33,
+      "y": 22.86,
+      "yaw": 87.1,
+      "amb": true
+    },
+    {
+      "kind": "feno",
+      "x": 50.87,
+      "y": -35.75,
+      "yaw": 327.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -15.93,
+      "y": 38.28,
+      "yaw": 235.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 1.99,
+      "y": -37.95,
+      "yaw": 27.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -33.55,
+      "y": -49.01,
+      "yaw": 325.6,
+      "amb": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "monte_prefeito_volta",
+      "x": 0,
+      "y": 53,
+      "radius": 2.0,
+      "to_map": "vale_das_cinzas",
+      "to_x": 18.1,
+      "to_y": 25.8,
+      "label": "Voltar"
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_monte_prefeito",
+      "name": "Monte do Prefeito",
+      "x": 0,
+      "y": 49
+    },
+    {
+      "id": "wp_monte_prefeito_atalho",
+      "name": "Ruína do Pedreiro",
+      "x": -36.7,
+      "y": -42.9
+    }
+  ],
+  "npcs": [
+    {
+      "id": "prefeito_belmiro",
+      "name": "Belmiro, o Prefeito do Monte",
+      "role": "missoes",
+      "x": -6.0,
+      "y": 14.0,
+      "facing": 180,
+      "look": "mentor",
+      "greeting": "Bem-vindo à Prefeitura do Monte! Sente-se — aqui em cima a vista é boa e o terreno é barato, para quem merece."
+    },
+    {
+      "id": "zuleica_decoracao",
+      "name": "Zuleica, Decorações Finas",
+      "role": "missoes",
+      "x": 6.0,
+      "y": 40.0,
+      "facing": 180,
+      "look": "curandeira",
+      "greeting": "Tapete, quadro, lustre: casa sem decoração é só um teto.",
+      "shop": "loja_decoracao_1"
+    },
+    {
+      "id": "ramires_moveis",
+      "name": "Ramires, Móveis e Curiosidades",
+      "role": "missoes",
+      "x": 0.0,
+      "y": 46.0,
+      "facing": 180,
+      "look": "ferreiro",
+      "greeting": "Estátua de leão? Aquário? Uma jukebox que toca sozinha? Tenho de tudo.",
+      "shop": "loja_decoracao_2"
+    }
+  ],
+  "objects": [
+    {
+      "id": "monte_prefeito_achado_1",
+      "kind": "reliquia",
+      "x": -42.9,
+      "y": 36.4,
+      "label": "Marco de divisa"
+    },
+    {
+      "id": "monte_prefeito_achado_2",
+      "kind": "reliquia",
+      "x": 40.6,
+      "y": 7.4,
+      "label": "Marco de divisa"
+    },
+    {
+      "id": "monte_prefeito_achado_3",
+      "kind": "reliquia",
+      "x": -40.3,
+      "y": -38.6,
+      "label": "Marco de divisa"
+    },
+    {
+      "id": "altar_oferenda_monte_prefeito",
+      "kind": "altar",
+      "x": 18.0,
+      "y": 46.0,
+      "label": "Altar de Oferenda (Urso das Pedras)",
+      "consumes": "mat_carne_javali",
+      "consume_qty": 15,
+      "summons": "monster_monte_urso",
+      "summon_level": 16
+    },
+    {
+      "id": "amb_monte_prefeito_veio0",
+      "kind": "veio",
+      "x": 50.16,
+      "y": 5.45,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_monte_prefeito_veio1",
+      "kind": "veio",
+      "x": 6.77,
+      "y": 3.24,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "amb": true
+    },
+    {
+      "id": "amb_monte_prefeito_veio2",
+      "kind": "veio",
+      "x": -29.76,
+      "y": -49.38,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_monte_prefeito_veio3",
+      "kind": "veio",
+      "x": 34.65,
+      "y": 36.76,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "amb": true
+    },
+    {
+      "id": "amb_monte_prefeito_veio4",
+      "kind": "veio",
+      "x": -38.47,
+      "y": 44.16,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    }
+  ],
+  "checkpoints": [],
+  "elevations": [
+    {
+      "x": -29.3,
+      "y": 30.0,
+      "w": 7.5,
+      "h": 10.1,
+      "height": 0.9,
+      "ramp": 5.6
+    },
+    {
+      "x": 25.6,
+      "y": 19.1,
+      "w": 11.2,
+      "h": 10.0,
+      "height": 1.69,
+      "ramp": 4.8
+    },
+    {
+      "x": -31.4,
+      "y": -15.4,
+      "w": 8.2,
+      "h": 6.9,
+      "height": 1.36,
+      "ramp": 6.5
+    },
+    {
+      "x": 33.1,
+      "y": -18.2,
+      "w": 7.3,
+      "h": 7.4,
+      "height": 1.2,
+      "ramp": 5.2
+    }
+  ],
+  "roads": [
+    {
+      "id": "estrada_prefeitura",
+      "points": [
+        [
+          0.0,
+          43.0
+        ],
+        [
+          1.05,
+          40.83
+        ],
+        [
+          2.0,
+          38.67
+        ],
+        [
+          2.74,
+          36.5
+        ],
+        [
+          3.2,
+          34.33
+        ],
+        [
+          3.3,
+          32.17
+        ],
+        [
+          3.0,
+          30.0
+        ],
+        [
+          2.3,
+          27.83
+        ],
+        [
+          1.2,
+          25.67
+        ],
+        [
+          -0.26,
+          23.5
+        ],
+        [
+          -2.0,
+          21.33
+        ],
+        [
+          -3.95,
+          19.17
+        ],
+        [
+          -6.0,
+          17.0
+        ]
+      ],
+      "width": 2.6
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "mat_chifre_cabra",
+    "display_name": "Chifre de Cabra",
+    "category": "material",
+    "subtype": "material",
+    "min_level": 1,
+    "allowed_classes": [],
+    "handedness": 0,
+    "base_stats": {},
+    "affix_pool": "none",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 50,
+    "icon_asset_id": "icon_mat_chifre_cabra",
+    "model_asset_id": "mat_chifre",
+    "summary": "Chifre curvo e duro de Cabra-da-Serra. Os mercadores compram.",
+    "price": 6,
+    "source": "Cabras-da-Serra (Monte do Prefeito)."
+  }
+]

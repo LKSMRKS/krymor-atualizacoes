@@ -1,0 +1,88 @@
+[
+  {
+    "id": "skill_campeao_giro_do_leao",
+    "class_id": "guerreiro",
+    "display_name": "Giro do Leão",
+    "unlock_level": 15,
+    "target_mode": "nova",
+    "range": 0,
+    "radius": 4.5,
+    "cooldown_ms": 14000,
+    "resource_cost": 35,
+    "resource_generated": 0,
+    "coefficient": 2.3,
+    "effects": {
+      "stagger": 1,
+      "move_mult_windup": 0,
+      "move_mult_recovery": 0.5
+    },
+    "cast_ms": 450,
+    "recovery_ms": 450,
+    "description": "Campeão (2ª classe): giro com rugido que acerta todos em 4,5 m e interrompe preparações."
+  },
+  {
+    "id": "skill_arcanista_meteoros_negros",
+    "class_id": "mago",
+    "display_name": "Meteoros Negros",
+    "unlock_level": 15,
+    "target_mode": "ground",
+    "range": 16,
+    "radius": 5.0,
+    "cooldown_ms": 15000,
+    "resource_cost": 50,
+    "resource_generated": 0,
+    "coefficient": 3.0,
+    "effects": {
+      "stagger": 1,
+      "move_mult_windup": 0,
+      "move_mult_recovery": 0.5
+    },
+    "cast_ms": 850,
+    "recovery_ms": 400,
+    "description": "Arcanista (2ª classe): chuva de pedras negras num raio de 5 m."
+  },
+  {
+    "id": "skill_matriarca_espinhos_raiz",
+    "class_id": "bruxa",
+    "display_name": "Raízes da Matriarca",
+    "unlock_level": 15,
+    "target_mode": "ground",
+    "range": 14,
+    "radius": 4.0,
+    "cooldown_ms": 11000,
+    "resource_cost": 35,
+    "resource_generated": 0,
+    "coefficient": 2.1,
+    "effects": {
+      "stagger": 1,
+      "move_mult_windup": 0,
+      "move_mult_recovery": 0.5
+    },
+    "cast_ms": 500,
+    "recovery_ms": 350,
+    "description": "Matriarca (2ª classe): raízes espinhosas brotam num raio de 4 m e derrubam quem prepara golpe."
+  },
+  {
+    "id": "skill_batedor_flecha_trovao",
+    "class_id": "arqueiro",
+    "display_name": "Flecha Trovão",
+    "unlock_level": 15,
+    "target_mode": "projectile",
+    "range": 28,
+    "radius": 0.7,
+    "cooldown_ms": 10000,
+    "resource_cost": 40,
+    "resource_generated": 0,
+    "coefficient": 2.8,
+    "effects": {
+      "projectile_speed": 38,
+      "pierce": 1,
+      "stagger": 1,
+      "move_mult_windup": 0,
+      "move_mult_recovery": 0.5
+    },
+    "cast_ms": 800,
+    "recovery_ms": 350,
+    "description": "Batedor (2ª classe): flecha carregada de trovão que atravessa a linha inteira."
+  }
+]

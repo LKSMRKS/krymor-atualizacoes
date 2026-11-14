@@ -1,0 +1,685 @@
+{
+  "id": "fortaleza_geada",
+  "display_name": "Fortaleza do Rei de Gelo",
+  "half_size": 45,
+  "spawn_x": -4.0,
+  "spawn_y": 33.6,
+  "safe_radius": 5,
+  "xp_multiplier": 4.74,
+  "kind": "dungeon",
+  "region": "geada",
+  "theme": "neve",
+  "instanced": true,
+  "no_mount": true,
+  "exit_map": "coroa_da_geada",
+  "exit_x": 60.199999999999996,
+  "exit_y": -53.9,
+  "zones": [
+    {
+      "id": "entrada",
+      "name": "Vestíbulo",
+      "kind": "seguro",
+      "x": -4.0,
+      "y": 36.0,
+      "w": 5.6,
+      "h": 5.6
+    },
+    {
+      "id": "ala",
+      "name": "Ala Baixa",
+      "kind": "medio",
+      "x": 8.0,
+      "y": 8.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "lateral",
+      "name": "Câmara Lateral",
+      "kind": "segredo",
+      "x": -20.0,
+      "y": -4.0,
+      "w": 6.8,
+      "h": 6.8
+    },
+    {
+      "id": "guarda",
+      "name": "Sala da Guarda",
+      "kind": "forte",
+      "x": -8.0,
+      "y": -24.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "antessala",
+      "name": "Antessala",
+      "kind": "seguro",
+      "x": 12.0,
+      "y": 4.0,
+      "w": 5.2,
+      "h": 5.2
+    },
+    {
+      "id": "trono",
+      "name": "Salão do Trono: O Rei de Gelo",
+      "kind": "chefe",
+      "x": 16.0,
+      "y": -8.0,
+      "w": 14.8,
+      "h": 14.8
+    },
+    {
+      "id": "labirinto",
+      "name": "Labirinto",
+      "kind": "caminho",
+      "x": 0.0,
+      "y": 0.0,
+      "w": 80.0,
+      "h": 80.0
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -32.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -12.0,
+      "y": 0.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 0.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 24.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": 16.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 16.0,
+      "w": 49.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 40.0,
+      "w": 33.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 4.0,
+      "y": -24.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -28.0,
+      "y": -16.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -4.0,
+      "y": -16.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 28.0,
+      "y": -16.0,
+      "w": 25.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": 8.0,
+      "w": 17.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 36.0,
+      "y": -8.0,
+      "w": 9.2,
+      "h": 1.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": -20.0,
+      "w": 1.2,
+      "h": 41.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -16.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 25.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": -16.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 8.0,
+      "y": 24.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 28.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -32.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -40.0,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 24.0,
+      "y": -8.0,
+      "w": 1.2,
+      "h": 17.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": -28.0,
+      "w": 1.2,
+      "h": 25.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 16.0,
+      "y": 24.0,
+      "w": 1.2,
+      "h": 33.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": -12.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -8.0,
+      "y": 4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -24.0,
+      "y": -4.0,
+      "w": 1.2,
+      "h": 9.2,
+      "r": 0,
+      "height": 5.0
+    }
+  ],
+  "gates": [],
+  "chests": [
+    {
+      "id": "bau_salao_geada",
+      "x": -20.0,
+      "y": -6.0,
+      "loot_table": "bau_salao_geada",
+      "facing": 90
+    }
+  ],
+  "spawns": [
+    {
+      "id": "fortaleza_geada_salao_geada_ala0",
+      "monster": "monster_geada_draugr_salao",
+      "x": 2.3,
+      "y": 10.1,
+      "level": 49,
+      "group": "fortaleza_geada_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_ala1",
+      "monster": "monster_geada_troll_salao",
+      "x": 5.8,
+      "y": 13.4,
+      "level": 51,
+      "group": "fortaleza_geada_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_ala2",
+      "monster": "monster_geada_draugr_salao",
+      "x": 3.2,
+      "y": 13.3,
+      "level": 49,
+      "group": "fortaleza_geada_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_ala3",
+      "monster": "monster_geada_troll_salao",
+      "x": 1.7,
+      "y": 5.1,
+      "level": 51,
+      "group": "fortaleza_geada_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_ala4",
+      "monster": "monster_geada_draugr_salao",
+      "x": 4.1,
+      "y": 11.2,
+      "level": 49,
+      "group": "fortaleza_geada_ala",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_lat0",
+      "monster": "monster_geada_troll_salao",
+      "x": -20.2,
+      "y": -4.2,
+      "level": 52,
+      "group": "fortaleza_geada_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_lat1",
+      "monster": "monster_geada_draugr_salao",
+      "x": -18.6,
+      "y": -5.6,
+      "level": 50,
+      "group": "fortaleza_geada_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_lat2",
+      "monster": "monster_geada_draugr_salao",
+      "x": -21.5,
+      "y": -5.7,
+      "level": 50,
+      "group": "fortaleza_geada_lateral",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_mini",
+      "monster": "monster_geada_campeao_draugr",
+      "x": -11.1,
+      "y": -26.9,
+      "level": 52,
+      "group": "fortaleza_geada_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_guarda0",
+      "monster": "monster_geada_draugr_salao",
+      "x": -12.9,
+      "y": -18.2,
+      "level": 50,
+      "group": "fortaleza_geada_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_salao_geada_guarda1",
+      "monster": "monster_geada_troll_salao",
+      "x": -5.9,
+      "y": -28.3,
+      "level": 52,
+      "group": "fortaleza_geada_guarda",
+      "respawn_seconds": 30
+    },
+    {
+      "id": "fortaleza_geada_boss",
+      "monster": "monster_castelo_rei_gelo",
+      "x": 16.0,
+      "y": -8.0,
+      "level": 54,
+      "group": "fortaleza_geada_boss",
+      "respawn_seconds": 30
+    }
+  ],
+  "props": [
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 7.04,
+      "y": 36.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 0.96,
+      "y": 28.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 7.04,
+      "y": 20.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 20.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -8.96,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -7.04,
+      "y": 12.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -0.96,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 0.96,
+      "y": 4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 15.04,
+      "y": -4.0,
+      "yaw": 0
+    },
+    {
+      "kind": "cranios",
+      "x": 1.49,
+      "y": 2.86,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": -28.67,
+      "y": 12.42,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": -0.03,
+      "y": -36.75,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": -21.46,
+      "y": -29.98,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": 28.35,
+      "y": -31.92,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": -37.78,
+      "y": -20.92,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": 26.78,
+      "y": 38.76,
+      "yaw": 90,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": -39.41,
+      "y": 26.94,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_pilar_runico",
+      "x": 20.79,
+      "y": -23.18,
+      "yaw": 270,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_chefe",
+      "x": 18.74,
+      "y": -10.17,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_trono_gelo",
+      "x": 19.91,
+      "y": -7.14,
+      "yaw": 0,
+      "acervo": true
+    },
+    {
+      "kind": "glb:dg/dg_placa_saida",
+      "x": 0.78,
+      "y": 35.88,
+      "yaw": 0,
+      "acervo": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "fortaleza_geada_saida",
+      "x": -4.0,
+      "y": 38.6,
+      "radius": 1.8,
+      "to_map": "coroa_da_geada",
+      "to_x": 60.199999999999996,
+      "to_y": -53.9,
+      "label": "Saída"
+    },
+    {
+      "id": "fortaleza_geada_fim",
+      "x": 12.0,
+      "y": 4.0,
+      "radius": 1.8,
+      "to_map": "coroa_da_geada",
+      "to_x": 60.199999999999996,
+      "to_y": -53.9,
+      "label": "Saída"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [],
+  "checkpoints": [
+    {
+      "id": "antessala",
+      "x": 12.0,
+      "y": 4.0,
+      "radius": 3,
+      "label": "Antessala"
+    }
+  ],
+  "first_clear_loot": "primeira_salao_geada",
+  "first_clear_boss": "monster_castelo_rei_gelo"
+}

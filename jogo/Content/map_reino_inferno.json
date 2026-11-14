@@ -1,0 +1,3632 @@
+{
+  "id": "reino_inferno",
+  "display_name": "O Inferno",
+  "half_size": 50,
+  "spawn_x": 0,
+  "spawn_y": 42,
+  "safe_radius": 7,
+  "xp_multiplier": 1.15,
+  "kind": "campo",
+  "region": "reinos",
+  "theme": "lava",
+  "zones": [
+    {
+      "id": "chegada",
+      "name": "Chegada",
+      "kind": "seguro",
+      "x": 0,
+      "y": 40,
+      "w": 16,
+      "h": 12
+    },
+    {
+      "id": "trilha",
+      "name": "Trilha",
+      "kind": "caminho",
+      "x": 0,
+      "y": 6,
+      "w": 5,
+      "h": 60
+    },
+    {
+      "id": "covil",
+      "name": "Covil: O Rei Ceifador",
+      "kind": "chefe",
+      "x": 0,
+      "y": -36,
+      "w": 24,
+      "h": 16
+    },
+    {
+      "id": "lugar0",
+      "name": "Covas de Escória",
+      "kind": "lugar",
+      "x": 17.3,
+      "y": 10.1,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar1",
+      "name": "Mirante da Fornalha",
+      "kind": "lugar",
+      "x": -27.4,
+      "y": 9.2,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar2",
+      "name": "Ruína Derretida",
+      "kind": "lugar",
+      "x": -35.9,
+      "y": -36.0,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar3",
+      "name": "Bigorna Abandonada",
+      "kind": "lugar",
+      "x": 25.9,
+      "y": -31.4,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "secreto",
+      "name": "Forja Escondida",
+      "kind": "secreto",
+      "x": 37.8,
+      "y": 37.7,
+      "w": 10,
+      "h": 10
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -17.35,
+      "y": -22.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.75,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -21.81,
+      "y": -9.18,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -42.23,
+      "y": 4.5,
+      "w": 0,
+      "h": 0,
+      "r": 2.12,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 39.79,
+      "y": -35.06,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 15.16,
+      "y": -21.74,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 12.99,
+      "y": 21.05,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 25.62,
+      "y": 24.87,
+      "w": 0,
+      "h": 0,
+      "r": 1.59,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 42.71,
+      "y": 19.83,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 31.57,
+      "y": -31.99,
+      "w": 0,
+      "h": 0,
+      "r": 1.52,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -15.19,
+      "y": 16.97,
+      "w": 0,
+      "h": 0,
+      "r": 1.69,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 33.13,
+      "y": -5.43,
+      "w": 0,
+      "h": 0,
+      "r": 1.37,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -38.02,
+      "y": 28.39,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 19.05,
+      "y": -38.1,
+      "w": 0,
+      "h": 0,
+      "r": 1.6,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 11.8,
+      "y": 12.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.44,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -20.61,
+      "y": -34.59,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 8.94,
+      "y": 31.72,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -34.46,
+      "y": -27.11,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 42.19,
+      "y": 40.84,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 18.1,
+      "y": 16.17,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 8.91,
+      "y": -17.85,
+      "w": 0,
+      "h": 0,
+      "r": 1.61,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 21.03,
+      "y": 6.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -32.98,
+      "y": 36.49,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 16.76,
+      "y": -6.09,
+      "w": 0,
+      "h": 0,
+      "r": 1.99,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 42.63,
+      "y": 33.01,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 41.53,
+      "y": -11.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.37,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -32.02,
+      "y": 4.58,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 17.51,
+      "y": 27.03,
+      "w": 0,
+      "h": 0,
+      "r": 1.24,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -44.69,
+      "y": -3.82,
+      "w": 0,
+      "h": 0,
+      "r": 1.84,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -31.91,
+      "y": -14.21,
+      "w": 0,
+      "h": 0,
+      "r": 1.8,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 37.13,
+      "y": -41.68,
+      "w": 0,
+      "h": 0,
+      "r": 2.19,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 10.95,
+      "y": -2.6,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -41.43,
+      "y": 22.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.35,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -24.48,
+      "y": -30.68,
+      "w": 0,
+      "h": 0,
+      "r": 2.1,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -16.98,
+      "y": -3.87,
+      "w": 0,
+      "h": 0,
+      "r": 1.79,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -46.56,
+      "y": -47.96,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.53,
+      "y": 48.5,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.13,
+      "y": -47.0,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.31,
+      "y": -47.85,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -39.57,
+      "y": -47.81,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -39.91,
+      "y": 48.49,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.58,
+      "y": -40.62,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.31,
+      "y": -40.97,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -33.77,
+      "y": -47.06,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -33.95,
+      "y": 47.63,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.68,
+      "y": -32.85,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.93,
+      "y": -32.58,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -25.01,
+      "y": -47.2,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -25.02,
+      "y": 48.72,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.25,
+      "y": -26.79,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.83,
+      "y": -26.19,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -19.71,
+      "y": -47.94,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -19.77,
+      "y": 47.52,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.31,
+      "y": -18.14,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 48.63,
+      "y": -18.28,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -11.86,
+      "y": -48.26,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -11.56,
+      "y": 48.01,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.82,
+      "y": -11.76,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.82,
+      "y": -12.51,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -5.14,
+      "y": -48.14,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -5.62,
+      "y": 47.62,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.22,
+      "y": -4.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.73,
+      "y": -5.9,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 2.49,
+      "y": -48.48,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 1.35,
+      "y": 48.37,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.41,
+      "y": 2.55,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.12,
+      "y": 2.15,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 8.9,
+      "y": -48.43,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 8.51,
+      "y": 47.31,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.18,
+      "y": 8.67,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.21,
+      "y": 9.53,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 16.04,
+      "y": -47.71,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 16.84,
+      "y": 48.78,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.0,
+      "y": 16.75,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 48.13,
+      "y": 16.44,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 23.27,
+      "y": -47.54,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 23.18,
+      "y": 47.86,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.41,
+      "y": 22.93,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.75,
+      "y": 23.64,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 30.02,
+      "y": -47.95,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 30.96,
+      "y": 47.11,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.21,
+      "y": 29.94,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.5,
+      "y": 29.52,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 36.54,
+      "y": -47.14,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 37.86,
+      "y": 48.74,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -48.96,
+      "y": 36.38,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 48.78,
+      "y": 37.32,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 44.13,
+      "y": -47.23,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 43.0,
+      "y": 48.43,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": -47.7,
+      "y": 44.22,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "rocha_lava",
+      "shape": "circle",
+      "x": 47.15,
+      "y": 43.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.2,
+      "height": 4.0
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 9.37,
+      "y": -44.56,
+      "w": 2.85,
+      "h": 2.24,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.24,
+      "y": -41.16,
+      "w": 2.75,
+      "h": 2.16,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.18,
+      "y": 38.16,
+      "w": 2.91,
+      "h": 2.29,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [
+    {
+      "id": "reino_inferno_0",
+      "monster": "monster_bst_a_morte",
+      "x": -32.8,
+      "y": 20.4,
+      "level": 35,
+      "group": "reino_inferno_g0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_1",
+      "monster": "monster_bst_a_morte",
+      "x": 29.9,
+      "y": 18.9,
+      "level": 35,
+      "group": "reino_inferno_g0",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_2",
+      "monster": "monster_bst_a_morte",
+      "x": 20.9,
+      "y": -19.6,
+      "level": 36,
+      "group": "reino_inferno_g1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_3",
+      "monster": "monster_bst_a_morte",
+      "x": 25.5,
+      "y": -19.4,
+      "level": 37,
+      "group": "reino_inferno_g1",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_4",
+      "monster": "monster_bst_a_morte",
+      "x": 3.5,
+      "y": -5.0,
+      "level": 35,
+      "group": "reino_inferno_g2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_5",
+      "monster": "monster_bst_a_morte",
+      "x": -26.3,
+      "y": 23.0,
+      "level": 37,
+      "group": "reino_inferno_g2",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_6",
+      "monster": "monster_bst_a_morte",
+      "x": 33.7,
+      "y": 12.6,
+      "level": 37,
+      "group": "reino_inferno_g3",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_7",
+      "monster": "monster_bst_a_morte",
+      "x": -31.5,
+      "y": -8.1,
+      "level": 36,
+      "group": "reino_inferno_g3",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_8",
+      "monster": "monster_bst_demonio",
+      "x": 30.9,
+      "y": -13.3,
+      "level": 35,
+      "group": "reino_inferno_g4",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_9",
+      "monster": "monster_bst_demonio",
+      "x": -2.3,
+      "y": -4.6,
+      "level": 35,
+      "group": "reino_inferno_g4",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_10",
+      "monster": "monster_bst_demonio",
+      "x": -29.9,
+      "y": 12.7,
+      "level": 37,
+      "group": "reino_inferno_g5",
+      "respawn_seconds": 45
+    },
+    {
+      "id": "reino_inferno_chefe",
+      "monster": "monster_inferno_ceifador_rei",
+      "x": 0,
+      "y": -38,
+      "level": 38,
+      "group": "reino_inferno_chefe",
+      "respawn_seconds": 600
+    },
+    {
+      "id": "reino_inferno_dourado",
+      "monster": "monster_reino_inferno_dourado",
+      "x": -32.8,
+      "y": 20.4,
+      "level": 37,
+      "group": "reino_inferno_dourado",
+      "respawn_seconds": 300,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          -32.8,
+          20.4
+        ],
+        [
+          30.0,
+          12.0
+        ],
+        [
+          -30.0,
+          9.0
+        ],
+        [
+          15.0,
+          -30.0
+        ],
+        [
+          -18.0,
+          -24.0
+        ]
+      ]
+    }
+  ],
+  "props": [
+    {
+      "kind": "fogueira",
+      "x": 0,
+      "y": 38,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -5,
+      "y": 44,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 5,
+      "y": 44,
+      "yaw": 0
+    },
+    {
+      "kind": "ossada",
+      "x": 41.9,
+      "y": 8.4,
+      "yaw": 141
+    },
+    {
+      "kind": "tocha",
+      "x": -12.1,
+      "y": 20.3,
+      "yaw": 215
+    },
+    {
+      "kind": "ossada",
+      "x": 16.0,
+      "y": -29.1,
+      "yaw": 281
+    },
+    {
+      "kind": "tocha",
+      "x": 40.3,
+      "y": 14.7,
+      "yaw": 58
+    },
+    {
+      "kind": "ossada",
+      "x": 34.6,
+      "y": 35.1,
+      "yaw": 100
+    },
+    {
+      "kind": "tocha",
+      "x": -7.6,
+      "y": 30.9,
+      "yaw": 245
+    },
+    {
+      "kind": "ossada",
+      "x": -42.0,
+      "y": 12.1,
+      "yaw": 261
+    },
+    {
+      "kind": "tocha",
+      "x": -28.5,
+      "y": -25.0,
+      "yaw": 249
+    },
+    {
+      "kind": "ossada",
+      "x": -28.0,
+      "y": -41.7,
+      "yaw": 287
+    },
+    {
+      "kind": "tocha",
+      "x": -15.2,
+      "y": -30.6,
+      "yaw": 249
+    },
+    {
+      "kind": "ossada",
+      "x": -40.4,
+      "y": 41.1,
+      "yaw": 108
+    },
+    {
+      "kind": "tocha",
+      "x": -36.5,
+      "y": 7.8,
+      "yaw": 33
+    },
+    {
+      "kind": "ossada",
+      "x": -7.6,
+      "y": -18.3,
+      "yaw": 355
+    },
+    {
+      "kind": "lapide",
+      "x": 16.2,
+      "y": 13.5,
+      "yaw": 252,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "lapide",
+      "x": 13.7,
+      "y": 10.1,
+      "yaw": 180,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "lapide",
+      "x": 16.2,
+      "y": 6.7,
+      "yaw": 108,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "ossada",
+      "x": 22.0,
+      "y": 9.0,
+      "yaw": 13,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "tocha",
+      "x": 20.2,
+      "y": 12.2,
+      "yaw": 324,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "placa",
+      "x": -31.0,
+      "y": 9.4,
+      "yaw": 182,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "estandarte",
+      "x": -30.0,
+      "y": 3.8,
+      "yaw": 115,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -26.3,
+      "y": 5.8,
+      "yaw": 71,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "tocha",
+      "x": -24.0,
+      "y": 10.4,
+      "yaw": 341,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -38.6,
+      "y": -33.6,
+      "yaw": 221,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -38.2,
+      "y": -38.7,
+      "yaw": 131,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -33.2,
+      "y": -38.3,
+      "yaw": 41,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "ossada",
+      "x": -33.5,
+      "y": -33.2,
+      "yaw": 311,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "estandarte",
+      "x": 28.1,
+      "y": -34.3,
+      "yaw": 53,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "ossada",
+      "x": 28.8,
+      "y": -29.2,
+      "yaw": 323,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "tocha",
+      "x": 23.7,
+      "y": -28.6,
+      "yaw": 233,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "caixotes",
+      "x": 23.0,
+      "y": -33.6,
+      "yaw": 143,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "ossada",
+      "x": 40.3,
+      "y": 37.7,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "cranios",
+      "x": 36.5,
+      "y": 39.8,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "tocha",
+      "x": 36.5,
+      "y": 35.5,
+      "yaw": 0,
+      "poi": "secreto"
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 5.38,
+      "y": -30.98,
+      "yaw": 223.1,
+      "amb": true,
+      "solid": 1.2
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 0.25,
+      "y": -28.64,
+      "yaw": 268.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -5.02,
+      "y": -30.62,
+      "yaw": 313.1,
+      "amb": true,
+      "solid": 1.2
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -7.36,
+      "y": -35.75,
+      "yaw": 358.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -5.38,
+      "y": -41.02,
+      "yaw": 43.1,
+      "amb": true,
+      "solid": 1.2
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -0.25,
+      "y": -43.36,
+      "yaw": 88.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 5.02,
+      "y": -41.38,
+      "yaw": 133.1,
+      "amb": true,
+      "solid": 1.2
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 7.36,
+      "y": -36.25,
+      "yaw": 178.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "sangue",
+      "x": -3.54,
+      "y": -30.33,
+      "yaw": 61.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 5.38,
+      "y": -34.18,
+      "yaw": 5.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 5.94,
+      "y": -36.7,
+      "yaw": 337.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 4.03,
+      "y": -35.65,
+      "yaw": 182.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 2.24,
+      "y": -40.62,
+      "yaw": 84.4,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 6.45,
+      "y": -31.45,
+      "yaw": 341.1,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -6.53,
+      "y": -31.92,
+      "yaw": 264.3,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -1.84,
+      "y": -34.74,
+      "yaw": 327.0,
+      "amb": true
+    },
+    {
+      "kind": "lapide",
+      "x": 12.68,
+      "y": 7.29,
+      "yaw": 200.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 11.64,
+      "y": 9.57,
+      "yaw": 219.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 14.28,
+      "y": 14.11,
+      "yaw": 214.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 14.59,
+      "y": 8.3,
+      "yaw": 212.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 16.18,
+      "y": 8.57,
+      "yaw": 214.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 14.9,
+      "y": 12.73,
+      "yaw": 200.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 17.5,
+      "y": 7.8,
+      "yaw": 220.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 19.06,
+      "y": 8.32,
+      "yaw": 212.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 19.73,
+      "y": 9.81,
+      "yaw": 204.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 23.1,
+      "y": 7.93,
+      "yaw": 205.3,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 21.83,
+      "y": 10.63,
+      "yaw": 201.7,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 24.78,
+      "y": 10.72,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 12.42,
+      "y": 14.62,
+      "yaw": 227.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 10.95,
+      "y": 8.13,
+      "yaw": 287.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 15.83,
+      "y": 3.62,
+      "yaw": 347.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 22.41,
+      "y": 4.17,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": 12.48,
+      "y": 11.39,
+      "yaw": 23.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 20.1,
+      "y": 9.64,
+      "yaw": 227.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 21.55,
+      "y": 14.53,
+      "yaw": 208.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 17.47,
+      "y": 14.33,
+      "yaw": 352.5,
+      "amb": true
+    },
+    {
+      "kind": "estatua_guardiao",
+      "x": -27.4,
+      "y": 9.2,
+      "yaw": 341.4,
+      "amb": true,
+      "solid": 1.0
+    },
+    {
+      "kind": "banco_praca",
+      "x": -28.52,
+      "y": 6.89,
+      "yaw": 161.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": -23.4,
+      "y": 6.2,
+      "yaw": 341.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -32.99,
+      "y": 11.22,
+      "yaw": 160.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -26.73,
+      "y": 4.45,
+      "yaw": 280.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -36.52,
+      "y": -41.57,
+      "yaw": 263.6,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -29.45,
+      "y": -36.12,
+      "yaw": 353.6,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -35.28,
+      "y": -30.43,
+      "yaw": 83.6,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -41.47,
+      "y": -35.38,
+      "yaw": 173.6,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "estandarte",
+      "x": -31.0,
+      "y": -31.8,
+      "yaw": 45.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/escoria_bigorna",
+      "x": 25.9,
+      "y": -31.4,
+      "yaw": 129.5,
+      "amb": true,
+      "solid": 0.59
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 25.51,
+      "y": -34.63,
+      "yaw": 256.6,
+      "amb": true,
+      "solid": 0.99
+    },
+    {
+      "kind": "barril",
+      "x": 28.49,
+      "y": -31.65,
+      "yaw": 319.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "lapide",
+      "x": 32.4,
+      "y": 36.36,
+      "yaw": 215.3,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 33.35,
+      "y": 37.76,
+      "yaw": 229.0,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 33.48,
+      "y": 40.39,
+      "yaw": 236.2,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 35.5,
+      "y": 37.45,
+      "yaw": 229.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 34.99,
+      "y": 39.37,
+      "yaw": 234.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 37.94,
+      "y": 36.16,
+      "yaw": 215.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 38.03,
+      "y": 37.72,
+      "yaw": 229.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 37.78,
+      "y": 40.55,
+      "yaw": 214.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 40.17,
+      "y": 34.97,
+      "yaw": 212.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 41.05,
+      "y": 39.0,
+      "yaw": 229.4,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 39.7,
+      "y": 41.1,
+      "yaw": 218.1,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 42.11,
+      "y": 35.15,
+      "yaw": 227.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "lapide",
+      "x": 42.2,
+      "y": 37.93,
+      "yaw": 213.9,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 43.73,
+      "y": 38.21,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 38.85,
+      "y": 42.33,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 35.44,
+      "y": 42.07,
+      "yaw": 227.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 33.08,
+      "y": 35.29,
+      "yaw": 287.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": 40.47,
+      "y": 33.28,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cranios",
+      "x": 36.96,
+      "y": 36.25,
+      "yaw": 53.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 37.23,
+      "y": 41.03,
+      "yaw": 282.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 34.63,
+      "y": 39.93,
+      "yaw": 242.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 39.68,
+      "y": 36.91,
+      "yaw": 0.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_ninho_fenix",
+      "x": 6.7,
+      "y": 5.36,
+      "yaw": 10.4,
+      "amb": true,
+      "solid": 1.22
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 38.48,
+      "y": -26.01,
+      "yaw": 191.4,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 1.16
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 39.09,
+      "y": 2.44,
+      "yaw": 54.3,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 1.03
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 41.62,
+      "y": -25.82,
+      "yaw": 44.9,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.41
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 43.85,
+      "y": 7.05,
+      "yaw": 7.4,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 1.02
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 30.32,
+      "y": 37.44,
+      "yaw": 151.8,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 1.18
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -45.51,
+      "y": 38.91,
+      "yaw": 167.9,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 1.04
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 9.37,
+      "y": -44.56,
+      "yaw": 180,
+      "amb": true,
+      "scale": 1.2
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -22.12,
+      "y": 42.59,
+      "yaw": 251.6,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.29
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 39.15,
+      "y": -7.5,
+      "yaw": 281.9,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 1.39
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -19.08,
+      "y": 40.54,
+      "yaw": 288.0,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 1.06
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -38.42,
+      "y": -9.43,
+      "yaw": 280.6,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 1.28
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -45.47,
+      "y": -45.18,
+      "yaw": 211.1,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.28
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": -40.15,
+      "y": 44.2,
+      "yaw": 173.4,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 0.97
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -44.28,
+      "y": -24.71,
+      "yaw": 283.2,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.91
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -37.91,
+      "y": 4.99,
+      "yaw": 111.0,
+      "amb": true,
+      "scale": 1.23,
+      "solid": 1.22
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -15.59,
+      "y": -41.95,
+      "yaw": 46.3,
+      "amb": true,
+      "scale": 1.21,
+      "solid": 1.45
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 41.28,
+      "y": 0.76,
+      "yaw": 314.0,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.88
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -45.27,
+      "y": -10.8,
+      "yaw": 78.2,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 0.98
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 44.81,
+      "y": -23.49,
+      "yaw": 339.4,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 1.4
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": -43.19,
+      "y": -9.3,
+      "yaw": 342.9,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 0.9
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 13.54,
+      "y": 45.45,
+      "yaw": 61.0,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.42
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 45.38,
+      "y": -7.72,
+      "yaw": 168.8,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 1.16
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -37.35,
+      "y": 25.42,
+      "yaw": 78.7,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.15
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -19.38,
+      "y": 37.01,
+      "yaw": 321.3,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.89
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": -30.57,
+      "y": 42.37,
+      "yaw": 143.7,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 0.84
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 37.76,
+      "y": -2.99,
+      "yaw": 64.1,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.89
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": -40.3,
+      "y": 8.19,
+      "yaw": 14.8,
+      "amb": true,
+      "scale": 1.09,
+      "solid": 1.08
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -31.03,
+      "y": 45.8,
+      "yaw": 324.6,
+      "amb": true,
+      "scale": 1.23,
+      "solid": 1.22
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -45.16,
+      "y": 42.31,
+      "yaw": 250.9,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.29
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 21.72,
+      "y": 43.9,
+      "yaw": 209.8,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.17
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -37.34,
+      "y": -14.31,
+      "yaw": 194.2,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.1
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 12.24,
+      "y": -41.16,
+      "yaw": 180,
+      "amb": true,
+      "scale": 1.15
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 42.98,
+      "y": -40.89,
+      "yaw": 38.2,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.28
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 45.68,
+      "y": 38.8,
+      "yaw": 237.0,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.91
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 15.18,
+      "y": 38.16,
+      "yaw": 180,
+      "amb": true,
+      "scale": 1.22
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 32.98,
+      "y": -45.76,
+      "yaw": 18.5,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 1.48
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": -42.9,
+      "y": -13.34,
+      "yaw": 228.5,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.85
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 2.4,
+      "y": -45.22,
+      "yaw": 22.1,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 1.35
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 26.5,
+      "y": -39.99,
+      "yaw": 58.5,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.89
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_b",
+      "x": 44.88,
+      "y": -28.42,
+      "yaw": 13.5,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 1.14
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": -43.53,
+      "y": -40.61,
+      "yaw": 141.9,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.86
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_a",
+      "x": 45.85,
+      "y": -44.31,
+      "yaw": 264.9,
+      "amb": true,
+      "solid": 0.99
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 15.92,
+      "y": 18.54,
+      "yaw": 66.4,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -4.18,
+      "y": 31.53,
+      "yaw": 23.0,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.58
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 7.97,
+      "y": -4.55,
+      "yaw": 284.8,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.45
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -15.08,
+      "y": 35.15,
+      "yaw": 5.3,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 1.22
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 1.66,
+      "y": 32.09,
+      "yaw": 133.8,
+      "amb": true,
+      "solid": 1.2
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 10.4,
+      "y": 22.42,
+      "yaw": 222.0,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 1.07
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -8.58,
+      "y": 12.45,
+      "yaw": 293.7,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.46
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 20.93,
+      "y": -14.68,
+      "yaw": 87.1,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.52
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 1.26,
+      "y": 14.32,
+      "yaw": 344.4,
+      "amb": true,
+      "scale": 0.8,
+      "solid": 0.96
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -4.99,
+      "y": -18.29,
+      "yaw": 169.5,
+      "amb": true,
+      "solid": 1.19
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 12.41,
+      "y": -33.93,
+      "yaw": 338.1,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.29
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 2.58,
+      "y": 20.01,
+      "yaw": 231.2,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.59
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -16.72,
+      "y": 11.3,
+      "yaw": 37.0,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.52
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -1.19,
+      "y": 8.43,
+      "yaw": 9.0,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 1.38
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -10.16,
+      "y": -24.54,
+      "yaw": 59.9,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.42
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 20.17,
+      "y": 0.11,
+      "yaw": 66.9,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.48
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 23.29,
+      "y": -35.64,
+      "yaw": 62.8,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 1.02
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -5.33,
+      "y": 3.61,
+      "yaw": 305.3,
+      "amb": true,
+      "scale": 0.71,
+      "solid": 0.86
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -9.18,
+      "y": 5.49,
+      "yaw": 272.4,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.97
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -5.33,
+      "y": 7.1,
+      "yaw": 49.0,
+      "amb": true,
+      "scale": 0.84,
+      "solid": 1.0
+    },
+    {
+      "kind": "rocha_lava",
+      "x": 34.76,
+      "y": -23.81,
+      "yaw": 3.6,
+      "amb": true,
+      "scale": 0.79,
+      "solid": 0.95
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -37.0,
+      "y": 16.3,
+      "yaw": 56.9,
+      "amb": true,
+      "scale": 0.66,
+      "solid": 0.8
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -40.15,
+      "y": 16.7,
+      "yaw": 40.6,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 1.1
+    },
+    {
+      "kind": "rocha_lava",
+      "x": -37.09,
+      "y": 14.39,
+      "yaw": 168.9,
+      "amb": true,
+      "scale": 0.54,
+      "solid": 0.65
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -28.46,
+      "y": -40.1,
+      "yaw": 292.3,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 39.26,
+      "y": -43.93,
+      "yaw": 241.6,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 25.39,
+      "y": 4.69,
+      "yaw": 24.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 34.41,
+      "y": 7.8,
+      "yaw": 340.2,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -21.08,
+      "y": -15.5,
+      "yaw": 176.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -3.3,
+      "y": -39.01,
+      "yaw": 342.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -31.44,
+      "y": -43.88,
+      "yaw": 40.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -10.52,
+      "y": 3.79,
+      "yaw": 302.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 19.34,
+      "y": 16.07,
+      "yaw": 181.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 35.31,
+      "y": 35.98,
+      "yaw": 255.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 33.25,
+      "y": -44.58,
+      "yaw": 11.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -1.02,
+      "y": 33.77,
+      "yaw": 286.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -1.21,
+      "y": -21.2,
+      "yaw": 242.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 19.12,
+      "y": 30.25,
+      "yaw": 68.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -11.9,
+      "y": -22.99,
+      "yaw": 52.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 24.37,
+      "y": -10.44,
+      "yaw": 121.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -3.79,
+      "y": -0.02,
+      "yaw": 186.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -7.97,
+      "y": -33.56,
+      "yaw": 151.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 1.25,
+      "y": 4.68,
+      "yaw": 128.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -17.83,
+      "y": -12.93,
+      "yaw": 225.5,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -30.64,
+      "y": 2.87,
+      "yaw": 325.9,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -41.49,
+      "y": -31.64,
+      "yaw": 297.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 19.93,
+      "y": -36.3,
+      "yaw": 18.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 18.71,
+      "y": -28.95,
+      "yaw": 294.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 30.42,
+      "y": 40.99,
+      "yaw": 151.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 19.08,
+      "y": -10.61,
+      "yaw": 324.9,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 31.29,
+      "y": -29.01,
+      "yaw": 254.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 31.78,
+      "y": -36.38,
+      "yaw": 206.7,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 17.99,
+      "y": 21.62,
+      "yaw": 279.1,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 44.98,
+      "y": -29.94,
+      "yaw": 191.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.3,
+      "y": -8.79,
+      "yaw": 11.5,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 19.1,
+      "y": 26.65,
+      "yaw": 312.0,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -6.76,
+      "y": -5.03,
+      "yaw": 265.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -44.49,
+      "y": 39.78,
+      "yaw": 72.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 1.92,
+      "y": -9.04,
+      "yaw": 302.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 9.09,
+      "y": -35.07,
+      "yaw": 162.6,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 44.89,
+      "y": 16.27,
+      "yaw": 60.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -34.76,
+      "y": 9.23,
+      "yaw": 32.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -13.68,
+      "y": -20.78,
+      "yaw": 55.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -17.04,
+      "y": -7.97,
+      "yaw": 343.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 13.23,
+      "y": 29.65,
+      "yaw": 323.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 36.71,
+      "y": 20.23,
+      "yaw": 40.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 36.22,
+      "y": 22.09,
+      "yaw": 70.9,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 7.56,
+      "y": 24.82,
+      "yaw": 149.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 30.42,
+      "y": 30.56,
+      "yaw": 292.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 19.44,
+      "y": -45.55,
+      "yaw": 296.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 40.11,
+      "y": 31.86,
+      "yaw": 230.3,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -33.73,
+      "y": -17.1,
+      "yaw": 19.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -0.97,
+      "y": 22.47,
+      "yaw": 161.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 13.82,
+      "y": 5.41,
+      "yaw": 0.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -22.39,
+      "y": 31.72,
+      "yaw": 89.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 18.06,
+      "y": 11.05,
+      "yaw": 295.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 28.32,
+      "y": -25.24,
+      "yaw": 123.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -38.78,
+      "y": 4.52,
+      "yaw": 336.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 4.41,
+      "y": 12.27,
+      "yaw": 76.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -20.39,
+      "y": 15.34,
+      "yaw": 140.0,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 7.93,
+      "y": 33.63,
+      "yaw": 53.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 22.46,
+      "y": 1.19,
+      "yaw": 181.9,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 45.98,
+      "y": -16.9,
+      "yaw": 263.7,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -8.0,
+      "y": -32.39,
+      "yaw": 357.1,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -10.02,
+      "y": 38.68,
+      "yaw": 349.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 41.6,
+      "y": 15.86,
+      "yaw": 146.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -45.66,
+      "y": 0.92,
+      "yaw": 161.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 24.85,
+      "y": -28.24,
+      "yaw": 185.7,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -26.56,
+      "y": -22.42,
+      "yaw": 47.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 26.39,
+      "y": -40.97,
+      "yaw": 55.1,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 2.5,
+      "y": -18.16,
+      "yaw": 193.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 11.37,
+      "y": 7.05,
+      "yaw": 99.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 0.8,
+      "y": -44.39,
+      "yaw": 254.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -10.64,
+      "y": -44.79,
+      "yaw": 283.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 11.24,
+      "y": -11.76,
+      "yaw": 330.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 7.78,
+      "y": 33.02,
+      "yaw": 289.2,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 25.16,
+      "y": 21.19,
+      "yaw": 335.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -25.05,
+      "y": 32.63,
+      "yaw": 271.0,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 17.7,
+      "y": 24.48,
+      "yaw": 82.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 42.71,
+      "y": 42.84,
+      "yaw": 29.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -37.08,
+      "y": 3.71,
+      "yaw": 53.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -45.6,
+      "y": 20.18,
+      "yaw": 220.7,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 16.46,
+      "y": 36.27,
+      "yaw": 262.5,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -26.41,
+      "y": -20.6,
+      "yaw": 273.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -20.93,
+      "y": -36.66,
+      "yaw": 274.9,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 20.74,
+      "y": -15.64,
+      "yaw": 316.8,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 6.83,
+      "y": 33.46,
+      "yaw": 87.9,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 14.11,
+      "y": 1.37,
+      "yaw": 248.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 23.37,
+      "y": 25.15,
+      "yaw": 56.6,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 7.95,
+      "y": 32.23,
+      "yaw": 106.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 14.7,
+      "y": -3.52,
+      "yaw": 63.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 16.65,
+      "y": 35.8,
+      "yaw": 155.2,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 26.69,
+      "y": -38.13,
+      "yaw": 33.0,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -41.69,
+      "y": -39.59,
+      "yaw": 57.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 43.75,
+      "y": 32.93,
+      "yaw": 173.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -6.35,
+      "y": 39.91,
+      "yaw": 221.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.55,
+      "y": 28.49,
+      "yaw": 320.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 37.65,
+      "y": -35.46,
+      "yaw": 154.7,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 27.91,
+      "y": 2.11,
+      "yaw": 159.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -5.41,
+      "y": -8.56,
+      "yaw": 297.5,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -11.97,
+      "y": 1.11,
+      "yaw": 104.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 39.32,
+      "y": 4.8,
+      "yaw": 273.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 2.18,
+      "y": -17.19,
+      "yaw": 103.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -40.4,
+      "y": 13.98,
+      "yaw": 258.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -9.73,
+      "y": -26.59,
+      "yaw": 66.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 45.79,
+      "y": 23.06,
+      "yaw": 347.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 40.05,
+      "y": -21.68,
+      "yaw": 7.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 0.22,
+      "y": 7.34,
+      "yaw": 324.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 38.25,
+      "y": 35.34,
+      "yaw": 65.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 35.4,
+      "y": -32.44,
+      "yaw": 283.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -22.73,
+      "y": -8.72,
+      "yaw": 286.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -29.26,
+      "y": -40.45,
+      "yaw": 136.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -9.11,
+      "y": 20.18,
+      "yaw": 215.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -38.36,
+      "y": 22.17,
+      "yaw": 151.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 5.37,
+      "y": 21.06,
+      "yaw": 221.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -44.19,
+      "y": 39.78,
+      "yaw": 25.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 20.49,
+      "y": 29.47,
+      "yaw": 267.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -28.45,
+      "y": -44.59,
+      "yaw": 94.5,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -36.18,
+      "y": 28.57,
+      "yaw": 303.4,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 15.47,
+      "y": -31.7,
+      "yaw": 136.4,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -45.44,
+      "y": 25.58,
+      "yaw": 183.6,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": -26.56,
+      "y": 28.97,
+      "yaw": 320.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 18.21,
+      "y": 3.22,
+      "yaw": 330.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 43.34,
+      "y": 3.34,
+      "yaw": 269.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -7.87,
+      "y": 0.85,
+      "yaw": 269.7,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 15.82,
+      "y": -15.31,
+      "yaw": 203.8,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 33.33,
+      "y": -23.9,
+      "yaw": 214.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 13.88,
+      "y": -10.63,
+      "yaw": 278.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 15.47,
+      "y": -10.08,
+      "yaw": 232.9,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 45.22,
+      "y": 1.82,
+      "yaw": 340.2,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/escoria_basalto_brasa_c",
+      "x": 15.54,
+      "y": 32.21,
+      "yaw": 160.1,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": -34.16,
+      "y": 4.59,
+      "yaw": 217.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 7.52,
+      "y": -44.74,
+      "yaw": 186.6,
+      "amb": true
+    },
+    {
+      "kind": "rachadura",
+      "x": 41.37,
+      "y": 22.59,
+      "yaw": 339.2,
+      "amb": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "reino_inferno_volta",
+      "x": 0,
+      "y": 47,
+      "radius": 2.0,
+      "to_map": "reinos_ocultos",
+      "to_x": 5.5,
+      "to_y": -9.53,
+      "label": "Voltar ao Coração dos Reinos"
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_reino_inferno",
+      "name": "O Inferno",
+      "x": 6.7,
+      "y": 40.1
+    },
+    {
+      "id": "wp_reino_inferno_atalho",
+      "name": "Ruína Derretida",
+      "x": -35.9,
+      "y": -36.0
+    }
+  ],
+  "objects": [
+    {
+      "id": "altar_oferenda_reino_inferno",
+      "kind": "altar",
+      "x": 18.0,
+      "y": 42.0,
+      "label": "Altar de Oferenda (O Rei Ceifador)",
+      "consumes": "mat_fragmento_reliquia",
+      "consume_qty": 15,
+      "summons": "monster_inferno_ceifador_rei",
+      "summon_level": 38
+    },
+    {
+      "id": "amb_reino_inferno_lugar1",
+      "kind": "contemplar",
+      "x": -25.72,
+      "y": 8.01,
+      "label": "Observar",
+      "text": "Daqui se vê a região inteira. Lá longe, uma coluna de fumaça — e mais longe ainda, o Porto.",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_lugar3",
+      "kind": "contemplar",
+      "x": 22.54,
+      "y": -31.4,
+      "label": "Observar",
+      "text": "A bigorna ainda está quente. O martelo sumiu, mas o eco das batidas continua.",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_veio0",
+      "kind": "veio",
+      "x": 11.95,
+      "y": 0.62,
+      "label": "Veio de basalto férreo",
+      "yields": "mat_basalto",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_veio1",
+      "kind": "veio",
+      "x": -16.45,
+      "y": 7.38,
+      "label": "Veio de basalto férreo",
+      "yields": "mat_basalto",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_veio2",
+      "kind": "veio",
+      "x": -45.09,
+      "y": -31.01,
+      "label": "Veio de basalto férreo",
+      "yields": "mat_basalto",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_veio3",
+      "kind": "veio",
+      "x": 32.69,
+      "y": -40.23,
+      "label": "Veio de basalto férreo",
+      "yields": "mat_basalto",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    },
+    {
+      "id": "amb_reino_inferno_veio4",
+      "kind": "veio",
+      "x": 45.67,
+      "y": 34.62,
+      "label": "Veio de basalto férreo",
+      "yields": "mat_basalto",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:picareta",
+      "amb": true
+    }
+  ],
+  "checkpoints": [],
+  "npcs": [
+    {
+      "id": "caronte_barqueiro",
+      "name": "Caronte, o Barqueiro",
+      "role": "missoes",
+      "x": 6.0,
+      "y": 40.0,
+      "facing": 200,
+      "look": "mentor",
+      "greeting": "Uma moeda na ida, outra na volta. Aqui embaixo até a morte cobra pedágio."
+    }
+  ],
+  "elevations": [
+    {
+      "x": -23.1,
+      "y": 23.5,
+      "w": 9.9,
+      "h": 7.5,
+      "height": 0.92,
+      "ramp": 7.7
+    },
+    {
+      "x": -20.6,
+      "y": -9.6,
+      "w": 12.9,
+      "h": 12.8,
+      "height": 1.16,
+      "ramp": 7.6
+    },
+    {
+      "x": 23.2,
+      "y": -19.5,
+      "w": 7.1,
+      "h": 11.5,
+      "height": 1.35,
+      "ramp": 5.7
+    },
+    {
+      "x": 27.2,
+      "y": 22.9,
+      "w": 10.6,
+      "h": 11.7,
+      "height": 0.9,
+      "ramp": 5.7
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": "acougue_tonho",
+  "display_name": "Açougue do Tonho",
+  "half_size": 6,
+  "spawn_x": 0,
+  "spawn_y": 3.4,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "casarao",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": -7.0,
+  "exit_y": 18.549999999999997,
+  "zones": [
+    {
+      "id": "sala",
+      "name": "Açougue do Tonho",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 12
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": -5.5,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": 5.5,
+      "w": 12,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": -5.5,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 5.5,
+      "y": 0,
+      "w": 1,
+      "h": 12,
+      "r": 0,
+      "height": 3.8
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "waypoints": [],
+  "checkpoints": [],
+  "objects": [
+    {
+      "id": "porta_acougue_tonho_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 4.4,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:acougue_tonho_saida"
+    }
+  ],
+  "props": [
+    {
+      "kind": "movel_balcao",
+      "x": 0,
+      "y": -1.6,
+      "yaw": 0
+    },
+    {
+      "kind": "carnes_penduradas",
+      "x": 0,
+      "y": -4.4,
+      "yaw": 0
+    },
+    {
+      "kind": "carnes_penduradas",
+      "x": -3.0,
+      "y": -4.4,
+      "yaw": 0
+    },
+    {
+      "kind": "barril",
+      "x": 4.0,
+      "y": -3.8,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_caixas",
+      "x": -4.2,
+      "y": 2.8,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_mesa",
+      "x": 3.5,
+      "y": 1.0,
+      "yaw": 0
+    }
+  ],
+  "npcs": [
+    {
+      "id": "oficio_acougueiro_porto",
+      "name": "Tonho, o Açougueiro",
+      "role": "aldeao",
+      "x": 0.0,
+      "y": -3.2,
+      "facing": 0,
+      "look": "aldeao",
+      "greeting": "Carne fresquinha de javali da duna! Quem caça, come bem — e cura melhor.",
+      "shop": "loja_acougue"
+    }
+  ],
+  "portals": [
+    {
+      "id": "acougue_tonho_saida",
+      "x": 0,
+      "y": 4.4,
+      "radius": 1.2,
+      "to_map": "porto_das_cinzas",
+      "to_x": -7.0,
+      "to_y": 17.15,
+      "label": "Rua",
+      "por_porta": true
+    }
+  ]
+}

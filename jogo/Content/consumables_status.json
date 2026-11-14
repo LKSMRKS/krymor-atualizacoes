@@ -1,0 +1,35 @@
+[
+  {
+    "id": "consumable_bandagem",
+    "display_name": "Bandagem de Linho",
+    "heal_percent_max_health": 0.12,
+    "heal_duration_ms": 1500,
+    "cooldown_group": "bandagem",
+    "cooldown_ms": 6000,
+    "stack_limit": 20,
+    "price": 45,
+    "summary": "Estanca o SANGRAMENTO e cura 12% da vida. Recarga 6 s."
+  },
+  {
+    "id": "consumable_agua_benta",
+    "display_name": "Água Benta",
+    "heal_percent_max_health": 0.1,
+    "heal_duration_ms": 1000,
+    "cooldown_group": "agua_benta",
+    "cooldown_ms": 8000,
+    "stack_limit": 20,
+    "price": 90,
+    "summary": "Desfaz a MALDIÇÃO (+25% de dano recebido) e cura 10% da vida. Recarga 8 s."
+  },
+  {
+    "id": "consumable_panaceia",
+    "display_name": "Panaceia do Alquimista",
+    "heal_percent_max_health": 0.35,
+    "heal_duration_ms": 2000,
+    "cooldown_group": "potion",
+    "cooldown_ms": 12000,
+    "stack_limit": 10,
+    "price": 400,
+    "summary": "Cura TODOS os efeitos ruins (veneno, sangramento, maldição, queimadura, lentidão) e 35% da vida."
+  }
+]

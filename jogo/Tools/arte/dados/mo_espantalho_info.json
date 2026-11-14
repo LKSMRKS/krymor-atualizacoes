@@ -1,0 +1,13 @@
+{
+ "nome": "Espantalho",
+ "altura_m": 1.9,
+ "corpo": "manequim_masc em estopa",
+ "notas": "cabeça de saco costurada (olhos em X com brilho laranja fraco atrás), chapéu de palha, tufos de palha. Fica de pé parado no campo até alguém chegar perto",
+ "asset_id": "mo_espantalho",
+ "tris": 37233,
+ "clips": [
+  "Idle",
+  "Running",
+  "Walking"
+ ]
+}

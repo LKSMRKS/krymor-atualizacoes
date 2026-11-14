@@ -1,0 +1,2847 @@
+{
+  "id": "porto_das_cinzas",
+  "display_name": "Porto das Cinzas",
+  "half_size": 54,
+  "spawn_x": 0,
+  "spawn_y": -9.5,
+  "safe_radius": 45,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "cidade",
+  "zones": [
+    {
+      "id": "praca",
+      "name": "Porto das Cinzas",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 60,
+      "h": 56
+    },
+    {
+      "id": "cais_leste",
+      "name": "Cais do Porto",
+      "kind": "seguro",
+      "x": 41,
+      "y": 0,
+      "w": 22,
+      "h": 34
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -17.0,
+      "y": -28,
+      "w": 26,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 17.0,
+      "y": -28,
+      "w": 26,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0.0,
+      "y": 28,
+      "w": 60,
+      "h": 1.2,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -30,
+      "y": 0.0,
+      "w": 1.2,
+      "h": 56,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 30,
+      "y": -16.0,
+      "w": 1.2,
+      "h": 24,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 30,
+      "y": 16.0,
+      "w": 1.2,
+      "h": 24,
+      "r": 0,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -12,
+      "y": -14,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 9.5,
+      "y": -14,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -14,
+      "y": 8,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 5
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 14,
+      "y": 8,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 5
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -3.2,
+      "y": -28,
+      "w": 1.6,
+      "h": 2.4,
+      "r": 0,
+      "height": 8
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 3.2,
+      "y": -28,
+      "w": 1.6,
+      "h": 2.4,
+      "r": 0,
+      "height": 8
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12,
+      "y": -8.6,
+      "w": 2.3,
+      "h": 0.9,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -23.9,
+      "y": -13.25,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -22.33,
+      "y": -13.25,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -17.67,
+      "y": -13.25,
+      "w": 1.85,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.1,
+      "y": -13.25,
+      "w": 1.3,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.72,
+      "y": -13.25,
+      "w": 1.45,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.05,
+      "y": -21.75,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -23.5,
+      "y": -21.75,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -20.0,
+      "y": -21.75,
+      "w": 5.8,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.5,
+      "y": -21.75,
+      "w": 1.2,
+      "h": 0.5,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.95,
+      "y": -21.75,
+      "w": 1.9,
+      "h": 0.5,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.75,
+      "y": -15.17,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.75,
+      "y": -17.5,
+      "w": 0.5,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -25.75,
+      "y": -19.83,
+      "w": 0.5,
+      "h": 3.35,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.25,
+      "y": -14.45,
+      "w": 0.5,
+      "h": 1.9,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.25,
+      "y": -16.0,
+      "w": 0.5,
+      "h": 1.2,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.25,
+      "y": -19.05,
+      "w": 0.5,
+      "h": 4.9,
+      "r": 0,
+      "height": 3.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.7,
+      "y": -11.5,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -18.3,
+      "y": -11.5,
+      "w": 0.4,
+      "h": 0.4,
+      "r": 0,
+      "height": 3.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -23.0,
+      "y": -16.5,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -19.2,
+      "y": -16.1,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.0,
+      "y": -19.1,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.4,
+      "y": -18.8,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -23.0,
+      "y": -20.4,
+      "w": 3.6,
+      "h": 0.8,
+      "r": 0,
+      "height": 1.5,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -14.95,
+      "y": -19.1,
+      "w": 0.9,
+      "h": 2.4,
+      "r": 0,
+      "height": 2.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.35,
+      "y": -11.28,
+      "w": 2.7,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.4,
+      "y": -11.28,
+      "w": 1.4,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.25,
+      "y": -11.28,
+      "w": 2.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.75,
+      "y": -11.28,
+      "w": 2.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 24.6,
+      "y": -11.28,
+      "w": 1.4,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 26.65,
+      "y": -11.28,
+      "w": 2.7,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.18,
+      "y": -22.72,
+      "w": 4.35,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.0,
+      "y": -22.72,
+      "w": 1.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 20.4,
+      "y": -22.72,
+      "w": 5.5,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 23.8,
+      "y": -22.72,
+      "w": 1.3,
+      "h": 0.55,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 26.22,
+      "y": -22.72,
+      "w": 3.55,
+      "h": 0.55,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.28,
+      "y": -15.2,
+      "w": 0.55,
+      "h": 7.3,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.28,
+      "y": -19.5,
+      "w": 0.55,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 12.28,
+      "y": -21.3,
+      "w": 0.55,
+      "h": 2.3,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 27.72,
+      "y": -12.55,
+      "w": 0.55,
+      "h": 2.0,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 27.72,
+      "y": -14.2,
+      "w": 0.55,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 27.72,
+      "y": -18.65,
+      "w": 0.55,
+      "h": 7.6,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 17.4,
+      "y": -17.8,
+      "w": 0.5,
+      "h": 0.5,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.6,
+      "y": -17.8,
+      "w": 0.5,
+      "h": 0.5,
+      "r": 0,
+      "height": 4.4,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 18.0,
+      "y": -9.1,
+      "w": 0.45,
+      "h": 0.45,
+      "r": 0,
+      "height": 4.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 22.0,
+      "y": -9.1,
+      "w": 0.45,
+      "h": 0.45,
+      "r": 0,
+      "height": 4.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.8,
+      "y": -21.0,
+      "w": 4.2,
+      "h": 0.9,
+      "r": 0,
+      "height": 1.6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 23.0,
+      "y": -15.8,
+      "w": 1.4,
+      "h": 4.2,
+      "r": 0,
+      "height": 1.3,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 18.5,
+      "y": -14.4,
+      "w": 1.3,
+      "h": 1.3,
+      "r": 0,
+      "height": 1.2,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 26.95,
+      "y": -18.6,
+      "w": 1.0,
+      "h": 2.8,
+      "r": 0,
+      "height": 2.8,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -21.0,
+      "y": 16.0,
+      "w": 5.3,
+      "h": 4.8,
+      "r": 0,
+      "height": 6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 13.5,
+      "y": 17.5,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -7.0,
+      "y": 21.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 7.0,
+      "y": 21.0,
+      "w": 4.7,
+      "h": 4.4,
+      "r": 0,
+      "height": 6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -24.5,
+      "y": 0.0,
+      "w": 4.8,
+      "h": 5.3,
+      "r": 0,
+      "height": 6,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -3.9,
+      "y": -28.0,
+      "w": 3.96,
+      "h": 3.96,
+      "r": 0,
+      "height": 9.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 3.9,
+      "y": -28.0,
+      "w": 3.96,
+      "h": 3.96,
+      "r": 0,
+      "height": 9.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -2.4,
+      "y": -28.0,
+      "w": 0.8,
+      "h": 2.0,
+      "r": 0,
+      "height": 7.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 2.4,
+      "y": -28.0,
+      "w": 0.8,
+      "h": 2.0,
+      "r": 0,
+      "height": 7.0,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.0,
+      "y": 1.0,
+      "w": 7.2,
+      "h": 0.3,
+      "r": 0,
+      "height": 1.1,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -20.4,
+      "y": 4.6,
+      "w": 0.3,
+      "h": 7.2,
+      "r": 0,
+      "height": 1.1,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -5.2,
+      "y": -7.2,
+      "w": 2.6,
+      "h": 1.6,
+      "r": 0,
+      "height": 2.3,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 5.2,
+      "y": -7.2,
+      "w": 2.6,
+      "h": 1.6,
+      "r": 0,
+      "height": 2.3,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 9.2,
+      "y": 10.2,
+      "w": 2.0,
+      "h": 2.0,
+      "r": 0,
+      "height": 1.2,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -8.0,
+      "y": 8.6,
+      "w": 0,
+      "h": 0,
+      "r": 1.45,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 8.0,
+      "y": 8.6,
+      "w": 0,
+      "h": 0,
+      "r": 1.45,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -2.9,
+      "y": -3.6,
+      "w": 1.9,
+      "h": 0.75,
+      "r": 0,
+      "height": 0.6,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 2.9,
+      "y": -3.6,
+      "w": 1.9,
+      "h": 0.75,
+      "r": 0,
+      "height": 0.6,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -4.6,
+      "y": -1.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 4.6,
+      "y": -1.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": -4.6,
+      "y": 6.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "circle",
+      "x": 4.6,
+      "y": 6.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 1,
+      "praca": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 14.45,
+      "y": -14.67,
+      "w": 0.15,
+      "h": 3.45,
+      "r": 0,
+      "height": 4.5,
+      "kit": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0,
+      "y": -34.6,
+      "w": 12,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -4.6,
+      "y": -31.3,
+      "w": 1.0,
+      "h": 6.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 4.6,
+      "y": -31.3,
+      "w": 1.0,
+      "h": 6.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 37.5,
+      "y": 16.8,
+      "w": 15,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 37.5,
+      "y": -16.8,
+      "w": 15,
+      "h": 1.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 44.6,
+      "y": -13.75,
+      "w": 1.0,
+      "h": 6.5,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 44.6,
+      "y": -0.5,
+      "w": 1.0,
+      "h": 14.0,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 44.6,
+      "y": 13.15,
+      "w": 1.0,
+      "h": 6.7,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 48.6,
+      "y": -10.9,
+      "w": 8.2,
+      "h": 0.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 48.6,
+      "y": -7.1,
+      "w": 8.2,
+      "h": 0.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 52.5,
+      "y": -9,
+      "w": 0.8,
+      "h": 4.4,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 47.6,
+      "y": 6.1,
+      "w": 6.2,
+      "h": 0.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 47.6,
+      "y": 9.9,
+      "w": 6.2,
+      "h": 0.6,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 50.5,
+      "y": 8,
+      "w": 0.8,
+      "h": 4.4,
+      "r": 0,
+      "height": 3
+    },
+    {
+      "id": "tablado_zeca",
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -0.12,
+      "y": 25.53,
+      "w": 2.6,
+      "h": 2.6,
+      "r": 0
+    },
+    {
+      "id": "placar_painel",
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -28.6,
+      "y": -8.4,
+      "w": 0.6,
+      "h": 2.8,
+      "r": 0
+    },
+    {
+      "id": "secador_tiberio",
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.01,
+      "y": 4.95,
+      "w": 0.8,
+      "h": 2.4,
+      "r": 0
+    },
+    {
+      "id": "taverna_escada_corrimao",
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -16.77,
+      "y": -17.25,
+      "w": 0.15,
+      "h": 2.09,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 20.34,
+      "y": 13.78,
+      "w": 4.57,
+      "h": 5.49,
+      "r": 0,
+      "height": 6,
+      "kit": true,
+      "yaw": 30
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -24.65,
+      "y": -12.28,
+      "w": 1.49,
+      "h": 0.92,
+      "r": 0,
+      "height": 3.6,
+      "kit": true,
+      "rot": 31.2
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [
+    {
+      "id": "boneco_treino_0",
+      "monster": "monster_boneco_treino",
+      "x": -25.51,
+      "y": -3.72,
+      "level": 1,
+      "group": "boneco_treino_0",
+      "respawn_seconds": 3
+    },
+    {
+      "id": "boneco_treino_1",
+      "monster": "monster_boneco_treino",
+      "x": -27.75,
+      "y": -6.17,
+      "level": 10,
+      "group": "boneco_treino_1",
+      "respawn_seconds": 3
+    },
+    {
+      "id": "boneco_treino_2",
+      "monster": "monster_boneco_treino",
+      "x": -25.16,
+      "y": -9.02,
+      "level": 20,
+      "group": "boneco_treino_2",
+      "respawn_seconds": 3
+    }
+  ],
+  "props": [
+    {
+      "kind": "tocha",
+      "x": -5,
+      "y": -26,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 5,
+      "y": -26,
+      "yaw": 0
+    },
+    {
+      "kind": "caixotes",
+      "x": -12,
+      "y": -4,
+      "yaw": 15
+    },
+    {
+      "kind": "placa",
+      "x": 27,
+      "y": 4,
+      "yaw": 90,
+      "texto": "Porto das Cinzas\nSua casa: 18 m a sul\nSubir ao 2º andar: 24 m a noroeste"
+    },
+    {
+      "kind": "banca",
+      "x": 12,
+      "y": -8.6,
+      "yaw": -15
+    },
+    {
+      "kind": "poste",
+      "x": -4,
+      "y": -22,
+      "yaw": 90
+    },
+    {
+      "kind": "poste",
+      "x": 4,
+      "y": -22,
+      "yaw": -90
+    },
+    {
+      "kind": "poste",
+      "x": -6,
+      "y": -1,
+      "yaw": 90
+    },
+    {
+      "kind": "poste",
+      "x": 6,
+      "y": -1,
+      "yaw": -90
+    },
+    {
+      "kind": "poste",
+      "x": 15,
+      "y": 6,
+      "yaw": -90
+    },
+    {
+      "kind": "poste",
+      "x": -8,
+      "y": 16,
+      "yaw": 90
+    },
+    {
+      "kind": "barril",
+      "x": -16,
+      "y": -3,
+      "yaw": 20
+    },
+    {
+      "kind": "pinheiros",
+      "x": 26,
+      "y": 24,
+      "yaw": 0
+    },
+    {
+      "kind": "feno",
+      "x": -21,
+      "y": 9.2,
+      "yaw": 20,
+      "gerado": true
+    },
+    {
+      "kind": "regadores",
+      "x": -11.8,
+      "y": 8.4,
+      "yaw": 0,
+      "gerado": true
+    },
+    {
+      "kind": "taverna_grande",
+      "x": -20.0,
+      "y": -17.5,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "casarao_cidade",
+      "x": 20.0,
+      "y": -17.0,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "casa_pequena",
+      "x": 13.5,
+      "y": 17.5,
+      "yaw": 180,
+      "kit": true
+    },
+    {
+      "kind": "casa_pequena",
+      "x": -7.0,
+      "y": 21.0,
+      "yaw": 180,
+      "kit": true
+    },
+    {
+      "kind": "casa_pequena",
+      "x": 7.0,
+      "y": 21.0,
+      "yaw": 180,
+      "kit": true
+    },
+    {
+      "kind": "sobrado",
+      "x": -24.5,
+      "y": 0.0,
+      "yaw": 90,
+      "kit": true
+    },
+    {
+      "kind": "portao_fortificado",
+      "x": 0.0,
+      "y": -28.0,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -18.4,
+      "y": 1.0,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -20.4,
+      "y": 2.2,
+      "yaw": 90,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -15.999999999999998,
+      "y": 1.0,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -20.4,
+      "y": 4.6,
+      "yaw": 90,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -13.599999999999998,
+      "y": 1.0,
+      "yaw": 0,
+      "kit": true
+    },
+    {
+      "kind": "cerca",
+      "x": -20.4,
+      "y": 7.0,
+      "yaw": 90,
+      "kit": true
+    },
+    {
+      "kind": "floreira",
+      "x": -4,
+      "y": -14,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "floreira",
+      "x": 4,
+      "y": -14,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "floreira",
+      "x": -4,
+      "y": -17.5,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "floreira",
+      "x": 4,
+      "y": -17.5,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "banco_praca",
+      "x": -12.5,
+      "y": -13,
+      "yaw": 90,
+      "decor": true
+    },
+    {
+      "kind": "banco_praca",
+      "x": 10.7,
+      "y": -13,
+      "yaw": 270,
+      "decor": true
+    },
+    {
+      "kind": "poste",
+      "x": -13,
+      "y": -3,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "poste",
+      "x": 10.9,
+      "y": -14.5,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "poste",
+      "x": -13,
+      "y": -15,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "poste",
+      "x": 24,
+      "y": -6,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "caixote",
+      "x": 26.5,
+      "y": 8.5,
+      "yaw": 15,
+      "decor": true
+    },
+    {
+      "kind": "barril_v2",
+      "x": 27.2,
+      "y": 9.8,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "caixote",
+      "x": 26.3,
+      "y": 11,
+      "yaw": 70,
+      "decor": true
+    },
+    {
+      "kind": "caixote",
+      "x": -25.5,
+      "y": 24,
+      "yaw": 30,
+      "decor": true
+    },
+    {
+      "kind": "carrinho_feira",
+      "x": 23,
+      "y": -9,
+      "yaw": 200,
+      "decor": true
+    },
+    {
+      "kind": "floreira",
+      "x": -9,
+      "y": 23.5,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "floreira",
+      "x": 9,
+      "y": 23.5,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -2.5,
+      "y": -26,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 2.5,
+      "y": -26,
+      "yaw": 0,
+      "decor": true
+    },
+    {
+      "kind": "gargula_muro",
+      "x": -4.6,
+      "y": -29.0,
+      "yaw": 180
+    },
+    {
+      "kind": "gargula_muro",
+      "x": 4.6,
+      "y": -29.0,
+      "yaw": 180
+    },
+    {
+      "kind": "cesto_peixe",
+      "x": -12.0,
+      "y": 9.2,
+      "yaw": 0,
+      "poi": "interiores"
+    },
+    {
+      "kind": "banco_praca",
+      "x": -4.6,
+      "y": -1.6,
+      "yaw": 52.0,
+      "poi": "banco_fonte"
+    },
+    {
+      "kind": "banco_praca",
+      "x": 4.6,
+      "y": -1.6,
+      "yaw": -52.0,
+      "poi": "banco_fonte"
+    },
+    {
+      "kind": "banco_praca",
+      "x": -4.6,
+      "y": 6.4,
+      "yaw": 133.7,
+      "poi": "banco_fonte"
+    },
+    {
+      "kind": "banco_praca",
+      "x": 4.6,
+      "y": 6.4,
+      "yaw": -133.7,
+      "poi": "banco_fonte"
+    },
+    {
+      "kind": "espantalho",
+      "x": -15.95,
+      "y": 4.86,
+      "yaw": 90,
+      "gerado": true,
+      "scale": 1.15
+    },
+    {
+      "kind": "sobrado",
+      "x": 21.47,
+      "y": 13.89,
+      "yaw": 225,
+      "kit": true
+    },
+    {
+      "kind": "banco_praca",
+      "x": -11.93,
+      "y": 25.06,
+      "yaw": 180,
+      "decor": true
+    },
+    {
+      "kind": "tablado",
+      "x": 0.14,
+      "y": 21.06,
+      "yaw": 0,
+      "poi": "interiores"
+    },
+    {
+      "kind": "tocha",
+      "x": -13.34,
+      "y": -27.23,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": 9.1,
+      "y": -8.08,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": 9.92,
+      "y": 2.14,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 2.72,
+      "y": 20.93,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -2.41,
+      "y": 21.01,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "caixotes",
+      "x": 0.19,
+      "y": 25.52,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "caixote",
+      "x": -0.72,
+      "y": 26.04,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "carrinho_feira",
+      "x": 12.71,
+      "y": 25.03,
+      "yaw": 45,
+      "editor": true
+    },
+    {
+      "kind": "caixotes",
+      "x": -15.89,
+      "y": 26.42,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": -18.88,
+      "y": 9.31,
+      "yaw": 90
+    },
+    {
+      "kind": "poste",
+      "x": -23.62,
+      "y": 14.31,
+      "yaw": 180,
+      "decor": true
+    },
+    {
+      "kind": "placa",
+      "x": -3.23,
+      "y": -9.12,
+      "yaw": 315,
+      "tag": "quadro"
+    },
+    {
+      "kind": "secador_peixe",
+      "x": -18.09,
+      "y": 11.1,
+      "yaw": 225,
+      "poi": "interiores"
+    },
+    {
+      "kind": "feno",
+      "x": -21.56,
+      "y": 7.94,
+      "yaw": 65,
+      "gerado": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -29.34,
+      "y": 12.34,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": 28.51,
+      "y": 8.9,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": 3.93,
+      "y": -15.66,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": -4.2,
+      "y": -15.7,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "caixotes",
+      "x": 13.54,
+      "y": -3.59,
+      "yaw": -10
+    },
+    {
+      "kind": "poste",
+      "x": 9.56,
+      "y": 16.79,
+      "yaw": -90
+    },
+    {
+      "kind": "barril",
+      "x": 11.42,
+      "y": -3.18,
+      "yaw": 150
+    },
+    {
+      "kind": "barril",
+      "x": -10.83,
+      "y": 14.99,
+      "yaw": 45
+    },
+    {
+      "kind": "bau_armazem",
+      "x": -5.24,
+      "y": 14.57,
+      "yaw": 0,
+      "gerado": true
+    },
+    {
+      "kind": "banco_praca",
+      "x": 12.4,
+      "y": 2.56,
+      "yaw": 180,
+      "decor": true
+    },
+    {
+      "kind": "sino",
+      "x": 14.87,
+      "y": -8.34,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 21.74,
+      "y": 3.49,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "fogueira",
+      "x": 16.18,
+      "y": 9.94,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "caixote",
+      "x": 21.31,
+      "y": -0.56,
+      "yaw": 0,
+      "editor": true,
+      "scale": 1.52
+    },
+    {
+      "kind": "caixote",
+      "x": 20.69,
+      "y": -1.55,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "caixote",
+      "x": 19.93,
+      "y": -0.98,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "estandarte",
+      "x": 3.87,
+      "y": -25.41,
+      "yaw": 0,
+      "scale": 1.52
+    },
+    {
+      "kind": "painel_placar",
+      "x": -8.62,
+      "y": -27.43,
+      "yaw": 270,
+      "poi": "interiores"
+    },
+    {
+      "kind": "estandarte",
+      "x": -3.68,
+      "y": -25.27,
+      "yaw": 0,
+      "scale": 1.52
+    },
+    {
+      "kind": "tocha",
+      "x": 11,
+      "y": -26.99,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "glb:dg/dg_escora_mina",
+      "x": -12.66,
+      "y": -20,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "feno",
+      "x": -12.93,
+      "y": -16.33,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "carroca",
+      "x": -14.32,
+      "y": -23.6,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -14.88,
+      "y": -12.23,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -28.06,
+      "y": -12.5,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha",
+      "x": -28.15,
+      "y": 1.94,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "poste",
+      "x": -20.79,
+      "y": -3.08,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -2.49,
+      "y": 0.08,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "capim_alto",
+      "x": -5.63,
+      "y": -0.5,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "capim_alto",
+      "x": -4.05,
+      "y": -3.34,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "capim_alto",
+      "x": -12.28,
+      "y": 1.09,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "capim_alto",
+      "x": -14.89,
+      "y": 8.75,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "capim_alto",
+      "x": -11.63,
+      "y": -14.75,
+      "yaw": 0,
+      "editor": true,
+      "scale": 0.2
+    },
+    {
+      "kind": "tocha",
+      "x": -12.76,
+      "y": -21.37,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "carrinho_feira",
+      "x": 23.24,
+      "y": 11.19,
+      "yaw": 135,
+      "editor": true
+    },
+    {
+      "kind": "boneco_treino",
+      "x": -24.34,
+      "y": 4.02,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 14.95,
+      "y": 20.44,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "carnes_penduradas",
+      "x": -24.26,
+      "y": 2.63,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -23.6,
+      "y": 13.0,
+      "yaw": 0,
+      "scale": 1.08
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 17.6,
+      "y": 12.6,
+      "yaw": 0,
+      "scale": 1.0
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 11.5,
+      "y": 14.7,
+      "yaw": 0,
+      "scale": 0.92
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -21.6,
+      "y": 3.4,
+      "yaw": 90,
+      "scale": 1.0
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -14,
+      "y": -11.0,
+      "yaw": 0,
+      "scale": 1.17
+    },
+    {
+      "kind": "glb:cenario_barraca_feira_a",
+      "x": -5.2,
+      "y": -7.2,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario_barraca_feira_b",
+      "x": 5.2,
+      "y": -7.2,
+      "yaw": 0
+    },
+    {
+      "kind": "carrinho_feira",
+      "x": 9.2,
+      "y": 10.2,
+      "yaw": -35
+    },
+    {
+      "kind": "glb:cenario_barril",
+      "x": 7.4,
+      "y": -7.6,
+      "yaw": 20
+    },
+    {
+      "kind": "glb:cenario_barril",
+      "x": 8.2,
+      "y": -7.0,
+      "yaw": 75
+    },
+    {
+      "kind": "glb:cenario_barril",
+      "x": -7.4,
+      "y": -7.8,
+      "yaw": 140
+    },
+    {
+      "kind": "glb:cenario_arvore_praca",
+      "x": -8.0,
+      "y": 8.6,
+      "yaw": 30
+    },
+    {
+      "kind": "glb:cenario_arvore_praca",
+      "x": 8.0,
+      "y": 8.6,
+      "yaw": 200
+    },
+    {
+      "kind": "floreira",
+      "x": -2.9,
+      "y": -3.6,
+      "yaw": 0
+    },
+    {
+      "kind": "floreira",
+      "x": 2.9,
+      "y": -3.6,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -19.2,
+      "y": 13.2,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 22.3,
+      "y": 12.9,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 15.6,
+      "y": 14.9,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -8.9,
+      "y": 18.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -5.1,
+      "y": 18.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 5.1,
+      "y": 18.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 8.9,
+      "y": 18.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -21.5,
+      "y": -2.6,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -17.3,
+      "y": -11.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -22.7,
+      "y": -11.4,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 17.5,
+      "y": -9.2,
+      "yaw": 0
+    },
+    {
+      "kind": "vaso_planta",
+      "x": 22.5,
+      "y": -9.2,
+      "yaw": 0
+    },
+    {
+      "kind": "sobrado",
+      "x": -26.93,
+      "y": 15.39,
+      "yaw": 180,
+      "kit": true,
+      "solid": 2.41
+    },
+    {
+      "kind": "predio_biblioteca",
+      "x": -19.27,
+      "y": 18.73,
+      "yaw": 135,
+      "poi": "interiores",
+      "solid": 4.19
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 26.38,
+      "y": -8.85,
+      "yaw": 0,
+      "scale": 1.08
+    },
+    {
+      "kind": "fonte_praca",
+      "x": -0.11,
+      "y": 1.05,
+      "yaw": 0,
+      "solid": 2.34
+    },
+    {
+      "kind": "vaso_planta",
+      "x": -16.93,
+      "y": 14.16,
+      "yaw": 0,
+      "solid": 0.17
+    },
+    {
+      "kind": "floreira",
+      "x": 3.7,
+      "y": 8.9,
+      "yaw": 180
+    },
+    {
+      "kind": "movel_bau",
+      "x": -5.77,
+      "y": 14.61,
+      "yaw": 180,
+      "editor": true,
+      "scale": 1.52
+    },
+    {
+      "kind": "movel_bau",
+      "x": -5.95,
+      "y": 14.73,
+      "yaw": 0,
+      "editor": true
+    },
+    {
+      "kind": "movel_bau",
+      "x": -4.76,
+      "y": 14.63,
+      "yaw": 180,
+      "editor": true,
+      "scale": 1.52
+    },
+    {
+      "kind": "floreira",
+      "x": -2.7,
+      "y": 8.72,
+      "yaw": 180
+    },
+    {
+      "kind": "feno",
+      "x": -20.21,
+      "y": 0.99,
+      "yaw": -15,
+      "gerado": true,
+      "solid": 0.38
+    },
+    {
+      "kind": "forja",
+      "x": -24.7,
+      "y": -11.61,
+      "yaw": 30,
+      "solid": 0.59
+    }
+  ],
+  "portals": [
+    {
+      "id": "porto_costa",
+      "x": 0,
+      "y": -31.2,
+      "radius": 2.4,
+      "to_map": "costa_do_cal",
+      "to_x": 0.0,
+      "to_y": 96.0,
+      "label": "Costa do Cal"
+    },
+    {
+      "id": "porto_casa",
+      "x": 21.16,
+      "y": 21.73,
+      "radius": 1.6,
+      "to_map": "casa_jogador",
+      "to_x": 0,
+      "to_y": 6,
+      "label": "Sua casa",
+      "requires_flag": "casa:propria",
+      "gerado": true
+    },
+    {
+      "id": "casarao_subir",
+      "x": 13.5,
+      "y": -16.1,
+      "radius": 0.8,
+      "to_map": "casarao_andar2",
+      "to_x": -6.5,
+      "to_y": 0.2,
+      "label": "Subir ao 2º andar"
+    },
+    {
+      "id": "taverna_subir",
+      "x": -16.02,
+      "y": -17.95,
+      "radius": 0.55,
+      "to_map": "taverna_andar2",
+      "to_x": 3.4,
+      "to_y": -1.6,
+      "label": "Subir ao 2º andar"
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_porto",
+      "name": "Praça do Porto",
+      "x": 0,
+      "y": -5.4
+    }
+  ],
+  "npcs": [
+    {
+      "id": "ferreiro_bras",
+      "name": "Brás, o Ferreiro",
+      "role": "ferreiro",
+      "x": -10,
+      "y": -6,
+      "facing": 90,
+      "greeting": "Armas e armaduras simples. As boas, você arranca lá fora.",
+      "look": "ferreiro",
+      "shop": "loja_ferreiro"
+    },
+    {
+      "id": "curandeira_ilma",
+      "name": "Ilma, a Curandeira",
+      "role": "curandeira",
+      "x": 10.26,
+      "y": -6.61,
+      "facing": 315,
+      "greeting": "Tônicos para quem vai à Costa. Volte inteiro.",
+      "look": "curandeira",
+      "shop": "loja_curandeira"
+    },
+    {
+      "id": "capita_ondina",
+      "name": "Capitã Ondina",
+      "role": "missoes",
+      "x": 2.16,
+      "y": -23.19,
+      "facing": 0,
+      "greeting": "Ninguém sai pelo portão norte de mãos vazias por muito tempo. Prove que aguenta.",
+      "look": "capita"
+    },
+    {
+      "id": "pescador_tiberio",
+      "name": "Tibério, o Pescador",
+      "role": "missoes",
+      "x": -17.14,
+      "y": 9.85,
+      "facing": 90,
+      "greeting": "Cascas, retalhos, cinza... tudo tem serventia. E se cansar de andar, meu barco leva — pagando.",
+      "look": "aldeao",
+      "shop": "loja_pescador",
+      "travel": [
+        {
+          "id": "barco_dunas",
+          "label": "Barco até o Acampamento das Dunas",
+          "to_map": "costa_do_cal",
+          "to_x": 0.0,
+          "to_y": 24.0,
+          "price": 10,
+          "requires_flag": "wp:wp_dunas"
+        },
+        {
+          "id": "barco_vale",
+          "label": "Barco subindo o rio até o Vale das Cinzas",
+          "to_map": "vale_das_cinzas",
+          "to_x": 0,
+          "to_y": 37.5,
+          "price": 40,
+          "requires_flag": "map:vale_das_cinzas",
+          "min_level": 10
+        },
+        {
+          "id": "barco_triangulo",
+          "label": "Barco até o Triângulo do Demônio (nível 44+)",
+          "to_map": "triangulo_demonio",
+          "to_x": 0.0,
+          "to_y": 46.0,
+          "price": 2000,
+          "min_level": 44
+        }
+      ]
+    },
+    {
+      "id": "mestre_dorval",
+      "name": "Mestre Dorval",
+      "role": "mentor",
+      "x": -20.5,
+      "y": -4.66,
+      "facing": 135,
+      "greeting": "Força sem técnica é barulho. Venha: tenho livros de combate — e uma prova para o primeiro.",
+      "look": "mentor",
+      "shop": "loja_tomos_guerreiro"
+    },
+    {
+      "id": "isaura_arcanista",
+      "name": "Isaura, a Arcanista",
+      "role": "mentor",
+      "x": 28.28,
+      "y": -4.97,
+      "facing": 255,
+      "greeting": "Faíscas qualquer um solta. Meus grimórios ensinam o resto — comece pela prova da primeira chama.",
+      "look": "arcanista",
+      "shop": "loja_tomos_mago"
+    },
+    {
+      "id": "bruxa_hazel",
+      "name": "Hazel, a Bruxa",
+      "role": "mentor",
+      "x": 26.62,
+      "y": 6.16,
+      "facing": 270,
+      "greeting": "Cajado é muleta. A cura vem das mãos e da terra; meus cadernos ensinam. Comece pela prova.",
+      "look": "bruxa",
+      "shop": "loja_tomos_bruxa"
+    },
+    {
+      "id": "batedor_kaelen",
+      "name": "Kaelen, o Batedor",
+      "role": "mentor",
+      "x": -23.97,
+      "y": 7.13,
+      "facing": 90,
+      "greeting": "Quem vê primeiro, vive mais. Meus manuais ensinam a caçar; comece pela prova do primeiro rastro.",
+      "look": "arqueiro",
+      "shop": "loja_tomos_arqueiro"
+    },
+    {
+      "id": "agricultora_rosa",
+      "name": "Rosa, a Agricultora",
+      "role": "missoes",
+      "x": -10.57,
+      "y": 8,
+      "facing": 180,
+      "greeting": "A horta é de todos, mas cada canteiro tem dono. Pegue sementes e ponha a mão na terra.",
+      "look": "aldeao",
+      "shop": "loja_rosa",
+      "gerado": true
+    },
+    {
+      "id": "bobo_tiao",
+      "name": "Tião, o Bobo da Praça",
+      "role": "missoes",
+      "x": 6,
+      "y": 4.5,
+      "facing": 230,
+      "greeting": "Hahá! Um herói! Aposto que não aguenta meus desafios do dia. Volte amanhã que eu invento outros!",
+      "look": "bobo",
+      "gerado": true,
+      "travel": [
+        {
+          "id": "coracao_reinos",
+          "label": "Ir ao Coração dos Reinos (os Reinos Ocultos)",
+          "to_map": "reinos_ocultos",
+          "to_x": 0,
+          "to_y": 11,
+          "price": 150,
+          "min_level": 20
+        },
+        {
+          "id": "floresta_oculta",
+          "label": "Seguir o Tião até a Floresta Oculta",
+          "to_map": "floresta_oculta",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 100,
+          "requires_flag": "livro:mascara",
+          "min_level": 20
+        },
+        {
+          "id": "reino_fabula",
+          "label": "Seguir o Tião para dentro do Livro dos Contos — Era Uma Vez (nível 24+)",
+          "to_map": "reino_fabula",
+          "to_x": 0.0,
+          "to_y": 60.0,
+          "price": 400,
+          "min_level": 24
+        }
+      ]
+    },
+    {
+      "id": "mordomo_aurelio",
+      "name": "Aurélio, o Mordomo",
+      "role": "morador",
+      "x": 15.8,
+      "y": -19.9,
+      "facing": 180,
+      "greeting": "O casarão é aberto a visitas, mas limpe as botas. A escada leva ao andar de cima.",
+      "look": "aldeao"
+    },
+    {
+      "id": "taverneira_gilda",
+      "name": "Gilda, a Taverneira",
+      "role": "morador",
+      "x": 23.5,
+      "y": -19.6,
+      "facing": 180,
+      "greeting": "Caneca cheia, conversa solta. Quem volta da Costa sempre tem história — e fiado não tem.",
+      "look": "aldeao"
+    },
+    {
+      "id": "bebum_jonas",
+      "name": "Jonas",
+      "role": "morador",
+      "x": -23.0,
+      "y": -17.9,
+      "facing": 180,
+      "greeting": "Hic... juro que vi um caranguejo de pedra roxa piscando na praia... hic.",
+      "look": "aldeao"
+    },
+    {
+      "id": "marinheiro_cael",
+      "name": "Cael, o Marinheiro",
+      "role": "morador",
+      "x": -17.6,
+      "y": -16.1,
+      "facing": -90,
+      "greeting": "O mar aberto fica a leste, depois do farol. Ninguém volta de lá com as mesmas botas.",
+      "look": "aldeao"
+    },
+    {
+      "id": "guia_teo",
+      "name": "Téo, o Guia",
+      "role": "missoes",
+      "x": 1.58,
+      "y": -11.79,
+      "facing": 270,
+      "look": "aldeao",
+      "greeting": "Está vendo essa pedra azul? É uma pedra de viagem: toque nela e vá a qualquer pedra que você já descobriu. E do nível 7 em diante eu te vendo uma Pedra de Portal: viaja de onde você estiver.",
+      "shop": "loja_teo"
+    },
+    {
+      "id": "zeca_armazem",
+      "name": "Zeca do Armazém",
+      "role": "missoes",
+      "x": -2.46,
+      "y": 12.96,
+      "facing": 225,
+      "look": "aldeao",
+      "greeting": "Mochila cheia? O armazém guarda tudo para você, e é o mesmo baú em qualquer cidade. Experimente."
+    },
+    {
+      "id": "sibila_vidente",
+      "name": "Sibila, a Vidente",
+      "role": "atributos",
+      "x": 17.97,
+      "y": 10.69,
+      "facing": -90,
+      "look": "bruxa",
+      "greeting": "Errou a mão nos pontos? Eu desfaço o que você gastou e você distribui de novo. Não é de graça: o preço sobe com o seu nível.",
+      "travel": [
+        {
+          "id": "coracao_reinos",
+          "label": "Ir ao Coração dos Reinos (os Reinos Ocultos)",
+          "to_map": "reinos_ocultos",
+          "to_x": 0,
+          "to_y": 11,
+          "price": 150,
+          "min_level": 20
+        },
+        {
+          "id": "reino_lua",
+          "label": "Ritual: subir à Lua Vermelha",
+          "to_map": "reino_lua",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "livro:lobisomem",
+          "min_level": 35
+        },
+        {
+          "id": "reino_transilvania",
+          "label": "Ritual: abrir os portões da Transilvânia",
+          "to_map": "reino_transilvania",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "livro:vampiro",
+          "min_level": 35
+        },
+        {
+          "id": "reino_inferno",
+          "label": "Ritual: descer ao Inferno",
+          "to_map": "reino_inferno",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "livro:ceifador",
+          "min_level": 35
+        },
+        {
+          "id": "reino_celeste",
+          "label": "Ritual: subir à Cidade Celestial",
+          "to_map": "reino_celeste",
+          "to_x": 0.0,
+          "to_y": 42.0,
+          "price": 500,
+          "requires_flag": "livro:anjo",
+          "min_level": 35
+        }
+      ]
+    },
+    {
+      "id": "barqueiro_ezequiel",
+      "name": "Ezequiel, o Barqueiro",
+      "role": "morador",
+      "x": 51.2,
+      "y": -9.0,
+      "facing": -90,
+      "greeting": "O mar daqui parece manso, não é? Lá pra fora tem um lugar onde as bússolas giram e os barcos voltam vazios. Os velhos chamam de Triângulo do Demônio. Hoje não. Um dia, talvez.",
+      "look": "aldeao"
+    },
+    {
+      "id": "tratadora_bia",
+      "name": "Bia, a Tratadora",
+      "role": "loja",
+      "x": -11.2,
+      "y": -14.83,
+      "facing": 90,
+      "shop": "loja_mascotes",
+      "greeting": "Cada bicho aqui tem um jeito — e cada um te deixa melhor em alguma coisa. A tartaruga te ensina a aguentar, o coelho a bater rápido, o grilo dá sorte, o macaco te tira do caminho e a águia enxerga longe.",
+      "look": "aldeao"
+    },
+    {
+      "id": "vacho_porto",
+      "name": "Vacho, o Moleque do Barril",
+      "role": "missoes",
+      "x": 8.42,
+      "y": 16.3,
+      "facing": 245,
+      "look": "vacho",
+      "greeting": "Ei, moço! Ei! Aqui dentro do barril! Tem RATO aqui comigo!"
+    },
+    {
+      "id": "escriva_contratos",
+      "name": "Odila, a Escrivã do Quadro",
+      "role": "contratos",
+      "x": 10.76,
+      "y": -17.79,
+      "facing": 270,
+      "look": "aldeao",
+      "greeting": "«Três contratos por dia, escolhidos para o seu nível. Cumpra e volte — o quadro paga melhor que muito chefe.»"
+    },
+    {
+      "id": "arauto_placar",
+      "name": "Barto, o Arauto do Placar",
+      "role": "placar",
+      "x": -10.45,
+      "y": -25.87,
+      "facing": 90,
+      "look": "guarda",
+      "greeting": "«Aqui se escreve quem é quem no Porto. Fale comigo e eu leio o placar em voz alta!»"
+    },
+    {
+      "id": "quadro_recados",
+      "name": "Quadro de Recados",
+      "role": "recados",
+      "x": 3.58,
+      "y": -12.36,
+      "facing": 0,
+      "look": "quadro",
+      "greeting": "Papéis presos com pregos, uns por cima dos outros. Recados de quem passou pelo Porto:"
+    },
+    {
+      "id": "oficio_balao_porto",
+      "name": "Pipo, o Vendedor de Balões",
+      "role": "aldeao",
+      "x": 4.19,
+      "y": 16.9,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "Balão! Balão de toda cor! Pra criança, pra namorada, pra pendurar no elmo!"
+    },
+    {
+      "id": "oficio_dancarino_porto",
+      "name": "Zeca Requebra, o Dançarino",
+      "role": "aldeao",
+      "x": 0.09,
+      "y": 21.06,
+      "facing": 180,
+      "look": "aldeao",
+      "greeting": "Um, dois, três e gira! A vida é curta, herói — dança comigo!"
+    },
+    {
+      "id": "rosa_montarias",
+      "name": "Rosa, a Tratadora de Montarias",
+      "role": "aldeao",
+      "x": -11.35,
+      "y": -18.95,
+      "facing": 45,
+      "look": "aldeao",
+      "greeting": "Estábulo da Rosa! Cavalo, lince, avestruz, urso... até condor. Quanto mais forte o bicho, mais nível ele pede.",
+      "shop": "loja_montarias"
+    },
+    {
+      "id": "velho_wu",
+      "name": "Velho Wu, o Monge",
+      "role": "aldeao",
+      "x": 20.0,
+      "y": -3.5,
+      "facing": 180,
+      "look": "mentor",
+      "greeting": "Cinco esferas caíram do céu do Rei Macaco. Uma na Costa, uma na Mata, uma nos Cânions, uma no Brejo e uma em Véspera — sempre perto dos lugares secretos. Junte as cinco e o bastão é seu."
+    }
+  ],
+  "objects": [
+    {
+      "id": "porto_bancada",
+      "kind": "bancada",
+      "x": -19,
+      "y": -3,
+      "label": "Bancada",
+      "gerado": true
+    },
+    {
+      "id": "porto_caldeirao",
+      "kind": "caldeirao",
+      "x": 26.79,
+      "y": -6.85,
+      "label": "Caldeirão da Ilma",
+      "gerado": true
+    },
+    {
+      "id": "porto_panela",
+      "kind": "panela",
+      "x": 5.19,
+      "y": 15.07,
+      "label": "Panela",
+      "gerado": true
+    },
+    {
+      "id": "porto_armazem",
+      "kind": "armazem",
+      "x": -6,
+      "y": 13,
+      "label": "Armazém comunitário",
+      "gerado": true
+    },
+    {
+      "id": "porto_canteiro0",
+      "kind": "canteiro",
+      "x": -18,
+      "y": 7,
+      "label": "Horta comunitária",
+      "gerado": true
+    },
+    {
+      "id": "porto_canteiro1",
+      "kind": "canteiro",
+      "x": -14,
+      "y": 7,
+      "label": "Horta comunitária",
+      "gerado": true
+    },
+    {
+      "id": "porto_canteiro2",
+      "kind": "canteiro",
+      "x": -18,
+      "y": 3,
+      "label": "Horta comunitária",
+      "gerado": true
+    },
+    {
+      "id": "porto_canteiro3",
+      "kind": "canteiro",
+      "x": -14,
+      "y": 3,
+      "label": "Horta comunitária",
+      "gerado": true
+    },
+    {
+      "id": "porto_caos",
+      "kind": "caos",
+      "x": 8.53,
+      "y": -26.14,
+      "label": "Máquina do Caos"
+    },
+    {
+      "id": "porta_sobrado_0",
+      "kind": "porta",
+      "x": -27.23,
+      "y": 12.5,
+      "label": "Porta",
+      "text": "A porta range e abre. «Pode entrar!»",
+      "grant_flag": "porta:entra"
+    },
+    {
+      "id": "porta_sobrado_2",
+      "kind": "porta",
+      "x": 19.81,
+      "y": 10.69,
+      "label": "Porta",
+      "text": "Trancada. Um bilhete: «Fui pescar. — T.»"
+    },
+    {
+      "id": "porta_casa_pequena_3",
+      "kind": "porta",
+      "x": 13.5,
+      "y": 14.85,
+      "label": "Porta",
+      "text": "A porta range e abre. «Pode entrar!»",
+      "grant_flag": "porta:entra"
+    },
+    {
+      "id": "porta_casa_pequena_4",
+      "kind": "porta",
+      "x": -7.0,
+      "y": 18.35,
+      "label": "Açougue do Tonho",
+      "text": "Açougue do Tonho — aberto.",
+      "grant_flag": "porta:para:acougue_tonho"
+    },
+    {
+      "id": "porta_casa_pequena_5",
+      "kind": "porta",
+      "x": 7.0,
+      "y": 18.35,
+      "label": "Consultório do Doutor Arcanjo",
+      "text": "Consultório do Doutor Arcanjo — aberto.",
+      "grant_flag": "porta:para:consultorio_arcanjo"
+    },
+    {
+      "id": "porta_sobrado_6",
+      "kind": "porta",
+      "x": -21.65,
+      "y": 0.0,
+      "label": "Laboratório do Walmor",
+      "text": "Laboratório do Walmor — aberto.",
+      "grant_flag": "porta:para:laboratorio_walmor"
+    },
+    {
+      "id": "mar_cais_0",
+      "kind": "contemplar",
+      "x": 52.6,
+      "y": -13.0,
+      "label": "Olhar o mar",
+      "text": "O mar se perde no horizonte, cinza e sem fim... Quem sabe um dia eu pego um barco e descubro o que existe do outro lado."
+    },
+    {
+      "id": "mar_cais_1",
+      "kind": "contemplar",
+      "x": 52.6,
+      "y": -5.0,
+      "label": "Olhar o mar",
+      "text": "O mar se perde no horizonte, cinza e sem fim... Quem sabe um dia eu pego um barco e descubro o que existe do outro lado."
+    },
+    {
+      "id": "mar_cais_2",
+      "kind": "contemplar",
+      "x": 43.4,
+      "y": 15.6,
+      "label": "Olhar o mar",
+      "text": "O mar se perde no horizonte, cinza e sem fim... Quem sabe um dia eu pego um barco e descubro o que existe do outro lado."
+    },
+    {
+      "id": "mar_cais_3",
+      "kind": "contemplar",
+      "x": 43.4,
+      "y": -15.6,
+      "label": "Olhar o mar",
+      "text": "O mar se perde no horizonte, cinza e sem fim... Quem sabe um dia eu pego um barco e descubro o que existe do outro lado."
+    },
+    {
+      "id": "porta_biblioteca",
+      "kind": "porta",
+      "x": -15.84,
+      "y": 15.54,
+      "label": "Biblioteca do Cais",
+      "grant_flag": "porta:para:biblioteca_cais",
+      "text": "Biblioteca do Cais — entre em silêncio."
+    },
+    {
+      "id": "porto_forja",
+      "kind": "forja",
+      "x": -26.52,
+      "y": -12.14,
+      "label": "Forja do Brás",
+      "gerado": true
+    }
+  ],
+  "bonecos_treino": [
+    {
+      "x": -24.6,
+      "y": -4.6,
+      "yaw": 90
+    },
+    {
+      "x": -24.9,
+      "y": -6.6,
+      "yaw": 80
+    },
+    {
+      "x": -24.6,
+      "y": -8.6,
+      "yaw": 100
+    }
+  ],
+  "praca_em_pecas": true
+}

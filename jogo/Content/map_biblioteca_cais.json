@@ -1,0 +1,247 @@
+{
+  "id": "biblioteca_cais",
+  "display_name": "Biblioteca do Cais",
+  "half_size": 8,
+  "spawn_x": 0,
+  "spawn_y": 5.4,
+  "safe_radius": 30,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "biblioteca",
+  "no_mount": true,
+  "exit_map": "porto_das_cinzas",
+  "exit_x": -14.92,
+  "exit_y": 14.62,
+  "zones": [
+    {
+      "id": "sala",
+      "name": "Biblioteca do Cais",
+      "kind": "seguro",
+      "x": 0,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": -7.5,
+      "w": 16,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 0,
+      "y": 7.5,
+      "w": 16,
+      "h": 1,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": -7.5,
+      "y": 0,
+      "w": 1,
+      "h": 16,
+      "r": 0,
+      "height": 3.8
+    },
+    {
+      "kind": "muro",
+      "shape": "box",
+      "x": 7.5,
+      "y": 0,
+      "w": 1,
+      "h": 16,
+      "r": 0,
+      "height": 3.8
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "waypoints": [],
+  "checkpoints": [],
+  "objects": [
+    {
+      "id": "livro_cais_naufragio",
+      "kind": "livro",
+      "x": 2.6,
+      "y": 1.6,
+      "label": "O Naufrágio que Fundou o Porto",
+      "text": "O Porto das Cinzas nasceu de um naufrágio. Um navio de colonos bateu nas pedras de cal numa noite de cinza caindo. Quem sobreviveu usou as tábuas do casco para as primeiras casas — por isso as vigas do cais ainda têm pregos de navio."
+    },
+    {
+      "id": "livro_cais_farol",
+      "kind": "livro",
+      "x": 4.200000000000001,
+      "y": 1.6,
+      "label": "O Farol que Apagou",
+      "text": "O farol a leste apagou numa noite sem vento. O faroleiro sumiu e ninguém sabe por quê. Há quem diga que, nas noites de neblina, o facho ainda gira sozinho por um instante — e que é melhor não estar na praia quando isso acontece."
+    },
+    {
+      "id": "livro_cais_triangulo",
+      "kind": "livro",
+      "x": 5.800000000000001,
+      "y": 1.6,
+      "label": "O Triângulo onde as Bússolas Giram",
+      "text": "O barqueiro Ezequiel jura que existe um triângulo no mar onde as bússolas giram e os navios somem. Ele diz que os marinheiros jogam garrafas com mapas antes de desaparecer. Se você achar uma, leve a ele."
+    },
+    {
+      "id": "porta_biblioteca_cais_saida",
+      "kind": "porta",
+      "x": 0,
+      "y": 6.4,
+      "label": "Porta (sair)",
+      "grant_flag": "porta:portal:biblioteca_cais_saida"
+    }
+  ],
+  "props": [
+    {
+      "kind": "movel_balcao",
+      "x": 0,
+      "y": -2.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": -2.0,
+      "y": -2.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_candelabro",
+      "x": 2.0,
+      "y": -2.0,
+      "yaw": 0
+    },
+    {
+      "kind": "movel_tapete",
+      "x": 0,
+      "y": 2.4,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_mesa_estudo",
+      "x": -3.6,
+      "y": 3.0,
+      "yaw": 90
+    },
+    {
+      "kind": "glb:dg/dg_astrolabio",
+      "x": -5.8,
+      "y": 5.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_pilha_livros",
+      "x": 6.0,
+      "y": 5.4,
+      "yaw": 20
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -6.0,
+      "y": -7.1,
+      "yaw": 0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": -3.0,
+      "y": -7.1,
+      "yaw": 0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 3.0,
+      "y": -7.1,
+      "yaw": 0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 6.0,
+      "y": -7.1,
+      "yaw": 0,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 7.1,
+      "y": -4.0,
+      "yaw": 270,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_estante_livros",
+      "x": 7.1,
+      "y": 0.5,
+      "yaw": 270,
+      "solid": 0.6
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": 2.6,
+      "y": 1.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": 4.200000000000001,
+      "y": 1.0,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:dg/dg_atril",
+      "x": 5.800000000000001,
+      "y": 1.0,
+      "yaw": 0
+    }
+  ],
+  "npcs": [
+    {
+      "id": "bibliotecaria_ines",
+      "name": "Inês, da Biblioteca do Cais",
+      "role": "missoes",
+      "x": 0.0,
+      "y": -3.2,
+      "facing": 0,
+      "greeting": "«Bem-vindo à Biblioteca do Cais. Os registros das criaturas estão na estante; as histórias do Porto, nos atris. E a Crônica de KRYMOR… essa eu escrevo com você.»",
+      "look": "aldeao"
+    },
+    {
+      "id": "registro_cais",
+      "name": "Registro das Criaturas (Biblioteca do Cais)",
+      "role": "biblioteca",
+      "x": -6.6,
+      "y": -2.0,
+      "facing": 90,
+      "look": "quadro",
+      "greeting": "Fichas presas na estante, com a letra caprichada da Inês: as criaturas da Costa e das terras vizinhas, onde vivem e o que deixam cair."
+    }
+  ],
+  "portals": [
+    {
+      "id": "biblioteca_cais_saida",
+      "x": 0,
+      "y": 6.4,
+      "radius": 1.2,
+      "to_map": "porto_das_cinzas",
+      "to_x": -14.92,
+      "to_y": 14.62,
+      "label": "Rua",
+      "por_porta": true
+    }
+  ]
+}

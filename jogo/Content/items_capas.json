@@ -1,0 +1,624 @@
+[
+  {
+    "id": "capa_violeta",
+    "display_name": "Capa Violeta do Arcano",
+    "category": "cape",
+    "subtype": "violeta",
+    "min_level": 12,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 26,
+      "max_health": 47,
+      "resource_regen_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_violeta",
+    "model_asset_id": "capa_violeta",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 2500,
+    "source": "Roxa com barra dourada. Lojas de Astrália e Candeia."
+  },
+  {
+    "id": "capa_chamas",
+    "display_name": "Capa de Chamas",
+    "category": "cape",
+    "subtype": "chamas",
+    "min_level": 22,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 43,
+      "max_health": 78,
+      "power_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_chamas",
+    "model_asset_id": "capa_chamas",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 9400,
+    "source": "Pano que solta faíscas e brilha na barra. Chefes de fogo e Brasaforte."
+  },
+  {
+    "id": "capa_mare",
+    "display_name": "Capa da Maré",
+    "category": "cape",
+    "subtype": "mare",
+    "min_level": 28,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 54,
+      "max_health": 97,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_mare",
+    "model_asset_id": "capa_mare",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 15000,
+    "source": "Azul-mar com respingos de luz. Rara: chefes do Brejo e da Véspera."
+  },
+  {
+    "id": "capa_sombra",
+    "display_name": "Capa da Sombra",
+    "category": "cape",
+    "subtype": "sombra",
+    "min_level": 32,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 60,
+      "max_health": 109,
+      "dodge_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_sombra",
+    "model_asset_id": "capa_sombra",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 21000,
+    "source": "Curta e escura, de ladino. Rara: dungeons."
+  },
+  {
+    "id": "capa_abismo",
+    "display_name": "Capa do Abismo",
+    "category": "cape",
+    "subtype": "abismo",
+    "min_level": 42,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 85,
+      "max_health": 154,
+      "power_pct": 0.04,
+      "resource_regen_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_abismo",
+    "model_asset_id": "capa_abismo",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 44000,
+    "source": "Roxa-escura, longa, com poeira de estrelas. Rara: chefes da Geada e dos Céus."
+  },
+  {
+    "id": "capa_brasa_viva",
+    "display_name": "Capa de Brasa Viva",
+    "category": "cape",
+    "subtype": "brasa_viva",
+    "min_level": 52,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 104,
+      "max_health": 188,
+      "power_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_brasa_viva",
+    "model_asset_id": "capa_brasa_viva",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 72000,
+    "source": "Negra com brasas acesas e fagulhas. Rara: chefes da Escória e da Acrópole."
+  },
+  {
+    "id": "capa_folhas",
+    "display_name": "Capa da Floresta",
+    "category": "cape",
+    "subtype": "folhas",
+    "min_level": 18,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 37,
+      "max_health": 66,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_folhas",
+    "model_asset_id": "capa_folhas",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 5800,
+    "source": "Verde élfica com folhas caindo. Lojas de Astrália."
+  },
+  {
+    "id": "capa_gelo",
+    "display_name": "Capa de Gelo",
+    "category": "cape",
+    "subtype": "gelo",
+    "min_level": 30,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 57,
+      "max_health": 103,
+      "damage_reduction_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_gelo",
+    "model_asset_id": "capa_gelo",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 18000,
+    "source": "Azul-clara com flocos de neve. Rara: chefes da Coroa da Geada."
+  },
+  {
+    "id": "capa_real",
+    "display_name": "Capa Real",
+    "category": "cape",
+    "subtype": "real",
+    "min_level": 38,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 71,
+      "max_health": 128,
+      "xp_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_real",
+    "model_asset_id": "capa_real",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 32000,
+    "source": "Vermelha com gola de arminho, de rei. Brasaforte."
+  },
+  {
+    "id": "capa_dourada",
+    "display_name": "Capa Dourada",
+    "category": "cape",
+    "subtype": "dourada",
+    "min_level": 48,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 96,
+      "max_health": 175,
+      "power_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_dourada",
+    "model_asset_id": "capa_dourada",
+    "summary": "Vai no espaço de asas (asa OU capa).",
+    "price": 60000,
+    "source": "De ouro brilhante com faíscas. Rara: Acrópole e o Kraken."
+  },
+  {
+    "id": "capa_heroi",
+    "display_name": "Capa do Herói",
+    "category": "cape",
+    "subtype": "heroi",
+    "min_level": 8,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 20,
+      "max_health": 35,
+      "power_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_heroi",
+    "model_asset_id": "capa_heroi",
+    "summary": "Vermelha, rasgada na barra, filete de ouro e o leão dourado nas costas. Vai no espaço de asas (asa OU capa).",
+    "price": 1200,
+    "source": "Forja do Brás (Porto)."
+  },
+  {
+    "id": "capa_mago",
+    "display_name": "Capa do Mago",
+    "category": "cape",
+    "subtype": "mago",
+    "min_level": 10,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 23,
+      "max_health": 41,
+      "resource_regen_pct": 0.06
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_mago",
+    "model_asset_id": "capa_mago",
+    "summary": "Roxa com estrelas e lua douradas e uma gema violeta. Vai no espaço de asas (asa OU capa).",
+    "price": 1800,
+    "source": "Forja do Brás (Porto)."
+  },
+  {
+    "id": "capa_corvo",
+    "display_name": "Capa do Corvo",
+    "category": "cape",
+    "subtype": "corvo",
+    "min_level": 14,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 30,
+      "max_health": 53,
+      "dodge_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_corvo",
+    "model_asset_id": "capa_corvo",
+    "summary": "Penas azul-noite em camadas e o crânio de corvo na gola. Vai no espaço de asas (asa OU capa).",
+    "price": 3400,
+    "source": "Aurélio, o Mestre das Asas (Astrália, perto da Praça das Lunetas)."
+  },
+  {
+    "id": "capa_pirata",
+    "display_name": "Capa do Pirata",
+    "category": "cape",
+    "subtype": "pirata",
+    "min_level": 20,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 40,
+      "max_health": 72,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_pirata",
+    "model_asset_id": "capa_pirata",
+    "summary": "Preta e rasgada, com a caveira e os ossos cruzados. Vai no espaço de asas (asa OU capa).",
+    "price": 7200,
+    "source": "Aurélio, o Mestre das Asas (Astrália)."
+  },
+  {
+    "id": "capa_sombria",
+    "display_name": "Capa Sombria",
+    "category": "cape",
+    "subtype": "sombria",
+    "min_level": 24,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 47,
+      "max_health": 84,
+      "dodge_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_sombria",
+    "model_asset_id": "capa_sombria",
+    "summary": "Fumaça cinza que se mexe, caveira acorrentada. Vai no espaço de asas (asa OU capa).",
+    "price": 11000,
+    "source": "Aurélio, o Mestre das Asas (Astrália)."
+  },
+  {
+    "id": "capa_amaldicoada",
+    "display_name": "Capa Amaldiçoada",
+    "category": "cape",
+    "subtype": "amaldicoada",
+    "min_level": 26,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 55,
+      "max_health": 100,
+      "resource_regen_pct": 0.08
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_amaldicoada",
+    "model_asset_id": "capa_amaldicoada",
+    "summary": "Pano pálido e furado com runas azuis que acendem. Vai no espaço de asas (asa OU capa).",
+    "price": 13000,
+    "source": "RARA: chefes do nível 24 ao 36."
+  },
+  {
+    "id": "capa_lava",
+    "display_name": "Capa de Lava",
+    "category": "cape",
+    "subtype": "lava",
+    "min_level": 34,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 70,
+      "max_health": 127,
+      "power_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_lava",
+    "model_asset_id": "capa_lava",
+    "summary": "Rocha rachada com lava acesa por dentro, soltando brasas. Vai no espaço de asas (asa OU capa).",
+    "price": 26000,
+    "source": "RARA: chefes do nível 32 ao 44."
+  },
+  {
+    "id": "capa_dragao",
+    "display_name": "Capa do Dragão",
+    "category": "cape",
+    "subtype": "dragao",
+    "min_level": 44,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 89,
+      "max_health": 161,
+      "power_pct": 0.04,
+      "damage_reduction_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_dragao",
+    "model_asset_id": "capa_dragao",
+    "summary": "Escamas vermelhas e o elmo dourado de dragão com chifres. Vai no espaço de asas (asa OU capa).",
+    "price": 50000,
+    "source": "RARA: chefes do nível 42 ao 52; Loja de Cristais."
+  },
+  {
+    "id": "capa_celestial",
+    "display_name": "Capa Celestial",
+    "category": "cape",
+    "subtype": "celestial",
+    "min_level": 46,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 93,
+      "max_health": 168,
+      "resource_regen_pct": 0.1,
+      "crit_pct": 0.02
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_celestial",
+    "model_asset_id": "capa_celestial",
+    "summary": "Um céu de galáxia com estrelas que piscam e a lua dourada. Vai no espaço de asas (asa OU capa).",
+    "price": 52000,
+    "source": "RARA: chefes do nível 44 ao 54; Loja de Cristais."
+  },
+  {
+    "id": "capa_morte",
+    "display_name": "Capa da Morte",
+    "category": "cape",
+    "subtype": "morte",
+    "min_level": 50,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 100,
+      "max_health": 182,
+      "crit_pct": 0.04,
+      "power_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_morte",
+    "model_asset_id": "capa_morte",
+    "summary": "Roxa rasgada, fumaça viva e a caveira acesa presa em correntes. Vai no espaço de asas (asa OU capa).",
+    "price": 67000,
+    "source": "RARA: chefes do nível 48 ao 58; Loja de Cristais."
+  },
+  {
+    "id": "capa_luz",
+    "display_name": "Capa da Luz",
+    "category": "cape",
+    "subtype": "luz",
+    "min_level": 54,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 108,
+      "max_health": 195,
+      "damage_reduction_pct": 0.03,
+      "max_health_pct": 0.03
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_luz",
+    "model_asset_id": "capa_luz",
+    "summary": "Raios de sol em ouro e creme, com o sol no peito. Vai no espaço de asas (asa OU capa).",
+    "price": 80000,
+    "source": "RARA: chefes do nível 52 ao 60; Loja de Cristais."
+  },
+  {
+    "id": "capa_tempo",
+    "display_name": "Capa do Tempo",
+    "category": "cape",
+    "subtype": "tempo",
+    "min_level": 58,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 115,
+      "max_health": 209,
+      "cdr_pct": 0.05,
+      "move_speed_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "ico_capa_tempo",
+    "model_asset_id": "capa_tempo",
+    "summary": "Couro marrom com engrenagens gravadas e o relógio de bolso. Vai no espaço de asas (asa OU capa).",
+    "price": 95000,
+    "source": "RARA: chefes do nível 56+; Loja de Cristais."
+  }
+]

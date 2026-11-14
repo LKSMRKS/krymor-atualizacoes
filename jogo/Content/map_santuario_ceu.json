@@ -1,0 +1,524 @@
+{
+  "id": "santuario_ceu",
+  "display_name": "Santuário (teste)",
+  "half_size": 30,
+  "spawn_x": 0,
+  "spawn_y": -8,
+  "safe_radius": 45,
+  "xp_multiplier": 1,
+  "kind": "cidade",
+  "region": "porto",
+  "theme": "ceu",
+  "no_mount": false,
+  "zones": [],
+  "obstacles": [
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0,
+      "y": -29.4,
+      "w": 58.8,
+      "h": 1.2,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 0,
+      "y": 29.4,
+      "w": 58.8,
+      "h": 1.2,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -29.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 58.8,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 29.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 58.8,
+      "r": 0,
+      "height": 4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 24.02,
+      "y": 9.95,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 18.38,
+      "y": 18.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 9.95,
+      "y": 24.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 0.0,
+      "y": 26.0,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -9.95,
+      "y": 24.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -18.38,
+      "y": 18.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -24.02,
+      "y": 9.95,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -24.02,
+      "y": -9.95,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -18.38,
+      "y": -18.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -9.95,
+      "y": -24.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": -0.0,
+      "y": -26.0,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 9.95,
+      "y": -24.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 18.38,
+      "y": -18.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    },
+    {
+      "kind": "coluna_quebrada",
+      "shape": "circle",
+      "x": 24.02,
+      "y": -9.95,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 4.0
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": -14,
+      "y": 17,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": 14,
+      "y": 17,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": -14,
+      "y": -17,
+      "yaw": 0
+    },
+    {
+      "kind": "glb:cenario/acropole_braseiro",
+      "x": 14,
+      "y": -17,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": -6,
+      "y": 25,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": 6,
+      "y": 25,
+      "yaw": 0
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": -26,
+      "y": 0,
+      "yaw": 90
+    },
+    {
+      "kind": "canteiro_flores",
+      "x": 26,
+      "y": 0,
+      "yaw": 90
+    },
+    {
+      "kind": "banco_praca",
+      "x": -12,
+      "y": 0,
+      "yaw": 90
+    },
+    {
+      "kind": "banco_praca",
+      "x": 12,
+      "y": 0,
+      "yaw": -90
+    },
+    {
+      "kind": "floreira",
+      "x": -24,
+      "y": 22,
+      "yaw": 0
+    },
+    {
+      "kind": "floreira",
+      "x": 24,
+      "y": 22,
+      "yaw": 0
+    },
+    {
+      "kind": "floreira",
+      "x": -24,
+      "y": -22,
+      "yaw": 0
+    },
+    {
+      "kind": "floreira",
+      "x": 24,
+      "y": -22,
+      "yaw": 0
+    }
+  ],
+  "portals": [
+    {
+      "id": "sant_porto",
+      "x": -12,
+      "y": -24,
+      "radius": 1.6,
+      "to_map": "porto_das_cinzas",
+      "to_x": 0,
+      "to_y": -24,
+      "label": "Porto das Cinzas"
+    },
+    {
+      "id": "sant_arena",
+      "x": 12,
+      "y": -24,
+      "radius": 1.6,
+      "to_map": "santuario_arena",
+      "to_x": 0,
+      "to_y": -20,
+      "label": "Arena de Teste"
+    },
+    {
+      "id": "sant_costa",
+      "x": 0,
+      "y": -27,
+      "radius": 1.6,
+      "to_map": "costa_do_cal",
+      "to_x": 0,
+      "to_y": 100,
+      "label": "Costa do Cal"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [
+    {
+      "id": "sant_armas",
+      "name": "Arcanjo Ferreiro",
+      "role": "ferreiro",
+      "x": -9,
+      "y": -2,
+      "facing": 90,
+      "greeting": "Toda arma do mundo, para testar.",
+      "look": "ferreiro",
+      "shop": "santuario_armas"
+    },
+    {
+      "id": "sant_armaduras",
+      "name": "Guardiã das Armaduras",
+      "role": "armeira",
+      "x": -3.5,
+      "y": 3,
+      "facing": 180,
+      "greeting": "Vista, troque, compare: aqui nada se perde.",
+      "look": "capita",
+      "shop": "santuario_armaduras"
+    },
+    {
+      "id": "sant_asas",
+      "name": "Serafim das Asas",
+      "role": "mercador",
+      "x": 3.5,
+      "y": 3,
+      "facing": 180,
+      "greeting": "Asas, capas, anéis, joias e bichinhos.",
+      "look": "arcanista",
+      "shop": "santuario_asas"
+    },
+    {
+      "id": "sant_pocoes",
+      "name": "Curandeira Celeste",
+      "role": "curandeira",
+      "x": 9,
+      "y": -2,
+      "facing": -90,
+      "greeting": "Poções e comidas para os testes.",
+      "look": "curandeira",
+      "shop": "santuario_pocoes"
+    },
+    {
+      "id": "sant_ourives",
+      "name": "Ourives Celeste",
+      "role": "ferreiro",
+      "x": 0,
+      "y": 6,
+      "facing": 180,
+      "greeting": "Aqui tudo sai Excelente. Arraste uma Joia em cima do equipamento para subir +1, +2... até +15 e ver o brilho crescer.",
+      "look": "arcanista",
+      "shop": "santuario_excelente"
+    },
+    {
+      "id": "sant_col_asas",
+      "name": "Querubina, Guardiã das Asas",
+      "role": "mercador",
+      "x": -20,
+      "y": 12,
+      "facing": 135,
+      "greeting": "As 25 asas da coleção, de pano a Criação — e as antigas. Passe o mouse para ver de onde vem cada uma.",
+      "look": "arcanista",
+      "shop": "santuario_col_asas"
+    },
+    {
+      "id": "sant_col_capas",
+      "name": "Celina, a Costureira do Céu",
+      "role": "mercador",
+      "x": -20,
+      "y": -10,
+      "facing": 45,
+      "greeting": "Todas as capas: do Herói ao Tempo. Vista e gire a câmera para ver as costas.",
+      "look": "aldeao",
+      "shop": "santuario_col_capas"
+    },
+    {
+      "id": "sant_col_skins",
+      "name": "Bento Celeste, o Mascate das Skins",
+      "role": "mercador",
+      "x": 20,
+      "y": -10,
+      "facing": -45,
+      "greeting": "Todas as skins de bracelete: macaco, tubarão, fantasma, lava... o olhinho no bracelete esconde.",
+      "look": "aldeao",
+      "shop": "santuario_col_skins"
+    },
+    {
+      "id": "sant_col_bichos",
+      "name": "Tratadora Celeste",
+      "role": "mercador",
+      "x": 20,
+      "y": 12,
+      "facing": -135,
+      "greeting": "Mascotes e montarias, todos de uma vez.",
+      "look": "curandeira",
+      "shop": "santuario_col_bichos"
+    },
+    {
+      "id": "sant_pandora",
+      "name": "Pandora, a Guardiã das Caixas",
+      "role": "mercador",
+      "x": 0,
+      "y": 22,
+      "facing": 180,
+      "greeting": "Caixa de Pandora +1 a +5: não abre na mão — JOGUE NO CHÃO e ela estoura em itens (como a do Kundun). Afaste-se de quem você não quer que pegue!",
+      "look": "arcanista",
+      "shop": "santuario_pandora"
+    },
+    {
+      "id": "sant_lend_sets_guerreiro",
+      "name": "Arauto dos Conjuntos — Guerreiro",
+      "role": "mercador",
+      "x": -15.5,
+      "y": 27.0,
+      "facing": 150,
+      "greeting": "Pedra Viva, Cavaleiro Sagrado, Dragão de Fogo, Demoníaco. Vista e vá à Arena.",
+      "look": "capita",
+      "shop": "santuario_lend_sets_guerreiro"
+    },
+    {
+      "id": "sant_lend_sets_mago",
+      "name": "Arauto dos Conjuntos — Mago",
+      "role": "mercador",
+      "x": -18.5,
+      "y": 27.0,
+      "facing": 146,
+      "greeting": "Rúnico, Abismo, Tempo e Vazio: auréolas, buraco negro e relógio.",
+      "look": "arcanista",
+      "shop": "santuario_lend_sets_mago"
+    },
+    {
+      "id": "sant_lend_sets_arqueiro",
+      "name": "Arauto dos Conjuntos — Arqueiro",
+      "role": "mercador",
+      "x": -12.5,
+      "y": 27.0,
+      "facing": 155,
+      "greeting": "Abissal, Celestial e Anjo Caído — as asas abrem quando você corre.",
+      "look": "capita",
+      "shop": "santuario_lend_sets_arqueiro"
+    },
+    {
+      "id": "sant_lend_sets_bruxa",
+      "name": "Arauto dos Conjuntos — Bruxa",
+      "role": "mercador",
+      "x": -21.5,
+      "y": 27.0,
+      "facing": 141,
+      "greeting": "Floresta, Gelo Eterno, Necromante e Faraônico.",
+      "look": "curandeira",
+      "shop": "santuario_lend_sets_bruxa"
+    },
+    {
+      "id": "sant_lend_armas_guerreiro",
+      "name": "Mestre das Armas Lendárias",
+      "role": "mercador",
+      "x": -9.5,
+      "y": 27.0,
+      "facing": 161,
+      "greeting": "Espadas, machados gigantes, foices, garfos, espadas duplas, lanças e manoplas — os cinco elementos.",
+      "look": "ferreiro",
+      "shop": "santuario_lend_armas_guerreiro"
+    },
+    {
+      "id": "sant_lend_armas_magia",
+      "name": "Mestra dos Cajados e Arcos",
+      "role": "mercador",
+      "x": -24.5,
+      "y": 27.0,
+      "facing": 138,
+      "greeting": "Cajados, focos naturais e arcos lendários. Teste o efeito na Arena.",
+      "look": "arcanista",
+      "shop": "santuario_lend_armas_magia"
+    },
+    {
+      "id": "sant_lend_asas",
+      "name": "Serafim das Mil Asas",
+      "role": "mercador",
+      "x": -26.5,
+      "y": 24.5,
+      "facing": 133,
+      "greeting": "Todas as asas e capas à venda, para comparar lado a lado.",
+      "look": "arcanista",
+      "shop": "santuario_lend_asas"
+    }
+  ],
+  "objects": [
+    {
+      "id": "sant_caos",
+      "kind": "caos",
+      "x": -6,
+      "y": 12,
+      "label": "Máquina do Caos"
+    },
+    {
+      "id": "sant_forja",
+      "kind": "forja",
+      "x": 6,
+      "y": 12,
+      "label": "Forja"
+    }
+  ],
+  "checkpoints": []
+}

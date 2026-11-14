@@ -1,0 +1,90 @@
+[
+  {
+    "id": "consumable_c05_tonico_forte",
+    "display_name": "Tônico Forte",
+    "heal_percent_max_health": 0.45,
+    "heal_duration_ms": 4000,
+    "cooldown_group": "potion",
+    "cooldown_ms": 12000,
+    "stack_limit": 20,
+    "price": 160
+  },
+  {
+    "id": "consumable_c06_ataduras",
+    "display_name": "Ataduras de Seda",
+    "heal_percent_max_health": 0.25,
+    "heal_duration_ms": 6000,
+    "cooldown_group": "potion",
+    "cooldown_ms": 10000,
+    "stack_limit": 20,
+    "price": 40
+  },
+  {
+    "id": "consumable_c07_antidoto",
+    "display_name": "Antídoto do Brejo",
+    "heal_percent_max_health": 0.3,
+    "heal_duration_ms": 2000,
+    "cooldown_group": "potion",
+    "cooldown_ms": 10000,
+    "stack_limit": 20,
+    "price": 70,
+    "summary": "Cura 30% da vida em 2 s e limpa o amargo do brejo. Recarga 10 s."
+  },
+  {
+    "id": "food_ensopado_vigilia",
+    "display_name": "Ensopado da Vigília",
+    "heal_percent_max_health": 0.1,
+    "heal_duration_ms": 3000,
+    "cooldown_group": "food",
+    "cooldown_ms": 3000,
+    "stack_limit": 20,
+    "price": 30,
+    "buff": "ensopado",
+    "buff_ms": 600000,
+    "buff_power_pct": 0.06,
+    "buff_max_health": 60
+  },
+  {
+    "id": "food_caldo_cinzas",
+    "display_name": "Caldo de Cinzas",
+    "heal_percent_max_health": 0.1,
+    "heal_duration_ms": 3000,
+    "cooldown_group": "food",
+    "cooldown_ms": 3000,
+    "stack_limit": 20,
+    "price": 90,
+    "buff": "caldo",
+    "buff_ms": 900000,
+    "buff_power_pct": 0.1,
+    "buff_armor": 40
+  },
+  {
+    "id": "food_refeicao_travessia",
+    "display_name": "Refeição da Travessia",
+    "heal_percent_max_health": 0.1,
+    "heal_duration_ms": 3000,
+    "cooldown_group": "food",
+    "cooldown_ms": 3000,
+    "stack_limit": 20,
+    "price": 120,
+    "buff": "travessia",
+    "buff_ms": 900000,
+    "buff_armor": 120,
+    "buff_max_health": 150,
+    "buff_regen_pct": 0.15
+  },
+  {
+    "id": "food_banquete_ausentes",
+    "display_name": "Banquete dos Ausentes",
+    "heal_percent_max_health": 0.15,
+    "heal_duration_ms": 3000,
+    "cooldown_group": "food",
+    "cooldown_ms": 3000,
+    "stack_limit": 20,
+    "price": 200,
+    "buff": "banquete",
+    "buff_ms": 1200000,
+    "buff_power_pct": 0.12,
+    "buff_max_health": 120
+  }
+]

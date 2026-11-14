@@ -1,0 +1,7723 @@
+{
+  "id": "mata_dos_enforcados",
+  "display_name": "Mata dos Enforcados",
+  "half_size": 75,
+  "spawn_x": 0,
+  "spawn_y": 62,
+  "safe_radius": 6,
+  "xp_multiplier": 2.2,
+  "kind": "campo",
+  "region": "mata",
+  "theme": "mata",
+  "zones": [
+    {
+      "id": "hub",
+      "name": "Vila do Moinho",
+      "kind": "refugio",
+      "x": 0,
+      "y": 58,
+      "w": 24,
+      "h": 14
+    },
+    {
+      "id": "estrada",
+      "name": "Estrada",
+      "kind": "caminho",
+      "x": 0,
+      "y": 4,
+      "w": 5,
+      "h": 96
+    },
+    {
+      "id": "bolsao0",
+      "name": "Território: Lobos e Javali",
+      "kind": "fraco",
+      "x": -42,
+      "y": 34,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao1",
+      "name": "Território: Javalis e Aranha",
+      "kind": "medio",
+      "x": 42,
+      "y": 34,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao2",
+      "name": "Território: Aranhas e Raíze",
+      "kind": "medio",
+      "x": -42,
+      "y": -10,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "bolsao3",
+      "name": "Território: Raízes e Saqueadore",
+      "kind": "forte",
+      "x": 42,
+      "y": -10,
+      "w": 34,
+      "h": 30
+    },
+    {
+      "id": "covil",
+      "name": "Covil do Javali Ancião",
+      "kind": "perigoso",
+      "x": 0,
+      "y": 14,
+      "w": 24,
+      "h": 18
+    },
+    {
+      "id": "passagem",
+      "name": "Domínio do Guardião Retorcido",
+      "kind": "chefe",
+      "x": 0,
+      "y": -48,
+      "w": 34,
+      "h": 18
+    },
+    {
+      "id": "lugar0",
+      "name": "Pouso dos Caçadores",
+      "kind": "lugar",
+      "x": 37.0,
+      "y": -4.0,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar1",
+      "name": "Clareira dos Enforcados",
+      "kind": "lugar",
+      "x": -40.1,
+      "y": 18.9,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar2",
+      "name": "Covas sem Nome",
+      "kind": "lugar",
+      "x": -61.1,
+      "y": 59.6,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar3",
+      "name": "Altar do Musgo",
+      "kind": "lugar",
+      "x": -38.6,
+      "y": -20.7,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "lugar4",
+      "name": "Acampamento do Lenhador",
+      "kind": "lugar",
+      "x": 42.3,
+      "y": 36.4,
+      "w": 14,
+      "h": 14
+    },
+    {
+      "id": "secreto",
+      "name": "Toca do Enforcado",
+      "kind": "secreto",
+      "x": -66,
+      "y": 64,
+      "w": 10,
+      "h": 10
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 67.22,
+      "y": -4.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.78,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 36.2,
+      "y": 66.91,
+      "w": 0,
+      "h": 0,
+      "r": 0.77,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 27.57,
+      "y": -50.37,
+      "w": 0,
+      "h": 0,
+      "r": 0.79,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -13.3,
+      "y": -2.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.65,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -17.3,
+      "y": 27.61,
+      "w": 0,
+      "h": 0,
+      "r": 0.69,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -14.9,
+      "y": 22.49,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 47.36,
+      "y": 68.28,
+      "w": 0,
+      "h": 0,
+      "r": 0.99,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -55.68,
+      "y": -4.58,
+      "w": 0,
+      "h": 0,
+      "r": 1.4,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 42.87,
+      "y": 53.26,
+      "w": 0,
+      "h": 0,
+      "r": 1.41,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -31.11,
+      "y": 56.81,
+      "w": 0,
+      "h": 0,
+      "r": 0.78,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -33.94,
+      "y": 5.11,
+      "w": 0,
+      "h": 0,
+      "r": 0.65,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -13.61,
+      "y": -36.55,
+      "w": 0,
+      "h": 0,
+      "r": 0.7,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -55.71,
+      "y": -44.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.85,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 65.17,
+      "y": 5.76,
+      "w": 0,
+      "h": 0,
+      "r": 0.73,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -35.26,
+      "y": -36.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.74,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 44.9,
+      "y": 62.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.81,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -38.26,
+      "y": -54.36,
+      "w": 0,
+      "h": 0,
+      "r": 1.18,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -9.81,
+      "y": 23.54,
+      "w": 0,
+      "h": 0,
+      "r": 1.33,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -15.11,
+      "y": 54.76,
+      "w": 0,
+      "h": 0,
+      "r": 0.65,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -23.94,
+      "y": -37.51,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 17.38,
+      "y": 17.93,
+      "w": 0,
+      "h": 0,
+      "r": 0.71,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 21.74,
+      "y": -49.24,
+      "w": 0,
+      "h": 0,
+      "r": 0.71,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -29.24,
+      "y": 62.24,
+      "w": 0,
+      "h": 0,
+      "r": 1.21,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 14.48,
+      "y": -5.65,
+      "w": 0,
+      "h": 0,
+      "r": 1.42,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -54.18,
+      "y": 4.51,
+      "w": 0,
+      "h": 0,
+      "r": 0.72,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -43.96,
+      "y": -15.85,
+      "w": 0,
+      "h": 0,
+      "r": 1.49,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 28.07,
+      "y": -27.85,
+      "w": 0,
+      "h": 0,
+      "r": 0.74,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 48.14,
+      "y": -51.38,
+      "w": 0,
+      "h": 0,
+      "r": 1.52,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -21.44,
+      "y": -17.05,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -54.39,
+      "y": -32.29,
+      "w": 0,
+      "h": 0,
+      "r": 1.05,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 63.1,
+      "y": 37.35,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -16.86,
+      "y": 59.79,
+      "w": 0,
+      "h": 0,
+      "r": 0.74,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 21.99,
+      "y": 49.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.95,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 15.99,
+      "y": 36.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -14.11,
+      "y": 65.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.72,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 11.55,
+      "y": -17.84,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 18.29,
+      "y": -9.89,
+      "w": 0,
+      "h": 0,
+      "r": 0.79,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 30.95,
+      "y": 40.06,
+      "w": 0,
+      "h": 0,
+      "r": 0.86,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -65.87,
+      "y": -13.45,
+      "w": 0,
+      "h": 0,
+      "r": 0.86,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -66.62,
+      "y": 6.22,
+      "w": 0,
+      "h": 0,
+      "r": 0.75,
+      "height": 4
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 18.3,
+      "y": -20.31,
+      "w": 0,
+      "h": 0,
+      "r": 0.74,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 29.53,
+      "y": 6.77,
+      "w": 0,
+      "h": 0,
+      "r": 1.35,
+      "height": 4
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -21.89,
+      "y": 22.57,
+      "w": 0,
+      "h": 0,
+      "r": 1.21,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.04,
+      "y": -71.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.6,
+      "y": 72.75,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -73.5,
+      "y": -71.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 70.62,
+      "y": -70.34,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -63.31,
+      "y": -71.68,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -62.56,
+      "y": 73.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -70.94,
+      "y": -62.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 70.8,
+      "y": -60.67,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -53.41,
+      "y": -72.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -52.84,
+      "y": 72.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -70.57,
+      "y": -51.53,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 71.87,
+      "y": -53.64,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -42.6,
+      "y": -71.35,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -44.23,
+      "y": 72.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.34,
+      "y": -45.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 71.1,
+      "y": -43.1,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -34.79,
+      "y": -71.47,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -35.08,
+      "y": 72.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.9,
+      "y": -36.34,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 72.65,
+      "y": -35.2,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -25.85,
+      "y": -71.02,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -26.44,
+      "y": 71.51,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -73.19,
+      "y": -27.41,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 71.35,
+      "y": -25.33,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -15.78,
+      "y": -72.69,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -18.16,
+      "y": 70.98,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -70.71,
+      "y": -15.75,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 72.6,
+      "y": -15.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -8.3,
+      "y": -73.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -8.48,
+      "y": 73.26,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.84,
+      "y": -9.19,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 73.29,
+      "y": -8.33,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.5,
+      "y": -0.23,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 70.66,
+      "y": 1.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 9.12,
+      "y": -71.25,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 9.77,
+      "y": 72.04,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.72,
+      "y": 9.76,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 72.03,
+      "y": 8.5,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 17.51,
+      "y": 73.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.58,
+      "y": 18.75,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 28.42,
+      "y": 73.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.93,
+      "y": 27.54,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 71.79,
+      "y": 29.25,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 38.42,
+      "y": -70.82,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 35.81,
+      "y": 70.76,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.4,
+      "y": 37.12,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 72.02,
+      "y": 35.81,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 44.83,
+      "y": -71.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 45.86,
+      "y": 73.34,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -71.07,
+      "y": 47.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 73.15,
+      "y": 46.41,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 55.49,
+      "y": -72.81,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 54.84,
+      "y": 70.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -72.71,
+      "y": 54.96,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 73.09,
+      "y": 55.89,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 62.9,
+      "y": -70.65,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 64.98,
+      "y": 71.46,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": -70.63,
+      "y": 64.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "arvore_seca",
+      "shape": "circle",
+      "x": 71.92,
+      "y": 65.0,
+      "w": 0,
+      "h": 0,
+      "r": 0.8,
+      "height": 4
+    },
+    {
+      "kind": "ravina",
+      "shape": "box",
+      "x": 25,
+      "y": 22,
+      "w": 22,
+      "h": 2.4,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "ravina",
+      "shape": "box",
+      "x": 63,
+      "y": 22,
+      "w": 24,
+      "h": 2.4,
+      "r": 0,
+      "height": 1.2
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -10.6,
+      "y": -4.12,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 62.8,
+      "y": -11.39,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 62.04,
+      "y": 3.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 6.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -69.04,
+      "y": -33.5,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 7.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -36.71,
+      "y": 11.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 8.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 47.26,
+      "y": 54.57,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 6.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -8.3,
+      "y": 0.94,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 6.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -67.83,
+      "y": 38.61,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 50.16,
+      "y": -69.06,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -6.12,
+      "y": 11.79,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 69.48,
+      "y": 71.37,
+      "w": 0,
+      "h": 0,
+      "r": 0.49,
+      "height": 6.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 39.66,
+      "y": -54.4,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 7.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -9.76,
+      "y": 18.33,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 6.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 47.34,
+      "y": 7.61,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -4.64,
+      "y": -18.16,
+      "w": 0,
+      "h": 0,
+      "r": 0.49,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 11.1,
+      "y": 41.91,
+      "w": 0,
+      "h": 0,
+      "r": 0.49,
+      "height": 6.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -18.16,
+      "y": 54.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -0.62,
+      "y": -12.25,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 8.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 39.1,
+      "y": -15.94,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 8.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 50.92,
+      "y": -45.79,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 8.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -42.82,
+      "y": -22.88,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 7.61,
+      "y": 46.47,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 67.87,
+      "y": 62.82,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 8.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -48.14,
+      "y": -36.69,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 6.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -14.41,
+      "y": 0.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -63.56,
+      "y": 54.69,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 58.97,
+      "y": -4.66,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 7.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 12.19,
+      "y": -68.91,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 6.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -52.09,
+      "y": 8.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -36.92,
+      "y": 64.68,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -69.01,
+      "y": -43.29,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 7.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -40.54,
+      "y": -68.93,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 7.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 39.18,
+      "y": 6.64,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 6.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 7.52,
+      "y": 22.07,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 6.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 9.36,
+      "y": 14.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 8.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -38.84,
+      "y": -31.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 70.66,
+      "y": -66.2,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 8.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -29.35,
+      "y": -42.9,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 7.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 34.65,
+      "y": 42.54,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 33.59,
+      "y": -67.68,
+      "w": 0,
+      "h": 0,
+      "r": 0.47,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -34.09,
+      "y": 35.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 6.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 38.85,
+      "y": -9.78,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 43.7,
+      "y": -22.74,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 6.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -59.86,
+      "y": -30.75,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 8.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -10.5,
+      "y": 32.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 6.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -30.97,
+      "y": -68.53,
+      "w": 0,
+      "h": 0,
+      "r": 0.49,
+      "height": 8.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -0.1,
+      "y": 8.38,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 8.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -60.24,
+      "y": -5.92,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 36.97,
+      "y": -58.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -42.33,
+      "y": -30.37,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 61.43,
+      "y": -66.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 8.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -14.21,
+      "y": 42.8,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -60.98,
+      "y": -9.49,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -2.44,
+      "y": 28.13,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 8.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 9.74,
+      "y": 27.45,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -58.17,
+      "y": -65.57,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 8.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -68.83,
+      "y": 27.63,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 8.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 13.74,
+      "y": 56.58,
+      "w": 0,
+      "h": 0,
+      "r": 0.49,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -16.22,
+      "y": 5.21,
+      "w": 0,
+      "h": 0,
+      "r": 0.59,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -62.53,
+      "y": -0.09,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 22.73,
+      "y": 64.77,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 6.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -55.37,
+      "y": 0.64,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 7.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -47.28,
+      "y": -32.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -22.01,
+      "y": 60.06,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 12.99,
+      "y": 16.3,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 7.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -7.03,
+      "y": 5.59,
+      "w": 0,
+      "h": 0,
+      "r": 0.47,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -25.76,
+      "y": 58.56,
+      "w": 0,
+      "h": 0,
+      "r": 0.47,
+      "height": 8.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -21.69,
+      "y": 39.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -42.72,
+      "y": 52.92,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 54.65,
+      "y": -51.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 6.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -40.55,
+      "y": -26.35,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 8.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 66.44,
+      "y": -27.73,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 7.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 58.33,
+      "y": 54.7,
+      "w": 0,
+      "h": 0,
+      "r": 0.47,
+      "height": 7.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 59.29,
+      "y": -16.78,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 24.85,
+      "y": -48.99,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 7.62,
+      "y": 35.99,
+      "w": 0,
+      "h": 0,
+      "r": 0.59,
+      "height": 6.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -45.24,
+      "y": -26.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 8.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -22.07,
+      "y": 45.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 6.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -48.73,
+      "y": -5.04,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 6.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 40.19,
+      "y": 48.61,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 58.89,
+      "y": -48.56,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 10.06,
+      "y": 2.43,
+      "w": 0,
+      "h": 0,
+      "r": 0.5,
+      "height": 8.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -7.45,
+      "y": 36.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.52,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -10.15,
+      "y": 28.72,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 8.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -52.41,
+      "y": -39.29,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 6.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 43.83,
+      "y": -48.96,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 8.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 48.51,
+      "y": 65.04,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 6.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 60.98,
+      "y": 13.59,
+      "w": 0,
+      "h": 0,
+      "r": 0.6,
+      "height": 7.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 53.51,
+      "y": -57.19,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 6.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -21.28,
+      "y": 4.34,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 4.28,
+      "y": 3.74,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -26.16,
+      "y": 40.14,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 8.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -17.92,
+      "y": -69.33,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 7.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -48.8,
+      "y": -27.94,
+      "w": 0,
+      "h": 0,
+      "r": 0.58,
+      "height": 8.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -16.16,
+      "y": -9.54,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 1.89,
+      "y": -6.08,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 8.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 0.68,
+      "y": 21.31,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 8.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -12.85,
+      "y": 12.18,
+      "w": 0,
+      "h": 0,
+      "r": 0.56,
+      "height": 7.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 58.05,
+      "y": 40.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 6.4,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -28.89,
+      "y": -4.32,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 7.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -59.36,
+      "y": 8.86,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 6.3,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -1.36,
+      "y": -3.2,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 6.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -20.22,
+      "y": 63.77,
+      "w": 0,
+      "h": 0,
+      "r": 0.54,
+      "height": 8.6,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 67.19,
+      "y": 44.96,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 7.1,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 23.47,
+      "y": -29.62,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 6.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -55.56,
+      "y": -19.71,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 7.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 68.61,
+      "y": -1.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.47,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -55.93,
+      "y": 19.9,
+      "w": 0,
+      "h": 0,
+      "r": 0.48,
+      "height": 6.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -37.82,
+      "y": -66.15,
+      "w": 0,
+      "h": 0,
+      "r": 0.59,
+      "height": 7.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -15.41,
+      "y": 69.19,
+      "w": 0,
+      "h": 0,
+      "r": 0.45,
+      "height": 8.8,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -34.53,
+      "y": -21.56,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 7.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -48.58,
+      "y": 23.37,
+      "w": 0,
+      "h": 0,
+      "r": 0.53,
+      "height": 7.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 57.69,
+      "y": -53.98,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 7.0,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -36.56,
+      "y": -11.27,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 8.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -22.27,
+      "y": 52.3,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 6.9,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -1.97,
+      "y": -6.47,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 8.2,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 44.32,
+      "y": -52.42,
+      "w": 0,
+      "h": 0,
+      "r": 0.51,
+      "height": 7.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 14.67,
+      "y": 6.65,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 7.5,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": -47.23,
+      "y": -43.88,
+      "w": 0,
+      "h": 0,
+      "r": 0.46,
+      "height": 6.7,
+      "deco": true
+    },
+    {
+      "kind": "arvore",
+      "shape": "circle",
+      "x": 35.22,
+      "y": -22.72,
+      "w": 0,
+      "h": 0,
+      "r": 0.59,
+      "height": 6.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 41.09,
+      "y": -33.07,
+      "w": 0,
+      "h": 0,
+      "r": 0.77,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 62.92,
+      "y": 65.87,
+      "w": 0,
+      "h": 0,
+      "r": 1.24,
+      "height": 2.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -36.3,
+      "y": -47.83,
+      "w": 0,
+      "h": 0,
+      "r": 0.83,
+      "height": 1.3,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 68.71,
+      "y": 50.72,
+      "w": 0,
+      "h": 0,
+      "r": 0.92,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -66.58,
+      "y": -27.03,
+      "w": 0,
+      "h": 0,
+      "r": 1.4,
+      "height": 2.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -51.72,
+      "y": 45.45,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 59.33,
+      "y": -12.87,
+      "w": 0,
+      "h": 0,
+      "r": 0.57,
+      "height": 0.6,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 19.46,
+      "y": 58.1,
+      "w": 0,
+      "h": 0,
+      "r": 0.68,
+      "height": 0.9,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -10.09,
+      "y": -21.83,
+      "w": 0,
+      "h": 0,
+      "r": 0.98,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -42.27,
+      "y": 28.44,
+      "w": 0,
+      "h": 0,
+      "r": 0.88,
+      "height": 1.5,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -21.52,
+      "y": -24.46,
+      "w": 0,
+      "h": 0,
+      "r": 1.25,
+      "height": 1.4,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -52.33,
+      "y": 60.03,
+      "w": 0,
+      "h": 0,
+      "r": 0.91,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -25.02,
+      "y": -55.68,
+      "w": 0,
+      "h": 0,
+      "r": 0.91,
+      "height": 1.0,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 56.99,
+      "y": 63.6,
+      "w": 0,
+      "h": 0,
+      "r": 0.76,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 32.91,
+      "y": 63.22,
+      "w": 0,
+      "h": 0,
+      "r": 0.94,
+      "height": 1.2,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -14.43,
+      "y": -5.97,
+      "w": 0,
+      "h": 0,
+      "r": 0.78,
+      "height": 0.8,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": 60.27,
+      "y": 27.29,
+      "w": 0,
+      "h": 0,
+      "r": 0.55,
+      "height": 0.7,
+      "deco": true
+    },
+    {
+      "kind": "rocha",
+      "shape": "circle",
+      "x": -36.55,
+      "y": 53.85,
+      "w": 0,
+      "h": 0,
+      "r": 1.17,
+      "height": 1.5,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 28.14,
+      "y": 56.81,
+      "w": 9.69,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 28.14,
+      "y": 62.46,
+      "w": 9.69,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 23.3,
+      "y": 57.62,
+      "w": 0.2,
+      "h": 1.62,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 23.3,
+      "y": 61.65,
+      "w": 0.2,
+      "h": 1.62,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 32.99,
+      "y": 59.64,
+      "w": 0.2,
+      "h": 5.65,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 6.06,
+      "y": 37.58,
+      "w": 8.24,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 3.4,
+      "y": 44.25,
+      "w": 2.92,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 8.72,
+      "y": 44.25,
+      "w": 2.92,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 1.94,
+      "y": 40.92,
+      "w": 0.2,
+      "h": 6.67,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 10.18,
+      "y": 40.92,
+      "w": 0.2,
+      "h": 6.67,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 5.53,
+      "y": 28.56,
+      "w": 7.74,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 5.53,
+      "y": 33.69,
+      "w": 7.74,
+      "h": 0.2,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 1.66,
+      "y": 31.12,
+      "w": 0.2,
+      "h": 5.13,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 9.4,
+      "y": 29.24,
+      "w": 0.2,
+      "h": 1.37,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "cerca",
+      "shape": "box",
+      "x": 9.4,
+      "y": 33.01,
+      "w": 0.2,
+      "h": 1.37,
+      "r": 0,
+      "height": 1.1,
+      "deco": true
+    },
+    {
+      "kind": "muralha",
+      "x": -28.45,
+      "y": -62,
+      "w": 93.1,
+      "h": 1.4,
+      "r": 0
+    },
+    {
+      "kind": "muralha",
+      "x": 51.55,
+      "y": -62,
+      "w": 46.9,
+      "h": 1.4,
+      "r": 0
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": -8.9,
+      "y": 68.12,
+      "w": 2.98,
+      "h": 2.29,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    },
+    {
+      "kind": "invisivel",
+      "shape": "box",
+      "x": 15.15,
+      "y": 41.58,
+      "w": 4.69,
+      "h": 2.92,
+      "r": 0,
+      "height": 3,
+      "rot": 0,
+      "amb": true
+    }
+  ],
+  "gates": [
+    {
+      "id": "passagem_mata",
+      "flag": "selo:mata",
+      "x": 23.1,
+      "y": -62,
+      "w": 10,
+      "h": 1.4,
+      "lever_x": 23.1,
+      "lever_y": -58,
+      "kind": "selo",
+      "lever": false
+    },
+    {
+      "id": "ponte_mata",
+      "flag": "ponte:mata",
+      "x": 45,
+      "y": 22,
+      "w": 18,
+      "h": 2.4,
+      "lever_x": 45,
+      "lever_y": 26,
+      "kind": "ponte",
+      "lever": false
+    }
+  ],
+  "chests": [
+    {
+      "id": "bau_mata_segredo",
+      "x": -66,
+      "y": 64,
+      "loot_table": "bau_mata",
+      "facing": 135,
+      "secret": true
+    }
+  ],
+  "spawns": [
+    {
+      "id": "mata_0_0_0",
+      "monster": "monster_mata_lobo_cinzento",
+      "x": -52.0,
+      "y": 28.0,
+      "level": 17,
+      "group": "mata_0_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_0_0_1",
+      "monster": "monster_mata_javali_ferro",
+      "x": -49.8,
+      "y": 29.5,
+      "level": 18,
+      "group": "mata_0_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_0_1_0",
+      "monster": "monster_mata_lobo_cinzento",
+      "x": -42.0,
+      "y": 40.0,
+      "level": 17,
+      "group": "mata_0_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_0_1_1",
+      "monster": "monster_mata_javali_ferro",
+      "x": -39.8,
+      "y": 41.5,
+      "level": 18,
+      "group": "mata_0_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_0_2_0",
+      "monster": "monster_mata_lobo_cinzento",
+      "x": -32.0,
+      "y": 28.0,
+      "level": 17,
+      "group": "mata_0_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_0_2_1",
+      "monster": "monster_mata_javali_ferro",
+      "x": -29.8,
+      "y": 29.5,
+      "level": 18,
+      "group": "mata_0_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_0_0",
+      "monster": "monster_mata_javali_ferro",
+      "x": 32.0,
+      "y": 28.0,
+      "level": 18,
+      "group": "mata_1_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_0_1",
+      "monster": "monster_mata_aranha_toca",
+      "x": 34.2,
+      "y": 29.5,
+      "level": 19,
+      "group": "mata_1_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_1_0",
+      "monster": "monster_mata_javali_ferro",
+      "x": 42.0,
+      "y": 40.0,
+      "level": 18,
+      "group": "mata_1_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_1_1",
+      "monster": "monster_mata_aranha_toca",
+      "x": 44.2,
+      "y": 41.5,
+      "level": 19,
+      "group": "mata_1_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_2_0",
+      "monster": "monster_mata_javali_ferro",
+      "x": 52.0,
+      "y": 28.0,
+      "level": 18,
+      "group": "mata_1_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_1_2_1",
+      "monster": "monster_mata_aranha_toca",
+      "x": 54.2,
+      "y": 29.5,
+      "level": 19,
+      "group": "mata_1_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_0_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -52.0,
+      "y": -16.0,
+      "level": 19,
+      "group": "mata_2_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_0_1",
+      "monster": "monster_mata_raiz_andante",
+      "x": -49.8,
+      "y": -14.5,
+      "level": 20,
+      "group": "mata_2_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_1_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -42.0,
+      "y": -4.0,
+      "level": 19,
+      "group": "mata_2_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_1_1",
+      "monster": "monster_mata_raiz_andante",
+      "x": -39.8,
+      "y": -2.5,
+      "level": 20,
+      "group": "mata_2_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_2_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -32.0,
+      "y": -16.0,
+      "level": 19,
+      "group": "mata_2_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_2_2_1",
+      "monster": "monster_mata_raiz_andante",
+      "x": -29.8,
+      "y": -14.5,
+      "level": 20,
+      "group": "mata_2_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_0_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 32.0,
+      "y": -16.0,
+      "level": 20,
+      "group": "mata_3_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_0_1",
+      "monster": "monster_mata_saqueador_mata",
+      "x": 34.2,
+      "y": -14.5,
+      "level": 20,
+      "group": "mata_3_0",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_1_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 42.0,
+      "y": -4.0,
+      "level": 20,
+      "group": "mata_3_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_1_1",
+      "monster": "monster_mata_saqueador_mata",
+      "x": 44.2,
+      "y": -2.5,
+      "level": 20,
+      "group": "mata_3_1",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_2_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 52.0,
+      "y": -16.0,
+      "level": 20,
+      "group": "mata_3_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_3_2_1",
+      "monster": "monster_mata_saqueador_mata",
+      "x": 54.2,
+      "y": -14.5,
+      "level": 20,
+      "group": "mata_3_2",
+      "respawn_seconds": 35
+    },
+    {
+      "id": "mata_elite",
+      "monster": "monster_mata_javali_anciao",
+      "x": 0,
+      "y": 14,
+      "level": 20,
+      "group": "mata_elite",
+      "respawn_seconds": 180
+    },
+    {
+      "id": "mata_elite_add0",
+      "monster": "monster_mata_saqueador_mata",
+      "x": -4,
+      "y": 17,
+      "level": 20,
+      "group": "mata_elite",
+      "respawn_seconds": 60
+    },
+    {
+      "id": "mata_elite_add1",
+      "monster": "monster_mata_saqueador_mata",
+      "x": 4,
+      "y": 17,
+      "level": 20,
+      "group": "mata_elite",
+      "respawn_seconds": 60
+    },
+    {
+      "id": "mata_raro",
+      "monster": "monster_mata_lobo_branco",
+      "x": 62,
+      "y": 50,
+      "level": 19,
+      "group": "mata_raro",
+      "respawn_seconds": 600,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          62,
+          50
+        ],
+        [
+          -62,
+          50
+        ],
+        [
+          60,
+          -30
+        ],
+        [
+          -60,
+          15
+        ]
+      ]
+    },
+    {
+      "id": "mata_guardiao",
+      "monster": "monster_mata_guardiao_retorcido",
+      "x": -3.9,
+      "y": -37.0,
+      "level": 21,
+      "group": "mata_guardiao",
+      "respawn_seconds": 600,
+      "grant_flag": "selo:mata",
+      "health_mult": 2.5,
+      "damage_mult": 1.1
+    },
+    {
+      "id": "f0_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -67.7,
+      "y": -68.0,
+      "level": 25,
+      "group": "fill0",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f1_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 56.4,
+      "y": -65.7,
+      "level": 26,
+      "group": "fill1",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f2_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -39.6,
+      "y": -67.1,
+      "level": 25,
+      "group": "fill2",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f3_0",
+      "monster": "monster_mata_javali_ferro",
+      "x": -67.0,
+      "y": 58.0,
+      "level": 22,
+      "group": "fill3",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f4_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -27.9,
+      "y": -52.3,
+      "level": 25,
+      "group": "fill4",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f4_1",
+      "monster": "monster_mata_aranha_toca",
+      "x": -27.5,
+      "y": -50.8,
+      "level": 25,
+      "group": "fill4",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f5_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 25.6,
+      "y": -42.5,
+      "level": 26,
+      "group": "fill5",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f6_0",
+      "monster": "monster_mata_aranha_toca",
+      "x": -70.5,
+      "y": 4.4,
+      "level": 25,
+      "group": "fill6",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f7_0",
+      "monster": "monster_mata_raiz_andante",
+      "x": 45.8,
+      "y": -42.7,
+      "level": 26,
+      "group": "fill7",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "f7_1",
+      "monster": "monster_mata_raiz_andante",
+      "x": 45.4,
+      "y": -43.6,
+      "level": 26,
+      "group": "fill7",
+      "respawn_seconds": 35,
+      "fill": true
+    },
+    {
+      "id": "b0_0",
+      "monster": "monster_bst_zumbi",
+      "x": -34.7,
+      "y": 61.3,
+      "level": 18,
+      "group": "bst0",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b1_0",
+      "monster": "monster_bst_zumbi",
+      "x": -16.5,
+      "y": 35.2,
+      "level": 18,
+      "group": "bst1",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b2_0",
+      "monster": "monster_bst_zumbi",
+      "x": 20.8,
+      "y": 68.9,
+      "level": 18,
+      "group": "bst2",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b3_0",
+      "monster": "monster_bst_lobisomem",
+      "x": 67.9,
+      "y": -31.5,
+      "level": 21,
+      "group": "bst3",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b3_1",
+      "monster": "monster_bst_lobisomem",
+      "x": 68.7,
+      "y": -29.6,
+      "level": 21,
+      "group": "bst3",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b4_0",
+      "monster": "monster_bst_lobisomem",
+      "x": -42.5,
+      "y": 11.4,
+      "level": 21,
+      "group": "bst4",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b5_0",
+      "monster": "monster_bst_lobisomem",
+      "x": 18.4,
+      "y": -51.8,
+      "level": 21,
+      "group": "bst5",
+      "respawn_seconds": 45,
+      "fill": true
+    },
+    {
+      "id": "b6_0",
+      "monster": "monster_bst_chupa_cabra",
+      "x": 33.7,
+      "y": -64.8,
+      "level": 22,
+      "group": "bst6",
+      "respawn_seconds": 120,
+      "fill": true
+    },
+    {
+      "id": "mata_dos_enforcados_dourado",
+      "monster": "monster_mata_dos_enforcados_dourado",
+      "x": 34.2,
+      "y": 29.5,
+      "level": 25,
+      "group": "mata_dos_enforcados_dourado",
+      "respawn_seconds": 300,
+      "chance": 0.35,
+      "alt_points": [
+        [
+          34.2,
+          29.5
+        ],
+        [
+          45.0,
+          18.0
+        ],
+        [
+          -45.0,
+          13.5
+        ],
+        [
+          22.5,
+          -45.0
+        ],
+        [
+          -27.0,
+          -36.0
+        ]
+      ]
+    },
+    {
+      "id": "fab_macaco_1",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -35.45,
+      "y": 11.66,
+      "level": 20,
+      "group": "fab_macaco_1",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    },
+    {
+      "id": "fab_macaco_2",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -47.35,
+      "y": 23.37,
+      "level": 21,
+      "group": "fab_macaco_2",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    },
+    {
+      "id": "fab_macaco_3",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -54.75,
+      "y": 19.9,
+      "level": 19,
+      "group": "fab_macaco_3",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    },
+    {
+      "id": "fab_macaco_4",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -50.84,
+      "y": 8.43,
+      "level": 20,
+      "group": "fab_macaco_4",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    },
+    {
+      "id": "fab_macaco_5",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -32.94,
+      "y": 35.6,
+      "level": 21,
+      "group": "fab_macaco_5",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    },
+    {
+      "id": "fab_macaco_6",
+      "monster": "monster_fab_macaco_coqueiro",
+      "x": -58.12,
+      "y": 8.86,
+      "level": 19,
+      "group": "fab_macaco_6",
+      "respawn_seconds": 60,
+      "perch": 3.0,
+      "fab": true
+    }
+  ],
+  "props": [
+    {
+      "kind": "fogueira",
+      "x": 0,
+      "y": 57,
+      "yaw": 0
+    },
+    {
+      "kind": "poste",
+      "x": -12,
+      "y": 56,
+      "yaw": 90
+    },
+    {
+      "kind": "poste",
+      "x": 12,
+      "y": 56,
+      "yaw": -90
+    },
+    {
+      "kind": "pinheiros",
+      "x": -61.7,
+      "y": 3.7,
+      "yaw": 133
+    },
+    {
+      "kind": "lapide",
+      "x": 65.5,
+      "y": -19.1,
+      "yaw": 99
+    },
+    {
+      "kind": "estandarte",
+      "x": 62.1,
+      "y": -42.9,
+      "yaw": 142
+    },
+    {
+      "kind": "pinheiros",
+      "x": 10.7,
+      "y": -61.3,
+      "yaw": 259
+    },
+    {
+      "kind": "lapide",
+      "x": -60.2,
+      "y": -41.7,
+      "yaw": 328
+    },
+    {
+      "kind": "estandarte",
+      "x": -14.4,
+      "y": -48.2,
+      "yaw": 119
+    },
+    {
+      "kind": "pinheiros",
+      "x": -24.5,
+      "y": 55.4,
+      "yaw": 107
+    },
+    {
+      "kind": "lapide",
+      "x": -52.7,
+      "y": 48.5,
+      "yaw": 41
+    },
+    {
+      "kind": "pinheiros",
+      "x": -20.5,
+      "y": -54.8,
+      "yaw": 222
+    },
+    {
+      "kind": "lapide",
+      "x": -13.1,
+      "y": -46.9,
+      "yaw": 37
+    },
+    {
+      "kind": "estandarte",
+      "x": -41.7,
+      "y": -60.8,
+      "yaw": 255
+    },
+    {
+      "kind": "pinheiros",
+      "x": 20.9,
+      "y": -55.6,
+      "yaw": 228
+    },
+    {
+      "kind": "lapide",
+      "x": -11.0,
+      "y": -9.7,
+      "yaw": 79
+    },
+    {
+      "kind": "ossada",
+      "x": 49.5,
+      "y": 52.55,
+      "yaw": 155,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": -68.37,
+      "y": 23.14,
+      "yaw": 85,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 58.99,
+      "y": -23.27,
+      "yaw": 266,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 10.59,
+      "y": -29.98,
+      "yaw": 235,
+      "deco": true
+    },
+    {
+      "kind": "ossada",
+      "x": 49.68,
+      "y": 46.87,
+      "yaw": 279,
+      "deco": true
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 19.23,
+      "y": 39.98,
+      "yaw": 45,
+      "deco": true
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 54.53,
+      "y": 36.38,
+      "yaw": 68,
+      "deco": true
+    },
+    {
+      "kind": "arvore_serpente",
+      "x": -52,
+      "y": 12,
+      "yaw": 0
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 34.4,
+      "y": -1.6,
+      "yaw": 221,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "fogueira",
+      "x": 36.3,
+      "y": -7.5,
+      "yaw": 102,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "caixotes",
+      "x": 39.7,
+      "y": 1.5,
+      "yaw": 296,
+      "poi": "lugar0"
+    },
+    {
+      "kind": "estandarte",
+      "x": -37.4,
+      "y": 16.6,
+      "yaw": 41,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "ossada",
+      "x": -37.7,
+      "y": 21.7,
+      "yaw": 311,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "tocha",
+      "x": -42.8,
+      "y": 21.3,
+      "yaw": 221,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "caixotes",
+      "x": -42.5,
+      "y": 16.2,
+      "yaw": 131,
+      "poi": "lugar1"
+    },
+    {
+      "kind": "lapide",
+      "x": -59.1,
+      "y": 62.5,
+      "yaw": 305,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "lapide",
+      "x": -63.3,
+      "y": 62.5,
+      "yaw": 233,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "lapide",
+      "x": -61.3,
+      "y": 56.0,
+      "yaw": 93,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "ossada",
+      "x": -59.2,
+      "y": 55.2,
+      "yaw": 66,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "tocha",
+      "x": -57.7,
+      "y": 58.5,
+      "yaw": 17,
+      "poi": "lugar2"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -39.0,
+      "y": -24.3,
+      "yaw": 96,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -36.0,
+      "y": -18.2,
+      "yaw": 316,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "tocha",
+      "x": -37.0,
+      "y": -16.2,
+      "yaw": 289,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "tocha",
+      "x": -40.4,
+      "y": -17.6,
+      "yaw": 240,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "cranios",
+      "x": -42.1,
+      "y": -21.4,
+      "yaw": 168,
+      "poi": "lugar3"
+    },
+    {
+      "kind": "acampamento_abandonado",
+      "x": 39.0,
+      "y": 35.0,
+      "yaw": 157,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "fogueira",
+      "x": 43.7,
+      "y": 33.1,
+      "yaw": 67,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "barril",
+      "x": 45.6,
+      "y": 37.8,
+      "yaw": 337,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "caixotes",
+      "x": 36.7,
+      "y": 38.6,
+      "yaw": 201,
+      "poi": "lugar4"
+    },
+    {
+      "kind": "cadaver",
+      "x": -32.7,
+      "y": 44.5,
+      "yaw": 133,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -31.6,
+      "y": 44.0,
+      "yaw": 116,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 53.4,
+      "y": 26.5,
+      "yaw": 175,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 54.6,
+      "y": 26.4,
+      "yaw": 94,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -52.8,
+      "y": -9.8,
+      "yaw": 252,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -53.7,
+      "y": -10.7,
+      "yaw": 224,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 46.0,
+      "y": -10.6,
+      "yaw": 88,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 46.2,
+      "y": -9.5,
+      "yaw": 9,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -8.6,
+      "y": 9.9,
+      "yaw": 4,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -7.7,
+      "y": 10.8,
+      "yaw": 47,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": 4.5,
+      "y": 21.2,
+      "yaw": 192,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 5.2,
+      "y": 22.2,
+      "yaw": 36,
+      "poi": "vida"
+    },
+    {
+      "kind": "cranios",
+      "x": -8.2,
+      "y": 8.3,
+      "yaw": 149,
+      "poi": "vida"
+    },
+    {
+      "kind": "cranios",
+      "x": 4.2,
+      "y": 11.7,
+      "yaw": 138,
+      "poi": "vida"
+    },
+    {
+      "kind": "placa",
+      "x": -56.1,
+      "y": -38.9,
+      "yaw": 233,
+      "poi": "vida",
+      "texto": "→ Cripta do Sino · nível 18+"
+    },
+    {
+      "kind": "glb:cenario/costa_barraca_pescador",
+      "x": -15.63,
+      "y": 57.84,
+      "yaw": 90,
+      "amb": true,
+      "scale": 0.8,
+      "solid": 0.97
+    },
+    {
+      "kind": "tenda",
+      "x": 16.69,
+      "y": 56.51,
+      "yaw": 270,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "glb:cenario/costa_barraca_pescador",
+      "x": -8.9,
+      "y": 68.12,
+      "yaw": 180,
+      "amb": true
+    },
+    {
+      "kind": "tenda",
+      "x": 7.98,
+      "y": 67.82,
+      "yaw": 180,
+      "amb": true,
+      "solid": 1.8
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -13.2,
+      "y": 49.8,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -14.44,
+      "y": 66.81,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 12.58,
+      "y": 51.1,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 13.2,
+      "y": 66.2,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": -13.5,
+      "y": 53.0,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": 13.5,
+      "y": 53.0,
+      "yaw": 0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "barril",
+      "x": -13.58,
+      "y": 58.09,
+      "yaw": 234.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 2.82,
+      "y": -40.21,
+      "yaw": 250.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -2.48,
+      "y": -40.59,
+      "yaw": 295.1,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -7.5,
+      "y": -51.51,
+      "yaw": 25.1,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -2.82,
+      "y": -55.79,
+      "yaw": 70.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": 3.51,
+      "y": -55.5,
+      "yaw": 115.1,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 7.79,
+      "y": -50.82,
+      "yaw": 160.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cranios",
+      "x": -6.77,
+      "y": -47.63,
+      "yaw": 116.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 3.18,
+      "y": -48.19,
+      "yaw": 171.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 4.91,
+      "y": -41.1,
+      "yaw": 213.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 3.14,
+      "y": -54.43,
+      "yaw": 183.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -2.75,
+      "y": -49.02,
+      "yaw": 97.9,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 5.08,
+      "y": -49.63,
+      "yaw": 66.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 4.94,
+      "y": -48.33,
+      "yaw": 354.5,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 0.17,
+      "y": -41.65,
+      "yaw": 257.0,
+      "amb": true
+    },
+    {
+      "kind": "fogueira",
+      "x": 37.0,
+      "y": -4.0,
+      "yaw": 73.3,
+      "amb": true,
+      "solid": 0.5
+    },
+    {
+      "kind": "panela",
+      "x": 38.2,
+      "y": -4.6,
+      "yaw": 146.0,
+      "amb": true
+    },
+    {
+      "kind": "carnes_penduradas",
+      "x": 35.4,
+      "y": -3.0,
+      "yaw": 81.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "barril",
+      "x": 32.18,
+      "y": -0.8,
+      "yaw": 243.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": 38.45,
+      "y": -8.11,
+      "yaw": 172.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cesto_peixe",
+      "x": 41.29,
+      "y": -8.05,
+      "yaw": 330.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 32.94,
+      "y": -5.09,
+      "yaw": 168.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 38.28,
+      "y": -2.76,
+      "yaw": 156.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "barril",
+      "x": 36.95,
+      "y": -1.4,
+      "yaw": 202.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "feno",
+      "x": 36.41,
+      "y": -5.41,
+      "yaw": 302.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "estandarte",
+      "x": 33.71,
+      "y": 1.49,
+      "yaw": 173.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 31.95,
+      "y": -4.05,
+      "yaw": 188.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -36.82,
+      "y": 20.13,
+      "yaw": 20.6,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "ossada",
+      "x": -42.94,
+      "y": 17.87,
+      "yaw": 90.6,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -39.77,
+      "y": 17.32,
+      "yaw": 205.3,
+      "amb": true
+    },
+    {
+      "kind": "cadaver",
+      "x": -37.87,
+      "y": 15.39,
+      "yaw": 227.5,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -40.08,
+      "y": 16.33,
+      "yaw": 321.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -43.38,
+      "y": 16.53,
+      "yaw": 307.1,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -63.04,
+      "y": 57.27,
+      "yaw": 316.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -63.43,
+      "y": 59.34,
+      "yaw": 309.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_a",
+      "x": -60.29,
+      "y": 58.45,
+      "yaw": 307.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_a",
+      "x": -61.35,
+      "y": 62.46,
+      "yaw": 326.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_a",
+      "x": -58.86,
+      "y": 56.99,
+      "yaw": 320.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -58.61,
+      "y": 59.67,
+      "yaw": 319.6,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_b",
+      "x": -59.69,
+      "y": 60.67,
+      "yaw": 313.3,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -56.56,
+      "y": 57.08,
+      "yaw": 308.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -56.52,
+      "y": 59.32,
+      "yaw": 313.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -56.94,
+      "y": 62.1,
+      "yaw": 315.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -54.75,
+      "y": 61.57,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -59.63,
+      "y": 66.08,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -62.57,
+      "y": 53.12,
+      "yaw": 347.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -56.22,
+      "y": 55.08,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -56.2,
+      "y": 64.5,
+      "yaw": 315.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "ossada",
+      "x": -63.07,
+      "y": 56.9,
+      "yaw": 359.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -56.77,
+      "y": 62.65,
+      "yaw": 130.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -60.31,
+      "y": 59.34,
+      "yaw": 155.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -62.09,
+      "y": 62.91,
+      "yaw": 156.2,
+      "amb": true
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -42.3,
+      "y": -18.44,
+      "yaw": 134.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -43.97,
+      "y": -20.89,
+      "yaw": 194.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "coluna_quebrada",
+      "x": -34.22,
+      "y": -25.24,
+      "yaw": 314.0,
+      "amb": true,
+      "solid": 0.7
+    },
+    {
+      "kind": "ossada",
+      "x": -42.58,
+      "y": -21.23,
+      "yaw": 314.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -41.72,
+      "y": -23.66,
+      "yaw": 65.1,
+      "amb": true
+    },
+    {
+      "kind": "panela",
+      "x": 43.5,
+      "y": 35.8,
+      "yaw": 35.7,
+      "amb": true
+    },
+    {
+      "kind": "estandarte",
+      "x": 38.1,
+      "y": 40.6,
+      "yaw": 220.7,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 47.12,
+      "y": 35.36,
+      "yaw": 341.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_c",
+      "x": -70.18,
+      "y": 61.1,
+      "yaw": 318.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -71.39,
+      "y": 62.97,
+      "yaw": 304.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_b",
+      "x": -70.49,
+      "y": 66.64,
+      "yaw": 309.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_d",
+      "x": -68.26,
+      "y": 61.31,
+      "yaw": 313.4,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_b",
+      "x": -68.34,
+      "y": 66.59,
+      "yaw": 306.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_c",
+      "x": -64.39,
+      "y": 61.37,
+      "yaw": 321.0,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_b",
+      "x": -65.1,
+      "y": 68.26,
+      "yaw": 310.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_a",
+      "x": -62.21,
+      "y": 61.12,
+      "yaw": 326.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_c",
+      "x": -62.46,
+      "y": 63.93,
+      "yaw": 305.5,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_a",
+      "x": -63.73,
+      "y": 66.68,
+      "yaw": 320.1,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "glb:cenario/vespera_lapide_c",
+      "x": -61.74,
+      "y": 66.78,
+      "yaw": 312.8,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -61.46,
+      "y": 65.4,
+      "yaw": 107.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -66.13,
+      "y": 69.44,
+      "yaw": 167.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -69.46,
+      "y": 68.42,
+      "yaw": 227.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -71.77,
+      "y": 61.44,
+      "yaw": 287.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cerca_quebrada",
+      "x": -62.17,
+      "y": 59.67,
+      "yaw": 47.2,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -62.17,
+      "y": 68.24,
+      "yaw": 315.9,
+      "amb": true,
+      "solid": 0.4
+    },
+    {
+      "kind": "cranios",
+      "x": -69.21,
+      "y": 64.6,
+      "yaw": 113.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -63.53,
+      "y": 61.25,
+      "yaw": 280.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -69.03,
+      "y": 63.44,
+      "yaw": 15.3,
+      "amb": true
+    },
+    {
+      "kind": "glb:cenario/mata_moinho",
+      "x": 15.15,
+      "y": 41.58,
+      "yaw": 0,
+      "amb": true,
+      "scale": 0.8
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -9.78,
+      "y": 39.49,
+      "yaw": 321.2,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -23.57,
+      "y": 29.0,
+      "yaw": 328.1,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -27.58,
+      "y": 12.01,
+      "yaw": 328.6,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -41.22,
+      "y": 1.39,
+      "yaw": 322.4,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -58.72,
+      "y": -27.45,
+      "yaw": 338.0,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -49.7,
+      "y": -54.65,
+      "yaw": 69.0,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": -32.3,
+      "y": -54.12,
+      "yaw": 79.1,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "tocha_poste",
+      "x": 14.39,
+      "y": -71.67,
+      "yaw": 77.1,
+      "amb": true,
+      "solid": 0.25
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": 29.36,
+      "y": -66.52,
+      "yaw": 305.6,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": -4.25,
+      "y": 65.58,
+      "yaw": 146.5,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_b",
+      "x": -58.17,
+      "y": -52.45,
+      "yaw": 210.7,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/costa_placa_seta_a",
+      "x": 62.84,
+      "y": 10.91,
+      "yaw": 196.5,
+      "amb": true,
+      "solid": 0.3
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 39.71,
+      "y": 69.14,
+      "yaw": 219.9,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": -31.23,
+      "y": 66.06,
+      "yaw": 314.4,
+      "amb": true,
+      "scale": 1.1,
+      "solid": 1.21
+    },
+    {
+      "kind": "pinheiros",
+      "x": 25.34,
+      "y": 64.73,
+      "yaw": 175.0,
+      "amb": true,
+      "solid": 1.09
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -2.37,
+      "y": -67.27,
+      "yaw": 252.2,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.39
+    },
+    {
+      "kind": "pinheiros",
+      "x": 67.17,
+      "y": 28.11,
+      "yaw": 322.3,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.96
+    },
+    {
+      "kind": "pinheiros",
+      "x": -60.45,
+      "y": -64.88,
+      "yaw": 112.5,
+      "amb": true,
+      "scale": 1.1,
+      "solid": 1.21
+    },
+    {
+      "kind": "pinheiros",
+      "x": 1.2,
+      "y": -69.78,
+      "yaw": 103.7,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.99
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 42.86,
+      "y": 65.86,
+      "yaw": 190.3,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.53
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 63.61,
+      "y": 45.91,
+      "yaw": 66.5,
+      "amb": true,
+      "scale": 0.88,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": -68.6,
+      "y": -9.87,
+      "yaw": 46.2,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.22
+    },
+    {
+      "kind": "pinheiros",
+      "x": -67.07,
+      "y": -22.78,
+      "yaw": 154.0,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 1.23
+    },
+    {
+      "kind": "pinheiros",
+      "x": 64.73,
+      "y": 43.95,
+      "yaw": 110.8,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.22
+    },
+    {
+      "kind": "pinheiros",
+      "x": 70.09,
+      "y": 69.1,
+      "yaw": 327.0,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.23
+    },
+    {
+      "kind": "pinheiros",
+      "x": 67.08,
+      "y": -14.05,
+      "yaw": 156.6,
+      "amb": true,
+      "scale": 1.21,
+      "solid": 1.33
+    },
+    {
+      "kind": "pinheiros",
+      "x": 62.36,
+      "y": -8.32,
+      "yaw": 294.4,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 1.36
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -70.25,
+      "y": -42.13,
+      "yaw": 269.3,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 0.47
+    },
+    {
+      "kind": "pinheiros",
+      "x": 67.13,
+      "y": 10.32,
+      "yaw": 204.4,
+      "amb": true,
+      "scale": 1.22,
+      "solid": 1.34
+    },
+    {
+      "kind": "pinheiros",
+      "x": -21.39,
+      "y": 69.86,
+      "yaw": 322.9,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 1.18
+    },
+    {
+      "kind": "pinheiros",
+      "x": -66.36,
+      "y": 31.99,
+      "yaw": 288.3,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.95
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 70.09,
+      "y": 14.63,
+      "yaw": 109.7,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.52
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 68.22,
+      "y": -68.4,
+      "yaw": 333.2,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 0.46
+    },
+    {
+      "kind": "pinheiros",
+      "x": 64.01,
+      "y": -45.99,
+      "yaw": 277.5,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 1.08
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 50.45,
+      "y": 63.89,
+      "yaw": 240.4,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.46
+    },
+    {
+      "kind": "pinheiros",
+      "x": -64.29,
+      "y": 41.79,
+      "yaw": 269.1,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 1.02
+    },
+    {
+      "kind": "pinheiros",
+      "x": 43.34,
+      "y": 70.93,
+      "yaw": 179.1,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 1.29
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 67.72,
+      "y": -37.55,
+      "yaw": 323.7,
+      "amb": true,
+      "scale": 0.88,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": 62.42,
+      "y": -52.22,
+      "yaw": 330.5,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 1.07
+    },
+    {
+      "kind": "pinheiros",
+      "x": 70.66,
+      "y": 32.19,
+      "yaw": 40.5,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.98
+    },
+    {
+      "kind": "pinheiros",
+      "x": -62.87,
+      "y": 44.32,
+      "yaw": 351.1,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.22
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -67.35,
+      "y": 24.69,
+      "yaw": 233.0,
+      "amb": true,
+      "scale": 1.25,
+      "solid": 0.56
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -48.1,
+      "y": 69.38,
+      "yaw": 64.8,
+      "amb": true,
+      "scale": 0.94,
+      "solid": 0.42
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -70.98,
+      "y": 53.0,
+      "yaw": 102.5,
+      "amb": true,
+      "scale": 1.07,
+      "solid": 0.48
+    },
+    {
+      "kind": "pinheiros",
+      "x": 66.49,
+      "y": 4.04,
+      "yaw": 182.8,
+      "amb": true,
+      "scale": 0.88,
+      "solid": 0.97
+    },
+    {
+      "kind": "pinheiros",
+      "x": -69.17,
+      "y": -19.41,
+      "yaw": 101.6,
+      "amb": true,
+      "scale": 1.13,
+      "solid": 1.24
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 68.09,
+      "y": -18.24,
+      "yaw": 324.2,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 0.52
+    },
+    {
+      "kind": "pinheiros",
+      "x": -67.7,
+      "y": 44.67,
+      "yaw": 124.8,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.99
+    },
+    {
+      "kind": "pinheiros",
+      "x": 67.45,
+      "y": 39.91,
+      "yaw": 350.5,
+      "amb": true,
+      "scale": 1.03,
+      "solid": 1.14
+    },
+    {
+      "kind": "pinheiros",
+      "x": -63.93,
+      "y": 17.12,
+      "yaw": 61.3,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 1.29
+    },
+    {
+      "kind": "pinheiros",
+      "x": -44.55,
+      "y": 64.57,
+      "yaw": 304.8,
+      "amb": true,
+      "scale": 1.21,
+      "solid": 1.33
+    },
+    {
+      "kind": "pinheiros",
+      "x": 58.17,
+      "y": 69.91,
+      "yaw": 148.4,
+      "amb": true,
+      "scale": 1.14,
+      "solid": 1.25
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 66.34,
+      "y": 48.27,
+      "yaw": 338.8,
+      "amb": true,
+      "scale": 1.06,
+      "solid": 0.48
+    },
+    {
+      "kind": "pinheiros",
+      "x": -64.32,
+      "y": 51.24,
+      "yaw": 285.0,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 1.02
+    },
+    {
+      "kind": "pinheiros",
+      "x": 28.5,
+      "y": 69.02,
+      "yaw": 108.5,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 1.0
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 46.69,
+      "y": 62.23,
+      "yaw": 135.0,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 0.43
+    },
+    {
+      "kind": "pinheiros",
+      "x": 19.11,
+      "y": 64.8,
+      "yaw": 19.9,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 1.08
+    },
+    {
+      "kind": "pinheiros",
+      "x": -49.23,
+      "y": -65.44,
+      "yaw": 59.2,
+      "amb": true,
+      "scale": 0.85,
+      "solid": 0.94
+    },
+    {
+      "kind": "pinheiros",
+      "x": 70.24,
+      "y": -19.61,
+      "yaw": 106.8,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.05
+    },
+    {
+      "kind": "pinheiros",
+      "x": -53.43,
+      "y": 67.69,
+      "yaw": 223.3,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.06
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -18.37,
+      "y": 65.23,
+      "yaw": 201.4,
+      "amb": true,
+      "scale": 0.95,
+      "solid": 0.43
+    },
+    {
+      "kind": "pinheiros",
+      "x": -28.0,
+      "y": -67.53,
+      "yaw": 238.7,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 1.22
+    },
+    {
+      "kind": "pinheiros",
+      "x": 65.38,
+      "y": -11.83,
+      "yaw": 270.4,
+      "amb": true,
+      "scale": 0.95,
+      "solid": 1.04
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 62.84,
+      "y": -50.02,
+      "yaw": 273.2,
+      "amb": true,
+      "scale": 1.01,
+      "solid": 0.46
+    },
+    {
+      "kind": "pinheiros",
+      "x": 63.6,
+      "y": 40.73,
+      "yaw": 199.8,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 1.27
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -67.68,
+      "y": 1.1,
+      "yaw": 312.4,
+      "amb": true,
+      "scale": 1.05,
+      "solid": 0.47
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -66.15,
+      "y": 16.14,
+      "yaw": 133.9,
+      "amb": true,
+      "scale": 1.24,
+      "solid": 0.56
+    },
+    {
+      "kind": "pinheiros",
+      "x": 64.52,
+      "y": -67.92,
+      "yaw": 88.9,
+      "amb": true,
+      "scale": 1.1,
+      "solid": 1.21
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -61.44,
+      "y": 69.65,
+      "yaw": 111.4,
+      "amb": true,
+      "scale": 1.23,
+      "solid": 0.55
+    },
+    {
+      "kind": "pinheiros",
+      "x": 42.52,
+      "y": -68.6,
+      "yaw": 273.0,
+      "amb": true,
+      "scale": 0.91,
+      "solid": 1.0
+    },
+    {
+      "kind": "pinheiros",
+      "x": -9.22,
+      "y": -68.26,
+      "yaw": 181.8,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 1.23
+    },
+    {
+      "kind": "pinheiros",
+      "x": -69.18,
+      "y": 70.99,
+      "yaw": 49.1,
+      "amb": true,
+      "scale": 0.96,
+      "solid": 1.06
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -30.57,
+      "y": -63.74,
+      "yaw": 262.6,
+      "amb": true,
+      "scale": 0.86,
+      "solid": 0.38
+    },
+    {
+      "kind": "pinheiros",
+      "x": -48.31,
+      "y": 64.55,
+      "yaw": 91.9,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.3
+    },
+    {
+      "kind": "pinheiros",
+      "x": -65.39,
+      "y": -16.41,
+      "yaw": 109.2,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 1.32
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -5.82,
+      "y": -22.15,
+      "yaw": 17.5,
+      "amb": true,
+      "solid": 0.45
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -54.44,
+      "y": -42.0,
+      "yaw": 86.3,
+      "amb": true,
+      "scale": 0.87,
+      "solid": 0.43
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 15.9,
+      "y": -21.1,
+      "yaw": 163.3,
+      "amb": true,
+      "scale": 0.9,
+      "solid": 0.41
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -18.72,
+      "y": -30.59,
+      "yaw": 203.6,
+      "amb": true,
+      "scale": 0.97,
+      "solid": 0.44
+    },
+    {
+      "kind": "pinheiros",
+      "x": 41.36,
+      "y": -59.52,
+      "yaw": 334.1,
+      "amb": true,
+      "scale": 0.89,
+      "solid": 0.98
+    },
+    {
+      "kind": "pinheiros",
+      "x": 27.86,
+      "y": 11.76,
+      "yaw": 41.2,
+      "amb": true,
+      "scale": 1.16,
+      "solid": 1.27
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -25.49,
+      "y": -35.76,
+      "yaw": 46.6,
+      "amb": true,
+      "scale": 1.11,
+      "solid": 0.5
+    },
+    {
+      "kind": "pinheiros",
+      "x": 14.96,
+      "y": -57.8,
+      "yaw": 356.4,
+      "amb": true,
+      "scale": 0.98,
+      "solid": 1.08
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": -46.19,
+      "y": -47.02,
+      "yaw": 71.5,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 0.52
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 53.24,
+      "y": 8.43,
+      "yaw": 296.0,
+      "amb": true,
+      "scale": 0.93,
+      "solid": 0.47
+    },
+    {
+      "kind": "pinheiros",
+      "x": 37.04,
+      "y": -41.27,
+      "yaw": 144.6,
+      "amb": true,
+      "scale": 0.81,
+      "solid": 0.89
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -20.31,
+      "y": -28.79,
+      "yaw": 261.6,
+      "amb": true,
+      "scale": 0.88,
+      "solid": 0.4
+    },
+    {
+      "kind": "pinheiros",
+      "x": -51.55,
+      "y": -43.59,
+      "yaw": 277.0,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 1.32
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": 38.8,
+      "y": -56.88,
+      "yaw": 16.7,
+      "amb": true,
+      "scale": 1.2,
+      "solid": 0.54
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -17.65,
+      "y": 50.87,
+      "yaw": 79.2,
+      "amb": true,
+      "scale": 0.99,
+      "solid": 0.49
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 6.05,
+      "y": 43.53,
+      "yaw": 253.1,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.57
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 8.59,
+      "y": 1.86,
+      "yaw": 232.5,
+      "amb": true,
+      "scale": 1.17,
+      "solid": 0.59
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -6.2,
+      "y": -33.48,
+      "yaw": 159.0,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 0.53
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_b",
+      "x": 19.11,
+      "y": -22.83,
+      "yaw": 119.4,
+      "amb": true,
+      "scale": 1.15,
+      "solid": 0.52
+    },
+    {
+      "kind": "pinheiros",
+      "x": -16.0,
+      "y": 10.97,
+      "yaw": 65.1,
+      "amb": true,
+      "scale": 1.1,
+      "solid": 1.21
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -3.94,
+      "y": -21.23,
+      "yaw": 259.9,
+      "amb": true,
+      "scale": 1.12,
+      "solid": 0.56
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -8.68,
+      "y": 58.49,
+      "yaw": 307.6,
+      "amb": true,
+      "scale": 1.19,
+      "solid": 0.54
+    },
+    {
+      "kind": "arvore_seca",
+      "x": -3.1,
+      "y": -52.17,
+      "yaw": 153.5,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.52
+    },
+    {
+      "kind": "pinheiros",
+      "x": 13.76,
+      "y": -53.22,
+      "yaw": 51.5,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 1.12
+    },
+    {
+      "kind": "glb:cenario/mata_arvore_forca_a",
+      "x": -11.47,
+      "y": 35.49,
+      "yaw": 259.7,
+      "amb": true,
+      "scale": 1.04,
+      "solid": 0.47
+    },
+    {
+      "kind": "arvore_seca",
+      "x": 14.52,
+      "y": 8.47,
+      "yaw": 206.2,
+      "amb": true,
+      "scale": 1.02,
+      "solid": 0.51
+    },
+    {
+      "kind": "rocha",
+      "x": -20.59,
+      "y": -47.86,
+      "yaw": 75.9,
+      "amb": true,
+      "scale": 0.84,
+      "solid": 0.84
+    },
+    {
+      "kind": "rocha",
+      "x": -20.89,
+      "y": -46.02,
+      "yaw": 84.5,
+      "amb": true,
+      "scale": 0.62,
+      "solid": 0.62
+    },
+    {
+      "kind": "rocha",
+      "x": 12.6,
+      "y": -24.21,
+      "yaw": 283.3,
+      "amb": true,
+      "scale": 1.18,
+      "solid": 1.18
+    },
+    {
+      "kind": "rocha",
+      "x": 13.84,
+      "y": -27.82,
+      "yaw": 296.3,
+      "amb": true,
+      "scale": 0.92,
+      "solid": 0.92
+    },
+    {
+      "kind": "rocha",
+      "x": 14.0,
+      "y": -25.89,
+      "yaw": 206.8,
+      "amb": true,
+      "scale": 0.55,
+      "solid": 0.55
+    },
+    {
+      "kind": "capim_alto",
+      "x": 60.79,
+      "y": 30.96,
+      "yaw": 78.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 1.24,
+      "y": -54.94,
+      "yaw": 323.9,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 49.89,
+      "y": 43.64,
+      "yaw": 226.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 0.09,
+      "y": -57.96,
+      "yaw": 38.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 49.96,
+      "y": -55.24,
+      "yaw": 154.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -70.5,
+      "y": 42.75,
+      "yaw": 285.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 6.14,
+      "y": 42.09,
+      "yaw": 166.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -42.04,
+      "y": 20.14,
+      "yaw": 14.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 43.74,
+      "y": -49.43,
+      "yaw": 72.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -2.89,
+      "y": -20.01,
+      "yaw": 237.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 34.52,
+      "y": 38.34,
+      "yaw": 21.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -61.78,
+      "y": -22.56,
+      "yaw": 35.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -24.77,
+      "y": -43.28,
+      "yaw": 267.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 48.92,
+      "y": 43.35,
+      "yaw": 213.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 34.54,
+      "y": -59.23,
+      "yaw": 115.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.55,
+      "y": 22.91,
+      "yaw": 114.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -38.41,
+      "y": 67.2,
+      "yaw": 283.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -50.38,
+      "y": 41.17,
+      "yaw": 218.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -55.75,
+      "y": -19.18,
+      "yaw": 35.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -29.04,
+      "y": -69.79,
+      "yaw": 288.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 54.76,
+      "y": -69.53,
+      "yaw": 248.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.5,
+      "y": -28.18,
+      "yaw": 263.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 58.04,
+      "y": 45.7,
+      "yaw": 191.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 11.64,
+      "y": 38.96,
+      "yaw": 237.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 27.74,
+      "y": -9.9,
+      "yaw": 110.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 5.11,
+      "y": 30.1,
+      "yaw": 292.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -26.12,
+      "y": -55.2,
+      "yaw": 292.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -56.83,
+      "y": 1.42,
+      "yaw": 320.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 27.38,
+      "y": -62.16,
+      "yaw": 230.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 56.52,
+      "y": 66.81,
+      "yaw": 341.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 21.7,
+      "y": 61.49,
+      "yaw": 267.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -70.99,
+      "y": 43.58,
+      "yaw": 160.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 39.96,
+      "y": -55.32,
+      "yaw": 290.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -31.36,
+      "y": -33.74,
+      "yaw": 84.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -44.69,
+      "y": -68.48,
+      "yaw": 359.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 31.19,
+      "y": -60.57,
+      "yaw": 184.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -24.42,
+      "y": 60.19,
+      "yaw": 284.4,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -52.51,
+      "y": 46.7,
+      "yaw": 240.6,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 31.65,
+      "y": 38.86,
+      "yaw": 63.3,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 59.27,
+      "y": -2.18,
+      "yaw": 356.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 55.32,
+      "y": -54.78,
+      "yaw": 226.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -48.52,
+      "y": 5.38,
+      "yaw": 334.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -33.74,
+      "y": 69.63,
+      "yaw": 198.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -53.53,
+      "y": 15.68,
+      "yaw": 184.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 0.06,
+      "y": 31.74,
+      "yaw": 338.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 18.87,
+      "y": -4.71,
+      "yaw": 325.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 2.4,
+      "y": 29.98,
+      "yaw": 5.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -65.66,
+      "y": 19.71,
+      "yaw": 199.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 37.22,
+      "y": -30.63,
+      "yaw": 108.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -11.44,
+      "y": -50.01,
+      "yaw": 273.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 34.48,
+      "y": 7.02,
+      "yaw": 163.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -35.78,
+      "y": 48.95,
+      "yaw": 223.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -9.92,
+      "y": -45.36,
+      "yaw": 220.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -3.95,
+      "y": -53.79,
+      "yaw": 187.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 43.1,
+      "y": -57.91,
+      "yaw": 279.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -21.87,
+      "y": 33.42,
+      "yaw": 243.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 6.69,
+      "y": 37.89,
+      "yaw": 296.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -19.98,
+      "y": 3.86,
+      "yaw": 259.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -30.46,
+      "y": 57.05,
+      "yaw": 7.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -37.41,
+      "y": -36.98,
+      "yaw": 194.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 54.75,
+      "y": 35.16,
+      "yaw": 352.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 6.05,
+      "y": -36.6,
+      "yaw": 237.3,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 36.46,
+      "y": 24.98,
+      "yaw": 144.3,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -38.41,
+      "y": 31.43,
+      "yaw": 244.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -34.5,
+      "y": 68.57,
+      "yaw": 129.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 19.09,
+      "y": 15.84,
+      "yaw": 253.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -32.5,
+      "y": 54.34,
+      "yaw": 317.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -15.9,
+      "y": 27.51,
+      "yaw": 309.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -4.89,
+      "y": -19.14,
+      "yaw": 242.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -16.87,
+      "y": 45.15,
+      "yaw": 43.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 59.49,
+      "y": 53.03,
+      "yaw": 304.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -38.87,
+      "y": 58.16,
+      "yaw": 297.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -28.2,
+      "y": 53.46,
+      "yaw": 261.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 48.4,
+      "y": -38.15,
+      "yaw": 64.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -19.4,
+      "y": -63.47,
+      "yaw": 19.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -39.03,
+      "y": 21.86,
+      "yaw": 82.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -24.67,
+      "y": -39.65,
+      "yaw": 219.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -18.16,
+      "y": -35.04,
+      "yaw": 182.8,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 43.85,
+      "y": 37.25,
+      "yaw": 18.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -6.8,
+      "y": -52.03,
+      "yaw": 240.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 40.51,
+      "y": 0.55,
+      "yaw": 23.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 3.59,
+      "y": -9.5,
+      "yaw": 352.7,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -47.31,
+      "y": -0.49,
+      "yaw": 146.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -10.59,
+      "y": 33.7,
+      "yaw": 118.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 59.55,
+      "y": 37.24,
+      "yaw": 209.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 55.78,
+      "y": -54.06,
+      "yaw": 102.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 8.54,
+      "y": 19.57,
+      "yaw": 287.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 18.58,
+      "y": 31.32,
+      "yaw": 238.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -66.03,
+      "y": -24.28,
+      "yaw": 291.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -45.59,
+      "y": -28.23,
+      "yaw": 254.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -70.6,
+      "y": -10.58,
+      "yaw": 314.8,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -21.31,
+      "y": -66.13,
+      "yaw": 22.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -48.03,
+      "y": 54.07,
+      "yaw": 50.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 50.68,
+      "y": -24.96,
+      "yaw": 248.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -56.39,
+      "y": 66.81,
+      "yaw": 180.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 9.31,
+      "y": 25.43,
+      "yaw": 182.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -63.33,
+      "y": -58.85,
+      "yaw": 5.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 9.0,
+      "y": 33.13,
+      "yaw": 154.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 56.54,
+      "y": 49.94,
+      "yaw": 4.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -24.31,
+      "y": 35.83,
+      "yaw": 315.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 46.59,
+      "y": 10.11,
+      "yaw": 211.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 48.13,
+      "y": -17.58,
+      "yaw": 359.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 56.58,
+      "y": -55.13,
+      "yaw": 5.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 51.37,
+      "y": 7.78,
+      "yaw": 270.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 3.26,
+      "y": 32.59,
+      "yaw": 298.8,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 68.99,
+      "y": 43.97,
+      "yaw": 152.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -15.16,
+      "y": 24.18,
+      "yaw": 268.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 60.53,
+      "y": -13.42,
+      "yaw": 269.1,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 58.29,
+      "y": -10.93,
+      "yaw": 139.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 34.11,
+      "y": -52.47,
+      "yaw": 260.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -11.94,
+      "y": -7.15,
+      "yaw": 89.9,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 58.23,
+      "y": 4.29,
+      "yaw": 295.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -26.74,
+      "y": -25.21,
+      "yaw": 243.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -62.8,
+      "y": 61.72,
+      "yaw": 142.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -22.34,
+      "y": 4.58,
+      "yaw": 206.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 66.53,
+      "y": 25.48,
+      "yaw": 315.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -27.2,
+      "y": -24.39,
+      "yaw": 291.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 8.84,
+      "y": 39.34,
+      "yaw": 57.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 36.08,
+      "y": -24.06,
+      "yaw": 165.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 53.02,
+      "y": 64.23,
+      "yaw": 245.5,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 13.79,
+      "y": -18.42,
+      "yaw": 321.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 64.53,
+      "y": -5.35,
+      "yaw": 82.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -46.59,
+      "y": 53.74,
+      "yaw": 301.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -9.78,
+      "y": -26.64,
+      "yaw": 125.7,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": 8.31,
+      "y": 9.2,
+      "yaw": 118.8,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 11.02,
+      "y": 33.22,
+      "yaw": 57.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -31.19,
+      "y": -70.76,
+      "yaw": 10.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -8.9,
+      "y": -33.11,
+      "yaw": 301.1,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -40.69,
+      "y": -28.07,
+      "yaw": 326.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 29.48,
+      "y": 70.53,
+      "yaw": 318.0,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -10.25,
+      "y": -69.05,
+      "yaw": 222.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -69.53,
+      "y": 52.66,
+      "yaw": 302.4,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -60.98,
+      "y": -3.34,
+      "yaw": 182.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 12.64,
+      "y": 19.84,
+      "yaw": 230.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 32.76,
+      "y": -31.14,
+      "yaw": 142.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 39.52,
+      "y": -17.3,
+      "yaw": 274.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -70.1,
+      "y": -10.48,
+      "yaw": 122.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 62.54,
+      "y": -18.77,
+      "yaw": 185.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -22.12,
+      "y": -43.08,
+      "yaw": 223.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 38.02,
+      "y": -60.32,
+      "yaw": 38.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 7.36,
+      "y": -36.31,
+      "yaw": 136.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 7.48,
+      "y": 43.57,
+      "yaw": 57.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -61.25,
+      "y": -24.25,
+      "yaw": 189.7,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 55.93,
+      "y": 5.0,
+      "yaw": 326.4,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 43.65,
+      "y": -15.14,
+      "yaw": 253.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -17.57,
+      "y": 2.46,
+      "yaw": 268.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 67.29,
+      "y": 6.88,
+      "yaw": 243.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 61.64,
+      "y": -63.68,
+      "yaw": 75.5,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -28.48,
+      "y": -2.0,
+      "yaw": 355.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -45.34,
+      "y": -58.35,
+      "yaw": 125.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 64.98,
+      "y": 29.79,
+      "yaw": 136.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 4.83,
+      "y": -50.83,
+      "yaw": 272.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 3.65,
+      "y": 23.09,
+      "yaw": 348.7,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -46.37,
+      "y": 55.42,
+      "yaw": 293.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -47.73,
+      "y": -57.33,
+      "yaw": 31.2,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -7.9,
+      "y": -35.58,
+      "yaw": 354.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -9.66,
+      "y": -33.07,
+      "yaw": 115.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 9.82,
+      "y": 1.91,
+      "yaw": 302.3,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -39.23,
+      "y": -40.61,
+      "yaw": 277.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 44.12,
+      "y": -51.94,
+      "yaw": 1.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -36.06,
+      "y": -60.2,
+      "yaw": 314.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -33.32,
+      "y": -53.77,
+      "yaw": 246.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 64.88,
+      "y": 60.15,
+      "yaw": 4.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -60.84,
+      "y": -59.77,
+      "yaw": 195.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -18.79,
+      "y": -14.67,
+      "yaw": 29.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 26.16,
+      "y": 42.7,
+      "yaw": 272.6,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 38.64,
+      "y": 61.09,
+      "yaw": 335.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -8.65,
+      "y": 35.91,
+      "yaw": 254.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 61.67,
+      "y": -13.63,
+      "yaw": 81.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 37.68,
+      "y": 13.12,
+      "yaw": 167.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 46.0,
+      "y": 59.21,
+      "yaw": 223.4,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -13.82,
+      "y": 16.33,
+      "yaw": 304.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 31.8,
+      "y": 54.44,
+      "yaw": 308.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -70.57,
+      "y": 57.6,
+      "yaw": 268.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 15.01,
+      "y": -9.22,
+      "yaw": 76.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -8.79,
+      "y": -63.52,
+      "yaw": 204.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": 8.68,
+      "y": -54.81,
+      "yaw": 208.3,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -60.91,
+      "y": -55.68,
+      "yaw": 118.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 62.32,
+      "y": 56.51,
+      "yaw": 322.9,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -22.29,
+      "y": -4.51,
+      "yaw": 204.2,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -0.44,
+      "y": 20.89,
+      "yaw": 107.9,
+      "amb": true
+    },
+    {
+      "kind": "sangue",
+      "x": -28.26,
+      "y": -18.8,
+      "yaw": 55.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 40.91,
+      "y": -41.62,
+      "yaw": 15.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 3.32,
+      "y": -24.34,
+      "yaw": 29.6,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 31.11,
+      "y": -38.62,
+      "yaw": 276.5,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -14.2,
+      "y": -65.57,
+      "yaw": 28.1,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -60.63,
+      "y": 36.45,
+      "yaw": 143.6,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -29.88,
+      "y": -2.23,
+      "yaw": 26.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -49.86,
+      "y": -57.68,
+      "yaw": 224.1,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": -7.78,
+      "y": -0.25,
+      "yaw": 218.2,
+      "amb": true
+    },
+    {
+      "kind": "ossada",
+      "x": 44.44,
+      "y": 16.15,
+      "yaw": 216.2,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": -38.96,
+      "y": 21.45,
+      "yaw": 250.0,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -11.66,
+      "y": -56.15,
+      "yaw": 78.0,
+      "amb": true
+    },
+    {
+      "kind": "capim_alto",
+      "x": 67.35,
+      "y": 2.85,
+      "yaw": 114.9,
+      "amb": true
+    },
+    {
+      "kind": "cranios",
+      "x": -43.25,
+      "y": 43.82,
+      "yaw": 211.9,
+      "amb": true
+    }
+  ],
+  "portals": [
+    {
+      "id": "mata_saida_norte",
+      "x": 23.1,
+      "y": -71,
+      "radius": 2.2,
+      "to_map": "astralia",
+      "to_x": -28.5,
+      "to_y": 0.0,
+      "label": "Astrália",
+      "min_level": 19,
+      "level_lock": true,
+      "ajuste": true,
+      "via_cidade": "astralia"
+    },
+    {
+      "id": "mata_volta",
+      "x": 0,
+      "y": 72,
+      "radius": 2.2,
+      "to_map": "vale_das_cinzas",
+      "to_x": 31,
+      "to_y": -31,
+      "label": "Voltar"
+    },
+    {
+      "id": "mata_dungeon",
+      "x": -62,
+      "y": -46,
+      "radius": 2.0,
+      "to_map": "cripta_do_sino",
+      "to_x": -4.0,
+      "to_y": 33.6,
+      "label": "Cripta do Sino",
+      "min_level": 18,
+      "level_lock": true
+    },
+    {
+      "id": "mata_dos_enforcados_para_bosque_corujas",
+      "x": 60.7,
+      "y": 18.1,
+      "radius": 2.0,
+      "to_map": "bosque_corujas",
+      "to_x": 0.0,
+      "to_y": 46.0,
+      "label": "Bosque das Corujas",
+      "min_level": 18,
+      "level_lock": true
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp_mata",
+      "name": "Vila do Moinho",
+      "x": 0,
+      "y": 55.5
+    },
+    {
+      "id": "wp_mata_dos_enforcados_atalho",
+      "name": "Altar do Musgo",
+      "x": -38.6,
+      "y": -20.7
+    }
+  ],
+  "npcs": [
+    {
+      "id": "agricultora_benta",
+      "name": "Benta, a Agricultora",
+      "role": "missoes",
+      "x": -10.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Os javalis comeram a horta toda. Ajuda a gente a recomeçar?",
+      "look": "aldeao"
+    },
+    {
+      "id": "cozinheiro_ivo",
+      "name": "Ivo, o Cozinheiro",
+      "role": "missoes",
+      "x": -5.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Ensopado bom começa com carne de javali e raiz da vigília.",
+      "look": "ferreiro"
+    },
+    {
+      "id": "carpinteiro_jorge",
+      "name": "Jorge, o Carpinteiro",
+      "role": "missoes",
+      "x": 0.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "A ponte velha caiu. Com resina e rebites eu levanto outra.",
+      "look": "guarda"
+    },
+    {
+      "id": "mentora_selene",
+      "name": "Selene, a Guardiã do Sino",
+      "role": "missoes",
+      "x": 5.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "O sino enterrado ainda chama. Quem quer jurar, desce à cripta.",
+      "look": "arcanista"
+    },
+    {
+      "id": "quadro_mata",
+      "name": "Quadro de Contratos",
+      "role": "contratos",
+      "x": 10.0,
+      "y": 62,
+      "facing": 180,
+      "greeting": "Pedidos da vila — pagos ao entregar.",
+      "look": "quadro"
+    },
+    {
+      "id": "fallen_mata",
+      "name": "Fallen, o Capitão",
+      "role": "missoes",
+      "x": 15.0,
+      "y": 62.0,
+      "facing": 180,
+      "look": "fallen",
+      "greeting": "A mata engole quem anda distraído. Fique atrás do cano do meu rifle.",
+      "requires_flag": "fallen:3"
+    },
+    {
+      "id": "vacho_mata",
+      "name": "Vacho, o Moleque do Barril",
+      "role": "missoes",
+      "x": -15.0,
+      "y": 62.0,
+      "facing": 180,
+      "look": "vacho",
+      "greeting": "Eu tô bem, eu tô bem... só tem uma ARANHA no barril. Duas. Muitas.",
+      "requires_flag": "vacho:3"
+    },
+    {
+      "id": "bobo_mata",
+      "name": "Pipoca, o Bobo da Mata",
+      "role": "missoes",
+      "x": 6.0,
+      "y": 59.0,
+      "facing": 180,
+      "look": "bobo",
+      "greeting": "Desafios diários do bobo! Três variações — conforme você cresce, eu peço coisa mais difícil e pago mais."
+    }
+  ],
+  "objects": [
+    {
+      "id": "mata_veio0",
+      "kind": "veio",
+      "x": -30,
+      "y": 46,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "mata_veio1",
+      "kind": "veio",
+      "x": 30,
+      "y": 46,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "mata_veio2",
+      "kind": "veio",
+      "x": -38.6,
+      "y": -20.7,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "mata_veio3",
+      "kind": "veio",
+      "x": 51.1,
+      "y": -41.1,
+      "label": "Veio de ferro raso",
+      "yields": "mat_ferro_raso",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 120,
+      "requires_flag": "tool:picareta"
+    },
+    {
+      "id": "mata_erva0",
+      "kind": "veio",
+      "x": -28.5,
+      "y": 49.3,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "mata_erva1",
+      "kind": "veio",
+      "x": 14,
+      "y": 48,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "mata_erva2",
+      "kind": "veio",
+      "x": 0.1,
+      "y": -9.8,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "mata_erva3",
+      "kind": "veio",
+      "x": 22,
+      "y": 2,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 90
+    },
+    {
+      "id": "mata_panela",
+      "kind": "panela",
+      "x": -9,
+      "y": 54,
+      "label": "Panela"
+    },
+    {
+      "id": "mata_caldeirao",
+      "kind": "caldeirao",
+      "x": 9,
+      "y": 54,
+      "label": "Caldeirão"
+    },
+    {
+      "id": "mata_canteiro0",
+      "kind": "canteiro",
+      "x": -6,
+      "y": 52,
+      "label": "Canteiro comunitário"
+    },
+    {
+      "id": "mata_canteiro1",
+      "kind": "canteiro",
+      "x": -2,
+      "y": 52,
+      "label": "Canteiro comunitário"
+    },
+    {
+      "id": "mata_canteiro2",
+      "kind": "canteiro",
+      "x": 2,
+      "y": 52,
+      "label": "Canteiro comunitário"
+    },
+    {
+      "id": "mata_canteiro3",
+      "kind": "canteiro",
+      "x": 6,
+      "y": 52,
+      "label": "Canteiro comunitário"
+    },
+    {
+      "id": "mata_espada",
+      "kind": "reliquia",
+      "x": -58,
+      "y": 24,
+      "label": "Espada cravada",
+      "quest": "q_s02"
+    },
+    {
+      "id": "mata_casca_serpente",
+      "kind": "veio",
+      "x": -36.7,
+      "y": 24.2,
+      "label": "Casca da Árvore da Serpente",
+      "yields": "mat_casca_serpente",
+      "yield_min": 1,
+      "yield_max": 1,
+      "respawn_seconds": 600
+    },
+    {
+      "id": "achado_mata_1",
+      "kind": "reliquia",
+      "x": -36.0,
+      "y": 40.0,
+      "label": "Galho com marca de corda"
+    },
+    {
+      "id": "achado_mata_2",
+      "kind": "reliquia",
+      "x": 48.0,
+      "y": 40.0,
+      "label": "Galho com marca de corda"
+    },
+    {
+      "id": "achado_mata_3",
+      "kind": "reliquia",
+      "x": 48.0,
+      "y": -4.0,
+      "label": "Galho com marca de corda"
+    },
+    {
+      "id": "garrafa_triangulo_1",
+      "kind": "reliquia",
+      "x": -50.0,
+      "y": 50.0,
+      "label": "Garrafa com mapa"
+    },
+    {
+      "id": "garrafa_triangulo_2",
+      "kind": "reliquia",
+      "x": 56.0,
+      "y": -50.0,
+      "label": "Garrafa com mapa"
+    },
+    {
+      "id": "pista_mata_1",
+      "kind": "reliquia",
+      "x": -61.1,
+      "y": 6.5,
+      "label": "Pegada enlameada"
+    },
+    {
+      "id": "pista_mata_2",
+      "kind": "reliquia",
+      "x": 60.0,
+      "y": -20.0,
+      "label": "Saco de farinha rasgado"
+    },
+    {
+      "id": "pista_mata_3",
+      "kind": "reliquia",
+      "x": -10.0,
+      "y": -60.0,
+      "label": "Pena preta presa num galho"
+    },
+    {
+      "id": "altar_oferenda_mata_dos_enforcados",
+      "kind": "altar",
+      "x": 16.9,
+      "y": 68.2,
+      "label": "Altar de Oferenda (Javali Ancião)",
+      "consumes": "mat_couro",
+      "consume_qty": 15,
+      "summons": "monster_mata_javali_anciao",
+      "summon_level": 20
+    },
+    {
+      "id": "esfera_macaco_2",
+      "kind": "esfera",
+      "x": -49.9,
+      "y": 59.1,
+      "label": "Esfera do Macaco (2 estrelas)",
+      "grant_flag": "esfera:2",
+      "text": "Uma esfera alaranjada, quente, com estrelas vermelhas dentro."
+    },
+    {
+      "id": "amb_mata_dos_enforcados_lugar0",
+      "kind": "livro",
+      "x": 33.61,
+      "y": -3.0,
+      "label": "Diário largado",
+      "text": "Brasas ainda mornas e três sacos de dormir. Quem estava aqui saiu correndo — a panela ficou no fogo.",
+      "amb": true
+    },
+    {
+      "id": "amb_mata_dos_enforcados_lugar4",
+      "kind": "livro",
+      "x": 38.21,
+      "y": 37.6,
+      "label": "Diário largado",
+      "text": "Brasas ainda mornas e três sacos de dormir. Quem estava aqui saiu correndo — a panela ficou no fogo.",
+      "amb": true
+    },
+    {
+      "id": "amb_mata_dos_enforcados_veio0",
+      "kind": "veio",
+      "x": -37.8,
+      "y": 27.62,
+      "label": "Árvore seca (machado)",
+      "yields": "mat_tabua",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "requires_flag": "tool:machado",
+      "amb": true
+    },
+    {
+      "id": "amb_mata_dos_enforcados_veio1",
+      "kind": "veio",
+      "x": -55.02,
+      "y": 51.82,
+      "label": "Moita de folha amarga",
+      "yields": "mat_folha_amarga",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "amb": true
+    },
+    {
+      "id": "amb_mata_dos_enforcados_veio2",
+      "kind": "veio",
+      "x": 36.7,
+      "y": 45.64,
+      "label": "Moita de erva",
+      "yields": "mat_erva_tonico",
+      "yield_min": 1,
+      "yield_max": 2,
+      "respawn_seconds": 600,
+      "amb": true
+    }
+  ],
+  "checkpoints": [],
+  "roads": [
+    {
+      "points": [
+        [
+          0,
+          62
+        ],
+        [
+          0.0,
+          61.59
+        ],
+        [
+          0.0,
+          60.78
+        ],
+        [
+          0.0,
+          59.56
+        ],
+        [
+          0.0,
+          57.94
+        ],
+        [
+          0.0,
+          56.72
+        ],
+        [
+          0.0,
+          55.91
+        ],
+        [
+          0,
+          55.5
+        ]
+      ],
+      "width": 3.2
+    },
+    {
+      "points": [
+        [
+          0,
+          62
+        ],
+        [
+          0.0,
+          62.62
+        ],
+        [
+          0.0,
+          63.88
+        ],
+        [
+          0.0,
+          65.75
+        ],
+        [
+          0.0,
+          68.25
+        ],
+        [
+          0.0,
+          70.12
+        ],
+        [
+          0.0,
+          71.38
+        ],
+        [
+          0,
+          72
+        ]
+      ],
+      "width": 3.2
+    },
+    {
+      "points": [
+        [
+          0.0,
+          55.5
+        ],
+        [
+          -2.56,
+          52.26
+        ],
+        [
+          -5.2,
+          49.07
+        ],
+        [
+          -7.86,
+          45.91
+        ],
+        [
+          -10.51,
+          42.73
+        ],
+        [
+          -13.1,
+          39.51
+        ],
+        [
+          -15.6,
+          36.22
+        ],
+        [
+          -17.99,
+          32.85
+        ],
+        [
+          -20.27,
+          29.39
+        ],
+        [
+          -22.46,
+          25.87
+        ],
+        [
+          -24.6,
+          22.31
+        ],
+        [
+          -26.67,
+          18.73
+        ],
+        [
+          -28.72,
+          15.13
+        ],
+        [
+          -30.88,
+          11.59
+        ],
+        [
+          -33.17,
+          8.15
+        ],
+        [
+          -35.47,
+          4.81
+        ],
+        [
+          -37.89,
+          1.45
+        ],
+        [
+          -40.42,
+          -1.84
+        ],
+        [
+          -42.98,
+          -5.08
+        ],
+        [
+          -45.41,
+          -8.45
+        ],
+        [
+          -47.8,
+          -11.85
+        ],
+        [
+          -50.09,
+          -15.3
+        ],
+        [
+          -52.05,
+          -19.0
+        ],
+        [
+          -53.85,
+          -22.72
+        ],
+        [
+          -55.53,
+          -26.5
+        ],
+        [
+          -57.08,
+          -30.34
+        ],
+        [
+          -58.6,
+          -34.18
+        ],
+        [
+          -60.06,
+          -38.06
+        ],
+        [
+          -61.48,
+          -41.95
+        ],
+        [
+          -62.0,
+          -46.0
+        ]
+      ],
+      "width": 2.6
+    },
+    {
+      "points": [
+        [
+          -62.0,
+          -46.0
+        ],
+        [
+          -58.31,
+          -47.97
+        ],
+        [
+          -54.55,
+          -49.8
+        ],
+        [
+          -50.72,
+          -51.47
+        ],
+        [
+          -46.81,
+          -52.97
+        ],
+        [
+          -42.88,
+          -54.33
+        ],
+        [
+          -38.8,
+          -55.33
+        ],
+        [
+          -34.85,
+          -56.28
+        ],
+        [
+          -30.74,
+          -57.07
+        ],
+        [
+          -26.82,
+          -57.81
+        ],
+        [
+          -22.7,
+          -58.55
+        ],
+        [
+          -18.71,
+          -58.98
+        ],
+        [
+          -14.52,
+          -59.45
+        ],
+        [
+          -10.34,
+          -59.99
+        ],
+        [
+          -6.23,
+          -60.72
+        ],
+        [
+          -3.71,
+          -63.53
+        ],
+        [
+          6.85,
+          -67.27
+        ],
+        [
+          23.1,
+          -71.0
+        ]
+      ],
+      "width": 2.6
+    }
+  ],
+  "_roads_curved": true,
+  "elevations": [
+    {
+      "x": 37.0,
+      "y": -4.0,
+      "w": 13,
+      "h": 13,
+      "height": 1.95,
+      "ramp": 6.5
+    },
+    {
+      "x": -38.6,
+      "y": -20.7,
+      "w": 13,
+      "h": 13,
+      "height": 2.15,
+      "ramp": 6.5
+    },
+    {
+      "x": 0.0,
+      "y": 14.0,
+      "w": 14.4,
+      "h": 10.8,
+      "height": 1.1,
+      "ramp": 5.0
+    },
+    {
+      "x": -36.7,
+      "y": 24.2,
+      "w": 9.6,
+      "h": 11.3,
+      "height": 1.18,
+      "ramp": 6.5
+    },
+    {
+      "x": 48.9,
+      "y": 40.0,
+      "w": 9.5,
+      "h": 11.3,
+      "height": 1.17,
+      "ramp": 4.8
+    },
+    {
+      "x": 0.1,
+      "y": -9.8,
+      "w": 8.8,
+      "h": 9.6,
+      "height": 2.38,
+      "ramp": 5.9
+    },
+    {
+      "x": 25.6,
+      "y": -42.5,
+      "w": 7.5,
+      "h": 7.8,
+      "height": 1.98,
+      "ramp": 7.3
+    },
+    {
+      "x": -28.5,
+      "y": 49.3,
+      "w": 8.9,
+      "h": 7.0,
+      "height": 1.52,
+      "ramp": 6.4
+    },
+    {
+      "x": 51.1,
+      "y": -41.1,
+      "w": 9.4,
+      "h": 11.8,
+      "height": 1.33,
+      "ramp": 5.6
+    },
+    {
+      "x": -3.9,
+      "y": -37.0,
+      "w": 14.9,
+      "h": 12.1,
+      "height": 2.09,
+      "ramp": 6.5
+    },
+    {
+      "x": 26.7,
+      "y": 39.1,
+      "w": 8.4,
+      "h": 15.5,
+      "height": 2.25,
+      "ramp": 5.8
+    }
+  ]
+}

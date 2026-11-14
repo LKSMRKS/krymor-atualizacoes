@@ -1,0 +1,597 @@
+[
+  {
+    "id": "q_reino_lua_caca",
+    "name": "Limpeza: Lobisomens",
+    "giver": "selene_eremita",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_lobisomem"
+    ],
+    "count": 1,
+    "map": "reino_lua",
+    "min_level": 36,
+    "description": "«Doze lobisomens, e este lugar respira de novo. Você veio de longe — aproveite a viagem.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 90720,
+    "reward_coins": 845,
+    "category": "regiao",
+    "radius": 20,
+    "x": -2.4,
+    "y": 2.4,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_reino_lua_chefe",
+    "name": "O Senhor de A Lua Vermelha",
+    "giver": "selene_eremita",
+    "kind": "boss",
+    "targets": [
+      "monster_lua_lobisomem_alfa"
+    ],
+    "count": 1,
+    "map": "reino_lua",
+    "min_level": 37,
+    "description": "«Lobisomem Alfa manda aqui. Enquanto ele estiver de pé, ninguém sai deste lugar inteiro.»",
+    "hint": "Lobisomem Alfa no covil, no fundo de A Lua Vermelha.",
+    "reward_xp": 202160,
+    "reward_coins": 3070,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_reino_transilvania_caca",
+    "name": "Limpeza: Vampiros",
+    "giver": "igor_criado",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_vampiro"
+    ],
+    "count": 12,
+    "map": "reino_transilvania",
+    "min_level": 36,
+    "description": "«Doze vampiros, e este lugar respira de novo. Você veio de longe — aproveite a viagem.»",
+    "hint": "Vampiros em Transilvânia. Volte a quem pediu, na chegada.",
+    "reward_xp": 90720,
+    "reward_coins": 2510,
+    "category": "regiao"
+  },
+  {
+    "id": "q_reino_transilvania_chefe",
+    "name": "O Senhor de Transilvânia",
+    "giver": "igor_criado",
+    "kind": "boss",
+    "targets": [
+      "monster_trans_conde"
+    ],
+    "count": 1,
+    "map": "reino_transilvania",
+    "min_level": 37,
+    "description": "«O Conde manda aqui. Enquanto ele estiver de pé, ninguém sai deste lugar inteiro.»",
+    "hint": "O Conde no covil, no fundo de Transilvânia.",
+    "reward_xp": 202160,
+    "reward_coins": 3070,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_reino_inferno_caca",
+    "name": "Limpeza: Demônios da Forja",
+    "giver": "caronte_barqueiro",
+    "kind": "kill",
+    "targets": [
+      "monster_bst_demonio"
+    ],
+    "count": 12,
+    "map": "reino_inferno",
+    "min_level": 36,
+    "description": "«Doze demônios da forja, e este lugar respira de novo. Você veio de longe — aproveite a viagem.»",
+    "hint": "Demônios da Forja em O Inferno. Volte a quem pediu, na chegada.",
+    "reward_xp": 90720,
+    "reward_coins": 3415,
+    "category": "regiao"
+  },
+  {
+    "id": "q_reino_inferno_chefe",
+    "name": "O Senhor de O Inferno",
+    "giver": "caronte_barqueiro",
+    "kind": "boss",
+    "targets": [
+      "monster_inferno_ceifador_rei"
+    ],
+    "count": 1,
+    "map": "reino_inferno",
+    "min_level": 37,
+    "description": "«O Rei Ceifador manda aqui. Enquanto ele estiver de pé, ninguém sai deste lugar inteiro.»",
+    "hint": "O Rei Ceifador no covil, no fundo de O Inferno.",
+    "reward_xp": 202160,
+    "reward_coins": 3070,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_reino_celeste_caca",
+    "name": "Limpeza: Anjos do Juramento",
+    "giver": "serafina_porteira",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_anjo"
+    ],
+    "count": 1,
+    "map": "reino_celeste",
+    "min_level": 36,
+    "description": "«Doze anjos do juramento, e este lugar respira de novo. Você veio de longe — aproveite a viagem.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 90720,
+    "reward_coins": 3005,
+    "category": "regiao",
+    "radius": 20,
+    "x": 0.2,
+    "y": 2.7,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_reino_celeste_chefe",
+    "name": "O Senhor de A Cidade Celestial",
+    "giver": "serafina_porteira",
+    "kind": "boss",
+    "targets": [
+      "monster_ceu_demonio_invasor"
+    ],
+    "count": 1,
+    "map": "reino_celeste",
+    "min_level": 37,
+    "description": "«O Demônio Invasor manda aqui. Enquanto ele estiver de pé, ninguém sai deste lugar inteiro.»",
+    "hint": "O Demônio Invasor no covil, no fundo de A Cidade Celestial.",
+    "reward_xp": 202160,
+    "reward_coins": 3070,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_floresta_oculta_caca",
+    "name": "Limpeza: Sacis das Cinzas",
+    "giver": "curupira",
+    "kind": "hunt",
+    "targets": [
+      "monster_bst_saci"
+    ],
+    "count": 1,
+    "map": "floresta_oculta",
+    "min_level": 21,
+    "description": "«Doze sacis das cinzas, e este lugar respira de novo. Você veio de longe — aproveite a viagem.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 30870,
+    "reward_coins": 500,
+    "category": "regiao",
+    "radius": 20,
+    "x": 2.1,
+    "y": 2.6,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_floresta_oculta_chefe",
+    "name": "O Senhor de A Floresta Oculta",
+    "giver": "curupira",
+    "kind": "boss",
+    "targets": [
+      "monster_floresta_saci_rei"
+    ],
+    "count": 1,
+    "map": "floresta_oculta",
+    "min_level": 22,
+    "description": "«O Saci-Rei manda aqui. Enquanto ele estiver de pé, ninguém sai deste lugar inteiro.»",
+    "hint": "O Saci-Rei no covil, no fundo de A Floresta Oculta.",
+    "reward_xp": 74060,
+    "reward_coins": 1670,
+    "reward_items": [
+      "consumable_c02_tonico_medio*5"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_reino_celeste_portoes",
+    "name": "Os Portões do Céu",
+    "giver": "serafina_porteira",
+    "kind": "kill",
+    "targets": [
+      "monster_serp_anjo"
+    ],
+    "count": 10,
+    "map": "reino_celeste",
+    "min_level": 50,
+    "description": "«Quem chega pela ponte das nuvens encontra os Portões tomados por anjos caídos. Dez deles — e os portões voltam a ser nossos.»",
+    "hint": "Anjos Caídos (50+) nos cantos da Cidade Celestial.",
+    "reward_xp": 182070,
+    "reward_coins": 2885,
+    "category": "regiao"
+  },
+  {
+    "id": "q_ruinas_automatos_par1",
+    "name": "Caça: Aranhas de Engrenagem",
+    "giver": "engenheira_ada",
+    "kind": "hunt",
+    "targets": [
+      "monster_auto_aranha"
+    ],
+    "count": 1,
+    "map": "ruinas_automatos",
+    "min_level": 41,
+    "description": "«Aranhas de Engrenagem cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 117670,
+    "reward_coins": 1895,
+    "category": "regiao",
+    "radius": 20,
+    "x": 29.5,
+    "y": 21.2,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_ruinas_automatos_par2",
+    "name": "Os Mais Fortes: Guardiões Autômatos",
+    "giver": "engenheira_ada",
+    "kind": "hunt",
+    "targets": [
+      "monster_auto_guardiao"
+    ],
+    "count": 1,
+    "map": "ruinas_automatos",
+    "min_level": 43,
+    "description": "«Os guardiões autômatos são os que mais custam. Oito — e traga histórias.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 129430,
+    "reward_coins": 2075,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao",
+    "radius": 20,
+    "x": 33.5,
+    "y": -12.4,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_triangulo_demonio_par1",
+    "name": "Caça: Homens-Peixe",
+    "giver": "vigia_marujo",
+    "kind": "kill",
+    "targets": [
+      "monster_tri_homem_peixe"
+    ],
+    "count": 10,
+    "map": "triangulo_demonio",
+    "min_level": 46,
+    "description": "«Homens-Peixe cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.»",
+    "hint": "Homens-Peixe em volta do acampamento.",
+    "reward_xp": 148120,
+    "reward_coins": 2585,
+    "category": "regiao"
+  },
+  {
+    "id": "q_triangulo_demonio_par2",
+    "name": "Os Mais Fortes: Caranguejos do Triângulo",
+    "giver": "vigia_marujo",
+    "kind": "kill",
+    "targets": [
+      "monster_tri_caranguejo"
+    ],
+    "count": 8,
+    "map": "triangulo_demonio",
+    "min_level": 48,
+    "description": "«Os caranguejos do triângulo são os que mais custam. Oito — e traga histórias.»",
+    "hint": "Caranguejos do Triângulo, mais para o fundo do mapa.",
+    "reward_xp": 161280,
+    "reward_coins": 2325,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao"
+  },
+  {
+    "id": "q_fundo_triangulo_par1",
+    "name": "Caça: Enguias Elétricas",
+    "giver": "sereia_lia",
+    "kind": "kill",
+    "targets": [
+      "monster_fundo_enguia"
+    ],
+    "count": 10,
+    "map": "fundo_triangulo",
+    "min_level": 50,
+    "description": "«Enguias Elétricas cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.»",
+    "hint": "Enguias Elétricas em volta do acampamento.",
+    "reward_xp": 175000,
+    "reward_coins": 2810,
+    "category": "regiao"
+  },
+  {
+    "id": "q_fundo_triangulo_par2",
+    "name": "Os Mais Fortes: Sereias de Guerra",
+    "giver": "sereia_lia",
+    "kind": "kill",
+    "targets": [
+      "monster_fundo_sereia"
+    ],
+    "count": 8,
+    "map": "fundo_triangulo",
+    "min_level": 52,
+    "description": "«Os sereias de guerra são os que mais custam. Oito — e traga histórias.»",
+    "hint": "Sereias de Guerra, mais para o fundo do mapa.",
+    "reward_xp": 189280,
+    "reward_coins": 2525,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao"
+  },
+  {
+    "id": "q_ilha_serpente_par1",
+    "name": "Caça: Harpias da Ilha",
+    "giver": "chefe_tribo",
+    "kind": "hunt",
+    "targets": [
+      "monster_ilha_harpia"
+    ],
+    "count": 1,
+    "map": "ilha_serpente",
+    "min_level": 56,
+    "description": "«Harpias da Ilha cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 219520,
+    "reward_coins": 2935,
+    "category": "regiao",
+    "radius": 20,
+    "x": 28.3,
+    "y": 23.7,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_ilha_serpente_par2",
+    "name": "Os Mais Fortes: Xamãs da Ilha",
+    "giver": "chefe_tribo",
+    "kind": "hunt",
+    "targets": [
+      "monster_ilha_centauro"
+    ],
+    "count": 1,
+    "map": "ilha_serpente",
+    "min_level": 58,
+    "description": "«Os xamãs da ilha falam com a Serpente e mandam ela atacar os barcos. Oito xamãs a menos e a Serpente fica surda. Eles vivem mais para o fundo da ilha.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 235480,
+    "reward_coins": 3005,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao",
+    "radius": 20,
+    "x": -31.8,
+    "y": -11.6,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_pico_vento_par1",
+    "name": "Caça: Harpias das Nevascas",
+    "giver": "eremita_vento",
+    "kind": "hunt",
+    "targets": [
+      "monster_pico_harpia"
+    ],
+    "count": 1,
+    "map": "pico_vento",
+    "min_level": 47,
+    "description": "«Harpias das Nevascas cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 154630,
+    "reward_coins": 2325,
+    "category": "regiao",
+    "radius": 20,
+    "x": 32.2,
+    "y": 6.3,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_pico_vento_par2",
+    "name": "Os Mais Fortes: Lobos do Vento",
+    "giver": "eremita_vento",
+    "kind": "hunt",
+    "targets": [
+      "monster_pico_lobo"
+    ],
+    "count": 1,
+    "map": "pico_vento",
+    "min_level": 49,
+    "description": "«Os lobos do vento que moram no fundo do Pico são os maiores — e os mais espertos. Oito deles, e me traga as histórias de como foi.» (Não adianta matar um por um: ache o rastro do líder do bando e derrube ele.)",
+    "hint": "Chegue perto de onde eles ficam: o rastro aparece e o líder do bando surge por perto.",
+    "reward_xp": 168070,
+    "reward_coins": 2200,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao",
+    "radius": 20,
+    "x": -30.9,
+    "y": 7.4,
+    "regulada": "kill→hunt"
+  },
+  {
+    "id": "q_caminho_serpente_par1",
+    "name": "Caça: Anjos Caídos",
+    "giver": "guardia_ponte",
+    "kind": "defend",
+    "targets": [
+      "monster_serp_anjo"
+    ],
+    "count": 3,
+    "map": "caminho_serpente",
+    "min_level": 51,
+    "description": "«Anjos Caídos cercam o acampamento. Dez a menos, e eu durmo uma noite inteira.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 182070,
+    "reward_coins": 2525,
+    "category": "regiao",
+    "radius": 6,
+    "x": 27.6,
+    "y": 6.5,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_caminho_serpente_par2",
+    "name": "Os Mais Fortes: Arautos do Trovão",
+    "giver": "guardia_ponte",
+    "kind": "kill",
+    "targets": [
+      "monster_serp_centauro"
+    ],
+    "count": 8,
+    "map": "caminho_serpente",
+    "min_level": 53,
+    "description": "«Os arautos do trovão são os que mais custam. Oito — e traga histórias.»",
+    "hint": "Arautos do Trovão, mais para o fundo do mapa.",
+    "reward_xp": 196630,
+    "reward_coins": 2590,
+    "reward_items": [
+      "consumable_c02_tonico_medio*3"
+    ],
+    "category": "regiao"
+  },
+  {
+    "id": "q_galerias_piedade_caca",
+    "name": "Dentro da Dungeon: Trolls Carcereiros",
+    "giver": "zelador_ascanio",
+    "kind": "kill",
+    "targets": [
+      "monster_canions_troll_carcereiro"
+    ],
+    "count": 6,
+    "map": "galerias_piedade",
+    "min_level": 26,
+    "description": "«Lá embaixo, os trolls carcereiros guardam o caminho do chefe. Seis — e a próxima ida fica mais fácil.»",
+    "hint": "Trolls Carcereiros dentro de Galerias Piedade (dungeon).",
+    "reward_xp": 94640,
+    "reward_coins": 1055,
+    "category": "regiao"
+  },
+  {
+    "id": "q_mercado_mortos_caca",
+    "name": "Dentro da Dungeon: Necromantes do Mercado",
+    "giver": "guia_aurelio",
+    "kind": "kill",
+    "targets": [
+      "monster_vespera_necromante_mercado"
+    ],
+    "count": 6,
+    "map": "mercado_mortos",
+    "min_level": 39,
+    "description": "«Lá embaixo, os necromantes do mercado guardam o caminho do chefe. Seis — e a próxima ida fica mais fácil.»",
+    "hint": "Necromantes do Mercado dentro de Mercado Mortos (dungeon).",
+    "reward_xp": 212940,
+    "reward_coins": 1675,
+    "category": "regiao"
+  },
+  {
+    "id": "q_salao_geada_caca",
+    "name": "Dentro da Dungeon: Campeões Draugr",
+    "giver": "artesa_ilse",
+    "kind": "kill",
+    "targets": [
+      "monster_geada_campeao_draugr"
+    ],
+    "count": 6,
+    "map": "salao_geada",
+    "min_level": 46,
+    "description": "«Lá embaixo, os campeões draugr guardam o caminho do chefe. Seis — e a próxima ida fica mais fácil.»",
+    "hint": "Campeões Draugr dentro de Salao Geada (dungeon).",
+    "reward_xp": 296240,
+    "reward_coins": 2105,
+    "category": "regiao"
+  },
+  {
+    "id": "q_fornalha_caca",
+    "name": "Dentro da Dungeon: Golens da Fornalha",
+    "giver": "mestre_forja",
+    "kind": "kill",
+    "targets": [
+      "monster_escoria_golem_fornalha"
+    ],
+    "count": 6,
+    "map": "fornalha",
+    "min_level": 52,
+    "description": "«Lá embaixo, os golens da fornalha guardam o caminho do chefe. Seis — e a próxima ida fica mais fácil.»",
+    "hint": "Golens da Fornalha dentro de Fornalha (dungeon).",
+    "reward_xp": 378560,
+    "reward_coins": 2455,
+    "category": "regiao"
+  },
+  {
+    "id": "q_ezequiel_1",
+    "name": "Garrafas do Triângulo",
+    "giver": "barqueiro_ezequiel",
+    "kind": "interact",
+    "targets": [
+      "garrafa_triangulo_1",
+      "garrafa_triangulo_2",
+      "garrafa_triangulo_3"
+    ],
+    "count": 3,
+    "min_level": 20,
+    "description": "«Todo marinheiro que some no Triângulo joga uma garrafa antes. Três delas foram parar terra adentro — duas na Mata, uma nos Cânions. Traga o que estiver escrito.»",
+    "hint": "Garrafas com mapa: duas nos cantos da Mata dos Enforcados, uma no canto dos Cânions. F em cada uma.",
+    "reward_xp": 28000,
+    "reward_coins": 285,
+    "reward_flags": [
+      "triangulo:mapa"
+    ],
+    "category": "historia"
+  },
+  {
+    "id": "q_ezequiel_2",
+    "name": "Os Que Afundaram",
+    "giver": "barqueiro_ezequiel",
+    "kind": "defend",
+    "targets": [
+      "monster_vespera_afogado"
+    ],
+    "count": 3,
+    "min_level": 34,
+    "requires": "q_ezequiel_1",
+    "map": "vespera",
+    "description": "«Os mapas apontam para Véspera: os afogados de lá vieram do Triângulo. Dez deles carregam o rumo do naufrágio na pele.» (Eles vêm em bando: fique no ponto e segure três ondas.)",
+    "hint": "Vá até onde eles ficam e segure o ponto: 3 ondas. Sair para longe cancela a onda.",
+    "reward_xp": 85750,
+    "reward_coins": 1605,
+    "category": "historia",
+    "radius": 6,
+    "x": 1.1,
+    "y": 10.8,
+    "regulada": "kill→defend"
+  },
+  {
+    "id": "q_ezequiel_3",
+    "name": "O Último Marujo",
+    "giver": "barqueiro_ezequiel",
+    "kind": "talk",
+    "targets": [
+      "vigia_marujo"
+    ],
+    "count": 1,
+    "min_level": 44,
+    "requires": "q_ezequiel_2",
+    "description": "«Agora você aguenta o mar de lá. Pegue o barco do Tibério e procure o Ozório — ele é o último que voltou do Triângulo.»",
+    "hint": "Barco do Tibério (nível 44) até o Triângulo; fale com o Ozório no acampamento.",
+    "reward_xp": 135520,
+    "reward_coins": 595,
+    "reward_flags": [
+      "triangulo:segredo"
+    ],
+    "category": "historia"
+  }
+]

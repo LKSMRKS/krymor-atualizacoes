@@ -1,0 +1,233 @@
+{
+  "id": "laboratorio",
+  "display_name": "Laboratório de Testes",
+  "half_size": 44,
+  "spawn_x": 0,
+  "spawn_y": 32,
+  "safe_radius": 5,
+  "xp_multiplier": 1,
+  "kind": "campo",
+  "region": "porto",
+  "theme": "vale",
+  "no_mount": false,
+  "zones": [
+    {
+      "id": "chegada",
+      "name": "Chegada",
+      "kind": "seguro",
+      "x": 0,
+      "y": 32,
+      "w": 16,
+      "h": 10
+    },
+    {
+      "id": "bonecos",
+      "name": "Bonecos de treino",
+      "kind": "medio",
+      "x": 0,
+      "y": -14,
+      "w": 26,
+      "h": 8
+    },
+    {
+      "id": "campo",
+      "name": "Campo de testes (chame monstros pelo F1)",
+      "kind": "medio",
+      "x": 0,
+      "y": 6,
+      "w": 70,
+      "h": 30
+    }
+  ],
+  "obstacles": [
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": -43.4,
+      "w": 88,
+      "h": 1.2,
+      "r": 0,
+      "height": 4.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 0,
+      "y": 43.4,
+      "w": 88,
+      "h": 1.2,
+      "r": 0,
+      "height": 4.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": -43.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 88,
+      "r": 0,
+      "height": 4.0
+    },
+    {
+      "kind": "muralha",
+      "shape": "box",
+      "x": 43.4,
+      "y": 0,
+      "w": 1.2,
+      "h": 88,
+      "r": 0,
+      "height": 4.0
+    }
+  ],
+  "gates": [],
+  "chests": [],
+  "spawns": [],
+  "props": [
+    {
+      "kind": "boneco_treino",
+      "x": -9,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "boneco_treino",
+      "x": -6,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "boneco_treino",
+      "x": -3,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "boneco_treino",
+      "x": 3,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "boneco_treino",
+      "x": 6,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "boneco_treino",
+      "x": 9,
+      "y": -14.0,
+      "yaw": 180
+    },
+    {
+      "kind": "placa",
+      "x": -12,
+      "y": 30,
+      "yaw": 0
+    },
+    {
+      "kind": "placa",
+      "x": 12,
+      "y": 30,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": -4,
+      "y": 36,
+      "yaw": 0
+    },
+    {
+      "kind": "tocha",
+      "x": 4,
+      "y": 36,
+      "yaw": 0
+    },
+    {
+      "kind": "estandarte",
+      "x": 0,
+      "y": 39,
+      "yaw": 0
+    },
+    {
+      "kind": "cadaver",
+      "x": 1.1,
+      "y": -15.3,
+      "yaw": 62,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": 0.0,
+      "y": -15.8,
+      "yaw": 250,
+      "poi": "vida"
+    },
+    {
+      "kind": "cadaver",
+      "x": -13.3,
+      "y": 11.2,
+      "yaw": 132,
+      "poi": "vida"
+    },
+    {
+      "kind": "sangue",
+      "x": -14.1,
+      "y": 12.1,
+      "yaw": 320,
+      "poi": "vida"
+    }
+  ],
+  "portals": [
+    {
+      "id": "lab_volta",
+      "x": 0,
+      "y": 40.5,
+      "radius": 1.6,
+      "to_map": "porto_das_cinzas",
+      "to_x": 0.0,
+      "to_y": -9.5,
+      "label": "Voltar ao Porto"
+    }
+  ],
+  "waypoints": [],
+  "npcs": [],
+  "objects": [],
+  "checkpoints": [],
+  "elevations": [
+    {
+      "x": 2.6,
+      "y": -12.9,
+      "w": 7.0,
+      "h": 6.2,
+      "height": 1.37,
+      "ramp": 5.5
+    },
+    {
+      "x": -3.3,
+      "y": 11.2,
+      "w": 10.1,
+      "h": 10.3,
+      "height": 1.63,
+      "ramp": 5.0
+    },
+    {
+      "x": 22.7,
+      "y": 14.6,
+      "w": 9.5,
+      "h": 15.5,
+      "height": 0.91,
+      "ramp": 5.7
+    },
+    {
+      "x": -21.5,
+      "y": -20.2,
+      "w": 10.5,
+      "h": 11.3,
+      "height": 2.21,
+      "ramp": 6.2
+    }
+  ]
+}

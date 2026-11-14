@@ -1,0 +1,53 @@
+[
+  {
+    "id": "monster_castelo_lorde_vespera",
+    "species_name": "Lorde Vesperino, o Insone",
+    "archetype": "conjurador",
+    "level": 48,
+    "resistances": {},
+    "behavior_id": "boss_caster",
+    "loot_table_id": "loot_vespera_regente_vespera",
+    "visual_asset_id": "necro_boss",
+    "health_mult": 3.9,
+    "damage_mult": 2.64,
+    "xp_mult": 14.4,
+    "radius": 1.4,
+    "coins_min": 1799,
+    "coins_max": 3341,
+    "boss": true
+  },
+  {
+    "id": "monster_castelo_rei_gelo",
+    "species_name": "O Rei de Gelo",
+    "archetype": "tanque",
+    "level": 55,
+    "resistances": {},
+    "behavior_id": "boss_giant",
+    "loot_table_id": "loot_geada_jotunn",
+    "visual_asset_id": "giant_boss",
+    "health_mult": 4.2,
+    "damage_mult": 2.76,
+    "xp_mult": 14.4,
+    "radius": 1.8,
+    "coins_min": 2161,
+    "coins_max": 4013,
+    "boss": true
+  },
+  {
+    "id": "monster_castelo_senhor_escoria",
+    "species_name": "O Senhor da Escória",
+    "archetype": "conjurador",
+    "level": 61,
+    "resistances": {},
+    "behavior_id": "boss_heart",
+    "loot_table_id": "loot_escoria_coracao_escoria",
+    "visual_asset_id": "elemental_boss",
+    "health_mult": 4.2,
+    "damage_mult": 2.88,
+    "xp_mult": 14.4,
+    "radius": 1.6,
+    "coins_min": 2492,
+    "coins_max": 4629,
+    "boss": true
+  }
+]

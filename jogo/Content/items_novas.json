@@ -1,0 +1,850 @@
+[
+  {
+    "id": "talisma_bruxa_galho_p0",
+    "display_name": "Amuleto de Conchas",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 1,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 6,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_galho_p0",
+    "model_asset_id": "talisman_shell",
+    "summary": "Poder 6: lampejo, cura e barreira ficam mais fortes.",
+    "price": 51,
+    "source": "Loja do Ferreiro; Caranguejos (raro)."
+  },
+  {
+    "id": "arco_arqueiro_galho_p0",
+    "display_name": "Arco de Galho",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 1,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 6,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_galho_p0",
+    "model_asset_id": "bow_twig",
+    "summary": "Poder 6. Duas mãos.",
+    "price": 51,
+    "source": "Loja do Ferreiro; Caranguejos (raro)."
+  },
+  {
+    "id": "talisma_bruxa_aprendiz",
+    "display_name": "Talismã da Aprendiz",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 1,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 10,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_aprendiz",
+    "model_asset_id": "talisman_bone",
+    "summary": "Poder 10: lampejo, cura e barreira ficam mais fortes.",
+    "price": 63,
+    "source": "Missão da Capitã Ondina (Porto) ou loja do Ferreiro."
+  },
+  {
+    "id": "arco_arqueiro_aprendiz",
+    "display_name": "Arco Curto",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 1,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 10,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_aprendiz",
+    "model_asset_id": "bow_short",
+    "summary": "Poder 10. Duas mãos.",
+    "price": 70,
+    "source": "Missão da Capitã Ondina (Porto) ou loja do Ferreiro."
+  },
+  {
+    "id": "talisma_bruxa_coral_p1",
+    "display_name": "Talismã de Coral",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 3,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 15,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_coral_p1",
+    "model_asset_id": "talisman_coral",
+    "summary": "Poder 14: lampejo, cura e barreira ficam mais fortes.",
+    "price": 220,
+    "source": "Caranguejos e Acólitos da Costa do Cal."
+  },
+  {
+    "id": "arco_arqueiro_coral_p1",
+    "display_name": "Arco de Coral",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 3,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 14,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_coral_p1",
+    "model_asset_id": "bow_short",
+    "summary": "Poder 14. Duas mãos.",
+    "price": 210,
+    "source": "Caranguejos e Acólitos da Costa do Cal."
+  },
+  {
+    "id": "talisma_bruxa_brasa",
+    "display_name": "Talismã de Brasa",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 5,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 19,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_brasa",
+    "model_asset_id": "talisman_bone",
+    "summary": "Poder 18: lampejo, cura e barreira ficam mais fortes.",
+    "price": 450,
+    "source": "Acólitos e Saqueadores (Ruínas do Farol, Vale); Caranguejo Dourado."
+  },
+  {
+    "id": "arco_arqueiro_brasa",
+    "display_name": "Arco de Teixo",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 5,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 19,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_brasa",
+    "model_asset_id": "bow_yew",
+    "summary": "Poder 18. Duas mãos.",
+    "price": 450,
+    "source": "Acólitos e Saqueadores (Ruínas do Farol, Vale); Caranguejo Dourado."
+  },
+  {
+    "id": "talisma_bruxa_veio",
+    "display_name": "Talismã do Veio",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 8,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 26,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_veio",
+    "model_asset_id": "talisman_vein",
+    "summary": "Poder 25: lampejo, cura e barreira ficam mais fortes.",
+    "price": 1000,
+    "source": "Chefes da Costa e da Gruta (Rei das Pinças, Guardião da Galeria, Capataz)."
+  },
+  {
+    "id": "arco_arqueiro_veio",
+    "display_name": "Arco do Veio",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 26,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_veio",
+    "model_asset_id": "bow_yew",
+    "summary": "Poder 25. Duas mãos.",
+    "price": 980,
+    "source": "Chefes da Costa e da Gruta (Rei das Pinças, Guardião da Galeria, Capataz)."
+  },
+  {
+    "id": "talisma_bruxa_cinza_viva",
+    "display_name": "Talismã de Cinza Viva",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 11,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 32,
+      "attack_interval_ms": 1000
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_talisma_bruxa_cinza_viva",
+    "model_asset_id": "talisman_vein",
+    "summary": "Poder 32: lampejo, cura e barreira ficam mais fortes.",
+    "price": 1700,
+    "source": "Acólitos do Vale das Cinzas (nível 11+).",
+    "req_primary": 32
+  },
+  {
+    "id": "arco_arqueiro_cinza_viva",
+    "display_name": "Arco de Cinza Viva",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 11,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 33,
+      "attack_interval_ms": 900
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_arco_arqueiro_cinza_viva",
+    "model_asset_id": "bow_vein",
+    "summary": "Poder 32. Duas mãos.",
+    "price": 1700,
+    "source": "Acólitos do Vale das Cinzas (nível 11+).",
+    "req_primary": 32
+  },
+  {
+    "id": "armor_bruxa_ervas",
+    "display_name": "Vestes de Erveira",
+    "category": "armor",
+    "subtype": "robe",
+    "min_level": 4,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 57,
+      "max_health": 20,
+      "resource_regen_pct": 0.6
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_bruxa_ervas",
+    "model_asset_id": "body_witch",
+    "summary": "Armadura +20, vida +20, éter volta mais rápido.",
+    "price": 480,
+    "source": "Acólitos; Caranguejo Couraçado (Gruta da Maré)."
+  },
+  {
+    "id": "armor_arqueiro_ervas",
+    "display_name": "Gibão de Batedor",
+    "category": "armor",
+    "subtype": "leather",
+    "min_level": 4,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 79,
+      "max_health": 20,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_arqueiro_ervas",
+    "model_asset_id": "body_ranger",
+    "summary": "Armadura +28, vida +20, 3% mais rápido.",
+    "price": 280,
+    "source": "Acólitos; Caranguejo Couraçado (Gruta da Maré)."
+  },
+  {
+    "id": "armor_bruxa_veio",
+    "display_name": "Vestes do Veio",
+    "category": "armor",
+    "subtype": "robe",
+    "min_level": 8,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 84,
+      "max_health": 50,
+      "resource_regen_pct": 0.6
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_bruxa_veio",
+    "model_asset_id": "body_witch",
+    "summary": "Armadura +65, vida +50, éter volta mais rápido.",
+    "price": 1500,
+    "source": "Galeria Funda (Sentinela e Guardião)."
+  },
+  {
+    "id": "armor_arqueiro_veio",
+    "display_name": "Couro do Veio",
+    "category": "armor",
+    "subtype": "leather",
+    "min_level": 8,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 118,
+      "max_health": 50,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_arqueiro_veio",
+    "model_asset_id": "body_ranger",
+    "summary": "Armadura +91, vida +50, 3% mais rápido.",
+    "price": 860,
+    "source": "Galeria Funda (Sentinela e Guardião)."
+  },
+  {
+    "id": "armor_bruxa_cinzas",
+    "display_name": "Vestes de Cinzas",
+    "category": "armor",
+    "subtype": "robe",
+    "min_level": 11,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 104,
+      "max_health": 70,
+      "resource_regen_pct": 0.7
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_bruxa_cinzas",
+    "model_asset_id": "body_witch",
+    "summary": "Armadura +90, vida +70, éter volta mais rápido.",
+    "price": 2900,
+    "source": "Acólitos e Capataz (Vale das Cinzas).",
+    "req_primary": 30
+  },
+  {
+    "id": "armor_arqueiro_cinzas",
+    "display_name": "Gibão de Cinzas",
+    "category": "armor",
+    "subtype": "leather",
+    "min_level": 11,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 147,
+      "max_health": 70,
+      "move_speed_pct": 0.03
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_armor_arqueiro_cinzas",
+    "model_asset_id": "body_ranger",
+    "summary": "Armadura +126, vida +70, 3% mais rápido.",
+    "price": 1500,
+    "source": "Acólitos e Capataz (Vale das Cinzas).",
+    "req_primary": 30
+  },
+  {
+    "id": "mat_tabua",
+    "display_name": "Tábua de Pinho Seco",
+    "category": "material",
+    "subtype": "material",
+    "min_level": 1,
+    "allowed_classes": [],
+    "handedness": 0,
+    "base_stats": {},
+    "affix_pool": "none",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 50,
+    "icon_asset_id": "icon_mat_tabua",
+    "model_asset_id": "mat_wood",
+    "summary": "Tábua cortada de árvore seca com o machado de ofício. A Lia precisa para a ponte.",
+    "price": 3,
+    "source": "Árvores secas da Costa (machado de ofício)."
+  },
+  {
+    "id": "vitrine_espada_dourada",
+    "display_name": "Espada Dourada do Porto",
+    "category": "weapon",
+    "subtype": "sword",
+    "min_level": 4,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 17,
+      "attack_interval_ms": 950
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_espada_dourada",
+    "model_asset_id": "sword_ornate",
+    "summary": "Poder 20, rápida. Lâmina dourada com rubi no punho.",
+    "price": 300,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_cajado_cristal",
+    "display_name": "Cajado de Cristal Azul",
+    "category": "weapon",
+    "subtype": "staff",
+    "min_level": 4,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 17,
+      "attack_interval_ms": 1000,
+      "aoe_radius_bonus": 0.5
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_cajado_cristal",
+    "model_asset_id": "staff_crystal",
+    "summary": "Poder 20, explosão +0,5 m. Cristais que brilham azul.",
+    "price": 320,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_talisma_lua",
+    "display_name": "Talismã da Lua Pálida",
+    "category": "weapon",
+    "subtype": "talisman",
+    "min_level": 4,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 1,
+    "base_stats": {
+      "weapon_power": 17,
+      "attack_interval_ms": 1000,
+      "resource_regen_pct": 0.15
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_talisma_lua",
+    "model_asset_id": "talisman_moon",
+    "summary": "Poder 20, éter volta 15% mais rápido. Brilho de luar.",
+    "price": 400,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_arco_osso",
+    "display_name": "Arco de Osso Entalhado",
+    "category": "weapon",
+    "subtype": "bow",
+    "min_level": 4,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 2,
+    "base_stats": {
+      "weapon_power": 17,
+      "attack_interval_ms": 900,
+      "projectile_speed_pct": 0.15
+    },
+    "affix_pool": "physical_weapon",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_arco_osso",
+    "model_asset_id": "bow_bone",
+    "summary": "Poder 20, flechas 15% mais rápidas. Osso branco entalhado.",
+    "price": 330,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_couraca_escarlate",
+    "display_name": "Couraça Escarlate",
+    "category": "armor",
+    "subtype": "plate",
+    "min_level": 5,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 102,
+      "max_health": 35
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_couraca_escarlate",
+    "model_asset_id": "body_crimson",
+    "summary": "Armadura +48, vida +35. Malha com sobreveste escarlate e ombreiras douradas.",
+    "price": 360,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_manto_estrelado",
+    "display_name": "Manto Estrelado",
+    "category": "armor",
+    "subtype": "robe",
+    "min_level": 5,
+    "allowed_classes": [
+      "mago"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 64,
+      "max_health": 30,
+      "resource_regen_pct": 0.6
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_manto_estrelado",
+    "model_asset_id": "body_robe_star",
+    "summary": "Armadura +26, vida +30, mana 60% mais rápida. Azul-noite com bordado dourado.",
+    "price": 690,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_vestes_rosa",
+    "display_name": "Vestes de Rosa-Brava",
+    "category": "armor",
+    "subtype": "robe",
+    "min_level": 5,
+    "allowed_classes": [
+      "bruxa"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 64,
+      "max_health": 32,
+      "resource_regen_pct": 0.6
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_vestes_rosa",
+    "model_asset_id": "body_witch_rose",
+    "summary": "Armadura +28, vida +32, éter 60% mais rápido. Vinho e ouro.",
+    "price": 690,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_gibao_carmesim",
+    "display_name": "Gibão Carmesim",
+    "category": "armor",
+    "subtype": "leather",
+    "min_level": 5,
+    "allowed_classes": [
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 88,
+      "max_health": 32,
+      "move_speed_pct": 0.04
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_gibao_carmesim",
+    "model_asset_id": "body_ranger_crimson",
+    "summary": "Armadura +40, vida +32, 4% mais rápido. Carmesim e couro negro.",
+    "price": 400,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_elmo_penacho",
+    "display_name": "Elmo de Penacho",
+    "category": "helmet",
+    "subtype": "plate",
+    "min_level": 3,
+    "allowed_classes": [
+      "guerreiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 26,
+      "max_health": 20
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_elmo_penacho",
+    "model_asset_id": "head_plume",
+    "summary": "Armadura +16, vida +20. Elmo polido com penacho vermelho.",
+    "price": 98,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "vitrine_capuz_viajante",
+    "display_name": "Capuz de Viajante",
+    "category": "helmet",
+    "subtype": "cloth",
+    "min_level": 3,
+    "allowed_classes": [
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "armor": 18,
+      "max_health": 18,
+      "resource_regen_pct": 0.1
+    },
+    "affix_pool": "armor",
+    "temperable": true,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_vitrine_capuz_viajante",
+    "model_asset_id": "head_hood_travel",
+    "summary": "Armadura +10, vida +18, recurso 10% mais rápido. Lã marrom e lenço vermelho.",
+    "price": 110,
+    "source": "Vitrine do Brás, o Ferreiro (Porto). Cara — junte moedas."
+  },
+  {
+    "id": "pet_vagalume",
+    "display_name": "Pip, o Vagalume",
+    "category": "pet",
+    "subtype": "vagalume",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "move_speed_pct": 0.04
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_pet_vagalume",
+    "model_asset_id": "pet_vagalume",
+    "summary": "Um vagalume perdido que resolveu te seguir. Ilumina o caminho e belisca inimigos. Coloque no espaço de pet para ele vir junto. Passivo: +4% de velocidade de movimento.",
+    "price": 400,
+    "source": "Missão da Lia (Acampamento das Dunas)."
+  },
+  {
+    "id": "pet_dragao",
+    "display_name": "Draco, o Dragãozinho",
+    "category": "pet",
+    "subtype": "dragao",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.05
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_pet_dragao",
+    "model_asset_id": "pet_dragao",
+    "summary": "Filhote de dragão: cospe brasas nos seus alvos. Coloque no espaço de pet para ele vir junto. Passivo: +5% de ataque.",
+    "price": 2400,
+    "source": "Missão do midgame."
+  },
+  {
+    "id": "pet_fenix",
+    "display_name": "Fênix",
+    "category": "pet",
+    "subtype": "fenix",
+    "min_level": 1,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "max_health": 60
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_pet_fenix",
+    "model_asset_id": "pet_fenix",
+    "summary": "Ave de cinza e fogo: renasce e luta ao seu lado. Coloque no espaço de pet para ele vir junto. Passivo: +60 de vida.",
+    "price": 6000,
+    "source": "Missão do midgame."
+  },
+  {
+    "id": "wings_ferro",
+    "display_name": "Asas de Ferro",
+    "category": "wings",
+    "subtype": "ferro",
+    "min_level": 25,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.115,
+      "move_speed_pct": 0.11,
+      "armor": 42,
+      "max_health": 135,
+      "resource_regen_pct": 0.15
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_wings_ferro",
+    "model_asset_id": "wings_ferro",
+    "summary": "Asas de chapa rebitada. Buff geral: ataque +12%, velocidade +12%, armadura +40, vida +120, regeneração +15%. G = voar (passa por cima de quase tudo; fora de combate).",
+    "price": 37000,
+    "source": "Missão de Ferro (região média)."
+  },
+  {
+    "id": "wings_neve",
+    "display_name": "Asas de Neve",
+    "category": "wings",
+    "subtype": "neve",
+    "min_level": 45,
+    "allowed_classes": [
+      "guerreiro",
+      "mago",
+      "bruxa",
+      "arqueiro"
+    ],
+    "handedness": 0,
+    "base_stats": {
+      "power_pct": 0.207,
+      "move_speed_pct": 0.19,
+      "armor": 76,
+      "max_health": 243,
+      "resource_regen_pct": 0.25
+    },
+    "affix_pool": "",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 1,
+    "icon_asset_id": "icon_wings_neve",
+    "model_asset_id": "wings_neve",
+    "summary": "Asas de gelo. Buff geral: ataque +20%, velocidade +18%, armadura +80, vida +260, regeneração +25%. G = voar (passa por cima de quase tudo; fora de combate).",
+    "price": 140000,
+    "source": "Missão da Geada (região alta)."
+  }
+]

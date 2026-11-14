@@ -1,0 +1,78 @@
+[
+  {
+    "id": "merlin_reflexo",
+    "move_speed": 3.4,
+    "aggro_radius": 14,
+    "leash_radius": 18,
+    "keep_distance": 6.0,
+    "exposed_mult": 1.35,
+    "staggerable": false,
+    "summon": "monster_merlin_livro_mordedor",
+    "summon_count": 3,
+    "summon_every_ms": 16000,
+    "phase_two_at": 0.5,
+    "phase_two_attacks": [
+      "chuva_de_estrelas"
+    ],
+    "attacks": [
+      {
+        "id": "bola_estrela",
+        "shape": "projectile",
+        "range": 12,
+        "min_range": 2.0,
+        "windup_ms": 700,
+        "active_ms": 100,
+        "recovery_ms": 700,
+        "cooldown_ms": 1400,
+        "damage_mult": 0.7,
+        "radius": 0.35,
+        "projectile_speed": 10,
+        "count": 5,
+        "spread_deg": 40,
+        "track_fraction": 0.8
+      },
+      {
+        "id": "raio_lunar",
+        "shape": "beam",
+        "range": 13,
+        "windup_ms": 1100,
+        "active_ms": 900,
+        "recovery_ms": 900,
+        "cooldown_ms": 5200,
+        "damage_mult": 0.6,
+        "radius": 0.7,
+        "hits": 3,
+        "hit_interval_ms": 280,
+        "track_fraction": 0.5
+      },
+      {
+        "id": "chuva_de_estrelas",
+        "shape": "circle",
+        "range": 12,
+        "windup_ms": 1200,
+        "active_ms": 300,
+        "recovery_ms": 1000,
+        "cooldown_ms": 6500,
+        "damage_mult": 1.4,
+        "radius": 2.8,
+        "at_target": true,
+        "track_fraction": 0.5,
+        "status": "atordoado",
+        "status_ms": 700
+      },
+      {
+        "id": "empurrao_arcano",
+        "shape": "circle",
+        "range": 2.6,
+        "windup_ms": 700,
+        "active_ms": 200,
+        "recovery_ms": 900,
+        "cooldown_ms": 4000,
+        "damage_mult": 0.9,
+        "radius": 3.0,
+        "offset": 0,
+        "track_fraction": 0
+      }
+    ]
+  }
+]

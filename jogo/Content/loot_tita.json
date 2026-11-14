@@ -1,0 +1,105 @@
+[
+  {
+    "id": "loot_tita",
+    "entries": [
+      {
+        "chance": 1.0,
+        "pick": [
+          "arma_lend_arco_celestial",
+          "arma_lend_arco_fogo",
+          "arma_lend_arco_vazio",
+          "arma_lend_cajado_celestial",
+          "arma_lend_cajado_fogo",
+          "arma_lend_cajado_vazio",
+          "arma_lend_espada_celestial",
+          "arma_lend_espada_dupla_celestial",
+          "arma_lend_espada_dupla_fogo",
+          "arma_lend_espada_dupla_vazio",
+          "arma_lend_espada_fogo",
+          "arma_lend_espada_vazio",
+          "arma_lend_foco_natural_celestial",
+          "arma_lend_foco_natural_fogo",
+          "arma_lend_foco_natural_vazio",
+          "arma_lend_foice_celestial",
+          "arma_lend_foice_fogo",
+          "arma_lend_foice_vazio",
+          "arma_lend_garfo_celestial",
+          "arma_lend_garfo_fogo",
+          "arma_lend_garfo_vazio",
+          "arma_lend_lanca_celestial",
+          "arma_lend_lanca_fogo",
+          "arma_lend_lanca_vazio",
+          "arma_lend_machado_gigante_celestial",
+          "arma_lend_machado_gigante_fogo",
+          "arma_lend_machado_gigante_vazio",
+          "arma_lend_manopla_celestial",
+          "arma_lend_manopla_fogo",
+          "arma_lend_manopla_vazio"
+        ],
+        "match_class": true,
+        "quality": "lendario"
+      },
+      {
+        "chance": 1.0,
+        "pick": [
+          "arm_abismo_botas",
+          "arm_abismo_calca",
+          "arm_abismo_capacete",
+          "arm_abismo_luvas",
+          "arm_abismo_peitoral",
+          "arm_anjo_caido_botas",
+          "arm_anjo_caido_calca",
+          "arm_anjo_caido_capacete",
+          "arm_anjo_caido_luvas",
+          "arm_anjo_caido_peitoral",
+          "arm_celestial_botas",
+          "arm_celestial_calca",
+          "arm_celestial_capacete",
+          "arm_celestial_luvas",
+          "arm_celestial_peitoral",
+          "arm_demoniaco_botas",
+          "arm_demoniaco_calca",
+          "arm_demoniaco_capacete",
+          "arm_demoniaco_luvas",
+          "arm_demoniaco_peitoral",
+          "arm_dragao_fogo_botas",
+          "arm_dragao_fogo_calca",
+          "arm_dragao_fogo_capacete",
+          "arm_dragao_fogo_luvas",
+          "arm_dragao_fogo_peitoral",
+          "arm_faraonico_botas",
+          "arm_faraonico_calca",
+          "arm_faraonico_capacete",
+          "arm_faraonico_luvas",
+          "arm_faraonico_peitoral",
+          "arm_tempo_botas",
+          "arm_tempo_calca",
+          "arm_tempo_capacete",
+          "arm_tempo_luvas",
+          "arm_tempo_peitoral",
+          "arm_vazio_botas",
+          "arm_vazio_calca",
+          "arm_vazio_capacete",
+          "arm_vazio_luvas",
+          "arm_vazio_peitoral"
+        ],
+        "match_class": true,
+        "quality": "lendario"
+      },
+      {
+        "chance": 1.0,
+        "item": "joia_vazio",
+        "min_qty": 3,
+        "max_qty": 5
+      },
+      {
+        "chance": 1.0,
+        "item": "joia_forja"
+      },
+      {
+        "chance": 0.5,
+        "item": "caixa_pandora_5"
+      }
+    ]
+  }
+]

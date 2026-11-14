@@ -1,0 +1,21 @@
+[
+  {
+    "id": "mat_po_estrela",
+    "display_name": "Pó de Estrela",
+    "summary": "Brilha amarelo na palma da mão e faz cócegas. O Merlin diz que é o que sobra quando um feitiço termina.",
+    "category": "material",
+    "subtype": "material",
+    "min_level": 1,
+    "allowed_classes": [],
+    "handedness": 0,
+    "base_stats": {},
+    "affix_pool": "none",
+    "temperable": false,
+    "trade_rule": "free",
+    "stack_limit": 30,
+    "icon_asset_id": "icon_mat_po_estrela",
+    "model_asset_id": "mat_vein",
+    "price": 35,
+    "source": "Torre Torta de Merlin e Poço das Estrelas (Observatório de Astrália)."
+  }
+]
