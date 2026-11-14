@@ -128,7 +128,9 @@ if (Test-Path $pendente) {
             Remove-Item $_.FullName -Force
             return
         }
-        if (Test-Path $atual) {
+        # 14/11 20h40 (dono: "6 min aplicando a atualização"): arte (Client\Assets) não ganha cópia de segurança —
+        # é só substituída (copiar ~1 GB de modelos antes de trocar dobrava o tempo); código e mapas continuam com cópia
+        if ((Test-Path $atual) -and -not $rel.StartsWith("Client\Assets\")) {
             $destino = Join-Path $copia $rel
             New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destino) | Out-Null
             Copy-Item $atual $destino -Force
