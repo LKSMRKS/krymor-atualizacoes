@@ -1,0 +1,17 @@
+{
+ "nome": "Avestruz de Corrida",
+ "tris": 39719,
+ "dims_m": [
+  1.072,
+  1.477,
+  2.221
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit"
+ ],
+ "altura_sela": 1.45,
+ "notas": "avestruz negra de plumas brancas, pescoço e pernas peladas"
+}

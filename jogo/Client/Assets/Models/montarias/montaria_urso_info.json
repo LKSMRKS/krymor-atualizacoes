@@ -1,0 +1,18 @@
+{
+ "nome": "Urso de Guerra",
+ "tris": 43808,
+ "dims_m": [
+  0.866,
+  2.126,
+  1.698
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar"
+ ],
+ "altura_sela": 1.54,
+ "notas": "urso pardo enorme com corcova, garras, armadura de couro com placas no peito"
+}

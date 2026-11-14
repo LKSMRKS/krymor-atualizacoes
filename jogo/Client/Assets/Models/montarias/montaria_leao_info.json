@@ -1,0 +1,18 @@
+{
+ "nome": "Leão Dourado",
+ "tris": 41744,
+ "dims_m": [
+  0.604,
+  2.347,
+  1.687
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar"
+ ],
+ "altura_sela": 1.38,
+ "notas": "leão de juba cheia castanho-escura, corpo dourado, tufo na ponta da cauda"
+}

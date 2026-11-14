@@ -1,0 +1,18 @@
+{
+ "nome": "Lobo do Norte",
+ "tris": 39744,
+ "dims_m": [
+  0.549,
+  2.174,
+  1.596
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar"
+ ],
+ "altura_sela": 1.31,
+ "notas": "lobo cinzento grande, dorso escuro, barriga e máscara claras, pelo grosso no pescoço"
+}

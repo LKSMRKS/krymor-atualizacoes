@@ -1,0 +1,17 @@
+{
+ "nome": "Raptor de Guerra",
+ "tris": 40162,
+ "dims_m": [
+  0.717,
+  3.185,
+  1.756
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit"
+ ],
+ "altura_sela": 1.35,
+ "notas": "raptor verde-oliva listrado, crista de penas vermelhas, dentes e garras"
+}

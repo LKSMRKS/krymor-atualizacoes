@@ -1,0 +1,18 @@
+{
+ "nome": "Javali de Guerra",
+ "tris": 46568,
+ "dims_m": [
+  0.79,
+  2.182,
+  1.5
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar"
+ ],
+ "altura_sela": 1.36,
+ "notas": "javali de guerra enorme: cerdas escuras, crista no dorso, presas de marfim, sela de couro"
+}

@@ -1,0 +1,18 @@
+{
+ "nome": "Lince das Cinzas",
+ "tris": 39743,
+ "dims_m": [
+  0.551,
+  1.737,
+  1.605
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar"
+ ],
+ "altura_sela": 1.3,
+ "notas": "lince grande cinza-dourado com pintas escuras, tufos nas orelhas e barba de pelo"
+}

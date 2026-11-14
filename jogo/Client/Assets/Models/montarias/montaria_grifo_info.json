@@ -1,0 +1,20 @@
+{
+ "nome": "Grifo",
+ "tris": 75904,
+ "dims_m": [
+  4.021,
+  2.472,
+  1.482
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit",
+  "empinar",
+  "voar",
+  "planar"
+ ],
+ "altura_sela": 1.4,
+ "notas": "grifo: corpo de leão dourado, cabeça e pescoço de águia branca com bico amarelo, asas marrons de penas; run = galope, voar = bate asas, planar"
+}

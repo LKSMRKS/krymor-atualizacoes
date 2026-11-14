@@ -1,0 +1,17 @@
+{
+ "nome": "Condor Gigante",
+ "tris": 64592,
+ "dims_m": [
+  4.061,
+  2.013,
+  0.983
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "hit"
+ ],
+ "altura_sela": 1.55,
+ "notas": "condor negro gigante com colar branco e cabeça pelada; idle no chão de asas fechadas, walk = voo batendo asas, run = planando"
+}
