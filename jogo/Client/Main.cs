@@ -2209,6 +2209,8 @@ public partial class Main : Node3D
             Parabenizados().Add(chave);
             try { using var f = Godot.FileAccess.Open(ArqParabens(), Godot.FileAccess.ModeFlags.Write); f?.StoreString(string.Join("\n", Parabenizados())); } catch { }
         };
+        _hud.Desafiar += alvo => Send(new PartyIntent("duelo", alvo));
+        _hud.ConvidarGrupo += alvo => Send(new PartyIntent("invite", alvo));   // 14/11: x1 pela lista do grupo (embaixo do minimapa)
         _hud.GanhouFechou += () => CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen && !_troca.Open && !_livro.Open && !_bestiario.Open && !_vinteUm.Open);
 
         // telas do mundo antes da mochila: a mochila (e suas janelas) fica por cima dos avisos

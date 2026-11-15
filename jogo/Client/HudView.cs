@@ -79,12 +79,20 @@ public sealed class HudView
     public float CameraYaw { set { _compass.Yaw = value; MiniMap.Yaw = value; } }
     public readonly MiniMapa MiniMap = new();
     private readonly VBoxContainer _grupoBox = new() { MouseFilter = Control.MouseFilterEnum.Ignore };
+    /// <summary>14/11: botão x1 da lista do grupo (o Main manda o desafio).</summary>
+    public event Action<string>? Desafiar;
     private string _grupoSig = "";
 
     private void UpdateGrupo(CinzasDaMare.Shared.Client.ClientModel m)
     {
         var membros = m.Party?.Members.Where(x => x.CharacterId != m.CharacterId).ToList() ?? new();
-        var sig = string.Join("|", membros.Select(x => $"{x.Name}{x.Level}{(int)(x.Health / Math.Max(1, x.MaxHealth) * 20)}{x.MapName}{x.Online}"));
+        // 14/11 21h (dono: "não precisar estar em grupo para desafiar — já aparece junto com o nome: x1 ou grupo"):
+        // jogadores no mesmo mapa que não estão no seu grupo, com os botões x1 e grupo
+        var noGrupo = new HashSet<string>(m.Party?.Members.Select(x => x.CharacterId) ?? Array.Empty<string>());
+        var perto = (m.Snapshot?.Players ?? Enumerable.Empty<CinzasDaMare.Shared.Net.PlayerView>())
+            .Where(p => p.CharacterId != m.CharacterId && !noGrupo.Contains(p.CharacterId)).OrderBy(p => p.Name).Take(6).ToList();
+        var sig = string.Join("|", membros.Select(x => $"{x.Name}{x.Level}{(int)(x.Health / Math.Max(1, x.MaxHealth) * 20)}{x.MapName}{x.Online}"))
+                  + "#" + string.Join("|", perto.Select(p => p.Name + p.Level));
         if (sig == _grupoSig) return;
         _grupoSig = sig;
         foreach (var c in _grupoBox.GetChildren()) { _grupoBox.RemoveChild(c); c.QueueFree(); }
@@ -93,16 +101,61 @@ public sealed class HudView
             var pct = x.MaxHealth > 0 ? x.Health / x.MaxHealth : 0;
             var cor = !x.Online ? new Color(0.55f, 0.55f, 0.55f) : pct < 0.3 ? new Color(1f, 0.4f, 0.35f) : new Color(0.55f, 0.95f, 0.6f);
             // 14/11 19h (dono: "dois nomes dos jogadores — fica só o de barra, embaixo do minimapa"): nome + barra de vida
-            var box = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, CustomMinimumSize = new Vector2(200, 0) };
+            // 14/11 21h (dono: "a vida do parceiro ficou muito grande — até o limite do minimapa"): largura do minimapa
+            var box = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, CustomMinimumSize = new Vector2(LarguraGrupo, 0), SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin };
             box.AddThemeConstantOverride("separation", 1);
-            box.AddChild(MakeLabel($"{x.Name} · nv {x.Level}" + (!x.Online ? " (fora)" : x.MapName != (m.Map?.DisplayName ?? "") ? $" · {x.MapName}" : ""), 12,
-                x.Online ? new Color(0.55f, 0.75f, 1f) : new Color(0.55f, 0.55f, 0.55f), 3));
-            var bar = new ProgressBar { MinValue = 0, MaxValue = 1, ShowPercentage = false, CustomMinimumSize = new Vector2(200, 7), Value = pct, MouseFilter = Control.MouseFilterEnum.Ignore };
+            // 14/11 20h50 (dono: "o x1 para desafiar o amigo aparece também na frente do nome ali"): botãozinho ⚔ x1
+            var linha = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+            linha.AddThemeConstantOverride("separation", 6);
+            if (x.Online)
+            {
+                var x1 = new Button { Text = "x1", TooltipText = $"Desafiar {x.Name} para um x1 (ele aceita com Y)", FocusMode = Control.FocusModeEnum.None,
+                    CustomMinimumSize = new Vector2(30, 18), MouseFilter = Control.MouseFilterEnum.Stop };
+                x1.AddThemeFontSizeOverride("font_size", 11);
+                var bx = new StyleBoxFlat { BgColor = new Color(0.45f, 0.08f, 0.06f, 0.9f), BorderColor = new Color(1f, 0.45f, 0.3f) };
+                bx.SetBorderWidthAll(1); bx.SetCornerRadiusAll(3); bx.ContentMarginLeft = bx.ContentMarginRight = 4;
+                x1.AddThemeStyleboxOverride("normal", bx);
+                var alvo = x.Name;
+                x1.Pressed += () => { Sfx.Play("ui_clique"); Desafiar?.Invoke(alvo); };
+                linha.AddChild(x1);
+            }
+            var nm = MakeLabel($"{x.Name} · nv {x.Level}" + (!x.Online ? " (fora)" : x.MapName != (m.Map?.DisplayName ?? "") ? $" · {x.MapName}" : ""), 12,
+                x.Online ? new Color(0.55f, 0.75f, 1f) : new Color(0.55f, 0.55f, 0.55f), 3);
+            nm.ClipText = true; nm.CustomMinimumSize = new Vector2(LarguraGrupo - 36, 0);
+            linha.AddChild(nm);
+            box.AddChild(linha);
+            var bar = new ProgressBar { MinValue = 0, MaxValue = 1, ShowPercentage = false, CustomMinimumSize = new Vector2(LarguraGrupo, 5), Value = pct, MouseFilter = Control.MouseFilterEnum.Ignore, SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin };
             bar.AddThemeStyleboxOverride("fill", new StyleBoxFlat { BgColor = cor });
             bar.AddThemeStyleboxOverride("background", new StyleBoxFlat { BgColor = new Color(0.05f, 0.05f, 0.06f, 0.85f) });
             box.AddChild(bar);
             _grupoBox.AddChild(box);
         }
+        foreach (var p in perto)
+        {
+            var linha = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+            linha.AddThemeConstantOverride("separation", 4);
+            linha.AddChild(BotaoMini("x1", new Color(0.45f, 0.08f, 0.06f, 0.9f), new Color(1f, 0.45f, 0.3f), $"Desafiar {p.Name} para um x1 (ele aceita com Y)", () => Desafiar?.Invoke(p.Name)));
+            linha.AddChild(BotaoMini("grupo", new Color(0.08f, 0.2f, 0.4f, 0.9f), new Color(0.45f, 0.7f, 1f), $"Convidar {p.Name} para o seu grupo", () => ConvidarGrupo?.Invoke(p.Name)));
+            var nome = MakeLabel($"{p.Name} · nv {p.Level}", 12, new Color(0.85f, 0.85f, 0.8f), 3);
+            nome.ClipText = true; nome.CustomMinimumSize = new Vector2(LarguraGrupo - 80, 0);
+            linha.AddChild(nome);
+            _grupoBox.AddChild(linha);
+        }
+    }
+
+    private const float LarguraGrupo = 180f;   // = largura do minimapa (190) menos a margem
+    /// <summary>14/11 21h: convite de grupo pela lista de quem está por perto.</summary>
+    public event Action<string>? ConvidarGrupo;
+
+    private static Button BotaoMini(string texto, Color fundo, Color borda, string dica, Action clique)
+    {
+        var b = new Button { Text = texto, TooltipText = dica, FocusMode = Control.FocusModeEnum.None, CustomMinimumSize = new Vector2(texto.Length > 2 ? 40 : 26, 18), MouseFilter = Control.MouseFilterEnum.Stop };
+        b.AddThemeFontSizeOverride("font_size", 11);
+        var bx = new StyleBoxFlat { BgColor = fundo, BorderColor = borda };
+        bx.SetBorderWidthAll(1); bx.SetCornerRadiusAll(3); bx.ContentMarginLeft = bx.ContentMarginRight = 3;
+        b.AddThemeStyleboxOverride("normal", bx);
+        b.Pressed += () => { Sfx.Play("ui_clique"); clique(); };
+        return b;
     }
     // 14/11 ("quando sentar, coloca tipo uma bolinha carregando para totalizar o buff"): anel que enche em cima da barra
     private AnelDescanso? _anelDescanso;
