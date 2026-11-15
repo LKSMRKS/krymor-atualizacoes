@@ -1,3 +1,4 @@
+using CinzasDaMare.Shared.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,23 @@ public sealed class InventoryPanel
     public bool NaForja { get; set; }
 
     private readonly GradeItens _bag;
+    private readonly GradeItens _bolsa;
+    private readonly AbaSoltavel _abaMochila, _abaBolsinha;
+    private Action<string, bool, bool> _bagClicou = (_, _, _) => { };
+    private Action<string, string, int> _bagSoltou = (_, _, _) => { };
+    private Action<string> _bagFora = _ => { };
+    private bool _naBolsinha;
+
+    private string? DefDoItem(string id) => _model?.Inventory.FirstOrDefault(i => i.ItemId == id)?.DefinitionId;
+
+    private void MostrarBolsinha(bool sim)
+    {
+        _naBolsinha = sim;
+        _bag.Visible = !sim;
+        _bolsa.Visible = sim;
+        _abaMochila.SetPressedNoSignal(!sim);
+        _abaBolsinha.SetPressedNoSignal(sim);
+    }
     /// <summary>Baú/armazém aberto agora (o botão direito guarda nele). Null = nenhum.</summary>
     public string? StorageOpen { get; set; }
     /// <summary>12/11 (troca refeita): com a troca aberta, clique direito / duplo clique põe o item na mesa.</summary>
@@ -178,9 +196,18 @@ public sealed class InventoryPanel
 
         // ---- mochila ----
         var bagHeader = new HBoxContainer();
-        var bagTitle = HudView.MakeLabel("Mochila", 16, Gold);
-        bagTitle.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
-        bagHeader.AddChild(bagTitle);
+        // 14/11: duas abas — Mochila (tudo) e Bolsinha (itens pequenos 1×1). Arrastando um item por cima da aba, ela abre.
+        _abaMochila = new AbaSoltavel { Text = "Mochila", ToggleMode = true, ButtonPressed = true, FocusMode = Control.FocusModeEnum.None,
+            CustomMinimumSize = new Vector2(86, 28), TooltipText = "Itens grandes (armas, armaduras...)" };
+        _abaBolsinha = new AbaSoltavel { Text = "Bolsinha", ToggleMode = true, FocusMode = Control.FocusModeEnum.None,
+            CustomMinimumSize = new Vector2(100, 28), TooltipText = "Itens pequenos (1 casa): poções, joias, materiais.\nArraste um item por cima desta aba para abri-la." };
+        _abaMochila.Pressed += () => MostrarBolsinha(false);
+        _abaBolsinha.Pressed += () => MostrarBolsinha(true);
+        _abaMochila.Passou += () => MostrarBolsinha(false);
+        _abaBolsinha.Passou += () => MostrarBolsinha(true);
+        bagHeader.AddChild(_abaMochila);
+        bagHeader.AddChild(_abaBolsinha);
+        bagHeader.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
         // 10/11 item 53: Organizar — o servidor reempacota a mochila (maiores primeiro, iguais juntos)
         var organize = new Button { Text = "Organizar", TooltipText = "Arruma a mochila: itens grandes primeiro e iguais lado a lado",
             FocusMode = Control.FocusModeEnum.None, CustomMinimumSize = new Vector2(92, 26) };
@@ -193,7 +220,7 @@ public sealed class InventoryPanel
         _bag = new GradeItens { Colunas = 8, Linhas = 8, Casa = 40f, Tipo = "bag", SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter };
         _bag.Info = def => _model?.ItemInfoFor(def);
         _bag.Ajustar();
-        _bag.Clicou += (id, doubleClick, right) =>
+        _bagClicou = (id, doubleClick, right) =>
         {
             // 11/11 noite (pedido novo): com loja aberta, botão direito vende — a recompra devolve pelo mesmo preço
             if (right && SellTo is { } shopNpc) { Send?.Invoke(new SellIntent(Guid.NewGuid().ToString("N"), shopNpc, id)); Sfx.Play("vender"); return; }
@@ -204,17 +231,21 @@ public sealed class InventoryPanel
             if (right && StorageOpen is { } box) { Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "deposit", box, id)); return; }
             OnBagItem(id, doubleClick || right);
         };
-        _bag.Soltou += (id, from, slot) =>
+        _bag.Clicou += (id, d, r) => _bagClicou(id, d, r);
+        _bagSoltou = (id, from, slot) =>
         {
             if (from == "bag") Send?.Invoke(new MoveSlotIntent(id, slot));
             else if (from.StartsWith("equip:")) Send?.Invoke(new UnequipIntent(from[6..]));
             else if (from.StartsWith("store:")) Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "withdraw", from[6..], id, slot));
             else if (from.StartsWith("recompra:")) Send?.Invoke(new BuybackIntent(Guid.NewGuid().ToString("N"), from[9..], id));
         };
+        _bag.Soltou += (id, from, slot) => _bagSoltou(id, from, slot);
         _bag.Refinar += (jewel, target) => { Send?.Invoke(new RefineIntent(jewel, target)); Sfx.Play("ui_clique"); };
         _bag.Plus = id => _plus.GetValueOrDefault(id);
-        _bag.SoltouFora += id =>
+        _bagFora = id =>
         {
+            // 14/11: soltou dentro da própria janela (na aba, no título...) = não larga no chão
+            if (Root.IsVisibleInTree() && Root.GetGlobalRect().HasPoint(Root.GetGlobalMousePosition())) return;
             // 13/11 ("o amigo arrasta e joga pro chão, não pra dentro da troca"): com a troca aberta, soltar fora da mochila
             // nunca larga no chão — em cima da mesa de troca põe o item lá, em outro lugar não faz nada
             if (TradePut is { } tp) { if (OverTrade?.Invoke() == true) { tp(id); Sfx.Play("ui_clique", -6f); } return; }
@@ -223,7 +254,26 @@ public sealed class InventoryPanel
             if (OverShop?.Invoke() == true) return;   // soltou em cima de outra janela de NPC: não larga no chão
             Send?.Invoke(new DropItemIntent(id)); Sfx.Play("pegar", -4f);
         };
+        _bag.SoltouFora += id => _bagFora(id);
         column.AddChild(_bag);
+        _bolsa = new GradeItens { Colunas = Bolsinha.Colunas, Linhas = Bolsinha.Linhas, Casa = 40f, Tipo = "bag",
+            SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter, Visible = false };
+        _bolsa.Info = _bag.Info;
+        _bolsa.Ajustar();
+        _bolsa.Plus = _bag.Plus;
+        _bolsa.DefDe = DefDoItem;
+        _bag.DefDe = DefDoItem;
+        // mesmos gestos da mochila; a casa da bolsinha vai ao servidor como Base + n
+        _bolsa.Clicou += (id, doubleClick, right) => _bagClicou(id, doubleClick, right);
+        _bolsa.Soltou += (id, from, slot) =>
+        {
+            if (from == "bag") Send?.Invoke(new MoveSlotIntent(id, Bolsinha.Base + slot));
+            else if (from.StartsWith("store:")) Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "withdraw", from[6..], id, Bolsinha.Base + slot));
+            else _bagSoltou(id, from, slot);
+        };
+        _bolsa.Refinar += (jewel, target) => { Send?.Invoke(new RefineIntent(jewel, target)); Sfx.Play("ui_clique"); };
+        _bolsa.SoltouFora += id => _bagFora(id);
+        column.AddChild(_bolsa);
 
         // ---- item escolhido: nome e botões (o resto aparece no quadro do mouse) ----
         var detailsRow = new HBoxContainer { CustomMinimumSize = new Vector2(0, 40) };
@@ -343,14 +393,21 @@ public sealed class InventoryPanel
         _plus.Clear();
         foreach (var it in m.Inventory) if (it.Plus > 0) _plus[it.ItemId] = it.Plus;
         foreach (var it in m.Equipment) if (it.Plus > 0) _plus[it.ItemId] = it.Plus;
+        _bolsa.Itens.Clear();
         foreach (var item in m.Inventory)
         {
             var info = m.ItemInfoFor(item.DefinitionId);
+            if (Bolsinha.EhDaBolsinha(item.Slot)) { _bolsa.Itens.Add((item.ItemId, item.DefinitionId, item.Quality, item.Quantity, item.Slot - Bolsinha.Base, 1, 1)); continue; }
             _bag.Itens.Add((item.ItemId, item.DefinitionId, item.Quality, item.Quantity, item.Slot,
                 grid ? Math.Max(1, info?.GridW ?? 1) : 1, grid ? Math.Max(1, info?.GridH ?? 1) : 1));
         }
+        _abaBolsinha.Visible = grid;
+        if (!grid && _naBolsinha) MostrarBolsinha(false);
+        _abaBolsinha.Text = $"Bolsinha {_bolsa.Itens.Count}/{Bolsinha.Casas}";
         _bag.Selecionado = _selectedItem;
+        _bolsa.Selecionado = _selectedItem;
         _bag.QueueRedraw();
+        _bolsa.QueueRedraw();
         RefreshDetails(m);
     }
 
@@ -1250,3 +1307,15 @@ public sealed partial class OlhoSkin : Control
     }
 }
 
+
+/// <summary>14/11: aba que abre sozinha quando um item arrastado passa por cima dela (mochila ⇄ bolsinha).</summary>
+public sealed partial class AbaSoltavel : Button
+{
+    public event Action? Passou;
+
+    public override bool _CanDropData(Vector2 atPosition, Variant data)
+    {
+        if (data.AsString().StartsWith("item|")) Passou?.Invoke();
+        return false;
+    }
+}

@@ -204,6 +204,8 @@ public sealed partial class GradeItens : Control
     public float Casa { get; set; } = 40f;
     /// <summary>"bag" (mochila) ou "store:&lt;container&gt;" (baú/armazém): vai no pacote do arrastar.</summary>
     public string Tipo { get; set; } = "bag";
+    /// <summary>14/11 (bolsinha): definição de um item que está na OUTRA grade (joia da bolsinha solta numa arma da mochila).</summary>
+    public Func<string, string?>? DefDe { get; set; }
     public Func<string, ItemInfo?>? Info { get; set; }
     /// <summary>Itens (id, definição, qualidade, quantidade, casa do canto, largura, altura).</summary>
     public List<(string Id, string Def, string Quality, int Qty, int Slot, int W, int H)> Itens { get; } = new();
@@ -357,7 +359,7 @@ public sealed partial class GradeItens : Control
         var slot = CornerFor(at, size);
         _dragOver = null;
         // 11/11: joia em cima de arma/armadura = refino (estilo MU)
-        if (p[1] == Tipo && ItemAt(SlotAt(at)) is { } under && under.Id != p[2] && Itens.FirstOrDefault(i => i.Id == p[2]).Def is "joia_mare" or "joia_brasa" or "joia_vazio" && Refinar is not null)
+        if (p[1] == Tipo && ItemAt(SlotAt(at)) is { } under && under.Id != p[2] && (Itens.FirstOrDefault(i => i.Id == p[2]).Def ?? DefDe?.Invoke(p[2])) is "joia_mare" or "joia_brasa" or "joia_vazio" && Refinar is not null)
         {
             Refinar(p[2], under.Id);
             QueueRedraw();

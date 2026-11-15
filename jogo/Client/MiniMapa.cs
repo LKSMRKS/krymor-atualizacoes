@@ -73,7 +73,16 @@ public sealed partial class MiniMapa : Control
             }
         }
         foreach (var w in map.Waypoints) { var p = P(w.X, w.Y); if (Inside(p)) DrawCircle(p, 4.5f, new Color(0.35f, 0.75f, 1f)); }
-        foreach (var pt in map.Portals) { if (Visuals.EscadaCasa.PortalDeEscada(pt)) continue; var p = P(pt.X, pt.Y); if (Inside(p)) DrawArc(p, 5f, 0, Mathf.Tau, 16, new Color(0.7f, 0.5f, 1f), 2f); }
+        var meuNivel = m.Progress?.Level ?? me.Level;
+        foreach (var pt in map.Portals)
+        {
+            if (Visuals.EscadaCasa.PortalDeEscada(pt)) continue;
+            var p = P(pt.X, pt.Y);
+            if (!Inside(p)) continue;
+            // 14/11 23h: trancado (nível ou marca que falta) = vermelho, igual ao portal vermelho do mapa 3D
+            var trancado = (pt.LevelLock && pt.MinLevel > meuNivel) || !CinzasDaMare.Shared.World.Marcas.Tem(m.Flags, pt.RequiresFlag);
+            DrawArc(p, 5f, 0, Mathf.Tau, 16, trancado ? new Color(1f, 0.25f, 0.2f) : new Color(0.7f, 0.5f, 1f), 2f);
+        }
         foreach (var n in map.Npcs)
         {
             var p = P(n.X, n.Y);

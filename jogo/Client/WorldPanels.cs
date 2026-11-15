@@ -302,6 +302,7 @@ public sealed class WorldPanels
             _canvas.Markers = m.QuestMarkers;
             _canvas.NpcMarks = m.NpcMarkers;
             _canvas.NpcShown ??= m.NpcVisible;
+            _canvas.Flags = m.Flags;
             if (m.Me is { } me) { _canvas.MyLevel = me.Level; _canvas.Me = new Vector2((float)me.X, (float)me.Y); _canvas.MeFacing = new Vector2((float)me.FacingX, (float)me.FacingY); }
             if (_canvas.AreaMode) _canvas.QueueRedraw();
             // 11/11 noite ("o mapa abriu para baixo, metade fora da tela"): sempre centralizado na tela
@@ -1249,6 +1250,7 @@ public sealed partial class WorldMapCanvas : Control
 {
     /// <summary>13/11: nível de quem olha (passagem trancada aparece em vermelho).</summary>
     public int MyLevel { get; set; } = 99;
+    public IReadOnlySet<string> Flags { get; set; } = new HashSet<string>();
     public WorldMapMessage? Data { get; set; }
     private string? _hover;
     /// <summary>13/11 ("no mapa geral consigo dar TP só clicando nas bolinhas, nas que já fui"): clique numa região visitada
@@ -1289,13 +1291,14 @@ public sealed partial class WorldMapCanvas : Control
             if (Visuals.EscadaCasa.PortalDeEscada(portal)) continue;   // 13/11: a escada é mecânica, não aparece no mapa
             var p = At(portal.X, portal.Y);
             // 13/11 ("passagens com trava são vermelhas"): trancada pelo nível = vermelha, com o nível ao lado
-            var trancada = portal.LevelLock && portal.MinLevel > MyLevel;
+            // 14/11 23h (dono: "os TPs bloqueados, com o portal vermelho, em vermelho no minimapa e no mapa"): mesma regra do portal 3D
+            var trancada = (portal.LevelLock && portal.MinLevel > MyLevel) || !CinzasDaMare.Shared.World.Marcas.Tem(Flags, portal.RequiresFlag);
             DrawCircle(p, 7, new Color(0.15f, 0.08f, 0.25f, 0.9f));
             DrawCircle(p, 5, trancada ? new Color(1f, 0.25f, 0.2f) : new Color(0.72f, 0.45f, 1f));
-            DrawString(font, p + new Vector2(9, 5), portal.Label + (trancada ? $"  🔒 nível {portal.MinLevel}" : ""), HorizontalAlignment.Left, -1, 14,
+            DrawString(font, p + new Vector2(9, 5), portal.Label + (trancada ? (portal.MinLevel > MyLevel ? $"  (trancado · nível {portal.MinLevel})" : "  (trancado)") : ""), HorizontalAlignment.Left, -1, 14,
                 trancada ? new Color(1f, 0.55f, 0.5f) : new Color(1f, 0.95f, 0.85f));
             _alvos.Add((p, 9f, new[] { "Passagem: " + portal.Label,
-                trancada ? $"trancada até o nível {portal.MinLevel}" : portal.MinLevel > 0 ? $"recomendado nível {portal.MinLevel}+" : "caminho livre" }, trancada ? new Color(1f, 0.5f, 0.45f) : new Color(0.8f, 0.6f, 1f)));
+                trancada ? (portal.MinLevel > MyLevel ? $"trancada até o nível {portal.MinLevel}" : "trancada: falta uma missão/chave") : portal.MinLevel > 0 ? $"recomendado nível {portal.MinLevel}+" : "caminho livre" }, trancada ? new Color(1f, 0.5f, 0.45f) : new Color(0.8f, 0.6f, 1f)));
         }
         // 11/11 noite: NPC que ainda não apareceu = apagado; branco = só conversa; amarelo = tem missão; verde = entregar
         foreach (var npc in Layout.Npcs)
