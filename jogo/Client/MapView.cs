@@ -566,6 +566,7 @@ void fragment() {
         _skyMat.SetShaderParameter("stars", look.Stars);
         _flameBoost = 1f + 0.7f * Night;
         CicloDoDia.Noite = Night;
+        _ceuMat?.SetShaderParameter("night", Night);
         UpdateCloudColors(look, Night);
         _terrainMat?.SetShaderParameter("cloud_shadow", _cloudMat is null ? 0f : 0.16f * day);
     }
@@ -698,10 +699,85 @@ void sky() {
     COLOR = cor;
 }";
 
+    // 15/11 (dono: "o céu com coisas bonitas: aurora boreal de noite, luas, planetas — luas e planetas visíveis de dia também;
+    // nada muito elaborado, só detalhe para ambientar"): cúpula atrás das nuvens, presa à câmera. Duas luas (a grande, clara e
+    // com crateras; a pequena, avermelhada), dois planetas (um azulado com anel, um dourado) — de dia, apagadinhos — e, de
+    // noite, a aurora: cortinas verdes que puxam para o roxo no alto, só no lado norte, ondulando devagar.
+    private const string CeuEnfeitesShader = @"
+shader_type spatial;
+render_mode unshaded, blend_mix, depth_draw_never, cull_front, fog_disabled, shadows_disabled;
+uniform float night = 0.0; uniform float aurora = 1.0;
+varying vec3 dir;
+float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float vnoise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y); }
+float fbm(vec2 p) { float v = 0.0; float a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p = p * 2.03 + 7.0; a *= 0.5; } return v; }
+void vertex() { dir = normalize(VERTEX); }
+vec4 astro(vec3 d, vec3 c, float raio, vec3 cor, float crateras, float anel) {
+  if (dot(d, c) < 0.9) return vec4(0.0);   // só perto do astro (senão aparecia um disco no lado oposto do céu)
+  vec3 t1 = normalize(cross(c, vec3(0.0, 1.0, 0.0))); vec3 t2 = cross(t1, c);
+  vec2 uv = vec2(dot(d - c, t1), dot(d - c, t2)) / raio;
+  float r = length(uv);
+  vec4 o = vec4(0.0);
+  if (anel > 0.0) {   // anel: elipse inclinada em volta do planeta
+    vec2 e = vec2(uv.x * 0.55 + uv.y * 0.2, uv.y * 1.9 - uv.x * 0.5);
+    float re = length(e);
+    float a = smoothstep(1.25, 1.35, re) * (1.0 - smoothstep(1.75, 1.9, re));
+    o = vec4(cor * 0.85, a * 0.8 * anel);
+  }
+  if (r > 1.25) return o;
+  float z = sqrt(max(0.0, 1.0 - r * r));
+  float luz = clamp(dot(normalize(vec3(uv, z)), normalize(vec3(-0.55, 0.45, 0.7))), 0.0, 1.0);
+  float cr = (vnoise(uv * 5.0 + c.xz * 9.0) * 0.6 + vnoise(uv * 12.0) * 0.4) * crateras;
+  vec3 col = cor * (0.3 + 0.8 * luz) * (1.0 - cr * 0.4);
+  float corpo = 1.0 - smoothstep(0.94, 1.0, r);
+  float halo = (1.0 - smoothstep(1.0, 1.25, r)) * 0.22;
+  vec4 p = vec4(mix(cor, col, corpo), max(corpo, halo));
+  return vec4(mix(o.rgb, p.rgb, p.a), max(o.a, p.a));
+}
+void fragment() {
+  vec3 d = normalize(dir);
+  if (d.y < -0.03) discard;
+  vec4 acc = vec4(0.0);
+  if (night > 0.05 && aurora > 0.0 && d.y > 0.04) {
+    float ang = atan(d.x, -d.z);
+    float norte = smoothstep(-0.1, 0.55, -d.z);
+    float cortina = fbm(vec2(ang * 2.6 + TIME * 0.025, TIME * 0.04));
+    float raios = 0.55 + 0.45 * sin(ang * 46.0 + fbm(vec2(ang * 4.0, TIME * 0.08)) * 9.0);
+    float alto = smoothstep(0.06, 0.24, d.y) * (1.0 - smoothstep(0.3, 0.68, d.y + cortina * 0.15));
+    float I = alto * norte * smoothstep(0.38, 0.72, cortina) * raios * night * aurora;
+    vec3 c = mix(vec3(0.15, 1.0, 0.55), vec3(0.62, 0.25, 0.95), smoothstep(0.18, 0.55, d.y));
+    acc = vec4(c, I * 0.5);
+  }
+  float vis = mix(0.32, 1.0, night);
+  vec4 l1 = astro(d, normalize(vec3(-0.55, 0.52, -0.64)), 0.07, vec3(0.93, 0.91, 0.84), 1.0, 0.0);
+  vec4 l2 = astro(d, normalize(vec3(0.72, 0.34, -0.28)), 0.032, vec3(0.95, 0.58, 0.42), 0.7, 0.0);
+  vec4 p1 = astro(d, normalize(vec3(0.28, 0.6, 0.75)), 0.018, vec3(0.62, 0.78, 1.0), 0.15, 1.0);
+  vec4 p2 = astro(d, normalize(vec3(-0.8, 0.26, 0.52)), 0.009, vec3(1.0, 0.86, 0.55), 0.0, 0.0);
+  for (int i = 0; i < 4; i++) {
+    vec4 a = i == 0 ? l1 : i == 1 ? l2 : i == 2 ? p1 : p2;
+    float k = a.a * vis * (i >= 2 ? mix(0.7, 1.0, night) : 1.0);
+    acc = vec4(mix(acc.rgb, a.rgb, k), max(acc.a, k));
+  }
+  if (acc.a < 0.003) discard;
+  ALBEDO = acc.rgb;
+  ALPHA = acc.a * smoothstep(-0.03, 0.06, d.y);
+}";
+    private MeshInstance3D? _ceuDome;
+    private ShaderMaterial? _ceuMat;
+
     private void AddSkyLife()
     {
         if (Map.Id == "fundo_triangulo") { if (!Map.Instanced) VidaDoTema(); return; }   // 13/11: sem nuvens no fundo do mar
         if (!HasDayCycle || Map.Theme is "lava") return;
+        _ceuMat = new ShaderMaterial { Shader = new Shader { Code = CeuEnfeitesShader }, RenderPriority = -12 };
+        _ceuMat.SetShaderParameter("aurora", Map.Theme is "neve" or "fantasma" ? 1.4f : Map.Theme is "canion" or "acropole" ? 0.5f : 1f);
+        _ceuDome = new MeshInstance3D
+        {
+            Mesh = new SphereMesh { Radius = 245f, Height = 490f, RadialSegments = 48, Rings = 24, Material = _ceuMat },
+            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off,
+        };
+        Root.AddChild(_ceuDome);
         _cloudMat = new ShaderMaterial { Shader = new Shader { Code = CloudShader }, RenderPriority = -10 };
         _cloudMat.SetShaderParameter("cover", Mathf.Clamp(_day.Clouds * 0.9f, 0.3f, 0.75f));
         _cloudDome = new MeshInstance3D
@@ -773,6 +849,8 @@ void sky() {
     {
         if (_cloudDome is not null && _cloudDome.GetViewport()?.GetCamera3D() is { } cam)
             _cloudDome.GlobalPosition = cam.GlobalPosition;
+        if (_ceuDome is not null && _ceuDome.GetViewport()?.GetCamera3D() is { } cam2)
+            _ceuDome.GlobalPosition = cam2.GlobalPosition;   // 15/11: luas, planetas e aurora
         if (_birdRoot is null) return;
         _birdRoot.Visible = Night < 0.6f;
         if (!_birdRoot.Visible) return;

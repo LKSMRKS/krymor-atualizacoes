@@ -73,6 +73,8 @@ public partial class Showcase : Node3D
                 camera.LookAt(new Vector3(F(3), F(4), F(5)));
                 camera.Fov = 60;
                 map.SetViewer(F(3), F(5));
+                if (float.TryParse(OS.GetEnvironment("VITRINE_HORA"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var hora))
+                    map.SetHour(hora);   // 15/11: conferir o céu (luas, planetas, aurora) de dia e de noite
                 // 13/11 ("manda a versão final do mapa pra eu criar a arte"): VITRINE_ORTO=lado (m) = vista de cima reta,
                 // sem perspectiva, norte em cima, centrada em (lx, lz) — base exata para desenhar a ilustração do mapa
                 if (float.TryParse(OS.GetEnvironment("VITRINE_ORTO"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var lado) && lado > 0)
