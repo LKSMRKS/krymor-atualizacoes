@@ -698,11 +698,14 @@ public partial class Main : Node3D
         _vinteUm.Update();
         _livro.Update();
         _bestiario.Update();
-        _trilha.Atualizar(_model.Trilha, _model.TrilhaSeq);
+        _trilha.Atualizar(_model.Trilha, _model.TrilhaSeq, _model);
         _menuTab.Atualizar(_model.Objetivos);
         if (!_menuDemo && _model.LoggedIn && OS.GetEnvironment("CDM_MENU") is { Length: > 0 } aba) { _menuDemo = true; _menuTab.Mostrar(_model, aba); }   // verificação visual
         _god?.Update(_model);
         _editor.Update(_model, delta);
+        // 14/11 21h (dono: "o mouse não aparece quando aperto TAB, tenho que abrir e fechar algumas vezes"): a marca
+        // "_closingPanels" ficava ligada de um painel fechado antes e prendia o mouse logo depois de o TAB abrir
+        if (_menuTab.Visible || _trilha.Visible || _pausePanel.Visible || GodOpen) _closingPanels = false;
         if (!_panels.AnyOpen && !_inventory.Visible && Input.MouseMode != Input.MouseModeEnum.Captured && _closingPanels)
         {
             _closingPanels = false;
@@ -1556,7 +1559,7 @@ public partial class Main : Node3D
             {
                 case LobbyMessage lobby:
                     // 14/11: o atualizador começa já no lobby (quem está em versão errada é barrado antes de entrar no mapa)
-                    if (lobby.Ok && _hostEdit.Text.Trim() is not ("127.0.0.1" or "localhost" or "") && !_updaterOn) { _updaterOn = true; _updater.Send += Send; _updater.Start(); }
+                    if (lobby.Ok && _hostEdit.Text.Trim() is not ("127.0.0.1" or "localhost" or "") && !_updaterOn && !AmigoBuild) { _updaterOn = true; _updater.Send += Send; _updater.Start(); }
                     GameLog.Info("cliente.login", lobby.Ok
                         ? $"lobby: conta {lobby.AccountName}, {lobby.Characters.Count} personagem(ns)"
                         : $"lobby recusado: {lobby.Error}");
@@ -1575,6 +1578,10 @@ public partial class Main : Node3D
                 case LoginResult login:
                     GameLog.Info("cliente.login", login.Ok ? $"entrou como {login.Name} (nível {login.Level})" : $"entrada recusada: {login.Error}");
                     if (login.Ok) OnLoggedIn();
+                    // 14/11 22h: no PC do amigo quem atualiza é o Jogar.cmd (GitHub) — o atualizador de dentro do jogo ficou
+                    // desligado (baixava do servidor do anfitrião arquivos às vezes mais velhos, no meio da partida)
+                    else if (AmigoBuild && login.Error?.Contains("versão") == true)
+                        _lobby.SetStatus("Seu jogo está numa versão diferente do servidor. Feche o jogo e abra pelo Jogar.cmd — ele baixa a versão nova sozinho.");
                     else _lobby.SetStatus(login.Error?.Contains("versão") == true && _updaterOn && !_updater.Done
                         ? "Seu jogo está desatualizado: baixando a versão do servidor agora... (não feche; ele reabre sozinho)"
                         : "Não foi possível entrar: " + login.Error);
@@ -1833,7 +1840,7 @@ public partial class Main : Node3D
             case MapMessage map:
                 // 11/11: atualizador — no 1º mapa, se o servidor é de outro PC, confere se tem versão nova do jogo
                 var srvHost = _hostEdit.Text.Trim();
-                if (srvHost is not ("127.0.0.1" or "localhost" or "") && !_updaterOn) { _updaterOn = true; _updater.Send += Send; _updater.Start(); }
+                if (srvHost is not ("127.0.0.1" or "localhost" or "") && !_updaterOn && !AmigoBuild) { _updaterOn = true; _updater.Send += Send; _updater.Start(); }
                 Sfx.Play("portal", -6f);
                 Sfx.Ambience(Sfx.AmbienceFor(map.Map.Id == "fornalha" ? "lava" : map.Map.Theme, map.Map.Instanced, map.Map.Id.StartsWith("porto", StringComparison.Ordinal)));
                 break;

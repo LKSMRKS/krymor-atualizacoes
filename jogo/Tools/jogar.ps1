@@ -39,7 +39,8 @@ param(
     [switch]$SemDeus,
     [switch]$Rede,
     [string]$Servidor = "",
-    [string]$Token = ""
+    [string]$Token = "",
+    [switch]$ModoSeguro   # 14/11 22h: abre com OpenGL (placas/drivers que fecham o jogo no Vulkan)
 )
 
 $ErrorActionPreference = "Stop"
@@ -270,8 +271,10 @@ if ($Servidor) {
     $config["token"] = $Token
     Salvar-Json $config $configPath
     $cliente = '"' + (Resolve-Path .\Client).Path + '"'
-    Start-Process -FilePath $Godot -ArgumentList @("--path", $cliente, "--", "--host", $Servidor, "--port", "$Porta",
-        "--token", $Token, "--autoconnect") | Out-Null
+    $video = if ($ModoSeguro -or (Test-Path (Join-Path $PSScriptRoot "modo_seguro.txt"))) { @("--rendering-driver", "opengl3") } else { @() }
+    if ($ModoSeguro) { Set-Content (Join-Path $PSScriptRoot "modo_seguro.txt") "OpenGL (apague este arquivo para voltar ao Vulkan)" }
+    Start-Process -FilePath $Godot -ArgumentList (@("--path", $cliente) + $video + @("--", "--host", $Servidor, "--port", "$Porta",
+        "--token", $Token, "--autoconnect"))) | Out-Null
     Write-Host "Entrando no servidor $Servidor`:$Porta..."
     exit 0
 }

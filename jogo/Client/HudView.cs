@@ -86,13 +86,7 @@ public sealed class HudView
     private void UpdateGrupo(CinzasDaMare.Shared.Client.ClientModel m)
     {
         var membros = m.Party?.Members.Where(x => x.CharacterId != m.CharacterId).ToList() ?? new();
-        // 14/11 21h (dono: "não precisar estar em grupo para desafiar — já aparece junto com o nome: x1 ou grupo"):
-        // jogadores no mesmo mapa que não estão no seu grupo, com os botões x1 e grupo
-        var noGrupo = new HashSet<string>(m.Party?.Members.Select(x => x.CharacterId) ?? Array.Empty<string>());
-        var perto = (m.Snapshot?.Players ?? Enumerable.Empty<CinzasDaMare.Shared.Net.PlayerView>())
-            .Where(p => p.CharacterId != m.CharacterId && !noGrupo.Contains(p.CharacterId)).OrderBy(p => p.Name).Take(6).ToList();
-        var sig = string.Join("|", membros.Select(x => $"{x.Name}{x.Level}{(int)(x.Health / Math.Max(1, x.MaxHealth) * 20)}{x.MapName}{x.Online}"))
-                  + "#" + string.Join("|", perto.Select(p => p.Name + p.Level));
+        var sig = string.Join("|", membros.Select(x => $"{x.Name}{x.Level}{(int)(x.Health / Math.Max(1, x.MaxHealth) * 20)}{x.MapName}{x.Online}"));
         if (sig == _grupoSig) return;
         _grupoSig = sig;
         foreach (var c in _grupoBox.GetChildren()) { _grupoBox.RemoveChild(c); c.QueueFree(); }
@@ -104,21 +98,8 @@ public sealed class HudView
             // 14/11 21h (dono: "a vida do parceiro ficou muito grande — até o limite do minimapa"): largura do minimapa
             var box = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, CustomMinimumSize = new Vector2(LarguraGrupo, 0), SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin };
             box.AddThemeConstantOverride("separation", 1);
-            // 14/11 20h50 (dono: "o x1 para desafiar o amigo aparece também na frente do nome ali"): botãozinho ⚔ x1
+            // 14/11 22h (dono: "embaixo do minimapa só o nome, o nível e a barra de vida de quem está no grupo")
             var linha = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
-            linha.AddThemeConstantOverride("separation", 6);
-            if (x.Online)
-            {
-                var x1 = new Button { Text = "x1", TooltipText = $"Desafiar {x.Name} para um x1 (ele aceita com Y)", FocusMode = Control.FocusModeEnum.None,
-                    CustomMinimumSize = new Vector2(30, 18), MouseFilter = Control.MouseFilterEnum.Stop };
-                x1.AddThemeFontSizeOverride("font_size", 11);
-                var bx = new StyleBoxFlat { BgColor = new Color(0.45f, 0.08f, 0.06f, 0.9f), BorderColor = new Color(1f, 0.45f, 0.3f) };
-                bx.SetBorderWidthAll(1); bx.SetCornerRadiusAll(3); bx.ContentMarginLeft = bx.ContentMarginRight = 4;
-                x1.AddThemeStyleboxOverride("normal", bx);
-                var alvo = x.Name;
-                x1.Pressed += () => { Sfx.Play("ui_clique"); Desafiar?.Invoke(alvo); };
-                linha.AddChild(x1);
-            }
             var nm = MakeLabel($"{x.Name} · nv {x.Level}" + (!x.Online ? " (fora)" : x.MapName != (m.Map?.DisplayName ?? "") ? $" · {x.MapName}" : ""), 12,
                 x.Online ? new Color(0.55f, 0.75f, 1f) : new Color(0.55f, 0.55f, 0.55f), 3);
             nm.ClipText = true; nm.CustomMinimumSize = new Vector2(LarguraGrupo - 36, 0);
@@ -129,17 +110,6 @@ public sealed class HudView
             bar.AddThemeStyleboxOverride("background", new StyleBoxFlat { BgColor = new Color(0.05f, 0.05f, 0.06f, 0.85f) });
             box.AddChild(bar);
             _grupoBox.AddChild(box);
-        }
-        foreach (var p in perto)
-        {
-            var linha = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
-            linha.AddThemeConstantOverride("separation", 4);
-            linha.AddChild(BotaoMini("x1", new Color(0.45f, 0.08f, 0.06f, 0.9f), new Color(1f, 0.45f, 0.3f), $"Desafiar {p.Name} para um x1 (ele aceita com Y)", () => Desafiar?.Invoke(p.Name)));
-            linha.AddChild(BotaoMini("grupo", new Color(0.08f, 0.2f, 0.4f, 0.9f), new Color(0.45f, 0.7f, 1f), $"Convidar {p.Name} para o seu grupo", () => ConvidarGrupo?.Invoke(p.Name)));
-            var nome = MakeLabel($"{p.Name} · nv {p.Level}", 12, new Color(0.85f, 0.85f, 0.8f), 3);
-            nome.ClipText = true; nome.CustomMinimumSize = new Vector2(LarguraGrupo - 80, 0);
-            linha.AddChild(nome);
-            _grupoBox.AddChild(linha);
         }
     }
 

@@ -110,7 +110,11 @@ public abstract record NetMessage;
 /// <summary>13/11 ("progressão para acompanhar o que você ganha em cada nível — montaria, TP... tipo um passe"): pede a trilha.</summary>
 public sealed record TrilhaIntent() : NetMessage;
 /// <summary>Um marco da trilha do herói: nível, tipo (mapa, montaria, viagem, classe, poder, história, asas, extra), texto e se já tem.</summary>
-public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string Detalhe, bool Tem);
+public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string Detalhe, bool Tem)
+{
+    /// <summary>14/11 (passe de batalha): arte do prêmio — "item:&lt;id&gt;", "hab:&lt;skill&gt;" ou vazio (cartão do tipo).</summary>
+    public string Arte { get; init; } = "";
+}
 public sealed record TrilhaMessage(int Nivel, IReadOnlyList<TrilhaItem> Itens) : NetMessage;
 
 public sealed record ContentFileMessage(IReadOnlyList<string> Files, string? Name = null, string? Text = null, string? Info = null) : NetMessage;

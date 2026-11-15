@@ -837,7 +837,9 @@ public partial class Showcase : Node3D
         var model = new CinzasDaMare.Shared.Client.ClientModel();
         var trilha = new TrilhaPanel();
         layer.AddChild(trilha);
-        trilha.Atualizar(new CinzasDaMare.Shared.Net.TrilhaMessage(12, Enumerable.Range(1, 12).Select(i => new CinzasDaMare.Shared.Net.TrilhaItem(i * 4, i % 3 == 0 ? "dungeon" : "mapa", "Coisa do nível " + (i * 4), "detalhe", i * 4 <= 12)).ToList()), 1);
+        var tipos = new[] { "mapa", "asas", "dungeon", "montaria", "poder", "capa", "classe", "presente" };
+        var arts = new[] { "", "item:asas_fogo", "", "item:mount_corcel", "hab:skill_arqueiro_chuva", "item:capa_dragao", "", "item:caixa_cinzas_1" };
+        trilha.Atualizar(new CinzasDaMare.Shared.Net.TrilhaMessage(12, Enumerable.Range(0, 24).Select(i => new CinzasDaMare.Shared.Net.TrilhaItem(2 + i / 2 * 3, tipos[i % 8], "Prêmio " + i, "detalhe", 2 + i / 2 * 3 <= 12) { Arte = arts[i % 8] }).ToList()), 1, model);
         var opc = new VBoxContainer();
         opc.AddChild(HudView.MakeLabel("Configurações de som", 16, new Color(0.95f, 0.78f, 0.30f)));
         opc.AddChild(new HSlider { CustomMinimumSize = new Vector2(300, 24), Value = 60 });

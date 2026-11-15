@@ -927,6 +927,10 @@ public sealed class WorldPanels
             var n = name;
             b.Pressed += () => Send?.Invoke(new PartyIntent("invite", n));
             row.AddChild(b);
+            // 14/11 22h (dono: "o x1 é no P, ao mostrar os jogadores online — não precisa estar em grupo"): desafiar daqui
+            var x1 = new Button { Text = "Desafiar x1" };
+            x1.Pressed += () => Send?.Invoke(new PartyIntent("duelo", n));
+            row.AddChild(x1);
             _partyBox.AddChild(row);
         }
     }
