@@ -100,6 +100,11 @@ public static class GearFactory
                 VisualKit.Part(root, VisualKit.Box(0.16f, 0.04f, 0.04f), VisualKit.Mat(Brass, 0.4f, 0.6f), new Vector3(0, 1.12f, 0));
                 VisualKit.Part(root, VisualKit.Box(0.06f, 0.18f, 0.01f), VisualKit.Mat(new Color(0.6f, 0.1f, 0.1f)), new Vector3(0.05f, 1.02f, 0));
                 break;
+            case "mace_spiked":
+            case "mace_morningstar":
+            case "mace_flanged":
+                CabecaDeMaca(root, model);
+                break;
             case "hammer_foreman":
             case "maul":
                 Grip(root, 1.15f, model == "maul" ? DarkSteel : Wood, 0.04f, 0.3f);
@@ -249,6 +254,14 @@ public static class GearFactory
                         VisualKit.Part(root, VisualKit.Box(0.03f, 0.16f, 0.12f), trim, new Vector3(side * 0.16f, 0.26f, -0.02f), new Vector3(0, 0, side * -25));
                 break;
             }
+            case "head_barbuta":
+            case "head_horned":
+            case "head_skull":
+            case "head_spiked":
+            case "head_demon":
+            case "head_warlord":
+                ElmoAmeacador(root, model);
+                break;
             case "head_hood":
             {
                 // capuz levantado como na referência do usuário: casca de tecido envolvendo alto, lados e nuca, abertura
@@ -290,6 +303,146 @@ public static class GearFactory
                 return null;
         }
         return root;
+    }
+
+    /// <summary>
+    /// 15/11 (pendência "cabeças de maça variadas"): três cabeças feitas por código — bola com cravos curtos (Cravejada),
+    /// bola grande com espinhos longos e anel de reforço (Estrela-da-Manhã) e seis aletas de aço em volta do miolo (Flanges).
+    /// Cabo de madeira com empunhadura de couro; mesma convenção das armas: empunhadura na origem, cabeça para +Y.
+    /// </summary>
+    private static void CabecaDeMaca(Node3D root, string model)
+    {
+        var aco = VisualKit.Mat(new Color(0.5f, 0.52f, 0.56f), 0.3f, 0.9f);
+        var escuro = VisualKit.Mat(new Color(0.24f, 0.24f, 0.27f), 0.45f, 0.85f);
+        var latao = VisualKit.Mat(new Color(0.7f, 0.52f, 0.25f), 0.35f, 0.8f);
+        Grip(root, 0.62f, Wood, 0.024f, 0.22f);
+        VisualKit.Part(root, VisualKit.Cylinder(0.04f, 0.035f, 0.05f, 10), latao, new Vector3(0, -0.04f, 0));   // pomo
+        const float y = 0.66f;
+        switch (model)
+        {
+            case "mace_spiked":
+                VisualKit.Part(root, VisualKit.Sphere(0.085f), escuro, new Vector3(0, y, 0));
+                for (var i = 0; i < 14; i++)
+                {
+                    var d = Fibonacci(i, 14);
+                    var n = VisualKit.Part(root, VisualKit.Cylinder(0f, 0.022f, 0.06f, 5), aco, new Vector3(0, y, 0) + d * 0.1f);
+                    n.Basis = Basis.LookingAt(d, Mathf.Abs(d.Y) > 0.9f ? Vector3.Forward : Vector3.Up) * Basis.FromEuler(new Vector3(-Mathf.Pi / 2, 0, 0));
+                }
+                break;
+            case "mace_morningstar":
+                VisualKit.Part(root, VisualKit.Sphere(0.11f), escuro, new Vector3(0, y + 0.03f, 0));
+                VisualKit.Part(root, VisualKit.Cylinder(0.115f, 0.115f, 0.03f, 14), latao, new Vector3(0, y + 0.03f, 0));
+                for (var i = 0; i < 20; i++)
+                {
+                    var d = Fibonacci(i, 20);
+                    var n = VisualKit.Part(root, VisualKit.Cylinder(0f, 0.024f, 0.11f, 5), aco, new Vector3(0, y + 0.03f, 0) + d * 0.15f);
+                    n.Basis = Basis.LookingAt(d, Mathf.Abs(d.Y) > 0.9f ? Vector3.Forward : Vector3.Up) * Basis.FromEuler(new Vector3(-Mathf.Pi / 2, 0, 0));
+                }
+                break;
+            default:   // mace_flanged
+                VisualKit.Part(root, VisualKit.Cylinder(0.04f, 0.05f, 0.2f, 8), escuro, new Vector3(0, y, 0));
+                for (var i = 0; i < 6; i++)
+                {
+                    var a = i / 6f * Mathf.Tau;
+                    var aleta = VisualKit.Part(root, VisualKit.Box(0.012f, 0.2f, 0.09f), aco, new Vector3(Mathf.Sin(a) * 0.075f, y, Mathf.Cos(a) * 0.075f));
+                    aleta.Rotation = new Vector3(0, a, 0);
+                }
+                VisualKit.Part(root, VisualKit.Cylinder(0f, 0.045f, 0.08f, 8), aco, new Vector3(0, y + 0.14f, 0));
+                VisualKit.Part(root, VisualKit.Cylinder(0.06f, 0.06f, 0.025f, 10), latao, new Vector3(0, y - 0.11f, 0));
+                break;
+        }
+    }
+
+    /// <summary>Direção i de n espalhadas por igual numa esfera (espiral de Fibonacci).</summary>
+    private static Vector3 Fibonacci(int i, int n)
+    {
+        var yy = 1f - 2f * (i + 0.5f) / n;
+        var r = Mathf.Sqrt(1f - yy * yy);
+        var t = i * 2.39996f;
+        return new Vector3(Mathf.Cos(t) * r, yy, Mathf.Sin(t) * r);
+    }
+
+    /// <summary>
+    /// 15/11 (pendência "elmos mais ameaçadores"): um elmo por região do midgame — barbuta de fenda em T (Cânions), chifres de
+    /// carneiro (Brejo), caveira com mandíbula (Véspera), coroa de pontas de gelo (Geada), demônio de chifres curvos e olhos em
+    /// brasa (Escória) e o senhor da guerra com asas e crista (Acrópole). Mesmo casco-base do elmo fechado.
+    /// </summary>
+    private static void ElmoAmeacador(Node3D root, string model)
+    {
+        var (cor, rough, metal) = model switch
+        {
+            "head_barbuta" => (new Color(0.48f, 0.47f, 0.45f), 0.4f, 0.85f),
+            "head_horned" => (new Color(0.30f, 0.27f, 0.22f), 0.55f, 0.7f),
+            "head_skull" => (new Color(0.78f, 0.74f, 0.64f), 0.7f, 0.15f),
+            "head_spiked" => (new Color(0.55f, 0.66f, 0.76f), 0.25f, 0.9f),
+            "head_demon" => (new Color(0.16f, 0.10f, 0.10f), 0.45f, 0.8f),
+            _ => (new Color(0.20f, 0.20f, 0.23f), 0.3f, 0.9f),
+        };
+        var m = VisualKit.Mat(cor, rough, metal);
+        var escuro = VisualKit.Mat(new Color(0.05f, 0.05f, 0.06f), 0.7f);
+        var ouro = VisualKit.Mat(new Color(0.72f, 0.54f, 0.24f), 0.35f, 0.85f);
+        // casco fechado, um pouco mais alto e com bochechas descendo (mais agressivo que o balde)
+        VisualKit.Part(root, VisualKit.Cylinder(0.15f, 0.165f, 0.31f, 12), m, new Vector3(0, 0.14f, 0));
+        VisualKit.Part(root, VisualKit.Sphere(0.152f), m, new Vector3(0, 0.29f, 0), null, new Vector3(1f, 0.55f, 1.05f));
+        foreach (var lado in new[] { -1f, 1f })
+            VisualKit.Part(root, VisualKit.Box(0.05f, 0.16f, 0.12f), m, new Vector3(lado * 0.12f, 0.02f, 0.1f), new Vector3(0, lado * 25, 0));
+        Color brilho = model == "head_demon" ? new Color(1f, 0.3f, 0.05f) : model == "head_spiked" ? new Color(0.5f, 0.9f, 1f) : model == "head_warlord" ? new Color(1f, 0.75f, 0.3f) : new Color(0.9f, 0.15f, 0.1f);
+        switch (model)
+        {
+            case "head_barbuta":
+                // fenda em T: um corte horizontal nos olhos e um vertical até o queixo
+                VisualKit.Part(root, VisualKit.Box(0.2f, 0.03f, 0.03f), escuro, new Vector3(0, 0.18f, 0.155f));
+                VisualKit.Part(root, VisualKit.Box(0.035f, 0.17f, 0.03f), escuro, new Vector3(0, 0.08f, 0.158f));
+                VisualKit.Part(root, VisualKit.Box(0.025f, 0.06f, 0.26f), m, new Vector3(0, 0.37f, -0.01f));
+                break;
+            case "head_horned":
+                VisualKit.Part(root, VisualKit.Box(0.22f, 0.025f, 0.03f), escuro, new Vector3(0, 0.18f, 0.155f));
+                foreach (var lado in new[] { -1f, 1f })
+                    for (var i = 0; i < 6; i++)   // chifre de carneiro: espiral para trás e para baixo
+                    {
+                        var a = i * 0.55f;
+                        VisualKit.Part(root, VisualKit.Sphere(0.05f - i * 0.004f), VisualKit.Mat(new Color(0.62f, 0.55f, 0.42f), 0.8f),
+                            new Vector3(lado * (0.17f + 0.05f * Mathf.Sin(a)), 0.3f + 0.08f * Mathf.Cos(a), -0.02f - 0.07f * Mathf.Sin(a)));
+                    }
+                break;
+            case "head_skull":
+                foreach (var lado in new[] { -1f, 1f })
+                {
+                    VisualKit.Part(root, VisualKit.Sphere(0.04f), escuro, new Vector3(lado * 0.055f, 0.2f, 0.135f));
+                    VisualKit.Part(root, VisualKit.Sphere(0.012f), VisualKit.Glow(brilho, 2.5f), new Vector3(lado * 0.055f, 0.2f, 0.165f));
+                }
+                VisualKit.Part(root, VisualKit.Box(0.03f, 0.05f, 0.03f), escuro, new Vector3(0, 0.13f, 0.158f), new Vector3(0, 0, 45));
+                for (var i = -3; i <= 3; i++)   // dentes da mandíbula
+                    VisualKit.Part(root, VisualKit.Box(0.022f, 0.04f, 0.02f), VisualKit.Mat(new Color(0.88f, 0.85f, 0.76f), 0.6f), new Vector3(i * 0.027f, 0.05f, 0.16f));
+                break;
+            case "head_spiked":
+                VisualKit.Part(root, VisualKit.Box(0.22f, 0.025f, 0.03f), VisualKit.Glow(brilho, 1.8f), new Vector3(0, 0.18f, 0.155f));
+                for (var i = 0; i < 9; i++)   // coroa de pontas de gelo
+                {
+                    var a = i / 9f * Mathf.Tau;
+                    VisualKit.Part(root, VisualKit.Cylinder(0f, 0.025f, 0.13f + (i % 2) * 0.06f, 5), VisualKit.Mat(new Color(0.7f, 0.88f, 1f), 0.1f, 0.3f),
+                        new Vector3(Mathf.Sin(a) * 0.13f, 0.38f + (i % 2) * 0.03f, Mathf.Cos(a) * 0.13f), new Vector3(Mathf.RadToDeg(Mathf.Cos(a)) * 0.35f, 0, -Mathf.RadToDeg(Mathf.Sin(a)) * 0.35f));
+                }
+                break;
+            case "head_demon":
+                foreach (var lado in new[] { -1f, 1f })
+                {
+                    VisualKit.Part(root, VisualKit.Box(0.07f, 0.022f, 0.03f), VisualKit.Glow(brilho, 3f), new Vector3(lado * 0.05f, 0.19f, 0.155f), new Vector3(0, 0, lado * -14));
+                    for (var i = 0; i < 6; i++)   // chifre curvo para cima e para fora
+                        VisualKit.Part(root, VisualKit.Cylinder(0.058f - i * 0.009f, 0.066f - i * 0.009f, 0.08f, 8), VisualKit.Mat(new Color(0.12f, 0.1f, 0.09f), 0.5f, 0.4f),
+                            new Vector3(lado * (0.15f + i * 0.035f), 0.33f + i * 0.045f - i * i * 0.004f, -0.01f), new Vector3(0, 0, lado * (-55 + i * 12)));
+                }
+                VisualKit.Part(root, VisualKit.Box(0.03f, 0.12f, 0.03f), escuro, new Vector3(0, 0.08f, 0.158f));
+                break;
+            default:   // head_warlord
+                VisualKit.Part(root, VisualKit.Box(0.22f, 0.025f, 0.03f), VisualKit.Glow(brilho, 1.6f), new Vector3(0, 0.18f, 0.155f));
+                VisualKit.Part(root, VisualKit.Box(0.03f, 0.14f, 0.34f), ouro, new Vector3(0, 0.42f, -0.02f));   // crista
+                foreach (var lado in new[] { -1f, 1f })
+                    for (var i = 0; i < 4; i++)   // asas de metal nas laterais
+                        VisualKit.Part(root, VisualKit.Box(0.02f, 0.05f, 0.16f - i * 0.025f), ouro,
+                            new Vector3(lado * 0.17f, 0.26f + i * 0.045f, -0.06f - i * 0.02f), new Vector3(-25 - i * 8, lado * 15, 0));
+                break;
+        }
     }
 
     /// <summary>Casca do capuz (unidades do elmo: cabeça com centro ~(0; 0,14; 0) e raio ~0,14). <paramref name="ring"/> = borda da abertura.</summary>

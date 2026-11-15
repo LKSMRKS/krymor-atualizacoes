@@ -222,15 +222,17 @@ public partial class Showcase : Node3D
     private void Capacetes(Camera3D camera)
     {
         var ids = new[] { "armadura_acolchoada", "armadura_dragao", "arm_cavaleiro" };
+        var lista = OS.GetEnvironment("VITRINE_ELMOS");   // 15/11: "head_barbuta,head_horned,..." (modelos sem ":capacete")
+        if (!string.IsNullOrEmpty(lista)) ids = lista.Split(',');
         for (var i = 0; i < ids.Length; i++)
         {
-            var x = -1.2f + i * 1.2f;
+            var x = -(ids.Length - 1) * 0.6f + i * 1.2f;
             var v = VisualFactory.Player("guerreiro", true);
-            if (v is MannequinVisual mv) mv.SetHead(ids[i] + ":capacete");
+            if (v is MannequinVisual mv) mv.SetHead(ids[i].StartsWith("head_") ? ids[i] : ids[i] + ":capacete");
             Place(v, new Vector3(x, 0, 0), 0, 0);
             Label(ids[i], new Vector3(x, 2.4f, 0), 20);
         }
-        camera.Position = new Vector3(0, 1.7f, 3.2f);
+        camera.Position = new Vector3(0, 1.7f, ids.Length > 3 ? 5.2f : 3.2f);
         camera.LookAt(new Vector3(0, 1.5f, 0));
         camera.Fov = 50;
     }
