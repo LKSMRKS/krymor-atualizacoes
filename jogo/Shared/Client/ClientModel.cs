@@ -723,7 +723,9 @@ public sealed class ClientModel
             {
                 if (_flags.Contains(gate.Flag) || !gate.Lever) continue;
                 var d = Distance(me.X, me.Y, gate.LeverX, gate.LeverY);
-                if (d <= bestD) { bestD = d; best = ("lever", "lever:" + gate.Id, gate.Kind == "pedra" ? $"Empurrar a rocha (Força {gate.Strength})" : gate.Kind == "ponte" ? "Construir a ponte (6 tábuas)" : gate.Kind == "rachadura" ? CrackPrompt(me, gate) : "Puxar a alavanca"); }
+                if (d <= bestD) { bestD = d; best = ("lever", "lever:" + gate.Id, gate.Kind == "pedra" ? $"Empurrar a rocha (Força {gate.Strength})" : gate.Kind == "ponte" ? "Construir a ponte (6 tábuas)" : gate.Kind == "rachadura" ? CrackPrompt(me, gate)
+                    : gate.Kind == "corda" ? "Subir com a Corda com Gancho" : gate.Kind == "casa_ruina" ? $"Reconstruir a casa ({gate.Coins} moedas + {gate.ItemQty} retalhos)"
+                    : gate.Kind == "porta" ? "Abrir a porta (Chave de Ferro)" : "Puxar a alavanca"); }
             }
         }
         return best;

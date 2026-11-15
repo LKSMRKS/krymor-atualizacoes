@@ -739,15 +739,25 @@ void fragment() {
   vec3 d = normalize(dir);
   if (d.y < -0.03) discard;
   vec4 acc = vec4(0.0);
-  if (night > 0.05 && aurora > 0.0 && d.y > 0.04) {
+  if (night > 0.05 && aurora > 0.0 && d.y > 0.03) {
+    // 15/11 (dono: aurora na horizontal, meio ondulada — reta na vertical fica estranho): duas fitas deitadas ao longo do
+    // horizonte norte, serpenteando; borda de baixo mais viva e véu subindo um pouco, com leve granulado de raios
     float ang = atan(d.x, -d.z);
-    float norte = smoothstep(-0.1, 0.55, -d.z);
-    float cortina = fbm(vec2(ang * 2.6 + TIME * 0.025, TIME * 0.04));
-    float raios = 0.55 + 0.45 * sin(ang * 46.0 + fbm(vec2(ang * 4.0, TIME * 0.08)) * 9.0);
-    float alto = smoothstep(0.06, 0.24, d.y) * (1.0 - smoothstep(0.3, 0.68, d.y + cortina * 0.15));
-    float I = alto * norte * smoothstep(0.38, 0.72, cortina) * raios * night * aurora;
-    vec3 c = mix(vec3(0.15, 1.0, 0.55), vec3(0.62, 0.25, 0.95), smoothstep(0.18, 0.55, d.y));
-    acc = vec4(c, I * 0.5);
+    float norte = smoothstep(-0.25, 0.5, -d.z);
+    float I = 0.0; vec3 c = vec3(0.0);
+    for (int k = 0; k < 2; k++) {
+      float fk = float(k);
+      float y0 = 0.17 + fk * 0.11 + 0.05 * sin(ang * (2.0 + fk) + TIME * (0.05 + fk * 0.03)) + 0.04 * (fbm(vec2(ang * 2.2 + fk * 5.0, TIME * 0.03)) - 0.5);
+      float dy = d.y - y0;
+      float fita = dy < 0.0 ? exp(-dy * dy / 0.0006) : exp(-dy * dy / (0.006 + fk * 0.003));
+      float liga = smoothstep(0.3, 0.7, fbm(vec2(ang * 1.6 + TIME * 0.02 + fk * 9.0, fk)));
+      float grao = 0.9 + 0.1 * sin(ang * 70.0 + fbm(vec2(ang * 6.0, TIME * 0.1)) * 6.0);
+      float v = fita * liga * grao * (1.0 - fk * 0.35);
+      I += v;
+      c += v * mix(vec3(0.15, 1.0, 0.55), vec3(0.62, 0.28, 0.95), clamp(dy * 8.0 + fk * 0.4, 0.0, 1.0));
+    }
+    c = I > 0.001 ? c / I : c;
+    acc = vec4(c, clamp(I, 0.0, 1.0) * norte * night * aurora * 0.6);
   }
   float vis = mix(0.32, 1.0, night);
   vec4 l1 = astro(d, normalize(vec3(-0.55, 0.52, -0.64)), 0.07, vec3(0.93, 0.91, 0.84), 1.0, 0.0);
@@ -1613,6 +1623,7 @@ void fragment() {
         if (g.Kind == "pedra") { AddBoulder(g); return; }
         if (g.Kind == "rachadura") { AddCrack(g); return; }
         if (g.Kind == "pedra_secreta") { AddPedraSecreta(g); return; }
+        if (g.Kind is "corda" or "casa_ruina" or "porta") { AddDesafio(g); return; }
         var iron = VisualKit.Mat(new Color(0.22f, 0.22f, 0.24f), 0.5f, 0.8f);
         var wood = VisualKit.Mat(new Color(0.35f, 0.24f, 0.14f), 0.9f);
         var w = (float)g.W;
@@ -1737,6 +1748,90 @@ void fragment() {
         var toward = new Vector3((float)(g.LeverX - g.X), 0, (float)(g.LeverY - g.Y));
         toward = toward.LengthSquared() > 0.01f ? toward.Normalized() * size : Vector3.Zero;
         _gates.Add(new GateView { Gate = g, Bars = rock, Lever = new Node3D(), Home = home, Aside = home + along * 0.7f + toward });
+    }
+
+    /// <summary>
+    /// 15/11 (mecânicas variadas espalhadas pelo mapa): paredão com argola (sobe com a Corda com Gancho — a corda aparece
+    /// pendurada), casa em ruínas (vira casinha de pé depois de reconstruída) e porta trancada num arco de pedra (abre).
+    /// Fechado = "Broken", aberto = "Built" (mesmo esquema da ponte).
+    /// </summary>
+    private void AddDesafio(MapGate g)
+    {
+        var raiz = new Node3D { Position = P(g.X, g.Y) };
+        Root.AddChild(raiz);
+        var fechado = new Node3D(); var aberto = new Node3D();
+        raiz.AddChild(fechado); raiz.AddChild(aberto);
+        var madeira = VisualKit.Mat(new Color(0.42f, 0.29f, 0.17f), 0.9f);
+        var madeiraVelha = VisualKit.Mat(new Color(0.30f, 0.24f, 0.18f), 0.95f);
+        var ferro = VisualKit.Mat(new Color(0.25f, 0.25f, 0.27f), 0.45f, 0.8f);
+        var corda = VisualKit.Mat(new Color(0.62f, 0.5f, 0.3f), 0.95f);
+        string rotulo;
+        switch (g.Kind)
+        {
+            case "corda":
+            {
+                rotulo = "Paredão — Corda com Gancho";
+                // rochedo alto e irregular (não coluna de tijolo): blocos de pedra empilhados e tortos
+                var rocha = StoneMat(0.42f, true);
+                VisualKit.Part(raiz, new SphereMesh { Radius = 2.1f, Height = 5.8f, RadialSegments = 9, Rings = 6 }, rocha, new Vector3(0, 2.6f, -0.3f), null, new Vector3(1f, 1f, 0.85f));
+                for (var i = 0; i < 6; i++)
+                    VisualKit.Part(raiz, new SphereMesh { Radius = R(0.8f, 1.3f), Height = R(1.4f, 2.4f), RadialSegments = 7, Rings = 4 }, StoneMat(0.36f, true),
+                        new Vector3(R(-1.8f, 1.8f), R(0.4f, 4.6f), R(-1.3f, 0.6f)), new Vector3(R(-20, 20), R(0, 90), R(-20, 20)));
+                VisualKit.Part(raiz, new SphereMesh { Radius = 1.5f, Height = 1.6f, RadialSegments = 8, Rings = 4 }, rocha, new Vector3(0, 5.5f, -0.2f));
+                VisualKit.Part(raiz, VisualKit.Cylinder(0.16f, 0.16f, 0.06f, 10), ferro, new Vector3(0, 5.2f, 1.6f), new Vector3(90, 0, 0));
+                // aberto: corda descendo da argola até o chão, com nós; e um bauzinho lá em cima
+                for (var y = 0.3f; y < 5.2f; y += 0.35f)
+                    VisualKit.Part(aberto, VisualKit.Cylinder(0.035f, 0.035f, 0.36f, 6), corda, new Vector3(0.02f * Mathf.Sin(y * 3f), y, 1.65f));
+                for (var y = 0.8f; y < 5f; y += 0.9f)
+                    VisualKit.Part(aberto, VisualKit.Sphere(0.07f), corda, new Vector3(0, y, 1.65f));
+                VisualKit.Part(aberto, VisualKit.Box(0.7f, 0.45f, 0.5f), madeira, new Vector3(0.6f, 6.05f, 0));
+                break;
+            }
+            case "casa_ruina":
+            {
+                rotulo = "Casa destruída — reconstruir";
+                // fechado: paredes quebradas, viga caída e entulho
+                VisualKit.Part(fechado, VisualKit.Box(4f, 1.1f, 0.3f), StoneMat(0.45f, true), new Vector3(0, 0.55f, -1.8f));
+                VisualKit.Part(fechado, VisualKit.Box(0.3f, 1.8f, 2.4f), StoneMat(0.45f, true), new Vector3(-1.9f, 0.9f, -0.6f));
+                VisualKit.Part(fechado, VisualKit.Box(0.3f, 0.7f, 1.6f), StoneMat(0.45f, true), new Vector3(1.9f, 0.35f, -1f));
+                VisualKit.Part(fechado, VisualKit.Box(3.6f, 0.2f, 0.2f), madeiraVelha, new Vector3(0.2f, 0.5f, 0.3f), new Vector3(0, 25, 18));
+                for (var i = 0; i < 6; i++)
+                    VisualKit.Part(fechado, VisualKit.Box(R(0.3f, 0.7f), R(0.2f, 0.4f), R(0.3f, 0.6f)), StoneMat(0.4f, true), new Vector3(R(-1.5f, 1.5f), 0.15f, R(-1f, 1.2f)), new Vector3(0, R(0, 90), 0));
+                // aberto: casinha de pé (paredes, telhado de duas águas, porta e janela)
+                var parede = VisualKit.Mat(new Color(0.78f, 0.72f, 0.62f), 0.9f);
+                VisualKit.Part(aberto, VisualKit.Box(4f, 2.6f, 3.8f), parede, new Vector3(0, 1.3f, 0));
+                foreach (var lado in new[] { -1f, 1f })
+                    VisualKit.Part(aberto, VisualKit.Box(4.4f, 0.15f, 2.6f), VisualKit.Mat(new Color(0.55f, 0.22f, 0.15f), 0.85f), new Vector3(0, 3.25f, lado * 0.95f), new Vector3(lado * 38f, 0, 0));
+                VisualKit.Part(aberto, VisualKit.Box(1f, 1.7f, 0.08f), madeira, new Vector3(0, 0.85f, 1.92f));
+                VisualKit.Part(aberto, VisualKit.Box(0.7f, 0.6f, 0.06f), VisualKit.Glow(new Color(1f, 0.75f, 0.35f), 1.2f), new Vector3(1.3f, 1.6f, 1.92f));
+                break;
+            }
+            default:
+            {
+                rotulo = "Porta trancada — Chave de Ferro";
+                foreach (var lado in new[] { -1f, 1f })
+                    VisualKit.Part(raiz, VisualKit.Box(0.7f, 3.4f, 0.9f), StoneMat(0.45f, true), new Vector3(lado * 1.15f, 1.7f, 0));
+                VisualKit.Part(raiz, VisualKit.Box(3f, 0.6f, 0.9f), StoneMat(0.45f, true), new Vector3(0, 3.5f, 0));
+                // fechado: folha de madeira com ferragens e cadeado
+                VisualKit.Part(fechado, VisualKit.Box(1.6f, 3.1f, 0.15f), madeira, new Vector3(0, 1.55f, 0));
+                foreach (var y in new[] { 0.6f, 1.6f, 2.6f })
+                    VisualKit.Part(fechado, VisualKit.Box(1.6f, 0.1f, 0.18f), ferro, new Vector3(0, y, 0));
+                VisualKit.Part(fechado, VisualKit.Box(0.22f, 0.26f, 0.12f), VisualKit.Mat(new Color(0.7f, 0.55f, 0.2f), 0.35f, 0.85f), new Vector3(0.45f, 1.4f, 0.14f));
+                // aberto: a folha girada para dentro e um baú atrás
+                var folha = new Node3D { Position = new Vector3(-0.8f, 0, 0), RotationDegrees = new Vector3(0, -100, 0) };
+                aberto.AddChild(folha);
+                VisualKit.Part(folha, VisualKit.Box(1.6f, 3.1f, 0.15f), madeira, new Vector3(0.8f, 1.55f, 0));
+                VisualKit.Part(aberto, VisualKit.Box(0.9f, 0.6f, 0.6f), madeira, new Vector3(0, 0.3f, -1.2f));
+                break;
+            }
+        }
+        fechado.AddChild(new Label3D
+        {
+            Text = rotulo, FontSize = 34, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+            Modulate = new Color(0.95f, 0.88f, 0.7f), Position = new Vector3(0, g.Kind == "corda" ? 6.4f : 4.2f, 0),
+        });
+        aberto.Visible = false;   // só aparece quando a marca chega (o laço dos portões liga/desliga)
+        _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = aberto, Broken = fechado });
     }
 
     /// <summary>Selo de passagem: barreira violeta com runas; some para quem tem a marca (chefe vencido / rito / passo).</summary>

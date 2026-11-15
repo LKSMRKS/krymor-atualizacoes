@@ -30,6 +30,17 @@ public sealed record MapGate(string Id, string Flag, double X, double Y, double 
     public int Strength { get; init; }
     /// <summary>12/11 ("a alavanca no final não ativa; só abrir ao matar todos os monstros"): alavanca trava até limpar o mapa.</summary>
     public bool RequiresClear { get; init; }
+    /// <summary>
+    /// 15/11 (dono: "corda com gancho, ponte que constrói, casa que destruiu, algo pra abrir uma porta — mecânicas variadas
+    /// espalhadas pelo mapa"): kinds "corda" (subir no paredão com a Corda com Gancho — não gasta), "casa_ruina" (reconstruir
+    /// pagando o carpinteiro e com retalhos) e "porta" (a Chave de Ferro abre e se gasta). Ao abrir: recompensa da tabela.
+    /// </summary>
+    public string? RequiresItem { get; init; }
+    public int ItemQty { get; init; } = 1;
+    public bool Consume { get; init; }
+    public int Coins { get; init; }
+    public string? RewardLoot { get; init; }
+    public int RewardXp { get; init; }
 }
 
 /// <summary>Baú: cada personagem abre uma vez (marca "chest:id"); o conteúdo vai direto para a mochila.</summary>

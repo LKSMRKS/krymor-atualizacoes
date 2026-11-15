@@ -230,8 +230,8 @@ public partial class Showcase : Node3D
         {
             var x = -(ids.Length - 1) * 0.6f + i * 1.2f;
             var v = VisualFactory.Player("guerreiro", true);
-            if (v is MannequinVisual mv) mv.SetHead(ids[i].StartsWith("head_") ? ids[i] : ids[i] + ":capacete");
-            Place(v, new Vector3(x, 0, 0), 0, 0);
+            if (v is MannequinVisual mv) mv.SetHead(ids[i].StartsWith("head_") || ids[i].StartsWith("mascara") ? ids[i] : ids[i] + ":capacete");
+            Place(v, new Vector3(x, 0, 0), float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var yw) ? yw : 0, 0);
             Label(ids[i], new Vector3(x, 2.4f, 0), 20);
         }
         camera.Position = new Vector3(0, 1.7f, ids.Length > 3 ? 5.2f : 3.2f);

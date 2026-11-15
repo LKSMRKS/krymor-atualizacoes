@@ -316,21 +316,56 @@ public sealed class MannequinVisual : IPlayerVisual
         if (_classId == "arqueiro" && model == "head_hood") Recolor(_helmet, new Color(0.20f, 0.30f, 0.17f));
     }
 
+    /// <summary>
+    /// 15/11 (dono mandou a referência certa: máscara de TRONCO — um pedaço de casca de árvore retangular, mais alto que largo,
+    /// casca cinza-escura de um lado e marrom-clara do outro com uma rachadura no meio, dois buracos quadrados nos olhos e uma
+    /// fenda deitada na boca, as bordas do corte cor de laranja). Tiras verticais de casca com relevo dão a textura.
+    /// </summary>
     private static Node3D MascaraPandemonio()
     {
-        var m = new Node3D { Name = "Mascara", Position = new Vector3(0, 0.1f, 0.085f) };
-        var verde = new StandardMaterial3D { AlbedoColor = new Color(0.28f, 0.62f, 0.18f), Roughness = 0.55f, EmissionEnabled = true, Emission = new Color(0.1f, 0.35f, 0.05f) };
-        var escuro = new StandardMaterial3D { AlbedoColor = new Color(0.04f, 0.06f, 0.03f), Roughness = 0.9f };
-        var face = VisualKit.Part(m, VisualKit.Sphere(0.12f), verde, Vector3.Zero, null, new Vector3(0.95f, 1.15f, 0.45f));
-        foreach (var sx in new[] { -1f, 1f })
+        var m = new Node3D { Name = "Mascara", Position = new Vector3(0, 0.085f, 0.078f) };
+        Material Casca(Color c, float r = 0.95f) => new StandardMaterial3D { AlbedoColor = c, Roughness = r };
+        var corte = Casca(new Color(0.86f, 0.5f, 0.22f), 0.8f);       // madeira exposta (borda laranja)
+        var oco = Casca(new Color(0.03f, 0.025f, 0.02f), 1f);
+        const float W = 0.19f, H = 0.27f, D = 0.03f;
+        // miolo de madeira (aparece nas bordas e nos furos)
+        VisualKit.Part(m, VisualKit.Box(W, H, D * 0.6f), corte, new Vector3(0, 0, -0.004f));
+        // tiras de casca: lado esquerdo cinza-escuro, direito marrom-claro; alturas e relevos variados
+        var rng = new RandomNumberGenerator { Seed = 1511 };
+        const int tiras = 9;
+        for (var i = 0; i < tiras; i++)
         {
-            VisualKit.Part(m, VisualKit.Sphere(0.026f), escuro, new Vector3(sx * 0.042f, 0.03f, 0.048f), null, new Vector3(1.2f, 0.8f, 0.6f));
-            VisualKit.Part(m, VisualKit.Sphere(0.012f), new StandardMaterial3D { AlbedoColor = new Color(1f, 0.9f, 0.2f), EmissionEnabled = true, Emission = new Color(1f, 0.8f, 0.1f), EmissionEnergyMultiplier = 2f },
-                new Vector3(sx * 0.042f, 0.03f, 0.056f));
+            var x = -W / 2 + (i + 0.5f) * W / tiras;
+            var esquerda = i < 4;
+            var cor = esquerda ? new Color(0.30f, 0.30f, 0.29f).Lerp(new Color(0.48f, 0.47f, 0.43f), rng.Randf())
+                               : new Color(0.55f, 0.45f, 0.33f).Lerp(new Color(0.70f, 0.60f, 0.46f), rng.Randf());
+            var segs = 3 + rng.RandiRange(0, 2);
+            var y = -H / 2;
+            for (var k = 0; k < segs; k++)
+            {
+                var h = k == segs - 1 ? H / 2 - y : H / segs * rng.RandfRange(0.7f, 1.25f);
+                if (y + h > H / 2) h = H / 2 - y;
+                var prof = D * 0.5f + rng.RandfRange(0.002f, 0.012f);
+                VisualKit.Part(m, VisualKit.Box(W / tiras * rng.RandfRange(0.85f, 1.05f), h * 0.97f, prof),
+                    Casca(cor.Darkened(rng.RandfRange(0f, 0.15f))), new Vector3(x + rng.RandfRange(-0.002f, 0.002f), y + h / 2, D * 0.25f));
+                y += h;
+                if (y >= H / 2 - 0.001f) break;
+            }
         }
-        // sorriso largo (arco de pedacinhos escuros)
-        for (var i = -3; i <= 3; i++)
-            VisualKit.Part(m, VisualKit.Box(0.022f, 0.012f, 0.01f), escuro, new Vector3(i * 0.02f, -0.055f + 0.0025f * i * i, 0.05f), new Vector3(0, 0, i * 6f));
+        // rachadura laranja do meio (de cima até a boca, levemente torta)
+        for (var k = 0; k < 6; k++)
+            VisualKit.Part(m, VisualKit.Box(0.008f, 0.03f, 0.006f), corte, new Vector3(-0.005f + 0.004f * Mathf.Sin(k * 1.3f), 0.12f - k * 0.03f, D * 0.5f + 0.008f), new Vector3(0, 0, 8f * Mathf.Sin(k)));
+        // olhos: buracos quadrados (fundo escuro + moldura de corte laranja)
+        foreach (var (ex, ey, ew, eh) in new[] { (-0.045f, 0.035f, 0.045f, 0.033f), (0.05f, 0.045f, 0.05f, 0.033f) })
+        {
+            VisualKit.Part(m, VisualKit.Box(ew + 0.01f, eh + 0.01f, 0.006f), corte, new Vector3(ex, ey, D * 0.5f + 0.006f));
+            VisualKit.Part(m, VisualKit.Box(ew, eh, 0.008f), oco, new Vector3(ex, ey, D * 0.5f + 0.008f));
+        }
+        // boca: fenda deitada um pouco abaixo e à direita do centro
+        VisualKit.Part(m, VisualKit.Box(0.12f, 0.024f, 0.006f), corte, new Vector3(0.012f, -0.07f, D * 0.5f + 0.006f));
+        VisualKit.Part(m, VisualKit.Box(0.11f, 0.014f, 0.008f), oco, new Vector3(0.012f, -0.07f, D * 0.5f + 0.008f));
+        // leve curva para abraçar o rosto
+        m.RotationDegrees = new Vector3(-4f, 0, 0);
         return m;
     }
 
