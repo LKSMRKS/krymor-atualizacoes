@@ -1650,7 +1650,7 @@ void fragment() {
                 StoneMat(0.36f, true), new Vector3(R(-0.35f, 0.35f), R(-0.1f, 0.35f), R(-0.35f, 0.35f)) * size);
         rock.AddChild(new Label3D
         {
-            Text = $"Rocha pesada · Força {g.Strength}", FontSize = 34, OutlineSize = 8, PixelSize = 0.01f,
+            Text = $"Rocha pesada · Força {g.Strength} ou Pé de Cabra", FontSize = 34, OutlineSize = 8, PixelSize = 0.01f,
             Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, Modulate = new Color(0.95f, 0.88f, 0.7f), Position = new Vector3(0, size * 0.75f, 0),
         });
         // rola para o lado mais comprido da passagem (ao longo da parede)

@@ -591,6 +591,18 @@ public sealed class InventoryPanel
             b.Pressed += () => Send?.Invoke(new UnequipIntent(slot));
             _buttons.AddChild(b);
         }
+        // 15/11 ("tenho 8 fracos e não consigo dividir pra jogar um, ou 4, pra um amigo, ou vender"): separa a pilha
+        if (item is not null && quantity > 1)
+        {
+            var qtd = new SpinBox { MinValue = 1, MaxValue = quantity - 1, Value = Math.Max(1, quantity / 2), CustomMinimumSize = new Vector2(74, 34),
+                TooltipText = "Quantos separar da pilha" };
+            var dv = new Button { Text = "Dividir", CustomMinimumSize = new Vector2(80, 34),
+                TooltipText = "Separa essa quantidade numa pilha nova (para jogar no chão, vender ou passar na troca)" };
+            var idDiv = item.ItemId;
+            dv.Pressed += () => { Send?.Invoke(new MoveSlotIntent("@dividir:" + idDiv, (int)qtd.Value)); Sfx.Play("ui_clique"); };
+            _buttons.AddChild(qtd);
+            _buttons.AddChild(dv);
+        }
         // 10/11: sem botão "Vender" — vende arrastando para a janela do vendedor ou com o botão direito
     }
 
