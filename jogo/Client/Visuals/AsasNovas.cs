@@ -159,7 +159,9 @@ void fragment() {
     private static void Procedural(Node3D pivo, Estilo e, float s)
     {
         // as montadas em código no mesmo tamanho dos modelos (~1 m de envergadura por lado)
+        // 15/11 noite: marcada — o MannequinVisual abre as asas de modelo em V; estas (desenhadas deitadas) ele compensa
         var p = new Node3D { Scale = Vector3.One * 1.9f, Position = new Vector3(0, -0.08f, 0) };
+        p.SetMeta("procedural", true);
         pivo.AddChild(p);
         switch (e.Extra)
         {

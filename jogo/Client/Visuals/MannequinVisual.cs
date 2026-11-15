@@ -2638,19 +2638,27 @@ void fragment() {
             var sway = 0.05f * Mathf.Sin(_wingT + 0.6f);
             if (Flying)
             {
-                // 14/11 (dono, com a referência do boneco amarelo de asas: "sentado no ar"): coxas para a frente quase na
-                // horizontal, joelhos dobrados com as canelas penduradas, pés soltos; tronco levemente para trás; balança
-                // junto com a batida das asas (que é o que sustenta)
-                var bal = 0.06f * Mathf.Sin(_wingT + 0.4f);
-                Pose("LeftUpLeg", AxL, -1.22f + bal, flyW);
-                Pose("RightUpLeg", AxL, -1.05f + bal, flyW);
-                Pose("LeftLeg", AxL, 1.5f - bal, flyW);
-                Pose("RightLeg", AxL, 1.3f - bal, flyW);
-                Pose("LeftUpLeg", AxFwd, -0.09f, flyW);
-                Pose("RightUpLeg", AxFwd, 0.09f, flyW);
-                Pose("LeftFoot", AxL, 0.45f, flyW);
-                Pose("RightFoot", AxL, 0.45f, flyW);
-                Pose("Spine", AxL, -0.1f, flyW);
+                // 15/11 noite (dono: "não fez a pose voando igual o print" — o boneco amarelo de asas): NÃO é sentado. Corpo
+                // em pé, pernas penduradas para baixo, coxas só um pouco à frente e juntas, joelhos dobrados com as canelas
+                // para trás (uma mais que a outra), pés esticados; braços abertos para os lados e para baixo (~45°),
+                // cotovelos levemente dobrados, mãos abertas — e tudo balança junto com a batida das asas
+                var bal = Mathf.Sin(_wingT + 0.4f);
+                Pose("LeftUpLeg", AxL, -0.42f + 0.05f * bal, flyW);
+                Pose("RightUpLeg", AxL, -0.28f + 0.05f * bal, flyW);
+                Pose("LeftLeg", AxL, 0.62f - 0.06f * bal, flyW);
+                Pose("RightLeg", AxL, 0.95f - 0.06f * bal, flyW);
+                Pose("LeftUpLeg", AxFwd, -0.06f, flyW);
+                Pose("RightUpLeg", AxFwd, 0.08f, flyW);
+                Pose("LeftFoot", AxL, 0.7f, flyW);
+                Pose("RightFoot", AxL, 0.8f, flyW);
+                if ((_frame.Action ?? "").Length == 0)
+                {
+                    // braços: o ombro sobe um pouco quando a asa desce (equilíbrio)
+                    var ab = 0.08f * bal;
+                    // 2ª referência (gárgula voando): braços pendurados um pouco abertos, cotovelos dobrados, mãos à frente
+                    AimArm("Left", new(0.5f, -0.8f + ab, 0.2f), new(0.28f, -0.6f + ab, 0.75f), flyW);
+                    AimArm("Right", new(0.5f, -0.8f + ab, 0.2f), new(0.28f, -0.6f + ab, 0.75f), flyW);
+                }
             }
             else
             {
@@ -3997,6 +4005,7 @@ void fragment() {
     private bool _armaGuardadaPeloBarril;
 
     private readonly List<(Node3D Pivot, float Side)> _wingPivots = new();
+    private float _wingLift;   // 15/11 noite: 0 = asa dobrada (chão), 1 = asa subida em V (voando)
     private float _wingT, _wingFlap, _flyLift;
     /// <summary>11/11: voando de verdade (PlayerView.Flying).</summary>
     public bool Flying { get; set; }
@@ -4115,10 +4124,26 @@ void fragment() {
         var open = 25f + 40f * _wingFlap;                      // quanto abre para trás e para os lados
         var ciclo = Mathf.PosMod(_wingT, Mathf.Tau) / Mathf.Tau;
         var bate = ciclo < 0.4f ? Mathf.Cos(ciclo / 0.4f * Mathf.Pi) : -Mathf.Cos((ciclo - 0.4f) / 0.6f * Mathf.Pi);   // desce em 40% do tempo
-        var beat = bate * (6f + (Flying ? 46f : 38f) * _wingFlap);   // 14/11: voando, batida mais ampla (sustenta o peso)
+        // 15/11 noite (dono: "a asa não bate corretamente" + referência do boneco amarelo voando): os modelos de asa são
+        // painéis altos (1,6 m) com a dobradiça a 60% da altura — girando em volta dela, a parte de baixo cruzava por baixo
+        // do corpo para o outro lado e a de cima passava por cima da cabeça. Voando, o painel sobe até a dobradiça ficar
+        // no PÉ da asa (ela nasce do ombro e sobe) e abre em V para fora; a batida acontece em volta desse V:
+        // em cima ~20° do vertical, embaixo quase deitada (~85°). No chão continua como antes (dobrada, pendurada).
+        _wingLift = Mathf.MoveToward(_wingLift, Flying ? 1f : 0f, delta * 2.5f);
+        var abre = Mathf.Lerp(Mathf.Lerp(0f, 8f, _wingFlap), 52f, _wingLift);
+        var amp = Mathf.Lerp(6f + 38f * _wingFlap, 34f, _wingLift);
+        var roll = abre - bate * amp;
         var sweep = Mathf.Sin(_wingT - 0.9f) * (3f + 12f * _wingFlap);
+        var giro = Mathf.Lerp(-60f + open + sweep, 8f + sweep * 0.5f, _wingLift);   // voando: plano da asa de frente para trás (um pouco para trás)
         foreach (var (pivot, side) in _wingPivots)
-            pivot.RotationDegrees = new Vector3(0, side * (-60f + open + sweep), side * beat);
+        {
+            pivot.RotationDegrees = new Vector3(0, side * giro, -side * roll);
+            if (pivot.GetChildCount() > 0 && pivot.GetChild(0) is Node3D metade)
+            {
+                if (metade.HasMeta("procedural")) metade.RotationDegrees = new Vector3(0, 0, side * abre);   // desenhada deitada: sem o V
+                else if (metade.Name.ToString().StartsWith("asa_")) metade.Position = new Vector3(0, 0.9f * _wingLift, 0);   // metade do modelo
+            }
+        }
     }
 
     private Node3D? _aura;

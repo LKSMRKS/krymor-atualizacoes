@@ -783,6 +783,8 @@ void fragment() {
     private MeshInstance3D? _ceuDome;
     private static readonly Dictionary<string, (float Forca, Color A, Color B, float Centro, float Largura)> Auroras = new()
     {
+        // 15/11 noite (dono: "não era pra tirar da praça — praça é a primeira cidade"): Porto das Cinzas volta a ter
+        ["porto_das_cinzas"] = (1.1f, new Color(0.15f, 1.0f, 0.55f), new Color(0.62f, 0.28f, 0.95f), 0.0f, 1.7f),
         ["coroa_da_geada"] = (1.4f, new Color(0.15f, 1.0f, 0.55f), new Color(0.62f, 0.28f, 0.95f), 0.0f, 1.9f),
         ["pico_vento"] = (1.1f, new Color(0.2f, 0.95f, 0.75f), new Color(0.3f, 0.55f, 1.0f), 0.9f, 1.4f),
         ["vespera"] = (0.85f, new Color(0.55f, 1.0f, 0.75f), new Color(0.35f, 0.75f, 0.85f), -0.7f, 1.2f),
@@ -4165,9 +4167,11 @@ void fragment() {
 
     private void UpdateStones(float time)
     {
-        foreach (var (orb, fo) in _orbitas) orb.Rotation = new Vector3(0, time * 1.3f + fo, 0);
+        // 15/11 noite (log do dono: ObjectDisposedException aqui depois de remontar o mapa): pula o que já foi liberado
+        foreach (var (orb, fo) in _orbitas) if (GodotObject.IsInstanceValid(orb)) orb.Rotation = new Vector3(0, time * 1.3f + fo, 0);
         foreach (var (lasca, runas, feixe, fase) in _lascas)
         {
+            if (!GodotObject.IsInstanceValid(lasca) || !GodotObject.IsInstanceValid(runas) || !GodotObject.IsInstanceValid(feixe)) continue;
             lasca.Rotation = new Vector3(0, time * 0.9f + fase, 0);
             lasca.Position = new Vector3(0, 2.35f + 0.08f * Mathf.Sin(time * 1.7f + fase), 0);
             lasca.Visible = feixe.Visible = runas.Visible;

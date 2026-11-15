@@ -53,8 +53,15 @@ public sealed class Atualizador
     /// baixada, reabre o jogo pelo Jogar.cmd (que aplica a pasta pendente, recompila e entra de novo no servidor guardado)
     /// e fecha este. Devolve falso se não achou o Jogar.cmd (aí o jogador fecha e abre na mão).
     /// </summary>
+    /// <summary>15/11 noite: no PC do amigo, ao baixar do anfitrião, deixa Tools/versao_do_anfitriao.txt — o Jogar.cmd
+    /// não troca pela versão do GitHub enquanto essa marca for recente (12 h).</summary>
+    public bool MarcarVersaoDoAnfitriao { get; set; }
+
     public bool Reabrir()
     {
+        if (MarcarVersaoDoAnfitriao)
+            try { File.WriteAllText(Path.Combine(_root, "Tools", "versao_do_anfitriao.txt"), DateTime.UtcNow.ToString("o")); }
+            catch (Exception e) { GameLog.Warn("cliente.atualizador", "não gravei a marca da versão do anfitrião: " + e.Message); }
         var cmd = Path.Combine(_root, "Jogar.cmd");
         if (!File.Exists(cmd) || !OperatingSystem.IsWindows()) return false;
         try

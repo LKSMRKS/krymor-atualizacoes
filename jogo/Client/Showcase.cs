@@ -467,14 +467,17 @@ public partial class Showcase : Node3D
     // 11/11 noite: voo de lado (pernas juntas, pés apontados) e as asas antigas (ferro, neve) com os modelos novos
     private void Voo(Camera3D camera)
     {
-        var sets = new (string Cls, string Kind, bool Fly)[] { ("guerreiro", "ferro", false), ("arqueiro", "dragao", true), ("bruxa", "neve", true) };
+        // 15/11 noite: VITRINE_ASAS = lista de asas (padrão: 3 tipos); VITRINE_YAW = de que lado olhar (180 = de frente)
+        var kinds = (OS.GetEnvironment("VITRINE_ASAS") is { Length: > 0 } va ? va : "aguia,dragao,ferro").Split(',');
+        var yawV = float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var yv) ? yv : 180f;
+        var sets = kinds.Select((k, i) => (Cls: new[] { "guerreiro", "arqueiro", "bruxa", "mago" }[i % 4], Kind: k, Fly: true)).ToArray();
         for (var i = 0; i < sets.Length; i++)
         {
             var x = -3.5f + i * 3.5f;
             var v = VisualFactory.Player(sets[i].Cls, true);
             if (v is IPlayerVisual pv) pv.SetWings(sets[i].Kind);
             if (v is MannequinVisual mv) mv.Flying = sets[i].Fly;
-            Place(v, new Vector3(x, 0, 0), i == 0 ? 180f : 90f, i * 0.5f);
+            Place(v, new Vector3(x, 0, 0), yawV, i * 0.7f);
             Label(sets[i].Kind + (sets[i].Fly ? " (voando)" : ""), new Vector3(x, 3.6f, 0), 28);
         }
         camera.Position = new Vector3(0, 3.0f, -6.5f);

@@ -1611,8 +1611,18 @@ public partial class Main : Node3D
                     if (login.Ok) OnLoggedIn();
                     // 14/11 22h: no PC do amigo quem atualiza é o Jogar.cmd (GitHub) — o atualizador de dentro do jogo ficou
                     // desligado (baixava do servidor do anfitrião arquivos às vezes mais velhos, no meio da partida)
+                    // 15/11 noite (amigo às 8h: "teve att o game?" — barrado o dia todo): o GitHub estava numa versão MAIS NOVA
+                    // que a do servidor do anfitrião (que ainda não tinha aplicado), e o Jogar.cmd só sabia baixar do GitHub.
+                    // Agora, versão diferente → baixa a versão EXATA do servidor do anfitrião (que é quem manda), marca para o
+                    // Jogar.cmd não trocar de novo pela do GitHub nas próximas horas, e reabre sozinho.
                     else if (AmigoBuild && login.Error?.Contains("versão") == true)
-                        _lobby.SetStatus("Seu jogo está numa versão diferente do servidor. Feche o jogo e abra pelo Jogar.cmd — ele baixa a versão nova sozinho.");
+                    {
+                        if (!_updaterOn) { _updaterOn = true; _updater.Send += Send; _updater.Start(); }
+                        _updater.MarcarVersaoDoAnfitriao = true;
+                        _lobby.SetStatus(_updater.Done && _updater.Baixados == 0
+                            ? "Seu jogo e o servidor estão em versões diferentes e não achei o que baixar. Avise o anfitrião."
+                            : "Seu jogo e o servidor estão em versões diferentes: baixando a versão do servidor agora... (não feche; ele reabre sozinho)");
+                    }
                     else _lobby.SetStatus(login.Error?.Contains("versão") == true && _updaterOn && !_updater.Done
                         ? "Seu jogo está desatualizado: baixando a versão do servidor agora... (não feche; ele reabre sozinho)"
                         : "Não foi possível entrar: " + login.Error);

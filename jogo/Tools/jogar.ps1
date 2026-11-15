@@ -52,7 +52,12 @@ Set-Location $raiz
 # no PC do AMIGO (tem Client\amigo.txt), antes de abrir, confere a versão publicada no GitHub; se mudou, baixa só os
 # arquivos diferentes (lista com SHA-256 em manifest.json) para "atualizacao_pendente" — o bloco de baixo aplica.
 $amigoTxt = Join-Path $raiz "Client\amigo.txt"
-if ((Test-Path $amigoTxt) -and -not $env:KRYMOR_SEM_GITHUB) {
+# 15/11 noite: se o jogo acabou de baixar a versão EXATA do servidor do anfitrião (marca com menos de 12 h), não troca pela
+# do GitHub (que pode estar à frente do servidor quando o anfitrião ainda não aplicou a atualização dele)
+$marcaAnfitriao = Join-Path $PSScriptRoot "versao_do_anfitriao.txt"
+$usarAnfitriao = (Test-Path $marcaAnfitriao) -and ((Get-Item $marcaAnfitriao).LastWriteTime -gt (Get-Date).AddHours(-12))
+if ($usarAnfitriao) { Write-Host "Usando a versão do servidor do anfitrião (baixada há pouco) - sem conferir o GitHub agora." }
+if ((Test-Path $amigoTxt) -and -not $env:KRYMOR_SEM_GITHUB -and -not $usarAnfitriao) {
     $gh = "https://raw.githubusercontent.com/LKSMRKS/krymor-atualizacoes/main"
     $verLocalPath = Join-Path $PSScriptRoot "versao_github.txt"
     try {
