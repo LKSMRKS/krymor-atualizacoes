@@ -238,9 +238,12 @@ public sealed partial class LobbyStage : Node3D
     private float _time;
     private string _sig = "";
 
-    private static readonly float[] Xs = { -3.6f, -1.8f, 0f, 1.8f, 3.6f, -2.7f, 0f, 2.7f };
+    private static readonly float[] Xs = { -3.6f, -1.8f, 0f, 1.8f, 3.6f, -2.7f, 0f, 2.7f };   // vagas 5 e 7: nas frestas da fila da frente
     /// <summary>Vaga 0–4: fila da frente; 5–7: degrau de trás (mais alto e mais fundo).</summary>
-    private static Vector3 Lugar(int i) => i < 5 ? new Vector3(Xs[i], 0, -Mathf.Abs(Xs[i]) * 0.12f) : new Vector3(Xs[i], 0.55f, -2.6f);
+    // 15/11 (dono: "os 3 de trás ficam cobertos pelos da frente — deixa no espaço entre um e outro"): os dos lados vão para
+    // as frestas entre os da frente (±2,7); o do meio fica num degrau mais alto, para a cabeça aparecer por cima do da frente
+    private static Vector3 Lugar(int i) => i < 5 ? new Vector3(Xs[i], 0, -Mathf.Abs(Xs[i]) * 0.12f)
+        : i == 6 ? new Vector3(0f, 1.35f, -3.4f) : new Vector3(Xs[i], 0.8f, -2.4f);
 
     public LobbyStage()
     {
@@ -391,7 +394,7 @@ public sealed partial class LobbyStage : Node3D
         for (var i = 0; i < LobbyView.Slots; i++)
         {
             var at = Lugar(i);
-            if (i >= 5) VisualKit.Part(_actors, new BoxMesh { Size = new Vector3(1.7f, 0.55f, 1.7f) }, VisualKit.Mat(new Color(0.16f, 0.15f, 0.16f), 0.7f, 0.1f), at - new Vector3(0, 0.275f, 0));   // degrau
+            if (i >= 5) VisualKit.Part(_actors, new BoxMesh { Size = new Vector3(1.5f, at.Y, 1.5f) }, VisualKit.Mat(new Color(0.16f, 0.15f, 0.16f), 0.7f, 0.1f), at - new Vector3(0, at.Y / 2, 0));   // degrau
             var c = i < chars.Count ? chars[i] : null;
             var isSel = c is not null && c.Id == selected;
             // pedestal
@@ -478,7 +481,7 @@ public sealed partial class LobbyStage : Node3D
     /// <summary>Golpe que cada classe mostra na seleção (o boneco usa as poses do jogo pelo id da habilidade).</summary>
     private static string? FlourishFor(string classId) => classId switch
     {
-        var k when k.Contains("guerreiro") => "skill_guerreiro_giro",
+        var k when k.Contains("guerreiro") => "skill_guerreiro_golpe_de_cunha",   // 15/11: o Giro rodava o boneco inteiro ("os guerreiros giram kkkk")
         var k when k.Contains("mago") => "skill_mago_chuva_meteoros",
         var k when k.Contains("bruxa") => "skill_bruxa_espinhos",
         var k when k.Contains("arqueiro") => "skill_arqueiro_disparo",
