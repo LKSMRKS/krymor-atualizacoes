@@ -40,7 +40,8 @@ param(
     [switch]$Rede,
     [string]$Servidor = "",
     [string]$Token = "",
-    [switch]$ModoSeguro   # 14/11 22h: abre com OpenGL (placas/drivers que fecham o jogo no Vulkan)
+    [switch]$ModoSeguro,   # 14/11 22h: abre com OpenGL (placas/drivers que fecham o jogo no Vulkan)
+    [switch]$SoServidor    # 15/11 ("abrir o server sem abrir o jogo"): sobe só o servidor (ABRIR_SERVIDOR.cmd)
 )
 
 $ErrorActionPreference = "Stop"
@@ -285,7 +286,7 @@ if (Precisa-Compilar $servidorExe @("Server", "Shared", "ServerHost", "Content")
     Write-Host "Compilando o servidor (Release)..."
     Rodar-Dotnet @("build", "-c", "Release", ".\ServerHost\CinzasDaMare.ServerHost.csproj", "-nologo", "-v", "q")
 }
-if (Precisa-Compilar $clienteDll @("Client", "Shared")) {
+if (-not $SoServidor -and (Precisa-Compilar $clienteDll @("Client", "Shared"))) {
     Write-Host "Compilando o cliente..."
     Rodar-Dotnet @("build", ".\Client\CinzasDaMare.Client.csproj", "-nologo", "-v", "q")
 }
@@ -353,6 +354,12 @@ if ($Rede) {
     Write-Host "Servidor aberto para os amigos na porta $Porta. Passe para ele um destes IPs (o da VPN, se usarem uma):"
     $ips | ForEach-Object { Write-Host "   $_" }
     Write-Host ""
+}
+
+if ($SoServidor) {
+    Write-Host "Servidor aberto (janela minimizada na barra de tarefas). O jogo NÃO foi aberto."
+    Write-Host "Para fechar o servidor: Jogar.cmd -Parar"
+    exit 0
 }
 
 # ---------------------------------------------------------------- cliente

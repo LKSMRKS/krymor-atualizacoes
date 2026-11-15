@@ -522,6 +522,13 @@ public partial class Showcase : Node3D
             if (OS.GetEnvironment("VITRINE_ASAS") is { Length: > 0 } asas && v is MannequinVisual wv)   // 14/11 noite: asas/capas (capa:x), uma por boneco
                 wv.SetWings(asas.Split(',')[i % asas.Split(',').Length]);
             if (OS.GetEnvironment("VITRINE_VOO") == "1" && v is MannequinVisual fv) fv.Flying = true;   // 14/11: pose de voo
+            if (OS.GetEnvironment("VITRINE_BARRIL") == "1" && v is MannequinVisual bv)   // 15/11: barril abraçado
+            {
+                bv.CarregandoBarril = true;
+                var keg = Main.KegNode();
+                keg.Position = new Vector3(0, Main.BarrilAltura, 0.34f); keg.RotationDegrees = new Vector3(-8f, 0f, 0f); keg.Scale = Vector3.One * 0.62f;
+                v.Root.AddChild(keg);
+            }
             Label(st.Name, new Vector3(x, 2.15f, 0));
         }
         camera.Position = new Vector3(0, 1.5f, 6.4f);

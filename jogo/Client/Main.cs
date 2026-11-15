@@ -3085,7 +3085,9 @@ public partial class Main : Node3D
     }
 
     /// <summary>Um barril de pólvora (modelo do cenário; sem ele, cilindro de madeira com aros).</summary>
-    private static Node3D KegNode()
+    internal const float BarrilAltura = 1.12f;   // 15/11: o fundo do barril em cima das mãos
+
+    internal static Node3D KegNode()
     {
         var n = new Node3D();
         if (!MapKit.Glb(n, "cenario_barril", Vector3.Zero, 0f, 0.62f))
@@ -3102,11 +3104,14 @@ public partial class Main : Node3D
     /// <summary>Barril nas mãos (11/11): fica na frente do peito, abraçado.</summary>
     private static void SetCarry(EntityState st, string? carry)
     {
+        if (st.Visual is Visuals.MannequinVisual mv) mv.CarregandoBarril = carry is not null;
         if (carry is null) { st.Carry?.QueueFree(); st.Carry = null; return; }
         if (st.Carry is not null) return;
         st.Carry = KegNode();
-        st.Carry.Position = new Vector3(0, 0.75f, 0.42f);
-        st.Carry.Scale = Vector3.One * 0.85f;
+        // 15/11: um pouco mais alto e colado na barriga (os braços abraçam por baixo); levemente inclinado para trás
+        st.Carry.Position = new Vector3(0, BarrilAltura, 0.34f);
+        st.Carry.RotationDegrees = new Vector3(-8f, 0f, 0f);
+        st.Carry.Scale = Vector3.One * 0.62f;
         st.Visual.Root.AddChild(st.Carry);
     }
 

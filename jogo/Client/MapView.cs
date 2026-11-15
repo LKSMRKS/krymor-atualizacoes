@@ -3632,7 +3632,7 @@ void fragment() {
                     var paraCentro = new Vector2((float)-p.X, (float)-p.Y);
                     var dirT = paraCentro.LengthSquared() > 0.01f ? paraCentro.Normalized() : new Vector2(0, 1);
                     var esc = p.Scale > 0 ? (float)p.Scale : 1f;
-                    PortaoVermelho(P(p.X + dirT.X * 3.0 * esc, p.Y + dirT.Y * 3.0 * esc), Mathf.Atan2(dirT.X, dirT.Y), 1.8f, 2.8f, "Torre fechada");
+                    PortaoVermelho(P(p.X + dirT.X * 3.0 * esc, p.Y + dirT.Y * 3.0 * esc), Mathf.Atan2(dirT.X, dirT.Y), 1.8f, 2.8f, "Torre lacrada: ainda não tem entrada (vem numa próxima versão)");
                 }
                 if (MapKit.Glb(node, file, Vector3.Zero, 0f, 1f) && p.Kind == "tocha_poste")
                 {

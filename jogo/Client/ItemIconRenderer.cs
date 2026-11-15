@@ -37,7 +37,10 @@ public sealed partial class ItemIconRenderer : Node
     public static string KeyFor(ItemInfo? info, string definition)
         // 11/11 ("tudo virou flor"): materiais dividem o mesmo modelo genérico (mat_ash) — a chave era o modelo, então o
         // primeiro ícone pintado (a erva) ficava para todos. Material agora tem chave pelo próprio id.
+        // 15/11 ("cada poção com frasco e cor diferente — está tudo com o mesmo ícone"): as poções dividem o modelo "potion"
+        // / "potion_mana", e a primeira foto ficava para todas; quem tem desenho próprio tem chave pelo próprio id
         => definition.StartsWith("tomo_") ? "tome_" + TomeClass(definition)
+            : HasOwnIcon(definition) ? definition
             : info?.Model is { Length: > 0 } m && !m.StartsWith("mat_") && info.Category != "material" ? m : definition;
 
     /// <summary>Textura pronta do item (null = ainda não; pede para fotografar).</summary>

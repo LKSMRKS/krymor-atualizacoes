@@ -2629,7 +2629,7 @@ void fragment() {
         // igual na vida real"): parado, andando ou correndo (sem golpe), guarda de duas mãos: braço direito desce rente ao
         // corpo com o cotovelo dobrado e o antebraço vem para a frente e para o meio; a lâmina sobe na diagonal à frente
         // (ponta na altura dos olhos); a mão esquerda segura o cabo logo abaixo da direita, no prolongamento do cabo.
-        if (_weapon is not null && GearFactory.IsTwoHanded(_weaponModel) && !(_frame.Action ?? "").StartsWith("dodge") && !_mounted)
+        if (_weapon is not null && GearFactory.IsTwoHanded(_weaponModel) && !(_frame.Action ?? "").StartsWith("dodge") && !_mounted && !CarregandoBarril)
         {
             var semGolpe = (_frame.Action ?? "").Length == 0 && !Flying;
             var lanca = _weaponModel?.StartsWith("arma_lanca") == true;
@@ -2658,10 +2658,34 @@ void fragment() {
             var axis = new Vector3(local.Z, 0, -local.X);
             if (axis.LengthSquared() > 1e-4f) Pose("Spine1", axis.Normalized(), -k, 1f);
         }
+        // 15/11: barril de pólvora abraçado — cotovelos abertos e para a frente, antebraços por baixo e em volta do barril,
+        // tronco jogado um pouco para trás (contrapeso), joelhos meio dobrados e passo curto; balança com o passo
+        _barrilW = Mathf.MoveToward(_barrilW, CarregandoBarril ? 1f : 0f, _lastDelta * 4f);
+        if (_barrilW > 0.01f)
+        {
+            // arma e escudo vão para as costas (somem das mãos) enquanto carrega
+            var passo = Mathf.Clamp(_frame.Speed / 2.5f, 0f, 1f) * Mathf.Sin(_time * 7f);
+            // 15/11 (dono: "segurar o barril com as mãos embaixo dele"): cotovelos junto do corpo, antebraços para a frente
+            // quase na horizontal, palmas para cima — o barril vai apoiado em cima das mãos
+            AimArm("Left", new(0.22f, -0.95f, 0.2f), new(-0.18f, -0.08f, 0.98f), _barrilW);
+            AimArm("Right", new(0.22f, -0.95f, 0.2f), new(-0.18f, -0.08f, 0.98f), _barrilW);
+            Pose("LeftHand", AxFwd, 1.2f, _barrilW);    // palmas viradas para cima, sob o fundo do barril
+            Pose("RightHand", AxFwd, -1.2f, _barrilW);
+            Pose("Spine", AxL, -0.16f + 0.02f * passo, _barrilW);
+            Pose("Spine1", AxL, -0.06f, _barrilW);
+            Pose("Head", AxL, 0.12f, _barrilW);   // olha um pouco para baixo, por cima do barril
+            Pose("LeftLeg", AxL, 0.18f, _barrilW * 0.6f);
+            Pose("RightLeg", AxL, 0.18f, _barrilW * 0.6f);
+        }
+        var semArma = _barrilW > 0.5f;
+        if (semArma || semArma != _armaGuardadaPeloBarril)
+        {
+            _armaGuardadaPeloBarril = semArma;
+            foreach (var n in new[] { _weapon, _shield, _focus }) if (n is not null && GodotObject.IsInstanceValid(n)) n.Visible = !semArma;
+        }
         FecharMaos();
         KeepArmsOutOfBody();
-        AimBladeAlongSwing();
-        KeepWeaponOutOfBody();
+        if (_barrilW < 0.5f) { AimBladeAlongSwing(); KeepWeaponOutOfBody(); }   // 15/11: carregando barril a arma está guardada
         FeedTrail();
         KeepAboveGround();
     }
@@ -3909,6 +3933,11 @@ void fragment() {
     // ------------------------------------------------------------ montaria, asas, lendário
 
     public void SetMounted(bool mounted) => _mounted = mounted;
+
+    /// <summary>15/11 ("arrumar a animação de segurar o barril, pra ficar mais real"): abraça o barril na frente da barriga.</summary>
+    public bool CarregandoBarril { get; set; }
+    private float _barrilW;
+    private bool _armaGuardadaPeloBarril;
 
     private readonly List<(Node3D Pivot, float Side)> _wingPivots = new();
     private float _wingT, _wingFlap, _flyLift;
