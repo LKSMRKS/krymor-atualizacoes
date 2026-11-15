@@ -71,7 +71,7 @@ public static class ItemTooltip
         ("dodge_pct", "Esquiva"), ("thorns_pct", "Espinhos (devolve dano)"), ("damage_reduction_pct", "Redução de dano"),
         ("cdr_pct", "Redução de recarga"), ("xp_pct", "Experiência"), ("stamina_regen_pct", "Fôlego"),
         ("tenacity_pct", "Tenacidade"), ("hit_pct", "Precisão"), ("healing_received_pct", "Cura recebida"),
-        ("mana_cost_pct", "Custo das habilidades"), ("stun_resist_pct", "Resistência a atordoamento"), ("magic_resist_pct", "Resistência mágica"),
+        ("mana_cost_pct", "Custo das habilidades"), ("foco_por_acerto", "Foco por flecha que acerta"), ("stun_resist_pct", "Resistência a atordoamento"), ("magic_resist_pct", "Resistência mágica"),
     };
 
     /// <summary>12/11: cor da variação de conjunto (V1 cinza → V15 dourado radiante); null se não for variação.</summary>
@@ -170,6 +170,13 @@ public static class ItemTooltip
             var weapon = info.Slot == "weapon_main";
             Control Centro(Control c) { if (c is Label l) l.HorizontalAlignment = HorizontalAlignment.Center; return c; }
             if (info.MinLevel > 1) col.AddChild(Centro(Label($"Nível necessário: {info.MinLevel}", 13, level >= info.MinLevel ? Dim : Bad)));
+            // 15/11: asas e capas têm nível 1–3 (como no MU); capa de nível 2+ também voa
+            if (info.Category is "wings" or "cape")
+            {
+                var na = CinzasDaMare.Shared.Content.Atributos.NivelDaAsa(info.MinLevel);
+                var voa = info.Category == "wings" || CinzasDaMare.Shared.Content.Atributos.CapaVoa(info.MinLevel);
+                col.AddChild(Centro(Label($"{(info.Category == "wings" ? "Asa" : "Capa")} de nível {na} · {(voa ? "voa (G)" : "não voa — capa voa do nível 2")}", 13, voa ? Good : Dim)));
+            }
             var weight = CinzasDaMare.Shared.Content.Atributos.Weight(info.Slot, info.Stats);
             if (weight > 0)
             {

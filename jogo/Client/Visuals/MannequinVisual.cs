@@ -50,6 +50,7 @@ public sealed class MannequinVisual : IPlayerVisual
     private Node3D? _weapon, _shield, _helmet, _wings, _focus;
     /// <summary>10/11: escudo aparecia virado para dentro do corpo; no 1º quadro com ele na cena, vira a frente (+Z) para fora.</summary>
     private bool _shieldCheck;
+    private Node3D? _segundaArma;   // 15/11: arma da mão esquerda (duas armas do Guerreiro)
     private float _skid, _lastDelta = 0.016f;
     private Vector3 _shieldScale = Vector3.One;
     private OmniLight3D? _legendLight;
@@ -257,6 +258,8 @@ public sealed class MannequinVisual : IPlayerVisual
         {
             _offhandModel = offhand;
             _shield?.QueueFree();
+            _segundaArma?.QueueFree();
+            _segundaArma = null;
             _shield = GearFactory.Shield(offhand);
             if (_shield is not null)
             {
@@ -264,6 +267,15 @@ public sealed class MannequinVisual : IPlayerVisual
                 _shield.Position = new Vector3(0.12f, 0.0f, 0.06f);
                 _shield.RotationDegrees = new Vector3(0, 0, -90);
                 _shieldCheck = true;
+            }
+            else if (offhand is not null && !offhand.StartsWith("shield_") && !offhand.StartsWith("orb") && !offhand.Contains("aljava")
+                     && !GearFactory.IsBow(offhand) && !GearFactory.IsStaff(offhand) && GearFactory.Weapon(offhand) is { } segunda)
+            {
+                // 15/11 (duas armas do Guerreiro): a 2ª arma vai na mão esquerda, espelhando o encaixe da direita
+                _segundaArma = segunda;
+                _handL.AddChild(segunda);
+                segunda.RotationDegrees = new Vector3(90, -40, 0);
+                segunda.Position = new Vector3(0.08f, -0.02f, 0.02f);
             }
         }
         if (body != _bodyModel) BuildOutfit(body);
@@ -2681,7 +2693,7 @@ void fragment() {
         if (semArma || semArma != _armaGuardadaPeloBarril)
         {
             _armaGuardadaPeloBarril = semArma;
-            foreach (var n in new[] { _weapon, _shield, _focus }) if (n is not null && GodotObject.IsInstanceValid(n)) n.Visible = !semArma;
+            foreach (var n in new[] { _weapon, _shield, _focus, _segundaArma }) if (n is not null && GodotObject.IsInstanceValid(n)) n.Visible = !semArma;
         }
         FecharMaos();
         KeepArmsOutOfBody();

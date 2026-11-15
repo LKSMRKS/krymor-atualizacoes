@@ -199,7 +199,11 @@ public sealed record CastIntent(string SkillId, string? TargetId, double? AimX =
 public sealed record ClaimItemIntent(string RequestId, string ItemId) : NetMessage;
 /// <summary>Liga o ataque básico automático contra o alvo; TargetId vazio/nulo desliga.</summary>
 public sealed record AutoAttackIntent(string? TargetId) : NetMessage;
-public sealed record EquipIntent(string ItemId) : NetMessage;
+public sealed record EquipIntent(string ItemId) : NetMessage
+{
+    /// <summary>15/11 (duas armas do Guerreiro): "off_hand" = arrastou a arma para o espaço da mão secundária.</summary>
+    public string? Slot { get; init; }
+}
 public sealed record UnequipIntent(string Slot) : NetMessage;
 public sealed record UseItemIntent(string ItemId) : NetMessage;
 /// <summary>Autentica e pede a lista de personagens (sem entrar no mundo).</summary>

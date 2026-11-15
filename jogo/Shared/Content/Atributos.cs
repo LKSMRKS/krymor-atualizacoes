@@ -46,6 +46,13 @@ public static class Atributos
         _ => key,
     };
 
+    /// <summary>
+    /// 15/11 (pendência "asas e capas em 3 níveis — capa nv2+ voa"): nível da asa/capa pelo nível do item, como no MU —
+    /// 1 até o 24, 2 do 25 ao 44, 3 do 45 em diante. Asa sempre voa; capa voa do nível 2 em diante.
+    /// </summary>
+    public static int NivelDaAsa(int minLevel) => minLevel >= 45 ? 3 : minLevel >= 25 ? 2 : 1;
+    public static bool CapaVoa(int minLevel) => NivelDaAsa(minLevel) >= 2;
+
     /// <summary>Peso de uma peça (armadura/elmo pesam pela proteção; escudo um pouco menos). Pede a mesma Força.</summary>
     public static double Weight(string slot, IReadOnlyDictionary<string, double>? stats)
     {

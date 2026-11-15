@@ -3627,7 +3627,8 @@ void fragment() {
                 };
                 // 13/11 (regra do dono: "torre fechada, que não dá para ir, tem que ter um portão vermelho"): a torre partida
                 // ganha um portão de pedra lacrado por um véu vermelho no pé dela, virado para o centro do mapa
-                if (p.Kind == "torre_partida")
+                // 15/11: a da Costa virou dungeon (portal "Torre Partida" no pé dela) — torre com portal perto não ganha o véu
+                if (p.Kind == "torre_partida" && !Map.Portals.Any(pt => Math.Abs(pt.X - p.X) < 8 && Math.Abs(pt.Y - p.Y) < 8))
                 {
                     var paraCentro = new Vector2((float)-p.X, (float)-p.Y);
                     var dirT = paraCentro.LengthSquared() > 0.01f ? paraCentro.Normalized() : new Vector2(0, 1);

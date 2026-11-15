@@ -39,7 +39,8 @@ public sealed class InventoryPanel
         if (dragged is not null && dragged.DefinitionId is "joia_mare" or "joia_brasa" or "joia_vazio"
             && m!.Equipment.FirstOrDefault(e => e.Slot == slot) is { } worn)
         { Send?.Invoke(new RefineIntent(id, worn.ItemId)); return; }
-        Send?.Invoke(new EquipIntent(id));
+        // 15/11: arma solta no espaço da mão secundária = segunda arma (Guerreiro com duas armas de uma mão)
+        Send?.Invoke(new EquipIntent(id) { Slot = slot == "off_hand" ? "off_hand" : null });
     }
     /// <summary>Pedra de Portal usada: Main abre o mapa com a lista de viagens.</summary>
     public event Action? OpenTravel;
@@ -96,7 +97,7 @@ public sealed class InventoryPanel
     private static readonly (string Key, string Name)[] StatNames =
     {
         ("weapon_power", "poder"), ("armor", "armadura"), ("max_health", "vida"), ("reach_m", "alcance"),
-        ("guard_bonus", "guarda"), ("resource_regen_pct", "regen. recurso"), ("aoe_radius_bonus", "raio explosão"),
+        ("guard_bonus", "guarda"), ("resource_regen_pct", "regen. recurso"), ("foco_por_acerto", "foco/acerto"), ("aoe_radius_bonus", "raio explosão"),
         ("projectile_speed_pct", "vel. seta"), ("projectile_count", "setas"), ("move_speed_pct", "velocidade"),
         ("power_pct", "ataque"), ("attack_speed_pct", "vel. ataque"), ("crit_pct", "crítico"), ("dodge_pct", "esquiva"),
         ("thorns_pct", "espinhos"), ("damage_reduction_pct", "redução dano"), ("cdr_pct", "recarga"), ("xp_pct", "XP"), ("stamina_regen_pct", "fôlego"),
