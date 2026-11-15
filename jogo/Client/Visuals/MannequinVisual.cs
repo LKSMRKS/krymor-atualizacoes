@@ -1,3 +1,4 @@
+using CinzasDaMare.Shared.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,9 @@ public interface IPlayerVisual : IEntityVisual
 ///   por cima da animação (fases preparação → golpe → recuperação vindas do servidor).
 /// Nada aqui decide regra. Se o .glb faltar, VisualFactory volta ao boneco de formas simples.
 /// </summary>
-public sealed class MannequinVisual : IPlayerVisual
+public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: poses dos poderes em Client/Efeitos/PosesPoderes.cs
 {
+    private readonly PassoLateral _passoLateral = new();   // 15/11 (Missão Terça)
     // regiões gravadas em COLOR_0.r (ver preparar_manequim.py)
     private const int Head = 1 << 0, Chest = 1 << 1, Belly = 1 << 2, Arm = 1 << 3, Fore = 1 << 4, Hand = 1 << 5,
         Thigh = 1 << 6, Shin = 1 << 7, Foot = 1 << 8;
@@ -157,6 +159,7 @@ public sealed class MannequinVisual : IPlayerVisual
 
         // poses de ação: aplicadas por um modificador do esqueleto, depois da animação de cada quadro
         _skel.AddChild(new ManequimPoser { Manequim = this });
+        LimiteCorpo.Ligar(_skel);   // 14/11: braço não atravessa o corpo
         _handR = Socket("RightHand");
         _handL = Socket("LeftHand");
         _foreL = Socket("LeftForeArm");
@@ -1475,7 +1478,8 @@ void fragment() {
             var name = bone >= 0 ? _skel.GetBoneName(bone) : skin.GetBindName(b).ToString();
             regionOfBind[b] = RegionOfBone(name);
             // tronco (Spine) é largo: recua 6 cm; braço fino recua só 3,5 cm (mais que o raio dele viraria do avesso)
-            insetOfBind[b] = name.Contains("Spine") ? 0.06f : regionOfBind[b] == BodyRegion.Head ? 0.04f : MaskInset;
+            insetOfBind[b] = name.Contains("Spine") ? 0.06f : regionOfBind[b] == BodyRegion.Head ? 0.04f
+                : name.Contains("Hand") ? 0.006f : name.Contains("ForeArm") ? 0.015f : MaskInset;   // 14/11 (Missão Terça): mão recua 6 mm
             dropOfBind[b] = name.Contains("Spine") || name.Contains("Shoulder") || name.Contains("Neck");
         }
         // normal média por posição (vértices repetidos nas quinas andam juntos: sem rasgo)
@@ -1771,6 +1775,7 @@ void fragment() {
     /// <summary>14/11 noite: enfeite 3D da capa, preso nas costas logo abaixo da gola (leão, caveira, relógio...).</summary>
     private static Node3D? Emblema(string tipo)
     {
+        if (EmblemasGlb.Criar(tipo) is { } novo) return novo;   // 15/11: enfeite modelado (Visuals/EmblemasGlb.cs)
         var n = new Node3D { Name = "Emblema" };
         var ouro = VisualKit.Mat(new Color(1f, 0.78f, 0.3f), 0.25f, 0.95f);
         var osso = VisualKit.Mat(new Color(0.93f, 0.9f, 0.83f), 0.6f);
@@ -2363,7 +2368,10 @@ void fragment() {
             else { PlayClip(_idle, 0.3f); _clipSpeed = 1f; }
         }
         else if (_mounted) { PlayClip(_idle, 0.2f); _clipSpeed = 0.5f; }
-        _anim?.Advance(delta * _clipSpeed);
+        // 15/11: andando de lado ou recuando — clipe ao contrário e quadril virado para o passo (Visuals/PassoLateral.cs)
+        var (sentidoPasso, giroPasso) = _passoLateral.Medir(Root, f.Speed, f.Alive && !_mounted && !flying, delta);
+        _anim?.Advance(delta * _clipSpeed * sentidoPasso);
+        if (giroPasso != 0f) { Pose("Hips", AxUp, giroPasso, 1f); Pose("Spine", AxUp, -giroPasso * 0.85f, 1f); }
         CarryWeapon(f, delta);
         if (_cape is { } cape && GodotObject.IsInstanceValid(cape) && !cape.IsQueuedForDeletion()) cape.Step(delta);
         foreach (var ic in _itemCape)
@@ -3602,6 +3610,7 @@ void fragment() {
             _ => 0f,
         };
         var strike = phase == "active" || (phase == "recover" && t < 0.3f);
+        if (PosePoder(PoseKind(skill), phase, w, strike)) return;   // gancho VFX 14/11 (Client/Efeitos/PosesPoderes.cs)
         switch (PoseKind(skill))
         {
             case "arco":
@@ -3934,6 +3943,7 @@ void fragment() {
 
     private string PoseKind(string skill)
     {
+        if (FamiliaPoder(skill) is { } poder) return poder;   // gancho VFX 14/11 (Client/Efeitos/PosesPoderes.cs)
         if (_mon is { } ms && !skill.StartsWith("skill_"))
         {
             bool Has(params string[] k) { foreach (var x in k) if (skill.Contains(x)) return true; return false; }

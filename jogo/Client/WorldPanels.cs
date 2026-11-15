@@ -1427,7 +1427,7 @@ public sealed partial class WorldMapCanvas : Control
             else DrawRect(new Rect2(At(o.X - o.W / 2, o.Y - o.H / 2), new Vector2(Mathf.Max(1.5f, (float)o.W * k), Mathf.Max(1.5f, (float)o.H * k))), col);
         }
         foreach (var z in L.Zones)
-            if (z.Kind != "caminho" && z.Name.Length > 0 && z.W * k > 60)
+            if (z.Kind != "caminho" && z.Kind is not ("secreto" or "segredo") && z.Name.Length > 0 && z.W * k > 60)
                 DrawString(font, At(z.X, z.Y) + new Vector2(-60, 0), z.Name, HorizontalAlignment.Center, 120, 12, new Color(1f, 0.95f, 0.8f, 0.75f));
         DrawRect(new Rect2(At(-L.HalfSize, -L.HalfSize), new Vector2((float)(2 * L.HalfSize) * k, (float)(2 * L.HalfSize) * k)), new Color(0.72f, 0.55f, 0.26f), false, 2f);
     }

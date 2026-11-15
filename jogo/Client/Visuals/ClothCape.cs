@@ -112,7 +112,10 @@ public sealed partial class ClothCape : MeshInstance3D
             // não atravessa o corpo: cápsula do tronco (peito → quadril) e das pernas, com folga
             for (var i = Cols; i < _p.Length; i++)
             {
-                var s0 = spine + up * 0.15f; var s1 = spine - up * 1.25f;
+                // 15/11 (capa "voando" com o boneco parado): o eixo do osso do peito inclina ~25° e gira até 90° na animação
+                // de espera (o tronco olha para os lados); a cápsula seguia esse eixo e a ponta de baixo ia meio metro para o
+                // lado, empurrando o pano na horizontal. O tronco cai sempre na vertical do peito; as pernas têm cápsula própria.
+                var s0 = spine + up * 0.15f; var s1 = spine - Vector3.Up * 1.25f;
                 var q = ClosestOnSegment(_p[i], s0, s1);
                 var d = _p[i] - q;
                 var dist = d.Length();
@@ -120,7 +123,7 @@ public sealed partial class ClothCape : MeshInstance3D
                 if (dist < rad)
                 {
                     var n = dist > 1e-4f ? d / dist : back;
-                    if (n.Dot(back) < -0.2f) n = (n + back * 1.5f).Normalized();   // na dúvida, sai por trás
+                    if (n.Dot(backH) < -0.2f) n = (n + backH * 1.5f).Normalized();   // na dúvida, sai por trás (atrás na horizontal)
                     _p[i] = q + n * rad;
                 }
                 // braços e pernas também empurram o pano para fora (não atravessa)

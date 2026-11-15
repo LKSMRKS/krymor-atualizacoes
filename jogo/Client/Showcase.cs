@@ -54,6 +54,8 @@ public partial class Showcase : Node3D
             case "kit": s.Kit(map, camera); break;
             case "glb": s.Glb(camera); break;
             case "classes": s.Classes(camera, dressed: true); break;
+            case "poderes": Efeitos.VitrinePoderes.Montar(s, camera); break;   // gancho VFX 14/11 (vitrine dos poderes)
+            case "lobby": s.Lobby(); break;   // 15/11 noite: o palco do lobby com 9 personagens
             case "menutab": s.MenuTab(camera, OS.GetEnvironment("VITRINE_PAG")); break;
             case "base": s.Classes(camera, dressed: false); break;
             case "pet": s.Pet(camera); break;
@@ -869,5 +871,22 @@ public partial class Showcase : Node3D
         };
         menu.Mostrar(model, aba);
         menu.Atualizar(new CinzasDaMare.Shared.Net.ObjetivosMessage(1340, objs, loja));
+    }
+
+    // 15/11 noite: o palco do lobby cheio (9 vagas) para conferir que ninguém tampa ninguém
+    private void Lobby()
+    {
+        var stage = new LobbyStage();
+        var layer = new CanvasLayer(); AddChild(layer);
+        var holder = new SubViewportContainer { Stretch = true };
+        holder.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        holder.AddChild(stage.Viewport);
+        layer.AddChild(holder);
+        stage.Active = true;
+        var cls = new[] { "guerreiro", "mago", "bruxa", "arqueiro" };
+        var n = int.TryParse(OS.GetEnvironment("VITRINE_PAG"), out var q) ? q : 9;
+        var chars = Enumerable.Range(0, n).Select(i => new CinzasDaMare.Shared.Net.CharacterSummary("c" + i, "Herói " + (i + 1), cls[i % 4], 10 + i * 5)).ToList();
+        var classes = cls.Select(c => new CinzasDaMare.Shared.Net.ClassSummary(c, char.ToUpper(c[0]) + c[1..], "")).ToList();
+        stage.Show(chars, classes, "c2");
     }
 }

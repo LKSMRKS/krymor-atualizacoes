@@ -462,6 +462,7 @@ public sealed class HudView
     {
         _ganhosPendentes = m.Ganhos.Count > 0;
         if (_ganhou is { Visible: true } || m.Ganhos.Count == 0) return;
+        if (_death.Visible) return;   // 15/11: morto, a caixa espera o renascer (não aparece por cima do "Você foi derrotado")
         if (_ganhou is null)
         {
             _ganhou = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Stop, CustomMinimumSize = new Vector2(420, 0) };

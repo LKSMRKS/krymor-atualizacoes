@@ -1,3 +1,4 @@
+using CinzasDaMare.Shared.Client;
 using System;
 using System.Collections.Generic;
 using Godot;
@@ -102,10 +103,16 @@ public sealed class GlbCreatureVisual : IEntityVisual
     {
         if (_anim is null) return;
         var clip = Find(name);
-        if (clip.Length == 0 || clip == _playing) return;
+        if (clip.Length == 0) return;
+        // 14/11 (pé deslizando): a taxa vale a cada quadro — antes só era lida quando o clipe começava, então o lobo que
+        // arrancava devagar ficava com o passo lento mesmo correndo a 4,7 m/s
+        _taxa = speed;
+        if (clip == _playing) return;
         _playing = clip;
-        _anim.Play(clip, blend, speed);
+        _anim.Play(clip, blend, 1f);
     }
+
+    private float _taxa = 1f;
 
     public void Update(in VisualFrame f, float delta)
     {
@@ -144,8 +151,9 @@ public sealed class GlbCreatureVisual : IEntityVisual
                     Play(_clipFor("sleep", "") ?? "idle", 0.3f, 0.4f);
                     break;
                 default:
-                    if (f.Speed > 4.2f && Find("run").Length > 0) Play("run", 0.2f, Mathf.Clamp(f.Speed / 7f, 0.7f, 1.6f));   // 13/11: montaria a galope
-                    else if (f.Speed > 0.3f) Play("walk", 0.2f, Mathf.Clamp(f.Speed / 2.2f, 0.6f, 2f));
+                    // 14/11 (pé deslizando): faixa maior de taxa — lobo a 4,7 m/s sem clipe de corrida passava do teto de 2×
+                    if (f.Speed > 4.2f && Find("run").Length > 0) Play("run", 0.2f, PassoAnimacao.Taxa(f.Speed, PassoAnimacao.CriaturaCorrer, PassoAnimacao.CriaturaCorrerMin, PassoAnimacao.CriaturaCorrerMax));   // 13/11: montaria a galope
+                    else if (f.Speed > 0.3f) Play("walk", 0.2f, PassoAnimacao.Taxa(f.Speed, PassoAnimacao.CriaturaAndar, PassoAnimacao.CriaturaAndarMin, PassoAnimacao.CriaturaAndarMax));
                     else Play(_clipFor("idle", "") ?? "idle", 0.25f);
                     break;
             }
@@ -157,7 +165,7 @@ public sealed class GlbCreatureVisual : IEntityVisual
             if (_anim.CurrentAnimationPosition + delta >= len - 0.02f) { _anim.Seek(len - 0.02f, true); }
             else _anim.Advance(delta);
         }
-        else _anim?.Advance(delta);
+        else _anim?.Advance(delta * _taxa);
 
         // clarão de dano e brilho de preparação
         if (_hitT < 1f) _hitT = Mathf.Min(1f, _hitT + delta / 0.25f);

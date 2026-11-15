@@ -111,6 +111,13 @@ if ($variacoes.Count -gt 0) {
         Move-Item $maisNova.FullName $pendenteZip -Force
     }
 }
+# 15/11 (Missão Terça: ~500 MB de modelos novos, maior que o limite de um arquivo só): pacotes de arte à parte
+# (artes_pendentes_1.zip, _2...) entram na mesma pasta pendente e são aplicados junto
+foreach ($az in @(Get-ChildItem -Path $raiz -File -Filter "artes_pendentes*.zip" -ErrorAction SilentlyContinue)) {
+    Write-Host "Descompactando $($az.Name)..."
+    try { Expand-Archive -Path $az.FullName -DestinationPath $pendente -Force; Remove-Item $az.FullName -Force }
+    catch { Write-Host "  não consegui abrir $($az.Name) (baixe de novo): $($_.Exception.Message)" }
+}
 if (Test-Path $pendenteZip) {
     Write-Host "Descompactando a atualização..."
     Expand-Archive -Path $pendenteZip -DestinationPath $pendente -Force
@@ -141,6 +148,37 @@ if (Test-Path $pendente) {
     robocopy $pendente $raiz /E /MOVE /NFL /NDL /NJH /NJS | Out-Null
     if (Test-Path $pendente) { Remove-Item $pendente -Recurse -Force -ErrorAction SilentlyContinue }
     Write-Host "Atualização aplicada."
+}
+# 15/11 noite: modelos novos da "Missão Terça" (~500 MB). O código veio na atualização; a arte sai direto dos dois zips que
+# já estão em entregas\missao_terca_FINAL (sem baixar de novo). Roda uma vez só (marca em Client\Assets\Models).
+$mtMarca = Join-Path $raiz "Client\Assets\Models\.missao_terca_artes"
+if (-not (Test-Path $mtMarca) -and (Test-Path (Join-Path $raiz "Client\Efeitos"))) {
+    $mtZips = @(Get-ChildItem -Path (Join-Path $raiz "entregas") -Recurse -File -Filter "CinzasDaMare_MISSAO_TERCA_FINAL_parte*.zip" -ErrorAction SilentlyContinue)
+    if ($mtZips.Count -gt 0) {
+        Write-Host "Instalando os modelos novos da Missão Terça (uma vez só, pode levar 1-2 minutos)..."
+        # estas 6 armaduras ficam como estão aqui (as asas já foram separadas dos conjuntos)
+        $mtPula = @("arm_gelo_eterno.glb", "arm_dragao_fogo.glb", "arm_anjo_caido.glb", "arm_cavaleiro_sagrado.glb", "arm_demoniaco.glb", "arm_celestial.glb")
+        $mtPrefixo = "ATUALIZACAO_MISSAO_TERCA/arquivos/"
+        $mtN = 0
+        try {
+            Add-Type -AssemblyName System.IO.Compression.FileSystem
+            foreach ($z in $mtZips) {
+                $arq = [System.IO.Compression.ZipFile]::OpenRead($z.FullName)
+                try {
+                    foreach ($e in $arq.Entries) {
+                        $nome = $e.FullName -replace '\\', '/'
+                        if (-not $nome.StartsWith($mtPrefixo + "Client/Assets/") -or $e.Name -eq "" -or $mtPula -contains $e.Name) { continue }
+                        $destino = Join-Path $raiz ($nome.Substring($mtPrefixo.Length) -replace '/', '\')
+                        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destino) | Out-Null
+                        [System.IO.Compression.ZipFileExtensions]::ExtractToFile($e, $destino, $true)
+                        $mtN++
+                    }
+                } finally { $arq.Dispose() }
+            }
+            Set-Content -Path $mtMarca -Value ("instalado " + (Get-Date -Format "yyyy-MM-dd HH:mm") + " - $mtN arquivos")
+            Write-Host "  $mtN arquivos de arte instalados."
+        } catch { Write-Host "  não consegui instalar a arte da Missão Terça: $($_.Exception.Message)" }
+    }
 }
 $configPath = Join-Path $PSScriptRoot "jogar.config.json"
 $contasPath = Join-Path $raiz "contas-locais.json"

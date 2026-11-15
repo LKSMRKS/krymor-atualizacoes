@@ -13,7 +13,8 @@ namespace CinzasDaMare.Client;
 /// </summary>
 public sealed class LobbyView
 {
-    public const int Slots = 8;   // 14/11 tarde (dono: "muitos personagens — aumentar o lobby"): 5 na frente + 3 no degrau de trás
+    public const int Slots = 9;   // 15/11 noite: 5 na frente + 4 atrás, cada um numa fresta (ninguém tampa ninguém)
+    //   // 14/11 tarde (dono: "muitos personagens — aumentar o lobby"): 5 na frente + 3 no degrau de trás
     public Control Root { get; }
     public event Action<string>? EnterRequested;
     public event Action<string, string>? CreateRequested;
@@ -238,12 +239,15 @@ public sealed partial class LobbyStage : Node3D
     private float _time;
     private string _sig = "";
 
-    private static readonly float[] Xs = { -3.6f, -1.8f, 0f, 1.8f, 3.6f, -2.7f, 0f, 2.7f };   // vagas 5 e 7: nas frestas da fila da frente
-    /// <summary>Vaga 0–4: fila da frente; 5–7: degrau de trás (mais alto e mais fundo).</summary>
-    // 15/11 (dono: "os 3 de trás ficam cobertos pelos da frente — deixa no espaço entre um e outro"): os dos lados vão para
-    // as frestas entre os da frente (±2,7); o do meio fica num degrau mais alto, para a cabeça aparecer por cima do da frente
-    private static Vector3 Lugar(int i) => i < 5 ? new Vector3(Xs[i], 0, -Mathf.Abs(Xs[i]) * 0.12f)
-        : i == 6 ? new Vector3(0f, 1.35f, -3.4f) : new Vector3(Xs[i], 0.8f, -2.4f);
+    // 15/11 noite (dono, com desenho: "tem espaço de boa pra deixar todo mundo ali, sem ninguém tampar ninguém"): a fila da
+    // frente abre para os lados (±2,4 e ±4,8) e os 4 de trás ficam num degrau, cada um exatamente na fresta entre dois da
+    // frente NA TELA — com a perspectiva, quem está mais fundo precisa de X maior (X_trás = X_fresta × dist_trás / dist_frente)
+    private const float CamZ = 7.6f, FundoTras = 2.3f, AlturaTras = 0.55f;
+    private static readonly float[] XsFrente = { -4.8f, -2.4f, 0f, 2.4f, 4.8f };
+    private static readonly float[] Frestas = { -3.6f, -1.2f, 1.2f, 3.6f };
+    /// <summary>Vaga 0–4: fila da frente (do meio para fora não importa: a ordem é a da esquerda para a direita); 5–8: degrau de trás.</summary>
+    private static Vector3 Lugar(int i) => i < 5 ? new Vector3(XsFrente[i], 0, 0)
+        : new Vector3(Frestas[i - 5] * (CamZ + FundoTras) / CamZ, AlturaTras, -FundoTras);
 
     public LobbyStage()
     {
@@ -394,7 +398,7 @@ public sealed partial class LobbyStage : Node3D
         for (var i = 0; i < LobbyView.Slots; i++)
         {
             var at = Lugar(i);
-            if (i >= 5) VisualKit.Part(_actors, new BoxMesh { Size = new Vector3(1.5f, at.Y, 1.5f) }, VisualKit.Mat(new Color(0.16f, 0.15f, 0.16f), 0.7f, 0.1f), at - new Vector3(0, at.Y / 2, 0));   // degrau
+            if (i >= 5) VisualKit.Part(_actors, new BoxMesh { Size = new Vector3(1.6f, at.Y, 1.6f) }, VisualKit.Mat(new Color(0.16f, 0.15f, 0.16f), 0.7f, 0.1f), at - new Vector3(0, at.Y / 2, 0));   // degrau
             var c = i < chars.Count ? chars[i] : null;
             var isSel = c is not null && c.Id == selected;
             // pedestal
@@ -428,7 +432,7 @@ public sealed partial class LobbyStage : Node3D
                 mv.SetClasse3(c.Class3);
             }
             v.Root.Position = at + new Vector3(0, 0.14f, 0);
-            v.Root.RotationDegrees = new Vector3(0, -Xs[i] * 5f, 0);   // de frente para a câmera (o boneco olha para +Z)
+            v.Root.RotationDegrees = new Vector3(0, Mathf.RadToDeg(Mathf.Atan2(-at.X, CamZ - at.Z)) * 0.8f, 0);   // de frente para a câmera (o boneco olha para +Z)
             _actors.AddChild(v.Root);
             var className = classes.FirstOrDefault(k => k.Id == c.ClassId)?.DisplayName ?? c.ClassId;
             _actors.AddChild(new Label3D

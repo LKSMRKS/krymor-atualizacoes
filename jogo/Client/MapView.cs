@@ -706,7 +706,9 @@ void sky() {
     private const string CeuEnfeitesShader = @"
 shader_type spatial;
 render_mode unshaded, blend_mix, depth_draw_never, cull_front, fog_disabled, shadows_disabled;
-uniform float night = 0.0; uniform float aurora = 1.0;
+uniform float night = 0.0; uniform float aurora = 0.0;
+uniform vec3 cor_a = vec3(0.15, 1.0, 0.55); uniform vec3 cor_b = vec3(0.62, 0.28, 0.95);
+uniform float centro = 0.0; uniform float largura = 1.5;
 varying vec3 dir;
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float vnoise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
@@ -742,21 +744,26 @@ void fragment() {
   if (night > 0.05 && aurora > 0.0 && d.y > 0.03) {
     // 15/11 (dono: aurora na horizontal, meio ondulada — reta na vertical fica estranho): duas fitas deitadas ao longo do
     // horizonte norte, serpenteando; borda de baixo mais viva e véu subindo um pouco, com leve granulado de raios
+    // 15/11 noite (dono: a ponta da aurora corta seco): as fitas ocupam um arco do céu (centro/largura por mapa) e somem
+    // devagar nas duas pontas; o ruído usa o círculo (cos, sin) do ângulo — sem emenda em lugar nenhum
     float ang = atan(d.x, -d.z);
-    float norte = smoothstep(-0.25, 0.5, -d.z);
+    float rel = ang - centro; rel = rel - 6.2831853 * floor((rel + 3.1415927) / 6.2831853);
+    float pontas = 1.0 - smoothstep(largura * 0.35, largura, abs(rel));
+    vec2 roda = vec2(cos(ang), sin(ang));
     float I = 0.0; vec3 c = vec3(0.0);
     for (int k = 0; k < 2; k++) {
       float fk = float(k);
-      float y0 = 0.17 + fk * 0.11 + 0.05 * sin(ang * (2.0 + fk) + TIME * (0.05 + fk * 0.03)) + 0.04 * (fbm(vec2(ang * 2.2 + fk * 5.0, TIME * 0.03)) - 0.5);
+      float y0 = 0.17 + fk * 0.11 + 0.05 * sin(ang * (2.0 + fk) + TIME * (0.05 + fk * 0.03)) + 0.04 * (fbm(roda * 2.4 + vec2(fk * 5.0, TIME * 0.03)) - 0.5);
       float dy = d.y - y0;
       float fita = dy < 0.0 ? exp(-dy * dy / 0.0006) : exp(-dy * dy / (0.006 + fk * 0.003));
-      float liga = smoothstep(0.3, 0.7, fbm(vec2(ang * 1.6 + TIME * 0.02 + fk * 9.0, fk)));
-      float grao = 0.9 + 0.1 * sin(ang * 70.0 + fbm(vec2(ang * 6.0, TIME * 0.1)) * 6.0);
+      float liga = smoothstep(0.25, 0.65, fbm(roda * 1.8 + vec2(TIME * 0.02 + fk * 9.0, fk)));
+      float grao = 0.9 + 0.1 * sin(ang * 70.0 + fbm(roda * 6.0 + vec2(0.0, TIME * 0.1)) * 6.0);
       float v = fita * liga * grao * (1.0 - fk * 0.35);
       I += v;
-      c += v * mix(vec3(0.15, 1.0, 0.55), vec3(0.62, 0.28, 0.95), clamp(dy * 8.0 + fk * 0.4, 0.0, 1.0));
+      c += v * mix(cor_a, cor_b, clamp(dy * 8.0 + fk * 0.4, 0.0, 1.0));
     }
     c = I > 0.001 ? c / I : c;
+    float norte = pontas * smoothstep(0.03, 0.09, d.y);
     acc = vec4(c, clamp(I, 0.0, 1.0) * norte * night * aurora * 0.6);
   }
   float vis = mix(0.32, 1.0, night);
@@ -774,6 +781,16 @@ void fragment() {
   ALPHA = acc.a * smoothstep(-0.03, 0.06, d.y);
 }";
     private MeshInstance3D? _ceuDome;
+    private static readonly Dictionary<string, (float Forca, Color A, Color B, float Centro, float Largura)> Auroras = new()
+    {
+        ["coroa_da_geada"] = (1.4f, new Color(0.15f, 1.0f, 0.55f), new Color(0.62f, 0.28f, 0.95f), 0.0f, 1.9f),
+        ["pico_vento"] = (1.1f, new Color(0.2f, 0.95f, 0.75f), new Color(0.3f, 0.55f, 1.0f), 0.9f, 1.4f),
+        ["vespera"] = (0.85f, new Color(0.55f, 1.0f, 0.75f), new Color(0.35f, 0.75f, 0.85f), -0.7f, 1.2f),
+        ["necropole_juramentos"] = (0.9f, new Color(0.95f, 0.3f, 0.35f), new Color(0.55f, 0.2f, 0.9f), 0.4f, 1.3f),
+        ["charco_lanternas"] = (0.75f, new Color(0.75f, 1.0f, 0.3f), new Color(0.2f, 0.9f, 0.5f), -1.2f, 1.0f),
+        ["caminho_serpente"] = (1.0f, new Color(1.0f, 0.45f, 0.75f), new Color(0.35f, 0.5f, 1.0f), 2.2f, 1.5f),
+        ["mata_dos_enforcados"] = (0.6f, new Color(0.4f, 0.9f, 0.6f), new Color(0.45f, 0.3f, 0.7f), -2.0f, 0.9f),
+    };
     private ShaderMaterial? _ceuMat;
 
     private void AddSkyLife()
@@ -781,7 +798,14 @@ void fragment() {
         if (Map.Id == "fundo_triangulo") { if (!Map.Instanced) VidaDoTema(); return; }   // 13/11: sem nuvens no fundo do mar
         if (!HasDayCycle || Map.Theme is "lava") return;
         _ceuMat = new ShaderMaterial { Shader = new Shader { Code = CeuEnfeitesShader }, RenderPriority = -12 };
-        _ceuMat.SetShaderParameter("aurora", Map.Theme is "neve" or "fantasma" ? 1.4f : Map.Theme is "canion" or "acropole" ? 0.5f : 1f);
+        // 15/11 noite (dono: "aurora não em todos os mapas — só em alguns mais pra frente, variando, e só à noite; tira da Costa"):
+        // cada mapa escolhido tem a sua (força, cores, onde fica no céu); nos outros não há aurora
+        if (Auroras.TryGetValue(Map.Id, out var au))
+        {
+            _ceuMat.SetShaderParameter("aurora", au.Forca);
+            _ceuMat.SetShaderParameter("cor_a", au.A); _ceuMat.SetShaderParameter("cor_b", au.B);
+            _ceuMat.SetShaderParameter("centro", au.Centro); _ceuMat.SetShaderParameter("largura", au.Largura);
+        }
         _ceuDome = new MeshInstance3D
         {
             Mesh = new SphereMesh { Radius = 245f, Height = 490f, RadialSegments = 48, Rings = 24, Material = _ceuMat },
@@ -1926,7 +1950,7 @@ void fragment() {
             root.AddChild(chest);
             // 14/11 tarde (dono: "o segredo está muito destacado"): o baú secreto é um baú comum, escondido entre as rochas,
             // com um brilho bem fraco (sem o véu roxo)
-            var light = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = c.Secret ? 0.35f : 0.9f, OmniRange = c.Secret ? 2f : 3.2f, Position = new Vector3(0, 0.9f, 0) };
+            var light = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
             root.AddChild(light);
             Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
             _chests.Add(new ChestView { Chest = c, Lid = glbLid, LidSign = 1f, Glow = light });
@@ -1940,7 +1964,7 @@ void fragment() {
         VisualKit.Part(lid, VisualKit.Box(1.02f, 0.22f, 0.67f), wood, new Vector3(0, 0.11f, 0.32f));
         VisualKit.Part(lid, VisualKit.Box(1.06f, 0.06f, 0.08f), trim, new Vector3(0, 0.12f, 0.64f));
         VisualKit.Part(root, VisualKit.Box(0.14f, 0.18f, 0.06f), trim, new Vector3(0, 0.5f, 0.34f));
-        var glow = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0) };
+        var glow = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
         root.AddChild(glow);
         Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
         _chests.Add(new ChestView { Chest = c, Lid = lid, Glow = glow });

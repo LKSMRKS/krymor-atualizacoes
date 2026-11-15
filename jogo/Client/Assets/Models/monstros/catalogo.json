@@ -1,0 +1,535 @@
+{
+ "goblin": {
+  "arquivo": "monstros/goblin",
+  "altura": 1.23,
+  "tipo": "humanoide",
+  "variantes": [
+   "monstros/goblin_sangue",
+   "monstros/goblin_orelha",
+   "monstros/goblin_veterano",
+   "monstros/goblin_baixinho"
+  ],
+  "variacao_altura": 0.04
+ },
+ "goblin_archer": {
+  "arquivo": "monstros/goblin_archer",
+  "altura": 1.19,
+  "tipo": "humanoide"
+ },
+ "goblin_chief": {
+  "arquivo": "monstros/goblin_chief",
+  "altura": 1.79,
+  "tipo": "humanoide",
+  "chefe": 1.25
+ },
+ "wolf": {
+  "arquivo": "monstros/wolf",
+  "altura": 1.0,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.4
+ },
+ "wolf_white": {
+  "arquivo": "monstros/wolf_white",
+  "altura": 1.15,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.4
+ },
+ "wolf_ice": {
+  "arquivo": "monstros/wolf_ice",
+  "altura": 1.1,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.4
+ },
+ "spider": {
+  "arquivo": "monstros/spider",
+  "altura": 0.75,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.6
+ },
+ "skeleton": {
+  "arquivo": "monstros/skeleton",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "chefe": 1.0,
+  "variantes": [
+   "monstros/skeleton_sangue",
+   "monstros/skeleton_marcado"
+  ],
+  "variacao_altura": 0.03
+ },
+ "zombie": {
+  "arquivo": "monstros/zombie",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "chefe": 1.0,
+  "variantes": [
+   "monstros/zombie_sangue",
+   "monstros/zombie_marcado"
+  ],
+  "variacao_altura": 0.03
+ },
+ "ghoul": {
+  "arquivo": "monstros/ghoul",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "charred": {
+  "arquivo": "monstros/charred",
+  "altura": 1.98,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "mummy": {
+  "arquivo": "monstros/mummy",
+  "altura": 1.89,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "draugr": {
+  "arquivo": "monstros/draugr",
+  "altura": 2.07,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "draugr_king": {
+  "arquivo": "monstros/draugr_king",
+  "altura": 3.96,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "ghost": {
+  "arquivo": "monstros/ghost",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "ghost_knight": {
+  "arquivo": "monstros/ghost_knight",
+  "altura": 2.07,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "death": {
+  "arquivo": "monstros/death",
+  "altura": 2.52,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "necro": {
+  "arquivo": "monstros/necro",
+  "altura": 1.89,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "necro_boss": {
+  "arquivo": "monstros/necro_boss",
+  "altura": 3.6,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "vampire": {
+  "arquivo": "monstros/vampire",
+  "altura": 1.94,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "vampire_f": {
+  "arquivo": "monstros/vampire_f",
+  "altura": 1.87,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "wendigo": {
+  "arquivo": "monstros/wendigo",
+  "altura": 2.79,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "troll": {
+  "arquivo": "monstros/troll",
+  "altura": 2.72,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "troll_ice": {
+  "arquivo": "monstros/troll_ice",
+  "altura": 2.89,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "ogre": {
+  "arquivo": "monstros/ogre",
+  "altura": 3.23,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "giant": {
+  "arquivo": "monstros/giant",
+  "altura": 3.91,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "giant_boss": {
+  "arquivo": "monstros/giant_boss",
+  "altura": 5.1,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "minotaur": {
+  "arquivo": "monstros/minotaur",
+  "altura": 2.72,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "minotaur_big": {
+  "arquivo": "monstros/minotaur_big",
+  "altura": 4.08,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "werewolf": {
+  "arquivo": "monstros/werewolf",
+  "altura": 2.3,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "golem": {
+  "arquivo": "monstros/golem",
+  "altura": 3.06,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "golem_boss": {
+  "arquivo": "monstros/golem_boss",
+  "altura": 5.1,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "elemental": {
+  "arquivo": "monstros/elemental",
+  "altura": 2.21,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "elemental_boss": {
+  "arquivo": "monstros/elemental_boss",
+  "altura": 4.08,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "demon": {
+  "arquivo": "monstros/demon",
+  "altura": 2.55,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "alien": {
+  "arquivo": "monstros/alien",
+  "altura": 1.62,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "dwarf_mountain": {
+  "arquivo": "monstros/dwarf_mountain",
+  "altura": 1.36,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "knight": {
+  "arquivo": "monstros/knight",
+  "altura": 2.13,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "bronze_guard": {
+  "arquivo": "monstros/bronze_guard",
+  "altura": 2.3,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "raider": {
+  "arquivo": "monstros/raider",
+  "altura": 1.84,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "drowned": {
+  "arquivo": "monstros/drowned",
+  "altura": 1.7,
+  "tipo": "humanoide",
+  "chefe": 1.0,
+  "variantes": [
+   "monstros/drowned_sangue",
+   "monstros/drowned_marcado"
+  ],
+  "variacao_altura": 0.03
+ },
+ "angel": {
+  "arquivo": "monstros/angel",
+  "altura": 2.21,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "harpy": {
+  "arquivo": "monstros/harpy",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "chefe": 1.0,
+  "variantes": [
+   "monstros/harpy_sangue",
+   "monstros/harpy_marcado"
+  ],
+  "variacao_altura": 0.03
+ },
+ "harpy_f": {
+  "arquivo": "monstros/harpy_f",
+  "altura": 1.7,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "medusa": {
+  "arquivo": "monstros/medusa",
+  "altura": 1.9,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "genie": {
+  "arquivo": "monstros/genie",
+  "altura": 2.55,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "goblin_skeleton": {
+  "arquivo": "monstros/goblin_skeleton",
+  "altura": 1.19,
+  "tipo": "humanoide",
+  "chefe": 1.0
+ },
+ "spider_weaver": {
+  "arquivo": "monstros/spider_weaver",
+  "altura": 1.0,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.6
+ },
+ "goat": {
+  "arquivo": "monstros/goat",
+  "altura": 1.1,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.4
+ },
+ "rat": {
+  "arquivo": "monstros/rat",
+  "altura": 0.5,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.8
+ },
+ "scorpion": {
+  "arquivo": "monstros/scorpion",
+  "altura": 0.8,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.7
+ },
+ "rat_big": {
+  "arquivo": "monstros/rat",
+  "altura": 0.5,
+  "tipo": "criatura",
+  "escala": 2.1,
+  "chefe": 1.4
+ },
+ "scorpion_big": {
+  "arquivo": "monstros/scorpion",
+  "altura": 0.8,
+  "tipo": "criatura",
+  "escala": 1.7,
+  "chefe": 1.3
+ },
+ "spider_queen": {
+  "arquivo": "monstros/spider_weaver",
+  "altura": 1.0,
+  "tipo": "criatura",
+  "escala": 1.6,
+  "chefe": 1.3
+ },
+ "centaur": {
+  "arquivo": "monstros/centaur",
+  "altura": 2.35,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.3
+ },
+ "monster_raider_placeholder": {
+  "arquivo": "monstros/saqueador",
+  "altura": 1.82,
+  "tipo": "humanoide",
+  "variacao_altura": 0.04,
+  "chefe": 1.3
+ },
+ "monster_acolyte_placeholder": {
+  "arquivo": "monstros/acolito",
+  "altura": 1.8,
+  "tipo": "humanoide",
+  "variacao_altura": 0.04,
+  "chefe": 1.3
+ },
+ "dwarf": {
+  "arquivo": "monstros/dwarf",
+  "altura": 1.27,
+  "tipo": "humanoide",
+  "variacao_altura": 0.04,
+  "chefe": 1.3
+ },
+ "gnome": {
+  "arquivo": "monstros/gnome",
+  "altura": 0.66,
+  "tipo": "humanoide",
+  "variacao_altura": 0.05,
+  "chefe": 1.4
+ },
+ "bat": {
+  "arquivo": "monstros/bat",
+  "altura": 1.6,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.6
+ },
+ "bat_white": {
+  "arquivo": "monstros/bat_white",
+  "altura": 1.6,
+  "tipo": "criatura",
+  "escala": 1.25,
+  "chefe": 1.5
+ },
+ "serpent": {
+  "arquivo": "monstros/serpent",
+  "altura": 0.8,
+  "tipo": "criatura",
+  "escala": 1.2,
+  "chefe": 1.5
+ },
+ "lizard": {
+  "arquivo": "monstros/lizard",
+  "altura": 0.5,
+  "tipo": "criatura",
+  "escala": 1.5,
+  "chefe": 1.5
+ },
+ "beetle": {
+  "arquivo": "monstros/beetle",
+  "altura": 0.8,
+  "tipo": "criatura",
+  "escala": 1.25,
+  "chefe": 1.5
+ },
+ "leech": {
+  "arquivo": "monstros/leech",
+  "altura": 0.4,
+  "tipo": "criatura",
+  "escala": 1.4,
+  "chefe": 1.5
+ },
+ "frog": {
+  "arquivo": "monstros/frog",
+  "altura": 0.6,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.6
+ },
+ "frog_giant": {
+  "arquivo": "monstros/frog",
+  "altura": 0.6,
+  "tipo": "criatura",
+  "escala": 2.4,
+  "chefe": 1.3
+ },
+ "crab_larva": {
+  "arquivo": "monstros/crab_larva",
+  "altura": 0.3,
+  "tipo": "criatura",
+  "escala": 1.4,
+  "chefe": 1.6
+ },
+ "boar": {
+  "arquivo": "monstros/boar",
+  "altura": 1.1,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.5,
+  "manter_antigo": 0.5
+ },
+ "boar_big": {
+  "arquivo": "monstros/boar",
+  "altura": 1.1,
+  "tipo": "criatura",
+  "escala": 1.45,
+  "chefe": 1.3,
+  "manter_antigo": 0.5
+ },
+ "dog": {
+  "arquivo": "monstros/dog",
+  "altura": 0.8,
+  "tipo": "criatura",
+  "escala": 1.0,
+  "chefe": 1.5,
+  "manter_antigo": 0.5
+ },
+ "saci": {
+  "arquivo": "monstros/saci",
+  "altura": 1.22,
+  "tipo": "humanoide",
+  "variacao_altura": 0.04,
+  "chefe": 1.3,
+  "manter_antigo": 0.5
+ },
+ "crab_small": {
+  "arquivo": "monstros/crab_small",
+  "altura": 0.6,
+  "tipo": "criatura",
+  "escala": 0.65,
+  "chefe": 1.6,
+  "manter_antigo": 0.5
+ },
+ "monster_crab_placeholder": {
+  "arquivo": "monstros/monster_crab_placeholder",
+  "altura": 0.6,
+  "tipo": "criatura",
+  "escala": 1.2,
+  "chefe": 2.0,
+  "manter_antigo": 0.5,
+  "antigo_para": [
+   "monster_costa_caranguejo_mae"
+  ]
+ },
+ "crab_stone": {
+  "arquivo": "monstros/crab_stone",
+  "altura": 0.65,
+  "tipo": "criatura",
+  "escala": 1.35,
+  "chefe": 1.5,
+  "manter_antigo": 0.5
+ },
+ "crab_hermit": {
+  "arquivo": "monstros/crab_hermit",
+  "altura": 0.65,
+  "tipo": "criatura",
+  "escala": 1.25,
+  "chefe": 1.5,
+  "manter_antigo": 0.5
+ },
+ "crab_tyrant": {
+  "arquivo": "monstros/crab_tyrant",
+  "altura": 0.65,
+  "tipo": "criatura",
+  "escala": 2.5,
+  "chefe": 1.35,
+  "chefe_antigo": true
+ }
+}

@@ -2099,6 +2099,7 @@ public partial class Main : Node3D
         var taken = e.TargetId == _model.CharacterId;
         var fromMonster = _monsters.ContainsKey(e.AttackerId);
         var head = target.Pos + new Vector3(0f, target.Visual.Height * 0.9f, 0f);
+        if (!e.Evaded) Efeitos.PoderesVfx.Acerto(_effects.Root, e.SkillId, target.Pos, target.Visual.Height, attacker?.Pos, e.Heal, mine, _cam.AddShake);   // gancho VFX 14/11 (Missão Terça)
 
         if (e.Heal)
         {
@@ -2149,7 +2150,7 @@ public partial class Main : Node3D
         var streak = fromMonster ? new Color(1.0f, 0.25f, 0.20f) : (heavy ? new Color(1.0f, 0.65f, 0.20f) : new Color(1.0f, 0.95f, 0.80f));
         var ranged = e.SkillId is "skill_mago_seta_de_brasa" or "monster_bola_de_cinza" or "skill_mago_explosao_de_cinzas"
             || e.SkillId.Contains("bruxa") || e.SkillId.Contains("arqueiro") || e.SkillId.Contains("batedor") || e.SkillId.Contains("arcanista");
-        if (attacker is not null && !ranged)
+        if (attacker is not null && !ranged && !Efeitos.PoderesVfx.Conhece(e.SkillId))   // gancho VFX 14/11: o poder tem rastro próprio
             _effects.Slash(attacker.Pos + new Vector3(0f, attacker.Visual.Height * 0.55f, 0f), chest, streak, heavy ? 0.12f : 0.07f);
         _effects.Impact(chest, ranged ? new Color(1f, 0.55f, 0.2f) : streak, e.Crit ? 14 : 8, e.Crit || heavy ? 1.4f : 1.0f);
         // 13/11 ("mini respingos de sangue quando bato no monstro e quando ele me bate — tipo o sangramento, só que menor")
@@ -3211,6 +3212,7 @@ public partial class Main : Node3D
 
     private void OnPlayerActionChanged(EntityState st, PlayerView p)
     {
+        if (Efeitos.PoderesVfx.Fase(_effects.Root, st.Visual.Root, st.Pos, p, p.CharacterId == _model.CharacterId, _cam.AddShake)) { st.LastAction = p.Action; st.LastSeq = p.ActionSeq; return; }   // gancho VFX 14/11 (Client/Efeitos/PoderesVfx.cs)
         if (p.Action.StartsWith("recover:skill_mago_passo", StringComparison.Ordinal))
         {
             _effects.Pulse(st.Pos, new Color(0.55f, 0.75f, 1f, 0.7f), 1.6f, 0.4);
@@ -4231,6 +4233,7 @@ void fragment() {
     {
         // raiz girada para a direção do voo (frente = +Z); a cauda fica atrás, deitada no eixo Z
         var root = new Node3D { Rotation = new Vector3(0, Mathf.Atan2((float)p.DirX, (float)p.DirY), 0) };
+        if (!p.Hostile && Efeitos.PoderesVfx.Projetil(p.Kind) is { } vfx) { root.AddChild(vfx); return root; }   // gancho VFX 14/11
         if (!p.Hostile && (p.Kind.Contains("arqueiro") || p.Kind.Contains("batedor")))
         {
             // flecha: haste, ponta de ferro e penas; a de emboscada deixa um rastro claro

@@ -384,6 +384,16 @@ public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double Aggr
     public double TurnDegPerSec { get; init; }
     /// <summary>Sem alvo fica parado no lugar, encolhido como pedra (dorme), até alguém chegar perto. Depois volta e encolhe de novo.</summary>
     public bool StoneRest { get; init; }
+
+    // ---- 14/11: movimento dos inimigos (todos opcionais; 0/-1 = padrão do servidor) ----
+    /// <summary>Ao pegar um alvo novo, ronda em volta dele por este tempo antes de fechar para o golpe (lobos). 0 = não ronda.</summary>
+    public int CircleBeforeAttackMs { get; init; }
+    /// <summary>Atirador: menor distância que tolera antes de recuar andando de costas (0 = 70% de keep_distance, nunca abaixo de flee+1).</summary>
+    public double KeepDistanceMin { get; init; }
+    /// <summary>Chance (0..1) de parar e estudar o alvo um instante antes de avançar para o golpe (-1 = padrão 0,45).</summary>
+    public double HesitateChance { get; init; } = -1;
+    /// <summary>Depois de ter a preparação quebrada, fica este tempo sem poder ser quebrado de novo (0 = padrão 2000 ms).</summary>
+    public int StaggerImmuneMs { get; init; }
 }
 
 /// <summary>Entrada de loot. Item fixo ou Pick (sorteia um; com MatchClass prefere a classe de quem participou).</summary>

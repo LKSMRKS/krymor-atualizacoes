@@ -289,7 +289,8 @@ public static class VisualFactory
     };
 
     /// <summary>Companheiro: pequeno draco (pedra escura + bronze) ou fênix (brasa contida).</summary>
-    public static IEntityVisual Pet(string kind) => kind == "vagalume" ? new FireflyVisual()
+    public static IEntityVisual Pet(string kind) => PetGlbVisual.TryCreate(kind) is { } petNovo ? petNovo   // 14/11: pets novos (pets/fera_*.glb); sem o arquivo = visual antigo
+        : kind == "vagalume" ? new FireflyVisual()
         // 14/11 ("mais pets"): morceguinho, lobinho, sapinho dourado e corvo
         : kind == "morcego" ? new FlyerVisual("morcego", 0.38f, new Color(0.18f, 0.14f, 0.16f), new Color(0.35f, 0.22f, 0.25f))
         : kind == "corvo" ? new FlyerVisual("morcego", 0.42f, new Color(0.06f, 0.06f, 0.08f), new Color(0.45f, 0.2f, 0.65f))
@@ -599,6 +600,7 @@ public static class VisualFactory
     public static IEntityVisual Monster(string definitionId, bool boss, bool rare, string visual = "", string seed = "", int skin = 0)
     {
         if (visual == "boneco_treino") return new BonecoTreinoVisual();   // 13/11: boneco do Mestre Dorval (apanha e balança)
+        if (MonstrosNovos.Criar(visual, boss, seed, definitionId) is { } novo) return novo;   // 14/11: monstros novos sem emenda (Visuals/MonstrosNovos.cs, Assets/Models/monstros/catalogo.json)
         if (visual.StartsWith("fab_", StringComparison.Ordinal) && FabulaVisuals.Criar(visual, boss) is { } fab) return fab;   // 13/11: Era Uma Vez e arredores
         // 14/11 (dono: "dois monstros ultra gigantes, impossíveis de matar"): os titãs — o golem de cal com 13 m (pedra escura e
         // brasa no peito) e o dragão com 8× o tamanho, em brasa
