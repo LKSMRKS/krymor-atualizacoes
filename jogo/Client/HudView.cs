@@ -823,7 +823,7 @@ public sealed class HudView
         var s2 = MakeSlot("2", mage ? "PM" : "Com.", mage ? new Color(0.15f, 0.25f, 0.62f) : new Color(0.45f, 0.32f, 0.14f), "");
         // 14/11: o quadro 2 aceita qualquer item de usar arrastado da mochila (antes caía no chão)
         var alvo2 = new SlotTecla2Drop { MouseFilter = Control.MouseFilterEnum.Pass,
-            TooltipText = (mage ? "Tecla 2 — frasco de mana." : "Tecla 2 — comida (recupera vida devagar).") + "\nArraste qualquer poção, frasco ou comida da mochila para cá para escolher o que ela usa." };
+            TooltipText = (mage ? "Tecla 2 — frasco de mana." : classId == "arqueiro" ? "Tecla 2 — frasco de Foco (laranja); sem ele, comida." : "Tecla 2 — comida (recupera vida devagar).") + "\nArraste qualquer poção, frasco ou comida da mochila para cá para escolher o que ela usa." };
         s2.AddChild(alvo2);
         alvo2.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
         _hotbar.AddChild(s2);
@@ -1329,7 +1329,14 @@ public sealed class HudView
         else
         {
             if (_tecla2Padrao is not null) SetSlotIcon(7, _tecla2Padrao, "");
-            _slots[7].Count.Text = mageSlot
+            var focos = m.CountInInventory("consumable_c08_frasco_foco") + m.CountInInventory("consumable_c09_frasco_foco_grande");
+            if (!mageSlot && m.ClassId == "arqueiro" && focos > 0)
+            {
+                // 14/11: Arqueiro com frasco de Foco — a tecla 2 usa ele (laranja) antes da comida
+                var f = m.CountInInventory("consumable_c08_frasco_foco") > 0 ? "consumable_c08_frasco_foco" : "consumable_c09_frasco_foco_grande";
+                SetSlotIcon(7, ItemIconRenderer.Get(m.ItemInfoFor(f), f) ?? _tecla2Padrao, "PF");
+            }
+            _slots[7].Count.Text = !mageSlot && m.ClassId == "arqueiro" && focos > 0 ? focos.ToString() : mageSlot
             ? (m.CountInInventory("consumable_c03_frasco_mana") + m.CountInInventory("consumable_c04_frasco_mana_grande")).ToString()
             : m.Inventory.Where(i => i.DefinitionId.StartsWith("food_", StringComparison.Ordinal)).Sum(i => i.Quantity).ToString();
             if (_slots[7].Count.Text == "0") _slots[7].Count.Text = "";   // 14/11: "frigideira com número 0" — sem nada, sem número

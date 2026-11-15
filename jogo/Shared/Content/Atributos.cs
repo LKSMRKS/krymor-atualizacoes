@@ -14,6 +14,8 @@ public static class Atributos
 {
     public const string Forca = "forca", Agilidade = "agilidade", Energia = "energia", Vitalidade = "vigor";
     public const int BaseForca = 6, BaseAgilidade = 6, BaseEnergia = 5;
+    /// <summary>14/11: recurso máximo (mana/foco/éter/fúria) por ponto de Energia acima da base.</summary>
+    public const double RecursoPorEnergia = 5.0;
 
     /// <summary>Qual dos atributos é o primário da classe ("strength" → força, "dexterity" → agilidade, resto → energia).</summary>
     public static string PrimaryKey(string primaryAttribute) => primaryAttribute switch

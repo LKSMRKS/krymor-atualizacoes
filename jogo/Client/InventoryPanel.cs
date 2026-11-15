@@ -429,7 +429,7 @@ public sealed class InventoryPanel
             row.AddChild(label);
             row.AddChild(HudView.MakeLabel(value.ToString(), 14, null, 2));
             var plus = new Button { Text = "+", Disabled = s.Points <= 0, CustomMinimumSize = new Vector2(26, 22), FocusMode = Control.FocusModeEnum.None,
-                TooltipText = stat switch { "forca" => "Força: carrega armadura pesada", "agilidade" => "Destreza: esquiva volta mais rápido (dano do Arqueiro)", "vigor" => "Vitalidade: +vida máxima", _ => "Energia: +1 de mana/foco/éter máximo por ponto e o recurso regenera mais" } };
+                TooltipText = stat switch { "forca" => "Força: carrega armadura pesada", "agilidade" => "Destreza: esquiva volta mais rápido (dano do Arqueiro)", "vigor" => "Vitalidade: +vida máxima", _ => "Energia: +5 de mana/foco/éter máximo por ponto e o recurso regenera mais" } };
             plus.Pressed += () => { Send?.Invoke(new SpendStatIntent(stat)); Sfx.Play("ui_abrir", -8f); };
             row.AddChild(plus);
             _attrs.AddChild(row);

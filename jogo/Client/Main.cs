@@ -1050,6 +1050,8 @@ public partial class Main : Node3D
             case Key.Key2:
                 if (Tecla2() is { } t2 && _model.CountInInventory(t2) > 0) UseFirst(t2);
                 else if (_model.ClassId is "mago" or "bruxa") UseFirst("consumable_c03", "consumable_c04");
+                else if (_model.ClassId == "arqueiro" && (_model.FirstInventoryItemWithPrefix("consumable_c08") is not null || _model.FirstInventoryItemWithPrefix("consumable_c09") is not null))
+                    UseFirst("consumable_c08", "consumable_c09");
                 else UseFirst("food_");
                 break;
         }

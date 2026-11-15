@@ -324,6 +324,7 @@ public sealed partial class ItemIconRenderer : Node
         "consumable_c01_tonico_fraco",
         // 14/11 ("cada poção tem que ter seu ícone 3D próprio, com o seu tamanho")
         "consumable_c02_tonico_medio", "consumable_c05_tonico_forte", "consumable_c03_frasco_mana", "consumable_c04_frasco_mana_grande",
+        "consumable_c08_frasco_foco", "consumable_c09_frasco_foco_grande",   // 14/11: Foco do Arqueiro (laranja)
         "esfera_macaco_",   // 14/11: esfera do macaco virou item
         "mat_chifre_cabra",   // 14/11: a cabra larga chifre (não carne de javali)
     };
@@ -334,9 +335,9 @@ public sealed partial class ItemIconRenderer : Node
     public static float TamanhoNoChao(string id) => id switch
     {
         "consumable_c01_tonico_fraco" => 0.6f,
-        "consumable_c03_frasco_mana" => 0.7f,
+        "consumable_c03_frasco_mana" or "consumable_c08_frasco_foco" => 0.7f,
         "consumable_c02_tonico_medio" => 0.85f,
-        "consumable_c05_tonico_forte" or "consumable_c04_frasco_mana_grande" => 1.05f,
+        "consumable_c05_tonico_forte" or "consumable_c04_frasco_mana_grande" or "consumable_c09_frasco_foco_grande" => 1.05f,
         "mapa_tesouro" => 1.0f,
         _ when id.StartsWith("esfera_macaco_") => 0.6f,
         _ => 0.8f,
@@ -528,7 +529,8 @@ public sealed partial class ItemIconRenderer : Node
             VisualKit.Part(root, VisualKit.Cylinder(0.068f, 0.058f, 0.09f, 10), VisualKit.Mat(new Color(0.72f, 0.55f, 0.35f), 0.95f), new Vector3(0, 0.37f, 0));
             return root;
         }
-        if (id is "consumable_c02_tonico_medio" or "consumable_c05_tonico_forte" or "consumable_c03_frasco_mana" or "consumable_c04_frasco_mana_grande")
+        if (id is "consumable_c02_tonico_medio" or "consumable_c05_tonico_forte" or "consumable_c03_frasco_mana" or "consumable_c04_frasco_mana_grande"
+            or "consumable_c08_frasco_foco" or "consumable_c09_frasco_foco_grande")
         {
             var vidro = new StandardMaterial3D { AlbedoColor = new Color(0.88f, 0.96f, 1f, 0.28f), Transparency = BaseMaterial3D.TransparencyEnum.Alpha, Roughness = 0.04f };
             var cortica = VisualKit.Mat(new Color(0.72f, 0.55f, 0.35f), 0.95f);
@@ -536,6 +538,7 @@ public sealed partial class ItemIconRenderer : Node
             var prata = VisualKit.Mat(new Color(0.8f, 0.82f, 0.86f), 0.25f, 0.9f);
             var vermelho = VisualKit.Glow(new Color(0.85f, 0.1f, 0.12f), 0.8f);
             var azul = VisualKit.Glow(new Color(0.15f, 0.35f, 1f), 0.9f);
+            var laranja = VisualKit.Glow(new Color(1f, 0.5f, 0.08f), 0.95f);
             switch (id)
             {
                 case "consumable_c02_tonico_medio":
@@ -560,6 +563,21 @@ public sealed partial class ItemIconRenderer : Node
                     VisualKit.Part(root, VisualKit.Cylinder(0.09f, 0.18f, 0.18f, 18), azul, new Vector3(0, -0.19f, 0));
                     VisualKit.Part(root, VisualKit.Cylinder(0.05f, 0.05f, 0.14f, 12), vidro, new Vector3(0, 0.1f, 0));
                     VisualKit.Part(root, VisualKit.Cylinder(0.058f, 0.05f, 0.07f, 10), cortica, new Vector3(0, 0.2f, 0));
+                    break;
+                case "consumable_c08_frasco_foco":
+                    // 14/11: o mesmo frasco cônico da mana, laranja (Foco do Arqueiro)
+                    VisualKit.Part(root, VisualKit.Cylinder(0.06f, 0.2f, 0.32f, 18), vidro, new Vector3(0, -0.12f, 0));
+                    VisualKit.Part(root, VisualKit.Cylinder(0.09f, 0.18f, 0.18f, 18), laranja, new Vector3(0, -0.19f, 0));
+                    VisualKit.Part(root, VisualKit.Cylinder(0.05f, 0.05f, 0.14f, 12), vidro, new Vector3(0, 0.1f, 0));
+                    VisualKit.Part(root, VisualKit.Cylinder(0.058f, 0.05f, 0.07f, 10), cortica, new Vector3(0, 0.2f, 0));
+                    break;
+                case "consumable_c09_frasco_foco_grande":
+                    // garrafa redonda grande laranja, tampa de bronze com gema âmbar
+                    VisualKit.Part(root, VisualKit.Sphere(0.27f), vidro, new Vector3(0, -0.1f, 0));
+                    VisualKit.Part(root, VisualKit.Sphere(0.24f), VisualKit.Glow(new Color(0.95f, 0.42f, 0.05f), 1.1f), new Vector3(0, -0.12f, 0));
+                    VisualKit.Part(root, VisualKit.Cylinder(0.07f, 0.09f, 0.16f, 14), vidro, new Vector3(0, 0.22f, 0));
+                    VisualKit.Part(root, VisualKit.Cylinder(0.095f, 0.095f, 0.05f, 14), ouro, new Vector3(0, 0.31f, 0));
+                    VisualKit.Part(root, VisualKit.Sphere(0.045f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 1.6f), new Vector3(0, 0.36f, 0));
                     break;
                 default:   // consumable_c04_frasco_mana_grande
                     // garrafa redonda grande, azul profundo, gargalo e tampa de prata com uma gema

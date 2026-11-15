@@ -681,7 +681,7 @@ public sealed class WorldPanels
             AddStatRow("⚒", N("forca", "Força"), s.Forca, "forca", free > 0, "carrega armadura pesada sem perder esquiva" + Main("forca"), s.PrimaryKey == "forca");
             AddStatRow("➶", N("agilidade", "Destreza"), s.Agilidade, "agilidade", free > 0, "esquiva volta mais rápido" + Main("agilidade"), s.PrimaryKey == "agilidade");
             AddStatRow("♥", N("vigor", "Vitalidade"), s.Vigor, "vigor", free > 0, $"+{s.HealthPerPoint:0} de vida máxima e +1,2% de fôlego (estamina) por ponto" + Main("vigor"), false);
-            AddStatRow("✦", N("energia", "Energia"), s.Energia, "energia", free > 0, "+1 de mana/éter/foco máximo por ponto e o recurso regenera mais" + Main("energia"), s.PrimaryKey == "energia");
+            AddStatRow("✦", N("energia", "Energia"), s.Energia, "energia", free > 0, "+5 de mana/éter/foco máximo por ponto e o recurso regenera mais" + Main("energia"), s.PrimaryKey == "energia");
             _statsBox.AddChild(Wrap($"Para {ClientModel.ClassName(m.ClassId)}: suba {CinzasDaMare.Shared.Content.Atributos.Nome(s.PrimaryKey)} ★ e {CinzasDaMare.Shared.Content.Atributos.Nome(sec)} ☆. Os outros, um pouco de cada.", 12, Gold));
         }
         // valores calculados em duas colunas, como a ficha do MU
