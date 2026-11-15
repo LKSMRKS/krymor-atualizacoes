@@ -923,12 +923,14 @@ public sealed class WorldPanels
             var label = HudView.MakeLabel(name + " (perto)", 13);
             label.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
             row.AddChild(label);
-            var b = new Button { Text = "Convidar" };
+            // 14/11 22h (dono: "no P, menor: um botão x1 e um botão grupo"; não precisa estar em grupo para o x1)
+            var b = new Button { Text = "grupo", TooltipText = "Convidar para o grupo", CustomMinimumSize = new Vector2(52, 22) };
+            b.AddThemeFontSizeOverride("font_size", 12);
             var n = name;
             b.Pressed += () => Send?.Invoke(new PartyIntent("invite", n));
             row.AddChild(b);
-            // 14/11 22h (dono: "o x1 é no P, ao mostrar os jogadores online — não precisa estar em grupo"): desafiar daqui
-            var x1 = new Button { Text = "Desafiar x1" };
+            var x1 = new Button { Text = "x1", TooltipText = "Desafiar para um x1 (aceita com Y)", CustomMinimumSize = new Vector2(34, 22) };
+            x1.AddThemeFontSizeOverride("font_size", 12);
             x1.Pressed += () => Send?.Invoke(new PartyIntent("duelo", n));
             row.AddChild(x1);
             _partyBox.AddChild(row);
