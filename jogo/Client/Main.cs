@@ -1048,7 +1048,8 @@ public partial class Main : Node3D
                 else UseFirst("consumable_c01", "consumable_c02", "consumable_c05");
                 break;
             case Key.Key2:
-                if (_model.ClassId is "mago" or "bruxa") UseFirst("consumable_c03", "consumable_c04");
+                if (Tecla2() is { } t2 && _model.CountInInventory(t2) > 0) UseFirst(t2);
+                else if (_model.ClassId is "mago" or "bruxa") UseFirst("consumable_c03", "consumable_c04");
                 else UseFirst("food_");
                 break;
         }
@@ -1491,6 +1492,34 @@ public partial class Main : Node3D
         _pocao1 = def; _pocao1Lida = true;
         try { using var f = Godot.FileAccess.Open("user://pocao_1", Godot.FileAccess.ModeFlags.Write); f?.StoreString(def); } catch { }
         _hud.ShowNotice("Tecla 1 agora usa primeiro: " + (_model.ItemInfoFor(def)?.DisplayName ?? def) + ".");
+        Sfx.Play("ui_clique");
+    }
+
+    private static string? _tecla2;
+    private static bool _tecla2Lida;
+
+    /// <summary>14/11 ("não conseguimos vincular nada no botão 2, o item cai no chão"): o consumível que a tecla 2 usa
+    /// (arrastado da mochila/bolsinha para o quadro 2). Preferência do cliente, user://tecla_2.</summary>
+    internal static string? Tecla2()
+    {
+        if (_tecla2Lida) return _tecla2;
+        _tecla2Lida = true;
+        try { using var f = Godot.FileAccess.Open("user://tecla_2", Godot.FileAccess.ModeFlags.Read); var t = f?.GetAsText().Trim(); _tecla2 = string.IsNullOrEmpty(t) ? null : t; }
+        catch { _tecla2 = null; }
+        return _tecla2;
+    }
+
+    private void EscolherTecla2(string itemId)
+    {
+        var it = _model.Inventory.FirstOrDefault(i => i.ItemId == itemId);
+        if (it is null) return;
+        var def = it.DefinitionId;
+        var info = _model.ItemInfoFor(def);
+        var usavel = info?.Slot == "consumable" || def.StartsWith("consumable_", StringComparison.Ordinal) || def.StartsWith("food_", StringComparison.Ordinal);
+        if (!usavel) { _hud.ShowNotice("Só item de usar (poção, frasco, comida...) vai para a tecla 2."); Sfx.Play("ui_erro", -8f); return; }
+        _tecla2 = def; _tecla2Lida = true;
+        try { using var f = Godot.FileAccess.Open("user://tecla_2", Godot.FileAccess.ModeFlags.Write); f?.StoreString(def); } catch { }
+        _hud.ShowNotice("Tecla 2 agora usa: " + (info?.DisplayName ?? def) + ".");
         Sfx.Play("ui_clique");
     }
 
@@ -2208,6 +2237,7 @@ public partial class Main : Node3D
         _hud = new HudView();
         layer.AddChild(_hud.Root);
         SlotPocaoDrop.Escolheu += EscolherPocao1;
+        SlotTecla2Drop.Escolheu += EscolherTecla2;
         // 13/11: fechou a caixa "Parabéns" (OK ou X) — volta a prender o mouse se não houver outra janela aberta
         // 13/11 22:26: o "Parabéns" de cada coisa aparece uma vez só por personagem (lista guardada no PC)
         _model.JaParabenizado = chave => Parabenizados().Contains(chave);

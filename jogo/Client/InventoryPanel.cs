@@ -429,7 +429,7 @@ public sealed class InventoryPanel
             row.AddChild(label);
             row.AddChild(HudView.MakeLabel(value.ToString(), 14, null, 2));
             var plus = new Button { Text = "+", Disabled = s.Points <= 0, CustomMinimumSize = new Vector2(26, 22), FocusMode = Control.FocusModeEnum.None,
-                TooltipText = stat switch { "forca" => "Força: carrega armadura pesada", "agilidade" => "Agilidade: esquiva volta mais rápido", "vigor" => "Vitalidade: +vida máxima", _ => "Energia: +1 de mana/foco/éter máximo por ponto e o recurso regenera mais" } };
+                TooltipText = stat switch { "forca" => "Força: carrega armadura pesada", "agilidade" => "Destreza: esquiva volta mais rápido (dano do Arqueiro)", "vigor" => "Vitalidade: +vida máxima", _ => "Energia: +1 de mana/foco/éter máximo por ponto e o recurso regenera mais" } };
             plus.Pressed += () => { Send?.Invoke(new SpendStatIntent(stat)); Sfx.Play("ui_abrir", -8f); };
             row.AddChild(plus);
             _attrs.AddChild(row);
@@ -440,10 +440,12 @@ public sealed class InventoryPanel
             Row("Vigor", s.Vigor, "vigor", false);
             return;
         }
-        Row("Força", s.Forca, "forca", s.PrimaryKey == "forca");
-        Row("Agilidade", s.Agilidade, "agilidade", s.PrimaryKey == "agilidade");
-        Row("Vitalidade", s.Vigor, "vigor", false);
-        Row("Energia", s.Energia, "energia", s.PrimaryKey == "energia");
+        var sec = Atributos.Secundario(_model?.ClassId ?? "");
+        string N(string key, string nome) => s.PrimaryKey == key ? nome + " ★" : sec == key ? nome + " ☆" : nome;
+        Row(N("forca", "Força"), s.Forca, "forca", s.PrimaryKey == "forca");
+        Row(N("agilidade", "Destreza"), s.Agilidade, "agilidade", s.PrimaryKey == "agilidade");
+        Row(N("vigor", "Vitalidade"), s.Vigor, "vigor", false);
+        Row(N("energia", "Energia"), s.Energia, "energia", s.PrimaryKey == "energia");
     }
 
     private static int Level(ClientModel m) => m.Progress?.Level ?? m.Me?.Level ?? 1;

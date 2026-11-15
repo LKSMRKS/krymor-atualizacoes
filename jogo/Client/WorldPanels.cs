@@ -674,11 +674,15 @@ public sealed class WorldPanels
         }
         else
         {
-            string Main(string key) => s.PrimaryKey == key ? $"  ·  PRINCIPAL: +{s.PowerPerPoint:0.#} de poder por ponto" : "";
-            AddStatRow("⚒", "Força", s.Forca, "forca", free > 0, "carrega armadura pesada sem perder esquiva" + Main("forca"), s.PrimaryKey == "forca");
-            AddStatRow("➶", "Agilidade", s.Agilidade, "agilidade", free > 0, "esquiva volta mais rápido" + Main("agilidade"), s.PrimaryKey == "agilidade");
-            AddStatRow("♥", "Vitalidade", s.Vigor, "vigor", free > 0, $"+{s.HealthPerPoint:0} de vida máxima e +1,2% de fôlego (estamina) por ponto", false);
-            AddStatRow("✦", "Energia", s.Energia, "energia", free > 0, "mana/éter/foco regenera mais" + Main("energia"), s.PrimaryKey == "energia");
+            // 14/11: cada classe tem 2 atributos padrão (★ principal, ☆ 2º); o resto é "um pouco de cada"
+            var sec = CinzasDaMare.Shared.Content.Atributos.Secundario(m.ClassId);
+            string Main(string key) => s.PrimaryKey == key ? $"  ·  ★ PRINCIPAL: +{s.PowerPerPoint:0.#} de poder por ponto" : sec == key ? "  ·  ☆ 2º ATRIBUTO da classe" : "";
+            string N(string key, string nome) => s.PrimaryKey == key ? nome + "  ★" : sec == key ? nome + "  ☆" : nome;
+            AddStatRow("⚒", N("forca", "Força"), s.Forca, "forca", free > 0, "carrega armadura pesada sem perder esquiva" + Main("forca"), s.PrimaryKey == "forca");
+            AddStatRow("➶", N("agilidade", "Destreza"), s.Agilidade, "agilidade", free > 0, "esquiva volta mais rápido" + Main("agilidade"), s.PrimaryKey == "agilidade");
+            AddStatRow("♥", N("vigor", "Vitalidade"), s.Vigor, "vigor", free > 0, $"+{s.HealthPerPoint:0} de vida máxima e +1,2% de fôlego (estamina) por ponto" + Main("vigor"), false);
+            AddStatRow("✦", N("energia", "Energia"), s.Energia, "energia", free > 0, "+1 de mana/éter/foco máximo por ponto e o recurso regenera mais" + Main("energia"), s.PrimaryKey == "energia");
+            _statsBox.AddChild(Wrap($"Para {ClientModel.ClassName(m.ClassId)}: suba {CinzasDaMare.Shared.Content.Atributos.Nome(s.PrimaryKey)} ★ e {CinzasDaMare.Shared.Content.Atributos.Nome(sec)} ☆. Os outros, um pouco de cada.", 12, Gold));
         }
         // valores calculados em duas colunas, como a ficha do MU
         var grid = new GridContainer { Columns = 2 };

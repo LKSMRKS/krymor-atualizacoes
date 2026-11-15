@@ -820,7 +820,13 @@ public sealed class HudView
         _hotbar.AddChild(evo);
         _hotbar.MoveChild(evo, 4);
         // [7] tecla 2: Frasco de Mana (Mago) ou refeição (Guerreiro)
-        _hotbar.AddChild(MakeSlot("2", mage ? "PM" : "Com.", mage ? new Color(0.15f, 0.25f, 0.62f) : new Color(0.45f, 0.32f, 0.14f), ""));
+        var s2 = MakeSlot("2", mage ? "PM" : "Com.", mage ? new Color(0.15f, 0.25f, 0.62f) : new Color(0.45f, 0.32f, 0.14f), "");
+        // 14/11: o quadro 2 aceita qualquer item de usar arrastado da mochila (antes caía no chão)
+        var alvo2 = new SlotTecla2Drop { MouseFilter = Control.MouseFilterEnum.Pass,
+            TooltipText = (mage ? "Tecla 2 — frasco de mana." : "Tecla 2 — comida (recupera vida devagar).") + "\nArraste qualquer poção, frasco ou comida da mochila para cá para escolher o que ela usa." };
+        s2.AddChild(alvo2);
+        alvo2.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        _hotbar.AddChild(s2);
 
         foreach (var child in _portraitHolder.GetChildren()) child.QueueFree();
         var portrait = new PuppetPortrait { ClassId = classId, MouseFilter = Control.MouseFilterEnum.Ignore };
@@ -1273,6 +1279,8 @@ public sealed class HudView
         if (text is not null) text.Text = $"{value:0} / {max:0}";
     }
 
+    private Texture2D? _tecla2Padrao;
+
     private void UpdateSlots(ClientModel m, CooldownTracker cd, long now, CinzasDaMare.Shared.Net.PlayerView? me, long dodgeReadyInMs)
     {
         if (_slots.Count < 8) return;
@@ -1312,9 +1320,20 @@ public sealed class HudView
         }
         var mageSlot = m.ClassId is "mago" or "bruxa";
         StyleSlot(7, cd.Fraction(mageSlot ? CooldownTracker.Mana : CooldownTracker.Food, now), false);
-        _slots[7].Count.Text = mageSlot
+        _tecla2Padrao ??= (_slots[7].Icon as TextureRect)?.Texture;
+        if (Main.Tecla2() is { } t2 && m.CountInInventory(t2) > 0)
+        {
+            SetSlotIcon(7, ItemIconRenderer.Get(m.ItemInfoFor(t2), t2) ?? _tecla2Padrao, "");
+            _slots[7].Count.Text = m.CountInInventory(t2).ToString();
+        }
+        else
+        {
+            if (_tecla2Padrao is not null) SetSlotIcon(7, _tecla2Padrao, "");
+            _slots[7].Count.Text = mageSlot
             ? (m.CountInInventory("consumable_c03_frasco_mana") + m.CountInInventory("consumable_c04_frasco_mana_grande")).ToString()
             : m.Inventory.Where(i => i.DefinitionId.StartsWith("food_", StringComparison.Ordinal)).Sum(i => i.Quantity).ToString();
+            if (_slots[7].Count.Text == "0") _slots[7].Count.Text = "";   // 14/11: "frigideira com número 0" — sem nada, sem número
+        }
 
         // poderes: o que estiver em cada tecla (Livro de Poderes, K). Tecla sem poder = quadrado vazio.
         foreach (var (idx, key) in new[] { (1, "Q"), (2, "E"), (5, "R"), (6, "T") })
@@ -1433,6 +1452,19 @@ public sealed class HudView
     }
 }
 
+
+/// <summary>14/11: alvo de soltar do quadro da tecla 2 (escolhe o consumível que a tecla usa).</summary>
+public partial class SlotTecla2Drop : Control
+{
+    public static event System.Action<string>? Escolheu;
+    public override bool _CanDropData(Vector2 at, Variant data)
+        => data.VariantType == Variant.Type.String && data.AsString().StartsWith("item|bag|");
+    public override void _DropData(Vector2 at, Variant data)
+    {
+        var p = data.AsString().Split('|');
+        if (p.Length >= 3) Escolheu?.Invoke(p[2]);
+    }
+}
 
 /// <summary>13/11: alvo de soltar do quadro da tecla 1 (escolhe o tônico que a tecla usa).</summary>
 public partial class SlotPocaoDrop : Control

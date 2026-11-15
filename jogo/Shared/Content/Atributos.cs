@@ -23,6 +23,27 @@ public static class Atributos
         _ => Energia,
     };
 
+    /// <summary>
+    /// 14/11 ("2 são padrões para upar, saca?"): o 2º atributo recomendado de cada classe, estilo MU — o 1º é o principal.
+    /// Guerreiro Força+Vitalidade · Arqueiro Destreza+Força · Mago Energia+Destreza · Bruxa Energia+Vitalidade.
+    /// </summary>
+    public static string Secundario(string classId) => classId switch
+    {
+        "arqueiro" => Forca,
+        "mago" => Agilidade,
+        _ => Vitalidade,
+    };
+
+    /// <summary>Nome na tela (a chave "agilidade" continua gravada no banco; na tela ela se chama Destreza).</summary>
+    public static string Nome(string key) => key switch
+    {
+        Forca => "Força",
+        Agilidade => "Destreza",
+        Energia => "Energia",
+        Vitalidade => "Vitalidade",
+        _ => key,
+    };
+
     /// <summary>Peso de uma peça (armadura/elmo pesam pela proteção; escudo um pouco menos). Pede a mesma Força.</summary>
     public static double Weight(string slot, IReadOnlyDictionary<string, double>? stats)
     {
