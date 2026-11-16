@@ -724,6 +724,7 @@ void fragment() {
             DirectionalShadowMaxDistance = 70f,
             LightAngularDistance = 1.2f, // sombra mais dura perto do pé, suave longe (com filtro suave)
         };
+        if (OS.GetEnvironment("CDM_SEM_SOMBRA") == "1") _sun.ShadowEnabled = false;   // 16/11: teste dos anéis no chão
         Root.AddChild(_sun);
         // contraluz frio sem sombra (lado oposto ao sol): separa silhuetas e faz o "quente x frio" da prancha
         Root.AddChild(_fill = new DirectionalLight3D
@@ -825,7 +826,9 @@ void fragment() {
       float dy = d.y - y0;
       float fita = dy < 0.0 ? exp(-dy * dy / 0.0006) : exp(-dy * dy / (0.006 + fk * 0.003));
       float liga = smoothstep(0.25, 0.65, fbm(roda * 1.8 + vec2(TIME * 0.02 + fk * 9.0, fk)));
-      float grao = 0.9 + 0.1 * sin(ang * 70.0 + fbm(roda * 6.0 + vec2(0.0, TIME * 0.1)) * 6.0);
+      // 16/11 (dono: «ainda tem algumas linhas dentro da aurora»): o granulado de raios (seno de 70 voltas) desenhava riscos
+      // verticais finos; agora a variação é só um ruído macio
+      float grao = 0.88 + 0.12 * fbm(roda * 3.0 + vec2(TIME * 0.04, d.y * 4.0));
       float v = fita * liga * grao * (1.0 - fk * 0.35);
       I += v;
       c += v * mix(cor_a, cor_b, clamp(dy * 8.0 + fk * 0.4, 0.0, 1.0));
@@ -878,7 +881,7 @@ void fragment() {
         }
         _ceuDome = new MeshInstance3D
         {
-            Mesh = new SphereMesh { Radius = 245f, Height = 490f, RadialSegments = 48, Rings = 24, Material = _ceuMat },
+            Mesh = new SphereMesh { Radius = 245f, Height = 490f, RadialSegments = 96, Rings = 48, Material = _ceuMat },
             CastShadow = GeometryInstance3D.ShadowCastingSetting.Off,
         };
         Root.AddChild(_ceuDome);
@@ -1186,7 +1189,7 @@ void fragment() {
                 morros.SetShaderParameter("elev_h", hs);
                 morros.SetShaderParameter("elev_n", n);
                 var div = (int)Math.Min(300, size * 1.25f);
-                VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size), SubdivideWidth = div, SubdivideDepth = div }, morros, Vector3.Zero);
+                VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size), SubdivideWidth = div, SubdivideDepth = div }, morros, Vector3.Zero).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
             }
             else if (Relevo.Amplitude > 0f)
             {
@@ -1195,12 +1198,14 @@ void fragment() {
                 ondulado.SetShaderParameter("relevo", Relevo.Amplitude);
                 ondulado.SetShaderParameter("relevo_meia", Relevo.MeiaLargura);
                 var div = (int)Math.Min(240, size * 2);
-                VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size), SubdivideWidth = div, SubdivideDepth = div }, ondulado, Vector3.Zero);
+                VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size), SubdivideWidth = div, SubdivideDepth = div }, ondulado, Vector3.Zero).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
             }
-            else VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size) }, terrain, Vector3.Zero);
-            VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(2400f, 2400f) }, terrain, new Vector3(0, -0.06f, 0));
+            // 16/11 (dono: "ondulações que dá pra ver de longe" — anéis em volta da câmera na areia): era o próprio chão fazendo
+            // sombra em si mesmo (acne de sombra); chão não precisa projetar sombra
+            else VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size) }, terrain, Vector3.Zero).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+            VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(2400f, 2400f) }, terrain, new Vector3(0, -0.06f, 0)).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
         }
-        else VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size) }, groundMat, Vector3.Zero);
+        else VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(size, size) }, groundMat, Vector3.Zero).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
         if (Map.Theme is not ("gruta" or "praia" or "vale" or "mata" or "brejo" or "canion" or "lava" or "neve" or "acropole" or "fantasma") && groundMat is StandardMaterial3D gm)
         {
             // chão continua além das bordas até o horizonte (sem "fim do mundo" atrás dos muros)
@@ -1208,7 +1213,7 @@ void fragment() {
             const float far = 2400f;
             outer.Uv1Scale = gm.Uv1Scale * (far / size);
             outer.AlbedoColor = gm.AlbedoColor.Darkened(0.12f);
-            VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(far, far) }, outer, new Vector3(0, -0.06f, 0));
+            VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(far, far) }, outer, new Vector3(0, -0.06f, 0)).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
         }
         // 13/11: o chão (os planos grandes) também fica na camada 11 — é onde as pinceladas do editor pintam
         foreach (var c in Root.GetChildren())
@@ -2842,10 +2847,12 @@ void fragment() {
   float m = smoothstep(0.5 - 0.1, 0.5 + 0.1, fbm(p * 0.035 + 7.0) + (mix_amt - 0.5) * 0.7) * step(0.01, mix_amt);
   vec3 col = mix(ca * tone, cb * mix(vec3(1.0), tone, 0.5), m);
   // longe da câmera a textura fina vira a cor média (os grãos/linhas formavam riscos e moiré)
-  float longe = smoothstep(18.0, 60.0, distance(CAMERA_POSITION_WORLD, wp));
-  col = mix(col, mix(avg_a * tint_a * tone, avg_b * tint_b * mix(vec3(1.0), tone, 0.5), m) * 1.02, longe * 0.75);
+  // 16/11 (dono: «ondulações que dá pra ver de longe», com print da Costa): os grãos e o relevo do mapa normal viravam anéis
+  // de moiré a 20-60 m. Agora a textura fina some mais cedo e por inteiro, e o mapa normal também se apaga com a distância
+  float longe = smoothstep(10.0, 34.0, distance(CAMERA_POSITION_WORLD, wp));
+  col = mix(col, mix(avg_a * tint_a * tone, avg_b * tint_b * mix(vec3(1.0), tone, 0.5), m) * 1.02, longe);
   vec3 nrm = mix(notile(nrm_a, p / tile_a).rgb, b_notile ? notile(nrm_b, p / tile_b).rgb : texture(nrm_b, p / tile_b).rgb, m);
-  nrm = mix(vec3(0.5, 0.5, 1.0), nrm, mix(1.0, 0.45, ripple_amt));
+  nrm = mix(vec3(0.5, 0.5, 1.0), nrm, mix(1.0, 0.45, ripple_amt) * (1.0 - longe));
 
   // ---- marcas de vento (areia): direção e espaçamento variam; só em manchas, somem longe (sem serrilhado) ----
   vec2 slope = vec2(0.0);
@@ -2950,7 +2957,7 @@ void fragment() {
         var praia = Map.Theme == "praia";
         m.SetShaderParameter("tile_a", praia ? 6f : sand ? 3.5f : 6f); m.SetShaderParameter("tile_b", praia ? 12f : 6f);
         m.SetShaderParameter("b_notile", true);
-        m.SetShaderParameter("ripple_amt", praia ? 0.08f : Map.Theme == "neve" ? 0.25f : 0f);
+        m.SetShaderParameter("ripple_amt", OS.GetEnvironment("CDM_SEM_ONDA") == "1" ? 0f : praia ? 0.08f : Map.Theme == "neve" ? 0.25f : 0f);
         m.SetShaderParameter("tex_detail", praia ? 1f : sand ? 0.35f : 1f);
         Vector3 V(float r, float g, float b) => new(r, g, b);
         var (warm, cool, pale, path) = Map.Theme switch

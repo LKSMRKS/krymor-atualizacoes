@@ -1738,13 +1738,9 @@ public partial class Main : Node3D
         var agora = Time.GetTicksMsec();
         if (_cargaFoto is not null)
         {
-            // zoom lento (Ken Burns): 1,0 → 1,08 em 12 s, a partir do centro
-            // 13/11 ("fica trocando as imagens ali"): carregamento demorado troca a foto a cada 5 s
-            if (agora - _cargaDesde > 5000 && FotosDeCarga.Sortear() is { } outra) { _cargaFoto.Texture = outra; _cargaDesde = agora; }
-            var k = 1f + Mathf.Min((agora - _cargaDesde) / 12000f, 1f) * 0.08f;
-            var tam = _cargaRaiz.Size;
-            _cargaFoto.PivotOffset = tam / 2f;
-            _cargaFoto.Scale = new Vector2(k, k);
+            // 16/11 (dono: "as imagens dão leves zooms engasgando, comendo frame; deixa a imagem estática e usa só uma — quando
+            // troca parece que carregou e ainda não"): uma foto só, parada, do começo ao fim do carregamento
+            _cargaFoto.Scale = Vector2.One;
         }
         if (_mapView is null || agora < _cargaAte) return;
         var a = 1f - (agora - _cargaAte) / 500f;   // meio segundo de saída suave
