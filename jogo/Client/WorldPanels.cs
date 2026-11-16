@@ -1310,6 +1310,23 @@ public sealed partial class WorldMapCanvas : Control
         var k = side / (float)(2 * ext);   // pixels por metro
         if (tex is not null) DrawTextureRect(tex, new Rect2(origin, new Vector2(side, side)), false);
         else DrawGenerated(At, k, origin, side);
+        // 16/11 (pendência u79_mapa_costa): névoa no que você ainda não andou (mapas de campo com ilustração)
+        if (tex is not null && Layout.Kind == "campo" && VisualAssets.Load("mapa_nevoa_textura.png") is { } nevoa)
+        {
+            var c = Explorado.Cel;
+            var n0 = Mathf.FloorToInt((float)-ext / c); var n1 = Mathf.CeilToInt((float)ext / c);
+            var tw = nevoa.GetWidth(); var th = nevoa.GetHeight();
+            for (var cx = n0; cx < n1; cx++)
+                for (var cy = n0; cy < n1; cy++)
+                {
+                    if (Explorado.Visto(Layout.Id, cx, cy)) continue;
+                    var a = At(cx * c, cy * c); var b = At((cx + 1) * c, (cy + 1) * c);
+                    // a textura é "esticada" pelo mundo (cada célula pega o seu pedaço): as nuvens continuam de uma célula na outra
+                    var src = new Rect2(Mathf.PosMod(cx * 37f, tw - 64), Mathf.PosMod(cy * 37f, th - 64), 64, 64);
+                    var borda = 0.18f * (b.X - a.X);
+                    DrawTextureRectRegion(nevoa, new Rect2(a - new Vector2(borda, borda), b - a + new Vector2(borda * 2, borda * 2)), src, new Color(1, 1, 1, 0.93f));
+                }
+        }
         var font = HudView.TitleFont ?? ThemeDB.FallbackFont;
         _alvos.Clear();
         foreach (var portal in Layout.Portals)

@@ -182,6 +182,7 @@ public sealed class MapView
     /// <summary>Árvores que o vento balança (pedido: "a árvore não mexe, o jogo não tem vida").</summary>
     private readonly List<(Node3D Node, Vector3 Base, float Phase, float Amp)> _swaying = new();
     private readonly Dictionary<Node3D, Vector3> _posVento = new();
+    private readonly List<(MapObject Obj, Node3D Tampa, List<StandardMaterial3D> Runas)> _placas = new();
 
     public Node3D Root { get; } = new() { Name = "Mapa" };
     private readonly VidaAmbiente _vida;
@@ -1881,10 +1882,22 @@ void fragment() {
 
         var lever = new Node3D { Position = P(g.LeverX, g.LeverY, 0f) };
         Root.AddChild(lever);
-        VisualKit.Part(lever, VisualKit.Box(0.5f, 0.6f, 0.4f), StoneMat(0.4f, false), new Vector3(0, 0.3f, 0));
-        var handle = VisualKit.Joint(lever, new Vector3(0, 0.6f, 0));
-        VisualKit.Part(handle, VisualKit.Cylinder(0.04f, 0.04f, 0.9f, 6), wood, new Vector3(0, 0.45f, 0));
-        VisualKit.Part(handle, VisualKit.Sphere(0.09f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 1.5f), new Vector3(0, 0.92f, 0));
+        Node3D handle;
+        // 16/11 (pendência u79_alavanca): alavanca de verdade do pacote (base de pedra + cabo que gira no eixo, a 0,55 m)
+        if (Visuals.GlbCache.Instance("interior/puzzle_alavanca_base") is { } baseAlav && Visuals.GlbCache.Instance("interior/puzzle_alavanca_cabo") is { } cabo)
+        {
+            lever.AddChild(baseAlav);
+            handle = VisualKit.Joint(lever, new Vector3(0, 0.55f, 0));
+            cabo.RotationDegrees = new Vector3(0, 180, 0);   // o portão anima de +40 (fechado) a -40 (aberto): virado, é -35 → +35 do modelo
+            handle.AddChild(cabo);
+        }
+        else
+        {
+            VisualKit.Part(lever, VisualKit.Box(0.5f, 0.6f, 0.4f), StoneMat(0.4f, false), new Vector3(0, 0.3f, 0));
+            handle = VisualKit.Joint(lever, new Vector3(0, 0.6f, 0));
+            VisualKit.Part(handle, VisualKit.Cylinder(0.04f, 0.04f, 0.9f, 6), wood, new Vector3(0, 0.45f, 0));
+            VisualKit.Part(handle, VisualKit.Sphere(0.09f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 1.5f), new Vector3(0, 0.92f, 0));
+        }
         handle.RotationDegrees = new Vector3(40, 0, 0);
         _gates.Add(new GateView { Gate = g, Bars = bars, Lever = handle });
     }
@@ -4717,6 +4730,24 @@ void fragment() {
                 _runes.Add((obj, brilho, luz));
                 _interactables.Add((obj, pz));
             }
+            // 16/11 (pendência u79_alavanca): placa em duas peças — a tampa afunda 6 cm quando alguém pisa e as runas acendem
+            else if (Visuals.GlbCache.Instance("interior/puzzle_placa_base") is { } pbase && Visuals.GlbCache.Instance("interior/puzzle_placa_tampa") is { } tampa)
+            {
+                pz.AddChild(pbase);
+                tampa.Position = new Vector3(0, 0.06f, 0);
+                pz.AddChild(tampa);
+                var mats = new List<StandardMaterial3D>();
+                foreach (var mi in tampa.FindChildren("*", "MeshInstance3D", true, false).OfType<MeshInstance3D>())
+                    for (var k = 0; k < (mi.Mesh?.GetSurfaceCount() ?? 0); k++)
+                        if (mi.GetActiveMaterial(k) is StandardMaterial3D sm && sm.EmissionEnabled)
+                        {
+                            var copia = (StandardMaterial3D)sm.Duplicate();
+                            copia.EmissionEnergyMultiplier = 0.3f;
+                            mi.SetSurfaceOverrideMaterial(k, copia);
+                            mats.Add(copia);
+                        }
+                _placas.Add((obj, tampa, mats));
+            }
             else if (Visuals.GlbCache.Instance("interior/puzzle_placa") is { } placa) pz.AddChild(placa);
             else VisualKit.Part(pz, VisualKit.Box(1.2f, 0.06f, 1.2f), StoneMat(0.4f, false), new Vector3(0, 0.03f, 0));
             _objects.Add((obj, pz));
@@ -5227,6 +5258,15 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
             }
             g.Bars.Position = new Vector3(g.Bars.Position.X, 3.3f * Mathf.SmoothStep(0f, 1f, g.Open), g.Bars.Position.Z);
             g.Lever.RotationDegrees = new Vector3(Mathf.Lerp(40f, -40f, Mathf.Min(1f, g.Open * 3f)), 0, 0);
+        }
+        foreach (var (pobj, tampa, pmats) in _placas)
+        {
+            if (!GodotObject.IsInstanceValid(tampa)) continue;
+            var pisada = new Vector2((float)pobj.X - _viewerPos.X, (float)pobj.Y - _viewerPos.Z).LengthSquared() < 0.75f * 0.75f;
+            var alvo = pisada ? 0f : 0.06f;
+            tampa.Position = new Vector3(0, Mathf.MoveToward(tampa.Position.Y, alvo, delta * 0.5f), 0);
+            var e = Mathf.Lerp(3f, 0.3f, tampa.Position.Y / 0.06f);
+            foreach (var m in pmats) m.EmissionEnergyMultiplier = e;
         }
         foreach (var c in _chests)
         {

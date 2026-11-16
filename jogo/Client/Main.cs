@@ -466,6 +466,7 @@ public partial class Main : Node3D
 
     public override void _ExitTree()
     {
+        Explorado.Salvar();   // 16/11: névoa do mapa
         GameLog.Info("cliente", "fechado");
         Interlocked.Increment(ref _generation); // a queda da conexão a partir daqui é o próprio fechamento
         _client?.Dispose();
@@ -569,6 +570,9 @@ public partial class Main : Node3D
 
         EnsureWorld();
         AtualizarCarga();
+        // 16/11: o que o personagem já andou (névoa do mapa M)
+        if (_model.Map is { } mapaExp && _model.Me is { } euExp && Engine.GetProcessFrames() % 15 == 0)
+            Explorado.Marcar(_model.CharacterId ?? "", mapaExp.Id, euExp.X, euExp.Y);
         // 13/11: o líquido dos orbes balança com o giro da câmera e com arrancadas/paradas do personagem
         {
             var dyaw = Mathf.Wrap(_cam.Yaw - _yawAnt, -Mathf.Pi, Mathf.Pi);

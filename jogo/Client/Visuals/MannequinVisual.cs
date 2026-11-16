@@ -1457,10 +1457,76 @@ void fragment() {
             if (!MaskCache.TryGetValue(key, out var masked)) MaskCache[key] = masked = MaskedMesh(src, mask);
             want = masked;
         }
+        AtualizarCinta(mask);
         if (_skin.Mesh == want) return;
         _skin.Mesh = want;
         var n = Math.Min(want.GetSurfaceCount(), _muscleMats.Count > 0 ? _muscleMats.Count : _baseMats.Count);
         for (var sIdx = 0; sIdx < n; sIdx++) _skin.SetSurfaceOverrideMaterial(sIdx, _muscleMats.Count > 0 ? _muscleMats[sIdx] : _baseMats[sIdx]);
+    }
+
+    // 16/11 (pendência "buracos nas armaduras — faixa escura nas costas/cintura, Padded e outros"): entre o peitoral e a
+    // calça das armaduras geradas sobra uma fresta na cintura e, por ela, aparecia o escuro do corpo/avesso. Com peitoral E
+    // calça de conjunto vestidos, uma cinta (forro) na cor média do peitoral fica por baixo das peças: só aparece nas frestas.
+    private MeshInstance3D? _cinta;
+
+    private void AtualizarCinta(BodyRegion mask)
+    {
+        var peit = _armorParts.FirstOrDefault(kv => kv.Key == "peitoral" || kv.Key.StartsWith("peitoral#")).Value;
+        var precisa = (mask & BodyRegion.Torso) != 0 && (mask & BodyRegion.Hips) != 0 && peit is not null
+            && Bone("Spine") >= 0 && Bone("Hips") >= 0 && OS.GetEnvironment("CDM_SEM_CINTA") != "1";
+        if (!precisa)
+        {
+            if (_cinta is not null && GodotObject.IsInstanceValid(_cinta)) _cinta.QueueFree();
+            _cinta = null;
+            return;
+        }
+        var cor = CorMedia(peit!);
+        if (_cinta is null || !GodotObject.IsInstanceValid(_cinta))
+        {
+            var yHips = (_skelToRoot * _skel.GetBoneGlobalRest(Bone("Hips")).Origin).Y;
+            var ySpine = (_skelToRoot * _skel.GetBoneGlobalRest(Bone("Spine")).Origin).Y;
+            _cinta = new MeshInstance3D
+            {
+                Name = "Cinta",
+                Mesh = VisualKit.Cylinder(0.128f, 0.124f, 0.2f, 20),
+                Position = new Vector3(0, yHips + 0.08f - ySpine, -0.004f),
+                Scale = new Vector3(1f, 1f, 0.72f),
+            };
+            Socket("Spine").AddChild(_cinta);
+        }
+        // mesmo brilho/metal do peitoral (parece parte da armadura), sem a textura (que é recortada para a malha dela)
+        var baseMat = (peit!.MaterialOverride ?? (peit.Mesh is { } pm && pm.GetSurfaceCount() > 0 ? peit.GetActiveMaterial(0) : null)) as BaseMaterial3D;
+        var forro = baseMat?.Duplicate() as BaseMaterial3D ?? new StandardMaterial3D { Roughness = 0.75f };
+        forro.AlbedoTexture = null; forro.NormalEnabled = false; forro.NormalTexture = null; forro.EmissionEnabled = false;
+        forro.MetallicTexture = null; forro.RoughnessTexture = null; forro.AOEnabled = false; forro.AlbedoColor = cor;
+        forro.Transparency = BaseMaterial3D.TransparencyEnum.Disabled;
+        _cinta.MaterialOverride = forro;
+    }
+
+    /// <summary>Cor média da peça (cor do material × média da textura, amostrada pequena).</summary>
+    private static Color CorMedia(MeshInstance3D mi)
+    {
+        var mat = mi.MaterialOverride ?? (mi.Mesh is { } m && m.GetSurfaceCount() > 0 ? mi.GetActiveMaterial(0) : null);
+        if (mat is not BaseMaterial3D b) return new Color(0.35f, 0.3f, 0.25f);
+        var c = b.AlbedoColor;
+        if (b.AlbedoTexture is { } tex)
+        {
+            try
+            {
+                var img = tex.GetImage();
+                if (img is not null)
+                {
+                    if (img.IsCompressed()) img.Decompress();
+                    img.Resize(8, 8, Image.Interpolation.Bilinear);
+                    var soma = new Color(0, 0, 0, 0);
+                    for (var y = 0; y < 8; y++) for (var x = 0; x < 8; x++) soma += img.GetPixel(x, y);
+                    var media = soma / 64f;
+                    c = new Color(c.R * media.R, c.G * media.G, c.B * media.B);
+                }
+            }
+            catch { }
+        }
+        return c;
     }
 
     private const float MaskInset = 0.035f;

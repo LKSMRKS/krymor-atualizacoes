@@ -218,6 +218,8 @@ public sealed record QuestDef(string Id, string Name, string Giver, string Kind,
     public string Hint { get; init; } = "";
     /// <summary>Marcas gravadas ao concluir: mudam o mundo SÓ para este personagem (ponte pronta, comerciante de volta, evolução).</summary>
     public IReadOnlyList<string> RewardFlags { get; init; } = Array.Empty<string>();
+    /// <summary>16/11: missão de coleta que só CONFERE os itens (não leva): ingrediente que o jogador ainda vai usar na bancada.</summary>
+    public bool KeepItems { get; init; }
     /// <summary>Classe que pode fazer (evolução); null = todas.</summary>
     public string? Class { get; init; }
     // ---- expansão até o midgame (opcionais) ----
