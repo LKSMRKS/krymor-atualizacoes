@@ -398,7 +398,8 @@ public partial class Main : Node3D
         ItemIconRenderer.Init(this);
         ItemTooltip.Model = _model;
         GraphicsQuality.ApplyViewport(GetViewport());
-        GameLog.Info("cliente", $"Gráficos: {GraphicsQuality.Label(GraphicsQuality.Current)} ({RenderingServer.GetCurrentRenderingMethod()})");
+        GraphicsQuality.CarregarFps();   // 15/11 noite: limite de FPS e V-Sync escolhidos nas Opções
+        GameLog.Info("cliente", $"Gráficos: {GraphicsQuality.Label(GraphicsQuality.Current)} ({RenderingServer.GetCurrentRenderingMethod()}), FPS {GraphicsQuality.FpsLabel(GraphicsQuality.FpsLimite)}, V-Sync {(GraphicsQuality.VSync ? "ligado" : "desligado")}");
         RenderingServer.SetDefaultClearColor(new Color(0.03f, 0.035f, 0.05f));
         AvisoAtualizacaoParada();
         AddChild(_world);
@@ -2425,6 +2426,21 @@ public partial class Main : Node3D
         };
         opcoes.AddChild(bTeclas); opcoes.AddChild(bHist); opcoes.AddChild(bGraf);
         pauseBox.AddChild(opcoes);
+        // 15/11 noite (dono: "coloca nas configs pra escolher o FPS"): limite de quadros + sincronia vertical
+        var fpsRow = new HBoxContainer();
+        fpsRow.AddThemeConstantOverride("separation", 10);
+        fpsRow.AddChild(HudView.MakeLabel("Limite de FPS", 14));
+        var fpsOpt = new OptionButton { CustomMinimumSize = new Vector2(130, 0), FocusMode = Control.FocusModeEnum.None };
+        for (var i = 0; i < GraphicsQuality.FpsOpcoes.Length; i++)
+        {
+            fpsOpt.AddItem(GraphicsQuality.FpsLabel(GraphicsQuality.FpsOpcoes[i]), i);
+            if (GraphicsQuality.FpsOpcoes[i] == GraphicsQuality.FpsLimite) fpsOpt.Selected = i;
+        }
+        var vs = new CheckBox { Text = "V-Sync (sem rasgos na tela)", ButtonPressed = GraphicsQuality.VSync, FocusMode = Control.FocusModeEnum.None };
+        fpsOpt.ItemSelected += idx => GraphicsQuality.MudarFps(GraphicsQuality.FpsOpcoes[(int)idx], vs.ButtonPressed);
+        vs.Toggled += on => GraphicsQuality.MudarFps(GraphicsQuality.FpsOpcoes[Math.Max(0, fpsOpt.Selected)], on);
+        fpsRow.AddChild(fpsOpt); fpsRow.AddChild(vs);
+        pauseBox.AddChild(fpsRow);
         pauseBox.AddChild(new HSeparator());
         var back = new Button { Text = "Trocar de personagem" };
         back.Pressed += BackToLobby;

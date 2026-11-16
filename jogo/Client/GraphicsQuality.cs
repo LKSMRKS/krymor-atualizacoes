@@ -40,6 +40,7 @@ public static class GraphicsQuality
         try
         {
             var cfg = new ConfigFile();
+            cfg.Load(File);   // 15/11: mantém o FPS gravado
             cfg.SetValue("graficos", "nivel", (int)_level.Value);
             cfg.Save(File);
         }
@@ -60,6 +61,49 @@ public static class GraphicsQuality
         }
         catch (Exception e) { GD.PrintErr($"Não leu {File}: {e.Message}"); }
         return Level.Alto;
+    }
+
+    // 15/11 noite (dono, polimento AAA nº 14: "coloca nas configs pra escolher o FPS"): limite de quadros e sincronia
+    // vertical, gravados no mesmo user://graficos.cfg. 0 = sem limite. Padrão: sem limite e V-Sync ligado (como era).
+    public static readonly int[] FpsOpcoes = { 30, 60, 90, 120, 144, 165, 240, 0 };
+    public static int FpsLimite { get; private set; }
+    public static bool VSync { get; private set; } = true;
+    public static string FpsLabel(int f) => f == 0 ? "sem limite" : f + " FPS";
+
+    public static void CarregarFps()
+    {
+        try
+        {
+            var cfg = new ConfigFile();
+            if (cfg.Load(File) == Error.Ok)
+            {
+                FpsLimite = Math.Max(0, (int)cfg.GetValue("fps", "limite", 0));
+                VSync = (bool)cfg.GetValue("fps", "vsync", true);
+            }
+        }
+        catch (Exception e) { GD.PrintErr($"Não leu o FPS de {File}: {e.Message}"); }
+        AplicarFps();
+    }
+
+    public static void MudarFps(int limite, bool vsync)
+    {
+        FpsLimite = Math.Max(0, limite); VSync = vsync;
+        AplicarFps();
+        try
+        {
+            var cfg = new ConfigFile();
+            cfg.Load(File);   // mantém o nível gravado
+            cfg.SetValue("fps", "limite", FpsLimite);
+            cfg.SetValue("fps", "vsync", VSync);
+            cfg.Save(File);
+        }
+        catch (Exception e) { GD.PrintErr($"Não gravou o FPS em {File}: {e.Message}"); }
+    }
+
+    private static void AplicarFps()
+    {
+        Engine.MaxFps = FpsLimite;
+        DisplayServer.WindowSetVsyncMode(VSync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
     }
 
     /// <summary>Antisserrilhado e filtro de sombra suave da janela (vale para todos os mapas).</summary>
