@@ -313,7 +313,7 @@ public sealed partial class ItemIconRenderer : Node
     private static readonly string[] OwnIconIds =
     {
         "semente_", "mat_frasco", "mat_residuo_larva", "mat_rebites", "mat_liga_", "mat_placa_chapa", "mat_carne_javali", "mat_carne_maior", "caixa_cinzas_", "caixa_pandora_",
-        "mat_couro", "mat_resina", "mat_cera", "mat_chave_bronze", "mat_pluma_neve", "mat_reagente", "mat_regador",
+        "mat_couro", "mat_resina", "mat_cera", "mat_chave_", "mat_pluma_neve", "mat_reagente", "mat_regador",
         "mat_sela", "mat_molde_ferreiro", "mat_espada_quebrada", "mat_estrutura_asas", "mat_estandarte",
         // 13/11 ("corrija algum ícone errado"): bandagem/ataduras eram poção vermelha; água benta, panaceia e antídoto também;
         // mapa do tesouro e braceletes de skin caíam numa caixa genérica
@@ -772,9 +772,10 @@ public sealed partial class ItemIconRenderer : Node
                 else { VisualKit.Part(root, VisualKit.Sphere(0.22f), m, Vector3.Zero, null, new Vector3(1f, 1.3f, 0.9f)); VisualKit.Part(root, VisualKit.Sphere(0.12f), m, new Vector3(0.2f, -0.12f, 0.05f)); }
                 return root;
             }
-            case "mat_chave_bronze":
+            case "mat_chave_bronze" or "mat_chave_ferro" or "mat_chave_prata" or "mat_chave_ouro":
             {
-                var bronze = VisualKit.Mat(new Color(0.75f, 0.5f, 0.25f), 0.35f, 0.85f);
+                // 16/11: a chave de ferro usava o desenho do minério
+                var bronze = VisualKit.Mat(id switch { "mat_chave_ferro" => new Color(0.55f, 0.56f, 0.6f), "mat_chave_prata" => new Color(0.85f, 0.86f, 0.9f), "mat_chave_ouro" => new Color(0.95f, 0.78f, 0.3f), _ => new Color(0.75f, 0.5f, 0.25f) }, 0.35f, 0.85f);
                 root.RotationDegrees = new Vector3(10, 20, -40);
                 VisualKit.Part(root, new TorusMesh { InnerRadius = 0.08f, OuterRadius = 0.14f, Rings = 18 }, bronze, new Vector3(0, 0.25f, 0), new Vector3(90, 0, 0));
                 VisualKit.Part(root, VisualKit.Cylinder(0.035f, 0.035f, 0.45f, 8), bronze, new Vector3(0, -0.05f, 0));

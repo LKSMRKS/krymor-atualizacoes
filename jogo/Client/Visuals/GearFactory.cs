@@ -549,6 +549,9 @@ public static class GearFactory
             || model.StartsWith("shield_") || GearFactory.IsBow(model) || model.StartsWith("staff_") || model.StartsWith("talisman_")
             || model.StartsWith("sword_") || model.StartsWith("axe_")))) return null;
         if (id.StartsWith("consumable_c08") || id.StartsWith("consumable_c09")) return null;   // 14/11: frasco de Foco usa o desenho próprio (laranja)
+        // 16/11 (pendência p101_icones "ícones errados"): o nome contém a palavra mas não é o material — relíquia de forma
+        // (colar da presa, foice de osso) virava presa/osso; chave de ferro virava minério; arma lendária virava presa
+        if (id.StartsWith("reliquia_") || id.StartsWith("tomo_") || id.StartsWith("staff_") || id.StartsWith("lendaria_") || id.StartsWith("mat_chave_")) return null;
         if (id.StartsWith("consumable_c03") || id.StartsWith("consumable_c04")) return "item_pocao_mana";
         if (id.StartsWith("consumable_c0")) return "item_pocao_vida";
         if (id.Contains("joia") || id.Contains("gema"))

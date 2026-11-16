@@ -234,6 +234,9 @@ public sealed class MapGeometry
     /// <summary>Raio de colisão de cada objeto de cenário (0 = não bloqueia: tocha, poste, placa, estandarte...).</summary>
     public static double PropRadius(string kind) => kind switch
     {
+        // 16/11: cenário novo da Transilvânia e da Floresta Oculta (morcegos, vaga-lumes, flores e círculo não bloqueiam)
+        "caixao" => 0.55, "candelabro" => 0.25, "cripta" => 1.9, "vitral" => 0.9, "grade_gotica" => 0.4,
+        "cogumelos_gigantes" => 0.9, "tronco_musgo" => 0.8, "pedra_musgo" => 1.1,
         "pinheiros" => 1.1, "tenda" or "barraca" => 1.8, "caixotes" => 0.7, "barril" => 0.4, "coluna_quebrada" => 0.7,
         "estacas" => 0.5, "lapide" => 0.45, "banca" => 1.1, "forja" => 1.3, "sino" => 0.9, "bau_armazem" => 0.7,
         // 11/11: enfeites novos da cidade (floreira, banco, caixote, carrinho da feira)

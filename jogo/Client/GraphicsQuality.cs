@@ -34,6 +34,17 @@ public static class GraphicsQuality
 
     public static string Label(Level l) => l switch { Level.Alto => "alto", Level.Medio => "médio", _ => "baixo" };
 
+    /// <summary>15/11 noite: placa de vídeo dedicada boa (RTX, RX 6000+, Arc, GTX 1080): o gráfico alto roda liso.</summary>
+    public static bool PlacaForte()
+    {
+        try
+        {
+            var nome = RenderingServer.GetVideoAdapterName().ToUpperInvariant();
+            return nome.Contains("RTX") || nome.Contains("RX 6") || nome.Contains("RX 7") || nome.Contains("RX 9") || nome.Contains("ARC") || nome.Contains("GTX 1080");
+        }
+        catch { return false; }
+    }
+
     public static Level Cycle()
     {
         _level = (Level)(((int)Current + 2) % 3); // alto → médio → baixo → alto

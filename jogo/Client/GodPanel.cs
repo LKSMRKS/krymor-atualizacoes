@@ -340,6 +340,9 @@ public sealed class GodPanel
         a3.AddChild(Title("Recursos"));
         Grade(a3, 4, ("+100 mil XP", () => God("xp", amount: 100_000)), ("+5 milhões XP", () => God("xp", amount: 5_000_000)),
             ("+10 mil moedas", () => God("coins", amount: 10_000)), ("+1 milhão moedas", () => God("coins", amount: 1_000_000)));
+        // 15/11 noite: cristais azuis da conta (Loja de Cristais, TAB)
+        Grade(a3, 4, ("+100 cristais", () => God("cristais", amount: 100)), ("+1.000 cristais", () => God("cristais", amount: 1000)),
+            ("+10.000 cristais", () => God("cristais", amount: 10_000)), ("Zerar cristais", () => God("cristais", amount: -1_000_000)));
         a3.AddChild(Title("Caixas das Cinzas (13/11) — abra na mochila"));
         Grade(a3, 5, Enumerable.Range(1, 5).Select(t => ($"5× Caixa +{t}", (Action)(() => God("item", $"caixa_cinzas_{t}", amount: 5)))).ToArray());
         a3.AddChild(Title("Novidades u64 — lendárias, reforja, casa, dungeon"));
@@ -406,6 +409,9 @@ public sealed class GodPanel
         // 5) casa, companheiros, montarias, asas
         var a5 = Aba("Casa e companheiros");
         a5.AddChild(Title("Casa"));
+        // 15/11 noite: tamanhos da casa (terreno e sobrado) para testar sem pagar a reforma
+        Grade(a5, 3, ("Casa com terreno (nível 2)", () => God("flag", "casa:nivel2")), ("Sobrado (nível 3)", () => God("flag", "casa:nivel3")),
+            ("Ir ao terreno", () => God("travel", "casa_jogador_media")));
         Grade(a5, 3, ("Dar a casa + decorações", () => God("house")), ("Ir para a minha casa", () => God("travel", "casa_jogador")),
             ("Esvaziar a decoração", () => God("unflag", "decor:")), ("Tirar a casa", () => God("unflag", "casa:propria")));
         a5.AddChild(Wrap("Decorações: use cada peça DENTRO da casa. Saindo, ganha o Conforto do Lar (mais pontos, mais forte). Convite: P → Convidar o grupo para a minha casa.", 12, Dim));

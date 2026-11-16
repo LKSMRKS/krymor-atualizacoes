@@ -281,10 +281,26 @@ public sealed partial class MenuTabPanel : PanelContainer
         txt.AddChild(HudView.MakeLabel("Troque os cristais na Loja de Cristais por asas, capas, skins, caixas, montarias e armas lendárias.", 12, Dim));
         fr.AddChild(txt);
         _conteudo.AddChild(faixa);
+        // 15/11 noite (dono: "tira as missões já feitas; uma aba ao lado — já feitas — e aí clica pra ver")
+        var nFeitas = _dados!.Lista.Count(o => o.Resgatado);
+        var abas = new HBoxContainer();
+        abas.AddThemeConstantOverride("separation", 6);
+        foreach (var (feitas, rotulo) in new[] { (false, "A fazer"), (true, $"Já feitas ({nFeitas})") })
+        {
+            var ab = Aba(rotulo, 14, new Vector2(150, 32));
+            ab.SetPressedNoSignal(_verFeitas == feitas);
+            ab.Pressed += () => { _verFeitas = feitas; Montar(); };
+            abas.AddChild(ab);
+        }
+        _conteudo.AddChild(abas);
+        var algum = false;
         foreach (var (tipo, titulo) in new[] { ("dia", "Diárias"), ("semana", "Semanais"), ("conta", "Da conta (uma vez só)") })
         {
+            var lista = _dados!.Lista.Where(o => o.Tipo == tipo && o.Resgatado == _verFeitas).OrderByDescending(o => o.Progresso >= o.Meta).ToList();
+            if (lista.Count == 0) continue;
+            algum = true;
             _conteudo.AddChild(Titulo(titulo));
-            foreach (var o in _dados!.Lista.Where(o => o.Tipo == tipo).OrderBy(o => o.Resgatado).ThenByDescending(o => o.Progresso >= o.Meta))
+            foreach (var o in lista)
             {
                 var feito = o.Progresso >= o.Meta;
                 var card = Cartao(o.Resgatado ? new Color(0.25f, 0.25f, 0.25f, 0.6f) : feito ? Good : new Color(0.35f, 0.3f, 0.2f, 0.7f), o.Resgatado ? 0.5f : 0.85f);
@@ -308,7 +324,8 @@ public sealed partial class MenuTabPanel : PanelContainer
                 premio.AddChild(HudView.MakeLabel("cristais", 11, Dim));
                 premio.CustomMinimumSize = new Vector2(120, 0);
                 row.AddChild(premio);
-                var b = new Button { Text = o.Resgatado ? "resgatado" : feito ? "Resgatar" : "—", Disabled = o.Resgatado || !feito, FocusMode = FocusModeEnum.None, CustomMinimumSize = new Vector2(100, 0) };
+                var b = new Button { Text = o.Resgatado ? "resgatado" : feito ? "RESGATAR" : "—", Disabled = o.Resgatado || !feito, FocusMode = FocusModeEnum.None, CustomMinimumSize = new Vector2(120, 34) };
+                if (feito && !o.Resgatado) BotaoAzul(b);   // 15/11 noite (dono: "o botão resgatar mais destacado, azul")
                 var id = o.Id;
                 b.Pressed += () => { Sfx.Play("moeda"); Send?.Invoke(new ObjetivosIntent("resgatar", id)); };
                 row.AddChild(b);
@@ -316,6 +333,27 @@ public sealed partial class MenuTabPanel : PanelContainer
             }
             _conteudo.AddChild(new Control { CustomMinimumSize = new Vector2(0, 6) });
         }
+        if (!algum) _conteudo.AddChild(HudView.MakeLabel(_verFeitas ? "Nenhum objetivo resgatado ainda." : "Tudo feito por agora! Diárias voltam à meia-noite; semanais, na segunda.", 14, Dim));
+    }
+
+    private bool _verFeitas;
+
+    /// <summary>Botão azul brilhante (Resgatar): fundo azul cristal, borda clara, texto branco forte.</summary>
+    private static void BotaoAzul(Button b)
+    {
+        StyleBoxFlat Caixa(Color bg, Color borda)
+        {
+            var s = new StyleBoxFlat { BgColor = bg, BorderColor = borda, ContentMarginLeft = 12, ContentMarginRight = 12, ContentMarginTop = 4, ContentMarginBottom = 4,
+                ShadowColor = new Color(0.25f, 0.55f, 1f, 0.55f), ShadowSize = 6 };
+            s.SetBorderWidthAll(2); s.SetCornerRadiusAll(6);
+            return s;
+        }
+        b.AddThemeStyleboxOverride("normal", Caixa(new Color(0.12f, 0.42f, 0.95f), new Color(0.6f, 0.82f, 1f)));
+        b.AddThemeStyleboxOverride("hover", Caixa(new Color(0.2f, 0.55f, 1f), new Color(0.8f, 0.92f, 1f)));
+        b.AddThemeStyleboxOverride("pressed", Caixa(new Color(0.08f, 0.32f, 0.8f), new Color(0.6f, 0.82f, 1f)));
+        b.AddThemeColorOverride("font_color", Colors.White);
+        b.AddThemeColorOverride("font_hover_color", Colors.White);
+        b.AddThemeFontSizeOverride("font_size", 15);
     }
 
     private static readonly Dictionary<string, string> NomeGrupo = new()

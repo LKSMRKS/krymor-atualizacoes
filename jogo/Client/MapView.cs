@@ -1041,6 +1041,7 @@ void fragment() {
         if (Map.Theme == "ceu")
         {
             AddCloudFloor();
+            if (Map.Id == "caminho_serpente") Serpente();   // 15/11 noite: o caminho é o dorso de uma serpente gigante
             if (Map.Id == "reino_celeste")   // 12/11: Cidade Celestial — praça de mármore branco flutuando nas nuvens
             {
                 var lado = (float)Map.HalfSize * 2f;
@@ -1221,6 +1222,146 @@ void fragment() {
         Root.AddChild(body);
     }
 
+    // ------------------------------------------------------------------------------------------------------------------
+    // 15/11 noite (pendência "Caminho da Serpente de verdade: corpo da serpente sobre nuvens alaranjadas, só com asas"): a
+    // trilha da chegada ao covil é o DORSO de uma serpente colossal que serpenteia sobre o mar de nuvens — o topo do corpo
+    // fica rente ao chão (anda-se em cima dela); a cauda some nas nuvens atrás da chegada, a cabeça ergue-se além do covil e
+    // duas voltas do corpo emergem e mergulham nas nuvens dos lados. Só visual: as regras do mapa continuam as mesmas.
+    private static Shader? _escamas;
+    private const string EscamasShader = @"
+shader_type spatial;
+render_mode cull_disabled;
+uniform vec3 dorso = vec3(0.12, 0.32, 0.30); uniform vec3 ventre = vec3(0.86, 0.72, 0.42); uniform vec3 brilho = vec3(1.0, 0.55, 0.2);
+varying float lado;
+void vertex() { lado = UV.y; }
+void fragment() {
+  vec2 e = vec2(UV.x * 140.0, UV.y * 18.0);
+  e.x += step(1.0, mod(floor(e.y), 2.0)) * 0.5;
+  vec2 f = fract(e) - 0.5;
+  float esc = smoothstep(0.5, 0.18, length(f * vec2(1.0, 1.25)));
+  float barriga = smoothstep(0.32, 0.2, abs(lado - 0.75));          // faixa da barriga (lado de baixo)
+  float faixa = smoothstep(0.06, 0.0, abs(lado - 0.25)) * 0.8;      // listra dourada no meio do dorso
+  vec3 c = mix(dorso * (0.55 + 0.45 * esc), ventre * (0.75 + 0.25 * esc), barriga);
+  c = mix(c, vec3(0.95, 0.72, 0.28), faixa);
+  ALBEDO = c;
+  ROUGHNESS = mix(0.35, 0.7, barriga);
+  METALLIC = 0.25 * (1.0 - barriga);
+  RIM = 0.35; RIM_TINT = 0.6;
+  EMISSION = brilho * faixa * 0.25;
+}";
+
+    private void Serpente()
+    {
+        // eixo do corpo (x, z do mundo = x, y do mapa) e altura do centro: rente ao chão sob a trilha, mergulhando nas pontas
+        var pts = new List<Vector3>();
+        for (var i = 0; i <= 64; i++)
+        {
+            var t = i / 64f;
+            var y = Mathf.Lerp(78f, -66f, t);                                   // de trás da chegada até além do covil
+            // sob a trilha (x = 0) ela só ondula de leve — quem anda pela trilha está sempre em cima do dorso; nas pontas, fora
+            // do caminho, serpenteia forte
+            var meio = Mathf.SmoothStep(0.08f, 0.2f, t) * Mathf.SmoothStep(0.86f, 0.74f, t);
+            var x = Mathf.Lerp(9f, 2.2f, meio) * Mathf.Sin(t * Mathf.Tau * 2.2f);
+            var alt = t < 0.13f ? Mathf.Lerp(-9f, -2.9f, t / 0.13f)            // cauda saindo das nuvens
+                : t > 0.86f ? Mathf.Lerp(-2.9f, 5.5f, (t - 0.86f) / 0.14f)     // pescoço subindo
+                : -2.9f;
+            pts.Add(new Vector3(x, alt, y));
+        }
+        float RaioEm(float t) => t < 0.13f ? Mathf.Lerp(0.6f, 3.2f, Mathf.SmoothStep(0f, 1f, t / 0.13f)) : t > 0.86f ? Mathf.Lerp(3.2f, 2.5f, (t - 0.86f) / 0.14f) : 3.2f;
+        _escamas ??= new Shader { Code = EscamasShader };
+        var mat = new ShaderMaterial { Shader = _escamas };
+        Root.AddChild(Tubo(pts, RaioEm, mat));
+        // duas voltas do corpo aparecendo dos lados (arcos que saem e entram nas nuvens)
+        foreach (var (cx, cz, r, giro) in new[] { (-44f, 6f, 13f, 0.3f), (46f, -20f, 11f, -0.5f) })
+        {
+            var arco = new List<Vector3>();
+            for (var i = 0; i <= 28; i++)
+            {
+                var a = Mathf.Pi * i / 28f;
+                arco.Add(new Vector3(cx + Mathf.Cos(a + giro) * r * 0.35f, Mathf.Sin(a) * r * 0.55f - 3.5f, cz + Mathf.Cos(a) * r));
+            }
+            Root.AddChild(Tubo(arco, _ => 2.6f, mat));
+        }
+        // cabeça além do covil: focinho, olhos acesos, chifres e a mandíbula aberta virada para a trilha
+        var fim = pts[^1]; var antes = pts[^4];
+        var cabeca = new Node3D { Position = fim };
+        Root.AddChild(cabeca);
+        cabeca.LookAt(fim + (fim - antes).Normalized() * 5f + new Vector3(0, -1.5f, 0), Vector3.Up);
+        cabeca.RotateObjectLocal(Vector3.Up, Mathf.Pi);   // LookAt aponta -Z; o focinho é desenhado em +Z
+        var pele = new StandardMaterial3D { AlbedoColor = new Color(0.12f, 0.3f, 0.28f), Roughness = 0.4f, Metallic = 0.25f, RimEnabled = true, Rim = 0.3f };
+        var osso = VisualKit.Mat(new Color(0.9f, 0.84f, 0.7f), 0.5f);
+        VisualKit.Part(cabeca, VisualKit.Sphere(2.9f), pele, Vector3.Zero, null, new Vector3(1.05f, 0.82f, 1.25f));
+        VisualKit.Part(cabeca, VisualKit.Sphere(2.2f), pele, new Vector3(0, -0.2f, 3.2f), null, new Vector3(0.9f, 0.55f, 1.25f));   // focinho
+        var queixo = VisualKit.Part(cabeca, VisualKit.Sphere(1.9f), new StandardMaterial3D { AlbedoColor = new Color(0.82f, 0.68f, 0.4f), Roughness = 0.6f }, new Vector3(0, -1.9f, 2.6f), new Vector3(24, 0, 0), new Vector3(0.85f, 0.3f, 1.25f));
+        foreach (var sd in new[] { -1f, 1f })
+        {
+            VisualKit.Part(cabeca, VisualKit.Sphere(0.42f), VisualKit.Glow(new Color(1f, 0.62f, 0.12f), 4f), new Vector3(sd * 1.55f, 0.9f, 2.0f), null, new Vector3(1f, 0.6f, 1f));
+            var chifre = VisualKit.Part(cabeca, VisualKit.Cylinder(0.02f, 0.45f, 3.6f, 10), osso, new Vector3(sd * 1.3f, 2.2f, -0.8f), new Vector3(-55, 0, sd * -18));
+            for (var k = 0; k < 4; k++)   // presas
+                VisualKit.Part(cabeca, VisualKit.Cylinder(0.01f, 0.16f, 0.9f, 6), osso, new Vector3(sd * (0.4f + k * 0.35f), -0.85f, 4.4f - k * 0.45f), new Vector3(180, 0, 0));
+        }
+        cabeca.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.6f, 0.2f), LightEnergy = 2.5f, OmniRange = 14f, Position = new Vector3(0, 1f, 3f) });
+        // barbatanas ao longo do dorso, fora da faixa onde se anda
+        var fin = new StandardMaterial3D { AlbedoColor = new Color(0.85f, 0.45f, 0.18f), Roughness = 0.5f, CullMode = BaseMaterial3D.CullModeEnum.Disabled };
+        for (var i = 2; i < pts.Count - 3; i += 2)
+        {
+            var d = (pts[i + 1] - pts[i - 1]).Normalized();
+            var lado = d.Cross(Vector3.Up).Normalized();
+            foreach (var sd in new[] { -1f, 1f })
+            {
+                var p0 = pts[i] + lado * sd * 2.9f + Vector3.Up * 1.6f;
+                var f = VisualKit.Part(Root, new PrismMesh { Size = new Vector3(1.4f, 1.1f, 0.06f) }, fin, p0);
+                f.LookAt(p0 + d, Vector3.Up);
+                f.RotateObjectLocal(Vector3.Forward, sd * 0.9f);
+                f.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+            }
+        }
+    }
+
+    /// <summary>Tubo liso ao longo dos pontos (Catmull-Rom), raio por posição (0..1). UV.x = ao longo, UV.y = volta.</summary>
+    private static MeshInstance3D Tubo(List<Vector3> pts, Func<float, float> raio, Material mat)
+    {
+        var st = new SurfaceTool();
+        st.Begin(Mesh.PrimitiveType.Triangles);
+        const int Voltas = 28, Sub = 4;
+        var n = (pts.Count - 1) * Sub;
+        Vector3 P(int i) => pts[Math.Clamp(i, 0, pts.Count - 1)];
+        Vector3 Ponto(float u)
+        {
+            var f = u * (pts.Count - 1); var i = Math.Min((int)f, pts.Count - 2); var t = f - i;
+            Vector3 p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+            return 0.5f * (2f * p1 + (-p0 + p2) * t + (2f * p0 - 5f * p1 + 4f * p2 - p3) * t * t + (-p0 + 3f * p1 - 3f * p2 + p3) * t * t * t);
+        }
+        var aneis = new List<Vector3[]>(); var normais = new List<Vector3[]>();
+        for (var k = 0; k <= n; k++)
+        {
+            var u = k / (float)n;
+            var c = Ponto(u);
+            var d = (Ponto(Math.Min(1f, u + 0.002f)) - Ponto(Math.Max(0f, u - 0.002f))).Normalized();
+            var lado = d.Cross(Vector3.Up).Normalized(); if (lado.LengthSquared() < 0.01f) lado = Vector3.Right;
+            var cima = lado.Cross(d).Normalized();
+            var r = raio(u);
+            var anel = new Vector3[Voltas + 1]; var nn = new Vector3[Voltas + 1];
+            for (var j = 0; j <= Voltas; j++)
+            {
+                var a = j / (float)Voltas * Mathf.Tau;
+                var dir = cima * Mathf.Cos(a) + lado * Mathf.Sin(a);   // j = 0: topo do dorso
+                anel[j] = c + dir * r * (1f - 0.12f * Mathf.Pow(Mathf.Sin(a), 2));   // um pouco achatado dos lados
+                nn[j] = dir;
+            }
+            aneis.Add(anel); normais.Add(nn);
+        }
+        for (var k = 0; k < n; k++)
+            for (var j = 0; j < Voltas; j++)
+            {
+                void V(int kk, int jj) { st.SetNormal(normais[kk][jj]); st.SetUV(new Vector2(kk / (float)n, jj / (float)Voltas)); st.AddVertex(aneis[kk][jj]); }
+                V(k, j); V(k + 1, j); V(k + 1, j + 1);
+                V(k, j); V(k + 1, j + 1); V(k, j + 1);
+            }
+        var mi = new MeshInstance3D { Mesh = st.Commit(), MaterialOverride = mat, CastShadow = GeometryInstance3D.ShadowCastingSetting.On };
+        return mi;
+    }
+
     private void AddCloudFloor()
     {
         var deep = VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(2400f, 2400f) }, VisualKit.Unshaded(new Color(0.32f, 0.42f, 0.6f)), new Vector3(0, -30f, 0));
@@ -1229,6 +1370,7 @@ void fragment() {
 shader_type spatial;
 render_mode unshaded, blend_mix, cull_disabled, depth_draw_opaque;
 uniform float camada = 0.0;
+uniform vec3 azul = vec3(0.50, 0.60, 0.78); uniform vec3 branco = vec3(0.93, 0.95, 1.0);
 varying vec3 wp;
 float h(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
@@ -1238,10 +1380,15 @@ void vertex() { wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
 void fragment() {
   vec2 p = wp.xz * 0.045 + vec2(TIME * 0.012, TIME * 0.006) + camada * 7.0;
   float c = fbm(p) * 0.75 + fbm(p * 2.7 - TIME * 0.02) * 0.35;
-  vec3 azul = vec3(0.50, 0.60, 0.78); vec3 branco = vec3(0.93, 0.95, 1.0);
   ALBEDO = mix(azul, branco, smoothstep(0.35, 0.85, c));
   ALPHA = camada > 0.5 ? smoothstep(0.45, 0.8, c) * 0.55 : 0.82 + 0.15 * c;
 }" } };
+        if (Map.Id == "caminho_serpente")   // 15/11 noite: mar de nuvens alaranjadas do pôr do sol
+        {
+            clouds.SetShaderParameter("azul", new Vector3(0.86f, 0.42f, 0.22f));
+            clouds.SetShaderParameter("branco", new Vector3(1f, 0.82f, 0.55f));
+            if (deep.MaterialOverride is StandardMaterial3D dm) dm.AlbedoColor = new Color(0.55f, 0.24f, 0.18f);
+        }
         var floor = VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(2400f, 2400f) }, clouds, new Vector3(0, -0.02f, 0));
         floor.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
         var veil = (ShaderMaterial)clouds.Duplicate();
@@ -1743,7 +1890,7 @@ void fragment() {
             VisualKit.Part(cascalho, VisualKit.Box(R(0.15f, 0.4f), R(0.1f, 0.25f), R(0.15f, 0.35f)), stone,
                 new Vector3(R(-r, r), 0.08f, R(-r, r)), new Vector3(R(-20, 20), R(0, 90), R(-20, 20)));
         rock.AddChild(new Node3D());   // (a marca some junto: ver abaixo)
-        marca.Reparent(rock, true);
+        marca.Reparent(rock, false);   // 16/11: fora da árvore ainda (keepGlobal pedia a transformação global e dava erro no log)
         _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = cascalho, Broken = rock });
     }
 
@@ -4418,6 +4565,21 @@ void fragment() {
                 node.AddChild(new OmniLight3D { LightColor = new Color(0.5f, 1f, 0.4f), LightEnergy = 1.3f, OmniRange = 5f, Position = new Vector3(0, 1.4f, 0) });
                 return true;
             }
+            case "reforma_casa":   // 15/11 noite: placa de obra (reformar a casa) — cavalete com a planta da casa e um martelo
+            {
+                var node = new Node3D { Position = P(obj.X, obj.Y) };
+                Root.AddChild(node);
+                var madeira = MapView.TexMat("gen_madeira.png", new Color(0.8f, 0.62f, 0.4f), 0.6f);
+                foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(node, VisualKit.Box(0.08f, 1.5f, 0.08f), madeira, new Vector3(sd * 0.45f, 0.75f, 0), new Vector3(-8, 0, sd * -6));
+                VisualKit.Part(node, VisualKit.Box(1.05f, 0.75f, 0.04f), VisualKit.Mat(new Color(0.88f, 0.84f, 0.72f), 0.8f), new Vector3(0, 1.15f, 0.04f), new Vector3(-8, 0, 0));
+                var azul = VisualKit.Mat(new Color(0.15f, 0.3f, 0.7f), 0.6f);
+                VisualKit.Part(node, VisualKit.Box(0.5f, 0.03f, 0.01f), azul, new Vector3(0, 0.95f, 0.08f), new Vector3(-8, 0, 0));
+                VisualKit.Part(node, new PrismMesh { Size = new Vector3(0.6f, 0.28f, 0.01f) }, azul, new Vector3(0, 1.32f, 0.07f), new Vector3(-8, 0, 0));
+                VisualKit.Part(node, VisualKit.Box(0.42f, 0.3f, 0.01f), azul, new Vector3(0, 1.1f, 0.075f), new Vector3(-8, 0, 0), new Vector3(1f, 1f, 0.5f));
+                VisualKit.Part(node, VisualKit.Box(0.06f, 0.32f, 0.04f), madeira, new Vector3(0.62f, 0.2f, 0.2f), new Vector3(0, 0, 70));
+                VisualKit.Part(node, VisualKit.Box(0.14f, 0.07f, 0.07f), VisualKit.Mat(new Color(0.4f, 0.4f, 0.42f), 0.3f, 0.9f), new Vector3(0.78f, 0.24f, 0.2f));
+                return true;
+            }
             case "bau_casa":
             {
                 var node = new Node3D { Position = P(obj.X, obj.Y) };
@@ -4784,6 +4946,7 @@ void fragment() {
         "bancada" => "F: criar itens com materiais",
         "caldeirao" or "panela" => "F: preparar poções e comidas",
         "armazem" or "bau_casa" => "F: guardar e tirar itens (baú)",
+        "reforma_casa" => "F: ver a próxima reforma da casa (F de novo para confirmar)",
         "canteiro" => "F: plantar sementes e colher",
         "prisioneiro" => "F: desamarrar",
         "cama" => "F: dormir (fique parado 8 s: vida cheia e o bônus Bem Dormido)",
@@ -4958,7 +5121,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
     {
         // 12/11: decoração da casa (só na casa do jogador; peças novas aparecem assim que colocadas)
         // 13/11: visitando a casa de outro, a decoração é a dele
-        if (Map.Id == "casa_jogador")
+        if (Map.Id == "casa_jogador")   // 15/11: a decoração fica dentro da casa (o cômodo de baixo)
             foreach (var f in decorDoDono ?? flags)
                 if (f.StartsWith("decor:", StringComparison.Ordinal) && _decorFeito.Add(f))
                     CasaDecor.Build(Root, f[6..], (x, y) => P(x, y));

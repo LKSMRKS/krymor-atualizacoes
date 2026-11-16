@@ -180,6 +180,18 @@ public static class MapKit
                 P(node, VisualKit.Cylinder(0f, 0.2f, 0.3f, 6), straw, new Vector3(0, 0.95f, 0), new Vector3(180, 0, 0));
                 return true;
             }
+            case "escada_madeira":   // 15/11 noite: escada do sobrado (casa do jogador) subindo para o 2º andar
+            {
+                var degrau = MapView.TexMat("gen_madeira.png", new Color(0.72f, 0.52f, 0.32f), 0.6f);
+                for (var k = 0; k < 9; k++)
+                    P(node, VisualKit.Box(1.3f, 0.12f, 0.36f), degrau, new Vector3(0, 0.2f + k * 0.34f, 1.4f - k * 0.34f));
+                foreach (var sd in new[] { -1f, 1f })
+                {
+                    P(node, VisualKit.Box(0.08f, 3.4f, 0.08f), wood, new Vector3(sd * 0.7f, 1.7f, -1.5f));
+                    P(node, VisualKit.Box(0.06f, 0.06f, 3.6f), wood, new Vector3(sd * 0.7f, 2.1f, 0.0f), new Vector3(43, 0, 0));
+                }
+                return true;
+            }
             case "feno":
             {
                 var hay = VisualKit.Mat(new Color(0.80f, 0.68f, 0.34f), 0.98f);
@@ -500,8 +512,255 @@ public static class MapKit
                 P(node, VisualKit.Box(0.05f, 3.4f, 2.6f), cloth, new Vector3(0.1f, 4.2f, 0));
                 return true;
             }
+            // ───── 16/11 madrugada (pendência u75_ambiente): cenário da Transilvânia ─────
+            case "caixao":
+            {
+                // caixão de seis lados, tampa entreaberta com forro vermelho e cruz de ferro
+                var escura = MapView.TexMat("gen_madeira.png", new Color(0.32f, 0.2f, 0.16f), 0.6f);
+                var forro = MatC(new Color(0.45f, 0.03f, 0.06f), 0.9f);
+                P(node, VisualKit.Box(0.75f, 0.42f, 2.0f), escura, new Vector3(0, 0.21f, 0));
+                P(node, VisualKit.Box(0.62f, 0.04f, 1.86f), forro, new Vector3(0, 0.41f, 0));
+                var tampa = new Node3D { Position = new Vector3(0.38f, 0.44f, 0), RotationDegrees = new Vector3(0, 0, -24) }; node.AddChild(tampa);
+                P(tampa, VisualKit.Box(0.8f, 0.06f, 2.05f), escura, new Vector3(-0.4f, 0.03f, 0));
+                P(tampa, VisualKit.Box(0.08f, 0.02f, 0.6f), iron, new Vector3(-0.4f, 0.07f, 0.25f));
+                P(tampa, VisualKit.Box(0.36f, 0.02f, 0.08f), iron, new Vector3(-0.4f, 0.07f, 0.4f));
+                return true;
+            }
+            case "candelabro":
+            {
+                // candelabro de ferro alto, três velas acesas e cera escorrida
+                P(node, VisualKit.Cylinder(0.22f, 0.3f, 0.08f, 8), iron, new Vector3(0, 0.04f, 0));
+                P(node, VisualKit.Cylinder(0.03f, 0.04f, 1.7f, 6), iron, new Vector3(0, 0.9f, 0));
+                P(node, VisualKit.Box(0.7f, 0.03f, 0.03f), iron, new Vector3(0, 1.62f, 0));
+                var cera = MatC(new Color(0.92f, 0.88f, 0.78f), 0.7f);
+                foreach (var dx in new[] { -0.33f, 0f, 0.33f })
+                {
+                    var h = dx == 0 ? 1.82f : 1.7f;
+                    P(node, VisualKit.Cylinder(0.05f, 0.05f, 0.04f, 8), iron, new Vector3(dx, h - 0.06f, 0));
+                    P(node, VisualKit.Cylinder(0.025f, 0.03f, 0.18f, 8), cera, new Vector3(dx, h + 0.05f, 0));
+                    P(node, VisualKit.Sphere(0.025f), GlowC(new Color(1f, 0.7f, 0.3f), 3f), new Vector3(dx, h + 0.17f, 0), null, new Vector3(1f, 1.8f, 1f));
+                    if (dx != 0) P(node, VisualKit.Cylinder(0.012f, 0.012f, 0.12f, 4), iron, new Vector3(dx, 1.66f, 0));
+                }
+                node.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.65f, 0.35f), LightEnergy = 0.9f, OmniRange = 5f, Position = new Vector3(0, 2.1f, 0), ShadowEnabled = false });
+                return true;
+            }
+            case "grade_gotica":
+            {
+                // trecho de grade de ferro batido (4 m) com pontas de lança e pilares de pedra
+                var pedraG = MapView.TexMat("gen_bloco.png", new Color(0.55f, 0.55f, 0.6f), 0.5f);
+                foreach (var dx in new[] { -2.05f, 2.05f })
+                {
+                    P(node, VisualKit.Box(0.4f, 1.9f, 0.4f), pedraG, new Vector3(dx, 0.95f, 0));
+                    P(node, VisualKit.Cylinder(0f, 0.26f, 0.35f, 4), pedraG, new Vector3(dx, 2.07f, 0), new Vector3(0, 45, 0));
+                }
+                P(node, VisualKit.Box(3.7f, 0.05f, 0.05f), iron, new Vector3(0, 0.25f, 0));
+                P(node, VisualKit.Box(3.7f, 0.05f, 0.05f), iron, new Vector3(0, 1.35f, 0));
+                for (var i = 0; i < 13; i++)
+                {
+                    var x = -1.75f + i * (3.5f / 12f);
+                    var alto = i % 2 == 0 ? 1.75f : 1.6f;
+                    P(node, VisualKit.Cylinder(0.018f, 0.018f, alto, 4), iron, new Vector3(x, alto / 2, 0));
+                    P(node, VisualKit.Cylinder(0f, 0.045f, 0.14f, 4), iron, new Vector3(x, alto + 0.07f, 0));
+                }
+                for (var i = 0; i < 6; i++)   // arabescos entre as barras
+                    P(node, new TorusMesh { InnerRadius = 0.08f, OuterRadius = 0.1f, Rings = 10, RingSegments = 4 }, iron, new Vector3(-1.5f + i * 0.6f, 1.12f, 0), new Vector3(90, 0, 0));
+                return true;
+            }
+            case "cripta":
+            {
+                // mausoléu pequeno: telhado pontudo, porta de ferro, duas velas e a família gravada
+                var pedraC = MapView.TexMat("gen_bloco.png", new Color(0.5f, 0.5f, 0.55f), 0.45f);
+                P(node, VisualKit.Box(3.2f, 0.3f, 3.6f), pedraC, new Vector3(0, 0.15f, 0));
+                P(node, VisualKit.Box(2.8f, 2.6f, 3.2f), pedraC, new Vector3(0, 1.6f, 0));
+                P(node, VisualKit.Cylinder(0f, 2.1f, 1.6f, 4), MapView.TexMat("gen_ardosia.png", new Color(0.6f, 0.6f, 0.7f), 0.6f), new Vector3(0, 3.7f, 0), new Vector3(0, 45, 0), new Vector3(1f, 1f, 1.15f));
+                P(node, VisualKit.Box(1.1f, 1.8f, 0.08f), iron, new Vector3(0, 1.2f, 1.62f));
+                P(node, VisualKit.Cylinder(0.55f, 0.55f, 0.08f, 12), iron, new Vector3(0, 2.1f, 1.62f), new Vector3(90, 0, 0));
+                P(node, VisualKit.Box(0.06f, 1.6f, 0.04f), MatC(new Color(0.12f, 0.1f, 0.1f), 0.5f), new Vector3(0, 1.2f, 1.67f));
+                P(node, VisualKit.Box(0.08f, 0.5f, 0.05f), bone, new Vector3(0, 4.7f, 0));
+                P(node, VisualKit.Box(0.3f, 0.08f, 0.05f), bone, new Vector3(0, 4.8f, 0));
+                foreach (var dx in new[] { -0.9f, 0.9f })
+                {
+                    P(node, VisualKit.Cylinder(0.04f, 0.05f, 0.25f, 8), MatC(new Color(0.9f, 0.86f, 0.76f), 0.7f), new Vector3(dx, 0.42f, 1.9f));
+                    P(node, VisualKit.Sphere(0.03f), GlowC(new Color(1f, 0.7f, 0.3f), 3f), new Vector3(dx, 0.58f, 1.9f), null, new Vector3(1f, 1.8f, 1f));
+                }
+                node.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.6f, 0.3f), LightEnergy = 0.6f, OmniRange = 4f, Position = new Vector3(0, 0.9f, 2.4f), ShadowEnabled = false });
+                return true;
+            }
+            case "vitral":
+            {
+                // janela gótica solta (ruína de capela) com vitral vermelho e roxo aceso
+                var pedraV = MapView.TexMat("gen_bloco.png", new Color(0.5f, 0.48f, 0.5f), 0.45f);
+                foreach (var dx in new[] { -0.95f, 0.95f }) P(node, VisualKit.Box(0.45f, 3.4f, 0.6f), pedraV, new Vector3(dx, 1.7f, 0));
+                P(node, VisualKit.Cylinder(0f, 1.2f, 1.3f, 4), pedraV, new Vector3(0, 4f, 0), new Vector3(0, 45, 0), new Vector3(1f, 1f, 0.35f));
+                var cores = new[] { new Color(0.85f, 0.08f, 0.12f), new Color(0.45f, 0.1f, 0.75f), new Color(0.95f, 0.6f, 0.15f) };
+                for (var i = 0; i < 9; i++)
+                    P(node, VisualKit.Box(0.48f, 0.68f, 0.03f), GlowC(cores[(i * 2 + i / 3) % 3].Darkened(0.25f), 0.45f), new Vector3(-0.49f + (i % 3) * 0.49f, 0.7f + (i / 3) * 0.7f, 0));
+                for (var i = 0; i < 4; i++) P(node, VisualKit.Box(1.5f, 0.04f, 0.05f), iron, new Vector3(0, 0.35f + i * 0.7f, 0));
+                foreach (var dx in new[] { -0.245f, 0.245f }) P(node, VisualKit.Box(0.04f, 2.1f, 0.05f), iron, new Vector3(dx, 1.4f, 0));   // chumbo entre os vidros
+                P(node, new TorusMesh { InnerRadius = 0.2f, OuterRadius = 0.24f, Rings = 16, RingSegments = 4 }, iron, new Vector3(0, 3.35f, 0.02f), new Vector3(90, 0, 0));   // rosácea
+                P(node, VisualKit.Cylinder(0f, 0.72f, 0.75f, 3), GlowC(cores[1].Darkened(0.25f), 0.45f), new Vector3(0, 3.5f, 0), new Vector3(90, 0, 0), new Vector3(1f, 1f, 0.05f));
+                return true;
+            }
+            case "morcegos":
+            {
+                // revoada de morcegos girando lá no alto (só enfeite; asas batendo)
+                var pivo = new Girador { Velocidade = 0.6f + v.R(0f, 0.4f) }; node.AddChild(pivo);
+                var couro = MatC(new Color(0.06f, 0.05f, 0.07f), 0.8f);
+                for (var i = 0; i < 9; i++)
+                {
+                    var a = i / 9f * Mathf.Tau; var r = v.R(2.5f, 5f);
+                    var m = new Node3D { Position = new Vector3(Mathf.Cos(a) * r, v.R(6f, 10f), Mathf.Sin(a) * r), RotationDegrees = new Vector3(0, -Mathf.RadToDeg(a), 0) };
+                    pivo.AddChild(m);
+                    P(m, VisualKit.Sphere(0.09f), couro, Vector3.Zero, null, new Vector3(1f, 0.8f, 1.4f));
+                    foreach (var sd in new[] { -1f, 1f })
+                    {
+                        var asa = new Batedor { Lado = sd, Fase = v.R(0f, 6f) }; m.AddChild(asa);
+                        P(asa, VisualKit.Box(0.32f, 0.01f, 0.18f), couro, new Vector3(sd * 0.17f, 0, 0));
+                    }
+                }
+                return true;
+            }
+            // ───── 16/11 madrugada: cenário da Floresta Oculta (mata encantada, não cemitério) ─────
+            case "cogumelos_gigantes":
+            {
+                var rng = new RandomNumberGenerator { Seed = (ulong)Math.Abs(node.Position.X * 31 + node.Position.Z * 17) + 3 };
+                var caule = MatC(new Color(0.88f, 0.84f, 0.74f), 0.8f);
+                var chapeus = new[] { new Color(0.15f, 0.55f, 0.75f), new Color(0.55f, 0.25f, 0.75f), new Color(0.85f, 0.35f, 0.2f) };
+                for (var i = 0; i < 5; i++)
+                {
+                    var a = rng.RandfRange(0, Mathf.Tau); var r = i == 0 ? 0f : rng.RandfRange(0.7f, 1.8f);
+                    var h = i == 0 ? 2.4f : rng.RandfRange(0.6f, 1.6f); var raio = h * 0.45f;
+                    var at = new Vector3(Mathf.Cos(a) * r, 0, Mathf.Sin(a) * r);
+                    var tilt = new Vector3(rng.RandfRange(-8, 8), 0, rng.RandfRange(-8, 8));
+                    var cor = chapeus[rng.RandiRange(0, 2)];
+                    P(node, VisualKit.Cylinder(raio * 0.22f, raio * 0.32f, h, 8), caule, at + new Vector3(0, h / 2, 0), tilt);
+                    P(node, VisualKit.Sphere(raio), GlowC(cor, 0.55f), at + new Vector3(0, h, 0), tilt, new Vector3(1f, 0.45f, 1f));
+                    for (var k = 0; k < 4; k++)   // pintinhas claras no chapéu
+                    {
+                        var b = k / 4f * Mathf.Tau + a;
+                        P(node, VisualKit.Sphere(raio * 0.12f), GlowC(new Color(0.95f, 0.95f, 0.8f), 1.2f), at + new Vector3(Mathf.Cos(b) * raio * 0.55f, h + raio * 0.33f, Mathf.Sin(b) * raio * 0.55f), null, new Vector3(1f, 0.4f, 1f));
+                    }
+                }
+                node.AddChild(new OmniLight3D { LightColor = new Color(0.4f, 0.7f, 1f), LightEnergy = 0.7f, OmniRange = 5f, Position = new Vector3(0, 2.2f, 0), ShadowEnabled = false });
+                return true;
+            }
+            case "vagalumes":
+            {
+                var pivo = new Girador { Velocidade = 0.15f, Flutua = 0.35f }; node.AddChild(pivo);
+                var luz = GlowC(new Color(0.85f, 1f, 0.35f), 3.5f);
+                for (var i = 0; i < 16; i++)
+                    P(pivo, VisualKit.Sphere(0.035f), luz, new Vector3(v.R(-2.5f, 2.5f), v.R(0.4f, 2.4f), v.R(-2.5f, 2.5f)));
+                node.AddChild(new OmniLight3D { LightColor = new Color(0.8f, 1f, 0.4f), LightEnergy = 0.35f, OmniRange = 4f, Position = new Vector3(0, 1.4f, 0), ShadowEnabled = false });
+                return true;
+            }
+            case "tronco_musgo":
+            {
+                var casca = MapView.TexMat("gen_madeira.png", new Color(0.45f, 0.36f, 0.26f), 0.4f);
+                var musgo = MatC(new Color(0.22f, 0.45f, 0.16f), 1f);
+                P(node, VisualKit.Cylinder(0.42f, 0.5f, 4.2f, 10), casca, new Vector3(0, 0.42f, 0), new Vector3(0, 0, 88));
+                P(node, VisualKit.Cylinder(0.36f, 0.36f, 0.02f, 10), MatC(new Color(0.65f, 0.5f, 0.3f), 0.8f), new Vector3(2.11f, 0.42f, 0), new Vector3(0, 0, 88));
+                for (var i = 0; i < 7; i++)
+                    P(node, VisualKit.Sphere(v.R(0.18f, 0.32f)), musgo, new Vector3(-1.8f + i * 0.6f, 0.78f, v.R(-0.2f, 0.2f)), null, new Vector3(1.3f, 0.45f, 1f));
+                for (var i = 0; i < 3; i++)   // cogumelinhos no tronco
+                {
+                    var x = v.R(-1.5f, 1.5f);
+                    P(node, VisualKit.Cylinder(0.02f, 0.025f, 0.14f, 6), MatC(new Color(0.9f, 0.86f, 0.76f), 0.8f), new Vector3(x, 0.92f, 0.25f));
+                    P(node, VisualKit.Sphere(0.07f), GlowC(new Color(0.95f, 0.5f, 0.2f), 0.6f), new Vector3(x, 1.0f, 0.25f), null, new Vector3(1f, 0.45f, 1f));
+                }
+                return true;
+            }
+            case "flores_magicas":
+            {
+                var rng = new RandomNumberGenerator { Seed = (ulong)Math.Abs(node.Position.X * 11 + node.Position.Z * 29) + 5 };
+                var haste = MatC(new Color(0.2f, 0.45f, 0.18f), 0.9f);
+                var cores = new[] { new Color(0.95f, 0.3f, 0.6f), new Color(0.4f, 0.6f, 1f), new Color(1f, 0.85f, 0.3f), new Color(0.75f, 0.4f, 1f) };
+                for (var i = 0; i < 10; i++)   // 16/11: flor = haste + corola (disco) + miolo; materiais compartilhados (pesava no mapa)
+                {
+                    var a = rng.RandfRange(0, Mathf.Tau); var r = rng.RandfRange(0f, 1.6f); var h = rng.RandfRange(0.3f, 0.75f);
+                    var at = new Vector3(Mathf.Cos(a) * r, 0, Mathf.Sin(a) * r);
+                    P(node, VisualKit.Cylinder(0.01f, 0.015f, h, 4), haste, at + new Vector3(0, h / 2, 0));
+                    var cor = cores[rng.RandiRange(0, 3)];
+                    P(node, VisualKit.Sphere(0.09f), GlowC(cor, 0.9f), at + new Vector3(0, h, 0), null, new Vector3(1f, 0.25f, 1f));
+                    P(node, VisualKit.Sphere(0.025f), GlowC(new Color(1f, 0.95f, 0.6f), 1.6f), at + new Vector3(0, h + 0.02f, 0));
+                }
+                return true;
+            }
+            case "arco_raizes":
+            {
+                // arco de raízes grossas por onde a trilha passa (a entrada da mata encantada)
+                var raiz = MapView.TexMat("gen_madeira.png", new Color(0.38f, 0.3f, 0.22f), 0.4f);
+                var musgo = MatC(new Color(0.22f, 0.45f, 0.16f), 1f);
+                foreach (var sd in new[] { -1f, 1f })
+                    for (var k = 0; k < 3; k++)
+                    {
+                        var pts = new List<Vector3>();
+                        for (var i = 0; i <= 10; i++)
+                        {
+                            var t = i / 10f; var ang = t * Mathf.Pi * 0.5f;
+                            pts.Add(new Vector3(sd * (Mathf.Cos(ang) * (2.4f + (k - 1) * 0.25f) + Mathf.Sin(t * 9f + k) * 0.08f), Mathf.Sin(ang) * (4.2f - k * 0.15f), (k - 1) * 0.3f));   // quarto de elipse: arco redondo
+                        }
+                        Tubo(node, pts, 0.32f - k * 0.06f, 0.1f, raiz);
+                    }
+                for (var i = 0; i < 6; i++)
+                    P(node, VisualKit.Sphere(v.R(0.2f, 0.35f)), musgo, new Vector3(v.R(-1.2f, 1.2f), 4.1f + v.R(0f, 0.3f), v.R(-0.3f, 0.3f)), null, new Vector3(1.2f, 0.5f, 1f));
+                for (var i = 0; i < 8; i++)   // cipós pendurados
+                    P(node, VisualKit.Cylinder(0.015f, 0.015f, v.R(0.8f, 1.8f), 4), musgo, new Vector3(v.R(-1.6f, 1.6f), 3.3f, v.R(-0.2f, 0.2f)));
+                return true;
+            }
+            case "pedra_musgo":
+            {
+                var pedraM = MapView.TexMat("gen_bloco.png", new Color(0.55f, 0.58f, 0.5f), 0.5f);
+                var musgo = MatC(new Color(0.24f, 0.48f, 0.18f), 1f);
+                P(node, VisualKit.Sphere(1.0f), pedraM, new Vector3(0, 0.55f, 0), new Vector3(0, v.R(0, 360), 8), new Vector3(1.3f, 0.75f, 1f));
+                P(node, VisualKit.Sphere(0.9f), musgo, new Vector3(0, 0.82f, 0), null, new Vector3(1.25f, 0.35f, 0.95f));
+                for (var i = 0; i < 3; i++)   // runas verdes do Curupira
+                    P(node, VisualKit.Box(0.05f, 0.24f, 0.02f), GlowC(new Color(0.4f, 1f, 0.55f), 2f), new Vector3(-0.25f + i * 0.25f, 0.55f, 0.98f), new Vector3(0, 0, (i - 1) * 25));
+                return true;
+            }
+            case "circulo_fadas":
+            {
+                // roda de cogumelinhos acesos no chão (contam que é por onde o Saci some)
+                for (var i = 0; i < 14; i++)
+                {
+                    var a = i / 14f * Mathf.Tau; var r = 1.8f + Mathf.Sin(i * 2.1f) * 0.15f;
+                    var at = new Vector3(Mathf.Cos(a) * r, 0, Mathf.Sin(a) * r);
+                    P(node, VisualKit.Cylinder(0.03f, 0.04f, 0.2f, 6), MatC(new Color(0.9f, 0.86f, 0.76f), 0.8f), at + new Vector3(0, 0.1f, 0));
+                    P(node, VisualKit.Sphere(0.11f), GlowC(new Color(0.95f, 0.75f, 0.25f), 1f), at + new Vector3(0, 0.21f, 0), null, new Vector3(1f, 0.45f, 1f));
+                }
+                node.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.4f), LightEnergy = 0.5f, OmniRange = 4f, Position = new Vector3(0, 0.6f, 0), ShadowEnabled = false });
+                return true;
+            }
         }
         return false;
+    }
+
+    /// <summary>16/11: materiais compartilhados das peças novas (cada peça criava dezenas de materiais iguais).</summary>
+    private static readonly Dictionary<(Color, float, float), StandardMaterial3D> _matCache = new();
+    private static StandardMaterial3D GlowC(Color c, float e = 2f)
+    {
+        if (!_matCache.TryGetValue((c, e, -1f), out var m)) _matCache[(c, e, -1f)] = m = VisualKit.Glow(c, e);
+        return m;
+    }
+    private static StandardMaterial3D MatC(Color c, float r = 0.8f, float met = 0f)
+    {
+        if (!_matCache.TryGetValue((c, r, met), out var m)) _matCache[(c, r, met)] = m = VisualKit.Mat(c, r, met);
+        return m;
+    }
+
+    /// <summary>16/11: raiz/galho curvo — cilindros afinando entre os pontos e bolinhas nas juntas.</summary>
+    private static void Tubo(Node3D pai, List<Vector3> pts, float r0, float r1, Material mat)
+    {
+        for (var i = 0; i < pts.Count - 1; i++)
+        {
+            var a = pts[i]; var b = pts[i + 1];
+            var ra = Mathf.Lerp(r0, r1, (float)i / (pts.Count - 1)); var rb = Mathf.Lerp(r0, r1, (float)(i + 1) / (pts.Count - 1));
+            var d = b - a; var len = d.Length();
+            if (len < 1e-4f) continue;
+            var no = new MeshInstance3D { Mesh = VisualKit.Cylinder(rb, ra, len, 8), MaterialOverride = mat, Position = (a + b) * 0.5f };
+            no.Quaternion = new Quaternion(Vector3.Up, d / len);
+            pai.AddChild(no);
+            if (i > 0) P(pai, VisualKit.Sphere(ra), mat, a);
+        }
     }
 
     /// <summary>Pinheiro em camadas irregulares (cones de 7 lados, levemente tortos), tronco aparente embaixo.</summary>
@@ -817,4 +1076,30 @@ void fragment() {
             Text = text, FontSize = 34, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
             Modulate = new Color(0.95f, 0.85f, 0.6f), Position = at,
         });
+}
+
+
+/// <summary>16/11: gira devagar em volta do próprio eixo (revoada de morcegos, nuvem de vaga-lumes) e sobe e desce um pouco.</summary>
+public partial class Girador : Node3D
+{
+    public float Velocidade = 0.5f;
+    public float Flutua;
+    private float _t;
+    public override void _Process(double delta)
+    {
+        _t += (float)delta;
+        RotateY(Velocidade * (float)delta);
+        if (Flutua > 0) Position = new Vector3(Position.X, Mathf.Sin(_t * 0.9f) * Flutua, Position.Z);
+    }
+}
+
+/// <summary>16/11: asa de morcego batendo (gira no eixo do corpo).</summary>
+public partial class Batedor : Node3D
+{
+    public float Lado = 1f, Fase;
+    public override void _Process(double delta)
+    {
+        Fase += (float)delta * 14f;
+        RotationDegrees = new Vector3(0, 0, Lado * Mathf.Sin(Fase) * 40f);
+    }
 }

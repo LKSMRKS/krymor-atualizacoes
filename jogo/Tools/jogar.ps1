@@ -173,6 +173,7 @@ if (-not (Test-Path $mtMarca) -and (Test-Path (Join-Path $raiz "Client\Efeitos")
                     foreach ($e in $arq.Entries) {
                         $nome = $e.FullName -replace '\\', '/'
                         if (-not $nome.StartsWith($mtPrefixo + "Client/Assets/") -or $e.Name -eq "" -or $mtPula -contains $e.Name) { continue }
+                        if ($nome.StartsWith($mtPrefixo + "Client/Assets/Models/") -and $e.Name -match '\.(png|jpg)$') { continue }   # cópias soltas das texturas que já estão dentro dos .glb
                         $destino = Join-Path $raiz ($nome.Substring($mtPrefixo.Length) -replace '/', '\')
                         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $destino) | Out-Null
                         [System.IO.Compression.ZipFileExtensions]::ExtractToFile($e, $destino, $true)
@@ -325,7 +326,16 @@ if ($Servidor) {
 
 # ---------------------------------------------------------------- compilar (só se mudou)
 if (Precisa-Compilar $servidorExe @("Server", "Shared", "ServerHost", "Content")) {
-    if (Porta-Aberta $Porta) { throw "O código do servidor mudou, mas o servidor antigo está aberto. Feche-o (Jogar.cmd -Parar) e rode de novo." }
+    # 15/11 noite (log do dono: "jogo na versão u126, servidor na u125" — o servidor velho ficou aberto depois da atualização):
+    # o servidor antigo é fechado sozinho e reaberto já com a versão nova, aberto para a rede (como o ABRIR_SERVIDOR.cmd)
+    if (Porta-Aberta $Porta) {
+        Write-Host "O servidor aberto é da versão antiga: fechando para abrir o novo..."
+        Get-Process -Name "CinzasDaMare.ServerHost" -ErrorAction SilentlyContinue | Stop-Process -Force
+        $espera = (Get-Date).AddSeconds(15)
+        while ((Porta-Aberta $Porta) -and (Get-Date) -lt $espera) { Start-Sleep -Milliseconds 300 }
+        if (Porta-Aberta $Porta) { throw "O código do servidor mudou, mas o servidor antigo não fechou. Feche-o (Jogar.cmd -Parar) e rode de novo." }
+        $Rede = $true
+    }
     Write-Host "Compilando o servidor (Release)..."
     Rodar-Dotnet @("build", "-c", "Release", ".\ServerHost\CinzasDaMare.ServerHost.csproj", "-nologo", "-v", "q")
 }

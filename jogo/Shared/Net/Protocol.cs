@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace CinzasDaMare.Shared.Net;
 
@@ -133,7 +137,7 @@ public sealed record CraftIntent(string RequestId, string StationId, string Reci
 public sealed record StorageMessage(string Container, string Name, int Capacity, IReadOnlyList<InventoryItemView> Items) : NetMessage;
 /// <summary>Action: deposit (mochila → depósito) ou withdraw (depósito → mochila).</summary>
 /// <summary>Slot (opcional) = casa da mochila onde soltar o item tirado do depósito (arrastar).</summary>
-public sealed record StorageIntent(string RequestId, string Action, string Container, string ItemId, int Slot = -1) : NetMessage;
+public sealed record StorageIntent(string RequestId, string Action, string Container, string ItemId, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int Slot = -1) : NetMessage;
 /// <summary>Canteiros do personagem (horta comunitária e da casa). State: empty | planted | growing | ready.</summary>
 public sealed record PlotView(string PlotId, string Seed, string CropName, string State, long ReadyInMs);
 public sealed record PlotsMessage(IReadOnlyList<PlotView> Plots) : NetMessage;
@@ -166,7 +170,7 @@ public sealed record PetIntent(string Action, string? Kind = null) : NetMessage;
 public sealed record WorldTimeMessage(double Hour, double HoursPerSecond) : NetMessage;
 /// <summary>Modo deus (F1, só com o servidor aberto com --deus): Action = open | level | xp | coins | points | item | spawn |
 /// kill | clear | heal | god | speed | cooldowns | time | time_speed | travel | unlock | evolve.</summary>
-public sealed record GodIntent(string Action, string? Arg = null, long Amount = 0, int Count = 1, string? Extra = null,
+public sealed record GodIntent(string Action, string? Arg = null, long Amount = 0, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int Count = 1, string? Extra = null,
     double X = 0, double Y = 0, double Yaw = 0) : NetMessage;   // X/Y/Yaw: editor no jogo (11/11)
 public sealed record GodEntry(string Id, string Name, string Kind, int Level, string Visual = "");
 public sealed record GodCatalogMessage(bool Enabled, IReadOnlyList<GodEntry> Items, IReadOnlyList<GodEntry> Monsters,
@@ -230,11 +234,11 @@ public sealed record PlayerView(
     string CharacterId, string Name, double X, double Y,
     double Health, double MaxHealth, double Resource, bool Alive, bool Guarding, int Level,
     double FacingX, double FacingY,
-    string ClassId = "guerreiro", string Action = "", double ActionT = 0, int ActionSeq = 0,
-    string? Weapon = null, string? Offhand = null, string? Body = null, double ResourceMax = 100,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string ClassId = "guerreiro", string Action = "", double ActionT = 0, int ActionSeq = 0,
+    string? Weapon = null, string? Offhand = null, string? Body = null, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double ResourceMax = 100,
     double AimX = 0, double AimY = 0, double AimRadius = 0, string? Head = null, string? PartyId = null,
     string? Mount = null, string? Wings = null, string? Spec = null, bool Legendary = false,
-    double Shield = 0, bool Stealth = false, string Status = "", bool Evolved = false, double Stamina = 100,
+    double Shield = 0, bool Stealth = false, string Status = "", bool Evolved = false, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double Stamina = 100,
     string? Carry = null, string? Gloves = null, string? Boots = null, bool Flying = false, int WeaponPlus = 0, bool WeaponExcellent = false, string? Title = null, string? Pants = null,
     int GearVar = 0,    // 12/11: variação média (V1–V15) da armadura vestida — o boneco fica mais dourado
     string? Form = null,    // 12/11: transformação ativa (forma_lobisomem, forma_vampiro...) — o cliente troca o visual
@@ -250,15 +254,15 @@ public sealed record PlayerView(
 public sealed record MonsterView(
     string Id, string SpeciesName, double X, double Y, double Health, double MaxHealth, bool Alive,
     string DefinitionId = "", int Level = 0, string Action = "", double ActionT = 0, int ActionSeq = 0,
-    double FacingX = 1, double FacingY = 0, double AimX = 0, double AimY = 0, double AimRadius = 0,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double FacingX = 1, double FacingY = 0, double AimX = 0, double AimY = 0, double AimRadius = 0,
     bool Rare = false, bool Boss = false, double AimArc = 0, string Visual = "", bool Elite = false, bool Enraged = false,
-    bool Weakened = false, bool Marked = false, string AimKind = "", string Affix = "", double Size = 1.0, double Lift = 0,
+    bool Weakened = false, bool Marked = false, string AimKind = "", string Affix = "", [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double Size = 1.0, double Lift = 0,
     bool Chilled = false);   // 12/11: lento pela Estaca de Gelo
 
 /// <summary>Projétil em voo (seta do Mago, bola do Acólito). Hostile = vem de monstro.</summary>
 public sealed record ProjectileView(string Id, string Kind, double X, double Y, double DirX, double DirY, double Speed, bool Hostile);
 
-public sealed record WorldItemView(string ItemId, string DefinitionId, double X, double Y, string Quality = "comum");
+public sealed record WorldItemView(string ItemId, string DefinitionId, double X, double Y, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string Quality = "comum");
 
 public sealed record InventoryItemView(string ItemId, string DefinitionId, string Quality, int Slot, int Quantity, int Plus = 0);
 
@@ -305,7 +309,7 @@ public sealed record CastStartedMessage(string SkillId, int CastMs, int Recovery
 
 /// <summary>Dados do mundo que o cliente precisa para desenhar a arena e o arco da Guarda (fonte única: o servidor).</summary>
 public sealed record WorldInfoMessage(double ArenaHalfSize, double GuardArcDegrees, string MapId,
-    string ClassId = "guerreiro") : NetMessage;
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string ClassId = "guerreiro") : NetMessage;
 
 // ---- E8: lobby, mapa, catálogo, marcas e avisos de loot ----
 public sealed record CharacterSummary(string Id, string Name, string ClassId, int Level)
@@ -343,9 +347,9 @@ public sealed record ItemInfo(string Id, string DisplayName, string Slot, IReadO
     string Summary, string Model, int MinLevel, int Handedness, double AoeRadiusBonus = 0,
     IReadOnlyDictionary<string, double>? Stats = null, int ReqPrimary = 0, long Price = 0, long SellPrice = 0,
     string Source = "", string Category = "", string? WeaponSkill = null, string Set = "", string SetText = "", string AffixPool = "",
-    int GridW = 1, int GridH = 1, string Subtype = "");
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int GridW = 1, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int GridH = 1, string Subtype = "");
 public sealed record SkillInfo(string Id, string ClassId, string DisplayName, string Slot, int CooldownMs,
-    double ResourceCost, string TargetMode, double Range, double Radius, string Description, int UnlockLevel = 1,
+    double ResourceCost, string TargetMode, double Range, double Radius, string Description, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int UnlockLevel = 1,
     string? Tome = null, int TomeLevel = 0);
 public sealed record CatalogMessage(IReadOnlyList<ItemInfo> Items, IReadOnlyList<SkillInfo> Skills,
     string ResourceName, double ResourceMax) : NetMessage;
@@ -359,7 +363,7 @@ public sealed record LootNoticeMessage(string Source, IReadOnlyList<string> Defi
 // ---- E9: loja, missões, atributos, mapa do mundo, viagem, grupo, avisos ----
 
 /// <summary>Compra na loja do NPC (precisa estar perto dele). RequestId torna o pedido idempotente.</summary>
-public sealed record BuyIntent(string RequestId, string NpcId, string DefinitionId, int Quantity = 1) : NetMessage;
+public sealed record BuyIntent(string RequestId, string NpcId, string DefinitionId, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int Quantity = 1) : NetMessage;
 /// <summary>Venda de um item da mochila para o NPC (perto dele). Paga um quarto do preço.</summary>
 public sealed record SellIntent(string RequestId, string NpcId, string ItemId) : NetMessage;
 /// <summary>13/11 (análise do jogo — itens): desmanchar equipamento na forja (bigorna perto) — vira material e, nas variações altas, joia.</summary>
@@ -450,7 +454,7 @@ public sealed record PartyMemberView(string CharacterId, string Name, string Cla
 public sealed record PartyMessage(string? PartyId, IReadOnlyList<PartyMemberView> Members) : NetMessage;
 public sealed record PartyInviteMessage(string FromId, string FromName, string Kind = "") : NetMessage;   // 12/11: Kind "duelo" = desafio x1
 /// <summary>Aviso no centro da tela. Kind: area (nome da região), info, warn, reward.</summary>
-public sealed record NoticeMessage(string Text, string Kind = "info") : NetMessage;
+public sealed record NoticeMessage(string Text, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string Kind = "info") : NetMessage;
 /// <summary>12/11: chat. Texto normal = global (todos os mapas); "/nome texto" ou "@nome texto" = privado; "/g texto" = grupo.</summary>
 public sealed record ChatIntent(string Text) : NetMessage;
 /// <summary>12/11: livro aberto (Biblioteca do Continente). Discovery = texto de "você descobriu algo" (null = nada novo).</summary>
@@ -474,7 +478,32 @@ public static class NetCodec
     private static readonly JsonSerializerOptions Options = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        // 15/11 noite (pente-fino AAA, item 4: na Costa o servidor mandava ~90 KB por jogador, 20× por segundo): nas
+        // mensagens que vão 20× por segundo (o retrato do mundo), campo com valor zero/false/vazio não vai — quem lê recebe o
+        // mesmo zero. Só nesses tipos, e só nos campos cujo padrão no construtor É zero (FacingX = 1, Size = 1... sempre vão).
+        TypeInfoResolver = new DefaultJsonTypeInfoResolver { Modifiers = { EnxugarRetrato } },
     };
+
+    private static readonly HashSet<Type> Enxutos = new()
+    {
+        typeof(Snapshot), typeof(MonsterView), typeof(PlayerView), typeof(ProjectileView), typeof(WorldItemView), typeof(GroundEffectView), typeof(PetView),
+    };
+
+    private static void EnxugarRetrato(JsonTypeInfo ti)
+    {
+        if (ti.Kind != JsonTypeInfoKind.Object || !Enxutos.Contains(ti.Type)) return;
+        var ctor = ti.Type.GetConstructors().OrderByDescending(c => c.GetParameters().Length).FirstOrDefault();
+        var padroes = ctor?.GetParameters().ToDictionary(p => p.Name!, p => p, StringComparer.OrdinalIgnoreCase) ?? new();
+        foreach (var prop in ti.Properties)
+        {
+            var nome = prop.AttributeProvider is System.Reflection.MemberInfo mi ? mi.Name : prop.Name;
+            if (!padroes.TryGetValue(nome, out var par)) continue;   // propriedade fora do construtor: sempre vai
+            var zero = prop.PropertyType.IsValueType ? Activator.CreateInstance(prop.PropertyType) : null;
+            if (par.HasDefaultValue && !Equals(par.DefaultValue is null && zero is not null ? zero : par.DefaultValue, zero)) continue;   // padrão diferente de zero: sempre vai
+            var vazioPadrao = par.HasDefaultValue && Equals(par.DefaultValue, "");   // string "" só some se "" for o padrão do construtor
+            prop.ShouldSerialize = (_, v) => v is not null && !Equals(v, zero) && !(vazioPadrao && v is string { Length: 0 });
+        }
+    }
 
     public static byte[] Encode(NetMessage message)
         => JsonSerializer.SerializeToUtf8Bytes<NetMessage>(message, Options);

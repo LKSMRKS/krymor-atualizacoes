@@ -522,12 +522,14 @@ public partial class Main : Node3D
                                       $"lógica {Performance.GetMonitor(Performance.Monitor.TimeProcess) * 1000:0.0} ms, física {Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess) * 1000:0.0} ms, " +
                                       $"desenhos {Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame):0}, objetos {Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame):0}, " +
                                       $"triângulos {Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame) / 1000:0}k, vídeo {Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / 1048576:0} MB");
+        if (Perfil.Resumo() is { Length: > 0 } perfil) GameLog.Info("cliente.perfil", "ms por quadro: " + perfil);
         _fpsSum = 0; _fpsFrames = 0; _fpsMin = double.MaxValue; _fpsTime = 0;
     }
 
     private void ProcessFrame(double delta)
     {
         if (_vitrine) { RunAutomation(delta); return; }
+        Perfil.Inicio();
         LogFps(delta);
         // painel aberto por mensagem do servidor (estação, armazém) depois de soltar o mouse: o aviso "mouse livre" sai da frente
         if (_pausePanel.Visible && (_panels.AnyOpen || _inventory.Visible)) _pausePanel.Visible = false;
@@ -537,6 +539,7 @@ public partial class Main : Node3D
         Sfx.Sample();
         _time += delta;
         DrainNetwork();
+        Perfil.Marca("rede");
         if (_statusLabel.Text != _statusText) { _statusLabel.Text = _statusText; _model.Registrar(_statusText); }
         RunAutomation(delta);
 
@@ -609,7 +612,9 @@ public partial class Main : Node3D
         // sem mapa 6 s depois de entrar: servidor antigo (arena) — tira a tela e deixa montar o cenário de arena
         if (_carga is { Visible: true } && _model.Map is null && _cargaAte == ulong.MaxValue && _loginAt > 0 && Time.GetTicksMsec() - _loginAt > 6000) _carga.Visible = false;
         var now = (long)Time.GetTicksMsec();
+        Perfil.Marca("mundo/carga");
         SyncWorld(dt, now);
+        Perfil.Marca("sync");
         var me = MyState();
         if (me is not null)
         {
@@ -627,8 +632,10 @@ public partial class Main : Node3D
         if (_demoAuraAt >= 0 && (float)_time >= _demoAuraAt && MyState() is { } auraSt && _model.Me is { } auraMe) { _demoAuraAt = -1f; LevelUpAura(auraSt, auraMe.Level, true); }
         if (_mapView is not null) { _mapView.PlayerPos = MyState()?.Pos; _mapView.NodeDepleted ??= id => _model.NodeSecondsLeft(id) > 0; _mapView.HasFlag ??= f => _model.Flags.Contains(f); }
         if (_mapView is not null && _model.Me is { } euNv) _mapView.NivelJogador = euNv.Level;
+        Perfil.Marca("camera/entrada");
         _mapView?.Update(_model.Flags, (float)_time, dt, _model.MapDecor);
         if (_model.Me is { } viewer) _mapView?.SetViewer(viewer.X, viewer.Y);
+        Perfil.Marca("mapa");
         // 11/11: quadrado de uso sob o mouse (mouse solto) ou sob a mira (câmera presa)
         if (_mapView is not null)
         {
@@ -654,6 +661,7 @@ public partial class Main : Node3D
             var night = hourNow < 6 || hourNow >= 18.5;
             if (_hud is not null) _hud.ClockText = $"{(int)hourNow:00}:{(int)(hourNow % 1 * 60):00} · " + (night ? "noite" : hourNow < 8 ? "amanhecer" : hourNow >= 17 ? "entardecer" : "dia");
         }
+        Perfil.Marca("mira/hora");
         SavePinsIfChanged();
         LoadBindsIfNeeded();
         if (_model.BindsVersion != _bindsSaved) SaveBinds();   // poder aprendido foi sozinho para uma tecla
@@ -662,11 +670,17 @@ public partial class Main : Node3D
         _mapView?.SetRuneFlags(_model.Flags);
         _mapView?.UpdatePlots(_model.Plots, (float)Time.GetTicksMsec() / 1000f);
         if (_arena is not null) AnimateArenaFlames();
+        Perfil.Marca("marcadores");
         _effects.Update(delta);
         UpdateWhirls(dt);
+        Perfil.Marca("efeitos");
         UpdateHud(now, delta);
+        Perfil.Marca("hud");
         UpdateWorldUi(delta);
+        Perfil.Marca("janelas");
         _inventory.Update(_model);
+        Perfil.Marca("mochila");
+        Perfil.Fim();
     }
 
     /// <summary>E9: abre a conversa quando o servidor responde ao NPC; fecha ao se afastar; loja liga o "Vender".</summary>
@@ -1732,8 +1746,17 @@ public partial class Main : Node3D
         _cargaRaiz.Modulate = new Color(1, 1, 1, a);
     }
 
+    private bool _avisoGrafico;
+
     private void OnLoggedIn()
     {
+        // 15/11 noite (pente-fino 13: o dono jogou numa RTX 4090 no gráfico BAIXO sem perceber — casas sem textura): placa
+        // forte no baixo ganha um aviso, uma vez por sessão, de como voltar ao alto
+        if (!_avisoGrafico && GraphicsQuality.Current == GraphicsQuality.Level.Baixo && GraphicsQuality.PlacaForte())
+        {
+            _avisoGrafico = true;
+            GetTree().CreateTimer(12).Timeout += () => _hud?.ShowNotice("Seu gráfico está no BAIXO (texturas simples). Sua placa aguenta o ALTO: aperte F10 ou ESC → Gráficos.");
+        }
         MostrarCarga("Carregando o mundo…");
         _loginAt = Time.GetTicksMsec();
         _loginPanel.Visible = false;
@@ -2836,6 +2859,7 @@ public partial class Main : Node3D
         // ---- monstros ----
         seen.Clear();
         var meStream = MyState()?.Pos;
+        var novosMonstros = 0;
         foreach (var m in snapshot.Monsters)
         {
             // streaming (técnica de jogo grande): só existe na cena o monstro a até ~75 m; longe, o boneco é desmontado
@@ -2846,9 +2870,19 @@ public partial class Main : Node3D
                 _hud.UpdatePlate("m:" + m.Id, "", 0, false, new Color(0.78f, 0.15f, 0.12f), Vector3.Zero, _cam.Camera, false);
                 continue;   // fora de "seen": Prune desmonta
             }
+            // 16/11 madrugada (lista de otimização, item 2 — "pico ao nascer/chegar no mapa"): no máximo 6 bonecos NOVOS de
+            // monstro por retrato; os de perto (25 m) e chefes entram na hora, o resto aparece nos retratos seguintes
+            // (~meio segundo) em vez de montar 100+ bonecos no mesmo quadro
+            if (!_monsters.ContainsKey(m.Id) && !m.Boss && novosMonstros >= 6 && meStream is { } msn
+                && msn.DistanceTo(new Vector3((float)m.X, 0, (float)m.Y)) > 25f)
+            {
+                _hud.UpdatePlate("m:" + m.Id, "", 0, false, new Color(0.78f, 0.15f, 0.12f), Vector3.Zero, _cam.Camera, false);
+                continue;
+            }
             seen.Add(m.Id);
             if (!_monsters.TryGetValue(m.Id, out var st))
             {
+                novosMonstros++;
                 // 14/11: um visual que quebra não pode travar o mundo inteiro (u81: personagem e monstros sumiram) — vira o genérico
                 IEntityVisual vis;
                 try { vis = VisualFactory.Monster(m.DefinitionId, m.Boss, m.Rare, m.Visual, m.Id); }

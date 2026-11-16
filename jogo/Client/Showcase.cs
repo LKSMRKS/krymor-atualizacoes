@@ -55,7 +55,9 @@ public partial class Showcase : Node3D
             case "glb": s.Glb(camera); break;
             case "classes": s.Classes(camera, dressed: true); break;
             case "poderes": Efeitos.VitrinePoderes.Montar(s, camera); break;   // gancho VFX 14/11 (vitrine dos poderes)
-            case "lobby": s.Lobby(); break;   // 15/11 noite: o palco do lobby com 9 personagens
+            case "lobby": s.Lobby(); break;
+            case "skins": s.SkinsPerto(camera); break;
+            case "icones": s.Icones(OS.GetEnvironment("VITRINE_CONTENT") ?? "", int.TryParse(OS.GetEnvironment("VITRINE_PAG"), out var pgI) ? pgI : 0); break;   // 15/11 noite: folha de ícones   // 15/11 noite: 4 skins de perto (VITRINE_SKINS, VITRINE_YAW)   // 15/11 noite: o palco do lobby com 9 personagens
             case "menutab": s.MenuTab(camera, OS.GetEnvironment("VITRINE_PAG")); break;
             case "base": s.Classes(camera, dressed: false); break;
             case "pet": s.Pet(camera); break;
@@ -538,9 +540,9 @@ public partial class Showcase : Node3D
                 keg.Position = new Vector3(0, Main.BarrilAltura, 0.34f); keg.RotationDegrees = new Vector3(-8f, 0f, 0f); keg.Scale = Vector3.One * 0.62f;
                 v.Root.AddChild(keg);
             }
-            Label(st.Name, new Vector3(x, 2.15f, 0));
+            Label(OS.GetEnvironment("VITRINE_SKINS") is { Length: > 0 } sl ? sl.Split(',')[i % sl.Split(',').Length] : st.Name, new Vector3(x, 2.15f, 0));
         }
-        camera.Position = new Vector3(0, 1.5f, 6.4f);
+        camera.Position = new Vector3(0, 1.5f, OS.GetEnvironment("VITRINE_PERTO") == "1" ? 5.0f : 6.4f);
         camera.LookAt(new Vector3(0, 1.0f, 0));
         camera.Fov = 50;
         CloseUp(camera);
@@ -891,5 +893,58 @@ public partial class Showcase : Node3D
         var chars = Enumerable.Range(0, n).Select(i => new CinzasDaMare.Shared.Net.CharacterSummary("c" + i, "Herói " + (i + 1), cls[i % 4], 10 + i * 5)).ToList();
         var classes = cls.Select(c => new CinzasDaMare.Shared.Net.ClassSummary(c, char.ToUpper(c[0]) + c[1..], "")).ToList();
         stage.Show(chars, classes, "c2");
+    }
+
+    // 15/11 noite (dono: "as skins estão com artes descoladas, mal feitas nos detalhes — verifique"): 4 skins lado a lado, de
+    // perto, sem arma, de frente (VITRINE_YAW=180 de costas)
+    private void SkinsPerto(Camera3D camera)
+    {
+        var lista = (OS.GetEnvironment("VITRINE_SKINS") ?? "coelho").Split(',');
+        var yaw = float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var y) ? y : 0f;
+        var cls = new[] { "guerreiro", "mago", "bruxa", "arqueiro" };
+        for (var i = 0; i < lista.Length; i++)
+        {
+            var x = (i - (lista.Length - 1) / 2f) * 1.05f;
+            var v = VisualFactory.Player(cls[i % 4], true);
+            v.SetGear(null, null, null);
+            if (v is MannequinVisual mv) { mv.SetHead(null); mv.SetSkin(lista[i]); }
+            Place(v, new Vector3(x, 0, 0), yaw, 0f);
+            Label(lista[i], new Vector3(x, 2.25f, 0), 22);
+        }
+        camera.Position = new Vector3(0, 1.45f, 3.4f);
+        camera.LookAt(new Vector3(0, 1.25f, 0));
+        camera.Fov = 42;
+    }
+
+    // 15/11 noite (pendência "ícones errados no jogo"): folha com 60 ícones por página (VITRINE_PAG = 0, 1, 2...), do jeito
+    // que a mochila desenha (pintado ou foto do modelo), com o id embaixo — para varrer item por item
+    private void Icones(string dir, int pagina)
+    {
+        var c = CinzasDaMare.Shared.ContentLoader.Load(dir);
+        var infos = c.Items.Values.OrderBy(i => i.Category).ThenBy(i => i.Id)
+            .Select(i => new CinzasDaMare.Shared.Net.ItemInfo(i.Id, i.DisplayName, "", i.AllowedClasses, "", i.ModelAssetId, i.MinLevel, i.Handedness, Category: i.Category ?? ""))
+            .Concat(c.Consumables.Values.OrderBy(x => x.Id).Select(x => new CinzasDaMare.Shared.Net.ItemInfo(x.Id, x.DisplayName, "consumable", Array.Empty<string>(), "",
+                x.TeachSkill is not null ? "tome" : x.ResourcePercent > 0 ? "potion_mana" : x.Buff is not null ? "food" : "potion", 1, 0, Category: "consumable")))
+            .Skip(pagina * 60).Take(60).ToList();
+        var layer = new CanvasLayer(); AddChild(layer);
+        var fundo = new ColorRect { Color = new Color(0.08f, 0.08f, 0.1f) }; fundo.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect); layer.AddChild(fundo);
+        var grade = new GridContainer { Columns = 10, Position = new Vector2(10, 10) };
+        grade.AddThemeConstantOverride("h_separation", 6); grade.AddThemeConstantOverride("v_separation", 4);
+        layer.AddChild(grade);
+        var rects = new List<(TextureRect R, CinzasDaMare.Shared.Net.ItemInfo I)>();
+        foreach (var info in infos)
+        {
+            var v = new VBoxContainer { CustomMinimumSize = new Vector2(152, 140) };
+            var r = new TextureRect { CustomMinimumSize = new Vector2(96, 96), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered };
+            v.AddChild(r);
+            var l = new Label { Text = info.Id.Length > 24 ? info.Id[..24] : info.Id, HorizontalAlignment = HorizontalAlignment.Center };
+            l.AddThemeFontSizeOverride("font_size", 11);
+            v.AddChild(l);
+            grade.AddChild(v);
+            rects.Add((R: r, I: info));
+        }
+        var t = new Godot.Timer { WaitTime = 0.5, Autostart = true };
+        t.Timeout += () => { foreach (var (r, i) in rects) r.Texture ??= ItemIconRenderer.Get(i, i.Id); };
+        AddChild(t);
     }
 }
