@@ -297,7 +297,7 @@ public sealed class ClientModel
         if (f.StartsWith("tomo:", StringComparison.Ordinal) && SkillById(f[5..]) is { } sk && Novidade(f))
             Ganhos.Enqueue(("Parabéns!", $"Você aprendeu um poder: {sk.DisplayName}.\nEscolha a tecla no Livro de Poderes (K)."));
         else if (f.StartsWith("titulo:", StringComparison.Ordinal) && Novidade(f))
-            Ganhos.Enqueue(("Título novo", $"Você ganhou um título: {f[7..]}."));   // 15/11 (Missão Terça: título ganho ao morrer saía como "Parabéns!")
+            Ganhos.Enqueue(("Título novo", NomesTitulos.Texto(f[7..])));   // 15/11: nome legível («Novato da Costa»), não o id
     }
 
     public void AutoBind(IEnumerable<string> newFlags)

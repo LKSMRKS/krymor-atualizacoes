@@ -390,7 +390,7 @@ public sealed class WorldPanels
     private void UpdateDialog(ClientModel m)
     {
         var d = m.Dialog!;
-        var sig = $"{_showLocked}|{_libOpen}|{d.NpcId}|{string.Join(",", d.Quests.Select(q => q.Id + q.State + q.Progress))}|{m.Coins}|{m.Inventory.Count}|{(m.Buyback is { } bb ? bb.NpcId + bb.Items.Count : "")}";
+        var sig = $"{_showLocked}|{_libOpen}|{d.NpcId}|{string.Join(",", d.Quests.Select(q => q.Id + q.State + q.Progress))}|{m.Coins}|{m.Inventory.Count}|{(m.Buyback is { } bb ? bb.NpcId + bb.Items.Count : "")}|{d.RepairCost}";
         if (sig == _dialogSig) return;
         _dialogSig = sig;
         Clear(_dialogBox);
@@ -407,6 +407,28 @@ public sealed class WorldPanels
         greet.AddThemeStyleboxOverride("panel", HudView.CardStyle());
         greet.AddChild(Wrap($"“{d.Greeting}”", 14, new Color(0.88f, 0.85f, 0.78f), 450));
         _dialogBox.AddChild(greet);
+        // 16/11 (dono: "os itens vão quebrando, tem que ir no ferreiro arrumar"): morrer gasta o equipamento
+        if (d.RepairCost >= 0)
+        {
+            _dialogBox.AddChild(Section($"Consertar equipamento — você tem {m.Coins} moedas"));
+            var gastos = m.Equipment.Where(e => e.Durability < 100).OrderBy(e => e.Durability).ToList();
+            var row = new HBoxContainer();
+            var txt = d.RepairCost == 0 ? "Está tudo inteiro."
+                : $"Consertar tudo — {d.RepairCost} moedas" + (gastos.Count > 0 ? $" (pior peça: {gastos[0].Durability}%)" : "");
+            var label = HudView.MakeLabel(txt, 14, d.RepairCost > m.Coins ? new Color(1f, 0.45f, 0.4f) : null);
+            label.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+            row.AddChild(label);
+            if (d.RepairCost > 0)
+            {
+                var npc = d.NpcId;
+                var go = new Button { Text = "Consertar", Disabled = d.RepairCost > m.Coins };
+                go.Pressed += () => { Send?.Invoke(new RepairIntent(npc)); Sfx.Play("forja"); };
+                row.AddChild(go);
+            }
+            _dialogBox.AddChild(row);
+            if (gastos.Any(e => e.Durability <= 0))
+                _dialogBox.AddChild(Wrap("Peça quebrada (0%) não dá atributos até ser consertada.", 12, new Color(1f, 0.55f, 0.5f), 440));
+        }
         if (d.Library is { Count: > 0 } lib) AddLibrary(lib);
         if (d.Quests.Count > 0)
         {

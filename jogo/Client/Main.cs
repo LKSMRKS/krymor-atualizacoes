@@ -80,6 +80,7 @@ public partial class Main : Node3D
         public string Kind = "";
         public Vector3 Pos;
         public float Yaw;
+        public float Speed;   // 15/11: velocidade de verdade (suavizada), não a distância até o alvo
     }
 
     private readonly Dictionary<string, PetState> _pets = new();
@@ -624,6 +625,7 @@ public partial class Main : Node3D
             var heroPos = LabOwnsHero ? new Vector3(_lab!.HeroPosition.X, 0, _lab.HeroPosition.Z) : me.Pos;
             _cam.Update(dt, heroPos + new Vector3(0, _camLift + me.Ground, 0), locked is null ? null : new Vector3((float)locked.X, 0, (float)locked.Y),
                 GetWorld3D().DirectSpaceState);
+            _mapView?.LuzDoHeroi(heroPos + new Vector3(0, me.Ground, 0));   // 15/11: luz fraca no herói à noite
             // câmera colada no herói (parede atrás): esconde o próprio boneco para não tapar a visão
             if (me.WasAlive) me.Visual.Root.Visible = !_cam.TooCloseToHero;
         }
@@ -3159,18 +3161,27 @@ public partial class Main : Node3D
             if (!_pets.TryGetValue(pet.OwnerId, out var ps) || ps.Kind != pet.Kind)
             {
                 ps?.Visual.Dispose();
-                ps = new PetState { Visual = VisualFactory.Pet(pet.Kind), Kind = pet.Kind, Pos = new Vector3((float)pet.X, 0, (float)pet.Y) };
+                ps = new PetState { Visual = VisualFactory.Pet(pet.Kind, pet.OwnerId), Kind = pet.Kind, Pos = new Vector3((float)pet.X, 0, (float)pet.Y) };
                 _world.AddChild(ps.Visual.Root);
                 _pets[pet.OwnerId] = ps;
             }
             var target = new Vector3((float)pet.X, 0, (float)pet.Y);
-            var moved = target - ps.Pos;
-            ps.Pos = ps.Pos.Lerp(target, Mathf.Min(1f, dt * 10f));
-            ps.Yaw = Mathf.LerpAngle(ps.Yaw, Mathf.Atan2((float)pet.FacingX, (float)pet.FacingY), Mathf.Min(1f, dt * 8f));
+            // 15/11 (dono: "a movimentação dos pets"): a velocidade era a DISTÂNCIA até o alvo ÷ dt — o atraso normal do
+            // seguir virava 10–20 m/s, então o pet ficava "correndo" parado e patinava. Agora: deslocamento real do quadro,
+            // suavizado; andando, olha para onde anda (o virar do servidor só vale parado ou atacando).
+            var antes = ps.Pos;
+            if (ps.Pos.DistanceTo(target) > 8f) ps.Pos = target;
+            else ps.Pos = ps.Pos.Lerp(target, 1f - Mathf.Exp(-9f * dt));
+            var desl = ps.Pos - antes;
+            ps.Speed = Mathf.Lerp(ps.Speed, desl.Length() / Mathf.Max(dt, 0.001f), 1f - Mathf.Exp(-8f * dt));
+            var atacando = !string.IsNullOrEmpty(pet.Action) && pet.Action != "chase" && pet.Action != "idle";
+            var yawAlvo = ps.Speed > 0.5f && !atacando && desl.LengthSquared() > 1e-8f
+                ? Mathf.Atan2(desl.X, desl.Z) : Mathf.Atan2((float)pet.FacingX, (float)pet.FacingY);
+            ps.Yaw = Mathf.LerpAngle(ps.Yaw, yawAlvo, 1f - Mathf.Exp(-8f * dt));
             ps.Visual.Root.Position = ps.Pos;
             ps.Visual.Root.Rotation = new Vector3(0, ps.Yaw, 0);
             ps.Visual.Root.Visible = !pet.Down;
-            ps.Visual.Update(new VisualFrame { Speed = moved.Length() / Mathf.Max(dt, 0.001f), Alive = true, Action = pet.Action, ActionT = (float)pet.ActionT }, dt);
+            ps.Visual.Update(new VisualFrame { Speed = ps.Speed < 0.15f ? 0f : ps.Speed, Alive = true, Action = pet.Action, ActionT = (float)pet.ActionT }, dt);
         }
         foreach (var id in _pets.Keys.Where(k => !seenPets.Contains(k)).ToList())
         {

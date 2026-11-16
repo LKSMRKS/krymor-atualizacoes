@@ -198,6 +198,18 @@ public static class ItemTooltip
             rl.HorizontalAlignment = HorizontalAlignment.Center;
             col.AddChild(rl);
         }
+        // 16/11: durabilidade (morrer gasta; o ferreiro conserta). Só aparece quando a peça já gastou.
+        if (m is not null && itemId.Length > 0 && info?.Category is "weapon" or "armor" or "helmet" or "offhand" or "gloves" or "boots" or "pants")
+        {
+            var dur = m.Inventory.FirstOrDefault(i => i.ItemId == itemId)?.Durability ?? m.Equipment.FirstOrDefault(e => e.ItemId == itemId)?.Durability ?? 100;
+            if (dur < 100)
+            {
+                var dl = Label(dur <= 0 ? "QUEBRADO — sem atributos até consertar no ferreiro" : $"Durabilidade: {dur}%", 12,
+                    dur <= 0 ? Bad : dur <= 30 ? new Color(1f, 0.7f, 0.35f) : Dim);
+                dl.HorizontalAlignment = HorizontalAlignment.Center;
+                col.AddChild(dl);
+            }
+        }
         // 12/11 ("o que muda são os atributos: alcance, velocidade, poder"): o tipo da arma na ficha
         if (info is { Category: "weapon", Subtype.Length: > 0 } && info.Subtype is not "bow")
         {

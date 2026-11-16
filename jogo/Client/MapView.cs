@@ -540,15 +540,29 @@ void fragment() {
     /// <summary>0 = dia pleno, 1 = noite fechada (para quem quiser reagir: lanternas, sons).</summary>
     public float Night { get; private set; }
 
+    // 15/11 (noite: bonecos viravam silhueta preta): luz fraca, fria e sem sombra que segue o herói só à noite —
+    // deixa ver o próprio boneco e os monstros perto sem clarear o mapa todo.
+    private OmniLight3D? _luzHeroi;
+    public void LuzDoHeroi(Vector3 pos)
+    {
+        if (!Root.IsInsideTree()) return;
+        if (_luzHeroi is null || !GodotObject.IsInstanceValid(_luzHeroi))
+            Root.AddChild(_luzHeroi = new OmniLight3D { LightColor = new Color(0.75f, 0.82f, 1f), OmniRange = 8f, OmniAttenuation = 1.4f, ShadowEnabled = false });
+        var e = Mathf.Clamp((Night - 0.25f) / 0.5f, 0f, 1f) * 1.3f;
+        _luzHeroi.LightEnergy = e;
+        _luzHeroi.Visible = e > 0.01f;
+        _luzHeroi.Position = pos + new Vector3(0, 2.6f, 0);
+    }
+
     /// <summary>Dia e noite (10/11): mesmo mapa, outra hora. Ao ar livre só; dungeon, gruta e casa ficam como estão.</summary>
     public bool HasDayCycle => Map.Theme != "gruta" && !Map.Instanced && !Map.Id.StartsWith("reino_", StringComparison.Ordinal);   // 12/11: reinos ocultos têm clima fixo
 
     private static Look NightOf(Look d) => d with
     {
         SkyTop = new Color(0.012f, 0.018f, 0.045f), Horizon = d.Horizon.Lerp(new Color(0.09f, 0.10f, 0.17f), 0.85f),
-        Ambient = new Color(0.34f, 0.38f, 0.58f), AmbientEnergy = 0.4f,
+        Ambient = new Color(0.34f, 0.38f, 0.58f), AmbientEnergy = 0.55f,   // 15/11: 0,4 → 0,55 (de noite as pessoas viravam silhueta preta)
         Fog = new Color(0.07f, 0.08f, 0.12f), FogDensity = d.FogDensity * 1.2f,
-        Sun = new Color(0.62f, 0.70f, 1f), SunEnergy = 0.55f, Fill = new Color(0.35f, 0.30f, 0.48f), FillEnergy = 0.15f,
+        Sun = new Color(0.62f, 0.70f, 1f), SunEnergy = 0.55f, Fill = new Color(0.42f, 0.44f, 0.62f), FillEnergy = 0.4f,
         VolFog = new Color(0.30f, 0.34f, 0.46f), Clouds = d.Clouds * 0.7f, Stars = 1f, Exposure = d.Exposure * 1.08f,
     };
 
@@ -597,12 +611,15 @@ void fragment() {
             _sun.RotationDegrees = new Vector3(-Mathf.Lerp(20f, 48f, Mathf.Sin(Mathf.Pi * t)), _day.SunYaw + 110f + 80f * t, 0);
             _sun.LightEnergy = look.SunEnergy * Mathf.SmoothStep(0.5f, 0.25f, day);
         }
+        // 15/11 (Porto de noite: gente virava silhueta preta): o contraluz fica sempre do lado oposto da luz principal (sol ou lua)
+        if (_fill is not null) _fill.RotationDegrees = new Vector3(-30f, _sun.RotationDegrees.Y + 180f, 0);
         _sun.LightColor = look.Sun;
         if (_fill is not null) { _fill.LightColor = look.Fill; _fill.LightEnergy = look.FillEnergy; }
 
         _env.BackgroundColor = look.SkyTop;
         _env.AmbientLightColor = look.Ambient;
         _env.AmbientLightEnergy = look.AmbientEnergy * 1.25f;
+        _env.AmbientLightSkyContribution = Mathf.Lerp(0.55f, 0.2f, Night);   // 15/11: de noite o céu é quase preto; a cor ambiente (azul do luar) pesa mais
         _env.TonemapExposure = look.Exposure * 0.84f;
         _env.FogLightColor = look.Fog;
         _env.VolumetricFogAlbedo = look.VolFog;

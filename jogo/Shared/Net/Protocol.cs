@@ -50,6 +50,7 @@ public static class Protocol
 [JsonDerivedType(typeof(LootNoticeMessage), "loot_notice")]
 [JsonDerivedType(typeof(BuyIntent), "buy")]
 [JsonDerivedType(typeof(SellIntent), "sell")]
+[JsonDerivedType(typeof(RepairIntent), "repair")]
 [JsonDerivedType(typeof(SalvageIntent), "salvage")]
 [JsonDerivedType(typeof(BuybackIntent), "buyback")]
 [JsonDerivedType(typeof(BuybackMessage), "buyback_list")]
@@ -264,7 +265,7 @@ public sealed record ProjectileView(string Id, string Kind, double X, double Y, 
 
 public sealed record WorldItemView(string ItemId, string DefinitionId, double X, double Y, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string Quality = "comum");
 
-public sealed record InventoryItemView(string ItemId, string DefinitionId, string Quality, int Slot, int Quantity, int Plus = 0);
+public sealed record InventoryItemView(string ItemId, string DefinitionId, string Quality, int Slot, int Quantity, int Plus = 0, int Durability = 100);
 
 /// <summary>11/11: troca entre jogadores. Action: pedir (Target = personagem), aceitar, item, tirar, moedas, confirmar, cancelar.</summary>
 public sealed record TradeIntent(string Action, string? Target = null, string? ItemId = null, long Coins = 0) : NetMessage;
@@ -273,7 +274,8 @@ public sealed record TradeIntent(string Action, string? Target = null, string? I
 public sealed record TradeStateMessage(string State, string Partner, IReadOnlyList<InventoryItemView> Mine, IReadOnlyList<InventoryItemView> Theirs,
     long MyCoins, long TheirCoins, bool MyOk, bool TheirOk, string Reason = "", string PartnerId = "") : NetMessage;
 
-public sealed record EquippedItemView(string Slot, string ItemId, string DefinitionId, string Quality, int Plus = 0);
+/// <summary>Durability: 16/11, % (0 = quebrado, sem atributos até consertar no ferreiro). Ausente = 100.</summary>
+public sealed record EquippedItemView(string Slot, string ItemId, string DefinitionId, string Quality, int Plus = 0, int Durability = 100);
 
 public sealed record Snapshot(
     long Tick,
@@ -366,6 +368,8 @@ public sealed record LootNoticeMessage(string Source, IReadOnlyList<string> Defi
 public sealed record BuyIntent(string RequestId, string NpcId, string DefinitionId, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] int Quantity = 1) : NetMessage;
 /// <summary>Venda de um item da mochila para o NPC (perto dele). Paga um quarto do preço.</summary>
 public sealed record SellIntent(string RequestId, string NpcId, string ItemId) : NetMessage;
+/// <summary>16/11: consertar tudo (vestido e mochila) com o ferreiro perto. O servidor calcula e cobra o preço.</summary>
+public sealed record RepairIntent(string NpcId) : NetMessage;
 /// <summary>13/11 (análise do jogo — itens): desmanchar equipamento na forja (bigorna perto) — vira material e, nas variações altas, joia.</summary>
 public sealed record SalvageIntent(string ItemId) : NetMessage;
 /// <summary>10/11: comprar de volta um item vendido a este NPC (só enquanto a loja está aberta).</summary>
@@ -403,7 +407,11 @@ public sealed record QuestOffer(string Id, string Name, string Description, stri
 public sealed record TravelOffer(string Id, string Label, long Price);
 public sealed record NpcDialogMessage(string NpcId, string Name, string Role, string Greeting,
     IReadOnlyList<ShopOffer> Shop, IReadOnlyList<QuestOffer> Quests, IReadOnlyList<TravelOffer>? Travel = null,
-    IReadOnlyList<LibraryEntry>? Library = null) : NetMessage;
+    IReadOnlyList<LibraryEntry>? Library = null) : NetMessage
+{
+    /// <summary>16/11: este NPC conserta — preço de consertar tudo agora (0 = nada a consertar). -1 = não conserta.</summary>
+    public long RepairCost { get; init; } = -1;
+}
 /// <summary>12/11 (Biblioteca do Continente): um monstro de uma região e o que ele pode soltar.</summary>
 public sealed record LibraryEntry(string Region, string Levels, string Monster, string MonsterLevels, string Tag,
     IReadOnlyList<string> Drops, int MaxVariation = 0, string Type = "", string MonsterId = "");

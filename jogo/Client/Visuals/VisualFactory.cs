@@ -289,7 +289,7 @@ public static class VisualFactory
     };
 
     /// <summary>Companheiro: pequeno draco (pedra escura + bronze) ou fênix (brasa contida).</summary>
-    public static IEntityVisual Pet(string kind) => PetGlbVisual.TryCreate(kind) is { } petNovo ? petNovo   // 14/11: pets novos (pets/fera_*.glb); sem o arquivo = visual antigo
+    public static IEntityVisual Pet(string kind, string seed = "") => !UsaPetDoDono(kind, seed) && PetGlbVisual.TryCreate(kind) is { } petNovo ? petNovo   // 14/11: pets novos (pets/fera_*.glb); sem o arquivo = visual antigo
         : kind == "vagalume" ? new FireflyVisual()
         // 14/11 ("mais pets"): morceguinho, lobinho, sapinho dourado e corvo
         : kind == "morcego" ? new FlyerVisual("morcego", 0.38f, new Color(0.18f, 0.14f, 0.16f), new Color(0.35f, 0.22f, 0.25f))
@@ -301,6 +301,18 @@ public static class VisualFactory
         : kind is "tartaruga" or "coelho" or "grilo" or "macaco" or "aguia" or "raposa" or "coruja" ? new MascoteVisual(kind)   // 12/11: mascotes novos
         : kind == "dragao_anciao" && UseMannequin && DracoVisual.TryCreate(1.45f) is { } anciao ? anciao   // 12/11: dragão de verdade (nível 55)
         : kind != "fenix" && UseMannequin && DracoVisual.TryCreate() is { } draco ? draco : FlyerPet(kind);
+
+    /// <summary>15/11 (dono: "pode manter os 2, como variações"): onde o dono tem o próprio modelo (pets/pet_*.glb), metade
+    /// dos donos de pet (pela semente = id do dono) fica com ele e metade com o novo. Sem semente (vitrine, ícone) = novo.</summary>
+    private static bool UsaPetDoDono(string kind, string seed)
+    {
+        if (seed.Length == 0 || kind is not ("tartaruga" or "coelho" or "grilo" or "macaco")) return false;
+        if (!Godot.FileAccess.FileExists("res://Assets/Models/pets/pet_" + kind + ".glb")) return false;
+        var h = 2166136261u;
+        foreach (var c in seed) { h ^= c; h *= 16777619u; }
+        unchecked { h ^= h >> 16; h *= 0x7feb352du; h ^= h >> 15; h *= 0x846ca68bu; h ^= h >> 16; }
+        return (h & 1u) == 0u;
+    }
 
     private static FlyerVisual FlyerPet(string kind) => kind == "fenix"
         ? new FlyerVisual("fenix", 0.75f, new Color(1f, 0.45f, 0.12f), new Color(1f, 0.62f, 0.2f), glows: true)

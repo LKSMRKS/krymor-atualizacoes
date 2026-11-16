@@ -382,6 +382,8 @@ public sealed class InventoryPanel
             var info = e is null ? null : m.ItemInfoFor(e.DefinitionId);
             _equipSlots[slot].Show(info, e?.DefinitionId, 1, e?.Quality ?? "comum", true, _selectedSlot == slot);
             _equipSlots[slot].DragItemId = e?.ItemId;
+            // 16/11: peça quebrada (0%) fica avermelhada até o ferreiro consertar
+            _equipSlots[slot].Modulate = e is { Durability: <= 0 } ? new Color(1f, 0.42f, 0.42f) : Colors.White;
         }
 
         // grade: tamanho de cada item vem do catálogo (servidor antigo, sem grade: tudo 1×1 em 10 colunas)

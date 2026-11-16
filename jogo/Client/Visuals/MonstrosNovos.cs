@@ -27,7 +27,7 @@ public static class MonstrosNovos
     private const string Caminho = "res://Assets/Models/monstros/catalogo.json";
 
     private sealed record Entrada(string Arquivo, float Altura, string Tipo, float Escala, float Chefe, string[] Variantes, float VariacaoAltura,
-        float ManterAntigo, bool ChefeAntigo, string[] AntigoPara);
+        float ManterAntigo, bool ChefeAntigo, string[] AntigoPara, string ArquivoChefe, Dictionary<string, string> PorDefinicao);
 
     private static Dictionary<string, Entrada>? _catalogo;
 
@@ -36,6 +36,10 @@ public static class MonstrosNovos
         if (string.IsNullOrEmpty(visual)) return null;
         var cat = _catalogo ??= Ler();
         if (!cat.TryGetValue(visual, out var e)) return null;
+        // 15/11: "por_definicao": {"id_do_monstro": "outra_entrada"} — o mesmo visual_asset_id com modelo próprio para uma
+        // definição (ex.: coruja e gavião usavam o "bat"), sem mexer no conteúdo gerado. Falta o arquivo = segue no original.
+        if (definitionId.Length > 0 && e.PorDefinicao.TryGetValue(definitionId, out var outra) && cat.TryGetValue(outra, out var e2)
+            && Godot.FileAccess.FileExists("res://Assets/Models/" + e2.Arquivo + ".glb")) e = e2;
         var h = Hash(seed.Length > 0 ? seed : visual);
         // 15/11 (dono: "pode manter os 2, como variações"): onde já havia modelo do dono, parte dos monstros fica com ele —
         // "manter_antigo" = fração que usa o modelo antigo; chefe e "antigo_para" (ids) sempre o antigo. Retornar null = caminho antigo.
@@ -43,6 +47,8 @@ public static class MonstrosNovos
         if (definitionId.Length > 0 && Array.IndexOf(e.AntigoPara, definitionId) >= 0) return null;
         if (e.ManterAntigo > 0f && (Misturar(h) % 1000u) / 1000f < e.ManterAntigo) return null;
         var arquivo = e.Arquivo;
+        // 15/11: "arquivo_chefe" = modelo próprio do chefe (ex.: Carvalho Enforcado usa "root" e ganha o root_boss)
+        if (boss && e.ArquivoChefe.Length > 0 && Godot.FileAccess.FileExists("res://Assets/Models/" + e.ArquivoChefe + ".glb")) arquivo = e.ArquivoChefe;
         if (!boss && e.Variantes.Length > 0)
         {
             var i = (int)(h % (uint)(e.Variantes.Length + 1));
@@ -98,9 +104,12 @@ public static class MonstrosNovos
                 if (o.TryGetProperty("antigo_para", out var ap) && ap.ValueKind == JsonValueKind.Array)
                     foreach (var x in ap.EnumerateArray()) if (x.ValueKind == JsonValueKind.String) antigos.Add(x.GetString()!);
                 var manter = F("manter_antigo", 0f);
+                var porDef = new Dictionary<string, string>(StringComparer.Ordinal);
+                if (o.TryGetProperty("por_definicao", out var pd) && pd.ValueKind == JsonValueKind.Object)
+                    foreach (var x in pd.EnumerateObject()) if (x.Value.ValueKind == JsonValueKind.String) porDef[x.Name] = x.Value.GetString()!;
                 var chefeAntigo = o.TryGetProperty("chefe_antigo", out var ca) ? ca.ValueKind == JsonValueKind.True : manter > 0f;
                 d[p.Name] = new Entrada(arq, F("altura", 1.6f), S("tipo", "criatura"), F("escala", 1f), F("chefe", 1.4f), vars.ToArray(), F("variacao_altura", 0.04f),
-                    manter, chefeAntigo, antigos.ToArray());
+                    manter, chefeAntigo, antigos.ToArray(), S("arquivo_chefe", ""), porDef);
             }
         }
         catch (Exception ex) { GD.PrintErr("catalogo de monstros: " + ex.Message); }
