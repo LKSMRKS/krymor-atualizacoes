@@ -1106,6 +1106,7 @@ void fragment() {
     private void AddGround()
     {
         if (Map.Id == "taverna_andar2" && TavernaUpstairs()) return;
+        if (Map.Id == "casa_pequena" && Casa6x6()) return;   // 16/11 (pendência u79_casa6x6)
         if (Map.Theme == "casarao" && CasaraoUpstairs()) return;
         if (Map.Theme == "biblioteca" && BibliotecaHall()) return;
         if (Map.Theme == "reinos") { IlhaDosReinos(); return; }
@@ -3503,6 +3504,21 @@ void fragment() {
         var ab = new Aabb(verts[0], Vector3.Zero);
         foreach (var v in verts) ab = ab.Expand(v);
         return ab;
+    }
+
+    /// <summary>16/11 (pendência u79_casa6x6 — "interior 6×6 das casinhas do Porto: o modelo chegou no pacote; hoje usam o andar
+    /// do casarão"): a Casa de Morador é a sala 6×6 do pacote (cama, baú, mesa, lareira e tapete já vêm no modelo).</summary>
+    private bool Casa6x6()
+    {
+        if (Visuals.GlbCache.Instance("interior/casa_interior_6x6") is not { } model) return false;
+        var node = new Node3D { Name = "Casa6x6" };
+        Root.AddChild(node);
+        node.AddChild(model);
+        // lareira acesa e uma luz de vela na mesa; lá fora, escuro
+        node.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.6f, 0.3f), LightEnergy = 1.6f, OmniRange = 6f, Position = new Vector3(2.6f, 0.8f, -0.6f), ShadowEnabled = false });
+        node.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.55f), LightEnergy = 0.8f, OmniRange = 5f, Position = new Vector3(0.6f, 1.6f, -0.4f), ShadowEnabled = false });
+        VisualKit.Part(Root, new PlaneMesh { Size = new Vector2(200f, 200f) }, VisualKit.Mat(new Color(0.08f, 0.07f, 0.06f), 1f), new Vector3(0, -0.05f, 0)).CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        return true;
     }
 
     private bool CasaraoUpstairs()
