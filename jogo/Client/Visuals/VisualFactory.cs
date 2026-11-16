@@ -672,6 +672,9 @@ public static class VisualFactory
                 });
             // esqueleto de goblin: o mesmo goblin, só osso (pele cor de osso), trapos escuros, olhos azuis acesos, machadinha
             // 10/11: gnomo do areal — baixinho, gorro pontudo vermelho, barba branca, atira pedrinhas
+            // 16/11 (dono: "coloca no game as variantes do esqueleto de gnomo, um que usamos por um bom tempo, e também do gnomo
+            // do areal com roupa azul"): metade do bando usa o gnomo de túnica azul (modelo novo do catálogo) e a outra metade
+            // o gnomo pequeno no nosso esqueleto (mo_gnomo_areal) — ver "manter_antigo" do gnome em monstros/catalogo.json
             case "gnome" when MannequinVisual.MonsterBody("humanoides/mo_gnomo_areal", 0.62f) is { } gnomo:
                 gnomo.SetBuild(0.65f, 0.68f);   // 12/11: "deixa ele menorzinho" — gnomo na altura da cintura do jogador
                 return gnomo;

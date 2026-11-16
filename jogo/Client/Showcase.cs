@@ -295,10 +295,10 @@ public partial class Showcase : Node3D
         for (var i = 0; i < list.Length; i++)
         {
             var parts = list[i].Split(':');
-            var v = VisualFactory.Monster(parts[0], false, false, parts.Length > 1 ? parts[1] : "");
+            var v = VisualFactory.Monster(parts[0], false, false, parts.Length > 1 ? parts[1] : "", parts.Length > 2 ? parts[2] : "");   // 16/11: 3º campo = semente (variante)
             var x = (i - (list.Length - 1) / 2f) * 1.6f;
             Place(v, new Vector3(x, 0, 0), 0f, i * 0.3f);
-            Label(parts.Length > 1 && parts[1].Length > 0 ? parts[1] : parts[0], new Vector3(x, 2.4f, 0), 20);
+            Label(parts.Length > 2 ? parts[1] + " " + parts[2] : parts.Length > 1 && parts[1].Length > 0 ? parts[1] : parts[0], new Vector3(x, 2.4f, 0), 20);
         }
         camera.Position = new Vector3(0, 1.4f, 3.2f + list.Length * 0.9f);
         camera.LookAt(new Vector3(0, 0.9f, 0));

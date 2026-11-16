@@ -389,6 +389,7 @@
  },
  "gnome": {
   "arquivo": "monstros/gnome",
+  "manter_antigo": 0.5,
   "altura": 0.66,
   "tipo": "humanoide",
   "variacao_altura": 0.05,
