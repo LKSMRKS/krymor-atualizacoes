@@ -41,8 +41,10 @@ public partial class Showcase : Node3D
                 layout = layout with { Props = layout.Props.Where(p => Perto(p.X, p.Y)).ToList(), Obstacles = layout.Obstacles.Where(o => Perto(o.X, o.Y)).ToList() };
             }
         }
+        var swMapa = System.Diagnostics.Stopwatch.StartNew();
         var map = new MapView(layout);
         s.AddChild(map.Root);
+        MsMontagem = swMapa.Elapsed.TotalMilliseconds;   // 16/11: medição de otimização (VITRINE_MEDIR)
         // luz de estúdio: sol baixo vindo de trás da câmera (os bonecos ficam de frente para a luz)
         if (map.Sun is { } sun) sun.RotationDegrees = new Vector3(-30f, 20f, 0);
         switch (kind)
@@ -790,12 +792,27 @@ public partial class Showcase : Node3D
     private static readonly string Filme = OS.GetEnvironment("VITRINE_FILME");
     private static readonly int Quadros = int.TryParse(OS.GetEnvironment("VITRINE_QUADROS"), out var qd) ? qd : 24;
     private int _frameNo;
+    private static double MsMontagem;
+
+    private static int Contar(Node n, ref int malhas)
+    {
+        var total = 1;
+        if (n is MeshInstance3D) malhas++;
+        foreach (var ch in n.GetChildren()) total += Contar(ch, ref malhas);
+        return total;
+    }
 
     public override void _Process(double delta)
     {
         if (Passo > 0f) delta = Passo;
         _uiTick?.Invoke();
         _frameNo++;
+        // 16/11 (otimização): VITRINE_MEDIR=1 imprime, no quadro 30, chamadas de desenho/objetos/triângulos e nós da cena
+        if (_frameNo == 30 && OS.GetEnvironment("VITRINE_MEDIR") == "1")
+        {
+            var malhas = 0; var nos = Contar(GetTree().Root, ref malhas);
+            GD.Print($"MEDIDA montagem={MsMontagem:0}ms desenhos={RenderingServer.GetRenderingInfo(RenderingServer.RenderingInfo.TotalDrawCallsInFrame)} objetos={RenderingServer.GetRenderingInfo(RenderingServer.RenderingInfo.TotalObjectsInFrame)} triangulos={RenderingServer.GetRenderingInfo(RenderingServer.RenderingInfo.TotalPrimitivesInFrame)} nos={nos} malhas={malhas}");
+        }
         if (Filme.Length > 0 && _frameNo > 40 && _frameNo <= 40 + Quadros)
             GetViewport().GetTexture().GetImage().SavePng($"{Filme}/q{_frameNo - 40:000}.png");
         if (Filme.Length > 0 && _frameNo > 41 + Quadros) GetTree().Quit();

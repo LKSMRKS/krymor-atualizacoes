@@ -181,43 +181,93 @@ public sealed class MapView
     private readonly List<(Node3D Node, float Phase)> _portalGlows = new();
     /// <summary>Árvores que o vento balança (pedido: "a árvore não mexe, o jogo não tem vida").</summary>
     private readonly List<(Node3D Node, Vector3 Base, float Phase, float Amp)> _swaying = new();
+    private readonly Dictionary<Node3D, Vector3> _posVento = new();
 
     public Node3D Root { get; } = new() { Name = "Mapa" };
     private readonly VidaAmbiente _vida;
     private Vector3 _viewerPos;
     public MapLayout Map { get; }
 
-    public MapView(MapLayout map)
+    public MapView(MapLayout map) : this(map, false) { }
+
+    /// <summary>16/11 (otimização item 3 — "mapa trava 6-7 s carregando"): com <paramref name="aosPoucos"/> o mapa é montado
+    /// em etapas (<see cref="Avancar"/> a cada quadro, com limite de tempo) e a tela de carregamento continua viva, com barra
+    /// de progresso. O resultado é exatamente o mesmo da montagem de uma vez (mesma ordem, mesmo sorteio).</summary>
+    public MapView(MapLayout map, bool aosPoucos)
     {
-        // 12/11 ("relevo: testar só no modo lab"): ondulação ligada só no Laboratório de Testes por enquanto
-        Relevo.Configurar(map.Id == "laboratorio" ? "vale" : "cidade", (float)map.HalfSize, false);
         Map = map;
         // vida do pacote de arte (Cal Lote 2): fogueiras de verdade, fumaça de marco, farol, gaivotas e siris na praia
         _vida = new VidaAmbiente { Name = "VidaAmbiente", Metade = (float)map.HalfSize, Jogador = () => _viewerPos };
+        _etapas = Etapas(map).GetEnumerator();
+        if (!aosPoucos) while (_etapas.MoveNext()) { }
+    }
+
+    private readonly IEnumerator<int> _etapas;
+    /// <summary>0..1 enquanto monta em etapas.</summary>
+    public float Progresso { get; private set; }
+    public bool Pronto { get; private set; }
+
+    /// <summary>Monta mais um pedaço do mapa, até gastar <paramref name="ms"/> milissegundos. true = terminou.</summary>
+    public bool Avancar(double ms)
+    {
+        if (Pronto) return true;
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        while (sw.Elapsed.TotalMilliseconds < ms)
+            if (!_etapas.MoveNext()) { Pronto = true; Progresso = 1f; return true; }
+        return false;
+    }
+
+    private IEnumerable<int> Etapas(MapLayout map)
+    {
+        var total = 12 + map.Obstacles.Count + map.Gates.Count + map.Chests.Count + map.Props.Count + map.Portals.Count + map.Waypoints.Count + map.Npcs.Count + map.Objects.Count;
+        var feito = 0;
+        int Passo(int n = 1) { feito += n; Progresso = Math.Min(0.99f, (float)feito / total); return feito; }
+        // 12/11 ("relevo: testar só no modo lab"): ondulação ligada só no Laboratório de Testes por enquanto
+        Relevo.Configurar(map.Id == "laboratorio" ? "vale" : "cidade", (float)map.HalfSize, false);
         Root.AddChild(_vida);
         Visuals.EscadaCasa.Limpar();   // 11/11: alturas de assoalho/escada do mapa novo
         if (map.Id == "porto_das_cinzas") Ambiente.CaisDoPorto.RegistrarAlturas();   // 12/11: cais elevado do lado leste
         if (TerrainMaterialAvailable())   // 13/11: morros e platôs (só onde o chão é o TerrainShader, que sobe junto)
             foreach (var e in map.Elevations.Take(32)) Visuals.EscadaCasa.RegistrarElevacao((float)e.X, (float)e.Y, (float)e.W, (float)e.H, (float)e.Height, (float)e.Ramp);
         AddEnvironment();
+        yield return Passo();
         AddGround();
-        foreach (var o in map.Obstacles) AddObstacleGirado(o);
-        foreach (var g in map.Gates) AddGate(g);
-        foreach (var c in map.Chests) AddChest(c);
-        foreach (var p in map.Props) AddProp(p);
-        foreach (var portal in map.Portals) AddPortal(portal);
-        foreach (var wp in map.Waypoints) AddWaypoint(wp);
-        foreach (var npc in map.Npcs) AddNpc(npc);
-        foreach (var obj in map.Objects) AddObject(obj);
+        yield return Passo(2);
+        foreach (var o in map.Obstacles) { AddObstacleGirado(o); yield return Passo(); }
+        foreach (var g in map.Gates) { AddGate(g); yield return Passo(); }
+        foreach (var c in map.Chests) { AddChest(c); yield return Passo(); }
+        foreach (var p in map.Props) { AddProp(p); yield return Passo(); }
+        foreach (var portal in map.Portals) { AddPortal(portal); yield return Passo(); }
+        foreach (var wp in map.Waypoints) { AddWaypoint(wp); yield return Passo(); }
+        foreach (var npc in map.Npcs) { AddNpc(npc); yield return Passo(); }
+        foreach (var obj in map.Objects) { AddObject(obj); yield return Passo(); }
         AddSafeCircle();
         if (map.Theme == "cidade") AddVillageDressing();
+        yield return Passo();
         // 11/11: praça do Porto do pacote de arte (fonte com a estátua do Guardião, bancos, feira, árvores, floreiras)
         if (map.Id == "porto_das_cinzas" && !map.Props.Any(p => p.Kind == "fonte_praca")) Ambiente.PracaDoPorto.Montar(Root);   // 13/11: virou peças editáveis
         if (map.Id == "porto_das_cinzas") Ambiente.CaisDoPorto.Montar(Root, (float)map.HalfSize);   // 12/11: cais, mar e arredores
         // 11/11 noite (complemento do pacote): a cena do lago da Costa (rochas, capim, arbustos, flores, coqueiros)
         if (map.Id == "costa_do_cal") Ambiente.CenaPrintCosta.Montar(Root, new Vector2(-31f, 49f));
+        yield return Passo(2);
         BalancarNoVento(Root);
         TexturizeAll(Root);
+        yield return Passo();
+        // 16/11 (otimização item 2): junta as pecinhas paradas do cenário em poucos desenhos; o que o mapa guarda para mexer
+        // depois (listas deste arquivo) fica de fora. Mede o tempo e deixa o resumo no log
+        if (Ambiente.JuntarCenario.Ligado)
+        {
+            var swJ = System.Diagnostics.Stopwatch.StartNew();
+            try
+            {
+                var prot = Ambiente.JuntarCenario.NosGuardados(this);
+                Ambiente.JuntarCenario.Juntar(Root, prot);
+                if (OS.GetEnvironment("VITRINE_MEDIR") == "1") GD.Print("JUNTAR " + Ambiente.JuntarCenario.UltimoResumo + $" ({swJ.ElapsedMilliseconds} ms) campos: " + string.Join(", ", Ambiente.JuntarCenario.PorCampo.OrderByDescending(kv => kv.Value).Select(kv => kv.Key + "=" + kv.Value)));
+                CinzasDaMare.Shared.Diagnostics.GameLog.Info("cliente.mapa", $"{Ambiente.JuntarCenario.UltimoResumo} ({swJ.ElapsedMilliseconds} ms) em {map.Id}");
+            }
+            catch (Exception e) { CinzasDaMare.Shared.Diagnostics.GameLog.Info("cliente.mapa", $"juntar falhou em {map.Id}: {e.Message}"); }
+        }
+        yield return Passo(3);
         CullByDistance(Root);
         ApplyQuality(); // as chamas já existem: decide quais projetam sombra
         FadeLights(Root);
@@ -5126,10 +5176,16 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
                 if (f.StartsWith("decor:", StringComparison.Ordinal) && _decorFeito.Add(f))
                     CasaDecor.Build(Root, f[6..], (x, y) => P(x, y));
         // vento: rajadas que passam pelo mapa (a fase anda com a posição), não todas as árvores juntas
+        // 16/11 (otimização): ~1.500 plantas balançavam TODO quadro no mapa inteiro (cada uma avisa a árvore de nós toda).
+        // Agora só até 80 m da câmera — mais longe a névoa e a distância já escondem um balanço de 1-2 graus — e a posição
+        // de cada uma (fixa) é lida uma vez só
         foreach (var (node, rest, phase, amp) in _swaying)
         {
-            if (!GodotObject.IsInstanceValid(node) || !node.IsVisibleInTree()) continue;
-            var gust = 0.6f + 0.4f * Mathf.Sin(time * 0.35f + node.GlobalPosition.X * 0.02f);
+            if (!GodotObject.IsInstanceValid(node)) continue;
+            if (!_posVento.TryGetValue(node, out var pv)) { if (!node.IsInsideTree()) continue; _posVento[node] = pv = node.GlobalPosition; }
+            if (new Vector2(pv.X - _viewerPos.X, pv.Z - _viewerPos.Z).LengthSquared() > 80f * 80f) continue;
+            if (!node.IsVisibleInTree()) continue;
+            var gust = 0.6f + 0.4f * Mathf.Sin(time * 0.35f + pv.X * 0.02f);
             var sx = Mathf.Sin(time * 1.1f + phase) * amp * gust;
             var sz = Mathf.Sin(time * 0.8f + phase * 1.7f) * amp * 0.6f * gust;
             node.RotationDegrees = rest + new Vector3(sx, 0, sz);

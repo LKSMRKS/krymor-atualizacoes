@@ -2590,6 +2590,44 @@ public partial class Main : Node3D
         {
             // editor no jogo: o mesmo mapa mudou (árvore, monstro...) — monta de novo com a versão nova
             if (_mapView is not null && _mapView.Map.Id == map.Id && !(_forceMapRebuild && !ReferenceEquals(_mapView.Map, map))) return;
+            // 16/11 (otimização item 3): atrás da tela de carregamento o mapa é montado em etapas (~40 ms por quadro), com
+            // barra de progresso; a tela e a rede continuam vivas. Sem tela de carga (editor) monta de uma vez, como antes
+            if (_mapMontando is { } mm0)
+            {
+                // mesmo mapa (o servidor pode reenviar o mesmo mapa): continua; se for versão nova do editor, o teste lá em
+                // cima remonta quando terminar
+                if (mm0.Map.Id == map.Id)
+                {
+                    if (!mm0.Avancar(40)) { MostrarProgressoCarga(mm0.Progresso); return; }
+                    MostrarProgressoCarga(1f);
+                    _mapMontando = null;
+                    if (ReferenceEquals(mm0.Map, map)) _forceMapRebuild = false;
+                    _mapView?.Root.QueueFree();
+                    _arena?.Root.QueueFree();
+                    _arena = null;
+                    _mapView = mm0; _postalEm = 12;
+                    _cargaAte = Time.GetTicksMsec() + 700;
+                    GameLog.Info("cliente.mapa", $"mapa {map.Id} montado em {Time.GetTicksMsec() - _mapMontandoDesde} ms (em etapas, a tela não travou)");
+                    LigarMapaNovo(map);
+                    return;
+                }
+                mm0.Root.Free();   // o mapa mudou no meio da montagem: descarta e começa o novo
+                _mapMontando = null;
+            }
+            // troca de mapa (portal, viagem) também ganha a tela de carga com barra — antes o jogo congelava uns segundos;
+            // o editor (mesmo mapa montado de novo) continua instantâneo
+            var trocaDeMapa = _mapView is null || _mapView.Map.Id != map.Id;
+            if ((_carga is { Visible: true } || trocaDeMapa) && OS.GetEnvironment("KRYMOR_MAPA_DE_UMA_VEZ") != "1")
+            {
+                if (_carga is not { Visible: true }) MostrarCarga(map.DisplayName);
+                _cargaTexto!.Text = map.DisplayName;
+                _mapView?.Root.QueueFree();
+                _mapView = null;
+                _mapMontando = new MapView(map, aosPoucos: true);
+                _mapMontandoDesde = Time.GetTicksMsec();
+                MostrarProgressoCarga(0f);
+                return;
+            }
             _forceMapRebuild = false;
             _mapView?.Root.QueueFree();
             _arena?.Root.QueueFree();
@@ -2600,13 +2638,10 @@ public partial class Main : Node3D
             _cargaAte = Time.GetTicksMsec() + 700;   // espera o primeiro quadro do mapa montado antes de tirar a tela
             // 11/11 (log para achar travadas): quanto custou montar o mapa
             GameLog.Info("cliente.mapa", $"mapa {map.Id} montado em {Time.GetTicksMsec() - buildStart} ms");
-            _mapView.OnGreet = (npc, at) => Sfx.Voice(NpcVoiceKind(npc, "ola"), NpcFemale(npc), NpcPitch(npc), at);
-            _world.AddChild(_mapView.Root);
-            if (_air is null) { _air = new AmbientParticles(); _world.AddChild(_air); }
-            _air.SetTheme(map.Id == "fundo_triangulo" ? "submerso" : map.Theme, GraphicsQuality.Current != GraphicsQuality.Level.Baixo);
-            _itemsQuietUntil = Time.GetTicksMsec() + 1500;   // itens que já estavam no chão não "caem" de novo
+            LigarMapaNovo(map);
             return;
         }
+        if (_mapMontando is { } mx) { mx.Root.Free(); _mapMontando = null; }   // saiu (sem mapa) no meio da montagem
         // servidor antigo (arena, sem mapa): cenário da E7 — só se o mapa não chegar (era o "3D mal feito" no começo)
         if (_carga is { Visible: true }) return;
         var half = (float)_model.ArenaHalfSize;
@@ -2615,6 +2650,44 @@ public partial class Main : Node3D
         _arena = ArenaBuilder.Build(half);
         _arenaHalf = half;
         _world.AddChild(_arena.Root);
+    }
+
+    private MapView? _mapMontando;
+    private ulong _mapMontandoDesde;
+    private ProgressBar? _cargaBarra;
+
+    /// <summary>16/11: barrinha dourada embaixo do nome do mapa enquanto ele é montado.</summary>
+    private void MostrarProgressoCarga(float v)
+    {
+        if (_cargaRaiz is null) return;
+        if (_cargaBarra is null)
+        {
+            _cargaBarra = new ProgressBar { ShowPercentage = false, MinValue = 0, MaxValue = 1, Step = 0.001, MouseFilter = Control.MouseFilterEnum.Ignore };
+            _cargaBarra.SetAnchorsPreset(Control.LayoutPreset.CenterBottom);
+            _cargaBarra.Position = new Vector2(-220, -70);
+            _cargaBarra.Size = new Vector2(440, 6);
+            var fundo = new StyleBoxFlat { BgColor = new Color(0, 0, 0, 0.55f) };
+            fundo.SetCornerRadiusAll(3);
+            var cheio = new StyleBoxFlat { BgColor = new Color(0.98f, 0.8f, 0.42f) };
+            cheio.SetCornerRadiusAll(3);
+            _cargaBarra.AddThemeStyleboxOverride("background", fundo);
+            _cargaBarra.AddThemeStyleboxOverride("fill", cheio);
+            _cargaRaiz.AddChild(_cargaBarra);
+        }
+        _cargaBarra.Value = v;
+        _cargaBarra.Visible = v < 1f;
+    }
+
+    private void LigarMapaNovo(CinzasDaMare.Shared.World.MapLayout map)
+    {
+        if (_mapView is null) return;
+        {
+            _mapView.OnGreet = (npc, at) => Sfx.Voice(NpcVoiceKind(npc, "ola"), NpcFemale(npc), NpcPitch(npc), at);
+            _world.AddChild(_mapView.Root);
+            if (_air is null) { _air = new AmbientParticles(); _world.AddChild(_air); }
+            _air.SetTheme(map.Id == "fundo_triangulo" ? "submerso" : map.Theme, GraphicsQuality.Current != GraphicsQuality.Level.Baixo);
+            _itemsQuietUntil = Time.GetTicksMsec() + 1500;   // itens que já estavam no chão não "caem" de novo
+        }
     }
 
     private void AnimateArenaFlames()

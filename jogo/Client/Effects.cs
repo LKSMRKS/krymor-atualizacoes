@@ -21,6 +21,8 @@ public sealed class Effects
         public Vector3 StartScale = Vector3.One;
         public Vector3 EndScale = Vector3.One;
         public double Life = 0.4;
+        /// <summary>16/11: tamanho da caixa (a malha é uma caixa de 1 m reaproveitada; o tamanho vira escala).</summary>
+        public Vector3 BaseScale = Vector3.One;
     }
 
     private sealed class Fx
@@ -45,14 +47,76 @@ public sealed class Effects
             CullMode = BaseMaterial3D.CullModeEnum.Disabled,
         };
 
+    // 16/11 (otimização item 4 — "criar e destruir coisas o tempo todo"): cada faísca/risco/clarão criava nó, material e
+    // malha novos e jogava fora meio segundo depois (engasgos pequenos em luta cheia). Agora:
+    //  • os nós (com o material de cada um) voltam para uma reserva e são reaproveitados;
+    //  • malhas iguais (mesma esfera, mesmo anel, mesma coluna) são uma só; caixa de qualquer tamanho é a caixa de 1 m
+    //    escalada — o desenho na tela é o mesmo.
+    private readonly Stack<(MeshInstance3D Node, StandardMaterial3D Mat)> _reserva = new();
+    private static readonly Dictionary<string, Mesh> MalhasIguais = new();
+    private static readonly BoxMesh CaixaUnitaria = new() { Size = Vector3.One };
+
+    private static Mesh Compartilhada(Mesh mesh, out Vector3 escala)
+    {
+        escala = Vector3.One;
+        if (mesh is BoxMesh bm && bm.SubdivideWidth == 0 && bm.SubdivideHeight == 0 && bm.SubdivideDepth == 0)
+        {
+            escala = bm.Size;
+            return CaixaUnitaria;
+        }
+        var chave = mesh switch
+        {
+            SphereMesh sm => $"s{sm.Radius}|{sm.Height}|{sm.RadialSegments}|{sm.Rings}|{sm.IsHemisphere}",
+            CylinderMesh cm => $"c{cm.TopRadius}|{cm.BottomRadius}|{cm.Height}|{cm.RadialSegments}|{cm.Rings}|{cm.CapTop}|{cm.CapBottom}",
+            TorusMesh tm => $"t{tm.InnerRadius}|{tm.OuterRadius}|{tm.Rings}|{tm.RingSegments}",
+            QuadMesh qm => $"q{qm.Size}|{qm.Orientation}|{qm.CenterOffset}",
+            _ => null,
+        };
+        if (chave is null) return mesh;
+        if (!MalhasIguais.TryGetValue(chave, out var m))
+        {
+            if (MalhasIguais.Count > 300) return mesh;   // tamanhos sorteados: não guarda infinitos
+            MalhasIguais[chave] = m = mesh;
+        }
+        return m;
+    }
+
     private Part AddPart(Fx fx, Mesh mesh, Color color, Vector3 position, double life, bool additive = true)
     {
-        var material = MakeMaterial(color, additive);
-        var node = new MeshInstance3D { Mesh = mesh, MaterialOverride = material, Position = position };
-        Root.AddChild(node);
-        var part = new Part { Node = node, Material = material, Color = color, Life = life };
+        var malha = Compartilhada(mesh, out var escala);
+        MeshInstance3D node; StandardMaterial3D material;
+        if (_reserva.Count > 0 && GodotObject.IsInstanceValid(_reserva.Peek().Node))
+        {
+            (node, material) = _reserva.Pop();
+            material.AlbedoColor = color;
+            material.BlendMode = additive ? BaseMaterial3D.BlendModeEnum.Add : BaseMaterial3D.BlendModeEnum.Mix;
+            node.Mesh = malha;
+            node.Transform = new Transform3D(Basis.Identity, position);
+            node.Visible = true;
+        }
+        else
+        {
+            if (_reserva.Count > 0) _reserva.Clear();
+            material = MakeMaterial(color, additive);
+            node = new MeshInstance3D { Mesh = malha, MaterialOverride = material, Position = position };
+            Root.AddChild(node);
+        }
+        node.Scale = escala;
+        var part = new Part { Node = node, Material = material, Color = color, Life = life, BaseScale = escala };
         fx.Parts.Add(part);
         return part;
+    }
+
+    private void Devolver(Part part)
+    {
+        if (!GodotObject.IsInstanceValid(part.Node)) return;
+        var m = part.Material;
+        // material mexido depois (poeira: textura, billboard, esmaecer perto do chão) não volta para a reserva
+        var mexido = m.AlbedoTexture is not null || m.BillboardMode != BaseMaterial3D.BillboardModeEnum.Disabled || m.ProximityFadeEnabled
+            || m.ShadingMode != BaseMaterial3D.ShadingModeEnum.Unshaded || m.Transparency != BaseMaterial3D.TransparencyEnum.Alpha || m.CullMode != BaseMaterial3D.CullModeEnum.Disabled;
+        if (mexido || _reserva.Count >= 600 || part.Node.GetParent() != Root) { part.Node.QueueFree(); return; }
+        part.Node.Visible = false;
+        _reserva.Push((part.Node, part.Material));
     }
 
     private float Rand(float min, float max) => min + (float)_rng.NextDouble() * (max - min);
@@ -296,13 +360,13 @@ public sealed class Effects
                 var t = (float)Math.Clamp(fx.Age / part.Life, 0.0, 1.0);
                 part.Velocity += part.Gravity * (float)delta;
                 part.Node.Position += part.Velocity * (float)delta;
-                part.Node.Scale = part.StartScale.Lerp(part.EndScale, t);
+                part.Node.Scale = part.BaseScale * part.StartScale.Lerp(part.EndScale, t);
                 var alpha = part.Color.A * Mathf.Pow(1f - t, 1.4f);
                 part.Material.AlbedoColor = new Color(part.Color.R, part.Color.G, part.Color.B, alpha);
                 part.Node.Visible = t < 1f;
             }
             if (fx.Age < fx.Life) continue;
-            foreach (var part in fx.Parts) part.Node.QueueFree();
+            foreach (var part in fx.Parts) Devolver(part);
             _active.RemoveAt(i);
         }
     }
@@ -313,5 +377,6 @@ public sealed class Effects
             foreach (var part in fx.Parts)
                 part.Node.QueueFree();
         _active.Clear();
+        while (_reserva.Count > 0) { var (n, _) = _reserva.Pop(); if (GodotObject.IsInstanceValid(n)) n.QueueFree(); }
     }
 }

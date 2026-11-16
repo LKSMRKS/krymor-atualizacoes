@@ -87,6 +87,7 @@ public static class CaisDoPorto
 
         // barcos amarrados ao lado dos piers (balançam na água)
         var balanca = new Node3D { Name = "Barcos" };
+        balanca.SetMeta("nao_juntar", true);   // 16/11: os barcos balançam (tween); fora do JuntarCenario
         raiz.AddChild(balanca);
         foreach (var (x, z, yaw) in new[] { (48.5f, -12.6f, 90f), (47.2f, 11.7f, 95f), (55.5f, 1.5f, 80f) })
         {
