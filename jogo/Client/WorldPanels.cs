@@ -1286,6 +1286,7 @@ public sealed partial class WorldMapCanvas : Control
     /// <summary>13/11 ("no mapa geral consigo dar TP só clicando nas bolinhas, nas que já fui"): clique numa região visitada
     /// com pedra de viagem descoberta → viaja para a primeira pedra dela.</summary>
     public event Action<string>? ViajarPara;
+    private readonly List<(Vector2 P, string Id)> _wpTela = new();   // 17/11: losangos das pedras desenhados (duplo clique)
     /// <summary>Mapa da área: ilustração Art/mapa_&lt;id do mapa&gt;.png (cobre −130..130 em x e y, norte = y negativo no topo).</summary>
     public bool AreaMode { get; set; } = true;
     public CinzasDaMare.Shared.World.MapLayout? Layout { get; set; }
@@ -1362,14 +1363,16 @@ public sealed partial class WorldMapCanvas : Control
             _alvos.Add((at, 7f, new[] { npc.Name, mk == "entregar" ? "missão pronta para entregar aqui" : mk.Length > 0 ? "tem missão para você" : npc.Shop is not null ? "loja" : "conversa" }, col));
         }
         // 14/11 ("a pedra de viagem em azul"): por cima dos NPCs, losango azul com borda clara
+        _wpTela.Clear();
         foreach (var wp in Layout.Waypoints)
         {
             var p = At(wp.X, wp.Y);
+            _wpTela.Add((p, wp.Id));
             var los = new[] { p + new Vector2(0, -8.5f), p + new Vector2(7, 0), p + new Vector2(0, 8.5f), p + new Vector2(-7, 0) };
             DrawColoredPolygon(los.Select(q => q + new Vector2(1.2f, 1.6f)).ToArray(), new Color(0, 0, 0, 0.45f));
             DrawColoredPolygon(los, new Color(0.3f, 0.65f, 1f));
             DrawPolyline(los.Append(los[0]).ToArray(), new Color(0.85f, 0.95f, 1f), 1.4f, true);
-            _alvos.Add((p, 10f, new[] { "Pedra de viagem: " + wp.Name, "fique perto dela, fora de combate, para viajar" }, new Color(0.45f, 0.75f, 1f)));
+            _alvos.Add((p, 10f, new[] { "Pedra de viagem: " + wp.Name, "duplo clique para viajar (perto de uma pedra, fora de combate)" }, new Color(0.45f, 0.75f, 1f)));
         }
         // 10/11: missões do canto da tela, com o mesmo número
         for (var i = 0; i < HudView.Tracked.Count; i++)
@@ -1548,6 +1551,13 @@ public sealed partial class WorldMapCanvas : Control
                 QueueRedraw();
                 return;
             }
+        }
+        // 17/11 (dono: "clicar duas vezes na pedra de viagem e ir nela"): no mapa da área, duplo clique no losango azul viaja
+        // (o servidor confere se você está perto de uma pedra e fora de combate e explica se não der)
+        if (AreaMode && Layout is not null && @event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left, DoubleClick: true } dbl)
+        {
+            var wpAlvo = _wpTela.Select(w => (w.Id, d: w.P.DistanceTo(dbl.Position))).Where(t => t.d < 14f).OrderBy(t => t.d).Select(t => t.Id).FirstOrDefault();
+            if (wpAlvo is not null) { ViajarPara?.Invoke(wpAlvo); Sfx.Play("ui_clique"); AcceptEvent(); return; }
         }
         if (!AreaMode && Data is not null && @event is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } clk)
         {

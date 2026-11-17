@@ -40,7 +40,9 @@ public sealed partial class ItemIconRenderer : Node
         // 15/11 ("cada poção com frasco e cor diferente — está tudo com o mesmo ícone"): as poções dividem o modelo "potion"
         // / "potion_mana", e a primeira foto ficava para todas; quem tem desenho próprio tem chave pelo próprio id
         => definition.StartsWith("tomo_") ? "tome_" + TomeClass(definition)
-            : HasOwnIcon(definition) || definition.StartsWith("anel_") || definition.StartsWith("colar_") ? definition
+            : HasOwnIcon(definition) || Visuals.IconesUnicos.Tem(definition) || definition.StartsWith("anel_") || definition.StartsWith("colar_") ? definition
+            // 17/11 (regra: ícone único por item): só equipamento divide foto pelo modelo; apito/montaria/pet etc. pelo id
+            : definition.StartsWith("apito_") || definition.StartsWith("montaria_") || definition.StartsWith("pet_") ? definition
             : info?.Model is { Length: > 0 } m && !m.StartsWith("mat_") && info.Category != "material" ? m : definition;
 
     /// <summary>Textura pronta do item (null = ainda não; pede para fotografar).</summary>
@@ -49,7 +51,8 @@ public sealed partial class ItemIconRenderer : Node
         var key = KeyFor(info, definition);
         if (Cache.TryGetValue(key, out var tex)) return tex;
         // ícone pintado (ico_*.png) quando existe: mais bonito que a foto do modelo
-        if (!definition.StartsWith("tomo_") && (!HasOwnIcon(definition) || Visuals.GearFactory.ArteDaPrancha(definition)) && Visuals.GearFactory.PaintedIcon(info?.Model, definition) is { } painted
+        // 17/11 (REGRA do dono: cada item com o seu próprio ícone): quem tem modelo único (IconesUnicos) não usa a arte genérica
+        if (!definition.StartsWith("tomo_") && (!HasOwnIcon(definition) || Visuals.GearFactory.ArteDaPrancha(definition)) && !UnicoSemArte(definition) && Visuals.GearFactory.PaintedIcon(info?.Model, definition) is { } painted
             && VisualAssets.Load(painted) is { } png)
         {
             Cache[key] = png;
@@ -147,6 +150,7 @@ public sealed partial class ItemIconRenderer : Node
         var model = info?.Model ?? "";
         if (definition.StartsWith("tomo_")) return Tome(definition);
         if (OwnIcon(definition) is { } own) return own;   // desenho próprio vence a categoria (máscara é "helmet")
+        if (Visuals.IconesUnicos.Montar(definition) is { } unico) return unico;   // 17/11: modelo único por item
         var cat = info?.Category ?? "";
         if (cat == "weapon" || GearFactory.IsBow(model) || model.StartsWith("talisman_") || model.StartsWith("staff_"))
         {
@@ -334,6 +338,10 @@ public sealed partial class ItemIconRenderer : Node
 
     public static bool HasOwnIcon(string definition) => Array.Exists(OwnIconIds, definition.StartsWith);
 
+    /// <summary>17/11: tem modelo único e NÃO tem arte pintada só dele (ico_&lt;id&gt;.png) — a arte genérica é proibida.</summary>
+    private static bool UnicoSemArte(string id) => !HasOwnIcon(id) && Visuals.IconesUnicos.Tem(id)
+        && !id.StartsWith("joia_") && !Godot.FileAccess.FileExists("res://Assets/Art/ico_" + id + ".png");
+
     /// <summary>14/11 ("cada poção com o seu tamanho"): escala do desenho próprio quando o item está no chão.</summary>
     public static float TamanhoNoChao(string id) => id switch
     {
@@ -347,7 +355,7 @@ public sealed partial class ItemIconRenderer : Node
     };
 
     /// <summary>13/11: o mesmo desenho do ícone, para o item no chão (caixa das cinzas).</summary>
-    public static Node3D? OwnIconNode(string id) => OwnIcon(id);
+    public static Node3D? OwnIconNode(string id) => OwnIcon(id) ?? Visuals.IconesUnicos.Montar(id);
 
     /// <summary>13/11: um desenho para cada material/peça que dividia a mesma arte.</summary>
     private static bool Distinto(Node3D root, string id, StandardMaterial3D iron, StandardMaterial3D leather)
@@ -460,7 +468,7 @@ public sealed partial class ItemIconRenderer : Node
         }
         if (id.StartsWith("mat_fragmento_"))
         {
-            var cor = id.Contains("fornalha") ? new Color(1f, 0.45f, 0.1f) : id.Contains("reliquia") ? new Color(0.75f, 0.5f, 1f) : new Color(0.5f, 0.75f, 0.9f);
+            var cor = id.Contains("fornalha") ? new Color(1f, 0.45f, 0.1f) : id.Contains("reliquia") ? new Color(0.75f, 0.5f, 1f) : id.Contains("abismo") ? new Color(0.35f, 0.08f, 0.55f) : new Color(0.5f, 0.75f, 0.9f);
             var pedra = id.Contains("veio") ? M(new Color(0.45f, 0.42f, 0.4f), 0.9f) : VisualKit.Glow(cor, 1.2f);
             VisualKit.Part(root, VisualKit.Cylinder(0f, 0.16f, 0.45f, 5), pedra, new Vector3(-0.06f, 0, 0), new Vector3(0, 0, 14));
             VisualKit.Part(root, VisualKit.Cylinder(0f, 0.11f, 0.3f, 5), pedra, new Vector3(0.15f, -0.07f, 0.03f), new Vector3(0, 0, -25));
@@ -510,12 +518,27 @@ public sealed partial class ItemIconRenderer : Node
         if (Distinto(root, id, iron, leather)) return root;
         if (id is "consumable_bandagem" or "consumable_c06_ataduras")
         {
-            // rolo de pano branco com a ponta solta
-            var pano = VisualKit.Mat(new Color(0.93f, 0.91f, 0.85f), 0.95f);
-            VisualKit.Part(root, VisualKit.Cylinder(0.2f, 0.2f, 0.26f, 20), pano, Vector3.Zero, new Vector3(90, 0, 0));
-            VisualKit.Part(root, VisualKit.Cylinder(0.07f, 0.07f, 0.27f, 12), VisualKit.Mat(new Color(0.7f, 0.66f, 0.58f), 0.9f), Vector3.Zero, new Vector3(90, 0, 0));
-            VisualKit.Part(root, VisualKit.Box(0.24f, 0.012f, 0.4f), pano, new Vector3(0.05f, -0.2f, 0.2f), new Vector3(0, 0, -6));
-            if (id == "consumable_bandagem") VisualKit.Part(root, VisualKit.Box(0.08f, 0.012f, 0.08f), VisualKit.Mat(new Color(0.75f, 0.1f, 0.1f), 0.6f), new Vector3(0.05f, -0.19f, 0.3f));
+            // 17/11 (dono: "atadura é um papel higiênico? kkk"): nada de rolo branco em pé — faixa de linho cru enrolada
+            // achatada e meio desenrolada em curva, presa com alfinete; a bandagem tem a cruz vermelha e a de seda é dourada
+            var seda = id == "consumable_c06_ataduras";
+            var pano = VisualKit.Mat(seda ? new Color(0.95f, 0.86f, 0.62f) : new Color(0.86f, 0.8f, 0.68f), seda ? 0.45f : 0.95f);
+            var dobra = VisualKit.Mat(seda ? new Color(0.82f, 0.7f, 0.45f) : new Color(0.7f, 0.63f, 0.5f), 0.9f);
+            VisualKit.Part(root, VisualKit.Cylinder(0.17f, 0.17f, 0.12f, 20), pano, new Vector3(-0.1f, 0.06f, 0), new Vector3(70, 0, 0));
+            for (var i = 0; i < 3; i++)
+                VisualKit.Part(root, new TorusMesh { InnerRadius = 0.09f + i * 0.03f, OuterRadius = 0.1f + i * 0.03f }, dobra, new Vector3(-0.1f, 0.06f, 0.06f), new Vector3(-20, 0, 0));
+            // faixa solta descendo em curva
+            for (var i = 0; i < 6; i++)
+            {
+                var t = i / 5f;
+                VisualKit.Part(root, VisualKit.Box(0.13f, 0.11f, 0.012f), pano, new Vector3(0.05f + t * 0.22f, -0.08f - Mathf.Sin(t * 2.4f) * 0.14f, 0.04f), new Vector3(0, 0, -20 - t * 50));
+            }
+            VisualKit.Part(root, VisualKit.Box(0.12f, 0.02f, 0.02f), VisualKit.Mat(new Color(0.75f, 0.76f, 0.8f), 0.3f, 0.9f), new Vector3(-0.1f, 0.06f, 0.13f), new Vector3(0, 0, 30));   // alfinete
+            if (!seda)
+            {
+                var verm = VisualKit.Mat(new Color(0.8f, 0.08f, 0.08f), 0.6f);
+                VisualKit.Part(root, VisualKit.Box(0.04f, 0.12f, 0.01f), verm, new Vector3(-0.1f, 0.06f, 0.125f), new Vector3(-20, 0, 0));
+                VisualKit.Part(root, VisualKit.Box(0.12f, 0.04f, 0.01f), verm, new Vector3(-0.1f, 0.06f, 0.125f), new Vector3(-20, 0, 0));
+            }
             return root;
         }
         if (id == "consumable_c01_tonico_fraco")

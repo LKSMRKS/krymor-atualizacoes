@@ -36,6 +36,9 @@ public sealed class MapView
         public float LidSign = -1f;               // baú do lote 2: a dobradiça gira para o outro lado
         public OmniLight3D? Glow;
         public float Open;
+        public Node3D? Root;
+        public float Sumindo = -1f;   // 17/11: segundos desde que abriu (o baú some para quem abriu)
+        public bool Visto;
     }
 
     private readonly List<GateView> _gates = new();
@@ -1903,9 +1906,11 @@ void fragment() {
             }
             case "ossada_gigante" when Visuals.GlbCache.Instance("costa/marco_ossada_gigante") is { } bones:
                 // esqueleto de ~37 m meio enterrado na Enseada do Tirano (Cal Lote 2): passa-se por baixo das costelas
-                bones.Position = P(o.X, o.Y);
+                // 17/11: o obstáculo agora é só o crânio (círculo); o desenho fica no centro de antes (80, -89,5)
+                bones.Position = o.R > 0 ? P(80.0, -89.5) : P(o.X, o.Y);
                 Root.AddChild(bones);
-                Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3((float)o.W, h, (float)o.H) });
+                if (o.R > 0) Collider(P(o.X, o.Y, h / 2f), new CylinderShape3D { Radius = (float)o.R, Height = h });
+                else Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3((float)o.W, h, (float)o.H) });
                 break;
             case "lago":
             {
@@ -2402,7 +2407,7 @@ void fragment() {
             var light = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
             root.AddChild(light);
             Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
-            _chests.Add(new ChestView { Chest = c, Lid = glbLid, LidSign = 1f, Glow = light });
+            _chests.Add(new ChestView { Chest = c, Lid = glbLid, LidSign = 1f, Glow = light, Root = root });
             return;
         }
         var wood = VisualKit.Mat(new Color(0.40f, 0.26f, 0.13f), 0.85f);
@@ -2416,7 +2421,7 @@ void fragment() {
         var glow = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
         root.AddChild(glow);
         Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
-        _chests.Add(new ChestView { Chest = c, Lid = lid, Glow = glow });
+        _chests.Add(new ChestView { Chest = c, Lid = lid, Glow = glow, Root = root });
     }
 
     /// <summary>Casa modular de enxaimel em coordenadas locais (frente = +Z). variant muda toldo/placa/chaminé.</summary>
@@ -5038,7 +5043,9 @@ void fragment() {
             var predio = Map.Props.Where(pp => pp.Kind.Contains("casa") || pp.Kind.Contains("sobrado") || pp.Kind.Contains("predio")
                     || pp.Kind.Contains("taverna") || pp.Kind.Contains("casarao") || pp.Kind.Contains("observatorio"))
                 .OrderBy(pp => (pp.X - obj.X) * (pp.X - obj.X) + (pp.Y - obj.Y) * (pp.Y - obj.Y)).FirstOrDefault();
-            var dentroDeCasa = predio is null || (predio.X - obj.X) * (predio.X - obj.X) + (predio.Y - obj.Y) * (predio.Y - obj.Y) > 100;
+            // 17/11 (dono: "faltou uma porta na parede — coloca como padrão em todas as casas por dentro!"): cômodo pequeno
+            // (casa, biblioteca, loja) é SEMPRE "dentro", mesmo com peça de casa por perto na decoração
+            var dentroDeCasa = dentroDoComodo || predio is null || (predio.X - obj.X) * (predio.X - obj.X) + (predio.Y - obj.Y) * (predio.Y - obj.Y) > 100;
             var paraParede = dentroDeCasa ? new Vector2((float)obj.X, (float)obj.Y) : new Vector2((float)(predio!.X - obj.X), (float)(predio.Y - obj.Y));
             paraParede = paraParede.LengthSquared() > 0.01f ? paraParede.Normalized() : new Vector2(0, 1);
             _portas.Add((obj, P(obj.X + paraParede.X * 0.45, obj.Y + paraParede.Y * 0.45, 1.1f)));
@@ -5064,6 +5071,36 @@ void fragment() {
             }
             _objects.Add((obj, pt));
             _interactables.Add((obj, pt));
+            return;
+        }
+        // 17/11 (dono: "faça a interação acontecer nas estantes de livros"): livro na frente de uma estante
+        // (Tools/livros_nas_estantes.py) = um livro brilhando puxado para fora da prateleira, sem atril
+        // (Biblioteca do Continente: as estantes são obstáculos "estante" de 0,9 m — o livro vai na face delas)
+        var estantes = Map.Props.Where(e => e.Kind == "glb:dg/dg_estante_livros").Select(e => (e.X, e.Y, Face: 0.32))
+            .Concat(Map.Obstacles.Where(o => o.Kind == "estante").Select(o => (o.X, o.Y, Face: Math.Min(o.W, o.H) / 2 + 0.05)));
+        if (obj.Kind == "livro" && estantes.OrderBy(e => (e.X - obj.X) * (e.X - obj.X) + (e.Y - obj.Y) * (e.Y - obj.Y)).FirstOrDefault() is var est
+            && est.Face > 0 && (est.X - obj.X) * (est.X - obj.X) + (est.Y - obj.Y) * (est.Y - obj.Y) < 1.7 * 1.7)
+        {
+            var frente = new Vector2((float)(obj.X - est.X), (float)(obj.Y - est.Y)).Normalized();
+            var lb = new Node3D { Position = P(est.X + frente.X * est.Face, est.Y + frente.Y * est.Face) };   // o objeto (onde se aperta F) fica 1,45 m à frente
+            lb.Rotation = new Vector3(0, Mathf.Atan2(frente.X, frente.Y), 0);
+            Root.AddChild(lb);
+            var hash = (uint)obj.Id.GetHashCode();
+            var capa = Color.FromHsv((hash % 360) / 360f, 0.55f, 0.55f);
+            var altura = 0.75f + (hash >> 8) % 3 * 0.42f;   // uma das prateleiras
+            var livroMesh = VisualKit.Part(lb, VisualKit.Box(0.08f, 0.32f, 0.24f), VisualKit.Mat(capa, 0.7f), new Vector3(0, altura, 0.1f), new Vector3(0, 0, 6));
+            VisualKit.Part(lb, VisualKit.Box(0.085f, 0.04f, 0.245f), VisualKit.Glow(new Color(1f, 0.82f, 0.4f), 2.2f), new Vector3(0, altura + 0.08f, 0.1f), new Vector3(0, 0, 6));
+            var luzL = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.45f), LightEnergy = 0.7f, OmniRange = 1.8f, Position = new Vector3(0, altura, 0.45f), ShadowEnabled = false };
+            lb.AddChild(luzL);
+            _interiorLights.Add((luzL, R(0, 10)));
+            lb.AddChild(new Label3D
+            {
+                Text = obj.Label, FontSize = 30, OutlineSize = 8, PixelSize = 0.006f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+                Modulate = new Color(1f, 0.88f, 0.6f), Position = new Vector3(0, 2.25f, 0.4f),
+                VisibilityRangeEnd = 4.5f, VisibilityRangeEndMargin = 1f,
+            });
+            _objects.Add((obj, lb));
+            _interactables.Add((obj, lb));
             return;
         }
         if (obj.Kind is "livro" or "pesquisa")
@@ -5117,12 +5154,15 @@ void fragment() {
             VisualKit.Part(root, VisualKit.Box(0.42f, 1.3f, 0.32f), StoneMat(0.55f, false), new Vector3(0, 0.65f, 0), new Vector3(0, 0, R(-4, 4)));
             VisualKit.Part(root, VisualKit.Cylinder(0f, 0.3f, 0.25f, 4), StoneMat(0.55f, false), new Vector3(0, 1.42f, 0), new Vector3(0, 45, 0));
             VisualKit.Part(root, VisualKit.Box(0.44f, 0.08f, 0.34f), VisualKit.Glow(glowColor, 1.6f), new Vector3(0, 0.95f, 0));
-            root.AddChild(new OmniLight3D { LightColor = glowColor, LightEnergy = 0.9f, OmniRange = 3.5f, Position = new Vector3(0, 1.2f, 0) });
-            root.AddChild(new Label3D
+            var luzM = new OmniLight3D { LightColor = glowColor, LightEnergy = 0.9f, OmniRange = 3.5f, Position = new Vector3(0, 1.2f, 0) };
+            root.AddChild(luzM);
+            var rotM = new Label3D
             {
                 Text = obj.Label, FontSize = 36, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
                 Modulate = glowColor, Position = new Vector3(0, 2.0f, 0),
-            });
+            };
+            root.AddChild(rotM);
+            _achados.Add((obj, runasAchado, rotM, luzM, orbita));
             _objects.Add((obj, root));
             _interactables.Add((obj, root));
             return;
@@ -5134,18 +5174,23 @@ void fragment() {
             _ => VisualKit.Part(root, VisualKit.Box(0.42f, 0.1f, 0.3f), VisualKit.Mat(new Color(0.25f, 0.18f, 0.32f), 0.8f), new Vector3(0, 0.78f, 0)),
         };
         VisualKit.Part(root, VisualKit.Sphere(0.08f), VisualKit.Glow(glowColor, 4f), new Vector3(0, 1.35f, 0));
-        root.AddChild(new OmniLight3D { LightColor = glowColor, LightEnergy = 1.2f, OmniRange = 4f, Position = new Vector3(0, 1.2f, 0) });
-        root.AddChild(new Label3D
+        var luzA = new OmniLight3D { LightColor = glowColor, LightEnergy = 1.2f, OmniRange = 4f, Position = new Vector3(0, 1.2f, 0) };
+        root.AddChild(luzA);
+        var rotA = new Label3D
         {
             Text = obj.Label, FontSize = 36, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
             Modulate = glowColor, Position = new Vector3(0, 1.8f, 0),
-        });
+        };
+        root.AddChild(rotA);
+        _achados.Add((obj, runasAchado, rotA, luzA, orbita));
         _portalGlows.Add((item, R(0, 6)));
         _objects.Add((obj, root));
         _interactables.Add((obj, root));
     }
 
     private readonly List<(MapObject Obj, Node3D Node)> _interactables = new();
+    /// <summary>17/11 (dono: "tá falando que eu já interagi — deixa mais destacado, pra saber que eu marquei"): achados de missão.</summary>
+    private readonly List<(MapObject Obj, ShaderMaterial Runas, Label3D Rotulo, OmniLight3D Luz, Node3D Orbita)> _achados = new();
     /// <summary>13/11 22:26: o meio de cada porta (na parede, a 1,1 m do chão) — dá para mirar na porta, não só no capacho.</summary>
     private readonly List<(MapObject Obj, Vector3 Centro)> _portas = new();
 
@@ -5183,6 +5228,21 @@ void fragment() {
         {
             var pega = obj.GrantFlag is { } g && flags.Contains(g);
             if (node.Visible == pega) { node.Visible = !pega; if (pega) _interactables.RemoveAll(x => x.Obj == obj); }
+        }
+        // 17/11: achado já marcado — círculo e luz verdes, sem a fagulha, e o nome com ✓ "já examinado"
+        foreach (var (obj, runas, rot, luz, orb) in _achados)
+        {
+            var feito = flags.Contains("marcado:" + obj.Id) || flags.Any(f => f.StartsWith("pego:", StringComparison.Ordinal) && f.EndsWith(":" + obj.Id, StringComparison.Ordinal));
+            if (feito == orb.Visible)
+            {
+                var cor = feito ? new Color(0.35f, 1f, 0.45f) : new Color(0.6f, 0.85f, 1f);
+                runas.SetShaderParameter("cor", new Vector3(cor.R, cor.G, cor.B));
+                runas.SetShaderParameter("forca", feito ? 0.25f : 0.45f);
+                luz.LightColor = cor; luz.LightEnergy = feito ? 0.5f : 1.1f;
+                rot.Text = feito ? "✓ " + obj.Label + "  (já examinado)" : obj.Label;
+                rot.Modulate = cor;
+                orb.Visible = !feito;
+            }
         }
         foreach (var (obj, glow, light) in _runes)
         {
@@ -5520,6 +5580,21 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
         foreach (var c in _chests)
         {
             var open = flags.Contains("chest:" + c.Chest.Id) ? 1f : 0f;
+            // 17/11 (dono: "baús, depois que abrem, somem pra sempre pra quem abriu"): já aberto ao chegar = nem aparece;
+            // aberto agora = tampa abre, 1,5 s depois encolhe e some
+            if (c.Root is { } cr && GodotObject.IsInstanceValid(cr))
+            {
+                if (!c.Visto) { c.Visto = true; if (open > 0) { cr.Visible = false; c.Sumindo = 99f; } }
+                if (open > 0 && c.Sumindo < 0) c.Sumindo = 0f;
+                if (open <= 0 && c.Sumindo >= 0) { c.Sumindo = -1f; cr.Visible = true; cr.Scale = Vector3.One; }
+                if (c.Sumindo >= 0 && c.Sumindo < 99f)
+                {
+                    c.Sumindo += delta;
+                    var k = Mathf.Clamp((c.Sumindo - 1.5f) / 0.5f, 0f, 1f);
+                    cr.Scale = Vector3.One * Mathf.Max(0.01f, 1f - k);
+                    if (k >= 1f) { cr.Visible = false; c.Sumindo = 99f; }
+                }
+            }
             c.Open = Mathf.MoveToward(c.Open, open, delta * 2f);
             c.Lid.RotationDegrees = new Vector3(100f * c.LidSign * c.Open, 0, 0);
             if (c.Glow is not null) c.Glow.LightEnergy = (1f - c.Open) * (0.7f + 0.3f * Mathf.Sin(time * 3f));

@@ -946,7 +946,8 @@ public partial class Showcase : Node3D
             .Select(i => new CinzasDaMare.Shared.Net.ItemInfo(i.Id, i.DisplayName, "", i.AllowedClasses, "", i.ModelAssetId, i.MinLevel, i.Handedness, Category: i.Category ?? ""))
             .Concat(c.Consumables.Values.OrderBy(x => x.Id).Select(x => new CinzasDaMare.Shared.Net.ItemInfo(x.Id, x.DisplayName, "consumable", Array.Empty<string>(), "",
                 x.TeachSkill is not null ? "tome" : x.ResourcePercent > 0 ? "potion_mana" : x.Buff is not null ? "food" : "potion", 1, 0, Category: "consumable")))
-            .Skip(pagina * 60).Take(60).ToList();
+            .Where(i => OS.GetEnvironment("VITRINE_SO") is not { Length: > 0 } so || so.Split(',').Contains(i.Category))   // 17/11: só materiais/consumíveis
+            .Skip(pagina * (OS.GetEnvironment("VITRINE_SO") is { Length: > 0 } ? 40 : 60)).Take(OS.GetEnvironment("VITRINE_SO") is { Length: > 0 } ? 40 : 60).ToList();
         var layer = new CanvasLayer(); AddChild(layer);
         var fundo = new ColorRect { Color = new Color(0.08f, 0.08f, 0.1f) }; fundo.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect); layer.AddChild(fundo);
         var grade = new GridContainer { Columns = 10, Position = new Vector2(10, 10) };
