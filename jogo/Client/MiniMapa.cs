@@ -113,6 +113,16 @@ public sealed partial class MiniMapa : Control
         var pulse = 0.6f + 0.4f * Mathf.Sin((float)_t * 4f);
         foreach (var (_, q) in m.QuestMarkers)
         {
+            if (q.Kind == "tesouro")
+            {
+                // 17/11: X vermelho do mapa do tesouro — só aparece quando já está dentro do minimapa (nada na borda)
+                var px = P(q.X, q.Y);
+                if (!Inside(px, 6)) continue;
+                var xc = new Color(0.85f, 0.12f, 0.08f);
+                DrawLine(px + new Vector2(-5, -5), px + new Vector2(5, 5), xc, 3f, true);
+                DrawLine(px + new Vector2(-5, 5), px + new Vector2(5, -5), xc, 3f, true);
+                continue;
+            }
             var p = P(q.X, q.Y);
             var far = !Inside(p, 10);
             p = ClampIn(p, c, r - 10);

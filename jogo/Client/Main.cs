@@ -2719,10 +2719,26 @@ public partial class Main : Node3D
         => definitionId is null ? "" : _model.ItemInfoFor(definitionId)?.Model ?? definitionId;
 
     private readonly Dictionary<string, CartVisual> _carts = new();
+    private Node3D? _xTesouro;
 
     /// <summary>Carroça da escolta: aparece/anda/some conforme os marcadores de missão vindos do servidor.</summary>
     private void SyncQuestMarkers()
     {
+        // 17/11: X pintado no chão do mapa do tesouro
+        if (_model.QuestMarkers.TryGetValue("tesouro", out var tz) && tz.Kind == "tesouro")
+        {
+            if (_xTesouro is null || !GodotObject.IsInstanceValid(_xTesouro))
+            {
+                _xTesouro = new Node3D { Name = "XTesouro" };
+                var tinta = new StandardMaterial3D { AlbedoColor = new Color(0.62f, 0.08f, 0.05f), Roughness = 1f };
+                foreach (var ang in new[] { 45f, -45f })
+                    _xTesouro.AddChild(new MeshInstance3D { Mesh = new BoxMesh { Size = new Vector3(2.6f, 0.04f, 0.45f), Material = tinta },
+                        RotationDegrees = new Vector3(0, ang, 0), CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+                _world.AddChild(_xTesouro);
+            }
+            _xTesouro.Position = new Vector3((float)tz.X, Relevo.Altura((float)tz.X, (float)tz.Y) + 0.05f, (float)tz.Y);
+        }
+        else if (_xTesouro is not null) { if (GodotObject.IsInstanceValid(_xTesouro)) _xTesouro.QueueFree(); _xTesouro = null; }
         foreach (var (qid, mk) in _model.QuestMarkers)
         {
             if (mk.Kind != "carroca") continue;

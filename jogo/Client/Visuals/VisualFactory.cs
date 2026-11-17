@@ -348,6 +348,10 @@ public static class VisualFactory
                 return new BeastVisual(new BeastStyle { Head = "cabra", Horns = false, Fur = true, LongTail = false, Body = new Color(0.72f, 0.66f, 0.56f),   // 14/11: cabeça de cabra com chifrões
                     Belly = new Color(0.9f, 0.86f, 0.78f), Accent = new Color(0.35f, 0.3f, 0.24f), Eyes = new Color(0.85f, 0.65f, 0.2f),
                     LegLength = 0.62f, BodyLength = 0.85f, BodyHeight = 0.4f, Scale = 0.85f });
+            case "goat_brava":   // 17/11: Cabra-Chifruda (pasto da Prova da Força) — maior, pelo escuro, olho vermelho
+                return new BeastVisual(new BeastStyle { Head = "cabra", Horns = false, Fur = true, LongTail = false, Body = new Color(0.36f, 0.30f, 0.26f),
+                    Belly = new Color(0.62f, 0.56f, 0.48f), Accent = new Color(0.18f, 0.14f, 0.12f), Eyes = new Color(0.95f, 0.25f, 0.15f),
+                    LegLength = 0.66f, BodyLength = 0.92f, BodyHeight = 0.45f, Scale = 1.05f });
             case "dog": return new BeastVisual(new BeastStyle { Spikes = false, Fur = true, Body = new Color(0.42f, 0.30f, 0.20f), Belly = new Color(0.60f, 0.50f, 0.38f),
                 Eyes = new Color(0.95f, 0.8f, 0.3f), Scale = 0.72f });
             case "wolf": return new BeastVisual(new BeastStyle { Spikes = true, Body = new Color(0.28f, 0.27f, 0.27f), Scale = 1.0f });
