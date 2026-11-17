@@ -10,7 +10,7 @@ namespace CinzasDaMare.Client;
 /// mesma composição em dourado, com um sol. Entra em 0,9 s, fica ~5 s e some em 1,4 s; não pega clique (não atrapalha a luta).
 /// Tudo desenhado por código (sem arquivo de arte), escala com a tela.
 /// </summary>
-public static class AvisoNoite
+public static partial class AvisoNoite
 {
     private static CanvasLayer? _camada;
 
