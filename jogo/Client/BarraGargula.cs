@@ -18,10 +18,10 @@ public partial class BarraGargula : Control
     // o de destaque (T) passou a ser o 6º
     private static readonly Vector2[] SlotCentros =
     {
-        new(562, 355), new(652, 355), new(744, 355), new(834, 355), new(926, 355), new(1083, 356), new(1244, 356), new(1358, 356), new(1474, 356),
+        new(572, 355), new(684, 355), new(796, 355), new(908, 355), new(1020, 355), new(1132, 355), new(1244, 355), new(1356, 355), new(1468, 355),
     };
     private const float SlotLado = 90f;
-    public const int Slots = 9, Destaque = 5;
+    public const int Slots = 9, Destaque = -1;   // 17/11 (dono: "não precisa deixar o T maior — tudo do mesmo tamanho e junto")
     private static readonly Rect2 Xp = new(532, 262, 984, 12);
     public const float NumeroY = 413f;
 
@@ -34,7 +34,7 @@ public partial class BarraGargula : Control
     public void CorMana(Color clara) => _mana.Cores(clara, clara.Darkened(0.85f));
     public static readonly Vector2 CentroVida = new(355, 289), CentroMana = new(1693, 289);
     public float Escala { get => _escala; set { _escala = value; Scale = Vector2.One * value; } }
-    public Rect2 SlotRect(int i) { var l = i == Destaque ? SlotLado * 1.12f : i < Destaque ? 68f : SlotLado; return new(SlotCentros[i] - Vector2.One * l / 2f, Vector2.One * l); }
+    public Rect2 SlotRect(int i) { var l = 84f; return new(SlotCentros[i] - Vector2.One * l / 2f, Vector2.One * l); }
     public Rect2 XpRect => Xp;
 
     public BarraGargula()
