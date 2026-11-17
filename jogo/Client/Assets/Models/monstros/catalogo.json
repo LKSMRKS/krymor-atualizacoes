@@ -308,7 +308,8 @@
   "arquivo": "monstros/goblin_skeleton",
   "altura": 1.19,
   "tipo": "humanoide",
-  "chefe": 1.0
+  "chefe": 1.0,
+  "manter_antigo": 0.5
  },
  "spider_weaver": {
   "arquivo": "monstros/spider_weaver",
