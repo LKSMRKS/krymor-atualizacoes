@@ -61,6 +61,7 @@ public partial class Showcase : Node3D
             case "skins": s.SkinsPerto(camera); break;
             case "icones": s.Icones(OS.GetEnvironment("VITRINE_CONTENT") ?? "", int.TryParse(OS.GetEnvironment("VITRINE_PAG"), out var pgI) ? pgI : 0); break;   // 15/11 noite: folha de ícones   // 15/11 noite: 4 skins de perto (VITRINE_SKINS, VITRINE_YAW)   // 15/11 noite: o palco do lobby com 9 personagens
             case "menutab": s.MenuTab(camera, OS.GetEnvironment("VITRINE_PAG")); break;
+            case "avisonoite": AvisoNoite.Mostrar(s, OS.GetEnvironment("VITRINE_PAG") != "dia"); break;   // 16/11: anúncio da noite
             case "base": s.Classes(camera, dressed: false); break;
             case "pet": s.Pet(camera); break;
             case "arsenal": s.Arsenal(camera); break;

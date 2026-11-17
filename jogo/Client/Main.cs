@@ -665,7 +665,9 @@ public partial class Main : Node3D
             var hourNow = _model.HourNow;
             _mapView?.SetHour((float)hourNow);
             var night = hourNow < 6 || hourNow >= 18.5;
-            if (_hud is not null) _hud.ClockText = $"{(int)hourNow:00}:{(int)(hourNow % 1 * 60):00} · " + (night ? "noite" : hourNow < 8 ? "amanhecer" : hourNow >= 17 ? "entardecer" : "dia");
+            // 16/11: das 19h às 5h (a noite do servidor) o relógio lembra o bônus: "☾ noite · +25% XP"
+            var noiteServidor = hourNow >= 19 || hourNow < 5;
+            if (_hud is not null) _hud.ClockText = $"{(int)hourNow:00}:{(int)(hourNow % 1 * 60):00} · " + (noiteServidor ? "☾ noite · +25% XP" : night ? "noite" : hourNow < 8 ? "amanhecer" : hourNow >= 17 ? "entardecer" : "dia");
         }
         Perfil.Marca("mira/hora");
         SavePinsIfChanged();
@@ -1946,6 +1948,8 @@ public partial class Main : Node3D
                 else if (notice.Kind == "legend") { Sfx.Play("nivel"); PulseMine(new Color(0.3f, 1f, 0.6f, 0.6f), 1.6f); }
                 else if (notice.Kind == "regiao") { Sfx.Play("nivel"); PulseMine(new Color(1f, 0.75f, 0.35f, 0.6f), 2.2f); }   // 13/11: região nova   // 11/11: drop/refino grande
                 else if (notice.Kind == "reward") Sfx.Play("ui_aviso", -4f);
+                else if (notice.Kind == "noite") { Sfx.Play("amb2_sinos", -3f, 0f, 2000); Sfx.Play("rugido", -12f, 0.02f, 2000); }   // 16/11: a noite chegou
+                else if (notice.Kind == "amanhecer") { Sfx.Play("amb2_passaros", -4f, 0f, 2000); Sfx.Play("nivel", -10f, 0f, 2000); }
                 if (notice.Text.StartsWith('+')) _hud?.Feed("Obteve: " + notice.Text[1..].Trim());
                 break;
             case ClaimResultMessage claim when claim.Success:
