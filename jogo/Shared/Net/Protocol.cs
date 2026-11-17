@@ -107,6 +107,7 @@ public static class Protocol
 [JsonDerivedType(typeof(EditorStateMessage), "editor_state")]
 [JsonDerivedType(typeof(ContentFileMessage), "content_file")]
 [JsonDerivedType(typeof(TrilhaIntent), "trilha_ask")]
+[JsonDerivedType(typeof(PesquisaIntent), "pesquisa")]
 [JsonDerivedType(typeof(TrilhaMessage), "trilha")]
 public abstract record NetMessage;
 
@@ -114,6 +115,8 @@ public abstract record NetMessage;
 /// e o texto de um deles para editar. Info = resultado de salvar.</summary>
 /// <summary>13/11 ("progressão para acompanhar o que você ganha em cada nível — montaria, TP... tipo um passe"): pede a trilha.</summary>
 public sealed record TrilhaIntent() : NetMessage;
+/// <summary>17/11: pesquisa no Catálogo da Biblioteca (item, material ou monstro); a resposta vem como BookMessage.</summary>
+public sealed record PesquisaIntent(string Texto) : NetMessage;
 /// <summary>Um marco da trilha do herói: nível, tipo (mapa, montaria, viagem, classe, poder, história, asas, extra), texto e se já tem.</summary>
 public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string Detalhe, bool Tem)
 {

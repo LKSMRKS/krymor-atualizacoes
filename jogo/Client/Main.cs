@@ -122,6 +122,7 @@ public partial class Main : Node3D
     private readonly ThirdPersonCamera _cam = new();
     private readonly ChatView _chat = new();
     private readonly LivroPanel _livro = new();
+    private readonly PesquisaPanel _pesquisa = new();   // 17/11: Catálogo da Biblioteca
     private readonly Dicas _dicas = new();   // 13/11
     private readonly TrilhaPanel _trilha = new();   // 13/11: Trilha do Herói (F3)
     private bool _menuDemo;
@@ -1949,6 +1950,14 @@ public partial class Main : Node3D
                 else if (notice.Kind == "legend") { Sfx.Play("nivel"); PulseMine(new Color(0.3f, 1f, 0.6f, 0.6f), 1.6f); }
                 else if (notice.Kind == "regiao") { Sfx.Play("nivel"); PulseMine(new Color(1f, 0.75f, 0.35f, 0.6f), 2.2f); }   // 13/11: região nova   // 11/11: drop/refino grande
                 else if (notice.Kind == "reward") Sfx.Play("ui_aviso", -4f);
+                else if (notice.Kind == "pesquisa_abrir") { _pesquisa.Show(); CaptureMouse(false); }   // 17/11: Catálogo
+                else if (notice.Kind == "pedra" && notice.Text.Split('|') is { Length: 3 } pp
+                         && double.TryParse(pp[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var px)
+                         && double.TryParse(pp[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var py))
+                {   // 17/11: cada golpe na rocha oca dá uma tremidinha nela
+                    _mapView?.TremerPedra(px, py);
+                    Sfx.PlayAt("minerar", new Vector3((float)px, 1f, (float)py), 0f, 0.15f);
+                }
                 if (notice.Text.StartsWith('+')) _hud?.Feed("Obteve: " + notice.Text[1..].Trim());
                 break;
             case ClaimResultMessage claim when claim.Success:
@@ -2353,6 +2362,9 @@ public partial class Main : Node3D
         Arrastador.Ligar(_troca.Root, "troca", 46f, porDesvio: true, fechar: () => Send(new TradeIntent("cancelar")));
         layer.AddChild(_livro.Root);
         Arrastador.Ligar(_livro.Root, "livro", 46f, porDesvio: true, fechar: () => _livro.Close());
+        layer.AddChild(_pesquisa.Root);
+        Arrastador.Ligar(_pesquisa.Root, "pesquisa", 46f, porDesvio: true, fechar: () => _pesquisa.Close());
+        _pesquisa.Pesquisar = texto => Send(new PesquisaIntent(texto));
         layer.AddChild(_trilha);
         layer.AddChild(_menuTab);
         _menuTab.Send += Send;
@@ -2687,7 +2699,8 @@ public partial class Main : Node3D
     {
         if (_mapView is null) return;
         {
-            _mapView.OnGreet = (npc, at) => Sfx.Voice(NpcVoiceKind(npc, "ola"), NpcFemale(npc), NpcPitch(npc), at);
+            // 17/11 (dono: "todos os NPCs falam o mesmo quando chega perto — dá uma variada, uns 5 sons"): sorteia a saudação
+            _mapView.OnGreet = (npc, at) => Sfx.Voice(SaudacoesNpc[Random.Shared.Next(SaudacoesNpc.Length)], NpcFemale(npc), NpcPitch(npc), at);
             _world.AddChild(_mapView.Root);
             if (_air is null) { _air = new AmbientParticles(); _world.AddChild(_air); }
             _air.SetTheme(map.Id == "fundo_triangulo" ? "submerso" : map.Theme, GraphicsQuality.Current != GraphicsQuality.Level.Baixo);
@@ -3633,6 +3646,9 @@ public partial class Main : Node3D
     };
 
     /// <summary>Voz da criatura ao preparar um ataque (família pelo id/visual).</summary>
+    /// <summary>17/11: as 5 saudações que um NPC pode soltar quando você chega perto (voz_m_* / voz_f_*).</summary>
+    private static readonly string[] SaudacoesNpc = { "ola", "hum", "oh", "aham", "haha" };
+
     private static string? CreatureVoice(MonsterView m)
     {
         var k = (m.DefinitionId + " " + m.Visual).ToLowerInvariant();

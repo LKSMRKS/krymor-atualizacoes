@@ -23,6 +23,8 @@ public sealed class MapView
         /// <summary>E9: ponte (kind "ponte"): tábuas aparecem quando a marca existe; restos quebrados somem.</summary>
         public Node3D? Built;
         public Node3D? Broken;
+        /// <summary>17/11: película verde (Véu da Maré) no vão do portão aberto — monstros e golpes não atravessam.</summary>
+        public Node3D? Veu;
         /// <summary>10/11: rocha empurrável (kind "pedra"): posição fechada e para onde rola ao abrir.</summary>
         public Vector3 Home, Aside;
     }
@@ -734,6 +736,7 @@ void fragment() {
         });
         ApplyQuality();
         AddSkyLife();
+        AddVeuDaMare();   // 17/11: película verde em volta dos refúgios (zona segura)
     }
 
     /// <summary>
@@ -927,6 +930,52 @@ void fragment() {
         ["mata_dos_enforcados"] = (0.6f, new Color(0.4f, 0.9f, 0.6f), new Color(0.45f, 0.3f, 0.7f), -2.0f, 0.9f),
     };
     private ShaderMaterial? _ceuMat;
+
+    // 17/11 (dono: "na frente do portão o meu ataque não passa e os monstros não atravessam — tem tipo uma barreira; coloca uma
+    // película com uma cor verde, mostrando que tem algo ali, e aproveita para criar uma lore: os bichos não podem sair"):
+    // o VÉU DA MARÉ — em volta de cada refúgio (zona "seguro") dos mapas abertos, uma cortina verde translúcida, mais viva
+    // embaixo, com ondas subindo devagar; de longe quase some, de perto aparece. Lore no Livro da Biblioteca do Cais.
+    private const string VeuShader = @"
+shader_type spatial;
+render_mode unshaded, blend_add, depth_draw_never, cull_disabled, shadows_disabled, fog_disabled;
+uniform vec3 cor = vec3(0.3, 1.0, 0.55);
+varying vec3 mundo;
+void vertex() { mundo = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+    float y = UV.y;                       // 0 em cima, 1 embaixo
+    float base = smoothstep(0.0, 1.0, y);
+    float onda = 0.5 + 0.5 * sin((mundo.x + mundo.z) * 1.7 - TIME * 1.3 + y * 6.0);
+    float fio = smoothstep(0.92, 1.0, y) * 0.8;
+    float perto = 1.0 - smoothstep(6.0, 22.0, length(CAMERA_POSITION_WORLD - mundo));
+    float a = (0.05 + 0.13 * base * onda + fio) * (0.25 + 0.75 * perto);
+    ALBEDO = cor * a;
+}";
+
+    private void AddVeuDaMare()
+    {
+        if (Map.Instanced || Map.HalfSize < 30 || Map.Kind == "cidade") return;
+        var mat = new ShaderMaterial { Shader = new Shader { Code = VeuShader }, RenderPriority = 2 };
+        foreach (var z in Map.Zones)
+        {
+            if (z.Kind != "seguro") continue;
+            var (x0, x1, y0, y1) = ((float)(z.X - z.W / 2), (float)(z.X + z.W / 2), (float)(z.Y - z.H / 2), (float)(z.Y + z.H / 2));
+            foreach (var (a, b) in new[] { (new Vector2(x0, y0), new Vector2(x1, y0)), (new Vector2(x1, y0), new Vector2(x1, y1)),
+                                           (new Vector2(x1, y1), new Vector2(x0, y1)), (new Vector2(x0, y1), new Vector2(x0, y0)) })
+            {
+                var len = (b - a).Length();
+                var meio = (a + b) / 2f;
+                var plano = new MeshInstance3D
+                {
+                    Mesh = new QuadMesh { Size = new Vector2(len, 3.2f), Material = mat },
+                    CastShadow = GeometryInstance3D.ShadowCastingSetting.Off,
+                    Position = new Vector3(meio.X, 1.6f, meio.Y),
+                    Rotation = new Vector3(0, -Mathf.Atan2(b.Y - a.Y, b.X - a.X), 0),
+                };
+                plano.SetMeta("nao_juntar", true);
+                Root.AddChild(plano);
+            }
+        }
+    }
 
     private void AddSkyLife()
     {
@@ -1943,6 +1992,15 @@ void fragment() {
         Collider(P(g.X, g.Y, 2.1f), new BoxShape3D { Size = new Vector3(w + 1.2f, 4.2f, 1.4f) });
         var bars = new Node3D { Position = P(g.X, g.Y, 0f) };
         Root.AddChild(bars);
+        // 17/11 (dono: "na frente do portão o meu ataque não passa e os monstros não atravessam — coloca uma película verde"):
+        // aberto, o vão fica com o Véu da Maré (só gente passa; ver o livro na Biblioteca do Cais)
+        var veuPortao = new MeshInstance3D
+        {
+            Mesh = new QuadMesh { Size = new Vector2(w, 3.4f), Material = new ShaderMaterial { Shader = new Shader { Code = VeuShader }, RenderPriority = 2 } },
+            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off, Position = P(g.X, g.Y, 1.7f), Visible = false,
+        };
+        veuPortao.SetMeta("nao_juntar", true);
+        Root.AddChild(veuPortao);
         for (var x = -w / 2f + 0.25f; x <= w / 2f - 0.2f; x += 0.45f)
             VisualKit.Part(bars, VisualKit.Cylinder(0.05f, 0.05f, 3.6f, 6), iron, new Vector3(x, 1.8f, 0));
         for (var y = 0.6f; y < 3.6f; y += 1.0f)
@@ -1967,7 +2025,7 @@ void fragment() {
             VisualKit.Part(handle, VisualKit.Sphere(0.09f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 1.5f), new Vector3(0, 0.92f, 0));
         }
         handle.RotationDegrees = new Vector3(40, 0, 0);
-        _gates.Add(new GateView { Gate = g, Bars = bars, Lever = handle });
+        _gates.Add(new GateView { Gate = g, Bars = bars, Lever = handle, Veu = veuPortao });
     }
 
     /// <summary>
@@ -2008,28 +2066,56 @@ void fragment() {
     /// </summary>
     private void AddPedraSecreta(MapGate g)
     {
-        var r = (float)Math.Max(g.W, g.H) * 0.55f;
-        var rock = new Node3D { Position = P(g.X, g.Y), RotationDegrees = new Vector3(0, R(0, 360), 0) };
-        Root.AddChild(rock);
+        // 17/11 (dono: "as pedras com baús precisam esconder melhor os baús"): rocha da frente maior (tapa o vão)
+        var r = (float)Math.Max(g.W, g.H) * 0.72f;
+        // 17/11: suporte sem giro/escala (é ele que treme e some ao quebrar); a rocha e a marca ficam dentro dele
+        var suporte = new Node3D { Position = P(g.X, g.Y) };
+        Root.AddChild(suporte);
+        var rock = new Node3D { RotationDegrees = new Vector3(0, R(0, 360), 0) };
+        suporte.AddChild(rock);
         // igual às rochas do mapa (na Costa, a rocha de cal do kit) — ninguém distingue a oca das outras
         if (Map.Theme == "praia" && MapKit.Glb(rock, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f)) rock.Scale = new Vector3(r, 1.7f, r);
         else MapKit.Boulder(this, rock, r, 1.7f);
-        // 14/11 18h (dono: "acha qual das pedras quebra — põe uma marca leve, tipo uma pincelada de tinta que alguém fez"):
-        // duas pinceladas de ocre-avermelhado na face de fora da rocha (a mesma marca nas iscas: tem que bater para saber)
+        // 17/11 (dono: "a pedra tem uma marca, um desenho às vezes em cima, às vezes embaixo na direita, às vezes na esquerda,
+        // tipo um desenho pequeno rupestre na textura das pedras que precisam ser quebradas"): só a rocha CERTA (a da caverna)
+        // ganha um petróglifo ocre pequeno, num canto que muda de rocha para rocha; as iscas ficam lisas
         var (fx, fy) = ((float)(g.LeverX - g.X), (float)(g.LeverY - g.Y));
         var fl = Mathf.Max(0.01f, Mathf.Sqrt(fx * fx + fy * fy));
-        var tinta = VisualKit.Mat(new Color(0.55f, 0.17f, 0.11f), 0.95f);
-        var marca = new Node3D { Position = P(g.X + fx / fl * r * 1.02f, g.Y + fy / fl * r * 1.02f, 0.7f), RotationDegrees = new Vector3(0, Mathf.RadToDeg(Mathf.Atan2(fx, fy)), 0) };
-        Root.AddChild(marca);
-        VisualKit.Part(marca, VisualKit.Box(0.32f, 0.05f, 0.35f), tinta, Vector3.Zero, new Vector3(0, 0, 18));
-        VisualKit.Part(marca, VisualKit.Box(0.22f, 0.04f, 0.35f), tinta, new Vector3(0.04f, -0.09f, 0), new Vector3(0, 0, -12));
+        var marca = new Node3D();
+        suporte.AddChild(marca);
+        var cheia = g.Id.StartsWith("sala_secreta_racha", StringComparison.Ordinal);
+        if (cheia)
+        {
+            var hh = 0; foreach (var ch in g.Id + Map.Id) hh = hh * 31 + ch;
+            var lado = ((hh >> 3) & 1) == 0 ? -1f : 1f;
+            var alto = ((hh >> 5) & 1) == 0;
+            var nrm = new Vector3(fx / fl, 0.15f, fy / fl).Normalized();
+            var dir = new Vector3(nrm.Z, 0, -nrm.X);
+            var centro = P(g.X, g.Y, alto ? 1.15f : 0.45f) + new Vector3(fx / fl, 0, fy / fl) * r * 0.85f + dir * lado * r * 0.35f;
+            var decal = new Decal
+            {
+                Size = new Vector3(0.42f, 1.4f, 0.42f), TextureAlbedo = Petroglifo(hh), Modulate = new Color(0.62f, 0.24f, 0.12f),
+                AlbedoMix = 1f, UpperFade = 0.3f, LowerFade = 0.3f, CullMask = 1,
+            };
+            marca.AddChild(decal);
+            marca.Position = centro - P(g.X, g.Y);
+            decal.Basis = Basis.LookingAt(-nrm, Vector3.Up) * Basis.FromEuler(new Vector3(Mathf.Pi / 2f, 0, 0));
+        }
         // a caverna de verdade: uma laje de pedra por cima do baú (de cima não se vê o que tem dentro)
         if (g.Id.StartsWith("sala_secreta_racha", StringComparison.Ordinal))
         {
             var tampa = new Node3D { Position = P(g.X, g.Y - 2.1, 1.25f), RotationDegrees = new Vector3(0, R(0, 360), 0) };
             Root.AddChild(tampa);
-            if (Map.Theme == "praia" && MapKit.Glb(tampa, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f)) tampa.Scale = new Vector3(2.4f, 1.1f, 2.2f);
-            else { MapKit.Boulder(this, tampa, 2.2f, 1.2f); }
+            if (Map.Theme == "praia" && MapKit.Glb(tampa, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f)) tampa.Scale = new Vector3(3.0f, 1.3f, 2.9f);
+            else { MapKit.Boulder(this, tampa, 2.8f, 1.4f); }
+            // 17/11: duas pedras nos cantos da frente fecham as frestas laterais (de lado não se vê mais o baú)
+            foreach (var lado in new[] { -1f, 1f })
+            {
+                var canto = new Node3D { Position = P(g.X + lado * 1.35, g.Y - 0.6), RotationDegrees = new Vector3(0, R(0, 360), 0) };
+                Root.AddChild(canto);
+                if (Map.Theme == "praia" && MapKit.Glb(canto, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f)) canto.Scale = new Vector3(1.1f, 1.6f, 1.1f);
+                else MapKit.Boulder(this, canto, 1.0f, 1.6f);
+            }
         }
         var cascalho = new Node3D { Position = P(g.X, g.Y), Visible = false };
         Root.AddChild(cascalho);
@@ -2037,9 +2123,60 @@ void fragment() {
         for (var i = 0; i < 9; i++)
             VisualKit.Part(cascalho, VisualKit.Box(R(0.15f, 0.4f), R(0.1f, 0.25f), R(0.15f, 0.35f)), stone,
                 new Vector3(R(-r, r), 0.08f, R(-r, r)), new Vector3(R(-20, 20), R(0, 90), R(-20, 20)));
-        rock.AddChild(new Node3D());   // (a marca some junto: ver abaixo)
-        marca.Reparent(rock, false);   // 16/11: fora da árvore ainda (keepGlobal pedia a transformação global e dava erro no log)
-        _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = cascalho, Broken = rock });
+        _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = cascalho, Broken = suporte });
+    }
+
+    /// <summary>17/11: golpe na rocha oca — a rocha mais perto do ponto dá uma tremidinha.</summary>
+    public void TremerPedra(double x, double y)
+    {
+        var gv = _gates.Where(v => v.Gate.Kind == "pedra_secreta").OrderBy(v => (v.Gate.X - x) * (v.Gate.X - x) + (v.Gate.Y - y) * (v.Gate.Y - y)).FirstOrDefault();
+        if (gv?.Broken is not Node3D rocha || !GodotObject.IsInstanceValid(rocha)) return;
+        var casa = rocha.Position;
+        var tw = rocha.CreateTween();
+        for (var i = 0; i < 6; i++)
+            tw.TweenProperty(rocha, "position", casa + new Vector3(R(-0.07f, 0.07f), R(0f, 0.03f), R(-0.07f, 0.07f)), 0.035);
+        tw.TweenProperty(rocha, "position", casa, 0.05);
+    }
+
+    private static readonly Dictionary<int, ImageTexture> _petroglifos = new();
+
+    /// <summary>17/11: desenho rupestre (caçador com lança, espiral ou mão) pintado por código numa textura 128×128.</summary>
+    private static ImageTexture Petroglifo(int semente)
+    {
+        var tipo = Math.Abs(semente) % 3;
+        if (_petroglifos.TryGetValue(tipo, out var pronto)) return pronto;
+        const int N = 128;
+        var img = Image.CreateEmpty(N, N, false, Image.Format.Rgba8);
+        img.Fill(new Color(0, 0, 0, 0));
+        void Ponto(float x, float y, float raio)
+        {
+            for (var py = (int)(y - raio); py <= (int)(y + raio); py++)
+                for (var px = (int)(x - raio); px <= (int)(x + raio); px++)
+                    if (px >= 0 && py >= 0 && px < N && py < N && (px - x) * (px - x) + (py - y) * (py - y) <= raio * raio)
+                        img.SetPixel(px, py, new Color(1, 1, 1, 0.9f));
+        }
+        void Linha(float x0, float y0, float x1, float y1, float esp = 4.5f)
+        {
+            var n = (int)Mathf.Max(2, Mathf.Max(Mathf.Abs(x1 - x0), Mathf.Abs(y1 - y0)));
+            for (var i = 0; i <= n; i++) Ponto(Mathf.Lerp(x0, x1, i / (float)n), Mathf.Lerp(y0, y1, i / (float)n), esp);
+        }
+        if (tipo == 0)   // caçador com lança
+        {
+            Ponto(64, 24, 9); Linha(64, 33, 64, 78); Linha(64, 45, 42, 62); Linha(64, 45, 88, 38);
+            Linha(64, 78, 48, 108); Linha(64, 78, 82, 108); Linha(92, 14, 76, 112, 3f);
+        }
+        else if (tipo == 1)   // espiral
+        {
+            for (var t = 0f; t < 18.5f; t += 0.05f) Ponto(64 + Mathf.Cos(t) * t * 2.9f, 64 + Mathf.Sin(t) * t * 2.9f, 3.6f);
+        }
+        else   // mão
+        {
+            Linha(44, 110, 44, 70, 9); Linha(84, 110, 84, 70, 9); Linha(44, 110, 84, 110, 9); Ponto(64, 86, 18);
+            Linha(46, 66, 38, 30); Linha(56, 62, 54, 18); Linha(68, 62, 72, 16); Linha(80, 66, 88, 26); Linha(86, 82, 108, 64);
+        }
+        var tex = ImageTexture.CreateFromImage(img);
+        _petroglifos[tipo] = tex;
+        return tex;
     }
 
     /// <summary>
@@ -3662,6 +3799,8 @@ void fragment() {
             });
             node.AddChild(new OmniLight3D { LightColor = new Color(0.85f, 0.9f, 1f), LightEnergy = 1.1f, OmniRange = 9f, Position = new Vector3(0, alto - 1f, y + 3f), ShadowEnabled = false });
         }
+        // 17/11 (dono: "arruma direito a biblioteca do Porto"): a sala pequena ganha forro de madeira inteiro (antes via-se o céu)
+        if (pequena) VisualKit.Part(node, VisualKit.Box(x1 - x0, 0.15f, y1 - y0), TexMat("gen_madeira.png", new Color(0.36f, 0.22f, 0.13f), 0.5f), new Vector3(0, alto + 0.45f, (y0 + y1) / 2f));
         // lâmpadas quentes nas alcovas (luz de leitura)
         foreach (var y in pequena ? new[] { -4f, 2f } : new[] { -19f, -13f, -7f, -1f })
             foreach (var x in new[] { x0 + 1.8f, x1 - 1.8f })
@@ -4870,8 +5009,14 @@ void fragment() {
             // no capacho (ou na porta) e apertar F bate na porta
             var pt = new Node3D { Position = P(obj.X, obj.Y) };
             Root.AddChild(pt);
-            VisualKit.Part(pt, VisualKit.Cylinder(0.42f, 0.44f, 0.03f, 20), TexMat("gen_madeira.png", new Color(0.85f, 0.72f, 0.45f), 2f), new Vector3(0, 0.015f, 0));
-            VisualKit.Part(pt, VisualKit.Cylinder(0.3f, 0.3f, 0.035f, 20), VisualKit.Mat(new Color(0.55f, 0.32f, 0.2f), 0.95f), new Vector3(0, 0.02f, 0));
+            // 17/11 (dono: "dentro da casa tem que ter uma porta na parede pra sair, não aquela parada no chão — parece um
+            // tapete"): o capacho só fica do lado de FORA; dentro, só a porta na parede (PortaDeSaida)
+            var dentroDoComodo = Map.Instanced || Map.HalfSize <= 12;
+            if (!dentroDoComodo)
+            {
+                VisualKit.Part(pt, VisualKit.Cylinder(0.42f, 0.44f, 0.03f, 20), TexMat("gen_madeira.png", new Color(0.85f, 0.72f, 0.45f), 2f), new Vector3(0, 0.015f, 0));
+                VisualKit.Part(pt, VisualKit.Cylinder(0.3f, 0.3f, 0.035f, 20), VisualKit.Mat(new Color(0.55f, 0.32f, 0.2f), 0.95f), new Vector3(0, 0.02f, 0));
+            }
             VisualKit.Part(pt, VisualKit.Box(0.8f, 1.9f, 0.6f), VisualKit.Mat(new Color(0, 0, 0, 0), 1f), new Vector3(0, 0.95f, 0)).Visible = false;
             // 13/11 22:26 ("a interação está no chão — mirando na porta não dá; joga para as portas; e dentro das casas não tem
             // porta, fica sem guia"): para onde fica a parede da porta — o prédio mais perto (rua) ou a parede do cômodo (dentro)
@@ -4906,7 +5051,7 @@ void fragment() {
             _interactables.Add((obj, pt));
             return;
         }
-        if (obj.Kind == "livro")
+        if (obj.Kind is "livro" or "pesquisa")
         {
             // 12/11: atril de madeira com um livro aberto e uma vela (Biblioteca do Continente); o título flutua em cima
             var lv = new Node3D { Position = P(obj.X, obj.Y), RotationDegrees = new Vector3(0, R(-25, 25), 0) };
@@ -4929,8 +5074,10 @@ void fragment() {
             _interiorLights.Add((vela, R(0, 10)));
             lv.AddChild(new Label3D
             {
-                Text = obj.Label, FontSize = 30, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-                Modulate = new Color(1f, 0.88f, 0.6f), Position = new Vector3(0, 1.65f, 0),
+                Text = obj.Label, FontSize = 30, OutlineSize = 8, PixelSize = 0.006f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+                Modulate = new Color(1f, 0.88f, 0.6f), Position = new Vector3(0, 1.55f, 0),
+                // 17/11 (dono: "arruma direito a biblioteca"): nome menor e só de perto — de longe os títulos se encavalavam
+                VisibilityRangeEnd = 4.5f, VisibilityRangeEndMargin = 1f,
             });
             _objects.Add((obj, lv));
             _interactables.Add((obj, lv));
@@ -5125,6 +5272,7 @@ void fragment() {
     private static string HowTo(string kind) => kind switch
     {
         "porta" => "F: bater na porta",
+        "pesquisa" => "F: pesquisar no catálogo (item, material ou monstro)",
         "forja" => "chegue perto e aperte F: forjar e melhorar equipamento",
         "bancada" => "F: criar itens com materiais",
         "caldeirao" or "panela" => "F: preparar poções e comidas",
@@ -5342,6 +5490,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
                 continue;
             }
             g.Bars.Position = new Vector3(g.Bars.Position.X, 3.3f * Mathf.SmoothStep(0f, 1f, g.Open), g.Bars.Position.Z);
+            if (g.Veu is not null) g.Veu.Visible = g.Open > 0.6f;
             g.Lever.RotationDegrees = new Vector3(Mathf.Lerp(40f, -40f, Mathf.Min(1f, g.Open * 3f)), 0, 0);
         }
         foreach (var (pobj, tampa, pmats) in _placas)

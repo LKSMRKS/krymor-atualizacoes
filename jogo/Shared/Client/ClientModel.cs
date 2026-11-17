@@ -484,7 +484,7 @@ public sealed class ClientModel
                 break;
             case NoticeMessage notice when Historicar2(notice):
                 _notices.Enqueue(notice);
-                if (notice.Kind != "area") AddLog(notice.Text);
+                if (notice.Kind != "area") AddLog(notice.Kind == "pedra" ? notice.Text.Split('|')[0] : notice.Text);   // 17/11: "texto|x|y"
                 break;
             case CatalogMessage catalog:
                 Catalog = catalog;
