@@ -570,6 +570,7 @@ public partial class Main : Node3D
 
         EnsureWorld();
         AtualizarCarga();
+        AvisoNoite.Tick(this, _carga is { Visible: true } || _mapMontando is not null || _mapView is null);   // 16/11: anúncio da noite depois da carga
         // 16/11: o que o personagem já andou (névoa do mapa M)
         if (_model.Map is { } mapaExp && _model.Me is { } euExp && Engine.GetProcessFrames() % 15 == 0)
             Explorado.Marcar(_model.CharacterId ?? "", mapaExp.Id, euExp.X, euExp.Y);
@@ -1948,8 +1949,6 @@ public partial class Main : Node3D
                 else if (notice.Kind == "legend") { Sfx.Play("nivel"); PulseMine(new Color(0.3f, 1f, 0.6f, 0.6f), 1.6f); }
                 else if (notice.Kind == "regiao") { Sfx.Play("nivel"); PulseMine(new Color(1f, 0.75f, 0.35f, 0.6f), 2.2f); }   // 13/11: região nova   // 11/11: drop/refino grande
                 else if (notice.Kind == "reward") Sfx.Play("ui_aviso", -4f);
-                else if (notice.Kind == "noite") { Sfx.Play("amb2_sinos", -3f, 0f, 2000); Sfx.Play("rugido", -12f, 0.02f, 2000); }   // 16/11: a noite chegou
-                else if (notice.Kind == "amanhecer") { Sfx.Play("amb2_passaros", -4f, 0f, 2000); Sfx.Play("nivel", -10f, 0f, 2000); }
                 if (notice.Text.StartsWith('+')) _hud?.Feed("Obteve: " + notice.Text[1..].Trim());
                 break;
             case ClaimResultMessage claim when claim.Success:

@@ -243,7 +243,7 @@ public sealed class WorldPanels
         while (m.NextNotice() is { } n)
         {
             // 16/11: anoiteceu/amanheceu — anúncio de tela própria (lua, título vermelho, o que mudou)
-            if (n.Kind is "noite" or "amanhecer") { AvisoNoite.Mostrar(_banner, n.Kind == "noite"); continue; }
+            if (n.Kind is "noite" or "amanhecer") { AvisoNoite.Pedir(n.Kind == "noite"); continue; }
             if (n.Kind == "regiao")
             {
                 // 13/11: primeira vez numa região — cartão grande de "capítulo novo"

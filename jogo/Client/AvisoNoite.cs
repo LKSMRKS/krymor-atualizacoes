@@ -13,9 +13,24 @@ namespace CinzasDaMare.Client;
 public static partial class AvisoNoite
 {
     private static CanvasLayer? _camada;
+    private static bool? _pendente;
+
+    /// <summary>16/11: o aviso chega (login de noite, anoitecer, troca de mapa) — guarda e o Main mostra quando a tela de
+    /// carregamento sair (senão o anúncio tocava atrás dela e ninguém via).</summary>
+    public static void Pedir(bool noite) => _pendente = noite;
+
+    /// <summary>Chamado a cada quadro pelo Main: com mundo na tela (sem carga), mostra o que estiver pendente.</summary>
+    public static void Tick(Node qualquer, bool carregando)
+    {
+        if (_pendente is not { } n || carregando) return;
+        _pendente = null;
+        Mostrar(qualquer, n);
+    }
 
     public static void Mostrar(Node qualquer, bool noite)
     {
+        if (noite) { Sfx.Play("amb2_sinos", -3f, 0f, 2000); Sfx.Play("rugido", -12f, 0.02f, 2000); }
+        else { Sfx.Play("amb2_passaros", -4f, 0f, 2000); Sfx.Play("nivel", -10f, 0f, 2000); }
         _camada?.QueueFree();
         var tree = qualquer.GetTree();
         if (tree is null) return;
