@@ -586,7 +586,15 @@ public sealed class HudView
         _alvo = new BarraAlvo { CustomMinimumSize = new Vector2(440f, 52f), MouseFilter = Control.MouseFilterEnum.Ignore };
         _targetPanel = _alvo;
         centerTop.AddChild(_targetPanel);
-        top.AddChild(centerTop);
+        // 17/11 (dono: "bússola e o sangue grande quando mira no monstro não estão centralizados"): antes ficavam entre a
+        // coluna da esquerda e a da direita (larguras diferentes) e escorregavam para a direita; agora presos no meio da tela
+        Root.AddChild(centerTop);
+        centerTop.AnchorLeft = 0.5f; centerTop.AnchorRight = 0.5f; centerTop.AnchorTop = 0f; centerTop.AnchorBottom = 0f;
+        centerTop.OffsetLeft = -220f; centerTop.OffsetRight = 220f; centerTop.OffsetTop = 12f; centerTop.OffsetBottom = 112f;
+        centerTop.GrowHorizontal = Control.GrowDirection.Both;
+        centerTop.Alignment = BoxContainer.AlignmentMode.Begin;
+        _compass.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
+        _targetPanel.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
 
         top.AddChild(Spacer());
 

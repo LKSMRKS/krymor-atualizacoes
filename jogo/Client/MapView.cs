@@ -784,6 +784,15 @@ float vnoise(vec2 p) { vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3
   return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y); }
 float fbm(vec2 p) { float v = 0.0; float a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p = p * 2.03 + 7.0; a *= 0.5; } return v; }
 void vertex() { dir = normalize(VERTEX); }
+// 16/11 (dono: «coloque mais coisas no céu do sul, pra ficar daora de ver e bonito, uma galáxia, três marias»): estrela
+// pontual com brilho em volta (a = ângulo até ela); usada nas Três Marias, em Órion e no Cruzeiro do Sul
+float estrela(vec3 d, vec3 p, float r, float fase) {
+  float c = dot(d, normalize(p));
+  if (c < 0.995) return 0.0;
+  float a2 = 2.0 * (1.0 - c);   // ≈ ângulo²
+  float pisca = 0.82 + 0.18 * sin(TIME * (2.1 + fase) + fase * 7.0);
+  return (exp(-a2 / (r * r)) + 0.35 * exp(-a2 / (r * r * 9.0))) * pisca;
+}
 vec4 astro(vec3 d, vec3 c, float raio, vec3 cor, float crateras, float anel) {
   if (dot(d, c) < 0.9) return vec4(0.0);   // só perto do astro (senão aparecia um disco no lado oposto do céu)
   vec3 t1 = normalize(cross(c, vec3(0.0, 1.0, 0.0))); vec3 t2 = cross(t1, c);
@@ -836,6 +845,59 @@ void fragment() {
     c = I > 0.001 ? c / I : c;
     float norte = pontas * smoothstep(0.03, 0.09, d.y);
     acc = vec4(c, clamp(I, 0.0, 1.0) * norte * night * aurora * 0.6);
+  }
+  // 16/11: CÉU DO SUL à noite — a Via Láctea (faixa de poeira estelar com núcleo dourado e fenda escura), as Três Marias
+  // com o resto de Órion (Betelgeuse laranja, Rigel azul, a nebulosa rosada da espada) e o Cruzeiro do Sul perto do horizonte
+  if (night > 0.05 && d.y > 0.0) {
+    vec3 nucleo = normalize(vec3(-0.10, 0.20, 0.97));          // centro da galáxia: no sul, baixo (17/11: «pequena, lá no fundo»)
+    vec3 outro = normalize(vec3(0.95, 0.12, 0.25));            // a faixa corre baixa pelo sudeste, perto do horizonte
+    vec3 polo = normalize(cross(nucleo, outro));
+    vec3 eixo2 = normalize(cross(polo, nucleo));
+    float b = dot(d, polo);
+    vec2 g = vec2(atan(dot(d, eixo2), dot(d, nucleo)), b);
+    float faixa = exp(-b * b / 0.0045);
+    float perto = exp(-(g.x * g.x) / 0.12);                   // mais forte em volta do núcleo
+    faixa *= exp(-(g.x * g.x) / 0.9);                        // só um trecho da faixa (some antes de cruzar o céu)
+    float nuvem = fbm(g * vec2(8.0, 45.0) + 3.0) * 0.75 + fbm(g * vec2(24.0, 120.0)) * 0.35;
+    float fenda = smoothstep(0.45, 0.75, fbm(g * vec2(9.0, 60.0) + 11.0)) * exp(-b * b / 0.0006) * (0.4 + 0.6 * perto);
+    float via = faixa * (0.25 + 0.75 * nuvem) * (0.55 + 1.3 * perto) * (1.0 - 0.75 * fenda);
+    vec3 corVia = mix(vec3(0.58, 0.66, 0.95), vec3(1.0, 0.84, 0.66), clamp(perto * 1.2 - abs(b) * 4.0, 0.0, 1.0));
+    // poeira de estrelinhas: mais densa dentro da faixa
+    vec2 q = d.xz / (1.0 + d.y) * 260.0;
+    vec2 cel = floor(q); vec2 f = fract(q) - 0.5;
+    float hh = hash(cel);
+    float limiar = 0.985 - faixa * 0.05;
+    float pont = hh > limiar ? smoothstep(0.22, 0.0, length(f + (vec2(hash(cel + 3.1), hash(cel + 7.7)) - 0.5) * 0.5)) * (0.5 + 0.5 * sin(TIME * 1.7 + hh * 40.0)) : 0.0;
+    float kVia = clamp(via * 0.30, 0.0, 0.32) * night * smoothstep(0.0, 0.12, d.y);
+    acc = vec4(mix(acc.rgb, corVia, kVia), max(acc.a, kVia));
+    float kP = pont * night * 0.9 * smoothstep(0.02, 0.1, d.y);
+    acc = vec4(mix(acc.rgb, vec3(1.0, 0.97, 0.92), kP), max(acc.a, kP));
+
+    // Órion e as Três Marias (sul, bem visível)
+    vec3 cO = normalize(vec3(0.38, 0.62, 0.69));
+    vec3 tO = normalize(cross(cO, vec3(0.0, 1.0, 0.0)));
+    vec3 uO = normalize(cross(tO, cO));
+    vec3 cinto = normalize(tO * 0.94 + uO * 0.34);              // o cinto levemente inclinado
+    float tm = estrela(d, cO - cinto * 0.034, 0.0045, 0.1) + estrela(d, cO, 0.0047, 1.3) + estrela(d, cO + cinto * 0.033, 0.0044, 2.2);
+    float azul = estrela(d, cO - uO * 0.115 + tO * 0.05, 0.0055, 3.0) + estrela(d, cO - uO * 0.11 - tO * 0.05, 0.0034, 4.1) * 0.7
+      + estrela(d, cO + uO * 0.10 + tO * 0.055, 0.0036, 5.2) * 0.75;
+    float laranja = estrela(d, cO + uO * 0.115 - tO * 0.052, 0.0058, 6.3);
+    float neb = exp(-(2.0 * (1.0 - dot(d, normalize(cO - uO * 0.05 + tO * 0.006)))) / 0.00012) * (0.6 + 0.4 * fbm(d.xy * 90.0));
+    vec3 cOri = vec3(0.0); float kO = 0.0;
+    cOri += vec3(0.86, 0.92, 1.0) * tm; kO += tm;
+    cOri += vec3(0.62, 0.78, 1.0) * azul; kO += azul;
+    cOri += vec3(1.0, 0.58, 0.32) * laranja; kO += laranja;
+    cOri += vec3(1.0, 0.45, 0.65) * neb * 0.6; kO += neb * 0.5;
+    if (kO > 0.001) { float k = clamp(kO, 0.0, 1.0) * night; acc = vec4(mix(acc.rgb, cOri / kO, k), max(acc.a, k)); }
+
+    // Cruzeiro do Sul (baixo, a sudoeste)
+    vec3 cC = normalize(vec3(-0.52, 0.26, 0.81));
+    vec3 tC = normalize(cross(cC, vec3(0.0, 1.0, 0.0)));
+    vec3 uC = normalize(cross(tC, cC));
+    float cruz = estrela(d, cC + uC * 0.05, 0.0042, 0.7) + estrela(d, cC - uC * 0.06, 0.0048, 1.9)
+      + estrela(d, cC + tC * 0.035 + uC * 0.005, 0.0038, 2.8) + estrela(d, cC - tC * 0.03 - uC * 0.008, 0.0036, 3.6)
+      + estrela(d, cC - tC * 0.012 - uC * 0.022, 0.0022, 4.4) * 0.7;
+    if (cruz > 0.001) { float k = clamp(cruz, 0.0, 1.0) * night; acc = vec4(mix(acc.rgb, vec3(0.9, 0.94, 1.0), k), max(acc.a, k)); }
   }
   float vis = mix(0.32, 1.0, night);
   vec4 l1 = astro(d, normalize(vec3(-0.55, 0.52, -0.64)), 0.07, vec3(0.93, 0.91, 0.84), 1.0, 0.0);

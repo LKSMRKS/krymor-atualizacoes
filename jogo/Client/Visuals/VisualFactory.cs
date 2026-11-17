@@ -612,7 +612,12 @@ public static class VisualFactory
     public static IEntityVisual Monster(string definitionId, bool boss, bool rare, string visual = "", string seed = "", int skin = 0)
     {
         if (visual == "boneco_treino") return new BonecoTreinoVisual();   // 13/11: boneco do Mestre Dorval (apanha e balança)
-        if (MonstrosNovos.Criar(visual, boss, seed, definitionId) is { } novo) return novo;   // 14/11: monstros novos sem emenda (Visuals/MonstrosNovos.cs, Assets/Models/monstros/catalogo.json)
+        if (MonstrosNovos.Criar(visual, boss, seed, definitionId) is { } novo)
+        {
+            // 17/11 (dono: "o esqueleto que você colocou está muito escuro, não dá pra ver de longe"): osso mais claro
+            if (visual == "goblin_skeleton") Tingir(novo.Root, new Color(1.9f, 1.85f, 1.7f));
+            return novo;
+        }   // 14/11: monstros novos sem emenda (Visuals/MonstrosNovos.cs, Assets/Models/monstros/catalogo.json)
         if (visual.StartsWith("fab_", StringComparison.Ordinal) && FabulaVisuals.Criar(visual, boss) is { } fab) return fab;   // 13/11: Era Uma Vez e arredores
         // 14/11 (dono: "dois monstros ultra gigantes, impossíveis de matar"): os titãs — o golem de cal com 13 m (pedra escura e
         // brasa no peito) e o dragão com 8× o tamanho, em brasa
@@ -700,7 +705,8 @@ public static class VisualFactory
             case "goblin_skeleton":
                 return Enemy(new HumanoidStyle
                 {
-                    Scale = 0.7f, Skin = new Color(0.40f, 0.38f, 0.33f), Cloth = new Color(0.20f, 0.17f, 0.14f), Accent = new Color(0.35f, 0.32f, 0.28f),
+                    // 17/11: osso cor de osso (era cinza-escuro: de longe não se via que era esqueleto)
+                    Scale = 0.7f, Skin = new Color(0.88f, 0.84f, 0.72f), Cloth = new Color(0.24f, 0.20f, 0.16f), Accent = new Color(0.62f, 0.58f, 0.50f),
                     Eyes = new Color(0.35f, 0.85f, 1f), EyesGlow = true, Hunch = 0.38f, FixedWeapon = "hatchet", Ears = true, HeadScale = 1.4f, Girth = 0.82f, Bone = true,
                 });
             // lote 3: Arqueiro e Chefe com modelo próprio (já vestidos e armados); o goblin pequeno e o esqueleto ficam como

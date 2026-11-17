@@ -486,6 +486,102 @@ public static partial class PoderesVfx
         d.Proj = () => LancaVoando(Ouro, 2.6f);
         d.Acerto = c => { Impacto(c, Ouro, 1.5f); Onda(c, c.Alvo, 2f, Ouro, Branco, 0.35); };
 
+        // ---- 17/11: golpes novos da 2ª e da 3ª classe (Tools/gerar_habilidades_evolucao.py), feitos com as peças acima
+        Action<Ctx> SaltoCom(Color cor, float altura, float choque) => c =>
+        {
+            var a = c.Inicio + Vector3.Up * 1f; var b = c.Alvo + Vector3.Up * 1f;
+            var pts = Curva(a, (a + b) / 2f + Vector3.Up * altura, b, 14);
+            var mat = Fresnel(cor, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
+            var tubo = Parte(c.Cena, Tubo(pts, 0.05f, 0.25f, 6), mat, Vector3.Zero);
+            c.Cena.Add(tubo, 0.5, (x, t, dt) => mat.SetShaderParameter("alfa", 1f - t));
+            c.Cena.Depois(0.12, () => { Choque(c, c.Alvo, choque, cor, 1.5f, "cratera"); c.Tremer(0.25f); });
+        };
+        d = D("skill_campeao_salto_do_campeao", "Salto do Campeão", "guerreiro", "dash", 7f, 0);
+        d.Prep = c => Particulas(c.Cena, null, c.Pos + Vector3.Up * 0.1f, Poeira(Terra, 0.6f, 12));
+        d.Golpe = SaltoCom(Ouro, 3.4f, 2.6f);
+        d.Acerto = c => Impacto(c, Ouro, 1.2f);
+
+        d = D("skill_campeao_brado_de_guerra", "Brado de Guerra", "guerreiro", "cone", 4.5f, 0);
+        d.Prep = c => Carga(c, Sangue, 0.8f, 0.35);
+        d.Golpe = c => { Rugido(c, 4.5f, Sangue); c.Tremer(0.15f); };
+        d.Acerto = c => ImpactoSangue(c, 10);
+
+        d = D("skill_leao_garras_do_rei", "Garras do Rei", "guerreiro", "cone", 5f, 0);
+        d.Prep = c => Carga(c, Ouro, 1.0f, 0.4);
+        d.Golpe = c => { Giro(c, 5f, 0.35, Ouro, Branco, false, 7f); Rugido(c, 5f, Ouro); c.Tremer(0.2f); };
+        d.Acerto = c => { Impacto(c, Ouro, 1.1f); ImpactoSangue(c, 8); };
+
+        d = D("skill_leao_salto_solar", "Salto Solar", "guerreiro", "dash", 9f, 0);
+        d.Prep = c => { Aura(c, c.Pos, 1.6f, Ouro, Branco, 0.6, false); Carga(c, Ouro, 1.2f, 0.4); };
+        d.Golpe = c => { SaltoCom(Ouro, 4.6f, 4f)(c); c.Cena.Depois(0.14, () => AnelDeFogo(c, c.Alvo, 3.4f, Ouro, 0.8)); };
+        d.Acerto = c => Impacto(c, Ouro, 1.5f);
+
+        d = D("skill_arcanista_orbe_do_vazio", "Orbe do Vazio", "mago", "projectile", 20f, 0.6f);
+        d.Prep = c => Carga(c, Sombra, 0.9f, 0.5);
+        d.Golpe = c => Mao(c, Sombra, 0.55f);
+        d.Proj = () => LancaVoando(Sombra, 1.0f);
+        d.Acerto = c => { Explosao(c, c.Alvo, 3f, Sombra, new Color(0.08f, 0.05f, 0.12f), 0.7f); Onda(c, c.Alvo, 3f, Arcano, Branco, 0.35); };
+
+        d = D("skill_arcanista_nevasca", "Nevasca", "mago", "ground", 14f, 4.5f);
+        d.Prep = c => { Runas(c, c.Alvo, 4.5f, Gelo with { A = 0.8f }, 0.9, 1f); Carga(c, Gelo, 0.9f, 0.6); };
+        d.Golpe = c => { Cristais(c, c.Alvo, 4.5f, 22, 2.4, Gelo); Particulas(c.Cena, null, c.Alvo + Vector3.Up * 4f, Gotas(Vector3.Down, 60) with { Caixa = new Vector3(4.5f, 0.5f, 4.5f), Espalha = 15f, VelMin = 3f, VelMax = 6f, Vida = 1.4 }); };
+
+        d = D("skill_leao_estrela_cadente", "Estrela Cadente", "mago", "projectile", 26f, 0.8f);
+        d.Prep = c => { Carga(c, Ouro, 1.1f, 0.7); Runas(c, c.Pos, 1.8f, Ouro with { A = 0.7f }, 0.7, 1f); };
+        d.Golpe = c => { Mao(c, Ouro, 0.7f); c.Tremer(0.15f); };
+        d.Proj = () => LancaVoando(Ouro, 2.2f);
+        d.Acerto = c => { Explosao(c, c.Alvo, 4f, Ouro, new Color(0.4f, 0.3f, 0.15f), 1.2f); Choque(c, c.Alvo, 4f, Ouro, 1.3f, "cratera"); c.Tremer(0.35f); };
+
+        d = D("skill_leao_tempestade_juba", "Tempestade da Juba", "mago", "ground", 16f, 5f);
+        d.Prep = c => { Runas(c, c.Alvo, 5f, Ouro with { A = 0.8f }, 1.1, 0.9f); Carga(c, Ouro, 1.2f, 0.8); };
+        d.Golpe = c => Muitas(c, c.Alvo, 4.4f, 7, 0.7, p =>
+        {
+            var r = Relampago(c.Cena, p + Vector3.Up * 9f, p + Vector3.Up * 0.2f, new Color(1f, 0.85f, 0.45f), 10, 0.4f, 0.06f);
+            c.Cena.Add(r, 0.18);
+            Impacto(c, Ouro, 0.9f);
+            Marca(c.Cena, NoChao(p), "queimado", 0.9f, new Color(1, 1, 1, 0.7f), 1.5);
+        });
+
+        d = D("skill_matriarca_fruto_venenoso", "Fruto Venenoso", "bruxa", "projectile", 15f, 0.5f);
+        d.Prep = c => Carga(c, Verde, 0.7f, 0.4);
+        d.Golpe = c => Mao(c, Verde, 0.5f);
+        d.Proj = () => LancaVoando(Verde, 0.9f);
+        d.Acerto = c => { Explosao(c, c.Alvo, 2.8f, Verde, new Color(0.15f, 0.3f, 0.1f), 0.6f); Marca(c.Cena, c.Alvo, "queimado", 1.4f, new Color(0.3f, 0.9f, 0.3f, 0.6f), 3); };
+
+        d = D("skill_matriarca_muralha_espinhos", "Muralha de Espinhos", "bruxa", "nova", 0, 3.5f);
+        d.Prep = c => Runas(c, c.Pos, 3.5f, Verde with { A = 0.7f }, 0.5, 1f);
+        d.Golpe = c => Brotar(c, c.Pos, 3.5f, 14, "matriarca", 1.4);
+
+        d = D("skill_leao_flor_carnivora", "Flor Carnívora", "bruxa", "ground", 14f, 3.5f);
+        d.Prep = c => { Runas(c, c.Alvo, 3.5f, Ouro with { A = 0.7f }, 0.9, 0.9f); Carga(c, Verde, 1.0f, 0.6); };
+        d.Golpe = c => { Brotar(c, c.Alvo, 3.5f, 10, "garras", 1.9); Aura(c, c.Alvo, 3.5f, Verde, Ouro, 1.2, false); };
+
+        d = D("skill_leao_seiva_solar", "Seiva Solar", "bruxa", "heal_area", 0, 10f);
+        d.Prep = c => Carga(c, Ouro, 1.0f, 0.5);
+        d.Golpe = c => { Aura(c, c.Pos, 10f, Ouro, Verde, 1.4, false); Onda(c, c.Pos, 10f, Verde, Ouro, 0.6); };
+
+        d = D("skill_batedor_leque_de_flechas", "Leque de Flechas", "arqueiro", "projectile", 18f, 0.4f);
+        d.Golpe = c => Mao(c, Branco, 0.35f);
+        d.Proj = () => Flecha(new Color(1f, 0.95f, 0.8f), 1.2f);
+        d.Acerto = c => Impacto(c, Branco, 0.5f);
+
+        d = D("skill_batedor_flecha_gelida", "Flecha Gélida", "arqueiro", "projectile", 24f, 0.5f);
+        d.Prep = c => Carga(c, Gelo, 0.6f, 0.5);
+        d.Golpe = c => Mao(c, Gelo, 0.45f);
+        d.Proj = () => Flecha(Gelo, 1.8f);
+        d.Acerto = c => { Cristais(c, c.Alvo, 0.9f, 6, 0.9, Gelo); Impacto(c, Gelo); };
+
+        d = D("skill_leao_chuva_dourada", "Chuva Dourada", "arqueiro", "ground", 18f, 5f);
+        d.Prep = c => { Runas(c, c.Alvo, 5f, Ouro with { A = 0.7f }, 0.9, 1f); Feixe(c, c.Mao, c.Mao + (Vector3.Up * 3f + c.Frente).Normalized() * 9f, Ouro, 0.04f, 0.6); };
+        d.Golpe = c => ChuvaDeArmas(c, c.Alvo, 5f, 24, false, Ouro, 0.65);
+        d.Acerto = c => Impacto(c, Ouro, 0.6f);
+
+        d = D("skill_leao_disparo_do_rei", "Disparo do Rei", "arqueiro", "projectile", 30f, 0.7f);
+        d.Prep = c => { Carga(c, Ouro, 1.0f, 0.7); Aura(c, c.Pos, 1.4f, Ouro, Sangue, 0.8, false); };
+        d.Golpe = c => { Mao(c, Ouro, 0.6f); c.Tremer(0.15f); };
+        d.Proj = () => Flecha(Ouro, 2.4f, trovao: true);
+        d.Acerto = c => { Impacto(c, Ouro, 1.3f); Onda(c, c.Alvo, 1.8f, Sangue, Ouro, 0.3); };
+
         d = D("skill_arqueiro_fenix", "Fênix de Fogo", "arqueiro", "projectile", 24f, 1.1f);
         d.Prep = c => { AnelDeFogo(c, c.Pos, 1.6f, Fogo_, 0.9); Carga(c, Fogo_, 1.1f, 0.8); };
         d.Golpe = c => { Mao(c, Fogo_, 0.8f); c.Tremer(0.2f); };
