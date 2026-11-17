@@ -4130,6 +4130,28 @@ void fragment() {
                 _wingPivots.Add((pivot, side));
             }
             pack.QueueFree();
+            // 17/11 (dono: "asa do abismo rúnico tá igual à asa de ferro?"): ferro e neve usam o mesmo molde das de 2º nível,
+            // mas com cara própria — ferro: aço frio, metálico e fosco; neve: gelo claro com brilho azulado
+            if (kind is "ferro" or "neve")
+                foreach (var n in _wings.FindChildren("*", nameof(MeshInstance3D), true, false))
+                    if (n is MeshInstance3D mi && mi.Mesh is not null)
+                        for (var i = 0; i < mi.Mesh.GetSurfaceCount(); i++)
+                            if ((mi.GetSurfaceOverrideMaterial(i) ?? mi.Mesh.SurfaceGetMaterial(i)) is StandardMaterial3D sm)
+                            {
+                                var c = (StandardMaterial3D)sm.Duplicate();
+                                if (kind == "ferro")
+                                {
+                                    c.AlbedoTexture = null; c.AlbedoColor = new Color(0.46f, 0.49f, 0.53f);
+                                    c.Metallic = 0.85f; c.Roughness = 0.38f; c.EmissionEnabled = false;
+                                }
+                                else
+                                {
+                                    c.AlbedoColor = sm.AlbedoColor * new Color(0.82f, 0.95f, 1.15f);
+                                    c.EmissionEnabled = true; c.Emission = new Color(0.35f, 0.62f, 0.95f); c.EmissionEnergyMultiplier = 0.35f;
+                                    c.Roughness = 0.2f;
+                                }
+                                mi.SetSurfaceOverrideMaterial(i, c);
+                            }
             if (_wingPivots.Count > 0) return;
         }
         var neve = kind == "neve";

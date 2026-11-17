@@ -736,7 +736,9 @@ void fragment() {
         });
         ApplyQuality();
         AddSkyLife();
-        AddVeuDaMare();   // 17/11: película verde em volta dos refúgios (zona segura)
+        // 17/11 (dono: "pq tem esse quadrado verde aqui? é só no portão onde os bichos não passam e na biblioteca"):
+        // a película em volta dos refúgios saiu; fica só no portão e nas entradas da biblioteca
+        // AddVeuDaMare();
     }
 
     /// <summary>

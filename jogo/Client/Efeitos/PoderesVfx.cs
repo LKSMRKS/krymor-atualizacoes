@@ -246,14 +246,33 @@ public static partial class PoderesVfx
 
         d = D("skill_guerreiro_salto", "Salto Esmagador", "guerreiro", "dash", 6.5f, 0);
         d.Prep = c => Particulas(c.Cena, null, c.Pos + Vector3.Up * 0.1f, Poeira(Terra, 0.6f, 12));
+        // 17/11 (dono: "a animação do pulo vai fora do pulo do boneco"): o rastro e a cratera seguem o PRÓPRIO boneco —
+        // o brilho vai junto dele no ar e a cratera nasce onde ele pousa (quando para), não no alcance máximo calculado
         d.Golpe = c =>
         {
-            var a = c.Inicio + Vector3.Up * 1f; var b = c.Alvo + Vector3.Up * 1f;
-            var pts = Curva(a, (a + b) / 2f + Vector3.Up * 3.2f, b, 14);
+            var ator = c.Ator;
+            Vector3 Onde() => ator is { } a && GodotObject.IsInstanceValid(a) ? a.GlobalPosition : c.Alvo;
             var mat = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
-            var tubo = Parte(c.Cena, Tubo(pts, 0.05f, 0.25f, 6), mat, Vector3.Zero);
-            c.Cena.Add(tubo, 0.5, (x, t, dt) => mat.SetShaderParameter("alfa", 1f - t));
-            c.Cena.Depois(0.12, () => Choque(c, c.Alvo, 2.4f, Terra, 1.5f, "cratera"));
+            var bola = Parte(c.Cena, new SphereMesh { Radius = 0.55f, Height = 1.1f }, mat, Onde() + Vector3.Up * 1f);
+            var ultimo = Onde(); var parado = 0f; var andou = false; var pousou = false;
+            void Pousa()
+            {
+                if (pousou) return;
+                pousou = true;
+                Choque(c, NoChao(Onde()), 2.4f, Terra, 1.5f, "cratera");
+            }
+            c.Cena.Add(bola, 0.9, (x, t, dt) =>
+            {
+                var agora = Onde();
+                x.GlobalPosition = agora + Vector3.Up * 1f;
+                mat.SetShaderParameter("alfa", pousou ? 0f : 0.8f);
+                if (pousou || dt <= 0) return;
+                var v = (agora - ultimo).Length() / dt;
+                ultimo = agora;
+                if (v > 2f) { andou = true; parado = 0; Particulas(c.Cena, null, agora + Vector3.Up * 0.4f, Poeira(Terra, 0.35f, 3)); }
+                else if (andou || t > 0.45f) { parado += dt; if (parado > 0.06f || t > 0.8f) Pousa(); }
+            });
+            c.Cena.Depois(0.88, Pousa);
         };
         d.Acerto = c => Impacto(c, Terra, 1.2f);
 

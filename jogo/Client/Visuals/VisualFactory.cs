@@ -253,6 +253,7 @@ public static class VisualFactory
     /// <summary>14/11 ("mais montarias"): variações tingidas dos modelos 3D (mesma animação, outra pelagem).</summary>
     public static readonly Dictionary<string, (string Base, Color Tinta)> VariacoesMontaria = new()
     {
+        ["burro"] = ("corcel", new Color(0.62f, 0.57f, 0.52f)),   // 17/11: Burrinho Corajoso (cinza-pardo)
         ["corcel_negro"] = ("corcel", new Color(0.32f, 0.26f, 0.28f)), ["lobo_sombrio"] = ("lobo", new Color(0.55f, 0.4f, 0.85f)),
         ["pantera"] = ("leao", new Color(0.2f, 0.2f, 0.24f)), ["raptor_rubro"] = ("dinossauro", new Color(1f, 0.42f, 0.38f)),
     };
