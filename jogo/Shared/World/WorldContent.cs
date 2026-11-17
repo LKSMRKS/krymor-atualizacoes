@@ -109,6 +109,8 @@ public sealed record MapPortal(string Id, double X, double Y, double Radius, str
     /// vezes"): chave que destranca esta passagem DE VEZ para o personagem (gasta na primeira vez; marca "chave:&lt;id&gt;").
     /// A chave cai, às vezes, dos monstros do mapa onde o portal está.</summary>
     public string? KeyItem { get; init; }
+    /// <summary>17/11 (dono: "tira do mapa, senão entrega o segredo"): passagem secreta — não aparece no mapa M nem no minimapa.</summary>
+    public bool Oculto { get; init; }
     /// <summary>12/11: entrada da dungeon no modo DIFÍCIL (outra instância, monstros mais fortes, mais XP e loot).</summary>
     public bool Hard { get; init; }
 }
@@ -390,6 +392,9 @@ public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double Aggr
     public double TurnDegPerSec { get; init; }
     /// <summary>Sem alvo fica parado no lugar, encolhido como pedra (dorme), até alguém chegar perto. Depois volta e encolhe de novo.</summary>
     public bool StoneRest { get; init; }
+    /// <summary>17/11 (dono: "alguns quadrúpedes estão andando de lado"): bicho de quatro patas — no cerco, anda virado
+    /// para onde vai (não de lado, encarando o jogador); vira para o alvo só para golpear.</summary>
+    public bool Quadrupede { get; init; }
 
     // ---- 14/11: movimento dos inimigos (todos opcionais; 0/-1 = padrão do servidor) ----
     /// <summary>Ao pegar um alvo novo, ronda em volta dele por este tempo antes de fechar para o golpe (lobos). 0 = não ronda.</summary>

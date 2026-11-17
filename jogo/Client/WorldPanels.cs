@@ -1335,7 +1335,7 @@ public sealed partial class WorldMapCanvas : Control
         _alvos.Clear();
         foreach (var portal in Layout.Portals)
         {
-            if (Visuals.EscadaCasa.PortalDeEscada(portal)) continue;   // 13/11: a escada é mecânica, não aparece no mapa
+            if (Visuals.EscadaCasa.PortalDeEscada(portal) || portal.Oculto) continue;   // 13/11: a escada é mecânica, não aparece no mapa; 17/11: passagem secreta também não
             var p = At(portal.X, portal.Y);
             // 13/11 ("passagens com trava são vermelhas"): trancada pelo nível = vermelha, com o nível ao lado
             // 14/11 23h (dono: "os TPs bloqueados, com o portal vermelho, em vermelho no minimapa e no mapa"): mesma regra do portal 3D

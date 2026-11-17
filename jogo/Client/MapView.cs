@@ -1994,10 +1994,13 @@ void fragment() {
         Root.AddChild(bars);
         // 17/11 (dono: "na frente do portão o meu ataque não passa e os monstros não atravessam — coloca uma película verde"):
         // aberto, o vão fica com o Véu da Maré (só gente passa; ver o livro na Biblioteca do Cais)
+        // (17/11, Biblioteca do Continente: "coloca a magia verde barrando as entradas" — lá o véu fica no vão FECHADO,
+        // e a grade vai no comprido do portão, que é em pé no eixo y)
         var veuPortao = new MeshInstance3D
         {
-            Mesh = new QuadMesh { Size = new Vector2(w, 3.4f), Material = new ShaderMaterial { Shader = new Shader { Code = VeuShader }, RenderPriority = 2 } },
-            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off, Position = P(g.X, g.Y, 1.7f), Visible = false,
+            Mesh = new QuadMesh { Size = new Vector2(Mathf.Max(w, (float)g.H), Map.Theme == "biblioteca" ? 4.2f : 3.4f), Material = new ShaderMaterial { Shader = new Shader { Code = VeuShader }, RenderPriority = 2 } },
+            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off, Position = P(g.X, g.Y, Map.Theme == "biblioteca" ? 2.1f : 1.7f), Visible = false,
+            RotationDegrees = new Vector3(0, g.H > g.W ? 90f : 0f, 0),
         };
         veuPortao.SetMeta("nao_juntar", true);
         Root.AddChild(veuPortao);
@@ -2023,6 +2026,16 @@ void fragment() {
             handle = VisualKit.Joint(lever, new Vector3(0, 0.6f, 0));
             VisualKit.Part(handle, VisualKit.Cylinder(0.04f, 0.04f, 0.9f, 6), wood, new Vector3(0, 0.45f, 0));
             VisualKit.Part(handle, VisualKit.Sphere(0.09f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 1.5f), new Vector3(0, 0.92f, 0));
+        }
+        // 17/11 (dono: "coloca a alavanca com detalhes verdes"): na Biblioteca, a alavanca das alas é do Véu — anel de runas
+        // verde na base, uma pedra verde acesa no cabo e uma luz fraca
+        if (Map.Theme == "biblioteca")
+        {
+            var verde = new Color(0.3f, 1f, 0.55f);
+            VisualKit.Part(lever, VisualKit.Ring(0.42f, 0.035f, 28), VisualKit.Glow(verde, 2.2f), new Vector3(0, 0.03f, 0));
+            VisualKit.Part(lever, VisualKit.Ring(0.3f, 0.02f, 24), VisualKit.Glow(verde, 1.6f), new Vector3(0, 0.035f, 0));
+            VisualKit.Part(handle, VisualKit.Sphere(0.075f), VisualKit.Glow(verde, 3f), new Vector3(0, 0.85f, 0));
+            lever.AddChild(new OmniLight3D { LightColor = verde, LightEnergy = 0.7f, OmniRange = 2.4f, Position = new Vector3(0, 0.7f, 0), ShadowEnabled = false });
         }
         handle.RotationDegrees = new Vector3(40, 0, 0);
         _gates.Add(new GateView { Gate = g, Bars = bars, Lever = handle, Veu = veuPortao });
@@ -5490,7 +5503,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
                 continue;
             }
             g.Bars.Position = new Vector3(g.Bars.Position.X, 3.3f * Mathf.SmoothStep(0f, 1f, g.Open), g.Bars.Position.Z);
-            if (g.Veu is not null) g.Veu.Visible = g.Open > 0.6f;
+            if (g.Veu is not null) g.Veu.Visible = Map.Theme == "biblioteca" ? g.Open < 0.4f : g.Open > 0.6f;
             g.Lever.RotationDegrees = new Vector3(Mathf.Lerp(40f, -40f, Mathf.Min(1f, g.Open * 3f)), 0, 0);
         }
         foreach (var (pobj, tampa, pmats) in _placas)

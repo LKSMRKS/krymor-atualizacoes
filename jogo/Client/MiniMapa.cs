@@ -76,7 +76,7 @@ public sealed partial class MiniMapa : Control
         var meuNivel = m.Progress?.Level ?? me.Level;
         foreach (var pt in map.Portals)
         {
-            if (Visuals.EscadaCasa.PortalDeEscada(pt)) continue;
+            if (Visuals.EscadaCasa.PortalDeEscada(pt) || pt.Oculto) continue;   // 17/11: passagem secreta não aparece
             var p = P(pt.X, pt.Y);
             if (!Inside(p)) continue;
             // 14/11 23h: trancado (nível ou marca que falta) = vermelho, igual ao portal vermelho do mapa 3D
