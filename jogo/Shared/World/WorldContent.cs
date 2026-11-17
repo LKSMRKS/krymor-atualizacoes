@@ -105,6 +105,10 @@ public sealed record MapPortal(string Id, double X, double Y, double Radius, str
     public string? RequiresItem { get; init; }
     /// <summary>12/11 (ramificações: "não chegar num lugar antes da hora"): true = o nível vira TRAVA (abaixo dele não passa).</summary>
     public bool LevelLock { get; init; }
+    /// <summary>17/11 (dono: "a porta que abre com a chave, dá pra fazer isso pra abrir portais também... a chave dropa às
+    /// vezes"): chave que destranca esta passagem DE VEZ para o personagem (gasta na primeira vez; marca "chave:&lt;id&gt;").
+    /// A chave cai, às vezes, dos monstros do mapa onde o portal está.</summary>
+    public string? KeyItem { get; init; }
     /// <summary>12/11: entrada da dungeon no modo DIFÍCIL (outra instância, monstros mais fortes, mais XP e loot).</summary>
     public bool Hard { get; init; }
 }
