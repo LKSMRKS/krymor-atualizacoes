@@ -2267,7 +2267,7 @@ public partial class Main : Node3D
         box.AddThemeConstantOverride("separation", 6);
         _loginPanel.AddChild(box);
         box.AddChild(HudView.MakeLabel("Cinzas da Maré", 26, new Color(0.95f, 0.78f, 0.30f)));
-        box.AddChild(HudView.MakeLabel("Vale das Cinzas — protótipo jogável", 14));
+        box.AddChild(HudView.MakeLabel("Cinzas da Maré · as terras de KRYMOR", 14));   // 17/11: sem "protótipo" (análise, acabamento)
         _hostEdit = AddField(box, "Servidor", false);
         _portEdit = AddField(box, "Porta", false);
         _tokenEdit = AddField(box, "Token", true);

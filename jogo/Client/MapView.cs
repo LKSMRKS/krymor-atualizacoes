@@ -1770,6 +1770,9 @@ void fragment() {
                 if (KitAcervo.Peca(this, node, "arvore")) { Collider(P(o.X, o.Y, 2f), new CylinderShape3D { Radius = 0.5f, Height = 4f }); break; }
                 // regra: tudo com textura — casca de árvore com a textura de madeira gerada
                 var bark = TexMat("gen_madeira.png", new Color(0.45f, 0.34f, 0.25f), 0.8f);
+                // 17/11 (análise, acabamento marcado pelo dono: "câmera que não entra em tronco"): toda árvore tem o tronco
+                // como colisor da câmera (antes só as do acervo) — a câmera para antes e não mostra a casca por dentro
+                Collider(P(o.X, o.Y, 2f), new CylinderShape3D { Radius = Mathf.Clamp((float)o.R * 0.6f, 0.3f, 0.6f), Height = 4f });
                 // cada região tem a sua árvore: copa redonda no Vale/Mata/Acrópole, pinheiro na Costa e na Geada,
                 // árvore seca no Brejo, em Véspera e nos Cânions
                 var pick = R(0, 1);

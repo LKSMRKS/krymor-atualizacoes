@@ -926,7 +926,7 @@ public partial class Showcase : Node3D
         for (var i = 0; i < lista.Length; i++)
         {
             var x = (i - (lista.Length - 1) / 2f) * 1.05f;
-            var v = VisualFactory.Player(cls[i % 4], true);
+            var v = VisualFactory.Player(OS.GetEnvironment("VITRINE_CLS") is { Length: > 0 } fc ? fc : cls[i % 4], true);   // 17/11: classe fixa (pose de frente)
             v.SetGear(null, null, null);
             if (v is MannequinVisual mv) { mv.SetHead(null); mv.SetSkin(lista[i]); }
             Place(v, new Vector3(x, 0, 0), yaw, 0f);

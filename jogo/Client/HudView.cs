@@ -1198,12 +1198,22 @@ public sealed class HudView
         var hordeLine = horde is { } hh && me is not null ? $"⚔ Horda vindo te caçar — {Math.Sqrt((hh.X - me.X) * (hh.X - me.X) + (hh.Y - me.Y) * (hh.Y - me.Y)):0} m (vença e ganhe um prêmio)" : "";
         if (objetivo.Key is not null && me is not null)
             hordeLine = (hordeLine.Length > 0 ? hordeLine + "\n" : "") + $"{objetivo.Key[(objetivo.Key.IndexOf('|') + 1)..]} — {(int)(Math.Sqrt((objetivo.Value.X - me.X) * (objetivo.Value.X - me.X) + (objetivo.Value.Y - me.Y) * (objetivo.Value.Y - me.Y)) / 5) * 5} m";
-        var sig = hordeLine + string.Join("|", tracked.Select(q => q.Id + q.State + q.Progress + q.Count));
-        _questPanel.Visible = (tracked.Count > 0 || hordeLine.Length > 0) && !MissoesMinimizadas;
+        // 17/11: o próximo passo da história sempre no topo do quadro (laranja-dourado)
+        var hist = m.ProximaHistoria;
+        var sig = hordeLine + (hist is null ? "" : hist.Name + hist.Hint) + string.Join("|", tracked.Select(q => q.Id + q.State + q.Progress + q.Count));
+        _questPanel.Visible = (tracked.Count > 0 || hordeLine.Length > 0 || hist is not null) && !MissoesMinimizadas;
         if (sig == _questSig) return;
         _questSig = sig;
         foreach (var child in _questBox.GetChildren()) { _questBox.RemoveChild(child); child.QueueFree(); }
         if (hordeLine.Length > 0) _questBox.AddChild(MakeLabel(hordeLine, 14, hordeLine.StartsWith("⚔") ? new Color(1f, 0.35f, 0.3f) : Gold, 3));
+        if (hist is not null)
+        {
+            _questBox.AddChild(MakeLabel(hist.Name, 15, new Color(1f, 0.66f, 0.25f)));
+            var hl = MakeLabel(hist.Hint, 12, new Color(0.95f, 0.85f, 0.7f), 3);
+            hl.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+            hl.CustomMinimumSize = new Vector2(CardWidth - 20f, 0);
+            _questBox.AddChild(hl);
+        }
         var num = 0;
         foreach (var q in tracked)
         {

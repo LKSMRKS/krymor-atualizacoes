@@ -50,6 +50,8 @@ public sealed class ClientModel
     public long Coins { get; private set; }
     public StatsMessage? Stats { get; private set; }
     public IReadOnlyList<QuestEntry> Quests { get; private set; } = Array.Empty<QuestEntry>();
+    /// <summary>17/11: próximo passo da história principal (diário, sempre visível).</summary>
+    public QuestEntry? ProximaHistoria { get; private set; }
     /// <summary>Marcadores móveis de missão (escolta: carroça), por id da missão.</summary>
     public Dictionary<string, (double X, double Y, string Kind)> QuestMarkers { get; } = new();
     public WorldMapMessage? WorldMap { get; private set; }
@@ -449,7 +451,9 @@ public sealed class ClientModel
                         if (q.State == "active" && (!before.TryGetValue(q.Id, out var prevState) || prevState is not ("active" or "ready")) && UnpinnedQuests.Remove(q.Id))
                             PinsVersion++;
                 }
-                Quests = log.Quests;
+                // 17/11: a entrada "historia" é o próximo passo da história (fica fora da lista de missões)
+                ProximaHistoria = log.Quests.FirstOrDefault(q => q.State == "historia");
+                Quests = log.Quests.Where(q => q.State != "historia").ToList();
                 break;
             }
             case QuestMarkerMessage qm:

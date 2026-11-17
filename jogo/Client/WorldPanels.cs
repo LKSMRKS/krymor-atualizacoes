@@ -581,7 +581,7 @@ public sealed class WorldPanels
 
     private void UpdateJournal(ClientModel m)
     {
-        var sig = string.Join(",", m.Quests.Select(q => q.Id + q.State + q.Progress)) + "#" + m.PinsVersion + "#" + HudView.MissoesMinimizadas;
+        var sig = string.Join(",", m.Quests.Select(q => q.Id + q.State + q.Progress)) + "#" + m.PinsVersion + "#" + HudView.MissoesMinimizadas + "#" + m.ProximaHistoria?.Name + m.ProximaHistoria?.Hint;
         if (sig == _journalSig) return;
         _journalSig = sig;
         Clear(_journalBox, keepTitle: true);
@@ -591,6 +591,17 @@ public sealed class WorldPanels
         mini.AddThemeColorOverride("font_color", Gold);
         mini.Pressed += () => { HudView.MissoesMinimizadas = !HudView.MissoesMinimizadas; _journalSig = ""; };
         _journalBox.AddChild(mini);
+        // 17/11: história principal — o próximo passo, sempre no topo do diário
+        if (m.ProximaHistoria is { } hist)
+        {
+            var hc = new PanelContainer();
+            hc.AddThemeStyleboxOverride("panel", HudView.CardStyle(true));
+            var hv = new VBoxContainer();
+            hc.AddChild(hv);
+            hv.AddChild(HudView.MakeLabel(hist.Name, 16, new Color(1f, 0.66f, 0.25f)));
+            hv.AddChild(Wrap(hist.Hint, 13, new Color(0.95f, 0.88f, 0.72f)));
+            _journalBox.AddChild(hc);
+        }
         if (m.Quests.Count == 0)
         {
             _journalBox.AddChild(HudView.MakeLabel("Nenhuma missão ativa.", 16, Gold));
