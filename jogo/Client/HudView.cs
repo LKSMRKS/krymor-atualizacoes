@@ -836,6 +836,11 @@ public sealed class HudView
         s2.AddChild(alvo2);
         alvo2.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
         _hotbar.AddChild(s2);
+        // 17/11: [8] botão direito do mouse (poder ligado à tecla "Dir" no Livro de Poderes), logo depois do Clique
+        var dir = MakeSlot("Dir", "—", new Color(0.30f, 0.26f, 0.40f), "");
+        dir.TooltipText = "Botão direito do mouse — ligue um poder a ele no Livro de Poderes (K).";
+        _hotbar.AddChild(dir);
+        _hotbar.MoveChild(dir, 1);
 
         foreach (var child in _portraitHolder.GetChildren()) child.QueueFree();
         var portrait = new PuppetPortrait { ClassId = classId, MouseFilter = Control.MouseFilterEnum.Ignore };
@@ -1302,7 +1307,8 @@ public sealed class HudView
 
     private void UpdateSlots(ClientModel m, CooldownTracker cd, long now, CinzasDaMare.Shared.Net.PlayerView? me, long dodgeReadyInMs)
     {
-        if (_slots.Count < 8) return;
+        AvisoDaMascara(m, me);
+        if (_slots.Count < 9) return;
         var busy = me?.Action.StartsWith("windup", StringComparison.Ordinal) == true;
         var resource = me?.Resource ?? 0;
 
@@ -1362,13 +1368,36 @@ public sealed class HudView
         }
 
         // poderes: o que estiver em cada tecla (Livro de Poderes, K). Tecla sem poder = quadrado vazio.
-        foreach (var (idx, key) in new[] { (1, "Q"), (2, "E"), (5, "R"), (6, "T") })
+        foreach (var (idx, key) in new[] { (1, "Q"), (2, "E"), (5, "R"), (6, "T"), (8, "Dir") })
         {
             var sk = m.SkillForKey(key);
             SetSlotIcon(idx, SkillIcon(sk?.Id), sk is null ? "" : Short(sk.DisplayName));
             _slots[idx].Count.Text = sk is not null && sk.ResourceCost > resource ? "!" : "";
             StyleSlot(idx, sk is null ? 0 : cd.Fraction(sk.Id, now), idx == 2 && me?.Guarding == true && sk?.Id == ClientModel.SkillGuarda);
         }
+    }
+
+    private Label? _avisoMascara;
+    /// <summary>17/11 (dono: "algo em cima da barra quando usa a Máscara do Pandemônio, dizendo que X aciona o poder"):
+    /// com a máscara vestida, um aviso verde em cima da barra — o que o X faz agora.</summary>
+    private void AvisoDaMascara(ClientModel m, CinzasDaMare.Shared.Net.PlayerView? me)
+    {
+        var veste = m.Equipment.Any(e => e.DefinitionId == "mascara_pandemonio");
+        if (!veste) { if (_avisoMascara is not null) _avisoMascara.Visible = false; return; }
+        if (_avisoMascara is null)
+        {
+            _avisoMascara = MakeLabel("", 16, new Color(0.55f, 1f, 0.4f), 4);
+            _avisoMascara.HorizontalAlignment = HorizontalAlignment.Center;
+            _barra.AddChild(_avisoMascara);
+            _avisoMascara.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.CenterTop);
+            _avisoMascara.GrowHorizontal = Control.GrowDirection.Both;
+            _avisoMascara.GrowVertical = Control.GrowDirection.Begin;
+            _avisoMascara.OffsetTop = -6; _avisoMascara.OffsetBottom = -6;
+        }
+        var forma = me?.Form == "forma_pandemonio";
+        var girando = me?.Action.StartsWith("active:skill_mascara_furacao", StringComparison.Ordinal) == true;
+        _avisoMascara.Text = girando ? "[X] para o Furacão" : forma ? "[X] Furacão do Pandemônio — gira até você apertar X de novo" : "[X] Máscara do Pandemônio — libera a fúria";
+        _avisoMascara.Visible = true;
     }
 
     /// <summary>Rótulo curto para o quadrado da barra (iniciais das palavras grandes: "Corte que Avança" → "CA").</summary>

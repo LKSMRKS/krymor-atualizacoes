@@ -3433,9 +3433,20 @@ public partial class Main : Node3D
 
     private void UpdateWhirls(float dt)
     {
+        // 17/11: Furacão sustentado — enquanto o servidor diz "active:skill_mascara_furacao", há sempre um redemoinho no boneco
+        foreach (var pst in _players.Values)
+            if (pst.LastAction.StartsWith("active:skill_mascara_furacao", StringComparison.Ordinal) && !_whirls.Any(w => ReferenceEquals(w.St, pst)))
+                StartWhirl(pst, 0.5f, 4.2f, new Color(0.45f, 1f, 0.35f));
         for (var i = _whirls.Count - 1; i >= 0; i--)
         {
             var (st, node, until, dur) = _whirls[i];
+            // 17/11 (dono: "a animação do furacão termina, mas o ataque continua até a fúria acabar"): enquanto o servidor
+            // mantém o boneco girando ("active:skill_mascara_furacao"), o redemoinho não some
+            if (st.LastAction.Contains("furacao") && st.LastAction.StartsWith("active", StringComparison.Ordinal) && until - (float)_time < 0.35f)
+            {
+                until = (float)_time + 0.35f;
+                _whirls[i] = (st, node, until, Mathf.Max(dur, 0.5f));
+            }
             var left = until - (float)_time;
             if (left <= 0f || !GodotObject.IsInstanceValid(node)) { if (GodotObject.IsInstanceValid(node)) node.QueueFree(); _whirls.RemoveAt(i); continue; }
             node.Position = st.Pos + new Vector3(0, st.Ground, 0);

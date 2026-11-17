@@ -13,11 +13,15 @@ namespace CinzasDaMare.Client;
 public partial class BarraGargula : Control
 {
     public const float W = 2048f, H = 456f;
+    // 17/11 (dono: "adiciona o botão direito ali na barra de poderes"): o grupo da esquerda ganhou um 5º quadrado
+    // (Clique, Dir, Q, E, R — um pouco menores, no mesmo espaço; a arte ganhou 5 molduras, original em backups/ui_17-11);
+    // o de destaque (T) passou a ser o 6º
     private static readonly Vector2[] SlotCentros =
     {
-        new(580, 356), new(694, 356), new(806, 356), new(918, 356), new(1083, 356), new(1244, 356), new(1358, 356), new(1474, 356),
+        new(562, 355), new(652, 355), new(744, 355), new(834, 355), new(926, 355), new(1083, 356), new(1244, 356), new(1358, 356), new(1474, 356),
     };
     private const float SlotLado = 90f;
+    public const int Slots = 9, Destaque = 5;
     private static readonly Rect2 Xp = new(532, 262, 984, 12);
     public const float NumeroY = 413f;
 
@@ -30,7 +34,7 @@ public partial class BarraGargula : Control
     public void CorMana(Color clara) => _mana.Cores(clara, clara.Darkened(0.85f));
     public static readonly Vector2 CentroVida = new(355, 289), CentroMana = new(1693, 289);
     public float Escala { get => _escala; set { _escala = value; Scale = Vector2.One * value; } }
-    public Rect2 SlotRect(int i) { var l = i == 4 ? SlotLado * 1.12f : SlotLado; return new(SlotCentros[i] - Vector2.One * l / 2f, Vector2.One * l); }
+    public Rect2 SlotRect(int i) { var l = i == Destaque ? SlotLado * 1.12f : i < Destaque ? 68f : SlotLado; return new(SlotCentros[i] - Vector2.One * l / 2f, Vector2.One * l); }
     public Rect2 XpRect => Xp;
 
     public BarraGargula()

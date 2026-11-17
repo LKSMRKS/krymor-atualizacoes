@@ -765,7 +765,10 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
     // ------------------------------------------------------------ roupas (camadas na malha)
 
     private sealed record Layer(int Regions, float YMin, float YMax, Color Cloth, Color Trim, float Grow, float Rough = 0.85f,
-        float Metal = 0f, int Pattern = 0, Color? Emit = null);
+        float Metal = 0f, int Pattern = 0, Color? Emit = null, Color? Camisa = null);
+    // 17/11 (dono: "a roupa ainda tá voando, desgolada — sapo, gravata, cartola"): Pattern 5 = terno com camisa em V e gravata,
+    // 6 = fraque com peitilho e gravata-borboleta. PINTADOS na própria roupa (que deforma com o corpo): nunca descolam.
+    private const int PTerno = 5, PFraque = 6;
 
     private static readonly Color Leather = new(0.30f, 0.19f, 0.12f), LeatherDark = new(0.17f, 0.11f, 0.07f), Iron = new(0.48f, 0.51f, 0.56f),
         Bordo = new(0.39f, 0.18f, 0.22f), Bronze = new(0.66f, 0.48f, 0.26f), Violet = new(0.30f, 0.18f, 0.38f), Moss = new(0.16f, 0.30f, 0.20f),
@@ -802,14 +805,14 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
             case "skin_gravata":
             {
                 var terno = new Color(0.13f, 0.15f, 0.24f);
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, terno, new Color(0.08f, 0.09f, 0.15f), 0.012f, 0.55f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, terno, new Color(0.72f, 0.06f, 0.1f), 0.012f, 0.55f, Pattern: PTerno, Camisa: new Color(0.95f, 0.94f, 0.9f)));
                 layers.Add(Boots(new Color(0.05f, 0.05f, 0.05f)));
                 break;
             }
             case "skin_cartola":
             {
                 var fraque = new Color(0.07f, 0.07f, 0.08f);
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, fraque, new Color(0.25f, 0.25f, 0.28f), 0.012f, 0.45f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, fraque, new Color(0.04f, 0.04f, 0.05f), 0.012f, 0.45f, Pattern: PFraque, Camisa: new Color(0.96f, 0.95f, 0.92f)));
                 layers.Add(new Layer(Hand, 0f, 1f, new Color(0.97f, 0.97f, 0.95f), new Color(0.9f, 0.9f, 0.88f), 0.01f, 0.7f));   // luvas brancas
                 // 17/11: a faixa caía na virilha, serrilhada (dono: "detalhes não encaixados") — saiu
                 // layers.Add(new Layer(Belly, 0.545f, 0.575f, new Color(0.55f, 0.05f, 0.08f), Gold, 0.02f, 0.4f));                  // faixa
@@ -885,7 +888,7 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 break;
             case "skin_mafioso":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.1f, 0.08f, 0.07f), new Color(0.05f, 0.04f, 0.03f), 0.005f, 0.6f));
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.08f, 0.1f), new Color(0.18f, 0.18f, 0.22f), 0.012f, 0.5f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.08f, 0.1f), new Color(0.7f, 0.06f, 0.08f), 0.012f, 0.5f, Pattern: PTerno, Camisa: new Color(0.85f, 0.85f, 0.82f)));
                 layers.Add(Boots(new Color(0.03f, 0.03f, 0.03f)));
                 break;
             case "skin_esqueleto":
@@ -910,7 +913,7 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 break;
             case "skin_demonio":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.55f, 0.05f, 0.06f), new Color(0.3f, 0.02f, 0.03f), 0.006f, 0.5f));
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.07f, 0.09f), new Color(0.2f, 0.18f, 0.22f), 0.012f, 0.5f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.07f, 0.09f), new Color(0.7f, 0.06f, 0.08f), 0.012f, 0.5f, Pattern: PTerno, Camisa: new Color(0.85f, 0.85f, 0.82f)));
                 layers.Add(Boots(new Color(0.03f, 0.03f, 0.03f)));
                 break;
             case "skin_marionete":
@@ -945,7 +948,7 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 break;
             case "skin_sapo":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.35f, 0.62f, 0.25f), new Color(0.25f, 0.45f, 0.15f), 0.006f, 0.6f));
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.08f, 0.1f), new Color(0.2f, 0.2f, 0.24f), 0.012f, 0.5f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.08f, 0.08f, 0.1f), new Color(0.7f, 0.06f, 0.08f), 0.012f, 0.5f, Pattern: PTerno, Camisa: new Color(0.85f, 0.85f, 0.82f)));
                 layers.Add(Boots(new Color(0.03f, 0.03f, 0.03f)));
                 break;
             case "skin_rei":
@@ -2258,10 +2261,49 @@ void fragment() {
         mat.SetShaderParameter("metal", l.Metal);
         mat.SetShaderParameter("pattern", l.Pattern);
         mat.SetShaderParameter("emit", l.Emit ?? Colors.Black);
+        mat.SetShaderParameter("camisa", l.Camisa ?? Colors.White);
+        if (l.Pattern >= PTerno && MalhaComPosicao() is { } mp) mi.Mesh = mp;
         for (var s = 0; s < mi.Mesh.GetSurfaceCount(); s++) mi.SetSurfaceOverrideMaterial(s, null);
         mi.MaterialOverride = mat;
         return mi;
     }
+
+    /// <summary>
+    /// 17/11: cópia da malha do corpo com a posição de repouso (x e z, no espaço do boneco, divididos pela altura) gravada na
+    /// cor do vértice (b, a) — a roupa "pintada" (camisa, gravata) sabe onde fica a frente do peito em qualquer pose.
+    /// </summary>
+    private ArrayMesh? MalhaComPosicao()
+    {
+        if (_malhaPos is not null) return _malhaPos;
+        try
+        {
+            var src = _skin.Mesh;
+            var nova = new ArrayMesh();
+            for (var sfc = 0; sfc < src.GetSurfaceCount(); sfc++)
+            {
+                var arr = src.SurfaceGetArrays(sfc);
+                var vs = VerticesEmRepouso(_skin, arr);
+                float ymin = float.MaxValue, ymax = float.MinValue;
+                foreach (var v in vs) { ymin = Mathf.Min(ymin, v.Y); ymax = Mathf.Max(ymax, v.Y); }
+                var alt = Mathf.Max(0.3f, ymax - ymin);
+                var cs = arr[(int)Mesh.ArrayType.Color].AsColorArray();
+                if (cs is null || cs.Length != vs.Length) return null;
+                for (var i = 0; i < vs.Length; i++)
+                {
+                    var v = vs[i];
+                    cs[i] = new Color(cs[i].R, cs[i].G, 0.5f + v.X / alt * 2f, 0.5f + v.Z / alt * 2f);
+                }
+                arr[(int)Mesh.ArrayType.Color] = cs;
+                if (OS.GetEnvironment("VITRINE_DEBUG_MALHA") == "1") { float bmin = 9, bmax = -9, amin = 9, amax = -9; foreach (var c in cs) { bmin = Mathf.Min(bmin, c.B); bmax = Mathf.Max(bmax, c.B); amin = Mathf.Min(amin, c.A); amax = Mathf.Max(amax, c.A); } GD.Print($"MALHA alt={alt} b={bmin}..{bmax} a={amin}..{amax} n={vs.Length}"); }
+                var am = src as ArrayMesh;
+                var fmt = am is null ? 0 : am.SurfaceGetFormat(sfc) & Mesh.ArrayFormat.FlagUse8BoneWeights;
+                nova.AddSurfaceFromArrays(am?.SurfaceGetPrimitiveType(sfc) ?? Mesh.PrimitiveType.Triangles, arr, null, null, fmt);
+            }
+            return _malhaPos = nova;
+        }
+        catch (Exception e) { GD.PrintErr($"malha com posição: {e.Message}"); return null; }
+    }
+    private ArrayMesh? _malhaPos;
 
     /// <summary>Saia/manto: cone preso ao quadril (as pernas andam por dentro).</summary>
     /// <summary>
@@ -2322,13 +2364,22 @@ uniform float y_max = 1.0;
 uniform float rough = 0.85;
 uniform float metal = 0.0;
 uniform int pattern = 0;
+uniform vec4 camisa : source_color = vec4(1.0);
 varying float v_region;
 varying float v_h;
 varying vec3 v_obj;
+varying vec2 v_xz;
 void vertex() {
     v_region = COLOR.r * 15.0;
     v_h = COLOR.g;
+    v_xz = vec2((COLOR.b - 0.5) * 0.5, (COLOR.a - 0.5) * 0.5);
     VERTEX += NORMAL * grow;
+    // 17/11 (dono: «o cartola e o gravata tão parecendo mulher»): o paletó enche a cintura — a silhueta fica reta, de terno
+    if (pattern >= 5) {
+        int rg = int(v_region + 0.5);
+        float cint = smoothstep(0.54, 0.61, v_h) * (1.0 - smoothstep(0.71, 0.77, v_h));
+        if (rg == 1 || rg == 2) VERTEX += NORMAL * cint * 0.017;
+    }
     v_obj = VERTEX;
 }
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -2350,7 +2401,25 @@ void fragment() {
         n = step(0.85, fract(v_h * 22.0)) * -0.15;
     }
     c *= 1.0 + n;
-    c = mix(c, trim.rgb, band);
+    // 17/11: terno (5) e fraque (6) — camisa e gravata pintadas na frente do peito (x e z de repouso, em fração da altura)
+    if (pattern >= 5) {
+        n = (sin(UV.x * 1800.0) * sin(UV.y * 1800.0)) * 0.05;
+        c = cloth.rgb * (1.0 + n);
+        float ax = abs(v_xz.x);
+        bool frente = v_xz.y > -0.004 && (r == 1 || r == 2);
+        if (frente && pattern == 5) {
+            float v = (v_h - 0.70) / 0.125;                       // 0 no esterno, 1 na base do pescoço
+            if (v_h > 0.69 && v_h < 0.845 && ax < 0.007 + v * 0.032) c = camisa.rgb;      // camisa em V
+            if (v_h > 0.615 && v_h < 0.84 && ax < (v_h > 0.81 ? 0.009 : 0.0065 + (0.81 - v_h) * 0.014)) c = trim.rgb;   // gravata (nó no alto, alarga embaixo)
+            if (v_h > 0.615 && v_h < 0.625 && ax < 0.009) c = trim.rgb * 0.7;
+        }
+        if (frente && pattern == 6) {
+            if (v_h > 0.66 && v_h < 0.845 && ax < 0.017) c = camisa.rgb;                    // peitilho
+            if (v_h > 0.815 && v_h < 0.835 && ax < 0.016 - abs(v_h - 0.825) * 0.6) c = trim.rgb;   // gravata-borboleta
+            if (v_h > 0.666 && v_h < 0.80 && ax < 0.0025 && fract(v_h * 45.0) < 0.35) c = vec3(0.1);   // botões
+        }
+    }
+    c = mix(c, trim.rgb, pattern >= 5 ? 0.0 : band);
     ALBEDO = c;
     ROUGHNESS = rough - (pattern == 3 ? n * 0.5 : 0.0);
     METALLIC = mix(metal, 0.6, band * step(0.5, metal));
@@ -3746,7 +3815,8 @@ void fragment() {
                 // braços abertos com a arma estendida; no golpe o tronco dá a volta inteira (o corpo gira junto)
                 AimArm("Right", new(0.95f, 0.05f, 0.3f), new(0.95f, 0.0f, 0.3f), w);
                 AimArm("Left", new(0.95f, 0.05f, 0.3f), new(0.9f, 0.1f, 0.4f), w * 0.8f);
-                var turn = phase == "windup" ? -0.6f * t : phase == "active" ? -0.6f + Mathf.Tau * t : 0f;
+                // 17/11: o Furacão do Pandemônio gira sem parar enquanto o servidor mantiver a fúria (não para no fim do "t")
+                var turn = phase == "windup" ? -0.6f * t : phase == "active" ? (skill.Contains("furacao") ? Mathf.PosMod(_time * 11f, Mathf.Tau) - Mathf.Pi : -0.6f + Mathf.Tau * t) : 0f;
                 Pose("Hips", AxUp, turn, w);
                 Pose("Spine", AxL, 0.15f, w);
                 break;
@@ -4044,7 +4114,7 @@ void fragment() {
         if (skill == "npc_danca") return "danca";
         if (skill.Contains("passos_fantasma") || skill.Contains("passo_etereo")) return "sombras";
         // poses próprias por habilidade (pendência "cada habilidade com pose própria, braço da arma certo")
-        if (skill.Contains("giro") || skill == "skill_arma_onda") return "giro";
+        if (skill.Contains("giro") || skill.Contains("furacao") || skill == "skill_arma_onda") return "giro";   // 17/11: Furacão da máscara gira o corpo
         if (skill.Contains("golpe_de_cunha")) return "cunha";
         if (skill.Contains("salto")) return "salto";
         if (skill.Contains("investida") || skill.Contains("corte_avancante")) return "investida";
@@ -4372,10 +4442,14 @@ void fragment() {
             {
                 case "humano" or "louco" or "palhaco":
                 {
-                    var olho = VisualKit.Part(cab, VisualKit.Sphere(0.017f), VisualKit.Mat(new Color(0.97f, 0.96f, 0.93f), 0.25f), new Vector3(sd * 0.036f, 0.058f, 0.093f), null,
-                        tipo == "louco" ? new Vector3(1.2f, 1.2f, 0.5f) : new Vector3(1.1f, 0.8f, 0.45f));
-                    VisualKit.Part(cab, VisualKit.Sphere(0.0095f), VisualKit.Mat(cor, 0.2f), new Vector3(sd * 0.036f, 0.058f, 0.1f), null, new Vector3(1f, 1f, 0.4f));
-                    VisualKit.Part(cab, VisualKit.Sphere(0.0045f), preto, new Vector3(sd * 0.036f, 0.058f, 0.104f));
+                    // 17/11 (dono: "o olho branco com preto ficou medonho — usa essa config de olho"): olho de conta — preto
+                    // brilhante, aro escuro avermelhado e um pontinho de luz no alto (como o do sapo/alien do print)
+                    var esc = tipo == "louco" ? 1.2f : 1f;
+                    var olho = VisualKit.Part(cab, VisualKit.Sphere(0.0135f * esc), new StandardMaterial3D { AlbedoColor = new Color(0.02f, 0.015f, 0.02f), Roughness = 0.08f, Metallic = 0.2f },
+                        new Vector3(sd * 0.036f, 0.058f, 0.094f), null, new Vector3(1.05f, 1f, 0.55f));
+                    VisualKit.Part(cab, new TorusMesh { InnerRadius = 0.0125f * esc, OuterRadius = 0.0155f * esc, Rings = 14, RingSegments = 5 }, VisualKit.Mat(new Color(0.28f, 0.05f, 0.05f), 0.4f),
+                        new Vector3(sd * 0.036f, 0.058f, 0.094f), new Vector3(90, 0, 0), new Vector3(1f, 1f, 0.5f));
+                    VisualKit.Part(cab, VisualKit.Sphere(0.0035f), VisualKit.Glow(new Color(1f, 1f, 1f), 1.6f), new Vector3(sd * 0.036f - 0.004f, 0.063f, 0.1015f));
                     VisualKit.Part(cab, VisualKit.Box(0.034f, 0.007f, 0.01f), tipo == "palhaco" ? VisualKit.Mat(new Color(0.1f, 0.3f, 0.8f)) : preto,
                         new Vector3(sd * 0.037f, 0.083f, 0.098f), new Vector3(0, 0, tipo == "louco" ? sd * 20 : sd * -8));
                     if (tipo == "palhaco")   // losango pintado em volta do olho
@@ -4399,7 +4473,7 @@ void fragment() {
         {
             case "humano":
                 VisualKit.Part(cab, VisualKit.Sphere(0.016f), _baseMats.Count > 0 ? _baseMats[0] : VisualKit.Mat(new Color(0.5f, 0.33f, 0.21f)), new Vector3(0, 0.03f, 0.105f), null, new Vector3(0.8f, 1.1f, 0.9f));   // nariz
-                VisualKit.Part(cab, VisualKit.Capsule(0.006f, 0.04f), VisualKit.Mat(new Color(0.35f, 0.12f, 0.1f), 0.5f), new Vector3(0, 0.0f, 0.1f), new Vector3(0, 0, 90));   // boca
+                VisualKit.Part(cab, VisualKit.Capsule(0.0035f, 0.032f), VisualKit.Mat(new Color(0.16f, 0.07f, 0.05f), 0.7f), new Vector3(0, 0.0f, 0.1f), new Vector3(0, 0, 90));   // boca (17/11: traço fino escuro — o vermelho parecia batom)
                 break;
             case "louco":   // sorriso largo de dentes
                 VisualKit.Part(cab, VisualKit.Box(0.07f, 0.018f, 0.01f), VisualKit.Mat(new Color(0.95f, 0.93f, 0.85f), 0.3f), new Vector3(0, 0.0f, 0.1f));
@@ -4426,7 +4500,7 @@ void fragment() {
         // 14/11 tarde (dono: "a skin do bracelete não aplica, fica 'abaixo' da classe 2"): com skin, a cabeça de bicho da
         // classe 2/3 sai e a skin aparece inteira; tirou a skin, o bicho volta
         SetEvolved(_evolvedWanted);
-        if (_hair is not null && !_hiddenForAnimal.Contains(_hair)) _hair.Visible = _skinId is null or "gravata" or "chef" or "pirata";   // 14/11: cartola/abóbora/balde cobrem o cabelo (o cabelo vazava pela aba, quadriculado)
+        if (_hair is not null && !_hiddenForAnimal.Contains(_hair)) _hair.Visible = _skinId is null or "chef" or "pirata";   // 17/11: gravata sem o cabelo comprido (parecia mulher)   // 14/11: cartola/abóbora/balde cobrem o cabelo (o cabelo vazava pela aba, quadriculado)
         if (_skinId is null) return;
         _skinNo = new Node3D { Name = "Skin_" + skin };
         var cab = new Node3D(); _headSocket.AddChild(cab);
@@ -4492,8 +4566,7 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Cylinder(0.1f, 0.11f, 0.24f, 20), preto, new Vector3(0, 0.29f, -0.01f));
                 VisualKit.Part(cab, VisualKit.Cylinder(0.112f, 0.112f, 0.04f, 20), M(new Color(0.6f, 0.05f, 0.08f)), new Vector3(0, 0.2f, -0.01f));
                 VisualKit.Part(cab, new TorusMesh { InnerRadius = 0.022f, OuterRadius = 0.028f, Rings = 18, RingSegments = 6 }, VisualKit.Mat(new Color(0.95f, 0.8f, 0.35f), 0.25f, 0.9f), new Vector3(0.036f, 0.058f, 0.1f), new Vector3(90, 0, 0));   // monóculo (17/11: aro dourado em volta do olho, não um disco branco)
-                VisualKit.Part(peito, VisualKit.Box(0.1f, 0.2f, 0.01f), branco, new Vector3(0, 0.1f, 0.15f));   // peitilho (17/11: menor, só no peito)
-                foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(peito, VisualKit.Sphere(0.03f), preto, new Vector3(sd * 0.025f, 0.18f, 0.16f), null, new Vector3(1.2f, 0.8f, 0.5f));   // gravata-borboleta
+                // 17/11: peitilho e gravata-borboleta pintados na roupa (PFraque) — não descolam mais do peito
                 foreach (var sd in new[] { -1f, 1f })   // abas do fraque
                     VisualKit.Part(quadril, VisualKit.Box(0.1f, 0.42f, 0.02f), preto, new Vector3(sd * 0.06f, -0.2f, -0.13f), new Vector3(8, 0, sd * 4));
                 break;
@@ -4501,11 +4574,8 @@ void fragment() {
             case "gravata":
             {
                 var verm = M(new Color(0.72f, 0.06f, 0.1f), 0.5f);
-                VisualKit.Part(peito, VisualKit.Box(0.11f, 0.22f, 0.01f), branco, new Vector3(0, 0.08f, 0.15f));   // camisa (17/11: do pescoço ao meio do peito)
-                VisualKit.Part(peito, VisualKit.Box(0.05f, 0.04f, 0.03f), verm, new Vector3(0, 0.17f, 0.15f));
-                VisualKit.Part(peito, VisualKit.Box(0.045f, 0.2f, 0.012f), verm, new Vector3(0, 0.06f, 0.162f), new Vector3(-4, 0, 0));
-                foreach (var sd in new[] { -1f, 1f })
-                    VisualKit.Part(peito, VisualKit.Box(0.08f, 0.04f, 0.012f), branco, new Vector3(sd * 0.05f, 0.19f, 0.14f), new Vector3(0, 0, sd * -25));
+                // 17/11 (dono: "a roupa ainda tá voando, desgolada"): camisa em V e gravata pintadas na roupa (PTerno) — seguem o corpo
+                _ = verm;
                 VisualKit.Part(cab, VisualKit.Box(0.05f, 0.025f, 0.03f), M(new Color(0.08f, 0.06f, 0.05f)), new Vector3(0, -0.035f, 0.11f));   // bigode
                 break;
             }
@@ -4553,11 +4623,13 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Sphere(0.125f), bandana, new Vector3(0, 0.1f, -0.01f), null, new Vector3(1.04f, 0.62f, 1.08f));
                 foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Box(0.03f, 0.12f, 0.02f), bandana, new Vector3(sd * 0.03f, 0.03f, -0.13f), new Vector3(15, 0, sd * 18));   // pontas do nó
                 var preto = M(new Color(0.04f, 0.04f, 0.04f), 0.5f);
-                VisualKit.Part(cab, VisualKit.Cylinder(0.035f, 0.035f, 0.01f, 12), preto, new Vector3(0.045f, 0.04f, 0.11f), new Vector3(90, 0, 0));   // tapa-olho
+                VisualKit.Part(cab, VisualKit.Cylinder(0.022f, 0.022f, 0.006f, 14), preto, new Vector3(0.036f, 0.058f, 0.1f), new Vector3(90, 0, 0));   // tapa-olho (17/11: em cima do olho, do tamanho do olho)
                 VisualKit.Part(cab, new TorusMesh { InnerRadius = 0.118f, OuterRadius = 0.124f, Rings = 20, RingSegments = 4 }, preto, new Vector3(0, 0.05f, 0), new Vector3(0, 0, -14));   // cordão
                 var barba = M(new Color(0.18f, 0.1f, 0.06f), 0.9f);
-                VisualKit.Part(cab, VisualKit.Sphere(0.07f), barba, new Vector3(0, -0.08f, 0.07f), null, new Vector3(1.1f, 0.8f, 0.7f));
-                VisualKit.Part(cab, VisualKit.Cylinder(0.008f, 0.02f, 0.1f, 6), barba, new Vector3(0, -0.17f, 0.08f));   // trancinha
+                // 17/11 (dono: "o rosto ficou medonho"): barba só no queixo, bigode fino — o rosto aparece
+                VisualKit.Part(cab, VisualKit.Sphere(0.05f), barba, new Vector3(0, -0.085f, 0.06f), null, new Vector3(1.05f, 0.7f, 0.6f));
+                VisualKit.Part(cab, VisualKit.Box(0.05f, 0.012f, 0.012f), barba, new Vector3(0, -0.018f, 0.104f));   // bigode
+                VisualKit.Part(cab, VisualKit.Cylinder(0.006f, 0.016f, 0.08f, 6), barba, new Vector3(0, -0.15f, 0.07f));   // trancinha
                 VisualKit.Part(cab, new TorusMesh { InnerRadius = 0.012f, OuterRadius = 0.02f, Rings = 10, RingSegments = 6 }, M(new Color(1f, 0.8f, 0.3f), 0.25f), new Vector3(-0.115f, -0.02f, 0), new Vector3(0, 0, 90));   // brinco
                 break;
             }
@@ -4689,8 +4761,7 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Cylinder(0.012f, 0.014f, 0.12f, 8), M(new Color(0.35f, 0.2f, 0.1f)), new Vector3(0.04f, -0.04f, 0.16f), new Vector3(80, 20, 0));
                 VisualKit.Part(cab, VisualKit.Sphere(0.014f), VisualKit.Glow(new Color(1f, 0.4f, 0.1f), 2.5f), new Vector3(0.06f, -0.03f, 0.22f));
                 // camisa, gravata vermelha
-                VisualKit.Part(peito, VisualKit.Box(0.12f, 0.3f, 0.01f), M(new Color(0.85f, 0.85f, 0.82f)), new Vector3(0, 0.04f, 0.15f));
-                VisualKit.Part(peito, VisualKit.Box(0.04f, 0.18f, 0.012f), M(new Color(0.7f, 0.06f, 0.08f)), new Vector3(0, 0.07f, 0.16f));   // 17/11: faixa só no peito
+                // 17/11 (dono: "a roupa ainda tá voando, desgolada"): camisa e gravata agora são pintadas na roupa (PTerno)
                 break;
             }
             case "esqueleto":
@@ -4777,8 +4848,8 @@ void fragment() {
                     for (var k = 0; k < 3; k++)   // asinha recortada em 3 pontas, rente às costas
                         VisualKit.Part(asa, VisualKit.Cylinder(0f, 0.06f, 0.2f - k * 0.04f, 3), membrana, new Vector3(sd * (0.06f + k * 0.05f), 0.04f - k * 0.03f, 0), new Vector3(0, 0, sd * (-70 + k * 25)), new Vector3(1f, 1f, 0.15f));
                 }
-                VisualKit.Part(peito, VisualKit.Box(0.12f, 0.3f, 0.01f), M(new Color(0.85f, 0.85f, 0.82f)), new Vector3(0, 0.04f, 0.15f));
-                VisualKit.Part(peito, VisualKit.Box(0.045f, 0.28f, 0.012f), M(new Color(0.7f, 0.06f, 0.08f)), new Vector3(0, 0.01f, 0.16f));
+                // 17/11: camisa/gravata agora pintadas na roupa (Pattern PTerno) — VisualKit.Part(peito, VisualKit.Box(0.12f, 0.3f, 0.01f), M(new Color(0.85f, 0.85f, 0.82f)), new Vector3(0, 0.04f, 0.15f));
+                // 17/11: pintada — VisualKit.Part(peito, VisualKit.Box(0.045f, 0.28f, 0.012f), M(new Color(0.7f, 0.06f, 0.08f)), new Vector3(0, 0.01f, 0.16f));
                 var rabo = new Node3D { Position = new Vector3(0, -0.05f, -0.14f), RotationDegrees = new Vector3(-40, 0, 0) };
                 quadril.AddChild(rabo);
                 VisualKit.Part(rabo, VisualKit.Cylinder(0.01f, 0.018f, 0.45f, 6), M(new Color(0.55f, 0.05f, 0.06f)), new Vector3(0, -0.2f, 0));
@@ -4886,7 +4957,7 @@ void fragment() {
                     VisualKit.Part(peito, VisualKit.Sphere(0.06f), M(new Color(0.96f, 0.95f, 0.92f), 1f), new Vector3(Mathf.Sin(a) * 0.15f, 0.22f, Mathf.Cos(a) * 0.11f), null, new Vector3(1f, 0.55f, 1f));
                     if (i % 3 == 0) VisualKit.Part(peito, VisualKit.Sphere(0.012f), M(new Color(0.05f, 0.05f, 0.05f)), new Vector3(Mathf.Sin(a) * 0.17f, 0.24f, Mathf.Cos(a) * 0.13f));
                 }
-                VisualKit.Part(peito, VisualKit.Box(0.045f, 0.28f, 0.012f), M(new Color(0.7f, 0.06f, 0.08f)), new Vector3(0, 0.01f, 0.16f));
+                VisualKit.Part(peito, VisualKit.Box(0.04f, 0.18f, 0.012f), M(new Color(0.7f, 0.06f, 0.08f)), new Vector3(0, 0.07f, 0.16f));   // 17/11: faixa só no peito
                 break;
             }
             case "pedra":
@@ -5146,6 +5217,50 @@ void fragment() {
         return t;
     }
 
+    /// <summary>
+    /// 17/11: posição de REPOUSO de cada vértice de uma malha com esqueleto, no espaço do Root (a malha crua fica em outra
+    /// escala/orientação — quem manda é o osso: pose de repouso × inversa do bind, pesada pelos pesos do vértice).
+    /// </summary>
+    private Vector3[] VerticesEmRepouso(MeshInstance3D mi, Godot.Collections.Array arr)
+    {
+        var vs = arr[(int)Mesh.ArrayType.Vertex].AsVector3Array();
+        var skin = mi.Skin;
+        var bonesV = arr[(int)Mesh.ArrayType.Bones];
+        var weightsV = arr[(int)Mesh.ArrayType.Weights];
+        if (skin is null || bonesV.VariantType == Variant.Type.Nil || weightsV.VariantType == Variant.Type.Nil)
+        {
+            var t0 = RelativoT(mi, Root);
+            for (var i = 0; i < vs.Length; i++) vs[i] = t0 * vs[i];
+            return vs;
+        }
+        var ossos = bonesV.AsInt32Array();
+        var pesos = weightsV.AsFloat32Array();
+        var por = vs.Length > 0 ? ossos.Length / vs.Length : 4;
+        var sk = RelativoT(_skel, Root);
+        var mats = new Transform3D[skin.GetBindCount()];
+        for (var b = 0; b < mats.Length; b++)
+        {
+            var bone = skin.GetBindBone(b);
+            if (bone < 0) bone = _skel.FindBone(skin.GetBindName(b));
+            mats[b] = sk * (bone >= 0 ? _skel.GetBoneGlobalRest(bone) : Transform3D.Identity) * skin.GetBindPose(b);
+        }
+        var res = new Vector3[vs.Length];
+        for (var i = 0; i < vs.Length; i++)
+        {
+            var acc = Vector3.Zero; var tot = 0f;
+            for (var k = 0; k < por; k++)
+            {
+                var w = pesos[i * por + k];
+                if (w <= 0f) continue;
+                var bi = ossos[i * por + k];
+                if (bi < 0 || bi >= mats.Length) continue;
+                acc += w * (mats[bi] * vs[i]); tot += w;
+            }
+            res[i] = tot > 0 ? acc / tot : vs[i];
+        }
+        return res;
+    }
+
     /// <summary>Frente (maior z) e costas (menor z) da pele, por célula (x, y) de 1,5 cm, na pose de referência (espaço do Root).</summary>
     private Dictionary<(int, int), (float Frente, float Tras)> Perfil()
     {
@@ -5155,14 +5270,11 @@ void fragment() {
         {
             if (n is not MeshInstance3D mi || mi.Mesh is not ArrayMesh am || !mi.IsVisibleInTree()) continue;
             if (mi.Skin is null && mi.Skeleton.IsEmpty) continue;   // só a pele e a roupa que deformam com o esqueleto; enfeites ficam fora
-            var t = RelativoT(mi, Root);
             for (var sfc = 0; sfc < am.GetSurfaceCount(); sfc++)
             {
                 var arr = am.SurfaceGetArrays(sfc);
-                if (arr[(int)Mesh.ArrayType.Vertex].AsVector3Array() is not { } vs) continue;
-                foreach (var v0 in vs)
+                foreach (var v in VerticesEmRepouso(mi, arr))
                 {
-                    var v = t * v0;
                     var k = ((int)Mathf.Floor(v.X / CelulaPerfil), (int)Mathf.Floor(v.Y / CelulaPerfil));
                     _perfil[k] = _perfil.TryGetValue(k, out var c) ? (Mathf.Max(c.Frente, v.Z), Mathf.Min(c.Tras, v.Z)) : (v.Z, v.Z);
                 }

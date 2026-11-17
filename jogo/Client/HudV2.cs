@@ -118,7 +118,7 @@ public sealed partial class BarraInferior : Control
         Xp.Position = xr.Position * s; Xp.Size = Xp.CustomMinimumSize = xr.Size * s;
         Folego.Position = new Vector2(xr.Position.X + xr.Size.X * 0.15f, xr.Position.Y - 9f) * s;
         Folego.Size = Folego.CustomMinimumSize = new Vector2(xr.Size.X * 0.7f, 5f) * s;
-        if (Habilidades is SlotsGargula slots) { slots.Escala = s; slots.Rects = Enumerable.Range(0, 8).Select(i => g.SlotRect(i)).ToArray(); }
+        if (Habilidades is SlotsGargula slots) { slots.Escala = s; slots.Rects = Enumerable.Range(0, BarraGargula.Slots).Select(i => g.SlotRect(i)).ToArray(); }
         Habilidades.Position = Vector2.Zero; Habilidades.Size = Size;
         Reescalou?.Invoke(s * 90f / 80f);   // o quadro da gárgula tem 90 px de arte (o da placa antiga, 80)
         foreach (var (l, c) in new[] { (_vidaTexto!, BarraGargula.CentroVida), (_manaTexto!, BarraGargula.CentroMana) })
