@@ -566,8 +566,8 @@ public static class GearFactory
         if (id.Contains("casca") || id.Contains("carapaca") || id.Contains("quitina") || model == "mat_shell") return "item_carapaca";
         if (id.Contains("presa") || id.Contains("ferrao") || id.Contains("dente")) return "item_presa";
         if (id.Contains("osso")) return "item_osso";
-        if (id.Contains("erva") || id.Contains("folha") || id.Contains("flor") || id.Contains("raiz") || id.Contains("cogumelo")) return "item_erva";
-        if (id.Contains("ferro") || id.Contains("bronze") || id.Contains("basalto") || id.Contains("liga") || id.Contains("minerio") || model == "mat_vein") return "item_minerio";
+        if (id.Contains("erva") || id.Contains("folha") || id.Contains("flor") || id.Contains("raiz") || id.Contains("cogumelo") || id.Contains("cardo") || id.Contains("alga")) return "item_erva";
+        if (id.Contains("ferro") || id.Contains("bronze") || id.Contains("basalto") || id.Contains("liga") || id.Contains("minerio") || id.Contains("sucata") || model == "mat_vein") return "item_minerio";
         if (id.Contains("seda") || id.Contains("couro") || id.Contains("membrana") || id.Contains("retalho") || model == "mat_cloth") return "item_seda";
         if (id.Contains("essencia") || id.Contains("cinza") || id.Contains("brasa") || id.Contains("nucleo") || model == "mat_ash") return "item_essencia";
         if (id.Contains("moeda") || id.Contains("ficha")) return "item_moedas";

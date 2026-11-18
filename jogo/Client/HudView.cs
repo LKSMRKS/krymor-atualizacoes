@@ -1177,7 +1177,11 @@ public sealed class HudView
     {
         // fixadas no diário (J) primeiro; sem nenhuma fixada, as 3 mais urgentes
         var open = m.Quests.Where(q => q.State is "active" or "ready").ToList();
-        var tracked = open.Where(q => m.IsPinned(q.Id)).OrderBy(q => q.State == "ready" ? 0 : 1).Take(6).ToList();
+        // 18/11 (dono: "quando entra em dungeon as missões do J crescem e ficam na tela, ocupando muito espaço"): na dungeon
+        // o quadro mostra só o objetivo + 2 missões (as do próprio lugar primeiro); fora, até 5
+        var naDg = m.Map?.Instanced == true;
+        var tracked = open.Where(q => m.IsPinned(q.Id))
+            .OrderBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 2 : 5).ToList();
         // 10/11: número de cada missão (o mesmo da pedrinha na bússola e no mapa M)
         Tracked = tracked;
         var me = m.Me;
@@ -1214,10 +1218,12 @@ public sealed class HudView
         if (sig == _questSig) return;
         _questSig = sig;
         foreach (var child in _questBox.GetChildren()) { _questBox.RemoveChild(child); child.QueueFree(); }
-        if (hordeLine.Length > 0) _questBox.AddChild(MakeLabel(hordeLine, 14, hordeLine.StartsWith("⚔") ? new Color(1f, 0.35f, 0.3f) : Gold, 3));
+        // 18/11: tudo quebra linha na largura do quadro (a linha do objetivo da dungeon esticava o quadro na tela inteira)
+        Label Quebra(Label l) { l.AutowrapMode = TextServer.AutowrapMode.WordSmart; l.CustomMinimumSize = new Vector2(CardWidth - 20f, 0); return l; }
+        if (hordeLine.Length > 0) _questBox.AddChild(Quebra(MakeLabel(hordeLine, 14, hordeLine.StartsWith("⚔") ? new Color(1f, 0.35f, 0.3f) : Gold, 3)));
         if (hist is not null)
         {
-            _questBox.AddChild(MakeLabel(hist.Name, 15, new Color(1f, 0.66f, 0.25f)));
+            _questBox.AddChild(Quebra(MakeLabel(hist.Name, 15, new Color(1f, 0.66f, 0.25f))));
             var hl = MakeLabel(hist.Hint, 12, new Color(0.95f, 0.85f, 0.7f), 3);
             hl.AutowrapMode = TextServer.AutowrapMode.WordSmart;
             hl.CustomMinimumSize = new Vector2(CardWidth - 20f, 0);
@@ -1229,8 +1235,8 @@ public sealed class HudView
             num++;
             var done = q.State == "ready" || q.Progress >= q.Count;
             var trav = !done && q.NivelLugar > (m.Me?.Level ?? 99);   // 13/11: lugar trancado pelo nível
-            _questBox.AddChild(MakeLabel($"[{num}] " + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
-                done ? new Color(0.55f, 0.9f, 0.5f) : trav ? new Color(1f, 0.45f, 0.4f) : Gold));
+            _questBox.AddChild(Quebra(MakeLabel($"[{num}] " + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
+                done ? new Color(0.55f, 0.9f, 0.5f) : trav ? new Color(1f, 0.45f, 0.4f) : Gold)));
             var line = done ? $"Volte a {q.Giver}" + (q.Where.Length > 0 ? $" ({q.Where})" : "") : $"{q.Hint}  {q.Progress}/{q.Count}";
             var l = MakeLabel(line, 12, new Color(0.88f, 0.85f, 0.78f), 3);
             l.AutowrapMode = TextServer.AutowrapMode.WordSmart;

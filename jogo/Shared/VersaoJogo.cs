@@ -3,5 +3,5 @@ namespace CinzasDaMare.Shared;
 /// <summary>12/11 ("coloca no Esc a versão do jogo, assim a gente confere"): versão do pacote, mostrada no menu do Esc.</summary>
 public static class VersaoJogo
 {
-    public const string Atual = "u156 · 18/11 01:40";
+    public const string Atual = "u157 · 18/11 03:10";
 }

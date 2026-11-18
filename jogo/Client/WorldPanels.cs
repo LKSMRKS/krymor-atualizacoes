@@ -853,7 +853,7 @@ public sealed class WorldPanels
             if (_proximos.GetChildCount() == 0) _proximos.AddChild(Wrap("Tudo liberado. Agora é farmar o melhor equipamento.", 12, Dim, 260));
         }
         var w = m.WorldMap;
-        var sig = w is null ? "" : $"{w.CurrentMap}|{string.Join(",", w.Regions.Select(r => r.Id + r.State + string.Join("/", r.Quests ?? Array.Empty<string>())))}|{w.Waypoints.Count}|{m.CountInInventory("portal_viagem")}";
+        var sig = w is null ? "" : $"{w.CurrentMap}|{string.Join(",", w.Regions.Select(r => r.Id + r.State + string.Join("/", r.Quests ?? Array.Empty<string>())))}|{w.Waypoints.Count}|{m.CountInInventory("portal_viagem")}|{m.Flags.Contains("casa:propria")}";
         if (sig == _mapSig) return;
         _mapSig = sig;
         _canvas.Data = w;
@@ -866,6 +866,21 @@ public sealed class WorldPanels
             ? "Pedra de Portal: viaje daqui mesmo (fora de combate e de dungeon)." : "Para viajar, fique perto de uma pedra de viagem — ou compre a Pedra de Portal do Téo (nível 7).", 12, Dim, 270));
         // 17/11 noite (dono: "a lista com o botão Viajar tá muito confusa, uma lista doida, os botões maiores que os textos"):
         // agrupada por mapa (título dourado), uma linha por ponto e um botão pequeno "Ir" do tamanho do texto
+        // 18/11: a sua casa (depois de ter a escritura) também é destino
+        if (m.Flags.Contains("casa:propria"))
+        {
+            _waypoints.AddChild(HudView.MakeLabel("Sua casa", 13, Gold, 2));
+            var rowC = new HBoxContainer { CustomMinimumSize = new Vector2(270, 0) };
+            rowC.AddThemeConstantOverride("separation", 6);
+            var lc = HudView.MakeLabel("   • Seu terreno (Porto)", 12);
+            lc.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+            rowC.AddChild(lc);
+            var goC = new Button { Text = "Ir", FocusMode = Control.FocusModeEnum.None, CustomMinimumSize = new Vector2(44, 22), SizeFlagsVertical = Control.SizeFlags.ShrinkCenter, TooltipText = "Viajar para a sua casa" };
+            goC.AddThemeFontSizeOverride("font_size", 12);
+            goC.Pressed += () => Send?.Invoke(new TravelIntent("casa"));
+            rowC.AddChild(goC);
+            _waypoints.AddChild(rowC);
+        }
         foreach (var grupo in w.Waypoints.GroupBy(x => x.MapName))
         {
             var aqui = grupo.Key == w.CurrentMapName;

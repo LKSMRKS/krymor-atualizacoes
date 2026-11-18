@@ -5572,15 +5572,41 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
 
     /// <summary>Anima portões, alavancas, tampas de baú (pelas marcas do personagem) e o fogo.</summary>
     private readonly HashSet<string> _decorFeito = new();
+    private string? _decorSig;
+    /// <summary>18/11: peças de decoração montadas (para o "F — Mover" e o modo de colocar).</summary>
+    public readonly List<(string Id, Node3D No)> DecorNos = new();
+    /// <summary>18/11: peça que está sendo posicionada agora (não desenha a fixa enquanto isso).</summary>
+    public string? DecorEmPosicionamento { get => _decorPos; set { if (_decorPos != value) { _decorPos = value; _decorSig = null; } } }
+    private string? _decorPos;
 
     public void Update(IReadOnlySet<string> flags, float time, float delta, IReadOnlySet<string>? decorDoDono = null)
     {
         // 12/11: decoração da casa (só na casa do jogador; peças novas aparecem assim que colocadas)
         // 13/11: visitando a casa de outro, a decoração é a dele
-        if (Map.Id == "casa_jogador")   // 15/11: a decoração fica dentro da casa (o cômodo de baixo)
-            foreach (var f in decorDoDono ?? flags)
-                if (f.StartsWith("decor:", StringComparison.Ordinal) && _decorFeito.Add(f))
-                    CasaDecor.Build(Root, f[6..], (x, y) => P(x, y));
+        // 18/11: cada peça no lugar que o dono escolheu (marca decorpos:), em qualquer cômodo da casa; sem lugar escolhido,
+        // as antigas ficam no lugar fixo do cômodo grande. Mudou alguma marca de decoração → remonta.
+        if (CinzasDaMare.Shared.World.AssentosCasa.Interior(Map.Id))
+        {
+            var fonte = decorDoDono ?? flags;
+            var sig = string.Join(",", fonte.Where(f => f.StartsWith("decor", StringComparison.Ordinal)).OrderBy(f => f, StringComparer.Ordinal));
+            if (sig != _decorSig)
+            {
+                _decorSig = sig;
+                foreach (var (_, no) in DecorNos) if (GodotObject.IsInstanceValid(no)) no.QueueFree();
+                DecorNos.Clear();
+                foreach (var f in fonte)
+                {
+                    if (!f.StartsWith("decor:", StringComparison.Ordinal)) continue;
+                    var id = f[6..];
+                    if (DecorEmPosicionamento == id) continue;
+                    var onde = CasaDecor.Salvo(fonte, id, Map.Id);
+                    if (onde is null && Map.Id != "casa_jogador") continue;   // sem lugar escolhido: só no cômodo grande (lugar antigo)
+                    var antes = Root.GetChildCount();
+                    if (!CasaDecor.Build(Root, id, (x, y) => P(x, y), onde: onde)) continue;
+                    if (Root.GetChild(Root.GetChildCount() - 1) is Node3D no && Root.GetChildCount() > antes) DecorNos.Add((id, no));
+                }
+            }
+        }
         // vento: rajadas que passam pelo mapa (a fase anda com a posição), não todas as árvores juntas
         // 16/11 (otimização): ~1.500 plantas balançavam TODO quadro no mapa inteiro (cada uma avisa a árvore de nós toda).
         // Agora só até 80 m da câmera — mais longe a névoa e a distância já escondem um balanço de 1-2 graus — e a posição

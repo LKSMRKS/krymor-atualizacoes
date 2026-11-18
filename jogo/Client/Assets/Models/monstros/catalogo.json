@@ -577,10 +577,10 @@
     "chefe": 1.5
   },
   "chupacabra": {
-    "arquivo": "monstros/chupacabra",
-    "altura": 1.15,
+    "arquivo": "monstros/basilisk",
+    "altura": 0.8,
     "tipo": "criatura",
-    "escala": 1.05,
+    "escala": 1.45,
     "chefe": 1.6
   },
   "worm_giant": {
@@ -742,5 +742,19 @@
     "tipo": "criatura",
     "escala": 1.2,
     "chefe": 1.4
+  },
+  "owl_fantasma": {
+    "arquivo": "monstros/owl",
+    "altura": 1.7,
+    "tipo": "criatura",
+    "escala": 1.2,
+    "chefe": 1.5
+  },
+  "owl_prata": {
+    "arquivo": "monstros/owl",
+    "altura": 1.7,
+    "tipo": "criatura",
+    "escala": 1.44,
+    "chefe": 1.5
   }
 }

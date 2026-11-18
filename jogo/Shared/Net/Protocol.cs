@@ -63,6 +63,7 @@ public static class Protocol
 [JsonDerivedType(typeof(SpendStatIntent), "spend_stat")]
 [JsonDerivedType(typeof(TravelIntent), "travel")]
 [JsonDerivedType(typeof(SkinVisivelIntent), "skin_visivel")]
+[JsonDerivedType(typeof(DecorPlaceIntent), "decor_place")]
 [JsonDerivedType(typeof(ObjetivosIntent), "objetivos")]
 [JsonDerivedType(typeof(ObjetivosMessage), "objetivos_lista")]
 [JsonDerivedType(typeof(PartyIntent), "party")]
@@ -395,6 +396,8 @@ public sealed record SpendStatIntent(string Stat) : NetMessage;
 public sealed record TravelIntent(string WaypointId) : NetMessage;
 /// <summary>14/11: olhinho do bracelete — mostra ou esconde a skin (o bônus do bracelete continua).</summary>
 public sealed record SkinVisivelIntent(bool Visivel) : NetMessage;
+/// <summary>18/11 (dono: "a decoração eu tenho que escolher onde colocar — parede, chão ou sobre algo"): onde fica a peça.</summary>
+public sealed record DecorPlaceIntent(string DecorId, double X, double Y, double Yaw, double Altura = 0) : NetMessage;
 /// <summary>14/11: menu do TAB — "abrir", "resgatar" (Id = objetivo) ou "comprar" (Id = item da Loja de Cristais).</summary>
 public sealed record ObjetivosIntent(string Acao, string? Id = null) : NetMessage;
 public sealed record ObjetivoView(string Id, string Tipo, string Titulo, long Progresso, long Meta, int Cristais, bool Resgatado);

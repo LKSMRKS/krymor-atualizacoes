@@ -25,13 +25,45 @@ public static class CasaDecor
         ["decor_lareira"] = (3.5f, 9.2f, 180f),
         ["decor_planta"] = (-9.0f, -1.5f, 90f),
         ["decor_bandeira"] = (4.5f, -9.3f, 0f),
+        ["decor_sofa"] = (-6.5f, 6.5f, 180f),   // 18/11: sofá (dá para sentar: conforto ×1,5)
     };
 
+    public static bool Conhece(string id) => Lugar.ContainsKey(id);
+
+    /// <summary>
+    /// 18/11 (dono: "cada objeto tem seu lugar, ou parede, ou chão, ou sobre algo"): onde a peça pode ir.
+    /// parede = cola na parede mais perto, de frente para o cômodo; teto = pendurada (anda livre); sobre = em cima de
+    /// mesa/prateleira/estante se tiver uma perto (senão no chão); chão = livre (a rodinha gira).
+    /// </summary>
+    public static string Categoria(string id) => id switch
+    {
+        "decor_quadro_mar" or "decor_bandeira" or "decor_trofeu" => "parede",
+        "decor_lustre" => "teto",
+        "decor_aquario" or "decor_planta" => "sobre",
+        _ => "chão",
+    };
+
+    /// <summary>Lugar salvo pelo jogador (marca "decorpos:id=mapa|x|y|giro|altura") ou null.</summary>
+    public static (float X, float Y, float Yaw, float Altura)? Salvo(System.Collections.Generic.IEnumerable<string> flags, string id, string mapa)
+    {
+        foreach (var f in flags)
+        {
+            if (!f.StartsWith("decorpos:" + id + "=", System.StringComparison.Ordinal)) continue;
+            var p = f[(f.IndexOf('=') + 1)..].Split('|');
+            if (p.Length < 4 || p[0] != mapa) return null;
+            var ci = System.Globalization.CultureInfo.InvariantCulture;
+            float F(int i) => i < p.Length && float.TryParse(p[i], System.Globalization.NumberStyles.Float, ci, out var v) ? v : 0f;
+            return (F(1), F(2), F(3), F(4));
+        }
+        return null;
+    }
+
     /// <summary>Monta a peça (coordenadas do mapa → mundo pelo conversor do MapView). false = id desconhecido.</summary>
-    public static bool Build(Node3D root, string id, System.Func<double, double, Vector3> at, bool icone = false)
+    public static bool Build(Node3D root, string id, System.Func<double, double, Vector3> at, bool icone = false, (float X, float Y, float Yaw, float Altura)? onde = null)
     {
         if (!Lugar.TryGetValue(id, out var l)) return false;
-        var n = new Node3D { Name = id, Position = at(l.X, l.Y), RotationDegrees = new Vector3(0, l.Yaw, 0) };
+        var (lx, ly, lyaw, alt) = onde ?? (l.X, l.Y, l.Yaw, 0f);
+        var n = new Node3D { Name = id, Position = at(lx, ly) + new Vector3(0, alt, 0), RotationDegrees = new Vector3(0, lyaw, 0) };
         root.AddChild(n);
         if (KitAcervo.Decor(n, id, icone)) return true;   // 13/11: decoração com modelo 3D (mantém luz e música)
         var madeira = VisualKit.Mat(new Color(0.36f, 0.2f, 0.1f), 0.6f);
@@ -141,6 +173,20 @@ public static class CasaDecor
                     VisualKit.Part(n, VisualKit.Sphere(0.22f), VisualKit.Mat(new Color(0.18f, 0.45f + 0.04f * i, 0.2f), 0.8f),
                         new Vector3(0.18f * Mathf.Cos(i * 0.9f), 0.75f + 0.12f * (i % 3), 0.18f * Mathf.Sin(i * 0.9f)), null, new Vector3(1f, 1.5f, 1f));
                 break;
+            case "decor_sofa":
+            {
+                var veludo = VisualKit.Mat(new Color(0.45f, 0.1f, 0.16f), 0.85f);
+                VisualKit.Part(n, VisualKit.Box(2.2f, 0.45f, 0.9f), veludo, new Vector3(0, 0.35f, 0));          // assento
+                VisualKit.Part(n, VisualKit.Box(2.2f, 0.7f, 0.22f), veludo, new Vector3(0, 0.8f, -0.36f));      // encosto
+                foreach (var lado in new[] { -1f, 1f })
+                    VisualKit.Part(n, VisualKit.Box(0.2f, 0.55f, 0.9f), veludo, new Vector3(lado * 1.1f, 0.55f, 0));   // braços
+                for (var i = -1; i <= 1; i++)
+                    VisualKit.Part(n, VisualKit.Box(0.66f, 0.12f, 0.7f), VisualKit.Mat(new Color(0.55f, 0.14f, 0.2f), 0.8f), new Vector3(i * 0.7f, 0.62f, 0.05f));
+                foreach (var px in new[] { -0.95f, 0.95f })
+                    foreach (var lz in new[] { -0.35f, 0.35f })
+                        VisualKit.Part(n, VisualKit.Cylinder(0.04f, 0.03f, 0.14f, 6), madeira, new Vector3(px, 0.07f, lz));
+                break;
+            }
             case "decor_bandeira":
                 VisualKit.Part(n, VisualKit.Cylinder(0.03f, 0.03f, 2.6f), ouro, new Vector3(0, 1.3f, 0));
                 VisualKit.Part(n, VisualKit.Box(0.9f, 1.4f, 0.03f), VisualKit.Mat(new Color(0.5f, 0.08f, 0.1f), 0.9f), new Vector3(0.48f, 1.85f, 0));

@@ -369,6 +369,10 @@ public sealed partial class ItemIconRenderer : Node
         ["mat_ferro_eco"] = new(0.45f, 0.7f, 1f), ["mat_ferro_geada"] = new(0.75f, 0.9f, 1f), ["mat_basalto"] = new(0.35f, 0.3f, 0.32f), ["mat_bronze"] = new(0.85f, 0.55f, 0.3f),
         ["mat_liga_geada"] = new(0.6f, 0.85f, 1f), ["mat_liga_lendaria"] = new(1f, 0.8f, 0.3f), ["mat_quitina"] = new(0.4f, 0.3f, 0.55f), ["mat_casca_serpente"] = new(0.45f, 0.65f, 0.3f),
         ["mat_osso_lunar"] = new(0.7f, 0.8f, 1f), ["mat_ferrao"] = new(0.9f, 0.7f, 0.2f), ["mat_presa_vampira"] = new(0.85f, 0.2f, 0.25f), ["mat_dente_dentuco"] = new(0.95f, 0.92f, 0.8f),
+        // 18/11: itens de região
+        ["mat_erva_serra"] = new(0.5f, 0.75f, 0.35f), ["mat_erva_enforcado"] = new(0.35f, 0.45f, 0.25f), ["mat_cardo_canion"] = new(0.75f, 0.45f, 0.75f),
+        ["mat_flor_noturna"] = new(0.45f, 0.4f, 0.95f), ["mat_alga_salgada"] = new(0.2f, 0.65f, 0.55f), ["mat_erva_cinza_antiga"] = new(0.75f, 0.72f, 0.6f),
+        ["mat_ferro_serra"] = new(0.7f, 0.62f, 0.5f), ["mat_ferro_musgo"] = new(0.45f, 0.62f, 0.4f), ["mat_sucata_automato"] = new(0.8f, 0.6f, 0.35f),
         ["mat_couro"] = new(0.6f, 0.4f, 0.22f), ["mat_retalho"] = new(0.7f, 0.25f, 0.25f), ["mat_membrana"] = new(0.7f, 0.85f, 1f),
     };
 

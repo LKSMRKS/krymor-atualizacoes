@@ -625,6 +625,11 @@ public static class VisualFactory
             // da Cabra-da-Serra (antes era o bicho de caixas), maior e com o pelo escuro
             // 18/11 (dono: "usa misturado, melhora essa cabra, pra ter variação"): cada cabra do bando sai com uma pelagem
             // (branca, malhada, parda, preta, ruiva) — escolhida pela semente do bicho
+            // 18/11 (dono: "coruja fantasma tá como morcego"): coruja de verdade — a fantasma azulada e translúcida, a de prata clara
+            if (visual == "owl_fantasma") { Tingir(novo.Root, new Color(0.75f, 0.9f, 1.25f)); Translucido(novo.Root, 0.7f); }
+            if (visual == "owl_prata") Tingir(novo.Root, new Color(1.35f, 1.35f, 1.45f));
+            // 18/11 (dono: "chupa-cabra tá muito feio"): o réptil espinhudo das lendas (corpo do basilisco, cinza-esverdeado escuro)
+            if (visual == "chupacabra") Tingir(novo.Root, new Color(0.95f, 0.85f, 0.95f));
             if (visual is "goat" or "goat_brava")
             {
                 var h = (uint)(seed.Length > 0 ? seed : definitionId).GetHashCode();

@@ -304,13 +304,132 @@ public partial class Main : Node3D
     private void BolinhaDoDescanso(float dt)
     {
         var sentado = _model.Me is { } me && me.Action == "sit";
-        var dur = _model.DescansoNaCama ? 8.0 : 5.0;
+        var dur = _model.DescansoSegundos;
         if (!sentado) { _sentadoHa = -1; _hud.Descanso(null, false); return; }
         if (_sentadoHa < 0) { _sentadoHa = 0; _cheioHa = 0; }
         _sentadoHa += dt;
         var t = (float)(_sentadoHa / dur);
         if (t >= 1f) { _cheioHa += dt; if (_cheioHa > 2.0) { _hud.Descanso(null, false); return; } }
         _hud.Descanso(t, _model.DescansoNaCama);
+    }
+
+    // ------------------------------------------------------------ 18/11: decoração — escolher o lugar
+    // (dono: "a decoração eu tenho que escolher onde quero colocar! clica e aparece a seleção; cada objeto tem seu lugar,
+    // ou parede, ou chão, ou sobre algo"). Usou a peça em casa → ela segue o mouse; parede gruda na parede mais perto
+    // virada para dentro; "sobre" sobe em cima de mesa/prateleira/estante perto; a rodinha gira; clique confirma.
+    private string? _decorColocando;
+    private Node3D? _decorFantasma;
+    private float _decorGiro;
+    private (float X, float Y, float Yaw, float Alt) _decorOnde;
+
+    private bool EmCasaPropria() => _mapView is { } mv && CinzasDaMare.Shared.World.AssentosCasa.Interior(mv.Map.Id)
+        && _model.Flags.Contains("casa:propria");
+
+    private (string Id, Node3D No)? DecorPerto()
+    {
+        if (_decorColocando is not null || _mapView is null || !EmCasaPropria() || MyState() is not { } eu) return null;
+        (string, Node3D)? melhor = null; var md = 1.8f;
+        foreach (var (id, no) in _mapView.DecorNos)
+        {
+            if (!GodotObject.IsInstanceValid(no)) continue;
+            var d = new Vector2(no.GlobalPosition.X - eu.Pos.X, no.GlobalPosition.Z - eu.Pos.Z).Length();
+            if (d < md) { md = d; melhor = (id, no); }
+        }
+        return melhor;
+    }
+
+    private void ComecarDecor(string id)
+    {
+        if (_mapView is null || !CasaDecor.Conhece(id)) return;
+        CancelarDecor();
+        _decorColocando = id;
+        _mapView.DecorEmPosicionamento = id;
+        _decorFantasma = new Node3D { Name = "DecorFantasma" };
+        _mapView.Root.AddChild(_decorFantasma);
+        CasaDecor.Build(_decorFantasma, id, (_, _) => Vector3.Zero);
+        var salvo = CasaDecor.Salvo(_model.Flags, id, _mapView.Map.Id);
+        _decorGiro = salvo?.Yaw ?? 0f;
+        CaptureMouse(false);
+        Sfx.Play("ui_clique");
+    }
+
+    private void CancelarDecor()
+    {
+        if (_decorFantasma is not null && GodotObject.IsInstanceValid(_decorFantasma)) _decorFantasma.QueueFree();
+        _decorFantasma = null;
+        _decorColocando = null;
+        if (_mapView is not null) _mapView.DecorEmPosicionamento = null;
+    }
+
+    private bool DecorInput(InputEvent e)
+    {
+        if (e is InputEventKey { Pressed: true, Keycode: Key.Escape }) { CancelarDecor(); return true; }
+        if (e is not InputEventMouseButton { Pressed: true } mb) return false;
+        if (mb.ButtonIndex == MouseButton.WheelUp) { _decorGiro += 15f; return true; }
+        if (mb.ButtonIndex == MouseButton.WheelDown) { _decorGiro -= 15f; return true; }
+        if (mb.ButtonIndex == MouseButton.Right) { CancelarDecor(); return true; }
+        if (mb.ButtonIndex == MouseButton.Left && _decorColocando is { } id)
+        {
+            Send(new DecorPlaceIntent(id, _decorOnde.X, _decorOnde.Y, _decorOnde.Yaw, _decorOnde.Alt));
+            Sfx.Play("equipar");
+            CancelarDecor();
+            return true;
+        }
+        return false;
+    }
+
+    private void DecorLoop()
+    {
+        while (_model.DecorNovo.Count > 0)
+        {
+            var novo = _model.DecorNovo.Dequeue();
+            if (EmCasaPropria()) ComecarDecor(novo);
+        }
+        if (_decorColocando is null || _decorFantasma is null || _mapView is null) return;
+        if (!EmCasaPropria()) { CancelarDecor(); return; }
+        if (GroundUnderPointer() is not { } g) return;
+        var L = _mapView.Map;
+        // parede interna: o muro mais perto (caixas "muro"/"parede" do cômodo)
+        var paredes = L.Obstacles.Where(o => o.Shape == "box" && (o.W > 4 || o.H > 4)).ToList();
+        float x = g.X, y = g.Z, yaw = _decorGiro, alt = 0f;
+        var cat = CasaDecor.Categoria(_decorColocando);
+        if (cat == "parede" && paredes.Count > 0)
+        {
+            double Dist(CinzasDaMare.Shared.World.MapObstacle o) => o.W > o.H ? Math.Abs(y - o.Y) - o.H / 2 : Math.Abs(x - o.X) - o.W / 2;
+            var w = paredes.OrderBy(Dist).First();
+            if (w.W > w.H)
+            {
+                var face = (float)(w.Y + (y > w.Y ? 1 : -1) * (w.H / 2 + 0.06));
+                y = face; x = (float)Math.Clamp(x, w.X - w.W / 2 + 0.8, w.X + w.W / 2 - 0.8);
+                yaw = (float)(face > w.Y ? 0 : 180);
+            }
+            else
+            {
+                var face = (float)(w.X + (x > w.X ? 1 : -1) * (w.W / 2 + 0.06));
+                x = face; y = (float)Math.Clamp(y, w.Y - w.H / 2 + 0.8, w.Y + w.H / 2 - 0.8);
+                yaw = (float)(face > w.X ? 90 : -90);
+            }
+        }
+        else if (cat == "sobre")
+        {
+            // em cima de mesa/prateleira/estante perto (até 1,2 m), senão no chão
+            var apoio = L.Props.Where(p => p.Kind is "movel_mesa" or "movel_prateleira" or "movel_caixas" or "movel_banqueta")
+                .OrderBy(p => (p.X - x) * (p.X - x) + (p.Y - y) * (p.Y - y)).FirstOrDefault();
+            if (apoio is not null && Math.Sqrt((apoio.X - x) * (apoio.X - x) + (apoio.Y - y) * (apoio.Y - y)) < 1.2)
+            {
+                x = (float)apoio.X; y = (float)apoio.Y;
+                alt = apoio.Kind switch { "movel_mesa" => 0.82f, "movel_prateleira" => 1.1f, "movel_banqueta" => 0.5f, _ => 0.7f };
+            }
+        }
+        // dentro do cômodo
+        var lim = (float)L.HalfSize - 0.6f;
+        if (paredes.Count > 0)
+            lim = (float)paredes.Select(o => o.W > o.H ? Math.Abs(o.Y) - o.H / 2 : Math.Abs(o.X) - o.W / 2).Where(v => v > 2).DefaultIfEmpty(lim).Min() - (cat == "parede" ? -0.07f : 0.4f);
+        x = Mathf.Clamp(x, -lim, lim); y = Mathf.Clamp(y, -lim, lim);
+        _decorOnde = (x, y, yaw, alt);
+        if (cat != "parede") _decorOnde.Yaw = _decorGiro;
+        _decorFantasma.Position = new Vector3(x, alt, y);
+        _decorFantasma.RotationDegrees = new Vector3(0, _decorOnde.Yaw, 0);
     }
 
     // 18/11 (dono: "enquanto estiver carregando a vida no círculo seguro, um efeitinho verde em volta do personagem, bem
@@ -927,6 +1046,7 @@ public partial class Main : Node3D
         if (!_model.LoggedIn) return;
         if (_editor.HandleInput(@event)) return;
         if (_lab?.HandleInput(@event) == true) return;   // laboratório ligado: ataque/esquiva vão para o protótipo
+        if (_decorColocando is not null && DecorInput(@event)) return;   // 18/11: colocando decoração
 
         if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
         {
@@ -1244,6 +1364,7 @@ public partial class Main : Node3D
     }
 
     private bool _sprinting;
+    private bool _shiftAntes;
     private bool _runLatched, _runBlocked;
 
     private void Queue(string slot)
@@ -1272,8 +1393,12 @@ public partial class Main : Node3D
         // parou de andar, volta a caminhar. Fora de combate a corrida rende mais (o servidor decide).
         var moving = _moveDir.X != 0 || _moveDir.Y != 0;
         var shiftDown = keys && Input.IsKeyPressed(Key.Shift);
+        // 18/11 (dono: "correndo, se apertar Shift de novo, volta a andar; apertando de novo, corre — pra controlar a
+        // estamina sem parar o boneco"): o Shift ALTERNA (cada toque troca correr/andar enquanto anda)
+        var shiftToque = shiftDown && !_shiftAntes;
+        _shiftAntes = shiftDown;
         if (!shiftDown) _runBlocked = false;
-        if (shiftDown && moving && !_runBlocked) _runLatched = true;
+        if (shiftToque && moving) { if (_runLatched) { _runLatched = false; _runBlocked = true; } else if (!_runBlocked || me.Stamina > 0.5) { _runLatched = true; _runBlocked = false; } }
         if (!moving) _runLatched = false;
         // 11/11: fôlego acabou → volta a andar; só corre de novo apertando Shift outra vez
         if (_runLatched && me.Stamina <= 0.5) { _runLatched = false; _runBlocked = true; }
@@ -1287,7 +1412,7 @@ public partial class Main : Node3D
         }
 
         // segurar o botão: ataques em sequência (o servidor dita o ritmo)
-        if (keys && Input.MouseMode == Input.MouseModeEnum.Captured && Input.IsMouseButtonPressed(MouseButton.Left) && _queued is null)
+        if (keys && _decorColocando is null && Input.MouseMode == Input.MouseModeEnum.Captured && Input.IsMouseButtonPressed(MouseButton.Left) && _queued is null)
             Queue("basic");
 
         // orientação: alvo travado > mirando/atacando (frente da câmera) > direção do movimento
@@ -1499,6 +1624,7 @@ public partial class Main : Node3D
 
     private void Interact()
     {
+        if (DecorPerto() is { } dp) { ComecarDecor(dp.Id); return; }   // 18/11: F perto de uma peça da casa = mover
         var target = _model.NearestInteractable(_model.Map is null ? 3.0 : 2.6);
         if (target is null) return;
         // 11/11 noite: F na pedra de viagem abre o mapa (M) com a viagem para as pedras que você já descobriu
@@ -2575,7 +2701,11 @@ public partial class Main : Node3D
 
         string? prompt = null;
         _hud.PromptAncora = null;
-        if (me is not null && me.Alive && _model.NearestInteractable() is { } near)
+        if (_decorColocando is not null)
+            prompt = $"Colocando: {ClientModel.DisplayName(_decorColocando)} ({CasaDecor.Categoria(_decorColocando)})\nclique: colocar · rodinha: girar · botão direito/Esc: cancelar";
+        else if (me is not null && me.Alive && DecorPerto() is { } dperto)
+            prompt = "F — Mover: " + ClientModel.DisplayName(dperto.Id);
+        else if (me is not null && me.Alive && _model.NearestInteractable() is { } near)
         {
             prompt = "F — " + near.Label;
             if (near.Kind == "item" && _model.Snapshot?.Items.FirstOrDefault(i => i.ItemId == near.Id) is { } noChao)
@@ -2630,6 +2760,7 @@ public partial class Main : Node3D
         SonsDoLugar(_model.Me, (float)delta);
         BolinhaDoDescanso((float)delta);
         AuraDeCura((float)delta);   // 18/11: brilho verde enquanto a vida enche no círculo seguro
+        DecorLoop();   // 18/11: escolher onde fica a decoração
         if (_updaterOn)
         {
             _updater.Process(delta);

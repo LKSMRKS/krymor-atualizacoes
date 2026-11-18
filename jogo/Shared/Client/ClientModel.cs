@@ -296,8 +296,12 @@ public sealed class ClientModel
         }
     }
 
+    /// <summary>18/11: decoração nova colocada na casa — o cliente abre o modo de escolher o lugar.</summary>
+    public readonly Queue<string> DecorNovo = new();
+
     private void GanhouFlag(string f)
     {
+        if (f.StartsWith("decor:", StringComparison.Ordinal)) DecorNovo.Enqueue(f[6..]);
         if (f.StartsWith("tomo:", StringComparison.Ordinal) && SkillById(f[5..]) is { } sk && Novidade(f))
             Ganhos.Enqueue(("Parabéns!", $"Você aprendeu um poder: {sk.DisplayName}.\nEscolha a tecla no Livro de Poderes (K)."));
         else if (f.StartsWith("titulo:", StringComparison.Ordinal) && Novidade(f))
@@ -585,12 +589,17 @@ public sealed class ClientModel
 
     /// <summary>14/11: o último "sentar" foi numa cama (8 s) ou num banco (5 s) — para a bolinha do descanso.</summary>
     public bool DescansoNaCama { get; private set; }
+    public double DescansoSegundos { get; private set; } = 5;
     /// <summary>14/11: objetivos e Loja de Cristais (menu do TAB).</summary>
     public ObjetivosMessage? Objetivos { get; private set; }
 
     private void ApplyAction(ActionResultMessage a)
     {
-        if (a.Action == "interact" && a.Success && a.Reason is "sit" or "cama") DescansoNaCama = a.Reason == "cama";
+        if (a.Action == "interact" && a.Success && a.Reason is "sit" or "cama" or "sit_casa" or "cama_casa")
+        {
+            DescansoNaCama = a.Reason is "cama" or "cama_casa";
+            DescansoSegundos = a.Reason switch { "cama_casa" => 60, "sit_casa" => 30, "cama" => 8, _ => 5 };   // 18/11: casa
+        }
         if (a.Action == "dodge") return; // esquiva recusada não polui o registro
         if (a.Action == "interact" && a.Success && a.Reason == "npc") return;
         if (a.Action is "buy" or "sell" or "quest" or "party" or "spend_stat" or "travel" && a.Success) return;
@@ -728,11 +737,11 @@ public sealed class ClientModel
             }
             // 11/11 noite ("dá pra sentar nos bancos da praça"): perto de um banco, F senta (andar levanta)
             if (me.Action != "sit")
-                foreach (var prop in Map.Props)
+                foreach (var assento in CinzasDaMare.Shared.World.AssentosCasa.Lista(Map, _flags))
                 {
-                    if (prop.Kind != "banco_praca") continue;
-                    var d = Distance(me.X, me.Y, prop.X, prop.Y) + 0.3;
-                    if (d <= bestD) { bestD = d; best = ("bench", "banco", "Sentar no banco"); }
+                    // 18/11: cadeiras, trono e sofá da casa também — na sua casa, sentar carrega o Conforto do Lar ×1,5
+                    var d = Distance(me.X, me.Y, assento.X, assento.Y) + 0.3;
+                    if (d <= bestD) { bestD = d; best = ("bench", "banco", assento.Casa && _flags.Contains("casa:propria") ? "Sentar (Conforto do Lar ×1,5 em 30 s)" : "Sentar no banco"); }
                 }
             foreach (var gate in Map.Gates)
             {
