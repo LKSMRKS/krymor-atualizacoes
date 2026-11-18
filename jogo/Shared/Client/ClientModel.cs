@@ -410,6 +410,7 @@ public sealed class ClientModel
             case WorldTimeMessage time:
                 ClockHour = time.Hour; ClockHoursPerSecond = time.HoursPerSecond; ClockAtUtc = DateTime.UtcNow; HasClock = true;
                 break;
+            case HistoricoDiaMessage hist: HistoricoDia = hist; break;   // 18/11 19h
             case ObjetivosMessage obj:   // 14/11: menu do TAB
                 Objetivos = obj;
                 break;
@@ -611,6 +612,7 @@ public sealed class ClientModel
     public double DescansoSegundos { get; private set; } = 5;
     /// <summary>14/11: objetivos e Loja de Cristais (menu do TAB).</summary>
     public ObjetivosMessage? Objetivos { get; private set; }
+    public HistoricoDiaMessage? HistoricoDia { get; private set; }
 
     private void ApplyAction(ActionResultMessage a)
     {

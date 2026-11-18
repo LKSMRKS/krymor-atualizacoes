@@ -79,6 +79,7 @@ public sealed class InventoryPanel
     private OlhoSkin _olho = null!;
     private OlhoSkin _olhoElmo = null!, _olhoAsas = null!;   // 18/11
     private readonly List<(OlhoSkin O, string Slot, string Flag, string Nome)> _olhosPartes = new();   // 18/11 17h
+    private LinhasDoSet _ligacoes = null!;
     private readonly Label _stats, _subtitle;
     private readonly VBoxContainer _details;
     private readonly HBoxContainer _buttons;
@@ -135,6 +136,10 @@ public sealed class InventoryPanel
         const float G = 58f, P = 36f, Gap = 8f;
         var xs = new[] { 0f, G + Gap, G + Gap + P + Gap, G + Gap + P + Gap + G + Gap, G + Gap + P + Gap + G + Gap + P + Gap };
         var grade = new Control { CustomMinimumSize = new Vector2(xs[4] + G, G + Gap + G * 1.7f + Gap + G), MouseFilter = Control.MouseFilterEnum.Pass };
+        // 18/11 19h: as ligações do conjunto (atrás dos espaços) — acendem quando as duas peças são do mesmo set
+        _ligacoes = new LinhasDoSet { MouseFilter = Control.MouseFilterEnum.Ignore, Espacos = _equipSlots };
+        _ligacoes.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+        grade.AddChild(_ligacoes);
         void Espaco(string slot, string dica, float x, float y, Vector2 box)
         {
             var sl = new ItemSlot(box, dica) { Position = new Vector2(x, y) };
@@ -370,6 +375,10 @@ public sealed class InventoryPanel
         Olho(_olhoElmo, "head", "ocultar:capacete", "Elmo");
         Olho(_olhoAsas, "asas", "ocultar:asas", "Asas/capa");
         foreach (var (o, slot, flag, nome) in _olhosPartes) Olho(o, slot, flag, nome);
+        var porSlot = m.Equipment.Where(e => e.Slot is "head" or "body" or "luvas" or "calca" or "botas")
+            .ToDictionary(e => e.Slot, e => m.ItemInfoFor(e.DefinitionId) is { Set.Length: > 0 } ii ? ii.Set : (string?)null);
+        var sigLig = string.Join(",", porSlot.Select(kv => kv.Key + "=" + kv.Value));
+        if (sigLig != _ligacoes.Sig) { _ligacoes.Sig = sigLig; _ligacoes.SetPorSlot = porSlot; _ligacoes.QueueRedraw(); }
         if (_doll.IsInsideTree()) _doll.SetLook(m);
         RefreshPets(m);
         var signature = string.Join("|", m.Inventory.Select(i => i.ItemId + i.Quantity + "@" + i.Slot)) + "#" +
@@ -1379,5 +1388,32 @@ public sealed partial class AbaSoltavel : Button
     {
         if (data.AsString().StartsWith("item|")) Passou?.Invoke();
         return false;
+    }
+}
+
+/// <summary>18/11 19h: linhas entre os espaços do conjunto (elmo–peito, luvas–peito, peito–calça, calça–botas). Apagadas em
+/// bronze escuro; acesas em verde-dourado quando as duas peças são do mesmo set (cada ligação acesa = bônus nos atributos).</summary>
+public sealed partial class LinhasDoSet : Control
+{
+    public Dictionary<string, ItemSlot> Espacos = new();
+    public IReadOnlyDictionary<string, string?> SetPorSlot = new Dictionary<string, string?>();
+    public string Sig = "";
+
+    public override void _Draw()
+    {
+        var acesas = CinzasDaMare.Shared.Content.LigacoesSet.Contar(SetPorSlot).Acesas;
+        foreach (var (a, b) in CinzasDaMare.Shared.Content.LigacoesSet.Pares)
+        {
+            if (!Espacos.TryGetValue(a, out var sa) || !Espacos.TryGetValue(b, out var sb)) continue;
+            var pa = sa.Position + sa.CustomMinimumSize / 2f;
+            var pb = sb.Position + sb.CustomMinimumSize / 2f;
+            var aceso = CinzasDaMare.Shared.Content.LigacoesSet.Aceso(SetPorSlot, a, b);
+            if (aceso)
+            {
+                DrawLine(pa, pb, new Color(0.55f, 1f, 0.45f, 0.25f), 7f, true);   // brilho
+                DrawLine(pa, pb, acesas >= 4 ? new Color(1f, 0.85f, 0.35f) : new Color(0.5f, 0.95f, 0.45f), 2.5f, true);
+            }
+            else DrawLine(pa, pb, new Color(0.35f, 0.28f, 0.16f, 0.8f), 1.5f, true);
+        }
     }
 }

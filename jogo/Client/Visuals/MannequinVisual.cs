@@ -2788,7 +2788,7 @@ void fragment() {
         }
         // 11/11 noite ("ao voar, pés juntos e com a ponta para baixo, como se estivesse flutuando"): voando, as pernas
         // largam o passo do clipe, ficam retas e juntas, e os pés apontam para baixo; balançam de leve com a batida
-        var flyW = Flying ? Mathf.Clamp(_flyLift / 0.85f, 0f, 1f) : Hover ? 1f : 0f;   // Hover: fantasma de cal (pernas de voo, sem asas)
+        var flyW = Flying ? Mathf.Clamp(_flyLift / 0.85f, 0f, 1f) : Hover ? 1f : Mathf.Clamp(_flyLift / 0.85f, 0f, 1f);   // 18/11 19h: flutuando de asas também   // Hover: fantasma de cal (pernas de voo, sem asas)
         if (flyW > 0.01f)
         {
             foreach (var bone in new[] { "LeftUpLeg", "LeftLeg", "RightUpLeg", "RightLeg", "LeftFoot", "RightFoot", "LeftToeBase", "RightToeBase" })
@@ -2832,10 +2832,11 @@ void fragment() {
             }
             else
             {
-            Pose("LeftUpLeg", AxL, 0.06f + sway, flyW);           // positivo = pé vai para trás
-            Pose("RightUpLeg", AxL, -0.22f + sway, flyW);         // joelho direito um pouco à frente
-            Pose("LeftLeg", AxL, 0.08f, flyW);
-            Pose("RightLeg", AxL, 0.55f, flyW);                   // dobra o joelho (canela para trás)
+            // 18/11 19h (dono: "os pés precisam estar dobrados, como se estivesse flutuando"): os dois joelhos dobrados
+            Pose("LeftUpLeg", AxL, -0.12f + sway, flyW);          // positivo = pé vai para trás
+            Pose("RightUpLeg", AxL, -0.3f + sway, flyW);          // joelho direito um pouco mais à frente
+            Pose("LeftLeg", AxL, 0.7f, flyW);
+            Pose("RightLeg", AxL, 0.95f, flyW);                   // dobra o joelho (canela para trás)
             Pose("LeftUpLeg", AxFwd, -0.05f, flyW);               // coxas fechando uma na outra
             Pose("RightUpLeg", AxFwd, 0.05f, flyW);
             Pose("LeftFoot", AxL, 1.0f, flyW);                    // ponta do pé para baixo
@@ -3845,7 +3846,7 @@ void fragment() {
                 AimArm("Right", new(0.95f, 0.05f, 0.3f), new(0.95f, 0.0f, 0.3f), w);
                 AimArm("Left", new(0.95f, 0.05f, 0.3f), new(0.9f, 0.1f, 0.4f), w * 0.8f);
                 // 17/11: o Furacão do Pandemônio gira sem parar enquanto o servidor mantiver a fúria (não para no fim do "t")
-                var turn = phase == "windup" ? -0.6f * t : phase == "active" ? (skill.Contains("furacao") ? Mathf.PosMod(_time * 11f, Mathf.Tau) - Mathf.Pi : -0.6f + Mathf.Tau * t) : 0f;
+                var turn = phase == "windup" ? -0.6f * t : phase == "active" ? (skill.Contains("furacao") || skill.Contains("giro") || skill == "skill_arma_onda" ? Mathf.PosMod(_time * 11f, Mathf.Tau) - Mathf.Pi : -0.6f + Mathf.Tau * t) : 0f;
                 Pose("Hips", AxUp, turn, w);
                 Pose("Spine", AxL, 0.15f, w);
                 break;
@@ -4311,7 +4312,10 @@ void fragment() {
         // 13/11 ("as asas ainda estão muito duras, não estão batendo"): batida de verdade — sobe e desce em volta do eixo
         // da frente (o que faz a ponta subir acima da cabeça e descer abaixo da cintura), com a descida mais rápida que a
         // subida (força para baixo) e a varredura para trás defasada; parado, respiram devagar; voando, batem forte
-        var target = dash ? 1f : Flying ? 1f : f.Speed > 4.5f ? 0.35f : f.Speed > 0.5f ? 0.25f : 0.12f;
+        // 18/11 19h (dono: "a asa só bate quando anda pra frente — coloca que ela sempre bate, como o bicho fica no ar?"):
+        // no ar (voando ou flutuando de asas) a batida é sempre forte, parado ou andando para qualquer lado
+        var noAr = Flying || _flyLift > 0.3f;
+        var target = dash ? 1f : Flying ? 1f : noAr ? 0.8f : f.Speed > 4.5f ? 0.35f : f.Speed > 0.5f ? 0.25f : 0.12f;
         _wingFlap = Mathf.MoveToward(_wingFlap, target, delta * 3f);
         _wingT += delta * (dash ? 15f : 2.4f + 9f * _wingFlap);
         var open = 25f + 40f * _wingFlap;                      // quanto abre para trás e para os lados
@@ -4579,9 +4583,9 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Sphere(0.011f), rosa, new Vector3(0, -0.008f, 0.1f), null, new Vector3(1.3f, 0.9f, 0.6f));   // narizinho
                 foreach (var sd in new[] { -1f, 1f })
                 {
-                    VisualKit.Part(cab, VisualKit.Sphere(0.019f), branco, new Vector3(sd * 0.034f, 0.035f, 0.088f), null, new Vector3(0.85f, 1.25f, 0.45f));   // olho
-                    VisualKit.Part(cab, VisualKit.Sphere(0.0105f), M(new Color(0.06f, 0.05f, 0.05f), 0.2f), new Vector3(sd * 0.031f, 0.031f, 0.095f), null, new Vector3(0.85f, 1.2f, 0.4f));   // pupila
-                    VisualKit.Part(cab, VisualKit.Sphere(0.003f), branco, new Vector3(sd * 0.028f, 0.037f, 0.099f));   // brilho
+                    // 18/11 19h (dono: "deixa o olho do coelho assim, pretão e com um risquinho só branco dentro")
+                    VisualKit.Part(cab, VisualKit.Sphere(0.019f), M(new Color(0.03f, 0.03f, 0.035f), 0.15f), new Vector3(sd * 0.034f, 0.035f, 0.09f), null, new Vector3(0.85f, 1.25f, 0.45f));   // olho preto
+                    VisualKit.Part(cab, VisualKit.Box(0.0035f, 0.013f, 0.002f), VisualKit.Glow(new Color(1f, 1f, 1f), 1.2f), new Vector3(sd * 0.031f, 0.039f, 0.0985f), new Vector3(0, 0, sd * 12f));   // risquinho branco
                 }
                 // barriga redonda e clara
                 // só um círculo rosa na barriga, chapado (o coelho continua musculoso — "sem a pança")

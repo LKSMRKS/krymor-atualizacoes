@@ -37,6 +37,7 @@ public partial class Main : Node3D
         public float ChillT;
         public OmniLight3D? FireLight;
         public Node3D? Carry;                    // 11/11: barril de pólvora nas mãos
+        public Node3D? Espadas;                  // 18/11 19h: Espadas Voadoras (Campeão)
         public Label3D? Zz;                      // monstro dormindo
         public List<(MeshInstance3D Mesh, int Surface, Material? Before)>? ClosedEyes;   // 11/11 noite: olhos fechados dormindo
         public Vector3 Pos, PrevPos;
@@ -249,7 +250,9 @@ public partial class Main : Node3D
             var sb = new System.Text.StringBuilder();
             foreach (var (hora, canal, texto) in _model.Historico)
             {
-                var cor = canal switch
+                var tl = texto.ToLowerInvariant();   // 18/11 19h: morreu/perdeu/gastou = vermelho; entrou num lugar = amarelo
+                var cor = (tl.Contains("morreu") || tl.Contains("perdeu") || tl.Contains("gastou") || tl.Contains("pagou") || tl.Contains("derrotado")) ? "#ff6b5b"
+                    : (tl.Contains("entrou") || tl.Contains("chegou") || tl.Contains("viajou") || tl.Contains("bem-vindo")) ? "#f2d15a" : canal switch
                 {
                     "privado" => "#f29af2", "grupo" => "#8ce6ff", "sistema" => "#f2c066",
                     _ when canal.StartsWith("aviso:reward") => "#9be27a", _ when canal.StartsWith("aviso:warn") => "#ff8a70",
@@ -314,7 +317,8 @@ public partial class Main : Node3D
         _sentadoHa += dt;
         var t = (float)(_sentadoHa / dur);
         if (t >= 1f) { _cheioHa += dt; if (_cheioHa > 2.0) { _hud.Descanso(null, false); return; } }
-        _hud.Descanso(t, _model.DescansoNaCama);
+        Vector2? pes = MyState() is { } eu && !_cam.Camera.IsPositionBehind(eu.Pos) ? _cam.Camera.UnprojectPosition(eu.Pos) : null;
+        _hud.Descanso(t, _model.DescansoNaCama, pes);
     }
 
     // ------------------------------------------------------------ 18/11: decoração — escolher o lugar
@@ -358,8 +362,26 @@ public partial class Main : Node3D
         CasaDecor.Build(_decorFantasma, id, (_, _) => Vector3.Zero);
         var salvo = CasaDecor.Salvo(_model.Flags, id, _mapView.Map.Id);
         _decorGiro = salvo?.Yaw ?? 0f;
+        _decorNova = salvo is null;   // peça nova (sem lugar): cancelar devolve para a mochila
+        // 18/11 19h: a mochila fecha sozinha — o Esc de fechar a mochila não pode cancelar (e sumir com) a peça
+        _inventory.Visible = false;
         CaptureMouse(false);
         Sfx.Play("ui_clique");
+    }
+
+    private bool _decorNova;
+    private CinzasDaMare.Shared.World.MapGeometry? _geoDecor;
+    private string? _geoDecorMapa;
+
+    /// <summary>18/11 19h: Esc / botão direito — peça nova volta para a mochila (antes ficava "colocada" em lugar nenhum).</summary>
+    private void DesistirDecor()
+    {
+        if (_decorColocando is { } id && _decorNova)
+        {
+            Send(new DecorPlaceIntent(id, 0, 0, 0, -1));
+            _hud.ShowNotice(ClientModel.DisplayName(id) + " voltou para a mochila.");
+        }
+        CancelarDecor();
     }
 
     private void CancelarDecor()
@@ -372,11 +394,14 @@ public partial class Main : Node3D
 
     private bool DecorInput(InputEvent e)
     {
-        if (e is InputEventKey { Pressed: true, Keycode: Key.Escape }) { CancelarDecor(); return true; }
+        if (e is InputEventKey { Pressed: true, Keycode: Key.Escape }) { DesistirDecor(); return true; }
+        // 18/11 19h (dono: "não vi a tecla que é pra virar"): Q e E também giram (e a dica fica na tela)
+        if (e is InputEventKey { Pressed: true, Keycode: Key.Q }) { _decorGiro += 15f; return true; }
+        if (e is InputEventKey { Pressed: true, Keycode: Key.E }) { _decorGiro -= 15f; return true; }
         if (e is not InputEventMouseButton { Pressed: true } mb) return false;
         if (mb.ButtonIndex == MouseButton.WheelUp) { _decorGiro += 15f; return true; }
         if (mb.ButtonIndex == MouseButton.WheelDown) { _decorGiro -= 15f; return true; }
-        if (mb.ButtonIndex == MouseButton.Right) { CancelarDecor(); return true; }
+        if (mb.ButtonIndex == MouseButton.Right) { DesistirDecor(); return true; }
         if (mb.ButtonIndex == MouseButton.Left && _decorColocando is { } id)
         {
             Send(new DecorPlaceIntent(id, _decorOnde.X, _decorOnde.Y, _decorOnde.Yaw, _decorOnde.Alt));
@@ -437,6 +462,13 @@ public partial class Main : Node3D
         if (paredes.Count > 0)
             lim = (float)paredes.Select(o => o.W > o.H ? Math.Abs(o.Y) - o.H / 2 : Math.Abs(o.X) - o.W / 2).Where(v => v > 2).DefaultIfEmpty(lim).Min() - (cat == "parede" ? -0.07f : 0.4f);
         x = Mathf.Clamp(x, -lim, lim); y = Mathf.Clamp(y, -lim, lim);
+        // 18/11 19h (dono: "apliquei um torto e ele meio que sumiu na parede"): no chão a peça não entra em parede nem em
+        // móvel — se o mouse aponta para dentro de um, ela fica no último lugar livre
+        if (cat != "parede")
+        {
+            if (_geoDecorMapa != L.Id) { _geoDecor = new CinzasDaMare.Shared.World.MapGeometry(L); _geoDecorMapa = L.Id; }
+            if (_geoDecor is { } gd && !gd.IsFree(x, y, 0.45) && cat == "chão") { x = _decorOnde.X; y = _decorOnde.Y; }
+        }
         _decorOnde = (x, y, yaw, alt);
         if (cat != "parede") _decorOnde.Yaw = _decorGiro;
         _decorFantasma.Position = new Vector3(x, alt, y);
@@ -1426,6 +1458,10 @@ public partial class Main : Node3D
         _shiftAntes = shiftDown;
         if (!shiftDown) _runBlocked = false;
         if (shiftToque && moving) { if (_runLatched) { _runLatched = false; _runBlocked = true; } else if (!_runBlocked || me.Stamina > 0.5) { _runLatched = true; _runBlocked = false; } }
+        // 18/11 19h (dono: "se ficar com o Shift apertado não corre — Shift apertado corre; soltou, continua correndo; tocou
+        // no Shift de novo ou parou de andar, para"): Shift SEGURADO também liga a corrida (antes só valia o toque no
+        // instante em que já estava andando — quem apertava Shift antes do W nunca corria)
+        else if (shiftDown && moving && !_runLatched && !_runBlocked && me.Stamina > 0.5) _runLatched = true;
         if (!moving) _runLatched = false;
         // 11/11: fôlego acabou → volta a andar; só corre de novo apertando Shift outra vez
         if (_runLatched && me.Stamina <= 0.5) { _runLatched = false; _runBlocked = true; }
@@ -2755,7 +2791,7 @@ public partial class Main : Node3D
         string? prompt = null;
         _hud.PromptAncora = null;
         if (_decorColocando is not null)
-            prompt = $"Colocando: {ClientModel.DisplayName(_decorColocando)} ({CasaDecor.Categoria(_decorColocando)})\nclique: colocar · rodinha: girar · botão direito/Esc: cancelar";
+            prompt = $"Colocando: {ClientModel.DisplayName(_decorColocando)} ({CasaDecor.Categoria(_decorColocando)})\nclique: colocar · Q/E ou rodinha: girar · Esc/botão direito: " + (_decorNova ? "guardar na mochila" : "deixar onde estava");
         else if (me is not null && me.Alive && DecorPerto() is { } dperto)
             prompt = "F — Mover: " + ClientModel.DisplayName(dperto.Id) + "   (editando · Ctrl+F sai)";
         else if (me is not null && me.Alive && _model.NearestInteractable() is { } near)
@@ -3151,6 +3187,7 @@ public partial class Main : Node3D
                 hum.SetWings(p.Wings);
                 if (hum is MannequinVisual flyer) flyer.Flying = p.Flying;
                 SetCarry(st, p.Carry);
+                Espadas(st, p.Status);   // 18/11 19h: Espadas Voadoras girando em volta
                 hum.SetLegendary(p.Legendary);
                 if (hum is MannequinVisual glowing) { glowing.SetWeaponGlow(p.WeaponPlus, p.WeaponExcellent); glowing.SetAura(p.SetCompleto); glowing.SetSkin(p.Skin); }
                 if (hum is MannequinVisual evoMan) { evoMan.SetEvolved(p.Evolved); evoMan.SetClasse3(p.Class3); }   // troca de classe: cara de leão/corvo/serpente/gato; 3ª: leão
@@ -3523,6 +3560,35 @@ public partial class Main : Node3D
         return n;
     }
 
+    /// <summary>18/11 19h: Espadas Voadoras — 1 a 3 lâminas de luz girando em volta do Campeão (status "espadasN").</summary>
+    private static void Espadas(EntityState st, string? status)
+    {
+        var n = 0;
+        foreach (var t in (status ?? "").Split(','))
+            if (t.StartsWith("espadas", StringComparison.Ordinal) && t.Length == 8 && char.IsDigit(t[7])) n = t[7] - '0';
+        if (n == 0 && (status ?? "").Split(',').Contains("espadas")) n = 3;
+        if (n == 0) { if (st.Espadas is not null && GodotObject.IsInstanceValid(st.Espadas)) st.Espadas.QueueFree(); st.Espadas = null; return; }
+        if (st.Espadas is null || !GodotObject.IsInstanceValid(st.Espadas) || st.Espadas.GetChildCount() != n)
+        {
+            st.Espadas?.QueueFree();
+            st.Espadas = new Node3D { Name = "EspadasVoadoras" };
+            var lamina = VisualKit.Glow(new Color(0.75f, 0.9f, 1f), 2.2f);
+            var cabo = VisualKit.Mat(new Color(0.85f, 0.65f, 0.3f), 0.3f, 0.9f);
+            for (var i = 0; i < n; i++)
+            {
+                var piv = new Node3D { RotationDegrees = new Vector3(0, i * 360f / n, 0) };
+                st.Espadas.AddChild(piv);
+                var e = new Node3D { Position = new Vector3(0, 1.3f, 1.1f), RotationDegrees = new Vector3(0, 90, 70) };
+                piv.AddChild(e);
+                VisualKit.Part(e, VisualKit.Box(0.06f, 0.7f, 0.02f), lamina, new Vector3(0, 0.35f, 0));
+                VisualKit.Part(e, VisualKit.Box(0.22f, 0.04f, 0.05f), cabo, Vector3.Zero);
+                VisualKit.Part(e, VisualKit.Box(0.04f, 0.18f, 0.04f), cabo, new Vector3(0, -0.1f, 0));
+            }
+            st.Visual.Root.AddChild(st.Espadas);
+        }
+        st.Espadas.RotationDegrees = new Vector3(0, (float)(Time.GetTicksMsec() * 0.18 % 360), 0);
+    }
+
     /// <summary>Barril nas mãos (11/11): fica na frente do peito, abraçado.</summary>
     private static void SetCarry(EntityState st, string? carry)
     {
@@ -3727,8 +3793,10 @@ public partial class Main : Node3D
             var c = skill.EndsWith("serpente") ? new Color(0.2f, 0.6f, 1f, 0.7f) : skill.EndsWith("floresta_viva") ? new Color(0.3f, 1f, 0.5f, 0.7f) : new Color(1f, 0.5f, 0.15f, 0.7f);
             _effects.Pulse(st.Pos, c, 2.2f, 0.9);
             // 18/11 15h: golpe em volta de você — a marca no chão tem o raio de verdade do poder (Fúria: 5,5 m)
-            if (_model.SkillById(skill) is { TargetMode: "nova", Radius: > 0 } info)
-                _effects.Area(st.Pos, c, (float)info.Radius, (info.CooldownMs > 0 ? 0.75 : 0.6));
+            // 18/11 19h (dono: "a marcação vermelha da Fúria ainda está pequena"): sempre o raio de verdade + o corpo do
+            // monstro (o golpe pega quem encosta na borda) — sem depender do catálogo trazer o poder
+            var raio = _model.SkillById(skill) is { Radius: > 0 } info ? (float)info.Radius : skill.EndsWith("furia_colosso") ? 5.5f : 4f;
+            _effects.Area(st.Pos, c, raio + 0.6f, 0.75);
             Sfx.PlayAt("preparo", st.Pos + Vector3.Up, mine ? 0f : -6f);
             return;
         }

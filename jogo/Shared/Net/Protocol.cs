@@ -66,6 +66,7 @@ public static class Protocol
 [JsonDerivedType(typeof(DecorPlaceIntent), "decor_place")]
 [JsonDerivedType(typeof(ObjetivosIntent), "objetivos")]
 [JsonDerivedType(typeof(ObjetivosMessage), "objetivos_lista")]
+[JsonDerivedType(typeof(HistoricoDiaMessage), "historico_dia")]
 [JsonDerivedType(typeof(PartyIntent), "party")]
 [JsonDerivedType(typeof(NpcDialogMessage), "npc_dialog")]
 [JsonDerivedType(typeof(CoinsMessage), "coins")]
@@ -420,6 +421,9 @@ public sealed record ObjetivosIntent(string Acao, string? Id = null) : NetMessag
 public sealed record ObjetivoView(string Id, string Tipo, string Titulo, long Progresso, long Meta, int Cristais, bool Resgatado);
 public sealed record LojaCristalView(string Item, string Nome, int Preco, string Grupo, int Nivel, bool JaTem);
 /// <summary>14/11: objetivos (diários, semanais, da conta) e a Loja de Cristais, com o saldo de cristais azuis da conta.</summary>
+/// <summary>18/11 19h: Histórico do dia (Tab) — números do dia de hoje (conta).</summary>
+public sealed record HistoricoLinha(string Nome, long Valor, string Tipo);
+public sealed record HistoricoDiaMessage(string Dia, IReadOnlyList<HistoricoLinha> Linhas) : NetMessage;
 public sealed record ObjetivosMessage(long Cristais, IReadOnlyList<ObjetivoView> Lista, IReadOnlyList<LojaCristalView> Loja) : NetMessage;
 /// <summary>Action: invite (Target = nome) | accept | decline | leave | kick (Target = id do personagem).</summary>
 public sealed record PartyIntent(string Action, string? Target = null) : NetMessage;

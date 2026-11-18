@@ -361,6 +361,14 @@ public sealed partial class ItemIconRenderer : Node
         _ => id.Contains(drop["item_".Length..]),   // joias: cada uma tem o seu desenho
     };
 
+    /// <summary>18/11 19h: a cor do material (a mesma do ícone) — o veio/a moita no mapa usa para combinar com o que dá.</summary>
+    public static Color CorDe(string id)
+    {
+        if (CorDoItem.TryGetValue(id, out var c)) return c;
+        var h = 0u; foreach (var ch in id) h = h * 31 + ch;
+        return Color.FromHsv((h % 360) / 360f, 0.55f, 0.9f);
+    }
+
     /// <summary>Cor de cada material que divide desenho (o resto: cor tirada do próprio id, estável).</summary>
     private static readonly Dictionary<string, Color> CorDoItem = new()
     {

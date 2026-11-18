@@ -309,6 +309,19 @@ public static class ItemTooltip
                 var need = line.Length > 2 && char.IsDigit(line[1]) ? line[1] - '0' : 99;
                 col.AddChild(Wrap(line, 12, worn >= need ? new Color(0.45f, 0.95f, 0.55f) : Dim));
             }
+            // 18/11 19h: ligações do conjunto (elmo–peito, luvas–peito, peito–calça, calça–botas)
+            if (m is not null)
+            {
+                var porSlot = m.Equipment.Where(e => e.Slot is "head" or "body" or "luvas" or "calca" or "botas")
+                    .ToDictionary(e => e.Slot, e => m.ItemInfoFor(e.DefinitionId) is { Set.Length: > 0 } ii ? ii.Set : (string?)null);
+                var (acesas, setLig) = CinzasDaMare.Shared.Content.LigacoesSet.Contar(porSlot);
+                var deste = setLig == info.Set ? acesas : 0;
+                var bonus = CinzasDaMare.Shared.Content.LigacoesSet.Bonus(deste);
+                col.AddChild(Wrap($"Ligações: {deste} de 4" + (deste > 0 ? $" · +{bonus * 100:0.#}% em todos os atributos das peças" : " · vista peças do mesmo set lado a lado"), 12,
+                    deste > 0 ? new Color(0.45f, 0.95f, 0.55f) : Dim));
+                col.AddChild(Wrap(deste >= 4 ? "★ CONJUNTO COMPLETO ATIVADO — +10% e o círculo no chão" : "Conjunto completo (4 ligações): +10% e o círculo no chão", 12,
+                    deste >= 4 ? Gold : Dim));
+            }
         }
         if (info is not null && info.Source.Length > 0) col.AddChild(Wrap("Onde achar: " + info.Source, 11, Dim));
         if (price is { } p) col.AddChild(Label($"Preço: {p:N0} moedas".Replace(",", "."), 14, (m?.Coins ?? 0) >= p ? Gold : Bad));

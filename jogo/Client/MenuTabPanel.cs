@@ -37,6 +37,7 @@ public sealed partial class MenuTabPanel : PanelContainer
     private readonly Dictionary<string, Button> _botoesSub = new();
     private string _aba = "loja", _sub = "opcoes";
     private ObjetivosMessage? _dados;
+    private HistoricoDiaMessage? _hist;
     private ClientModel? _m;
     // conteúdo emprestado de outra janela
     private Control? _emprestado; private Node? _donoOrig; private int _idxOrig; private string? _idEmprestado;
@@ -90,9 +91,9 @@ public sealed partial class MenuTabPanel : PanelContainer
         // faixa das abas
         _abas.AddThemeConstantOverride("separation", 2);
         col.AddChild(_abas);
-        foreach (var (id, nome) in new[] { ("loja", "Loja de Cristais"), ("objetivos", "Objetivos"), ("trilha", "Trilha"), ("mapa", "Mapa"), ("notas", "Notas"), ("opcoes", "Opções") })
+        foreach (var (id, nome) in new[] { ("loja", "Loja de Cristais"), ("objetivos", "Objetivos"), ("historico", "Histórico do dia"), ("trilha", "Trilha"), ("mapa", "Mapa"), ("notas", "Notas"), ("opcoes", "Opções") })
         {
-            var b = Aba(nome, 17, new Vector2(150, 40));
+            var b = Aba(nome, 16, new Vector2(134, 40));
             if (id is "loja" or "objetivos" && Cristal is not null) { b.Icon = Cristal; b.ExpandIcon = false; b.AddThemeConstantOverride("icon_max_width", 22); }
             b.Pressed += () => { Sfx.Play("ui_clique"); Ir(id); };
             _botoes[id] = b;
@@ -166,9 +167,10 @@ public sealed partial class MenuTabPanel : PanelContainer
     {
         _m = m;
         if (aba is "teclas") { _aba = "opcoes"; _sub = "teclas"; }
-        else if (aba is "loja" or "objetivos" or "trilha" or "mapa" or "notas" or "opcoes") _aba = aba;
+        else if (aba is "loja" or "objetivos" or "historico" or "trilha" or "mapa" or "notas" or "opcoes") _aba = aba;
         Visible = true;
         Send?.Invoke(new ObjetivosIntent("abrir"));
+        _pediuHist = null;
         Montar();
     }
 
@@ -177,11 +179,13 @@ public sealed partial class MenuTabPanel : PanelContainer
     {
         if (aba == "teclas") { _aba = "opcoes"; _sub = "teclas"; }
         else _aba = aba;
+        if (aba == "historico") _pediuHist = null;
         Montar();
     }
 
     public void Atualizar(ObjetivosMessage? d)
     {
+        if (Visible && _aba == "historico" && _m?.HistoricoDia is { } h && !ReferenceEquals(h, _hist)) { _hist = h; Montar(); }
         if (d is null || ReferenceEquals(d, _dados)) return;
         _dados = d;
         if (Visible && _aba is "loja" or "objetivos") Montar();
@@ -195,7 +199,7 @@ public sealed partial class MenuTabPanel : PanelContainer
         foreach (var (id, b) in _botoesSub) b.SetPressedNoSignal(id == _sub);
         _subAbas.Visible = _aba == "opcoes";
         foreach (var c in _conteudo.GetChildren()) { _conteudo.RemoveChild(c); c.QueueFree(); }
-        var proprio = _aba is "loja" or "objetivos" or "notas";
+        var proprio = _aba is "loja" or "objetivos" or "notas" or "historico";
         _scroll.Visible = proprio;
         _hospede.Visible = !proprio;
         _rodape.Text = _aba switch
@@ -203,12 +207,14 @@ public sealed partial class MenuTabPanel : PanelContainer
             "loja" or "objetivos" => "Os cristais são da CONTA: valem para todos os seus personagens. Diárias zeram à meia-noite; semanais, na segunda.",
             "trilha" => "O que abre em cada nível: regiões, dungeons, viagens, montarias, asas, poderes, classe e história.",
             "mapa" => "Rodinha: zoom · arraste para mover · clique numa pedra de viagem descoberta para viajar.",
+            "historico" => "Números de HOJE da sua conta (todos os personagens). Zeram à meia-noite.",
             "notas" => "O que mudou em cada atualização (a mais nova em cima).",
             _ => "TAB fecha o menu.",
         };
         if (!proprio) { Emprestar(_aba == "opcoes" ? _sub : _aba); return; }
         Devolver();
         if (_aba == "notas") { MontarNotas(); return; }
+        if (_aba == "historico") { MontarHistorico(); return; }
         if (_dados is null) { _conteudo.AddChild(HudView.MakeLabel("carregando...", 14, Dim)); return; }
         if (_aba == "objetivos") MontarObjetivos(); else MontarLoja();
     }
@@ -237,6 +243,41 @@ public sealed partial class MenuTabPanel : PanelContainer
             primeira = false;
         }
     }
+
+    /// <summary>18/11 19h (dono: "coloca no tab uma função — Histórico do dia — monstros que matou, tempo, xp ganha e perdida,
+    /// missões, itens, cristais, dano recebido, dano que deu").</summary>
+    private void MontarHistorico()
+    {
+        if (_pediuHist != _aba) { _pediuHist = _aba; Send?.Invoke(new ObjetivosIntent("historico")); }
+        var h = _m?.HistoricoDia;
+        _hist = h;
+        if (h is null) { _conteudo.AddChild(HudView.MakeLabel("carregando...", 14, Dim)); return; }
+        _conteudo.AddChild(Titulo("Histórico do dia · " + h.Dia));
+        var grade = new GridContainer { Columns = 2 };
+        grade.AddThemeConstantOverride("h_separation", 14); grade.AddThemeConstantOverride("v_separation", 8);
+        foreach (var l in h.Linhas)
+        {
+            var ruim = l.Tipo is "xp_perdido" or "mortes" or "dano_recebido" or "moedas_gastas";
+            var cor = l.Tipo switch { "cristais" => Azul, "xp" => new Color(0.55f, 0.85f, 1f), "moedas" => Gold, _ => ruim ? new Color(1f, 0.45f, 0.38f) : new Color(0.9f, 0.88f, 0.82f) };
+            var card = Cartao(new Color(cor.R, cor.G, cor.B, 0.45f));
+            card.CustomMinimumSize = new Vector2(455, 0);
+            var row = new HBoxContainer();
+            row.AddChild(HudView.MakeLabel(l.Nome, 15, Dim));
+            row.AddChild(new Control { SizeFlagsHorizontal = SizeFlags.ExpandFill });
+            var valor = l.Tipo == "tempo" ? (l.Valor >= 60 ? $"{l.Valor / 60}h {l.Valor % 60:00}min" : $"{l.Valor} min") : $"{l.Valor:N0}".Replace(",", ".");
+            var v = HudView.MakeLabel(valor, 18, cor);
+            if (HudView.TitleFont is not null) v.AddThemeFontOverride("font", HudView.TitleFont);
+            row.AddChild(v);
+            card.AddChild(row);
+            grade.AddChild(card);
+        }
+        _conteudo.AddChild(grade);
+        var kills = h.Linhas.FirstOrDefault(x => x.Tipo == "kills")?.Valor ?? 0;
+        var mortes = h.Linhas.FirstOrDefault(x => x.Tipo == "mortes")?.Valor ?? 0;
+        var frase = kills == 0 ? "Dia tranquilo até agora. As Cinzas esperam." : mortes == 0 ? $"{kills} monstros e nenhuma queda — dia limpo!" : $"Uma queda a cada {Math.Max(1, kills / Math.Max(1, mortes))} monstros.";
+        _conteudo.AddChild(HudView.MakeLabel(frase, 14, Gold));
+    }
+    private string? _pediuHist;
 
     private void Emprestar(string id)
     {

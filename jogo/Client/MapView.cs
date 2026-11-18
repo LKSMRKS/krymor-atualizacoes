@@ -4811,7 +4811,29 @@ void fragment() {
                 var node = new Node3D { Position = P(obj.X, obj.Y), RotationDegrees = new Vector3(0, R(0, 360), 0) };
                 Root.AddChild(node);
                 var y = obj.Yields ?? "";
-                if (KitTapa.Veio(node, y)) return true;   // 12/11: árvore de tábua, moita de erva, pedra de cristais (pacote Vila)
+                // 18/11 19h (dono: "você trocou o que dropa das pedras, mas não trocou a imagem da pedra que farmamos — faça isso
+                // com todos"): a cor do veio/da moita é a do material que ele dá (a mesma do ícone); planta nunca vira pedra
+                var corItem = ItemIconRenderer.CorDe(y);
+                var planta = y.Contains("erva") || y.Contains("folha") || y.Contains("cogumelo") || y.Contains("flor") || y.Contains("alga") || y.Contains("cardo") || y.Contains("raiz");
+                if (y.Contains("ferro") && KitTapa.Veio(node, y))
+                {
+                    if (y is not ("mat_ferro_eco" or "mat_ferro_raso"))
+                    {
+                        foreach (var l in node.GetChildren().OfType<OmniLight3D>()) l.LightColor = corItem;
+                        for (var i = 0; i < 5; i++)
+                            VisualKit.Part(node, VisualKit.Box(0.1f, 0.24f, 0.1f), VisualKit.Glow(corItem, 1.3f),
+                                new Vector3(R(-0.45f, 0.45f), R(0.35f, 0.7f), R(-0.4f, 0.4f)), new Vector3(R(-30, 30), R(0, 90), R(-30, 30)));
+                    }
+                    return true;
+                }
+                if (y.Contains("erva") && KitTapa.Veio(node, y))
+                {
+                    if (y != "mat_erva_tonico")
+                        for (var i = 0; i < 5; i++)
+                            VisualKit.Part(node, VisualKit.Sphere(0.07f), VisualKit.Glow(corItem, 0.7f), new Vector3(R(-0.35f, 0.35f), R(0.4f, 0.6f), R(-0.35f, 0.35f)));
+                    return true;
+                }
+                if (!planta && KitTapa.Veio(node, y)) return true;   // 12/11: árvore de tábua, moita de erva, pedra de cristais (pacote Vila)
                 if (y == "mat_tabua")
                 {
                     // árvore seca para tábuas: tronco nu, galhos tortos e um machado cravado no toco ao lado
@@ -4824,13 +4846,13 @@ void fragment() {
                     VisualKit.Part(node, VisualKit.Box(0.05f, 0.55f, 0.05f), VisualKit.Mat(new Color(0.45f, 0.32f, 0.2f), 0.8f), new Vector3(1.0f, 0.7f, 0.4f), new Vector3(0, 0, 25));
                     VisualKit.Part(node, VisualKit.Box(0.2f, 0.14f, 0.03f), VisualKit.Mat(new Color(0.55f, 0.57f, 0.6f), 0.3f, 0.8f), new Vector3(1.08f, 0.95f, 0.4f));
                 }
-                else if (y.Contains("erva") || y.Contains("folha") || y.Contains("cogumelo"))
+                else if (planta)
                 {
-                    // moita: tufos verdes com flores/brotos claros
-                    var leaf = VisualKit.Mat(y.Contains("inverno") ? new Color(0.55f, 0.65f, 0.7f) : new Color(0.22f, 0.36f, 0.20f), 0.95f);
+                    // moita: tufos verdes com flores/brotos na cor do material (alga: tufos na água; cogumelo: chapéus)
+                    var leaf = VisualKit.Mat(y.Contains("inverno") ? new Color(0.55f, 0.65f, 0.7f) : y.Contains("alga") ? new Color(0.12f, 0.35f, 0.3f) : new Color(0.22f, 0.36f, 0.20f), 0.95f);
                     for (var i = 0; i < 5; i++)
                         VisualKit.Part(node, VisualKit.Sphere(R(0.25f, 0.4f)), leaf, new Vector3(R(-0.4f, 0.4f), 0.2f, R(-0.4f, 0.4f)), null, new Vector3(1f, 0.7f, 1f));
-                    var flower = y.Contains("cogumelo") ? new Color(0.75f, 0.70f, 0.62f) : y.Contains("folha") ? new Color(0.55f, 0.75f, 0.3f) : new Color(0.9f, 0.85f, 0.4f);
+                    var flower = corItem;
                     for (var i = 0; i < 4; i++)
                         VisualKit.Part(node, VisualKit.Sphere(0.06f), VisualKit.Glow(flower, 0.5f), new Vector3(R(-0.35f, 0.35f), 0.45f, R(-0.35f, 0.35f)));
                 }
@@ -4845,8 +4867,7 @@ void fragment() {
                 {
                     node.Scale = Vector3.One * 0.6f;   // 10/11: veios menores (do tamanho de uma moita)
                     var rock = VisualKit.Mat(new Color(0.26f, 0.25f, 0.26f), 0.9f);
-                    var ore = y.Contains("eco") ? new Color(0.3f, 0.8f, 0.8f) : y.Contains("geada") ? new Color(0.6f, 0.85f, 1f)
-                        : y.Contains("basalto") ? new Color(1f, 0.35f, 0.1f) : y.Contains("bronze") ? new Color(0.85f, 0.6f, 0.3f) : new Color(0.75f, 0.45f, 0.25f);
+                    var ore = y.Contains("basalto") ? new Color(1f, 0.35f, 0.1f) : corItem;
                     VisualKit.Part(node, VisualKit.Sphere(0.75f), rock, new Vector3(0, 0.35f, 0), null, new Vector3(1.3f, 0.75f, 1f));
                     VisualKit.Part(node, VisualKit.Sphere(0.45f), rock, new Vector3(0.6f, 0.25f, 0.3f), null, new Vector3(1f, 0.8f, 1f));
                     for (var i = 0; i < 5; i++)

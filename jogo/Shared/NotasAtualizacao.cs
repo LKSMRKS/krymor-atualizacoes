@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u162 · 18/11 18:40", "Trilha: prêmio escolha 1 de 3 e ABRE por categoria; pets com papel (cura, proteção, lentidão...) e poder inicial; asas e capas por classe; setas de comparação sempre; olhinho em todas as partes; cabeça/capacete na armadura; sapo e palhaço; mapa sem tapar o clique"),
+        ("u163 · 18/11 21:30", "Guerreiro classe 2 com 4 poderes novos: escudo da fé, 3 espadas voadoras, corrente que puxa e furor; ataque básico com corte maior; ligações do conjunto no inventário (1/2/3/4 = +0,5/1,5/4/10%; completo acende o círculo); Tab: Histórico do dia; Shift corre direto até apertar de novo ou parar; asas batem sempre no voo e pés dobrados; bar de Astrália com taverneiro, poções mais baratas e bebidas de buff; asas na Máquina do Caos de Astrália e mesclar na Vila das Mós; Ravenna na Torre de Merlin explica os portais; máquina de chaves com colisão; todo ferreiro conserta (preço do dia muda); cama 1x por dia com buff melhor; decoração: Esc devolve à mochila, Q/E gira, não entra mais na parede; Sua Casa: barra de nível acima da barra de poderes; Salto Esmagador sem atraso; marca da Fúria do Colosso no tamanho real; giro da máscara até o fim; serpente viva na árvore da máscara na Floresta Oculta; mascate na Mata; monstros dentro dos cercados; veios e plantas com a cor do minério/erva da região; Observar o lugar no lugar do diário largado; histórico com cores (vermelho perdas, amarelo lugares); efeitos menores da direita para a esquerda; quadro de missões com limite; itens dizem para que servem; olho do coelho pretão com risquinho"),
+        ("u162", "Trilha: prêmio escolha 1 de 3 e ABRE por categoria; pets com papel (cura, proteção, lentidão...) e poder inicial; asas e capas por classe; setas de comparação sempre; olhinho em todas as partes; cabeça/capacete na armadura; sapo e palhaço; mapa sem tapar o clique"),
         ("u161", "Passagens chegam sempre na frente da porta de volta (no jogo todo); palhaço sinistro só com o buraco preto nos olhos"),
         ("u160", "Vendedores de Decoração e de Quintal em cada cidade (linha própria + portal da cidade, forja e caldeirão do quintal); cabeça das classes 2/3 e capacete no tamanho certo; asas remam para frente e para trás; voo com corpo vivo"),
         ("u159", "Busca dentro do Registro; tesouros variados; 2 esquivas na classe 2; missões revisadas; dicas de Poder/Peso; 🗺 no J; Amuleto da Última Chama; chaves de dungeon; sair da DG volta na porta; Ctrl+F edita a casa; buffs em quadradinhos; terreno com boneco, portal, mascate, vitrola e cercado de ovos"),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u106", "RENOMEAR_CONTA.cmd (bruno → lukas)|Atualização aplica a arte sem cópia (bem mais rápido)"),
         ("u105", "Atualização dos amigos pelo GitHub (o Jogar.cmd baixa sozinho)|Servidor não derruba mais quem está baixando a atualização|Pacote PARA_O_AMIGO funciona sem renomear"),
         ("u104", "Histórico (O) com tudo: o que deu certo, o que falhou e por quê|Pacotes do amigo sempre com o código inteiro"),
-        ("u103", "Pedra de viagem: F na primeira vez ativa a pedra (não abre o mapa)"),
     };
 }

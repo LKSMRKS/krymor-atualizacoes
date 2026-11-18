@@ -56,7 +56,7 @@ public sealed class HudView
     public Control Root { get; }
 
     private const float OrbSize = 112f;
-    private readonly Label _name, _levelText, _classText, _buffText, _xpText, _coinsText, _targetName, _prompt, _log, _notice, _zone, _bossName, _hint;
+    private readonly Label _name, _levelText, _classText, _buffText, _xpText, _coinsText, _targetName, _prompt, _notice, _zone, _bossName, _hint;
     private readonly ProgressBar _xp, _targetBar, _bossBar, _stamina;
     private double _staminaShown = 100, _staminaLow;
     private readonly OrbeHud _hpOrb, _resOrb;
@@ -131,17 +131,17 @@ public sealed class HudView
     }
     // 14/11 ("quando sentar, coloca tipo uma bolinha carregando para totalizar o buff"): anel que enche em cima da barra
     private AnelDescanso? _anelDescanso;
-    public void Descanso(float? t, bool cama)
+    public void Descanso(float? t, bool cama, Vector2? pes = null)
     {
         if (_anelDescanso is null)
         {
-            _anelDescanso = new AnelDescanso { MouseFilter = Control.MouseFilterEnum.Ignore, CustomMinimumSize = new Vector2(64, 64), Size = new Vector2(64, 64) };
-            _anelDescanso.AnchorLeft = _anelDescanso.AnchorRight = 0.5f;
-            _anelDescanso.AnchorTop = _anelDescanso.AnchorBottom = 1f;
-            _anelDescanso.OffsetLeft = -32; _anelDescanso.OffsetRight = 32; _anelDescanso.OffsetTop = -300; _anelDescanso.OffsetBottom = -236;
+            // 18/11 19h (dono: "o descansando ficou bem em cima do boneco — coloca menor, embaixo do pé, um pouco
+            // transparente pra ficar clean"): bolinha pequena (40 px) seguindo os pés na tela, 70% visível
+            _anelDescanso = new AnelDescanso { MouseFilter = Control.MouseFilterEnum.Ignore, CustomMinimumSize = new Vector2(40, 40), Size = new Vector2(40, 40), Modulate = new Color(1, 1, 1, 0.72f) };
             Root.AddChild(_anelDescanso);
         }
-        _anelDescanso.Visible = t is not null;
+        _anelDescanso.Visible = t is not null && pes is not null;
+        if (pes is { } p) _anelDescanso.Position = p + new Vector2(-20f, 14f);
         if (t is { } v) { _anelDescanso.T = v; _anelDescanso.Cama = cama; _anelDescanso.QueueRedraw(); }
     }
 
@@ -573,6 +573,8 @@ public sealed class HudView
         leftCol.AddChild(card);
         _placaZona = new PlacaZona { CustomMinimumSize = new Vector2(CardWidth, 38f), MouseFilter = Control.MouseFilterEnum.Ignore };
         leftCol.AddChild(_placaZona);
+        leftCol.AddChild(_casaSub);   // 18/11 19h: conforto da casa embaixo do nome do lugar
+        _casaSub.Visible = false;
         _leftCol = leftCol;
         top.AddChild(leftCol);
 
@@ -720,7 +722,13 @@ public sealed class HudView
         _coinsText = MakeLabel("", 15, Gold);
         _coinsText.HorizontalAlignment = HorizontalAlignment.Right;
         right.AddChild(_coinsText);
-        _log = MakeLabel("", 12, null, 3);
+        // 18/11 19h (dono: "histórico: morreu/perdeu/gastou em vermelho, entrou em lugar em amarelo"): texto com cores
+        _log = new RichTextLabel { BbcodeEnabled = true, FitContent = true, ScrollActive = false, MouseFilter = Control.MouseFilterEnum.Ignore };
+        _log.AddThemeFontSizeOverride("normal_font_size", 12);
+        _log.AddThemeColorOverride("default_color", new Color(0.92f, 0.9f, 0.84f));
+        _log.AddThemeConstantOverride("outline_size", 3);
+        _log.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.9f));
+        if (BodyFont is not null) _log.AddThemeFontOverride("normal_font", BodyFont);
         // quebra a linha dentro da moldura (antes a frase comprida passava da borda e saía da tela)
         _log.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         _log.CustomMinimumSize = new Vector2(SideColumnWidth - 24f, 0);
@@ -880,6 +888,9 @@ public sealed class HudView
         if (me is { SetCompleto: true }) l.Add(new Efeito("conjunto", "✦", "Conjunto completo", "bônus do conjunto ativo", null, 1, false, Gold));
         foreach (var st in (me?.Status ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries))
         {
+            // 18/11 19h: efeitos BONS que vêm como status (Campeão)
+            if (st == "furor") { l.Add(new Efeito("furor", "⚔", "Furor do Campeão", "+20% de dano e de velocidade", null, 1, false, new Color(1f, 0.55f, 0.25f))); continue; }
+            if (st.StartsWith("espadas", StringComparison.Ordinal)) { if (st.Length == 8) l.Add(new Efeito("espadas", "†", "Espadas Voadoras", $"{st[7]} espada(s) girando", null, 1, false, new Color(0.7f, 0.9f, 1f))); continue; }
             var (nome, cor, simb) = st switch
             {
                 "veneno" => ("Veneno", new Color(0.45f, 1f, 0.35f), "☠"), "lentidao" => ("Lento", new Color(0.5f, 0.85f, 1f), "❄"),
@@ -894,14 +905,30 @@ public sealed class HudView
 
     private HBoxContainer? _efeitosRow;
     private Label? _casaLabel;
+    private ProgressBar? _casaBarra;
+    private readonly Label _casaSub = MakeLabel("", 11, new Color(0.85f, 0.8f, 0.68f), 3);
+
+    private ProgressBar NovaBarraCasa()
+    {
+        var b = new ProgressBar { MinValue = 0, MaxValue = 1, Step = 0.001, ShowPercentage = false, Size = new Vector2(200, 7), CustomMinimumSize = new Vector2(200, 7), MouseFilter = Control.MouseFilterEnum.Ignore };
+        var fundo = new StyleBoxFlat { BgColor = new Color(0.11f, 0.1f, 0.08f, 0.9f), BorderColor = new Color(0.35f, 0.27f, 0.13f) };
+        fundo.SetBorderWidthAll(1); fundo.SetCornerRadiusAll(3);
+        var cheio = new StyleBoxFlat { BgColor = new Color(0.79f, 0.63f, 0.32f) };
+        cheio.SetCornerRadiusAll(3);
+        b.AddThemeStyleboxOverride("background", fundo); b.AddThemeStyleboxOverride("fill", cheio);
+        b.TooltipText = "Conforto da casa: enche com decoração, reformas e peças do quintal";
+        Root.AddChild(b);
+        return b;
+    }
     private string _efeitosSig = "";
 
     private void AtualizarEfeitos(ClientModel m, CinzasDaMare.Shared.Net.PlayerView? me)
     {
         if (_efeitosRow is null)
         {
-            _efeitosRow = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
-            _efeitosRow.AddThemeConstantOverride("separation", 4);
+            // 18/11 19h (dono: "os efeitos entram da direita pra esquerda e menores"): o primeiro fica colado à direita
+            _efeitosRow = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, LayoutDirection = Control.LayoutDirectionEnum.Rtl };
+            _efeitosRow.AddThemeConstantOverride("separation", 3);
             Root.AddChild(_efeitosRow);
         }
         var efs = EfeitosAtivos(m, me);
@@ -910,7 +937,7 @@ public sealed class HudView
         {
             _efeitosSig = sig;
             foreach (var c in _efeitosRow.GetChildren()) c.QueueFree();
-            foreach (var e in efs) _efeitosRow.AddChild(new IconeEfeito { CustomMinimumSize = new Vector2(30, 30) });
+            foreach (var e in efs) _efeitosRow.AddChild(new IconeEfeito { CustomMinimumSize = new Vector2(24, 24) });
         }
         var i = 0;
         foreach (var n in _efeitosRow.GetChildren())
@@ -925,18 +952,31 @@ public sealed class HudView
         // 18/11 15h: nível da casa — em cima da barra, à esquerda do meio (só na sua casa/terreno)
         if (_casaLabel is null)
         {
-            _casaLabel = MakeLabel("", 13, new Color(0.98f, 0.85f, 0.55f), 4);
+            _casaLabel = MakeLabel("", 12, new Color(0.98f, 0.85f, 0.55f), 3);
             Root.AddChild(_casaLabel);
         }
-        _casaLabel.Text = m.CasaInfo;
-        _casaLabel.Visible = m.CasaInfo.Length > 0;
-        // em cima da barra, à direita do meio (onde o dono marcou)
+        // 18/11 19h: "casa|nível|conforto|pontos|fração" — em cima da barra só "SUA CASA · NÍVEL N" e a barrinha (estilo grupo);
+        // conforto e Ctrl+F vão embaixo do nome do lugar
+        var ci = m.CasaInfo.Split('|');
+        var naCasa = ci.Length >= 5 && ci[0] == "casa";
+        _casaLabel.Text = naCasa ? $"SUA CASA · NÍVEL {ci[1]}" : "";
+        _casaLabel.Visible = naCasa;
+        _casaBarra ??= NovaBarraCasa();
+        _casaBarra.Visible = naCasa;
+        if (naCasa && double.TryParse(ci[4], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var fr)) _casaBarra.Value = fr;
+        _casaSub.Text = naCasa ? $"Conforto {ci[2]}/10  ·  Ctrl+F: editar decoração" : "";
+        _casaSub.Visible = naCasa;
         var xp = _barra.Xp;
-        if (xp.IsInsideTree() && _casaLabel.Visible) _casaLabel.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 40f);
+        if (xp.IsInsideTree() && naCasa)
+        {
+            _casaLabel.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 38f);
+            _casaBarra.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 18f);
+        }
         if (xp.IsInsideTree())
         {
-            var topo = xp.GlobalPosition.Y - 46f;
-            _efeitosRow.Position = new Vector2(xp.GlobalPosition.X + xp.Size.X * 0.58f, topo);
+            var topo = xp.GlobalPosition.Y - 38f;
+            _efeitosRow.Size = _efeitosRow.GetCombinedMinimumSize();
+            _efeitosRow.Position = new Vector2(xp.GlobalPosition.X + xp.Size.X - 4f - _efeitosRow.Size.X, topo);
         }
         _efeitosRow.Visible = efs.Count > 0;
     }
@@ -1251,6 +1291,7 @@ public sealed class HudView
             _xpText.Text = $"Nível {level}  ·  {progress.Xp:N0} / {progress.XpToNext:N0} XP  ({percent:0.0}%)".Replace(",", ".");
         }
         UpdateQuests(m);
+        LimitarQuests();
         UpdateFeed(delta);
         _vignetteAlpha = Math.Max(0, _vignetteAlpha - delta * 1.8);
         _vignette.Color = new Color(0.6f, 0f, 0f, (float)_vignetteAlpha);
@@ -1321,11 +1362,45 @@ public sealed class HudView
         UpdateSlots(m, cooldowns, nowMs, me, dodgeReadyInMs);
 
         var logText = string.Join("\n", m.Log.Skip(Math.Max(0, m.Log.Count - LogLines)));
-        if (logText != _log.Text) { _log.Text = logText; _logChangedMs = nowMs; }
+        if (logText != _logRaw) { _logRaw = logText; _log.Text = string.Join("\n", logText.Split('\n').Select(CorDoLog)); _logChangedMs = nowMs; }
         // registro some sozinho depois de uns segundos sem novidade (HUD compacta)
         var age = (nowMs - _logChangedMs) / 1000.0;
         _logPanel.Modulate = new Color(1, 1, 1, (float)Math.Clamp(1.0 - (age - 6.0) / 2.0, 0.0, 1.0));
         _death.Visible = me is not null && !me.Alive;
+    }
+
+    private readonly RichTextLabel _log;
+    private string _logRaw = "";
+
+    /// <summary>18/11 19h: vermelho = morreu/perdeu/gastou/pagou; amarelo = entrou num lugar; o resto, creme.</summary>
+    private static string CorDoLog(string linha)
+    {
+        var t = linha.Replace("[", "[lb]");
+        var b = linha.ToLowerInvariant();
+        if (b.Contains("morreu") || b.Contains("morte") || b.Contains("perdeu") || b.Contains("gastou") || b.Contains("pagou") || b.Contains("caiu") || b.Contains("quebrou") || b.Contains("derrotado"))
+            return $"[color=#ff6b5b]{t}[/color]";
+        if (b.Contains("entrou") || b.Contains("chegou") || b.Contains("bem-vindo") || b.StartsWith("→") || b.Contains("viajou"))
+            return $"[color=#f2d15a]{t}[/color]";
+        return t;
+    }
+
+    /// <summary>18/11 19h (dono: "a caixa das missões cresce e empurra o histórico de baixo — cada um com seu limite"): o quadro
+    /// de missões tem altura máxima (~1/3 da tela); o que não cabe some e vira "+N no diário (J)".</summary>
+    private void LimitarQuests()
+    {
+        if (!_questPanel.Visible) return;
+        var max = Math.Max(180f, Root.GetViewportRect().Size.Y * 0.34f);
+        var filhos = _questBox.GetChildren().OfType<Control>().ToList();
+        if (filhos.Count < 2) return;
+        if (_questPanel.GetCombinedMinimumSize().Y <= max) return;
+        // esconde de baixo para cima, sempre em pares (nome + dica), até caber
+        var vis = filhos.Where(f => f.Visible && f.Name != "mais").ToList();
+        if (vis.Count <= 2) return;
+        vis[^1].Visible = false; vis[^2].Visible = false;
+        var mais = _questBox.GetNodeOrNull<Label>("mais");
+        if (mais is null) { mais = MakeLabel("", 11, new Color(0.7f, 0.66f, 0.58f), 3); mais.Name = "mais"; _questBox.AddChild(mais); }
+        var escondidas = filhos.Count(f => !f.Visible && f.Name != "mais") / 2;
+        mais.Text = $"+{escondidas} no diário (J)";
     }
 
     /// <summary>Até três missões no canto: prontas primeiro (◆ dourado), depois em andamento com progresso.</summary>
@@ -1717,18 +1792,18 @@ public sealed partial class AnelDescanso : Control
         var c = Size / 2f;
         var r = Mathf.Min(Size.X, Size.Y) / 2f - 4f;
         DrawCircle(c, r + 3f, new Color(0.05f, 0.04f, 0.03f, 0.75f));
-        DrawArc(c, r, 0, Mathf.Tau, 48, new Color(0.35f, 0.3f, 0.22f, 0.9f), 5f, true);
+        DrawArc(c, r, 0, Mathf.Tau, 48, new Color(0.35f, 0.3f, 0.22f, 0.9f), 3f, true);
         var cheio = T >= 1f;
         var cor = cheio ? new Color(0.45f, 0.95f, 0.55f) : Cama ? new Color(0.55f, 0.75f, 1f) : new Color(1f, 0.82f, 0.35f);
-        if (T > 0) DrawArc(c, r, -Mathf.Pi / 2, -Mathf.Pi / 2 + Mathf.Tau * Mathf.Clamp(T, 0, 1), 48, cor, 5f, true);
+        if (T > 0) DrawArc(c, r, -Mathf.Pi / 2, -Mathf.Pi / 2 + Mathf.Tau * Mathf.Clamp(T, 0, 1), 48, cor, 3f, true);
         var font = HudView.BodyFont ?? ThemeDB.FallbackFont;
         var txt = cheio ? "✓" : Cama ? "Zz" : $"{Mathf.Clamp(T, 0, 1) * 100:0}%";
-        var tam = cheio ? 24 : 13;
+        var tam = cheio ? 16 : 10;
         var w = font.GetStringSize(txt, HorizontalAlignment.Left, -1, tam).X;
         DrawString(font, c + new Vector2(-w / 2f, tam * 0.35f), txt, HorizontalAlignment.Left, -1, tam, cor);
         var sub = cheio ? (Cama ? "Bem Dormido!" : "Descansado!") : Cama ? "dormindo..." : "descansando...";
-        var ws = font.GetStringSize(sub, HorizontalAlignment.Left, -1, 11).X;
-        DrawString(font, c + new Vector2(-ws / 2f, r + 18f), sub, HorizontalAlignment.Left, -1, 11, new Color(0.9f, 0.85f, 0.7f));
+        var ws = font.GetStringSize(sub, HorizontalAlignment.Left, -1, 10).X;
+        DrawString(font, c + new Vector2(-ws / 2f, r + 15f), sub, HorizontalAlignment.Left, -1, 10, new Color(0.9f, 0.85f, 0.7f));
     }
 }
 
