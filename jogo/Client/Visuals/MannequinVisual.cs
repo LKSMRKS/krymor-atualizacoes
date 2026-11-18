@@ -4445,7 +4445,7 @@ void fragment() {
         ["cartola"] = ("humano", new Color(0.25f, 0.18f, 0.12f)), ["gravata"] = ("humano", new Color(0.2f, 0.3f, 0.45f)),
         ["chef"] = ("humano", new Color(0.3f, 0.2f, 0.1f)), ["magico"] = ("humano", new Color(0.25f, 0.15f, 0.4f)),
         ["rei"] = ("humano", new Color(0.2f, 0.35f, 0.5f)), ["cozinheiro_insano"] = ("louco", new Color(0.6f, 0.1f, 0.1f)),
-        ["palhaco"] = ("palhaco", new Color(0.1f, 0.4f, 0.9f)), ["palhaco_sinistro"] = ("louco", new Color(0.7f, 0.05f, 0.05f)),
+        ["palhaco"] = ("palhaco", new Color(0.1f, 0.4f, 0.9f)), 
         ["bobo"] = ("humano", new Color(0.35f, 0.2f, 0.1f)), ["macaco_vermelho"] = ("humano", new Color(0.35f, 0.18f, 0.05f)),
         ["demonio"] = ("brilho", new Color(1f, 0.15f, 0.05f)), ["lava"] = ("brilho", new Color(1f, 0.6f, 0.1f)),
         ["pedra"] = ("brilho", new Color(0.4f, 0.85f, 1f)), ["cristal"] = ("brilho", new Color(0.6f, 0.9f, 1f)), ["ouro"] = ("brilho", new Color(1f, 0.85f, 0.3f)),
@@ -4937,7 +4937,8 @@ void fragment() {
                 {
                     for (var i = 0; i < 3; i++) VisualKit.Part(cab, VisualKit.Sphere(0.07f), cabelo, new Vector3(sd * (0.11f + i * 0.02f), 0.06f + i * 0.04f, -0.02f));
                     VisualKit.Part(cab, VisualKit.Sphere(0.03f), M(new Color(0.05f, 0.05f, 0.05f)), new Vector3(sd * 0.045f, 0.03f, 0.1f), null, new Vector3(1f, 1.4f, 0.5f));
-                    VisualKit.Part(cab, VisualKit.Sphere(0.012f), VisualKit.Glow(new Color(1f, 0.15f, 0.1f), 2.6f), new Vector3(sd * 0.045f, 0.03f, 0.118f));
+                    // 18/11 17h (dono: "esse palhaço ficou maneiro, tira o olho que tá atrás e deixa só esse pretão medonho"):
+                    // sem o olho de conta por trás e sem o pontinho vermelho — só o buraco preto
                 }
                 VisualKit.Part(cab, VisualKit.Sphere(0.03f), M(new Color(0.85f, 0.05f, 0.05f), 0.25f), new Vector3(0, -0.005f, 0.125f));
                 VisualKit.Part(cab, VisualKit.Box(0.13f, 0.02f, 0.01f), M(new Color(0.6f, 0.02f, 0.04f)), new Vector3(0, -0.055f, 0.112f), new Vector3(0, 0, 0));   // sorriso
