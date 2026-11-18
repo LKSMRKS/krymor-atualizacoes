@@ -595,7 +595,20 @@ public sealed class InventoryPanel
         var line = !usable ? "Ainda não dá: " + reason + "."
             : info is not null && equipped is null && info.Slot is not ("consumable" or "material" or "") ? Compare(m, info) : "";
         if (line.Length == 0 && kind.Length > 0) line = kind + (quality != "comum" ? $" · {quality}" : "");
-        if (line.Length > 0) _details.AddChild(HudView.MakeLabel(line, 12, !usable ? Bad : line.Contains('−') && !line.Contains('+') ? Bad : line.Contains('+') ? Good : Dim, 2));
+        if (line.Length > 0)
+        {
+            // 18/11 15h ("tem hora que o inventário fica bem maior"): a comparação comprida alargava a janela — agora quebra
+            // a linha dentro da largura que já existe (sem largura mínima própria) e o texto inteiro fica no mouse
+            var l = HudView.MakeLabel(line, 12, !usable ? Bad : line.Contains('−') && !line.Contains('+') ? Bad : line.Contains('+') ? Good : Dim, 2);
+            l.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+            l.CustomMinimumSize = new Vector2(1, 0);
+            l.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+            l.MaxLinesVisible = 2;
+            l.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
+            l.TooltipText = line;
+            l.MouseFilter = Control.MouseFilterEnum.Pass;
+            _details.AddChild(l);
+        }
 
         if (item is not null && info?.Slot != "material")
         {

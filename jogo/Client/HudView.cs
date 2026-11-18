@@ -34,6 +34,7 @@ public sealed class HudView
         public Label Glyph = null!;
         public TextureRect? Frame;
         public Label Count = null!;
+        public Control? Painel;   // 18/11 15h: o quadrado (dica com o nome do poder)
     }
 
     private sealed class Plate
@@ -609,10 +610,6 @@ public sealed class HudView
         rightCol.AddThemeConstantOverride("separation", 6);
         var mapRow = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, Alignment = BoxContainer.AlignmentMode.Begin };
         mapRow.AddChild(MiniMap);
-        // 18/11 ("colocar um ícone de buscar — nome do mapa, lugar, item"): lupa ao lado do minimapa (ou Ctrl+F)
-        var lupa = new BotaoLupa { CustomMinimumSize = new Vector2(34, 34), SizeFlagsVertical = Control.SizeFlags.ShrinkBegin, TooltipText = "Buscar lugar, mapa, NPC ou item (Ctrl+F)" };
-        lupa.Clicou = () => AbrirBusca?.Invoke();
-        mapRow.AddChild(lupa);
         _leftCol!.AddChild(mapRow);
         // 13/11 ("coloca o nome do amigo da party embaixo do minimapa"): grupo com vida e onde está
         _grupoBox.AddThemeConstantOverride("separation", 1);
@@ -853,6 +850,97 @@ public sealed class HudView
         portrait.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
     }
 
+    // ------------------------------------------------------------------ 18/11 15h: efeitos ativos
+    // dono: "o buff deve aparecer no C e também carregar ali em cima as passivas ativadas — quadradinhos com um tempo
+    // girando dentro, que mostra quando está acabando" (print: em cima da barra, à direita do meio)
+    public sealed record Efeito(string Id, string Simbolo, string Nome, string Resumo, TimeSpan? Restante, double Fracao, bool Ruim, Color Cor);
+    public static bool NoiteXp;
+
+    public static List<Efeito> EfeitosAtivos(ClientModel m, CinzasDaMare.Shared.Net.PlayerView? me)
+    {
+        var l = new List<Efeito>();
+        if (m.BuffAtivo is { } b)
+        {
+            var conforto = b.Nome.Contains("onforto", StringComparison.OrdinalIgnoreCase);
+            l.Add(new Efeito("buff", conforto ? "⌂" : "♨", b.Nome, b.Resumo, b.Falta, b.Fracao, false, conforto ? new Color(0.95f, 0.75f, 0.45f) : new Color(0.55f, 0.95f, 0.5f)));
+        }
+        // 18/11 15h: disco na vitrola do quintal (+XP por 30 min) — marca "jukebox_ate=<ms>|<pct>"
+        foreach (var f in m.Flags)
+        {
+            if (!f.StartsWith("jukebox_ate=", StringComparison.Ordinal)) continue;
+            var p = f[12..].Split('|');
+            if (p.Length == 2 && long.TryParse(p[0], out var ate) && double.TryParse(p[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var pct))
+            {
+                var falta = DateTimeOffset.FromUnixTimeMilliseconds(ate) - DateTimeOffset.UtcNow;
+                if (falta > TimeSpan.Zero) l.Add(new Efeito("vitrola", "♪", "Vitrola do Quintal", $"+{pct * 100:0}% de experiência", falta, Math.Clamp(falta.TotalMinutes / 30, 0, 1), false, new Color(1f, 0.6f, 0.85f)));
+            }
+        }
+        if (NoiteXp) l.Add(new Efeito("noite", "☾", "Noite", "+25% de experiência (monstros 20% mais fortes)", null, 1, false, new Color(0.6f, 0.65f, 1f)));
+        if (me is { Shield: > 0.5 }) l.Add(new Efeito("escudo", "◈", "Escudo", $"absorve {me.Shield:0} de dano", null, 1, false, new Color(0.55f, 0.85f, 1f)));
+        if (me is { SetCompleto: true }) l.Add(new Efeito("conjunto", "✦", "Conjunto completo", "bônus do conjunto ativo", null, 1, false, Gold));
+        foreach (var st in (me?.Status ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var (nome, cor, simb) = st switch
+            {
+                "veneno" => ("Veneno", new Color(0.45f, 1f, 0.35f), "☠"), "lentidao" => ("Lento", new Color(0.5f, 0.85f, 1f), "❄"),
+                "queimadura" => ("Queimando", new Color(1f, 0.55f, 0.2f), "🔥"), "sangramento" => ("Sangrando", new Color(1f, 0.25f, 0.25f), "✚"),
+                "maldicao" => ("Maldição", new Color(0.75f, 0.45f, 1f), "☠"), "atordoado" => ("Atordoado", new Color(1f, 0.9f, 0.4f), "✶"),
+                _ => (st, Colors.White, "!"),
+            };
+            l.Add(new Efeito("st_" + st, simb, nome, "efeito ruim — passa sozinho", null, 1, true, cor));
+        }
+        return l;
+    }
+
+    private HBoxContainer? _efeitosRow;
+    private Label? _casaLabel;
+    private string _efeitosSig = "";
+
+    private void AtualizarEfeitos(ClientModel m, CinzasDaMare.Shared.Net.PlayerView? me)
+    {
+        if (_efeitosRow is null)
+        {
+            _efeitosRow = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+            _efeitosRow.AddThemeConstantOverride("separation", 4);
+            Root.AddChild(_efeitosRow);
+        }
+        var efs = EfeitosAtivos(m, me);
+        var sig = string.Join(",", efs.Select(e => e.Id));
+        if (sig != _efeitosSig)
+        {
+            _efeitosSig = sig;
+            foreach (var c in _efeitosRow.GetChildren()) c.QueueFree();
+            foreach (var e in efs) _efeitosRow.AddChild(new IconeEfeito { CustomMinimumSize = new Vector2(30, 30) });
+        }
+        var i = 0;
+        foreach (var n in _efeitosRow.GetChildren())
+        {
+            if (n is not IconeEfeito ic || ic.IsQueuedForDeletion() || i >= efs.Count) continue;
+            var e = efs[i++];
+            ic.Efeito = e;
+            var dica = e.Nome + (e.Restante is { } r ? $" — {(r.TotalMinutes >= 1 ? $"{Math.Ceiling(r.TotalMinutes):0} min" : $"{r.Seconds} s")}" : "") + (e.Resumo.Length > 0 ? "\n" + e.Resumo : "");
+            if (ic.TooltipText != dica) ic.TooltipText = dica;
+            ic.QueueRedraw();
+        }
+        // 18/11 15h: nível da casa — em cima da barra, à esquerda do meio (só na sua casa/terreno)
+        if (_casaLabel is null)
+        {
+            _casaLabel = MakeLabel("", 13, new Color(0.98f, 0.85f, 0.55f), 4);
+            Root.AddChild(_casaLabel);
+        }
+        _casaLabel.Text = m.CasaInfo;
+        _casaLabel.Visible = m.CasaInfo.Length > 0;
+        // em cima da barra, à direita do meio (onde o dono marcou)
+        var xp = _barra.Xp;
+        if (xp.IsInsideTree() && _casaLabel.Visible) _casaLabel.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 40f);
+        if (xp.IsInsideTree())
+        {
+            var topo = xp.GlobalPosition.Y - 46f;
+            _efeitosRow.Position = new Vector2(xp.GlobalPosition.X + xp.Size.X * 0.58f, topo);
+        }
+        _efeitosRow.Visible = efs.Count > 0;
+    }
+
     // ------------------------------------------------------------------ 18/11: cartão de nível
     // dono: "fala que GANHA, mas eu ganho? deveria mostrar o que dá pra fazer agora que chegou no 20, e o que ganha todo
     // nível". Texto do servidor: "Nível N|ganhou;...|pode;...|conseguir;...". Fica 14 s (clique fecha).
@@ -978,7 +1066,9 @@ public sealed class HudView
         count.Position = new Vector2(SlotSize - 20f, SlotSize - 21f);
         panel.AddChild(count);
 
-        _slots.Add(new Slot { Style = style, Cooldown = cooldown, Count = count, Icon = icon, Glyph = g, Frame = frame });
+        // 18/11 15h ("ao passar o mouse nos poderes, mostrar o nome dos poderes"): o quadrado recebe o mouse (só para a dica)
+        panel.MouseFilter = Control.MouseFilterEnum.Pass;
+        _slots.Add(new Slot { Style = style, Cooldown = cooldown, Count = count, Icon = icon, Glyph = g, Frame = frame, Painel = panel });
         return panel;
     }
 
@@ -1131,6 +1221,7 @@ public sealed class HudView
         _levelText.Text = $"Nv {level}";
         _classText.Text = m.Me?.Title is { Length: > 0 } title ? $"{m.ClassTitle} · «{title}»" : m.ClassTitle;   // 11/11: título da conquista
         _buffText.Text = m.BuffText;
+        AtualizarEfeitos(m, me);   // 18/11 15h: quadradinhos de efeito em cima da barra
         _coinsText.Text = m.LoggedIn ? $"◉ {m.Coins:N0} moedas".Replace(",", ".") : "";
 
         _resOrb.Liquid = m.ClassId switch
@@ -1443,9 +1534,15 @@ public sealed class HudView
         }
 
         // poderes: o que estiver em cada tecla (Livro de Poderes, K). Tecla sem poder = quadrado vazio.
+        void Dica(int i, string t) { if (_slots[i].Painel is { } p && p.TooltipText != t) p.TooltipText = t; }
+        Dica(0, m.BasicSkill is { } b0 ? $"{b0.DisplayName} (clique esquerdo)" : "Ataque básico (clique esquerdo)");
+        Dica(3, "Esquiva (Espaço)");
+        Dica(4, "Tônico de vida (tecla 1)" + (escolhido is not null ? $": {ClientModel.DisplayName(escolhido)}" : ""));
+        Dica(7, (Main.Tecla2() is { } t2d ? ClientModel.DisplayName(t2d) : mageSlot ? "Frasco de mana" : "Comida") + " (tecla 2)");
         foreach (var (idx, key) in new[] { (1, "Q"), (2, "E"), (5, "R"), (6, "T"), (8, "Dir") })
         {
             var sk = m.SkillForKey(key);
+            Dica(idx, sk is null ? $"Tecla {key}: vazia (escolha um poder no Livro de Poderes, K)" : $"{sk.DisplayName} ({key}) · custo {sk.ResourceCost:0}" + (sk.Description is { Length: > 0 } dd ? "\n" + dd : ""));
             SetSlotIcon(idx, SkillIcon(sk?.Id), sk is null ? "" : Short(sk.DisplayName));
             _slots[idx].Count.Text = sk is not null && sk.ResourceCost > resource ? "!" : "";
             StyleSlot(idx, sk is null ? 0 : cd.Fraction(sk.Id, now), idx == 2 && me?.Guarding == true && sk?.Id == ClientModel.SkillGuarda);
@@ -1660,5 +1757,38 @@ public sealed partial class BotaoLupa : Control
         var lente = c + new Vector2(-2.5f, -2.5f);
         DrawArc(lente, r * 0.38f, 0, Mathf.Tau, 24, ouro, 2.4f, true);
         DrawLine(lente + new Vector2(r * 0.28f, r * 0.28f), lente + new Vector2(r * 0.62f, r * 0.62f), ouro, 3.2f, true);
+    }
+}
+
+/// <summary>18/11 15h: quadradinho de efeito (buff, noite, escudo, veneno...) com o tempo girando por dentro.</summary>
+public sealed partial class IconeEfeito : Control
+{
+    public HudView.Efeito? Efeito;
+    public IconeEfeito() { MouseFilter = MouseFilterEnum.Stop; }
+
+    public override void _Draw()
+    {
+        if (Efeito is not { } e) return;
+        var r = new Rect2(Vector2.Zero, Size);
+        DrawRect(r, new Color(0.04f, 0.035f, 0.035f, 0.92f));
+        // tempo: a parte que já passou escurece girando (sentido horário, de cima)
+        if (e.Restante is not null && e.Fracao < 0.999)
+        {
+            var c = Size / 2f; var raio = Size.Length() / 2f;
+            var pts = new List<Vector2> { c };
+            var ini = -Mathf.Pi / 2f; var fim = ini + Mathf.Tau * (float)(1 - e.Fracao);
+            for (var k = 0; k <= 24; k++) { var a = ini + (fim - ini) * k / 24f; pts.Add(c + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * raio); }
+            var tinta = new Color(e.Cor.R * 0.35f, e.Cor.G * 0.35f, e.Cor.B * 0.35f, 0.9f);
+            DrawRect(r, e.Cor with { A = 0.28f });
+            Vector2 Cl(Vector2 p) => new(Mathf.Clamp(p.X, 0, Size.X), Mathf.Clamp(p.Y, 0, Size.Y));
+            var cores = new[] { tinta, tinta, tinta };
+            for (var k = 1; k < pts.Count - 1; k++)
+                DrawPrimitive(new[] { c, Cl(pts[k]), Cl(pts[k + 1]) }, cores, new[] { Vector2.Zero, Vector2.Zero, Vector2.Zero });
+        }
+        else DrawRect(r, e.Cor with { A = 0.28f });
+        DrawRect(r, e.Ruim ? new Color(1f, 0.35f, 0.3f) : e.Cor, false, 1.5f);
+        var f = HudView.BodyFont ?? ThemeDB.FallbackFont;
+        var sz = f.GetStringSize(e.Simbolo, HorizontalAlignment.Left, -1, 16);
+        DrawString(f, new Vector2((Size.X - sz.X) / 2f, Size.Y / 2f + 6f), e.Simbolo, HorizontalAlignment.Left, -1, 16, Colors.White);
     }
 }

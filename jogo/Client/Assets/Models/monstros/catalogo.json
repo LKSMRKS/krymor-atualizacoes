@@ -378,7 +378,7 @@
     "tipo": "humanoide",
     "variacao_altura": 0.04,
     "chefe": 1.3,
-    "manter_antigo": 0.5
+    "manter_antigo": 0
   },
   "monster_acolyte_placeholder": {
     "arquivo": "monstros/acolito",

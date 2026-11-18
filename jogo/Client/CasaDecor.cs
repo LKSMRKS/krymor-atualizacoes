@@ -26,6 +26,12 @@ public static class CasaDecor
         ["decor_planta"] = (-9.0f, -1.5f, 90f),
         ["decor_bandeira"] = (4.5f, -9.3f, 0f),
         ["decor_sofa"] = (-6.5f, 6.5f, 180f),   // 18/11: sofá (dá para sentar: conforto ×1,5)
+        // 18/11 15h: decoração de FORA (terreno da casa) — sempre no lugar escolhido pelo dono
+        ["decor_terreno_boneco"] = (4f, 4f, 0f),
+        ["decor_terreno_portal"] = (-4f, 4f, 0f),
+        ["decor_terreno_mascate"] = (4f, -4f, 0f),
+        ["decor_terreno_jukebox"] = (-4f, -4f, 0f),
+        ["decor_terreno_cercado"] = (0f, 8f, 0f),
     };
 
     public static bool Conhece(string id) => Lugar.ContainsKey(id);
@@ -65,6 +71,8 @@ public static class CasaDecor
         var (lx, ly, lyaw, alt) = onde ?? (l.X, l.Y, l.Yaw, 0f);
         var n = new Node3D { Name = id, Position = at(lx, ly) + new Vector3(0, alt, 0), RotationDegrees = new Vector3(0, lyaw, 0) };
         root.AddChild(n);
+        if (id.StartsWith("decor_terreno_", System.StringComparison.Ordinal) && id != "decor_terreno_jukebox") { DeFora(n, id, icone); return true; }
+        if (id == "decor_terreno_jukebox") id = "decor_jukebox";   // a vitrola do quintal é a mesma jukebox (com a música)
         if (KitAcervo.Decor(n, id, icone)) return true;   // 13/11: decoração com modelo 3D (mantém luz e música)
         var madeira = VisualKit.Mat(new Color(0.36f, 0.2f, 0.1f), 0.6f);
         var ouro = VisualKit.Mat(new Color(0.95f, 0.75f, 0.3f), 0.3f, 0.8f);
@@ -194,5 +202,70 @@ public static class CasaDecor
                 break;
         }
         return true;
+    }
+
+    /// <summary>18/11 15h: peças de fora — tablado do boneco, portal de pedra, barraca do mascate e cercado de caça.</summary>
+    private static void DeFora(Node3D n, string id, bool icone)
+    {
+        var madeira = VisualKit.Mat(new Color(0.42f, 0.27f, 0.15f), 0.85f);
+        var escura = VisualKit.Mat(new Color(0.26f, 0.17f, 0.1f), 0.9f);
+        var pedra = VisualKit.Mat(new Color(0.55f, 0.53f, 0.5f), 0.9f);
+        switch (id)
+        {
+            case "decor_terreno_boneco":
+                // tablado de treino: o boneco (monstro de treino de verdade) fica em cima
+                VisualKit.Part(n, VisualKit.Cylinder(1.2f, 1.25f, 0.12f, 20), madeira, new Vector3(0, 0.06f, 0));
+                VisualKit.Part(n, VisualKit.Ring(1.2f, 0.06f, 24), escura, new Vector3(0, 0.13f, 0));
+                if (icone) VisualKit.Part(n, VisualKit.Cylinder(0.12f, 0.12f, 1.4f), madeira, new Vector3(0, 0.8f, 0));
+                break;
+            case "decor_terreno_portal":
+            {
+                VisualKit.Part(n, VisualKit.Cylinder(1.3f, 1.4f, 0.15f, 20), pedra, new Vector3(0, 0.07f, 0));
+                VisualKit.Part(n, VisualKit.Box(0.4f, 2.8f, 0.4f), pedra, new Vector3(-1.0f, 1.4f, 0));
+                VisualKit.Part(n, VisualKit.Box(0.4f, 2.8f, 0.4f), pedra, new Vector3(1.0f, 1.4f, 0));
+                VisualKit.Part(n, VisualKit.Box(2.6f, 0.4f, 0.5f), pedra, new Vector3(0, 2.95f, 0));
+                var luz = VisualKit.Glow(new Color(0.35f, 0.7f, 1f, 0.55f), 1.6f);
+                luz.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+                VisualKit.Part(n, VisualKit.Box(1.6f, 2.5f, 0.05f), luz, new Vector3(0, 1.4f, 0));
+                n.AddChild(new OmniLight3D { LightColor = new Color("#7fc4ff"), LightEnergy = 1.0f, OmniRange = 5f, Position = new Vector3(0, 1.5f, 0.6f), ShadowEnabled = false });
+                break;
+            }
+            case "decor_terreno_mascate":
+            {
+                // barraca: balcão, 4 esteios e um toldo listrado; o mascate (o nosso boneco) atrás do balcão
+                VisualKit.Part(n, VisualKit.Box(2.4f, 0.9f, 0.7f), madeira, new Vector3(0, 0.45f, 0.4f));
+                foreach (var (x, z) in new[] { (-1.15f, 0.7f), (1.15f, 0.7f), (-1.15f, -0.9f), (1.15f, -0.9f) })
+                    VisualKit.Part(n, VisualKit.Cylinder(0.05f, 0.05f, 2.4f), escura, new Vector3(x, 1.2f, z));
+                for (var i = 0; i < 6; i++)
+                    VisualKit.Part(n, VisualKit.Box(0.42f, 0.05f, 1.9f), VisualKit.Mat(i % 2 == 0 ? new Color(0.75f, 0.15f, 0.12f) : new Color(0.93f, 0.88f, 0.75f), 0.9f),
+                        new Vector3(-1.05f + i * 0.42f, 2.45f, -0.1f), new Vector3(12, 0, 0));
+                foreach (var (x, c) in new[] { (-0.7f, new Color(0.9f, 0.3f, 0.3f)), (-0.2f, new Color(0.3f, 0.5f, 0.95f)), (0.4f, new Color(0.95f, 0.8f, 0.3f)) })
+                    VisualKit.Part(n, VisualKit.Cylinder(0.08f, 0.1f, 0.25f), VisualKit.Mat(c, 0.3f), new Vector3(x, 1.03f, 0.4f));
+                if (!icone)
+                {
+                    var v = Visuals.VisualFactory.NpcVisual("aldeao", "terreno_mascate", "Mascate do Quintal");
+                    v.Root.Position = new Vector3(0, 0, -0.35f);
+                    n.AddChild(v.Root);
+                }
+                break;
+            }
+            case "decor_terreno_cercado":
+            {
+                // cercado redondo de estacas com o ninho no meio
+                const int estacas = 18; const float r = 3.2f;
+                for (var i = 0; i < estacas; i++)
+                {
+                    var a = i * Mathf.Tau / estacas;
+                    if (i == 0) continue;   // a entrada
+                    VisualKit.Part(n, VisualKit.Cylinder(0.07f, 0.08f, 1.1f), madeira, new Vector3(Mathf.Cos(a) * r, 0.55f, Mathf.Sin(a) * r));
+                    var b = (i + 0.5f) * Mathf.Tau / estacas;
+                    if (i < estacas - 1)
+                        VisualKit.Part(n, VisualKit.Box(0.08f, 0.08f, r * Mathf.Tau / estacas), escura, new Vector3(Mathf.Cos(b) * r, 0.85f, Mathf.Sin(b) * r), new Vector3(0, -Mathf.RadToDeg(b), 0));
+                }
+                VisualKit.Part(n, VisualKit.Cylinder(0.7f, 0.85f, 0.25f, 14), VisualKit.Mat(new Color(0.55f, 0.45f, 0.25f), 1f), new Vector3(0, 0.12f, 0));
+                VisualKit.Part(n, VisualKit.Sphere(0.25f), VisualKit.Mat(new Color(0.92f, 0.88f, 0.75f), 0.6f), new Vector3(0, 0.45f, 0), scale: new Vector3(1f, 1.3f, 1f));
+                break;
+            }
+        }
     }
 }

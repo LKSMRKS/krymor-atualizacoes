@@ -191,6 +191,20 @@ public sealed class Effects
         _active.Add(fx);
     }
 
+    /// <summary>18/11 15h (dono: "aumenta a área que marca da Fúria do Colosso — o ataque é muito maior que a área"): marca
+    /// fixa no chão com o TAMANHO REAL do golpe (anel na borda + chão tingido), durante a preparação.</summary>
+    public void Area(Vector3 at, Color color, float radius, double life)
+    {
+        var fx = new Fx { Life = life };
+        at.Y = Mathf.Max(at.Y, Visuals.EscadaCasa.Altura(at.X, at.Z));
+        var anel = AddPart(fx, new TorusMesh { InnerRadius = 0.95f, OuterRadius = 1.0f, Rings = 6, RingSegments = 48 }, color, at + new Vector3(0f, 0.07f, 0f), life);
+        anel.StartScale = anel.EndScale = new Vector3(radius, 0.15f, radius);
+        var chao = AddPart(fx, new CylinderMesh { TopRadius = 1f, BottomRadius = 1f, Height = 0.02f, RadialSegments = 40 }, color with { A = color.A * 0.3f }, at + new Vector3(0f, 0.05f, 0f), life);
+        chao.StartScale = new Vector3(0.05f, 1f, 0.05f);
+        chao.EndScale = new Vector3(radius, 1f, radius);   // enche até a borda: quando encosta, o golpe sai
+        _active.Add(fx);
+    }
+
     /// <summary>Monstro surgindo (estilo MU): coluna de luz que sobe e some, anel no chão e brilhos subindo.</summary>
     public void Spawn(Vector3 at, Color color)
     {

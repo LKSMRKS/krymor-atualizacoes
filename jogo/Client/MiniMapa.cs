@@ -58,9 +58,11 @@ public sealed partial class MiniMapa : Control
                 DrawLine(ClampIn(a, c, r - 4), ClampIn(b, c, r - 4), new Color(0.55f, 0.45f, 0.3f, 0.7f), Mathf.Max(1.5f, (float)road.Width * scale), true);
             }
         // muros e rochas (obstáculos grandes)
+        var escondido = CinzasDaMare.Shared.World.SegredoNoMapa.Escondidos(map, Model?.Flags);
         foreach (var o in map.Obstacles)
         {
             if (o.Kind == "invisivel") continue;
+            if (CinzasDaMare.Shared.World.SegredoNoMapa.Dentro(escondido, o.X, o.Y)) continue;   // 18/11 15h: segredo não achado
             var p = P(o.X, o.Y);
             if (!Inside(p, -30)) continue;
             if (o.Shape == "circle") { if (Inside(p)) DrawCircle(p, Mathf.Max(1.5f, (float)o.R * scale), new Color(0.38f, 0.36f, 0.33f, 0.8f)); }
@@ -72,7 +74,7 @@ public sealed partial class MiniMapa : Control
                 for (var i = 0; i < 4; i++) DrawLine(ClampIn(pts[i], c, r - 3), ClampIn(pts[(i + 1) % 4], c, r - 3), new Color(0.5f, 0.47f, 0.42f, 0.85f), 2f);
             }
         }
-        foreach (var w in map.Waypoints) { var p = P(w.X, w.Y); if (Inside(p)) DrawCircle(p, 4.5f, new Color(0.35f, 0.75f, 1f)); }
+        foreach (var w in map.Waypoints) { var p = P(w.X, w.Y); if (Inside(p)) DrawCircle(p, 4.5f, Model?.Flags.Contains("wp:" + w.Id) != false ? new Color(0.35f, 0.75f, 1f) : new Color(0.5f, 0.52f, 0.56f, 0.7f)); }
         var meuNivel = m.Progress?.Level ?? me.Level;
         foreach (var pt in map.Portals)
         {

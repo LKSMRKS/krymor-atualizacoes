@@ -17,13 +17,22 @@ public static class AssentosCasa
         ["decor_trono"] = (-2.6, -8.3, 0), ["decor_sofa"] = (-6.5, 6.5, 180),
     };
 
+    /// <summary>18/11 15h: terreno da casa (lote) ou cômodo — sentar aí vale o Conforto do Lar.</summary>
+    public static bool TerrenoOuCasa(string? mapa) => mapa is not null && mapa.StartsWith("casa_jogador", StringComparison.Ordinal);
+
+    /// <summary>18/11 15h: o terreno (quintal) da casa — onde vai a "decoração de fora" (decor_terreno_*).</summary>
+    public static bool Lote(string? mapa) => TerrenoOuCasa(mapa) && !Interior(mapa);
+    /// <summary>Peça de fora (quintal) — só no terreno; as outras só dentro de casa.</summary>
+    public static bool DeFora(string? decorId) => decorId is not null && decorId.StartsWith("decor_terreno_", StringComparison.Ordinal);
+
     public static bool Interior(string? mapa) => mapa is "casa_jogador" or "casa_jogador_dentro" or "casa_jogador_sobrado2" or "casa_jogador_mansao_dentro" or "casa_jogador_mansao_cima";
 
     public static IEnumerable<(double X, double Y, double Yaw, bool Casa)> Lista(MapLayout l, IEnumerable<string> flags)
     {
         foreach (var p in l.Props)
         {
-            if (p.Kind == "banco_praca") yield return (p.X, p.Y, p.Yaw, false);
+            // 18/11 15h (dono: "se tem banco, senta — é meio lógico, regra"): todo banco do jogo (o de praça e o modelo novo)
+            if (p.Kind is "banco_praca" or "glb:cenario_banco_praca" or "movel_banqueta") yield return (p.X, p.Y, p.Yaw, TerrenoOuCasa(l.Id));
             else if (p.Kind == "movel_cadeira") yield return (p.X, p.Y, p.Yaw, Interior(l.Id));
         }
         if (!Interior(l.Id)) yield break;

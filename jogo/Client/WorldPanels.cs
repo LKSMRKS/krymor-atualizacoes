@@ -267,7 +267,7 @@ public sealed class WorldPanels
         {
             // 16/11: anoiteceu/amanheceu — anúncio de tela própria (lua, título vermelho, o que mudou)
             if (n.Kind is "noite" or "amanhecer") { AvisoNoite.Pedir(n.Kind == "noite"); continue; }
-            if (n.Kind == "pesquisa_abrir") continue;   // 17/11: abre a caixa do Catálogo (Main)
+            if (n.Kind is "pesquisa_abrir" or "mesclar_abrir") continue;   // 17/11: abre a caixa do Catálogo (Main); 18/11: a máquina de mesclar
             if (n.Kind == "pedra") { n = n with { Text = n.Text.Split('|')[0], Kind = "info" }; if (n.Text.Length == 0) continue; }   // 17/11: golpe na rocha oca (só treme — sem texto, é segredo)
             if (n.Kind == "regiao")
             {
@@ -347,6 +347,7 @@ public sealed class WorldPanels
             _canvas.Layout = m.Map;
             _canvas.Markers = m.QuestMarkers;
             _canvas.XpDoNivel = m.Progress?.XpToNext ?? 0;   // 18/11: XP da missão em % do seu nível
+            _canvas.Flags = m.Flags;   // 18/11 15h: segredo e pedra de viagem só aparecem depois de achados
             _canvas.Historia = m.ProximaHistoria;   // 17/11 noite: estrela da história no mapa M
             _canvas.NpcMarks = m.NpcMarkers;
             _canvas.NpcShown ??= m.NpcVisible;
@@ -415,9 +416,19 @@ public sealed class WorldPanels
         _dialogBox.AddChild(Section("Bestiário e drops por região"));
         _dialogBox.AddChild(HudView.MakeLabel("Peças de conjunto: V1 é a mais comum; cada variação acima é mais rara. Chefes e dungeons vão mais alto.", 11, Dim));
         // 18/11 ("quero o pesquisar no registro das criaturas da biblioteca do Cais"): busca por bicho ou pelo que ele deixa cair
-        var busca = new LineEdit { PlaceholderText = "🔍 Pesquisar criatura ou item (ex.: fantasma, couro)...", Text = _libBusca, CustomMinimumSize = new Vector2(440, 0), ClearButtonEnabled = true };
+        var busca = new LineEdit { PlaceholderText = "🔍 Criatura, item, lugar ou NPC (ex.: fantasma, couro, toca)...", Text = _libBusca, CustomMinimumSize = new Vector2(330, 0), ClearButtonEnabled = true };
         busca.TextChanged += t => { _libBusca = t; _libFoco = true; _dialogSig = ""; };
-        _dialogBox.AddChild(busca);
+        // 18/11 15h ("o pesquisar pode ficar ali dentro do painel de registro"): Enter ou o botão buscam em tudo —
+        // lugares (região › mapa › local), NPCs, os seus itens (mochila/corpo/baús) e o catálogo; a bússola aponta
+        var linhaBusca = new HBoxContainer();
+        busca.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+        var tudo = new Button { Text = "Buscar em tudo", TooltipText = "Lugar, mapa, NPC, item ou monstro: diz onde fica, como chegar e se você tem." };
+        void BuscaTudo() { var t = busca.Text.Trim(); if (t.Length >= 2) { Send?.Invoke(new PesquisaIntent(t) { Global = true }); Sfx.Play("ui_clique"); } }
+        tudo.Pressed += BuscaTudo;
+        busca.TextSubmitted += _ => BuscaTudo();
+        linhaBusca.AddChild(busca);
+        linhaBusca.AddChild(tudo);
+        _dialogBox.AddChild(linhaBusca);
         if (_libFoco) Callable.From(() => { if (GodotObject.IsInstanceValid(busca)) { busca.GrabFocus(); busca.CaretColumn = busca.Text.Length; } }).CallDeferred();
         var q = SemAcento(_libBusca);
         var filtrando = q.Length >= 2;
@@ -723,6 +734,20 @@ public sealed class WorldPanels
                 if (q.State != "done" && (q.RewardXp > 0 || q.RewardCoins > 0))
                     head.AddChild(HudView.MakeLabel((q.RewardXp > 0 ? $"+{q.RewardXp:N0} XP" : "") + (q.RewardXp > 0 && q.RewardCoins > 0 ? "  ·  " : "") +
                         (q.RewardCoins > 0 ? $"{q.RewardCoins:N0} moedas" : ""), 13, new Color(0.55f, 0.85f, 1f)));
+                if (q.State != "done" && (q.X != 0 || q.Y != 0))
+                {
+                    // 18/11 15h: ver no mapa (abre o M com a missão piscando)
+                    var ver = new Button { Text = "🗺", TooltipText = "Mostrar no mapa (M)" + (q.MapId != m.Map?.Id && q.MapId.Length > 0 ? " — fica em outro mapa: marca a passagem para lá" : "") };
+                    var (qx, qy, qn) = (q.X, q.Y, q.Name);
+                    ver.Pressed += () =>
+                    {
+                        Toggle("map");
+                        _canvas.Destaque = (qx, qy, qn);
+                        _canvas.DestaqueAte = Time.GetTicksMsec() + 8000;
+                        Sfx.Play("ui_clique");
+                    };
+                    head.AddChild(ver);
+                }
                 if (q.State != "done")
                 {
                     var pinned = m.IsPinned(q.Id);
@@ -774,7 +799,8 @@ public sealed class WorldPanels
         var s = m.Stats;
         var level = m.Progress?.Level ?? m.Me?.Level ?? 1;
         if (s is not null && PendingTotal > s.Points) _pendingStats.Clear();   // os pontos mudaram por fora (subiu de nível, reset)
-        var sig = s is null ? "" : $"{m.ClassStage}|{s.Primary}|{s.Vigor}|{s.Points}|{s.Power:0.0}|{s.MaxHealth:0}|{s.Armor:0}|{s.Forca}|{s.Agilidade}|{s.Energia}|{s.Weight:0.0}|{level}|{_pendingVersion}";
+        var sig = s is null ? "" : $"{m.ClassStage}|{s.Primary}|{s.Vigor}|{s.Points}|{s.Power:0.0}|{s.MaxHealth:0}|{s.Armor:0}|{s.Forca}|{s.Agilidade}|{s.Energia}|{s.Weight:0.0}|{level}|{_pendingVersion}"
+            + $"|{m.BuffAtivo?.Nome}|{(int)(m.BuffAtivo?.Falta.TotalMinutes ?? -1)}|{HudView.NoiteXp}|{m.Me?.Status}|{m.Me?.Shield > 0.5}";   // 18/11 15h: efeitos no C
         if (sig == _statsSig) return;
         _statsSig = sig;
         Clear(_statsBox, keepTitle: true);
@@ -809,26 +835,44 @@ public sealed class WorldPanels
         var grid = new GridContainer { Columns = 2 };
         grid.AddThemeConstantOverride("h_separation", 18);
         grid.AddThemeConstantOverride("v_separation", 4);
-        void Cell(string name, string value, Color c)
+        void Cell(string name, string value, Color c, string dica = "")
         {
-            var row = new HBoxContainer { CustomMinimumSize = new Vector2(185, 0) };
+            // 18/11 15h ("ao colocar o mouse sobre poder, peso, força — mostrar o que acontece"): dica de cada valor
+            var row = new HBoxContainer { CustomMinimumSize = new Vector2(185, 0), TooltipText = dica, MouseFilter = dica.Length > 0 ? Control.MouseFilterEnum.Stop : Control.MouseFilterEnum.Ignore };
             var n = HudView.MakeLabel(name, 13, Dim); n.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill; row.AddChild(n);
             row.AddChild(HudView.MakeLabel(value, 14, c));
             grid.AddChild(row);
         }
-        Cell("Poder", $"{s.Power:0.#}", Gold);
-        Cell("Vida máxima", $"{s.MaxHealth:0}", new Color(1f, 0.55f, 0.5f));
-        Cell("Armadura", $"{s.Armor:0}", new Color(0.75f, 0.82f, 0.95f));
-        Cell("Reduz dano", $"{s.ArmorReductionPct:0}%", new Color(0.75f, 0.82f, 0.95f));
+        var sobre = s.OverloadPct / 100.0;
+        var lento = 25 * sobre;
+        var esquivaMais = 100 * sobre;
+        var efeitoPeso = s.OverloadPct > 0.5
+            ? $"Você está {s.OverloadPct:0}% sobrecarregado: anda {lento:0}% mais devagar e a esquiva demora {esquivaMais:0}% a mais para voltar (recarga {s.DodgeCooldownMs / 1000.0:0.0} s). Suba Força até {s.Weight:0} ou use peças mais leves."
+            : "Sem sobrecarga: velocidade e esquiva normais.";
+        Cell("Poder", $"{s.Power:0.#}", Gold, $"Poder = força dos seus golpes e poderes. Sobe com {s.PrimaryName} (+{s.PowerPerPoint:0.#} por ponto), com a arma e com os bônus de equipamento.");
+        Cell("Vida máxima", $"{s.MaxHealth:0}", new Color(1f, 0.55f, 0.5f), $"Sobe com Vitalidade (+{s.HealthPerPoint:0} por ponto) e com equipamento.");
+        Cell("Armadura", $"{s.Armor:0}", new Color(0.75f, 0.82f, 0.95f), "Soma da defesa das peças vestidas. Quanto mais, menos dano você toma (veja 'Reduz dano').");
+        Cell("Reduz dano", $"{s.ArmorReductionPct:0}%", new Color(0.75f, 0.82f, 0.95f), $"Cada golpe que você toma perde {s.ArmorReductionPct:0}% por causa da armadura.");
         if (s.PrimaryKey.Length > 0)
         {
             var heavy = s.OverloadPct > 0.5;
-            Cell("Peso / Força", $"{s.Weight:0.#} / {s.Forca}", heavy ? new Color(1f, 0.45f, 0.35f) : Good);
-            Cell("Sobrecarga", heavy ? $"{s.OverloadPct:0}%" : "leve", heavy ? new Color(1f, 0.45f, 0.35f) : Good);
+            Cell("Peso / Força", $"{s.Weight:0.#} / {s.Forca}", heavy ? new Color(1f, 0.45f, 0.35f) : Good,
+                $"Peso das peças vestidas / sua Força. Peso acima da Força = sobrecarga.\n{efeitoPeso}");
+            Cell("Sobrecarga", heavy ? $"{s.OverloadPct:0}%" : "leve", heavy ? new Color(1f, 0.45f, 0.35f) : Good, efeitoPeso);
         }
         var gp = Plate(new Color(0.03f, 0.03f, 0.035f, 0.9f), new Color(0.36f, 0.28f, 0.17f));
         gp.AddChild(grid);
         _statsBox.AddChild(gp);
+        if (s.PrimaryKey.Length > 0 && s.OverloadPct > 0.5)
+            _statsBox.AddChild(Wrap("⚠ " + efeitoPeso, 12, new Color(1f, 0.55f, 0.4f)));
+        // 18/11 15h ("o buff deve aparecer no C"): efeitos ativos agora
+        var efeitos = HudView.EfeitosAtivos(m, m.Me);
+        if (efeitos.Count > 0)
+        {
+            _statsBox.AddChild(HudView.MakeLabel("EFEITOS ATIVOS", 13, Gold, 2));
+            foreach (var e in efeitos)
+                _statsBox.AddChild(Wrap($"{e.Simbolo} {e.Nome}" + (e.Restante is { } r ? $" — {Math.Ceiling(r.TotalMinutes):0} min" : "") + (e.Resumo.Length > 0 ? $": {e.Resumo}" : ""), 12, e.Ruim ? new Color(1f, 0.55f, 0.45f) : new Color(0.6f, 0.95f, 0.6f)));
+        }
         _statsBox.AddChild(Wrap("Cada nível dá +3 pontos. Armas pedem " + s.PrimaryName + "; armadura pesada pede Força (sem ela: esquiva lenta e passo pesado).", 11, Dim));
     }
 
@@ -1534,10 +1578,13 @@ public sealed partial class WorldMapCanvas : Control
             var p = At(wp.X, wp.Y);
             _wpTela.Add((p, wp.Id));
             var los = new[] { p + new Vector2(0, -8.5f), p + new Vector2(7, 0), p + new Vector2(0, 8.5f), p + new Vector2(-7, 0) };
-            DrawColoredPolygon(los.Select(q => q + new Vector2(1.2f, 1.6f)).ToArray(), new Color(0, 0, 0, 0.45f));
-            DrawColoredPolygon(los, new Color(0.3f, 0.65f, 1f));
-            DrawPolyline(los.Append(los[0]).ToArray(), new Color(0.85f, 0.95f, 1f), 1.4f, true);
-            _alvos.Add((p, 10f, new[] { "Pedra de viagem: " + wp.Name, "duplo clique para viajar (perto de uma pedra, fora de combate)" }, new Color(0.45f, 0.75f, 1f)));
+            // 18/11 15h ("no mapa só mostra azul se você tiver desbloqueado o local; se não, fica apagado")
+            var ativa = Flags?.Contains("wp:" + wp.Id) ?? true;
+            DrawColoredPolygon(los.Select(q => q + new Vector2(1.2f, 1.6f)).ToArray(), new Color(0, 0, 0, ativa ? 0.45f : 0.25f));
+            DrawColoredPolygon(los, ativa ? new Color(0.3f, 0.65f, 1f) : new Color(0.42f, 0.44f, 0.48f, 0.7f));
+            DrawPolyline(los.Append(los[0]).ToArray(), ativa ? new Color(0.85f, 0.95f, 1f) : new Color(0.6f, 0.62f, 0.66f, 0.8f), 1.4f, true);
+            _alvos.Add((p, 10f, ativa ? new[] { "Pedra de viagem: " + wp.Name, "duplo clique para viajar (perto de uma pedra, fora de combate)" }
+                : new[] { "Pedra de viagem apagada", "vá até ela e aperte F para acender" }, ativa ? new Color(0.45f, 0.75f, 1f) : new Color(0.65f, 0.67f, 0.7f)));
         }
         // 10/11: missões do canto da tela, com o mesmo número
         for (var i = 0; i < HudView.Tracked.Count; i++)
@@ -1568,6 +1615,19 @@ public sealed partial class WorldMapCanvas : Control
         {
             CompassStrip.DrawQuestStone(this, At(hz.X, hz.Y), 0, false, 11f);
             _alvos.Add((At(hz.X, hz.Y), 16f, new[] { "Horda caçando você", "vença o bando inteiro e ganhe um prêmio" }, new Color(1f, 0.35f, 0.3f)));
+        }
+        // 18/11 15h ("um ícone no J nas missões: mostrar no mapa"): a missão escolhida pisca com anéis por 8 s
+        if (Destaque is { } dq && Time.GetTicksMsec() < DestaqueAte)
+        {
+            var pd = At(dq.X, dq.Y);
+            var fase = (Time.GetTicksMsec() % 1200) / 1200f;
+            for (var anel = 0; anel < 2; anel++)
+            {
+                var f = (fase + anel * 0.5f) % 1f;
+                DrawArc(pd, 10f + 34f * f, 0, Mathf.Tau, 40, new Color(1f, 0.85f, 0.3f, 1f - f), 3f, true);
+            }
+            DrawString(font, pd + new Vector2(14, -16), dq.Nome, HorizontalAlignment.Left, 260, 14, new Color(1f, 0.9f, 0.55f));
+            QueueRedraw();
         }
         // 12/11 ("coloca o ícone do jogador no mapa"): seta dourada grande, apontando para onde você olha, com halo e "Você"
         var me = At(Me.X, Me.Y);
@@ -1627,8 +1687,10 @@ public sealed partial class WorldMapCanvas : Control
         };
         DrawRect(new Rect2(At(-L.HalfSize, -L.HalfSize), new Vector2((float)(2 * L.HalfSize) * k, (float)(2 * L.HalfSize) * k)), chao);
         var font = HudView.BodyFont ?? ThemeDB.FallbackFont;
+        var escondido = CinzasDaMare.Shared.World.SegredoNoMapa.Escondidos(L, Flags);
         foreach (var z in L.Zones)
         {
+            if (z.Kind is "secreto" or "segredo" && !CinzasDaMare.Shared.World.SegredoNoMapa.Achado(L, z, Flags)) continue;
             var a = At(z.X - z.W / 2, z.Y - z.H / 2);
             var r = new Rect2(a, new Vector2((float)z.W * k, (float)z.H * k));
             var c = z.Kind switch { "seguro" or "refugio" => new Color(0.5f, 0.75f, 0.45f, 0.18f), "chefe" => new Color(0.9f, 0.3f, 0.2f, 0.16f), "caminho" => new Color(0, 0, 0, 0), _ => new Color(1, 1, 1, 0.05f) };
@@ -1640,6 +1702,7 @@ public sealed partial class WorldMapCanvas : Control
         foreach (var o in L.Obstacles)
         {
             if (o.Kind == "invisivel" && o.Shape == "circle") continue;
+            if (CinzasDaMare.Shared.World.SegredoNoMapa.Dentro(escondido, o.X, o.Y)) continue;   // 18/11 15h
             var col = o.Kind switch
             {
                 "invisivel" => new Color(0.55f, 0.42f, 0.32f, 0.95f),           // prédios da cidade (caixas de colisão)
@@ -1673,6 +1736,9 @@ public sealed partial class WorldMapCanvas : Control
 
     /// <summary>Volta para o enquadramento inteiro e centralizado (ao abrir o mapa).</summary>
     public void ResetView() { _zoom = 1f; _pan = Vector2.Zero; QueueRedraw(); }
+    /// <summary>18/11 15h: missão escolhida no J ("ver no mapa").</summary>
+    public (double X, double Y, string Nome)? Destaque;
+    public ulong DestaqueAte;
 
     // mapa de pergaminho: regiões são pontos (sem caixas sobrepostas); passar o mouse mostra o quadro da região
     private Vector2 P(double x, double y)

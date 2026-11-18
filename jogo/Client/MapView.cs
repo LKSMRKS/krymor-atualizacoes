@@ -5150,6 +5150,47 @@ void fragment() {
             _interactables.Add((obj, lb));
             return;
         }
+        if (obj.Kind == "maquina_dg")
+        {
+            // 18/11 15h: Máquina de Chaves — bancada de ferro com engrenagens, fornalha acesa e uma chave grande pendurada
+            var mq = new Node3D { Position = P(obj.X, obj.Y) };
+            Root.AddChild(mq);
+            var ferro = VisualKit.Mat(new Color(0.24f, 0.23f, 0.22f), 0.55f, 0.7f);
+            var latao = VisualKit.Mat(new Color(0.72f, 0.55f, 0.25f), 0.35f, 0.85f);
+            var madeira = VisualKit.Mat(new Color(0.36f, 0.24f, 0.14f), 0.85f);
+            VisualKit.Part(mq, VisualKit.Box(1.8f, 0.9f, 1.0f), ferro, new Vector3(0, 0.45f, 0));
+            VisualKit.Part(mq, VisualKit.Box(1.9f, 0.08f, 1.1f), madeira, new Vector3(0, 0.94f, 0));
+            VisualKit.Part(mq, VisualKit.Box(0.5f, 0.35f, 0.06f), VisualKit.Glow(new Color(1f, 0.45f, 0.12f), 2.5f), new Vector3(-0.4f, 0.42f, 0.51f));
+            foreach (var (gx, gy, gr) in new[] { (0.35f, 1.45f, 0.42f), (0.85f, 1.2f, 0.26f), (-0.2f, 1.25f, 0.22f) })
+            {
+                var eng = new Node3D { Position = new Vector3(gx, gy, 0.1f) };
+                mq.AddChild(eng);
+                VisualKit.Part(eng, VisualKit.Cylinder(gr, gr, 0.08f, 12), latao, Vector3.Zero, new Vector3(90, 0, 0));
+                for (var d = 0; d < 8; d++)
+                {
+                    var a = d * Mathf.Tau / 8f;
+                    VisualKit.Part(eng, VisualKit.Box(0.08f, 0.1f, 0.08f), latao, new Vector3(Mathf.Cos(a) * (gr + 0.04f), Mathf.Sin(a) * (gr + 0.04f), 0));
+                }
+                var tw = eng.CreateTween().SetLoops();
+                tw.TweenProperty(eng, "rotation_degrees:z", gr > 0.3f ? 360f : -360f, 4f + gr * 6f).AsRelative();
+            }
+            // a chave grande pendurada no poste
+            VisualKit.Part(mq, VisualKit.Cylinder(0.05f, 0.05f, 1.6f, 6), ferro, new Vector3(-0.85f, 1.7f, 0));
+            var chave = new Node3D { Position = new Vector3(-0.85f, 2.1f, 0.12f) };
+            mq.AddChild(chave);
+            VisualKit.Part(chave, new TorusMesh { InnerRadius = 0.1f, OuterRadius = 0.16f, Rings = 16, RingSegments = 6 }, VisualKit.Glow(new Color(1f, 0.82f, 0.35f), 1.2f), Vector3.Zero, new Vector3(90, 0, 0));
+            VisualKit.Part(chave, VisualKit.Box(0.05f, 0.45f, 0.05f), VisualKit.Glow(new Color(1f, 0.82f, 0.35f), 1.2f), new Vector3(0, -0.36f, 0));
+            VisualKit.Part(chave, VisualKit.Box(0.14f, 0.05f, 0.05f), VisualKit.Glow(new Color(1f, 0.82f, 0.35f), 1.2f), new Vector3(0.06f, -0.52f, 0));
+            mq.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.55f, 0.2f), LightEnergy = 1.2f, OmniRange = 3.5f, Position = new Vector3(-0.4f, 0.6f, 0.8f), ShadowEnabled = false });
+            Collider(P(obj.X, obj.Y, 0.5f), new BoxShape3D { Size = new Vector3(1.8f, 1f, 1f) });
+            mq.AddChild(new Label3D
+            {
+                Text = obj.Label, FontSize = 30, OutlineSize = 8, PixelSize = 0.007f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+                Modulate = new Color(1f, 0.82f, 0.45f), Position = new Vector3(0, 2.7f, 0), VisibilityRangeEnd = 14f, VisibilityRangeEndMargin = 2f,
+            });
+            _interactables.Add((obj, mq));
+            return;
+        }
         if (obj.Kind == "mesclar_visual")
         {
             // 18/11: Máquina de Mesclar Visual (Astrália) — base de pedra com dois anéis de latão girando em volta de um
@@ -5434,8 +5475,9 @@ void fragment() {
     private static string HowTo(string kind) => kind switch
     {
         "porta" => "F: bater na porta",
-        "pesquisa" => "F: pesquisar no catálogo (item, material ou monstro)",
+        "pesquisa" => "F: pesquisar (item, monstro, lugar ou NPC)",
         "mesclar_visual" => "F: mesclar o visual de um item no outro",
+        "maquina_dg" => "F: receita da chave da dungeon (F de novo faz)",
         "forja" => "chegue perto e aperte F: forjar e melhorar equipamento",
         "bancada" => "F: criar itens com materiais",
         "caldeirao" or "panela" => "F: preparar poções e comidas",
@@ -5623,7 +5665,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
         // 13/11: visitando a casa de outro, a decoração é a dele
         // 18/11: cada peça no lugar que o dono escolheu (marca decorpos:), em qualquer cômodo da casa; sem lugar escolhido,
         // as antigas ficam no lugar fixo do cômodo grande. Mudou alguma marca de decoração → remonta.
-        if (CinzasDaMare.Shared.World.AssentosCasa.Interior(Map.Id))
+        if (CinzasDaMare.Shared.World.AssentosCasa.TerrenoOuCasa(Map.Id))   // 18/11 15h: o terreno também (decoração de fora)
         {
             var fonte = decorDoDono ?? flags;
             var sig = string.Join(",", fonte.Where(f => f.StartsWith("decor", StringComparison.Ordinal)).OrderBy(f => f, StringComparer.Ordinal));
@@ -5638,7 +5680,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
                     var id = f[6..];
                     if (DecorEmPosicionamento == id) continue;
                     var onde = CasaDecor.Salvo(fonte, id, Map.Id);
-                    if (onde is null && Map.Id != "casa_jogador") continue;   // sem lugar escolhido: só no cômodo grande (lugar antigo)
+                    if (onde is null && (Map.Id != "casa_jogador" || CinzasDaMare.Shared.World.AssentosCasa.DeFora(id))) continue;   // sem lugar escolhido: só no cômodo grande (lugar antigo)
                     var antes = Root.GetChildCount();
                     if (!CasaDecor.Build(Root, id, (x, y) => P(x, y), onde: onde)) continue;
                     if (Root.GetChild(Root.GetChildCount() - 1) is Node3D no && Root.GetChildCount() > antes) DecorNos.Add((id, no));

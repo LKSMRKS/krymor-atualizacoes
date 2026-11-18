@@ -279,6 +279,8 @@ public partial class Main : Node3D
     private (double X, double Y) _moveDir;
     private (double X, double Y)? _desiredFace;
     private long _dodgeReadyAt;
+    private int _esqUsadas;
+    private long _esqVoltaAt;
     private string? _zoneId;
 
     // automação (atalho e verificação): --character, --create, --shots, --quit-after, --cam-yaw
@@ -324,12 +326,17 @@ public partial class Main : Node3D
     private float _decorGiro;
     private (float X, float Y, float Yaw, float Alt) _decorOnde;
 
-    private bool EmCasaPropria() => _mapView is { } mv && CinzasDaMare.Shared.World.AssentosCasa.Interior(mv.Map.Id)
+    private bool EmCasaPropria() => _mapView is { } mv && CinzasDaMare.Shared.World.AssentosCasa.TerrenoOuCasa(mv.Map.Id)
         && _model.Flags.Contains("casa:propria");
+
+    /// <summary>18/11 15h (dono: "o F é o mesmo que interage com as coisas e o mesmo que retira os itens colocados — fica muito
+    /// fácil de tirar e polui a tela; pra editar é Ctrl+F, aí habilita o mover no lugar do F"): modo editar da casa.</summary>
+    private bool _editandoCasa;
 
     private (string Id, Node3D No)? DecorPerto()
     {
-        if (_decorColocando is not null || _mapView is null || !EmCasaPropria() || MyState() is not { } eu) return null;
+        if (_editandoCasa && !EmCasaPropria()) _editandoCasa = false;   // saiu de casa: sai do modo editar
+        if (!_editandoCasa || _decorColocando is not null || _mapView is null || !EmCasaPropria() || MyState() is not { } eu) return null;
         (string, Node3D)? melhor = null; var md = 1.8f;
         foreach (var (id, no) in _mapView.DecorNos)
         {
@@ -385,14 +392,16 @@ public partial class Main : Node3D
         while (_model.DecorNovo.Count > 0)
         {
             var novo = _model.DecorNovo.Dequeue();
-            if (EmCasaPropria()) ComecarDecor(novo);
+            // 18/11 15h: peça de fora só se coloca no terreno; a de dentro, só nos cômodos
+            if (EmCasaPropria() && CinzasDaMare.Shared.World.AssentosCasa.DeFora(novo) == CinzasDaMare.Shared.World.AssentosCasa.Lote(_mapView!.Map.Id)) ComecarDecor(novo);
         }
         if (_decorColocando is null || _decorFantasma is null || _mapView is null) return;
         if (!EmCasaPropria()) { CancelarDecor(); return; }
         if (GroundUnderPointer() is not { } g) return;
         var L = _mapView.Map;
         // parede interna: o muro mais perto (caixas "muro"/"parede" do cômodo)
-        var paredes = L.Obstacles.Where(o => o.Shape == "box" && (o.W > 4 || o.H > 4)).ToList();
+        var lote = CinzasDaMare.Shared.World.AssentosCasa.Lote(L.Id);   // 18/11 15h: no quintal não há "cômodo" para limitar
+        var paredes = lote ? new List<CinzasDaMare.Shared.World.MapObstacle>() : L.Obstacles.Where(o => o.Shape == "box" && (o.W > 4 || o.H > 4)).ToList();
         float x = g.X, y = g.Z, yaw = _decorGiro, alt = 0f;
         var cat = CasaDecor.Categoria(_decorColocando);
         if (cat == "parede" && paredes.Count > 0)
@@ -424,7 +433,7 @@ public partial class Main : Node3D
             }
         }
         // dentro do cômodo
-        var lim = (float)L.HalfSize - 0.6f;
+        var lim = (float)L.HalfSize - (lote ? 2f : 0.6f);
         if (paredes.Count > 0)
             lim = (float)paredes.Select(o => o.W > o.H ? Math.Abs(o.Y) - o.H / 2 : Math.Abs(o.X) - o.W / 2).Where(v => v > 2).DefaultIfEmpty(lim).Min() - (cat == "parede" ? -0.07f : 0.4f);
         x = Mathf.Clamp(x, -lim, lim); y = Mathf.Clamp(y, -lim, lim);
@@ -844,6 +853,7 @@ public partial class Main : Node3D
             var night = hourNow < 6 || hourNow >= 18.5;
             // 16/11: das 19h às 5h (a noite do servidor) o relógio lembra o bônus: "☾ noite · +25% XP"
             var noiteServidor = hourNow >= 19 || hourNow < 5;
+            HudView.NoiteXp = noiteServidor;
             if (_hud is not null) _hud.ClockText = $"{(int)hourNow:00}:{(int)(hourNow % 1 * 60):00} · " + (noiteServidor ? "☾ noite · +25% XP" : night ? "noite" : hourNow < 8 ? "amanhecer" : hourNow >= 17 ? "entardecer" : "dia");
         }
         Perfil.Marca("mira/hora");
@@ -1063,7 +1073,8 @@ public partial class Main : Node3D
             if (mouse.ButtonIndex == MouseButton.WheelDown) { if (_lockedId is not null && Input.MouseMode == Input.MouseModeEnum.Captured) CycleLock(-1); else _cam.Zoom(-1); return; }
             if (Input.MouseMode != Input.MouseModeEnum.Captured)
             {
-                if (!_inventory.Visible && !_panels.AnyOpen && !GodOpen && !_troca.Open && !_vinteUm.Open && !_livro.Open && !_bestiario.Open && !_trilha.Visible && !_menuTab.Visible && !_chat.Typing && mouse.ButtonIndex == MouseButton.Left) CaptureMouse(true);
+                if (!_inventory.Visible && !_panels.AnyOpen && !GodOpen && !_troca.Open && !_vinteUm.Open && !_livro.Open && !_bestiario.Open && !_trilha.Visible && !_menuTab.Visible && !_chat.Typing
+                    && !_pesquisa.Root.Visible && !_mesclar.Open && mouse.ButtonIndex == MouseButton.Left) CaptureMouse(true);   // 18/11: busca/mesclar abertas = mouse livre
                 return;
             }
             if (mouse.ButtonIndex == MouseButton.Left) Queue("basic");
@@ -1083,7 +1094,14 @@ public partial class Main : Node3D
             return;
         }
 
-        if (key.Keycode == Key.F && key.CtrlPressed && _model.Map is not null) { _pesquisa.Show(global: true); CaptureMouse(false); GetViewport().SetInputAsHandled(); return; }   // 18/11: busca
+        if (key.Keycode == Key.F && key.CtrlPressed && EmCasaPropria())   // 18/11 15h: modo editar a decoração
+        {
+            _editandoCasa = !_editandoCasa;
+            _hud.ShowNotice(_editandoCasa ? "Modo EDITAR a casa: chegue perto de uma peça e aperte F para mover. Ctrl+F de novo sai." : "Modo editar desligado.");
+            Sfx.Play("ui_clique");
+            GetViewport().SetInputAsHandled();
+            return;
+        }
         switch (Teclas.Traduz(key.Keycode))   // 13/11: teclas trocadas pelo jogador viram as teclas-padrão aqui
         {
             case Key.O:
@@ -1524,8 +1542,14 @@ public partial class Main : Node3D
         if (me is null || !me.Alive) return;
         var now = (long)Time.GetTicksMsec();
         Send(new DodgeIntent(_moveDir.X, _moveDir.Y));
-        if (now >= _dodgeReadyAt && MyState() is { } st) Sfx.PlayAt("esquiva", st.Pos + Vector3.Up, -2f);
-        if (now >= _dodgeReadyAt) _dodgeReadyAt = now + 850;
+        // 18/11 15h: evoluído (classe 2+) tem 2 esquivas seguidas; as duas voltam juntas depois da recarga
+        var max = _model.ClassStage >= 2 ? 2 : 1;
+        if (now >= _esqVoltaAt) _esqUsadas = 0;
+        if (now < _dodgeReadyAt || _esqUsadas >= max) return;
+        if (MyState() is { } st) Sfx.PlayAt("esquiva", st.Pos + Vector3.Up, -2f);
+        _esqUsadas++;
+        _esqVoltaAt = now + 850;
+        _dodgeReadyAt = _esqUsadas < max ? now + 420 : now + 850;
     }
 
     /// <summary>O alvo travado caiu: trava sozinho no inimigo vivo mais perto (até 10 m); senão solta.</summary>
@@ -2152,7 +2176,7 @@ public partial class Main : Node3D
                 else if (notice.Kind == "regiao") { Sfx.Play("nivel"); PulseMine(new Color(1f, 0.75f, 0.35f, 0.6f), 2.2f); }   // 13/11: região nova   // 11/11: drop/refino grande
                 else if (notice.Kind == "reward") Sfx.Play("ui_aviso", -4f);
                 else if (notice.Kind == "nivel") { Sfx.Play("nivel"); _hud.MostrarNivel(notice.Text); }   // 18/11: cartão de nível
-                else if (notice.Kind == "pesquisa_abrir") { _pesquisa.Show(); CaptureMouse(false); }   // 17/11: Catálogo
+                else if (notice.Kind == "pesquisa_abrir") { _pesquisa.Show(global: true); CaptureMouse(false); }   // 17/11: Catálogo (18/11: busca em tudo)
                 else if (notice.Kind == "mesclar_abrir") { _mesclar.Show(_model); CaptureMouse(false); }   // 18/11: Máquina de Mesclar Visual
                 else if (notice.Kind == "pedra" && notice.Text.Split('|') is { Length: 3 } pp
                          && double.TryParse(pp[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var px)
@@ -2574,7 +2598,7 @@ public partial class Main : Node3D
         Arrastador.Ligar(_mesclar.Root, "mesclar", 46f, porDesvio: true, fechar: () => { _mesclar.Close(); CaptureMouse(!_inventory.Visible && !_panels.AnyOpen); });
         _mesclar.Send = Send;
         _pesquisa.Pesquisar = texto => Send(new PesquisaIntent(texto) { Global = _pesquisa.Global });
-        _hud.AbrirBusca = () => { _pesquisa.Show(global: true); CaptureMouse(false); };
+
         layer.AddChild(_trilha);
         layer.AddChild(_menuTab);
         _menuTab.Send += Send;
@@ -2732,7 +2756,7 @@ public partial class Main : Node3D
         if (_decorColocando is not null)
             prompt = $"Colocando: {ClientModel.DisplayName(_decorColocando)} ({CasaDecor.Categoria(_decorColocando)})\nclique: colocar · rodinha: girar · botão direito/Esc: cancelar";
         else if (me is not null && me.Alive && DecorPerto() is { } dperto)
-            prompt = "F — Mover: " + ClientModel.DisplayName(dperto.Id);
+            prompt = "F — Mover: " + ClientModel.DisplayName(dperto.Id) + "   (editando · Ctrl+F sai)";
         else if (me is not null && me.Alive && _model.NearestInteractable() is { } near)
         {
             prompt = "F — " + near.Label;
@@ -3701,6 +3725,9 @@ public partial class Main : Node3D
             // final: carga visível em volta de quem usa
             var c = skill.EndsWith("serpente") ? new Color(0.2f, 0.6f, 1f, 0.7f) : skill.EndsWith("floresta_viva") ? new Color(0.3f, 1f, 0.5f, 0.7f) : new Color(1f, 0.5f, 0.15f, 0.7f);
             _effects.Pulse(st.Pos, c, 2.2f, 0.9);
+            // 18/11 15h: golpe em volta de você — a marca no chão tem o raio de verdade do poder (Fúria: 5,5 m)
+            if (_model.SkillById(skill) is { TargetMode: "nova", Radius: > 0 } info)
+                _effects.Area(st.Pos, c, (float)info.Radius, (info.CooldownMs > 0 ? 0.75 : 0.6));
             Sfx.PlayAt("preparo", st.Pos + Vector3.Up, mine ? 0f : -6f);
             return;
         }

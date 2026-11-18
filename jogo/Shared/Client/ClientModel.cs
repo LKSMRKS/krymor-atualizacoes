@@ -138,6 +138,13 @@ public sealed class ClientModel
         ? $"{b.Name}: {(int)(BuffUntilLocal - DateTime.UtcNow).TotalMinutes + 1} min" : "";
     public BuffMessage? Buff { get; private set; }
     private DateTime BuffUntilLocal;
+    /// <summary>18/11 15h: buff ativo (nome, quanto falta, fração restante 0..1) para a barra de efeitos e o C.</summary>
+    public long BuffTotalMs { get; private set; } = 1;
+    /// <summary>18/11 15h: "⌂ Mansão · casa nível 3/3 · Conforto 6/10..." enquanto você está na sua casa/terreno.</summary>
+    public string CasaInfo { get; private set; } = "";
+    public (string Nome, string Resumo, TimeSpan Falta, double Fracao)? BuffAtivo
+        => Buff is { Name.Length: > 0 } b && BuffUntilLocal > DateTime.UtcNow
+            ? (b.Name, b.Summary, BuffUntilLocal - DateTime.UtcNow, Math.Clamp((BuffUntilLocal - DateTime.UtcNow).TotalMilliseconds / BuffTotalMs, 0, 1)) : null;
     /// <summary>Estação de ofício aberta (forja, bancada, caldeirão, panela) — painel de receitas.</summary>
     public StationMessage? Station { get; set; }
     /// <summary>Armazém comunitário ou baú da casa aberto.</summary>
@@ -395,6 +402,7 @@ public sealed class ClientModel
             case BuffMessage buff:
                 Buff = buff;
                 BuffUntilLocal = DateTime.UtcNow.AddMilliseconds(buff.RemainingMs);
+                BuffTotalMs = Math.Max(1, buff.RemainingMs);
                 break;
             case CompanionsMessage companions:
                 Companions = companions;
@@ -499,6 +507,9 @@ public sealed class ClientModel
                 ChefeVolta = (partes[0], partes.Length > 1 && int.TryParse(partes[1], out var seg) ? seg : 0, DateTime.UtcNow);
                 break;
             }
+            case NoticeMessage { Kind: "casa_info" } ci:   // 18/11 15h: nível da casa em cima da barra
+                CasaInfo = ci.Text;
+                break;
             case NoticeMessage { Kind: "nivel" } nv:
             {
                 // 18/11: cartão de nível (o HUD desenha); no histórico vira texto corrido
@@ -742,6 +753,29 @@ public sealed class ClientModel
                         - (obj.Id == AimedObjId && Distance(me.X, me.Y, obj.X, obj.Y) <= 2.75 ? 1.0 : 0);   // 13/11 22:26: o que você mira (porta na parede) ganha preferência (até onde o servidor aceita)
                 if (d <= bestD) { bestD = d; best = ("object", "obj:" + obj.Id, ObjectPrompt(obj)); }
             }
+            // 18/11 15h: peças de fora no SEU terreno (portal, mascate, vitrola, cercado)
+            if (CinzasDaMare.Shared.World.AssentosCasa.Lote(Map.Id) && _flags.Contains("casa:propria"))
+                foreach (var f in _flags)
+                {
+                    if (!f.StartsWith("decorpos:decor_terreno_", StringComparison.Ordinal)) continue;
+                    var eq = f.IndexOf('=');
+                    var id = f[9..eq];
+                    var p = f[(eq + 1)..].Split('|');
+                    if (p.Length < 3 || p[0] != Map.Id || !_flags.Contains("decor:" + id)) continue;
+                    var ci = System.Globalization.CultureInfo.InvariantCulture;
+                    if (!double.TryParse(p[1], System.Globalization.NumberStyles.Float, ci, out var px) || !double.TryParse(p[2], System.Globalization.NumberStyles.Float, ci, out var py)) continue;
+                    var (rotulo, folga) = id switch
+                    {
+                        "decor_terreno_portal" => ("Portal do Quintal (ir para o Porto)", 0.8),
+                        "decor_terreno_mascate" => ("Comprar com o Mascate do Quintal", 0.8),
+                        "decor_terreno_jukebox" => ("Vitrola: pôr um disco (+XP por 30 min)", 0.5),
+                        "decor_terreno_cercado" => ("Cercado de Caça (fazer ovos de monstro)", 1.4),
+                        _ => ("", 0.0),
+                    };
+                    if (rotulo.Length == 0) continue;
+                    var d = Distance(me.X, me.Y, px, py) - folga;
+                    if (d <= bestD) { bestD = d; best = ("object", id == "decor_terreno_mascate" ? "npc:terreno_mascate" : "terreno:" + id, rotulo); }
+                }
             // 11/11 noite: pedra de viagem descoberta — F abre o mapa com a viagem
             foreach (var wp in Map.Waypoints)
             {
@@ -795,6 +829,7 @@ public sealed class ClientModel
         switch (obj.Kind)
         {
             case "mesclar_visual": return "Usar a Máquina de Mesclar Visual";
+            case "maquina_dg": return "Máquina de Chaves (ver a receita / fazer a chave da dungeon)";
             case "veio":
                 var herb = obj.Yields is { } y && (y.Contains("erva") || y.Contains("folha") || y.Contains("cogumelo"));
                 var label = System.Text.RegularExpressions.Regex.Replace(obj.Label, @"\s*\((machado|picareta|foice)\)", "");

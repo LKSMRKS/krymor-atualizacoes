@@ -54,6 +54,7 @@ public partial class Showcase : Node3D
             case "bestiario": s.Bestiary(camera, 0); break;
             case "bestiario2": s.Bestiary(camera, 1); break;
             case "kit": s.Kit(map, camera); break;
+            case "terreno": s.Terreno(map, camera); break;   // 18/11 15h: peças de fora da casa
             case "glb": s.Glb(camera); break;
             case "classes": s.Classes(camera, dressed: true); break;
             case "poderes": Efeitos.VitrinePoderes.Montar(s, camera); break;   // gancho VFX 14/11 (vitrine dos poderes)
@@ -720,6 +721,21 @@ public partial class Showcase : Node3D
     }
 
     // prancha 03: kit modular
+    private void Terreno(MapView map, Camera3D camera)
+    {
+        var ids = new[] { "decor_terreno_boneco", "decor_terreno_portal", "decor_terreno_mascate", "decor_terreno_jukebox", "decor_terreno_cercado" };
+        for (var i = 0; i < ids.Length; i++)
+        {
+            var x = -12f + i * 6f;
+            CasaDecor.Build(map.Root, ids[i], (_, _) => new Vector3(x, 0, 0), onde: (0, 0, 0, 0));
+            if (map.Root.GetChild(map.Root.GetChildCount() - 1) is Node3D n) n.Position = new Vector3(x, 0, 0);
+            Label(ids[i][14..], new Vector3(x, 4.2f, 0), 30);
+        }
+        camera.Position = new Vector3(0, 7f, 15f);
+        camera.LookAt(new Vector3(0, 1.2f, 0));
+        camera.Fov = 60;
+    }
+
     private void Kit(MapView map, Camera3D camera)
     {
         var wood = VisualKit.Mat(new Color(0.33f, 0.22f, 0.13f), 0.9f);
