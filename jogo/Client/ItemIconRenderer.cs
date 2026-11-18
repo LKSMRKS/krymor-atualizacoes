@@ -34,7 +34,12 @@ public sealed partial class ItemIconRenderer : Node
         parent.AddChild(_instance);
     }
 
-    public static string KeyFor(ItemInfo? info, string definition)
+    /// <summary>17/11 noite: variante de skin/asa/capa ("asas_fogo__guarda") usa o ícone da base.</summary>
+    public static string BaseDaVariante(string id) => id.IndexOf("__", StringComparison.Ordinal) is var i and > 0 ? id[..i] : id;
+
+    public static string KeyFor(ItemInfo? info, string definition) => KeyForBase(info, BaseDaVariante(definition));
+
+    private static string KeyForBase(ItemInfo? info, string definition)
         // 11/11 ("tudo virou flor"): materiais dividem o mesmo modelo genérico (mat_ash) — a chave era o modelo, então o
         // primeiro ícone pintado (a erva) ficava para todos. Material agora tem chave pelo próprio id.
         // 15/11 ("cada poção com frasco e cor diferente — está tudo com o mesmo ícone"): as poções dividem o modelo "potion"
@@ -48,6 +53,7 @@ public sealed partial class ItemIconRenderer : Node
     /// <summary>Textura pronta do item (null = ainda não; pede para fotografar).</summary>
     public static Texture2D? Get(ItemInfo? info, string definition)
     {
+        definition = BaseDaVariante(definition);
         var key = KeyFor(info, definition);
         if (Cache.TryGetValue(key, out var tex)) return tex;
         // ícone pintado (ico_*.png) quando existe: mais bonito que a foto do modelo

@@ -648,7 +648,7 @@ public sealed class ClientModel
     {
         var dx = x - me.X; var dy = y - me.Y;
         var len = Math.Sqrt(dx * dx + dy * dy);
-        if (len < 0.3) return 0;
+        if (len < 1.3) return 0;   // 17/11 noite: colado no objeto, tanto faz para onde olha (o F sumia de frente pra porta)
         var dot = (dx * me.FacingX + dy * me.FacingY) / len;
         return dot < -0.2 ? 1.6 : dot < 0.3 ? 0.5 : 0;
     }
@@ -783,6 +783,13 @@ public sealed class ClientModel
                     _ => $"Colher {plot.CropName}",
                 };
             case "forja" or "bancada" or "caldeirao" or "panela" or "caos": return "Usar: " + obj.Label;
+            // 17/11 noite: a porta diz o que faz (antes "Examinar: Porta (sair)")
+            case "porta":
+                var porPortal = obj.GrantFlag is { } pg && pg.StartsWith("porta:portal:", StringComparison.Ordinal) ? Map?.Portals.FirstOrDefault(q => q.Id == pg[13..]) : null;
+                return porPortal is not null
+                    ? porPortal.Label.StartsWith("Entrar", StringComparison.Ordinal) ? porPortal.Label : "Sair pela porta" + (porPortal.Label.Length > 0 ? " — " + porPortal.Label : "")
+                    : obj.GrantFlag is "porta:entra" || (obj.GrantFlag?.StartsWith("porta:para:", StringComparison.Ordinal) ?? false) ? "Entrar: " + obj.Label
+                    : "Bater na porta" + (obj.Label is { Length: > 0 } l && l != "Porta" ? ": " + l : "");
             case "armazem": return "Abrir seu depósito no armazém";
             case "bau_casa": return "Abrir o baú da casa";
             case "altar": return $"Oferecer {obj.ConsumeQty} {DisplayName(obj.Consumes ?? "")} ao {obj.Label}";

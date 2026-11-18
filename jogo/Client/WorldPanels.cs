@@ -35,6 +35,15 @@ public sealed class WorldPanels
     private readonly VBoxContainer _dialogBox, _journalBox, _statsBox, _partyBox, _frames, _waypoints, _craftBox, _storageBox;
     private readonly GradeItens _storageGrid;
     private readonly Label _storageInfo;
+    private double _subDur = 3.0;
+    private static readonly StyleBoxFlat CaixaLeitura = new()
+    {
+        BgColor = new Color(0.12f, 0.12f, 0.13f, 0.82f), BorderColor = new Color(0.45f, 0.45f, 0.47f, 0.7f),
+        BorderWidthLeft = 1, BorderWidthRight = 1, BorderWidthTop = 1, BorderWidthBottom = 1,
+        CornerRadiusTopLeft = 6, CornerRadiusTopRight = 6, CornerRadiusBottomLeft = 6, CornerRadiusBottomRight = 6,
+        ContentMarginLeft = 16, ContentMarginRight = 16, ContentMarginTop = 10, ContentMarginBottom = 10,
+    };
+    private readonly HFlowContainer _storageAbas;   // 17/11 noite: abas do depósito (compradas com o Zeca), com nome
     private readonly Button _storageClose;
     private ClientModel? _storageModel;
     private string _craftSig = "", _storageSig = "";
@@ -70,6 +79,10 @@ public sealed class WorldPanels
         _storageInfo.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         _storageInfo.CustomMinimumSize = new Vector2(320, 0);
         _storageBox.AddChild(_storageInfo);
+        _storageAbas = new HFlowContainer();
+        _storageAbas.AddThemeConstantOverride("h_separation", 4);
+        _storageAbas.AddThemeConstantOverride("v_separation", 4);
+        _storageBox.AddChild(_storageAbas);
         _storageGrid = new GradeItens { Colunas = 8, Linhas = 8, Casa = 40f, SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter };
         _storageGrid.Ajustar();
         _storageBox.AddChild(_storageGrid);
@@ -252,6 +265,7 @@ public sealed class WorldPanels
                 _banner.Text = "✦ " + n.Text + " ✦";
                 _bannerAge = -2.5;
                 _subBanner.Text = "Região nova descoberta — siga o ★ do caminho principal";
+                _subBanner.AddThemeStyleboxOverride("normal", new StyleBoxEmpty()); _subBanner.Size = new Vector2(800, 0); _subDur = 3.0;
                 _subAge = -2.5;
                 continue;
             }
@@ -261,11 +275,18 @@ public sealed class WorldPanels
                 _banner.Text = n.Text;
                 _bannerAge = 0;
                 _subBanner.Text = region is not null && region.Levels != "cidade" ? $"{region.Name} · nível {region.Levels}" : "";
+                _subBanner.AddThemeStyleboxOverride("normal", new StyleBoxEmpty()); _subBanner.Size = new Vector2(800, 0); _subDur = 3.0;
                 _subAge = 0;
             }
             else
             {
                 _subBanner.Text = n.Text;
+                // 17/11 noite (dono: "quando entrar esses textos muito grandes, coloca uma caixa cinza atrás pra dar pra ler"):
+                // texto comprido ganha fundo cinza escuro e fica mais tempo na tela (≈ 1 s a cada 25 letras)
+                var longo = n.Text.Length > 70;
+                _subBanner.AddThemeStyleboxOverride("normal", longo ? CaixaLeitura : new StyleBoxEmpty());
+                _subBanner.Size = new Vector2(800, 0);
+                _subDur = longo ? Math.Clamp(3.0 + n.Text.Length / 25.0, 4.0, 12.0) : 3.0;
                 _subBanner.AddThemeColorOverride("font_color", n.Kind switch
                 {
                     "warn" => new Color(1f, 0.55f, 0.4f),
@@ -279,7 +300,7 @@ public sealed class WorldPanels
         _bannerAge += delta;
         _subAge += delta;
         _banner.Modulate = new Color(1, 1, 1, (float)Math.Clamp(3.5 - _bannerAge, 0, 1));
-        _subBanner.Modulate = new Color(1, 1, 1, (float)Math.Clamp(3.0 - _subAge, 0, 1));
+        _subBanner.Modulate = new Color(1, 1, 1, (float)Math.Clamp(_subDur - _subAge, 0, 1));
 
         _coins.Text = "";
         var invitePanel = (PanelContainer)_invite.GetParent();
@@ -539,7 +560,8 @@ public sealed class WorldPanels
         if (d.Travel is { Count: > 0 })
         {
             var isReset = d.Role == "atributos";
-            _dialogBox.AddChild(Section(isReset ? $"Reinício de atributos — você tem {m.Coins} moedas" : $"Viagens — você tem {m.Coins} moedas"));
+            var isAba = d.Travel.All(t => t.Id == "aba_armazem");   // 17/11 noite: o Zeca vende abas do depósito
+            _dialogBox.AddChild(Section(isReset ? $"Reinício de atributos — você tem {m.Coins} moedas" : isAba ? $"Depósito — você tem {m.Coins:N0} moedas" : $"Viagens — você tem {m.Coins} moedas"));
             foreach (var t in d.Travel)
             {
                 var row = new HBoxContainer();
@@ -549,14 +571,15 @@ public sealed class WorldPanels
                 label.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
                 row.AddChild(label);
                 var reset = t.Id == "reset_atributos";
-                var go = new Button { Text = reset ? "Pagar e reiniciar" : "Pagar e ir", Disabled = t.Price > m.Coins || trancado };
+                var aba = t.Id == "aba_armazem";
+                var go = new Button { Text = reset ? "Pagar e reiniciar" : aba ? "Comprar" : "Pagar e ir", Disabled = t.Price > m.Coins || trancado };
                 var npc = d.NpcId;
                 var id = t.Id;
-                go.Pressed += () => { Send?.Invoke(new PaidTravelIntent(npc, id)); if (!reset) { m.Dialog = null; _dialog.Visible = false; } };
+                go.Pressed += () => { Send?.Invoke(new PaidTravelIntent(npc, id)); if (!reset && !aba) { m.Dialog = null; _dialog.Visible = false; } };
                 row.AddChild(go);
                 _dialogBox.AddChild(row);
             }
-            _dialogBox.AddChild(Wrap(isReset ? "Os pontos gastos voltam como pontos livres (tecla C). Os ganhos da 2ª classe ficam." : "Novos destinos aparecem quando você os descobre a pé.", 12, Dim));
+            _dialogBox.AddChild(Wrap(isAba ? "Cada aba é um baú novo, do mesmo tamanho, em qualquer armazém. No armazém, clique na aba para abrir e no ✎ para dar nome." : isReset ? "Os pontos gastos voltam como pontos livres (tecla C). Os ganhos da 2ª classe ficam." : "Novos destinos aparecem quando você os descobre a pé.", 12, Dim));
         }
         // 13/11 ("Próximas missões no final de cada NPC: missões, loja e tudo vêm antes")
         var locked = d.Quests.Where(q => q.State is not ("done" or "ready" or "available" or "active")).ToList();
@@ -656,6 +679,9 @@ public sealed class WorldPanels
                     head.AddChild(pin);
                 }
                 col.AddChild(head);
+                // 17/11 noite (dono: "coloca no J o nome do NPC de quem é a missão — fica mais fácil de falar pra um amigo")
+                if (q.Giver.Length > 0)
+                    col.AddChild(HudView.MakeLabel($"Missão de: {q.Giver}" + (q.Where.Length > 0 ? $"  ·  {q.Where}" : ""), 12, new Color(0.85f, 0.75f, 0.55f), 1));
                 if (q.State != "done")
                 {
                     var ready = q.State == "ready" || q.Progress >= q.Count;
@@ -816,17 +842,29 @@ public sealed class WorldPanels
         if (w.Waypoints.Count == 0) _waypoints.AddChild(Wrap("Nenhum ponto de viagem descoberto. Chegue perto de uma fogueira de acampamento.", 12, Dim, 270));
         else _waypoints.AddChild(Wrap(m.CountInInventory("portal_viagem") > 0 && (m.Me?.Level ?? 0) >= 7
             ? "Pedra de Portal: viaje daqui mesmo (fora de combate e de dungeon)." : "Para viajar, fique perto de uma pedra de viagem — ou compre a Pedra de Portal do Téo (nível 7).", 12, Dim, 270));
-        foreach (var wp in w.Waypoints)
+        // 17/11 noite (dono: "a lista com o botão Viajar tá muito confusa, uma lista doida, os botões maiores que os textos"):
+        // agrupada por mapa (título dourado), uma linha por ponto e um botão pequeno "Ir" do tamanho do texto
+        foreach (var grupo in w.Waypoints.GroupBy(x => x.MapName))
         {
-            var row = new HBoxContainer { CustomMinimumSize = new Vector2(270, 0) };
-            var label = HudView.MakeLabel($"{wp.Name}\n{wp.MapName}", 12);
-            label.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
-            row.AddChild(label);
-            var go = new Button { Text = "Viajar" };
-            var id = wp.Id;
-            go.Pressed += () => Send?.Invoke(new TravelIntent(id));
-            row.AddChild(go);
-            _waypoints.AddChild(row);
+            var aqui = grupo.Key == w.CurrentMapName;
+            var titulo = HudView.MakeLabel(grupo.Key + (aqui ? "  (você está aqui)" : ""), 13, aqui ? Good : Gold, 2);
+            _waypoints.AddChild(titulo);
+            foreach (var wp in grupo)
+            {
+                var row = new HBoxContainer { CustomMinimumSize = new Vector2(270, 0) };
+                row.AddThemeConstantOverride("separation", 6);
+                var label = HudView.MakeLabel("   • " + wp.Name, 12);
+                label.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+                label.VerticalAlignment = VerticalAlignment.Center;
+                row.AddChild(label);
+                var go = new Button { Text = "Ir", FocusMode = Control.FocusModeEnum.None, CustomMinimumSize = new Vector2(44, 22), SizeFlagsVertical = Control.SizeFlags.ShrinkCenter,
+                    TooltipText = $"Viajar para {wp.Name} ({wp.MapName})" };
+                go.AddThemeFontSizeOverride("font_size", 12);
+                var id = wp.Id;
+                go.Pressed += () => Send?.Invoke(new TravelIntent(id));
+                row.AddChild(go);
+                _waypoints.AddChild(row);
+            }
         }
         var withQuests = w.Regions.Where(r => r.Quests is { Count: > 0 }).ToList();
         if (withQuests.Count > 0)
@@ -1066,7 +1104,7 @@ public sealed class WorldPanels
         foreach (var r in st.Recipes.Where(r => _craftTab == "Tudo" || CraftCategoria(m.ItemInfoFor(r.Output), r.Output) == _craftTab))
         {
             // Flat = false: com Flat o Godot não desenha o quadro de "hover" (só o zoom aparecia)
-            var card = new Button { CustomMinimumSize = new Vector2(190, 228), FocusMode = Control.FocusModeEnum.None };
+            var card = new Button { CustomMinimumSize = new Vector2(190, 262), FocusMode = Control.FocusModeEnum.None, ClipContents = true };
             card.AddThemeStyleboxOverride("normal", HudView.CardStyle(r.CanCraft));
             // 13/11 ("ao passar o mouse nada acontece, só aparece uma caixa de texto"): quadro dourado em volta e o cartão cresce um pouco
             var destaque = new StyleBoxFlat { BgColor = new Color(0.22f, 0.17f, 0.09f, 0.95f), BorderColor = new Color(1f, 0.82f, 0.35f) };
@@ -1094,8 +1132,9 @@ public sealed class WorldPanels
             name.AutowrapMode = TextServer.AutowrapMode.WordSmart;
             name.MouseFilter = Control.MouseFilterEnum.Ignore;
             col.AddChild(name);
-            var ing = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center, MouseFilter = Control.MouseFilterEnum.Ignore };
-            ing.AddThemeConstantOverride("separation", 4);
+            var ing = new HFlowContainer { Alignment = FlowContainer.AlignmentMode.Center, MouseFilter = Control.MouseFilterEnum.Ignore };
+            ing.AddThemeConstantOverride("h_separation", 4);
+            ing.AddThemeConstantOverride("v_separation", 2);
             foreach (var i in r.Inputs)
             {
                 var cell = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
@@ -1123,8 +1162,13 @@ public sealed class WorldPanels
             col.AddChild(ing);
             if (r.Known && r.Note.Contains("Chance"))
             {
-                var chance = HudView.MakeLabel(r.Note[r.Note.IndexOf("Chance", StringComparison.Ordinal)..].Split(" —")[0] + " · falhou = perde", 11, new Color(1f, 0.7f, 0.35f), 2);
+                // 17/11 noite (dono: "esse bug na máquina do caos, tá ridículo"): o texto comprido não quebrava linha e
+                // empurrava o cartão inteiro para fora — agora curto e quebrando linha
+                var txtChance = r.Note[r.Note.IndexOf("Chance", StringComparison.Ordinal)..].Split(" —")[0];
+                var pct = txtChance.Split(' ').ElementAtOrDefault(1) ?? "";
+                var chance = HudView.MakeLabel($"Chance {pct}" + (txtChance.Contains("Pena") ? " (+10% por Pena da Fortuna, até 3)" : "") + " · falhou = perde", 11, new Color(1f, 0.7f, 0.35f), 2);
                 chance.HorizontalAlignment = HorizontalAlignment.Center;
+                chance.AutowrapMode = TextServer.AutowrapMode.WordSmart;
                 chance.MouseFilter = Control.MouseFilterEnum.Ignore;
                 col.AddChild(chance);
             }
@@ -1145,7 +1189,7 @@ public sealed class WorldPanels
                 LastStationKind = kind;
                 Send?.Invoke(new CraftIntent(Guid.NewGuid().ToString("N"), station, rr.Id));
             };
-            card.PivotOffset = new Vector2(95, 114);
+            card.PivotOffset = new Vector2(95, 131);
             card.MouseEntered += () => { ShowCraftTip(card, outInfo, outDef, rr); card.Scale = new Vector2(1.04f, 1.04f); Sfx.Play("ui_clique", -18f); };
             card.MouseExited += () => { HideCraftTip(); card.Scale = Vector2.One; };
             grid.AddChild(card);
@@ -1205,6 +1249,36 @@ public sealed class WorldPanels
 
     // ------------------------------------------------------------ armazém comunitário / baú da casa
 
+    private void MontarAbas(ClientModel m, StorageMessage st)
+    {
+        foreach (var c in _storageAbas.GetChildren()) c.QueueFree();
+        _storageAbas.Visible = st.Container != "casa";
+        if (st.Container == "casa") return;
+        var compradas = 1;
+        while (compradas < 6 && m.Flags.Contains("armazem:aba" + (compradas + 1))) compradas++;
+        for (var n = 1; n <= 6; n++)
+        {
+            var cont = n == 1 ? "armazem" : "armazem" + n;
+            var nome = m.Flags.FirstOrDefault(f => f.StartsWith("armazem:nome:" + cont + ":", StringComparison.Ordinal)) is { } f
+                ? f[("armazem:nome:" + cont + ":").Length..] : "Aba " + n;
+            var aberta = n <= compradas;
+            var b = new Button { Text = aberta ? nome : "🔒 " + n, FocusMode = Control.FocusModeEnum.None, Disabled = !aberta, ToggleMode = true, ButtonPressed = cont == st.Container,
+                TooltipText = aberta ? "Abrir esta aba" : "Compre esta aba com o Zeca do Armazém (ao lado do baú, no Porto)" };
+            b.AddThemeFontSizeOverride("font_size", 13);
+            var alvo = cont;
+            b.Pressed += () => Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "open", alvo, ""));
+            _storageAbas.AddChild(b);
+        }
+        // ✎: renomeia a aba aberta
+        var edit = new LineEdit { PlaceholderText = "nome da aba", MaxLength = 18, CustomMinimumSize = new Vector2(120, 0), Visible = false };
+        var lapis = new Button { Text = "✎", FocusMode = Control.FocusModeEnum.None, TooltipText = "Dar um nome a esta aba (ex.: Poções, Minérios)" };
+        var atual = st.Container;
+        lapis.Pressed += () => { edit.Visible = true; edit.Text = st.Name.StartsWith("Aba ", StringComparison.Ordinal) ? "" : st.Name; edit.GrabFocus(); };
+        edit.TextSubmitted += t => { Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "rename", atual, t)); edit.Visible = false; edit.ReleaseFocus(); };
+        _storageAbas.AddChild(lapis);
+        _storageAbas.AddChild(edit);
+    }
+
     private void UpdateStorage(ClientModel m)
     {
         var st = m.Storage!;
@@ -1215,7 +1289,8 @@ public sealed class WorldPanels
         // 12/11 ("olha como fica quando abro baú e inventário"): encosta na borda esquerda REAL da mochila (ela é larga)
         var invLeft = InventarioEsquerda?.Invoke() ?? view.X - 460f * k - 12f;
         _storage.Position = (new Vector2(Mathf.Max(8f, invLeft - _storage.Size.X * k - 12f), Mathf.Max(8f, (view.Y - _storage.Size.Y * k) / 2f)) + Arrastador.Desvio("bau")).Floor();
-        var sig = $"{st.Container}|{string.Join(",", st.Items.Select(i => i.ItemId + i.Quantity))}|{m.InventoryColumns}";
+        var abasSig = string.Join(",", m.Flags.Where(f => f.StartsWith("armazem:", StringComparison.Ordinal)).OrderBy(f => f));
+        var sig = $"{st.Container}|{st.Name}|{abasSig}|{string.Join(",", st.Items.Select(i => i.ItemId + i.Quantity))}|{m.InventoryColumns}";
         if (sig == _storageSig) return;
         _storageSig = sig;
         if (_storageModel != m)
@@ -1252,6 +1327,7 @@ public sealed class WorldPanels
         _storageGrid.Itens.AddRange(GradeItens.Empacotar(sized, _storageGrid.Colunas, _storageGrid.Linhas));
         _storageGrid.QueueRedraw();
         _storageInfo.Text = $"{st.Name} · {used}/{st.Capacity} casas\nArraste da mochila para guardar · clique direito para tirar";
+        MontarAbas(m, st);
     }
 
     private static Control StorageRow(string name, int qty, string action, Action onPress, bool enabled)

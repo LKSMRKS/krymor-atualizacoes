@@ -527,6 +527,7 @@ public static class GearFactory
 
     public static string? PaintedIcon(string? model, string definitionId)
     {
+        definitionId = ItemIconRenderer.BaseDaVariante(definitionId);   // 17/11 noite: variantes usam a arte da base
         // 10/11: companheiros como item (sem arte própria ainda): vagalume = essência; dragão e fênix = joia de brasa
         if (definitionId.StartsWith("wings_") || definitionId.StartsWith("asas_")) return "ico_" + definitionId + ".png";   // 11/11: asas como item (14/11: + as 25 da prancha)
         if (ArteDaPrancha(definitionId)) return "ico_" + definitionId + ".png";   // 14/11 noite: skins com o desenho da prancha do dono
