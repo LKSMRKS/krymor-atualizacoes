@@ -2600,6 +2600,7 @@ public partial class Main : Node3D
         _pesquisa.Pesquisar = texto => Send(new PesquisaIntent(texto) { Global = _pesquisa.Global });
 
         layer.AddChild(_trilha);
+        _trilha.Escolher = (n, id) => { Send(new TrilhaEscolhaIntent(n, id)); Sfx.Play("moeda"); };   // 18/11 17h: prêmio 1 de 3
         layer.AddChild(_menuTab);
         _menuTab.Send += Send;
         // 14/11 tarde (dono: "no TAB não é pra abrir coisas por cima, é pra trocar de aba"): o TAB pega emprestado o

@@ -19,7 +19,10 @@ public sealed partial class TrilhaPanel : PanelContainer
 {
     private static readonly Color Gold = new(0.95f, 0.78f, 0.30f);
     private static readonly Color Dim = new(0.72f, 0.69f, 0.62f);
-    private static readonly HashSet<string> Ganhar = new() { "montaria", "asas", "capa", "pet", "skin", "presente" };
+    private static readonly HashSet<string> Ganhar = new() { "presente", "escolha" };
+    /// <summary>18/11 17h: escolher o prêmio de um nível (Main manda TrilhaEscolhaIntent).</summary>
+    public Action<int, string>? Escolher;
+    private string? _armado;   // 1º clique arma, 2º confirma
     private readonly HBoxContainer _colunas = new();
     private readonly Label _proximo = HudView.MakeLabel("", 14, new Color(0.6f, 0.9f, 1f));
     private readonly ScrollContainer _scroll = new() { VerticalScrollMode = ScrollContainer.ScrollMode.Disabled, CustomMinimumSize = new Vector2(940, 470), SizeFlagsHorizontal = SizeFlags.ExpandFill };
@@ -47,7 +50,12 @@ public sealed partial class TrilhaPanel : PanelContainer
         _colunas.AddThemeConstantOverride("separation", 6);
         _scroll.AddChild(_colunas);
         // 18/11 ("fala que GANHA, mas eu ganho? tá meio confuso"): legenda do que cada marca quer dizer
-        col.AddChild(HudView.MakeLabel("Em cima: o que ABRE para você (lugares, dungeons, poderes). Embaixo: PRÊMIOS — ✓ já é seu · ◆ laranja = o nível já deixa, mas você ainda precisa pegar (passe o mouse: diz onde) · apagado = nível ainda não chegou. Presentes chegam sozinhos na mochila.", 11, Dim));
+        // 18/11 17h (dono: "quando aperto TAB e vou pra Trilha tá mudando o tamanho — deixa do mesmo tamanho, arrasta pro
+        // lado"): a legenda quebra linha (antes esticava a janela inteira)
+        var legenda = HudView.MakeLabel("Em cima: o que ABRE no nível — clique numa categoria para ver. Embaixo: PRÊMIOS — presente (chega sozinho) ou ESCOLHA 1 DE 3 (clique duas vezes no que quiser). ✓ = já é seu.", 11, Dim);
+        legenda.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+        legenda.CustomMinimumSize = new Vector2(400, 0);
+        col.AddChild(legenda);
     }
 
     public override void _Ready() => Arrastador.Ligar(this, "trilha", 40f, fechar: () => Visible = false);
@@ -59,9 +67,10 @@ public sealed partial class TrilhaPanel : PanelContainer
         if (t is null || seq == _seq) return;
         _seq = seq;
         foreach (var c in _colunas.GetChildren()) { _colunas.RemoveChild(c); c.QueueFree(); }
-        var prox = t.Itens.Where(i => !i.Tem && i.Nivel >= t.Nivel).Take(3).ToList();
-        _proximo.Text = prox.Count == 0 ? "Você já abriu tudo da trilha. Renascer (nível 60) recomeça mais forte." :
-            "Próximo: " + string.Join("   ·   ", prox.Select(p => $"Nv {p.Nivel} — {p.Titulo}"));
+        var pendentes = t.Itens.Where(i => i.Disponivel && i.Tipo == "escolha").Select(i => i.Nivel).Distinct().ToList();
+        var prox = t.Itens.Where(i => Ganhar.Contains(i.Tipo) && i.Nivel > t.Nivel).Select(i => i.Nivel).Distinct().Take(2).ToList();
+        _proximo.Text = (pendentes.Count > 0 ? $"◆ Prêmio para escolher: nível {string.Join(", ", pendentes)}   ·   " : "")
+            + (prox.Count == 0 ? "Você já passou de todos os prêmios." : "Próximos prêmios: " + string.Join(", ", prox.Select(n => "Nv " + n)));
         Control? atual = null;
         foreach (var g in t.Itens.GroupBy(i => i.Nivel).OrderBy(g => g.Key))
         {
@@ -85,13 +94,11 @@ public sealed partial class TrilhaPanel : PanelContainer
             var faixa = new ColorRect { Color = chegou ? Gold : new Color(0.3f, 0.3f, 0.3f), CustomMinimumSize = new Vector2(0, 3) };
             v.AddChild(faixa);
             // USAR (em cima) e GANHAR (embaixo)
-            var usar = g.Where(i => !Ganhar.Contains(i.Tipo)).Take(3).ToList();
-            var ganhar = g.Where(i => Ganhar.Contains(i.Tipo)).Take(3).ToList();
-            v.AddChild(Faixa("ABRE", usar, chegou, new Color(0.45f, 0.75f, 1f)));
+            var usar = g.Where(i => i.Tipo == "abre").ToList();
+            var ganhar = g.Where(i => Ganhar.Contains(i.Tipo)).ToList();
+            v.AddChild(ListaAbre(usar, chegou));
             v.AddChild(new ColorRect { Color = new Color(1, 1, 1, 0.08f), CustomMinimumSize = new Vector2(0, 1) });
-            v.AddChild(Faixa("PRÊMIOS", ganhar, chegou, new Color(0.55f, 0.95f, 0.5f)));
-            var resto = g.Count() - usar.Count - ganhar.Count;
-            if (resto > 0) { var r = HudView.MakeLabel($"+{resto} no mesmo nível", 10, Dim); r.HorizontalAlignment = HorizontalAlignment.Center; v.AddChild(r); }
+            v.AddChild(Faixa(ganhar.Any(i => i.Tipo == "escolha") ? "PRÊMIO · ESCOLHA 1 DE 3" : "PRÊMIO", ganhar, chegou, new Color(0.55f, 0.95f, 0.5f)));
             _colunas.AddChild(coluna);
             if (chegou) atual = coluna;
         }
@@ -115,6 +122,31 @@ public sealed partial class TrilhaPanel : PanelContainer
         Callable.From(Rolar).CallDeferred();
         // o layout do TAB só fecha no quadro seguinte: tenta de novo um pouco depois
         if (IsInsideTree()) GetTree().CreateTimer(0.08).Timeout += Rolar;
+    }
+
+    /// <summary>18/11 17h: o que abre, em categorias clicáveis ("▸ Missões (15)") — clique mostra a lista.</summary>
+    private Control ListaAbre(List<TrilhaItem> itens, bool chegou)
+    {
+        var box = new VBoxContainer { CustomMinimumSize = new Vector2(230, 190) };
+        box.AddThemeConstantOverride("separation", 2);
+        var l = HudView.MakeLabel("ABRE", 10, new Color(0.45f, 0.75f, 1f), 2);
+        l.HorizontalAlignment = HorizontalAlignment.Center;
+        box.AddChild(l);
+        if (itens.Count == 0) { var vazio = HudView.MakeLabel("—", 14, new Color(0.4f, 0.4f, 0.4f)); vazio.HorizontalAlignment = HorizontalAlignment.Center; box.AddChild(vazio); }
+        foreach (var i in itens)
+        {
+            var corpo = HudView.MakeLabel("• " + i.Detalhe.Replace("\n", "\n• "), 11, new Color(0.82f, 0.8f, 0.74f));
+            corpo.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+            corpo.CustomMinimumSize = new Vector2(220, 0);
+            corpo.Visible = false;
+            var b = new Button { Text = "▸ " + i.Titulo, Flat = true, FocusMode = FocusModeEnum.None, Alignment = HorizontalAlignment.Left };
+            b.AddThemeColorOverride("font_color", chegou ? new Color(0.75f, 0.88f, 1f) : Dim);
+            b.AddThemeFontSizeOverride("font_size", 13);
+            b.Pressed += () => { corpo.Visible = !corpo.Visible; b.Text = (corpo.Visible ? "▾ " : "▸ ") + i.Titulo; };
+            box.AddChild(b);
+            box.AddChild(corpo);
+        }
+        return box;
     }
 
     private Control Faixa(string titulo, List<TrilhaItem> itens, bool chegou, Color cor)
@@ -149,12 +181,29 @@ public sealed partial class TrilhaPanel : PanelContainer
     private Control Cartao(TrilhaItem i)
     {
         var laranja = new Color(1f, 0.6f, 0.2f);
-        var dica = i.Tem ? "✓ Já é seu." : i.Disponivel ? "◆ Você já tem o nível, mas ainda não pegou." : "";
-        var card = new PanelContainer { CustomMinimumSize = new Vector2(96, 0), TooltipText = $"{i.Titulo}\n{i.Detalhe}" + (dica.Length > 0 ? "\n" + dica : "") };
+        var dica = i.Tem ? "✓ Já é seu." : i.Disponivel ? "◆ Clique duas vezes para escolher este (só um dos três)." : "";
+        // 18/11 17h: prêmio de item = ficha completa do item (atributos + comparação) ao passar o mouse
+        var card = new CartaoComFicha { CustomMinimumSize = new Vector2(96, 0), TooltipText = $"{i.Titulo}\n{i.Detalhe}" + (dica.Length > 0 ? "\n" + dica : "") };
+        if (i.Arte.StartsWith("item:", StringComparison.Ordinal)) { card.Def = i.Arte[5..]; card.Info = _m?.ItemInfoFor(card.Def); }
         var st = new StyleBoxFlat { BgColor = i.Tem ? new Color(0.12f, 0.1f, 0.05f, 0.95f) : i.Disponivel ? new Color(0.13f, 0.07f, 0.03f, 0.95f) : new Color(0.05f, 0.05f, 0.06f, 0.95f),
             BorderColor = i.Tem ? Gold : i.Disponivel ? laranja : new Color(0.3f, 0.29f, 0.27f), ContentMarginLeft = 4, ContentMarginRight = 4, ContentMarginTop = 4, ContentMarginBottom = 4 };
         st.SetBorderWidthAll(i.Tem || i.Disponivel ? 2 : 1); st.SetCornerRadiusAll(5);
         card.AddThemeStyleboxOverride("panel", st);
+        // 18/11 17h: escolha 1 de 3 — 1º clique marca, 2º confirma
+        if (i.Tipo == "escolha" && i.Disponivel && i.Arte.StartsWith("item:", StringComparison.Ordinal))
+        {
+            var id = i.Arte[5..];
+            var chave = i.Nivel + ":" + id;
+            if (_armado == chave) { st.BorderColor = new Color(0.4f, 1f, 0.5f); st.SetBorderWidthAll(3); }
+            card.MouseFilter = MouseFilterEnum.Stop;
+            card.GuiInput += ev =>
+            {
+                if (ev is not InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left }) return;
+                if (_armado == chave) { _armado = null; Escolher?.Invoke(i.Nivel, id); }
+                else { _armado = chave; st.BorderColor = new Color(0.4f, 1f, 0.5f); st.SetBorderWidthAll(3); card.TooltipText += "\nClique de novo para PEGAR."; }
+            };
+        }
+
         var v = new VBoxContainer { MouseFilter = MouseFilterEnum.Ignore };
         v.AddThemeConstantOverride("separation", 2);
         card.AddChild(v);
@@ -179,7 +228,7 @@ public sealed partial class TrilhaPanel : PanelContainer
         }
         if (!i.Tem && !i.Disponivel) arte.Modulate = new Color(0.55f, 0.55f, 0.55f, 0.85f);
         v.AddChild(arte);
-        var tipo = HudView.MakeLabel(i.Disponivel ? "◆ PEGAR (veja onde)" : NomeDoTipo(i.Tipo), 9, i.Tem ? Gold : i.Disponivel ? laranja : Dim, 2);
+        var tipo = HudView.MakeLabel(i.Disponivel ? "◆ ESCOLHER" : i.Tipo == "escolha" ? i.Detalhe.Split(" · ")[0].ToUpperInvariant() : NomeDoTipo(i.Tipo), 9, i.Tem ? Gold : i.Disponivel ? laranja : Dim, 2);
         tipo.HorizontalAlignment = HorizontalAlignment.Center;
         v.AddChild(tipo);
         var titulo = HudView.MakeLabel((i.Tem ? "✓ " : "") + i.Titulo, 11, i.Tem ? new Color(1f, 0.92f, 0.7f) : new Color(0.75f, 0.73f, 0.68f), 2);

@@ -1892,8 +1892,14 @@ public sealed partial class WorldMapCanvas : Control
             // 13/11 ("o quadrado de info tem informações sobrepostas"): mede a altura real de cada linha quebrada (antes chutava 2 linhas)
             float Alt((string T, int S, Color C) l) => font.GetMultilineStringSize(l.T, HorizontalAlignment.Left, w - 16, l.S).Y + 5f;
             var hgt = 12f + lines.Sum(Alt);
-            var at = P(Onde(h).X, Onde(h).Y) + new Vector2(14, -hgt / 2);
-            at.X = Mathf.Min(at.X, size.X - w - 8); at.Y = Mathf.Clamp(at.Y, 8, size.Y - hgt - 8);
+            // 18/11 17h (dono: "passo o mouse em Astrália, o texto aparece em cima e eu não consigo interagir — joga pro outro
+            // lado, pra esquerda na diagonal, fugindo do mouse e do ícone"): o quadro vai para cima-esquerda do mouse; sem
+            // espaço, troca de lado (direita / embaixo) — nunca em cima do ponteiro
+            var ancora = _mouse.X > -9000 ? _mouse : P(Onde(h).X, Onde(h).Y);
+            var at = ancora + new Vector2(-w - 26, -hgt - 22);
+            if (at.X < 8) at.X = ancora.X + 26;
+            if (at.Y < 8) at.Y = ancora.Y + 26;
+            at.X = Mathf.Clamp(at.X, 8, size.X - w - 8); at.Y = Mathf.Clamp(at.Y, 8, size.Y - hgt - 8);
             var box = new Rect2(at, new Vector2(w, hgt));
             DrawRect(box, new Color(0.08f, 0.07f, 0.06f, 0.94f));
             DrawRect(box, new Color(0.72f, 0.55f, 0.26f), false, 1.5f);

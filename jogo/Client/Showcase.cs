@@ -470,6 +470,7 @@ public partial class Showcase : Node3D
         camera.Position = new Vector3(0, 1.5f, -4.6f);
         camera.LookAt(new Vector3(0, 1.3f, 0));
         camera.Fov = 50;
+        CloseUp(camera);   // 18/11 17h: rosto da skin de perto
     }
 
     // 11/11 noite: como cada tipo de arma fica na mão (parado), de frente e de lado
@@ -551,6 +552,14 @@ public partial class Showcase : Node3D
             var yaw = float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var y) ? y : 0f;
             Place(v, new Vector3(x, 0, 0), yaw, i * 0.7f);
             if (OS.GetEnvironment("VITRINE_EVO") == "1" && v is MannequinVisual ev) ev.SetEvolved(true);   // cara de bicho (classe evoluída)
+            // 18/11 17h: VITRINE_ARMADURA=arm_cavaleiro — conjunto inteiro (peitoral, capacete, luvas, botas, calça); VITRINE_SEMELMO=1 tira o capacete
+            if (OS.GetEnvironment("VITRINE_ARMADURA") is { Length: > 0 } arm && v is MannequinVisual av)
+            {
+                av.SetGear(st.Wpn, st.Off, arm + ":peitoral");
+                av.SetHead(OS.GetEnvironment("VITRINE_SEMELMO") == "1" ? null : arm + ":capacete");
+                av.SetLimbs(arm + ":luvas", arm + ":botas");
+                av.SetPants(arm + ":calca");
+            }
             if (OS.GetEnvironment("VITRINE_AURA") == "1" && v is MannequinVisual au) au.SetAura(true);   // 13/11: círculo de runas
             if (OS.GetEnvironment("VITRINE_SKINS") is { Length: > 0 } skins && v is MannequinVisual sk)   // 13/11: skins do bracelete, uma por boneco
             { sk.SetHead(null); sk.SetSkin(skins.Split(',')[i % skins.Split(',').Length]); }

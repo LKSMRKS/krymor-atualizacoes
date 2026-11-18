@@ -144,7 +144,7 @@ public static class ItemTooltip
         var col = new VBoxContainer();
         col.AddThemeConstantOverride("separation", 2);
         panel.AddChild(col);
-        var equipment = info?.Slot is "weapon_main" or "off_hand" or "head" or "body" or "luvas" or "botas" or "calca" or "anel1" or "colar" or "asas" or "bracelete" or "montaria";
+        var equipment = info?.Slot is "weapon_main" or "off_hand" or "head" or "body" or "luvas" or "botas" or "calca" or "anel1" or "colar" or "asas" or "bracelete" or "montaria" or "pet" or "anel2";
         var plus = m is null || itemId.Length == 0 ? 0
             : m.Inventory.FirstOrDefault(i => i.ItemId == itemId)?.Plus ?? m.Equipment.FirstOrDefault(e => e.ItemId == itemId)?.Plus ?? 0;
         // 16/11: Joia do Caos — o exemplar tem um "sal" que muda o sorteio dos atributos
@@ -243,6 +243,13 @@ public static class ItemTooltip
         foreach (var (key, label) in StatNames)
             if (diffs.TryGetValue(key, out var lost) && (info?.Stats is null || !info.Stats.ContainsKey(key)))
                 col.AddChild(Label($"{label} {DiffText(key, lost)}", 11, lost > 0 ? Good : Bad));
+        // 18/11 17h (dono: "alguns itens da loja não mostram a seta se é mais ou menos que o meu — tem que ser PADRÃO"):
+        // a comparação SEMPRE diz algo — igual ao vestido, ou nada vestido nesse lugar
+        if (cmpOn && diffs.Count == 0 && info?.Stats is { Count: > 0 })
+        {
+            var vestido = Equipado(m!, info!);
+            col.AddChild(Label(vestido is null ? "▲ nada vestido nesse lugar — tudo é ganho" : vestido.DefinitionId == info!.Id ? "= mesma peça que você está usando (muda só o feitio e o refino)" : "= mesmos atributos do que você está usando", 11, vestido is null ? Good : Dim));
+        }
         // 13/11 (pedido do dono: "não entendi o verde... deixa a diagramação igual o MU"): atributo-base em BRANCO; opções
         // extras em AZUL, cada bloco com um título que diz de onde vem (feitio do exemplar, linhas da variação V);
         // VERDE fica só para o bônus de conjunto; vermelho = o que o feitio tira.
@@ -273,6 +280,12 @@ public static class ItemTooltip
             foreach (var a in mu.Linhas) col.AddChild(Label("   " + a.Text, 14, a.Text.StartsWith("★") ? new Color(0.35f, 1f, 0.55f) : Blue));
         }
         if (info is not null && info.Summary.Length > 0) col.AddChild(Wrap(info.Summary, 13, new Color(0.85f, 0.82f, 0.74f)));
+        // 18/11 17h: papel e poder do pet (cura, proteção, lentidão...) e o nível em que ele é forte
+        if (info is { Category: "pet" } && CinzasDaMare.Shared.Content.PapeisPet.Texto(info.Subtype) is { Length: > 0 } papel)
+        {
+            col.AddChild(Wrap(papel, 13, new Color(0.55f, 0.85f, 1f)));
+            col.AddChild(Wrap($"Forte de verdade contra monstros até ~nível {info.MinLevel + 5}; depois acompanha a sua força.", 11, Dim));
+        }
 
         if (m is not null && definition.StartsWith("tomo_"))
         {

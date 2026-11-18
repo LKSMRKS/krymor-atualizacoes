@@ -1417,6 +1417,10 @@ void fragment() {
                     if ((mi.GetSurfaceOverrideMaterial(sIdx) ?? am.SurfaceGetMaterial(sIdx)) is StandardMaterial3D bm && bm.NextPass is null)
                     {
                         var front = (StandardMaterial3D)bm.Duplicate();
+                        // 18/11 17h (dono: "a armadura está sem textura"): no PC (reflexo alto) o metal cheio vira espelho cromado
+                        // e some a pintura da peça; metal no máximo 0,6 e um mínimo de aspereza deixam a textura aparecer
+                        front.Metallic = Mathf.Min(front.Metallic, 0.6f);
+                        front.Roughness = Mathf.Max(front.Roughness, 0.45f);
                         front.NextPass = new StandardMaterial3D
                         {
                             CullMode = BaseMaterial3D.CullModeEnum.Front, DisableReceiveShadows = true,
@@ -1496,7 +1500,9 @@ void fragment() {
             _cinta = new MeshInstance3D
             {
                 Name = "Cinta",
-                Mesh = VisualKit.Cylinder(0.128f, 0.124f, 0.2f, 20),
+                // 18/11 17h (dono: "a armadura está sem textura, com partes rasgadas" — no Cavaleiro Azul a cinta saía para fora
+                // da cintura como uma caixa preta): mais fina, fica por dentro das peças e só tapa as frestas
+                Mesh = VisualKit.Cylinder(0.106f, 0.102f, 0.18f, 20),
                 Position = new Vector3(0, yHips + 0.08f - ySpine, -0.004f),
                 Scale = new Vector3(1f, 1f, 0.72f),
             };
@@ -1508,6 +1514,7 @@ void fragment() {
         forro.AlbedoTexture = null; forro.NormalEnabled = false; forro.NormalTexture = null; forro.EmissionEnabled = false;
         forro.MetallicTexture = null; forro.RoughnessTexture = null; forro.AOEnabled = false; forro.AlbedoColor = cor;
         forro.Transparency = BaseMaterial3D.TransparencyEnum.Disabled;
+        forro.Metallic = 0.2f; forro.Roughness = 0.8f;   // sem espelho escuro
         _cinta.MaterialOverride = forro;
     }
 
@@ -2713,7 +2720,10 @@ void fragment() {
         // 12/11 ("tirei o capacete e ficou com uma cabecinha minúscula"): com armadura de conjunto (ombreiras e peito
         // volumosos) a cabeça do boneco parecia de alfinete; o osso da cabeça cresce 22% (o elmo, que é da mesma pele, junto)
         else if (_animal is null && _mon is null && Bone("Head") is var nhb and >= 0)
-            _skel.SetBonePoseScale(nhb, Vector3.One * (_armorParts.Count > 0 ? 1.1f : 1f));
+            // 18/11 17h (dono: "olha a cabecinha" com a armadura do Cavaleiro / "com o capacete fica gigante"): de armadura e SEM
+            // capacete a cabeça cresce mais (1,22) para acompanhar os ombros; COM capacete de conjunto o osso fica normal —
+            // o capacete já é largo e crescia junto
+            _skel.SetBonePoseScale(nhb, Vector3.One * (_armorParts.Count == 0 ? 1f : _armorParts.Keys.Any(k => k.StartsWith("capacete", StringComparison.Ordinal)) || _helmet is not null ? 1.0f : 1.22f));
         // 14/11 tarde (dono: "classe 3 mais forte, tipo o leão da arte"): braços e coxas mais grossos (osso engrossa de
         // lado, não cresce no comprimento); a mão volta ao normal para a arma não engordar junto
         if (Leao3 && _mon is null)
@@ -4770,13 +4780,24 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Cylinder(0.121f, 0.121f, 0.03f, 20), M(new Color(0.06f, 0.06f, 0.06f)), new Vector3(0, 0.16f, -0.01f));
                 if (skin == "sapo")
                 {
-                    var verde = M(new Color(0.35f, 0.62f, 0.25f));
+                    // 18/11 17h (dono: "o sapo tem potencial, mas olha esse rosto — parece um sapo de balão comprido de palhaço"):
+                    // cabeça de sapo de verdade — larga e achatada por cima da cabeça do boneco, papo claro embaixo, bocão
+                    // de orelha a orelha (risco escuro), olhos saltados no alto com íris amarela e pupila deitada, narinas
+                    var verde = M(new Color(0.33f, 0.58f, 0.22f), 0.55f);
+                    var papo = M(new Color(0.78f, 0.82f, 0.5f), 0.7f);
+                    VisualKit.Part(cab, VisualKit.Sphere(0.135f), verde, new Vector3(0, 0.0f, 0.02f), null, new Vector3(1.3f, 0.82f, 1.15f));   // cabeça larga
+                    VisualKit.Part(cab, VisualKit.Sphere(0.12f), papo, new Vector3(0, -0.055f, 0.035f), null, new Vector3(1.18f, 0.5f, 1.05f));   // papo
+                    var boca = M(new Color(0.12f, 0.06f, 0.05f), 0.6f);
+                    VisualKit.Part(cab, VisualKit.Box(0.19f, 0.009f, 0.012f), boca, new Vector3(0, -0.03f, 0.152f));
                     foreach (var sd in new[] { -1f, 1f })
                     {
-                        VisualKit.Part(cab, VisualKit.Sphere(0.05f), verde, new Vector3(sd * 0.07f, 0.09f, 0.07f));
-                        VisualKit.Part(cab, VisualKit.Sphere(0.028f), M(new Color(0.95f, 0.8f, 0.2f), 0.2f), new Vector3(sd * 0.075f, 0.1f, 0.11f));
+                        VisualKit.Part(cab, VisualKit.Box(0.05f, 0.009f, 0.012f), boca, new Vector3(sd * 0.115f, -0.022f, 0.128f), new Vector3(0, sd * 38f, sd * 14f));   // canto da boca subindo
+                        VisualKit.Part(cab, VisualKit.Sphere(0.048f), verde, new Vector3(sd * 0.078f, 0.072f, 0.072f));                         // calombo do olho
+                        VisualKit.Part(cab, VisualKit.Sphere(0.036f), M(new Color(0.96f, 0.78f, 0.18f), 0.15f), new Vector3(sd * 0.08f, 0.084f, 0.098f));   // íris
+                        VisualKit.Part(cab, VisualKit.Box(0.034f, 0.011f, 0.006f), M(new Color(0.02f, 0.02f, 0.02f), 0.1f), new Vector3(sd * 0.081f, 0.085f, 0.133f));   // pupila deitada
+                        VisualKit.Part(cab, VisualKit.Sphere(0.006f), VisualKit.Glow(new Color(1f, 1f, 1f), 1.4f), new Vector3(sd * 0.072f, 0.098f, 0.131f));   // brilho
+                        VisualKit.Part(cab, VisualKit.Sphere(0.0065f), boca, new Vector3(sd * 0.022f, 0.018f, 0.168f));                         // narina
                     }
-                    VisualKit.Part(cab, VisualKit.Sphere(0.12f), verde, new Vector3(0, -0.04f, 0.05f), null, new Vector3(1.15f, 0.6f, 1f));   // bocão
                 }
                 else foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Sphere(0.02f), VisualKit.Glow(new Color(1f, 0.7f, 0.15f), 2.4f), new Vector3(sd * 0.045f, 0.03f, 0.105f));
                 // charuto aceso
@@ -4945,7 +4966,8 @@ void fragment() {
                 for (var i = 0; i < 12; i++)
                 {
                     var a = i / 12f * Mathf.Tau;
-                    VisualKit.Part(peito, VisualKit.Sphere(0.05f), M(new Color(0.95f, 0.94f, 0.92f)), new Vector3(Mathf.Sin(a) * 0.13f, 0.23f, Mathf.Cos(a) * 0.1f), null, new Vector3(1f, 0.45f, 1f));
+                    // 18/11 17h (dono: "deixa esse babado no pescoço um pouco mais abaixo, tá muito no queixo — tem que ser nos ombros")
+                    VisualKit.Part(peito, VisualKit.Sphere(0.055f), M(new Color(0.95f, 0.94f, 0.92f)), new Vector3(Mathf.Sin(a) * 0.165f, 0.165f, Mathf.Cos(a) * 0.12f), null, new Vector3(1f, 0.42f, 1f));
                 }
                 break;
             }

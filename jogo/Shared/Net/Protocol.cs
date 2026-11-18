@@ -110,6 +110,7 @@ public static class Protocol
 [JsonDerivedType(typeof(TrilhaIntent), "trilha_ask")]
 [JsonDerivedType(typeof(PesquisaIntent), "pesquisa")]
 [JsonDerivedType(typeof(MesclarIntent), "mesclar")]
+[JsonDerivedType(typeof(TrilhaEscolhaIntent), "trilha_escolha")]
 [JsonDerivedType(typeof(TrilhaMessage), "trilha")]
 public abstract record NetMessage;
 
@@ -134,6 +135,8 @@ public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string De
     /// <summary>18/11: o nível chegou, mas o prêmio (montaria, asa, capa...) ainda não é seu — Detalhe diz onde conseguir.</summary>
     public bool Disponivel { get; init; }
 }
+/// <summary>18/11 17h: escolher o prêmio de um nível da Trilha (1 de 3).</summary>
+public sealed record TrilhaEscolhaIntent(int Nivel, string ItemId) : NetMessage;
 public sealed record TrilhaMessage(int Nivel, IReadOnlyList<TrilhaItem> Itens) : NetMessage;
 
 public sealed record ContentFileMessage(IReadOnlyList<string> Files, string? Name = null, string? Text = null, string? Info = null) : NetMessage;

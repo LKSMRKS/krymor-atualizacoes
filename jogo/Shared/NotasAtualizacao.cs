@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u161 · 18/11 17:45", "Passagens chegam sempre na frente da porta de volta (no jogo todo); palhaço sinistro só com o buraco preto nos olhos"),
+        ("u162 · 18/11 18:40", "Trilha: prêmio escolha 1 de 3 e ABRE por categoria; pets com papel (cura, proteção, lentidão...) e poder inicial; asas e capas por classe; setas de comparação sempre; olhinho em todas as partes; cabeça/capacete na armadura; sapo e palhaço; mapa sem tapar o clique"),
+        ("u161", "Passagens chegam sempre na frente da porta de volta (no jogo todo); palhaço sinistro só com o buraco preto nos olhos"),
         ("u160", "Vendedores de Decoração e de Quintal em cada cidade (linha própria + portal da cidade, forja e caldeirão do quintal); cabeça das classes 2/3 e capacete no tamanho certo; asas remam para frente e para trás; voo com corpo vivo"),
         ("u159", "Busca dentro do Registro; tesouros variados; 2 esquivas na classe 2; missões revisadas; dicas de Poder/Peso; 🗺 no J; Amuleto da Última Chama; chaves de dungeon; sair da DG volta na porta; Ctrl+F edita a casa; buffs em quadradinhos; terreno com boneco, portal, mascate, vitrola e cercado de ovos"),
         ("u158", "Busca (lupa ao lado do minimapa ou Ctrl+F): lugar, mapa, NPC e item (diz onde fica, como chegar, se você tem e onde está; a bússola aponta); pesquisa no Registro das Criaturas da Biblioteca do Cais; Trilha abre no seu nível e só marca ✓ o que é seu (◆ = já pode pegar, diz onde); cartão de nível com o que ganhou, o que pode e o que dá pra conseguir — todo nível dá algo; baús atrás de porta com chave somem; golpe apertado na esquiva sai na hora; tela de carga só some quando o mapa para de engasgar (e o boneco não anda enquanto carrega); boneco de treino sem barra de vida em cima; Pedra que Pulsa marca a Galeria Funda e a dica diz todos os bichos (fantasma incluso); XP da missão no mapa (com % do seu nível); X do tesouro: em cima + F; loja do TAB mostra os atributos; olhinho para esconder elmo e asas/capa; quadro de recados com boatos, feitos e novidades (e campo para escrever); Armeiro e Mascate na Vila das Mós, Astrália, Candeia e Brasaforte; Máquina de Mesclar Visual em Astrália; missões fáceis demais sem ! amarelo; ataques novos: salto, chicotada que puxa, giro desembestado, tiro girando e zigue-zague em ~70 monstros; Corujão de Mil Olhos rápido, coruja de verdade com olhos nas asas; Dentuço virou dinossauro; Verme da Fenda novo"),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u105", "Atualização dos amigos pelo GitHub (o Jogar.cmd baixa sozinho)|Servidor não derruba mais quem está baixando a atualização|Pacote PARA_O_AMIGO funciona sem renomear"),
         ("u104", "Histórico (O) com tudo: o que deu certo, o que falhou e por quê|Pacotes do amigo sempre com o código inteiro"),
         ("u103", "Pedra de viagem: F na primeira vez ativa a pedra (não abre o mapa)"),
-        ("u102", "Minimapa: amarelo só quem tem missão|Grupo: uma lista só, com barra, embaixo do minimapa"),
     };
 }

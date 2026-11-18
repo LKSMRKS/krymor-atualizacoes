@@ -250,6 +250,8 @@ public sealed partial class MenuTabPanel : PanelContainer
         _hospede.AddChild(c);
         _emprestado = c; _idEmprestado = id;
         Embutido?.Invoke(id, true);
+        // 18/11 17h (dono: "na Trilha tá mudando o tamanho — deixa do mesmo tamanho"): a janela volta ao tamanho fixo
+        Callable.From(() => { if (GodotObject.IsInstanceValid(this)) Size = CustomMinimumSize; }).CallDeferred();
     }
 
     /// <summary>Devolve o conteúdo emprestado para a janela de origem.</summary>

@@ -78,6 +78,7 @@ public sealed class InventoryPanel
     private readonly Dictionary<string, ItemSlot> _equipSlots = new();
     private OlhoSkin _olho = null!;
     private OlhoSkin _olhoElmo = null!, _olhoAsas = null!;   // 18/11
+    private readonly List<(OlhoSkin O, string Slot, string Flag, string Nome)> _olhosPartes = new();   // 18/11 17h
     private readonly Label _stats, _subtitle;
     private readonly VBoxContainer _details;
     private readonly HBoxContainer _buttons;
@@ -171,6 +172,18 @@ public sealed class InventoryPanel
         _olhoAsas = new OlhoSkin { Position = new Vector2(xs[3] + P + Gap + G - 21f, 1f), Visible = false };
         _olhoAsas.Clicked += () => Send?.Invoke(new SkinVisivelIntent(_olhoAsas.Oculta) { Parte = "asas" });
         grade.AddChild(_olhoAsas);
+        // 18/11 17h (dono: "nem todas as partes do corpo estão com o olho pra desativar ou ativar o visual"): olhinho também
+        // no peito, luvas, calça, botas, arma e mão 2 (canto de cima à direita de cada espaço)
+        foreach (var (slot, parte, nome) in new[] { ("body", "peito", "Peitoral"), ("luvas", "luvas", "Luvas"), ("calca", "calca", "Calça"),
+                                                     ("botas", "botas", "Botas"), ("weapon_main", "arma", "Arma"), ("off_hand", "mao2", "Mão 2") })
+        {
+            var sl = _equipSlots[slot];
+            var o = new OlhoSkin { Position = sl.Position + new Vector2(sl.CustomMinimumSize.X - 21f, 1f), Visible = false };
+            var pa = parte;
+            o.Clicked += () => Send?.Invoke(new SkinVisivelIntent(o.Oculta) { Parte = pa });
+            grade.AddChild(o);
+            _olhosPartes.Add((o, slot, "ocultar:" + parte, nome));
+        }
         var gradeRow = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         gradeRow.AddChild(grade);
         column.AddChild(gradeRow);
@@ -356,6 +369,7 @@ public sealed class InventoryPanel
         }
         Olho(_olhoElmo, "head", "ocultar:capacete", "Elmo");
         Olho(_olhoAsas, "asas", "ocultar:asas", "Asas/capa");
+        foreach (var (o, slot, flag, nome) in _olhosPartes) Olho(o, slot, flag, nome);
         if (_doll.IsInsideTree()) _doll.SetLook(m);
         RefreshPets(m);
         var signature = string.Join("|", m.Inventory.Select(i => i.ItemId + i.Quantity + "@" + i.Slot)) + "#" +
