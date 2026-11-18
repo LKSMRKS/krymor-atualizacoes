@@ -586,7 +586,7 @@ public static class GearFactory
         // redondos etc.) cai no chão como ele mesmo, em pé e um pouco maior — o mesmo da mochila.
         // 13/11 (2ª vez: "trocar o 3D da poção fraca quando dropa"): vem ANTES do modelo 3D de lote, que mostrava o frasco grande
         // 14/11: vale para tudo que tem desenho próprio (poções, mapa do tesouro, esferas...), cada um no seu tamanho
-        if ((ItemIconRenderer.HasOwnIcon(definitionId) || IconesUnicos.Tem(definitionId)) && !definitionId.StartsWith("bracelete_") && ItemIconRenderer.OwnIconNode(definitionId) is { } proprio)
+        if (ItemIconRenderer.HasOwnIcon(definitionId) && !definitionId.StartsWith("bracelete_") && ItemIconRenderer.OwnIconNode(definitionId) is { } proprio)
         {
             var t = ItemIconRenderer.TamanhoNoChao(definitionId);
             proprio.Scale = Vector3.One * t;

@@ -245,7 +245,7 @@ public sealed class WorldPanels
             // 16/11: anoiteceu/amanheceu — anúncio de tela própria (lua, título vermelho, o que mudou)
             if (n.Kind is "noite" or "amanhecer") { AvisoNoite.Pedir(n.Kind == "noite"); continue; }
             if (n.Kind == "pesquisa_abrir") continue;   // 17/11: abre a caixa do Catálogo (Main)
-            if (n.Kind == "pedra") n = n with { Text = n.Text.Split('|')[0], Kind = "info" };   // 17/11: golpe na rocha oca
+            if (n.Kind == "pedra") { n = n with { Text = n.Text.Split('|')[0], Kind = "info" }; if (n.Text.Length == 0) continue; }   // 17/11: golpe na rocha oca (só treme — sem texto, é segredo)
             if (n.Kind == "regiao")
             {
                 // 13/11: primeira vez numa região — cartão grande de "capítulo novo"

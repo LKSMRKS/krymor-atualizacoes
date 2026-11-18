@@ -40,7 +40,7 @@ public sealed partial class ItemIconRenderer : Node
         // 15/11 ("cada poção com frasco e cor diferente — está tudo com o mesmo ícone"): as poções dividem o modelo "potion"
         // / "potion_mana", e a primeira foto ficava para todas; quem tem desenho próprio tem chave pelo próprio id
         => definition.StartsWith("tomo_") ? "tome_" + TomeClass(definition)
-            : HasOwnIcon(definition) || Visuals.IconesUnicos.Tem(definition) || definition.StartsWith("anel_") || definition.StartsWith("colar_") ? definition
+            : HasOwnIcon(definition) || Visuals.IconesUnicos.Tem(definition) || Visuals.GearFactory.LotTwoDrop(info?.Model, definition) is not null || definition.StartsWith("anel_") || definition.StartsWith("colar_") ? definition
             // 17/11 (regra: ícone único por item): só equipamento divide foto pelo modelo; apito/montaria/pet etc. pelo id
             : definition.StartsWith("apito_") || definition.StartsWith("montaria_") || definition.StartsWith("pet_") ? definition
             : info?.Model is { Length: > 0 } m && !m.StartsWith("mat_") && info.Category != "material" ? m : definition;
@@ -51,12 +51,15 @@ public sealed partial class ItemIconRenderer : Node
         var key = KeyFor(info, definition);
         if (Cache.TryGetValue(key, out var tex)) return tex;
         // ícone pintado (ico_*.png) quando existe: mais bonito que a foto do modelo
-        // 17/11 (REGRA do dono: cada item com o seu próprio ícone): quem tem modelo único (IconesUnicos) não usa a arte genérica
-        if (!definition.StartsWith("tomo_") && (!HasOwnIcon(definition) || Visuals.GearFactory.ArteDaPrancha(definition)) && !UnicoSemArte(definition) && Visuals.GearFactory.PaintedIcon(info?.Model, definition) is { } painted
+        // 17/11 noite (dono: "não era pra mexer no que já tava daora — os ícones novos parecem massinha; só a joia da brasa
+        // ficou boa"): a arte PINTADA volta a valer para todos. Itens que dividem o mesmo desenho (13 plantas na "erva") ficam
+        // diferentes pela COR do próprio desenho (Tingido) — o dono da arte (ArteDona) mantém o original
+        if (!definition.StartsWith("tomo_") && (!HasOwnIcon(definition) || Visuals.GearFactory.ArteDaPrancha(definition)) && Visuals.GearFactory.PaintedIcon(info?.Model, definition) is { } painted
             && VisualAssets.Load(painted) is { } png)
         {
-            Cache[key] = png;
-            return png;
+            var pintada = Visuals.GearFactory.LotTwoDrop(info?.Model, definition) is { } drop && !ArteDona(drop, definition) ? Tingido(png, definition) : png;
+            Cache[key] = pintada;
+            return pintada;
         }
         if (_instance is not null && Requested.Add(key)) Pending.Enqueue((key, info, definition));
         return null;
@@ -150,7 +153,7 @@ public sealed partial class ItemIconRenderer : Node
         var model = info?.Model ?? "";
         if (definition.StartsWith("tomo_")) return Tome(definition);
         if (OwnIcon(definition) is { } own) return own;   // desenho próprio vence a categoria (máscara é "helmet")
-        if (Visuals.IconesUnicos.Montar(definition) is { } unico) return unico;   // 17/11: modelo único por item
+        // 17/11 noite (dono: "os ícones novos parecem massinha"): o modelo procedural por item (IconesUnicos) saiu do ícone
         var cat = info?.Category ?? "";
         if (cat == "weapon" || GearFactory.IsBow(model) || model.StartsWith("talisman_") || model.StartsWith("staff_"))
         {
@@ -338,9 +341,60 @@ public sealed partial class ItemIconRenderer : Node
 
     public static bool HasOwnIcon(string definition) => Array.Exists(OwnIconIds, definition.StartsWith);
 
-    /// <summary>17/11: tem modelo único e NÃO tem arte pintada só dele (ico_&lt;id&gt;.png) — a arte genérica é proibida.</summary>
-    private static bool UnicoSemArte(string id) => !HasOwnIcon(id) && Visuals.IconesUnicos.Tem(id)
-        && !id.StartsWith("joia_") && !Godot.FileAccess.FileExists("res://Assets/Art/ico_" + id + ".png");
+    /// <summary>17/11 noite: quem fica com o desenho pintado original (o item que a arte retrata).</summary>
+    private static bool ArteDona(string drop, string id) => drop switch
+    {
+        "item_carapaca" => id is "mat_casca_cal" or "mat_carapaca",
+        "item_erva" => id == "mat_erva_tonico",
+        "item_minerio" => id == "mat_ferro_raso",
+        "item_osso" => id == "mat_osso_antigo",
+        "item_presa" => id is "mat_presa" or "mat_presa_lobo",
+        "item_seda" => id == "mat_seda",
+        "item_essencia" => id is "mat_essencia" or "mat_cinza_viva",
+        "item_pocao_vida" or "item_pocao_mana" or "item_moedas" or "item_bolsa" or "item_pinca_caranguejo" => true,
+        _ => id.Contains(drop["item_".Length..]),   // joias: cada uma tem o seu desenho
+    };
+
+    /// <summary>Cor de cada material que divide desenho (o resto: cor tirada do próprio id, estável).</summary>
+    private static readonly Dictionary<string, Color> CorDoItem = new()
+    {
+        ["mat_folha_amarga"] = new(0.62f, 0.62f, 0.18f), ["mat_folha_urtiga"] = new(0.55f, 0.35f, 0.75f), ["mat_erva_inverno"] = new(0.55f, 0.8f, 0.95f),
+        ["mat_cogumelo_cinza"] = new(0.75f, 0.55f, 0.4f), ["mat_raiz_vigilia"] = new(0.7f, 0.45f, 0.22f), ["mat_flor_vinculo"] = new(0.95f, 0.5f, 0.75f),
+        ["mat_ferro_eco"] = new(0.45f, 0.7f, 1f), ["mat_ferro_geada"] = new(0.75f, 0.9f, 1f), ["mat_basalto"] = new(0.35f, 0.3f, 0.32f), ["mat_bronze"] = new(0.85f, 0.55f, 0.3f),
+        ["mat_liga_geada"] = new(0.6f, 0.85f, 1f), ["mat_liga_lendaria"] = new(1f, 0.8f, 0.3f), ["mat_quitina"] = new(0.4f, 0.3f, 0.55f), ["mat_casca_serpente"] = new(0.45f, 0.65f, 0.3f),
+        ["mat_osso_lunar"] = new(0.7f, 0.8f, 1f), ["mat_ferrao"] = new(0.9f, 0.7f, 0.2f), ["mat_presa_vampira"] = new(0.85f, 0.2f, 0.25f), ["mat_dente_dentuco"] = new(0.95f, 0.92f, 0.8f),
+        ["mat_couro"] = new(0.6f, 0.4f, 0.22f), ["mat_retalho"] = new(0.7f, 0.25f, 0.25f), ["mat_membrana"] = new(0.7f, 0.85f, 1f),
+    };
+
+    /// <summary>O desenho pintado recolorido para este item: a luz e a forma são as mesmas (o traço do artista fica), só a cor
+    /// muda — nada de modelo de massinha. Mistura 70% da cor nova com 30% do original para não ficar chapado.</summary>
+    private static Texture2D Tingido(Texture2D png, string id)
+    {
+        try
+        {
+            var img = png.GetImage();
+            if (img.IsCompressed()) img.Decompress();
+            img = (Image)img.Duplicate();
+            img.Convert(Image.Format.Rgba8);
+            Color alvo;
+            if (!CorDoItem.TryGetValue(id, out alvo))
+            {
+                var h = 0u; foreach (var ch in id) h = h * 31 + ch;
+                alvo = Color.FromHsv((h % 360) / 360f, 0.55f, 0.9f);
+            }
+            for (var y = 0; y < img.GetHeight(); y++)
+                for (var x = 0; x < img.GetWidth(); x++)
+                {
+                    var c = img.GetPixel(x, y);
+                    if (c.A < 0.02f) continue;
+                    var lum = c.R * 0.3f + c.G * 0.59f + c.B * 0.11f;
+                    var nova = new Color(alvo.R * lum * 1.35f, alvo.G * lum * 1.35f, alvo.B * lum * 1.35f, c.A);
+                    img.SetPixel(x, y, c.Lerp(nova, 0.7f) with { A = c.A });
+                }
+            return ImageTexture.CreateFromImage(img);
+        }
+        catch { return png; }
+    }
 
     /// <summary>14/11 ("cada poção com o seu tamanho"): escala do desenho próprio quando o item está no chão.</summary>
     public static float TamanhoNoChao(string id) => id switch
@@ -355,7 +409,25 @@ public sealed partial class ItemIconRenderer : Node
     };
 
     /// <summary>13/11: o mesmo desenho do ícone, para o item no chão (caixa das cinzas).</summary>
-    public static Node3D? OwnIconNode(string id) => OwnIcon(id) ?? Visuals.IconesUnicos.Montar(id);
+    public static Node3D? OwnIconNode(string id) => OwnIcon(id);
+
+    /// <summary>17/11 noite: Esfera do Macaco — bola vermelha brilhante com o número dourado na frente (ícone e chão).</summary>
+    public static void EsferaNumerada(Node3D root, int numero, float raio)
+    {
+        var vidro = new StandardMaterial3D
+        {
+            AlbedoColor = new Color(0.78f, 0.06f, 0.05f), Roughness = 0.12f, Metallic = 0.15f,
+            EmissionEnabled = true, Emission = new Color(0.6f, 0.05f, 0.03f), EmissionEnergyMultiplier = 0.9f, RimEnabled = true, Rim = 0.6f,
+        };
+        VisualKit.Part(root, VisualKit.Sphere(raio), vidro, Vector3.Zero);
+        VisualKit.Part(root, VisualKit.Sphere(raio * 0.16f), VisualKit.Glow(new Color(1f, 0.9f, 0.85f), 2f), new Vector3(-raio * 0.42f, raio * 0.48f, raio * 0.72f));   // brilho
+        root.AddChild(new Label3D
+        {
+            Text = numero.ToString(), FontSize = 160, OutlineSize = 28, PixelSize = raio * 0.0072f, Modulate = new Color(1f, 0.85f, 0.3f),
+            OutlineModulate = new Color(0.35f, 0.08f, 0.02f), Position = new Vector3(0, -raio * 0.05f, raio * 1.01f), Shaded = false,
+            Billboard = BaseMaterial3D.BillboardModeEnum.Disabled, NoDepthTest = false,
+        });
+    }
 
     /// <summary>13/11: um desenho para cada material/peça que dividia a mesma arte.</summary>
     private static bool Distinto(Node3D root, string id, StandardMaterial3D iron, StandardMaterial3D leather)
@@ -364,14 +436,8 @@ public sealed partial class ItemIconRenderer : Node
         var ouro = M(new Color(0.95f, 0.75f, 0.3f), 0.3f, 0.9f);
         if (id.StartsWith("esfera_macaco_") && int.TryParse(id[^1..], out var estrelas))
         {
-            // bola laranja brilhante com N estrelinhas vermelhas (igual à do chão)
-            VisualKit.Part(root, VisualKit.Sphere(0.33f), VisualKit.Glow(new Color(1f, 0.58f, 0.12f), 1.1f), Vector3.Zero);
-            for (var i = 0; i < estrelas; i++)
-            {
-                var a = i * Mathf.Tau / estrelas + Mathf.Pi / 2;
-                var r = estrelas == 1 ? 0f : 0.15f;
-                VisualKit.Part(root, VisualKit.Sphere(0.06f), VisualKit.Glow(new Color(0.9f, 0.08f, 0.04f), 1.6f), new Vector3(Mathf.Cos(a) * r, Mathf.Sin(a) * r, 0.28f));
-            }
+            // 17/11 noite (dono: "as esferas do macaco: vermelhas, com números, 1 até o 5")
+            EsferaNumerada(root, estrelas, 0.33f);
             return true;
         }
         if (id == "mat_chifre_cabra")

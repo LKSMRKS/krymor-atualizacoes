@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 
 namespace CinzasDaMare.Shared.World;
@@ -41,6 +43,18 @@ public sealed record MapGate(string Id, string Flag, double X, double Y, double 
     public int Coins { get; init; }
     public string? RewardLoot { get; init; }
     public int RewardXp { get; init; }
+
+    /// <summary>
+    /// 17/11 (dono: "a casa que eu arrumei... pede mais madeira e mais minério pra ser um pouco desafiador"): a casa destruída
+    /// pede 12 tábuas + 8 do minério do próprio mapa (o veio mais comum de ferro/bronze/basalto; sem veio, Ferro Raso) + moedas.
+    /// Os retalhos do JSON (requires_item) deixaram de valer para a casa.
+    /// </summary>
+    public static IReadOnlyList<(string Item, int Qty)> CasaRuinaPede(IEnumerable<MapObject> objetos)
+    {
+        var minerio = objetos.Where(o => o.Kind == "veio" && o.Yields is { } y && (y.StartsWith("mat_ferro", StringComparison.Ordinal) || y is "mat_bronze" or "mat_basalto"))
+            .GroupBy(o => o.Yields!).OrderByDescending(g => g.Count()).ThenBy(g => g.Key, StringComparer.Ordinal).Select(g => g.Key).FirstOrDefault() ?? "mat_ferro_raso";
+        return new[] { ("mat_tabua", 12), (minerio, 8) };
+    }
 }
 
 /// <summary>Baú: cada personagem abre uma vez (marca "chest:id"); o conteúdo vai direto para a mochila.</summary>

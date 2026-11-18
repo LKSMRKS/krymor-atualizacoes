@@ -702,7 +702,7 @@ public sealed class ClientModel
             {
                 if (!ObjectVisible(obj)) continue;
                 if (obj.RequiresFlag is not null && obj.Kind == "canteiro" && !_flags.Contains(obj.RequiresFlag)) continue;
-                if (obj.Kind == "placa_pressao") continue;
+                if (obj.Kind is "placa_pressao" or "pedra_oca") continue;   // 17/11: rocha oca é segredo — sem "Examinar", só no golpe
                 if (obj.Kind == "esfera" && obj.GrantFlag is { } eg && _flags.Contains(eg)) continue;   // 14/11: já pegou — sumiu   // 11/11: armadilha — pisa, não aperta F
                 var d = Distance(me.X, me.Y, obj.X, obj.Y) - (obj.Kind is "forja" or "bancada" or "armazem" ? 0.6 : 0) + Behind(me, obj.X, obj.Y)
                         - (obj.Id == AimedObjId && Distance(me.X, me.Y, obj.X, obj.Y) <= 2.75 ? 1.0 : 0);   // 13/11 22:26: o que você mira (porta na parede) ganha preferência (até onde o servidor aceita)
@@ -728,7 +728,7 @@ public sealed class ClientModel
                 if (_flags.Contains(gate.Flag) || !gate.Lever) continue;
                 var d = Distance(me.X, me.Y, gate.LeverX, gate.LeverY);
                 if (d <= bestD) { bestD = d; best = ("lever", "lever:" + gate.Id, gate.Kind == "pedra" ? $"Empurrar a rocha (Força {gate.Strength})" : gate.Kind == "ponte" ? "Construir a ponte (6 tábuas)" : gate.Kind == "rachadura" ? CrackPrompt(me, gate)
-                    : gate.Kind == "corda" ? "Subir com a Corda com Gancho" : gate.Kind == "casa_ruina" ? $"Reconstruir a casa ({gate.Coins} moedas + {gate.ItemQty} retalhos)"
+                    : gate.Kind == "corda" ? "Subir com a Corda com Gancho" : gate.Kind == "casa_ruina" ? "Reconstruir a casa (" + string.Join(" + ", MapGate.CasaRuinaPede(Map.Objects).Select(p => $"{p.Qty} {DisplayName(p.Item)}")) + $" + {gate.Coins:N0} moedas)"
                     : gate.Kind == "porta" ? "Abrir a porta (Chave de Ferro)" : "Puxar a alavanca"); }
             }
         }

@@ -2067,11 +2067,7 @@ void fragment() {
         for (var i = 0; i < 7; i++)
             VisualKit.Part(wall, VisualKit.Box(0.06f, R(0.6f, 1.6f), (float)g.H + 0.04f), crack,
                 new Vector3(R(-w / 2f + 0.3f, w / 2f - 0.3f), R(0.8f, 3.4f), 0), new Vector3(0, 0, R(-35, 35)));
-        wall.AddChild(new Label3D
-        {
-            Text = "Parede rachada", FontSize = 34, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = new Color(0.95f, 0.85f, 0.6f), Position = new Vector3(0, h + 0.6f, 0),
-        });
+        // 17/11 (dono: "de longe tava marcando um nome, deixa sem" — pro jogo todo): sem nome flutuante; o aviso vem ao chegar perto (F)
         var rubble = new Node3D { Position = P(g.X, g.Y), Visible = false };
         Root.AddChild(rubble);
         foreach (var side in new[] { -1f, 1f })
@@ -2218,11 +2214,7 @@ void fragment() {
         for (var i = 0; i < 5; i++)
             VisualKit.Part(rock, new SphereMesh { Radius = size * R(0.12f, 0.2f), Height = size * R(0.2f, 0.32f), RadialSegments = 7, Rings = 4 },
                 StoneMat(0.36f, true), new Vector3(R(-0.35f, 0.35f), R(-0.1f, 0.35f), R(-0.35f, 0.35f)) * size);
-        rock.AddChild(new Label3D
-        {
-            Text = $"Rocha pesada · Força {g.Strength} ou Pé de Cabra", FontSize = 34, OutlineSize = 8, PixelSize = 0.01f,
-            Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, Modulate = new Color(0.95f, 0.88f, 0.7f), Position = new Vector3(0, size * 0.75f, 0),
-        });
+        // 17/11 (dono: "de longe tava marcando um nome, deixa sem" — pro jogo todo): sem nome flutuante; o aviso vem ao chegar perto (F)
         // rola para o lado mais comprido da passagem (ao longo da parede)
         var along = g.H >= g.W ? new Vector3(0, 0, (float)g.H + size * 0.6f) : new Vector3((float)g.W + size * 0.6f, 0, 0);
         // e para o lado de quem empurra (não entra na parede)
@@ -2246,12 +2238,10 @@ void fragment() {
         var madeiraVelha = VisualKit.Mat(new Color(0.30f, 0.24f, 0.18f), 0.95f);
         var ferro = VisualKit.Mat(new Color(0.25f, 0.25f, 0.27f), 0.45f, 0.8f);
         var corda = VisualKit.Mat(new Color(0.62f, 0.5f, 0.3f), 0.95f);
-        string rotulo;
         switch (g.Kind)
         {
             case "corda":
             {
-                rotulo = "Paredão — Corda com Gancho";
                 // rochedo alto e irregular (não coluna de tijolo): blocos de pedra empilhados e tortos
                 var rocha = StoneMat(0.42f, true);
                 VisualKit.Part(raiz, new SphereMesh { Radius = 2.1f, Height = 5.8f, RadialSegments = 9, Rings = 6 }, rocha, new Vector3(0, 2.6f, -0.3f), null, new Vector3(1f, 1f, 0.85f));
@@ -2270,7 +2260,6 @@ void fragment() {
             }
             case "casa_ruina":
             {
-                rotulo = "Casa destruída — reconstruir";
                 // fechado: paredes quebradas, viga caída e entulho
                 VisualKit.Part(fechado, VisualKit.Box(4f, 1.1f, 0.3f), StoneMat(0.45f, true), new Vector3(0, 0.55f, -1.8f));
                 VisualKit.Part(fechado, VisualKit.Box(0.3f, 1.8f, 2.4f), StoneMat(0.45f, true), new Vector3(-1.9f, 0.9f, -0.6f));
@@ -2289,7 +2278,6 @@ void fragment() {
             }
             default:
             {
-                rotulo = "Porta trancada — Chave de Ferro";
                 foreach (var lado in new[] { -1f, 1f })
                     VisualKit.Part(raiz, VisualKit.Box(0.7f, 3.4f, 0.9f), StoneMat(0.45f, true), new Vector3(lado * 1.15f, 1.7f, 0));
                 VisualKit.Part(raiz, VisualKit.Box(3f, 0.6f, 0.9f), StoneMat(0.45f, true), new Vector3(0, 3.5f, 0));
@@ -2306,11 +2294,7 @@ void fragment() {
                 break;
             }
         }
-        fechado.AddChild(new Label3D
-        {
-            Text = rotulo, FontSize = 34, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = new Color(0.95f, 0.88f, 0.7f), Position = new Vector3(0, g.Kind == "corda" ? 6.4f : 4.2f, 0),
-        });
+        // 17/11 (dono: "de longe tava marcando um nome, deixa sem" — pro jogo todo): sem nome flutuante; o aviso vem ao chegar perto (F)
         aberto.Visible = false;   // só aparece quando a marca chega (o laço dos portões liga/desliga)
         _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = aberto, Broken = fechado });
     }
@@ -2332,11 +2316,7 @@ void fragment() {
             VisualKit.Part(barrier, VisualKit.Box(0.08f, R(0.4f, 1.1f), 0.1f), VisualKit.Glow(MapKit.Violet, 2f),
                 new Vector3(R(-w / 2f + 0.5f, w / 2f - 0.5f), R(0.8f, 3.4f), 0), new Vector3(0, 0, R(-30, 30)));
         barrier.AddChild(new OmniLight3D { LightColor = MapKit.Violet, LightEnergy = 1.4f, OmniRange = 7f, Position = new Vector3(0, 2f, 0.6f) });
-        barrier.AddChild(new Label3D
-        {
-            Text = "Selo de passagem", FontSize = 40, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = new Color(0.85f, 0.75f, 1f), Position = new Vector3(0, 4.8f, 0),
-        });
+        // 17/11 (dono: "de longe tava marcando um nome, deixa sem" — pro jogo todo): sem nome flutuante; o aviso vem ao chegar perto (F)
         _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = new Node3D(), Broken = barrier });
     }
 
@@ -2385,13 +2365,7 @@ void fragment() {
         VisualKit.Part(broken, VisualKit.Box(1.6f, 0.08f, 0.32f), wood, new Vector3(1.0f, -0.25f, 0.2f), new Vector3(0, 20, -35));
         foreach (var sx in new[] { -1f, 1f })
             VisualKit.Part(broken, VisualKit.Box(0.06f, 0.06f, 0.9f), rope, new Vector3(sx * (w / 2f - 0.4f), 0.95f, -d / 2f + 0.45f), new Vector3(25, 0, 0));
-        // placa
-        var sign = new Label3D
-        {
-            Text = "Ponte quebrada", FontSize = 40, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = new Color(0.95f, 0.85f, 0.6f), Position = new Vector3(0, 2.0f, d / 2f + 0.3f),
-        };
-        broken.AddChild(sign);
+        // 17/11: sem placa flutuante (o aviso vem ao chegar perto)
         _gates.Add(new GateView { Gate = g, Bars = new Node3D(), Lever = new Node3D(), Built = built, Broken = broken });
     }
 
@@ -4943,11 +4917,12 @@ void fragment() {
             var esf = new Node3D { Name = "Esfera_" + obj.Id, Position = P(obj.X, obj.Y) };
             Root.AddChild(esf);
             VisualKit.Part(esf, VisualKit.Cylinder(0.25f, 0.32f, 0.5f, 8), StoneMat(0.4f, false), new Vector3(0, 0.25f, 0));
-            var bola = VisualKit.Part(esf, VisualKit.Sphere(0.22f), VisualKit.Glow(new Color(1f, 0.6f, 0.15f), 1.6f), new Vector3(0, 0.8f, 0));
+            // 17/11 noite (dono): vermelha, com o número (1 a 5) dourado na frente
+            var bola = new Node3D { Position = new Vector3(0, 0.8f, 0) };
+            esf.AddChild(bola);
             var n = obj.Id.Length > 0 && char.IsDigit(obj.Id[^1]) ? obj.Id[^1] - '0' : 1;
-            for (var i = 0; i < n; i++)
-                VisualKit.Part(bola, VisualKit.Sphere(0.035f), VisualKit.Glow(new Color(0.9f, 0.1f, 0.05f), 2f), new Vector3(Mathf.Cos(i * Mathf.Tau / n) * 0.1f, Mathf.Sin(i * Mathf.Tau / n) * 0.1f, 0.18f));
-            esf.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.6f, 0.2f), LightEnergy = 1.2f, OmniRange = 4f, Position = new Vector3(0, 0.9f, 0) });
+            ItemIconRenderer.EsferaNumerada(bola, n, 0.22f);
+            esf.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.25f, 0.15f), LightEnergy = 1.2f, OmniRange = 4f, Position = new Vector3(0, 0.9f, 0) });
             _interactables.Add((obj, esf));
             _esferas.Add((obj, esf));
             return;
