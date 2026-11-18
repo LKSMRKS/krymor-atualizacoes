@@ -499,6 +499,14 @@ public sealed class ClientModel
                 ChefeVolta = (partes[0], partes.Length > 1 && int.TryParse(partes[1], out var seg) ? seg : 0, DateTime.UtcNow);
                 break;
             }
+            case NoticeMessage { Kind: "nivel" } nv:
+            {
+                // 18/11: cartão de nível (o HUD desenha); no histórico vira texto corrido
+                var pt = nv.Text.Split('|');
+                AddLog(pt[0] + (pt.Length > 1 && pt[1].Length > 0 ? " — ganhou: " + pt[1].Replace(";", ", ") : "")
+                       + (pt.Length > 2 && pt[2].Length > 0 ? " — agora pode: " + pt[2].Replace(";", ", ") : ""));
+                break;
+            }
             case NoticeMessage notice when Historicar2(notice):
                 _notices.Enqueue(notice);
                 if (notice.Kind != "area" && (notice.Kind == "pedra" ? notice.Text.Split('|')[0] : notice.Text) is { Length: > 0 } linha) AddLog(linha);   // 17/11: "texto|x|y"
@@ -703,6 +711,12 @@ public sealed class ClientModel
                 var d = Distance(me.X, me.Y, item.X, item.Y);
                 if (d <= bestD) { bestD = d; best = ("item", item.ItemId, "Pegar " + DisplayName(item.DefinitionId)); }
             }
+        // 18/11 ("o X do mapa tem que chegar em cima e apertar F"): em cima do X do tesouro, F cava
+        if (QuestMarkers.TryGetValue("tesouro", out var tx) && tx.Kind == "tesouro")
+        {
+            var d = Distance(me.X, me.Y, tx.X, tx.Y) - 0.6;
+            if (d <= bestD && d <= 1.4) { bestD = d - 5; best = ("tesouro", "tesouro", "Cavar o tesouro"); }
+        }
         if (Map is not null)
             foreach (var wp in Map.Waypoints)   // 14/11: pedra de viagem ainda apagada — interagir ativa
             {
@@ -780,6 +794,7 @@ public sealed class ClientModel
     {
         switch (obj.Kind)
         {
+            case "mesclar_visual": return "Usar a Máquina de Mesclar Visual";
             case "veio":
                 var herb = obj.Yields is { } y && (y.Contains("erva") || y.Contains("folha") || y.Contains("cogumelo"));
                 var label = System.Text.RegularExpressions.Regex.Replace(obj.Label, @"\s*\((machado|picareta|foice)\)", "");

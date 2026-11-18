@@ -404,15 +404,20 @@ public sealed partial class MenuTabPanel : PanelContainer
             foreach (var l in g.OrderBy(x => x.Preco))
             {
                 var info = _m?.ItemInfoFor(l.Item);
-                var card = Cartao(CorPreco(l.Preco));
+                // 18/11 ("na loja do TAB não dá pra ver os atributos do que vamos comprar"): passar o mouse mostra a ficha
+                var card = new CartaoComFicha { Def = l.Item, Info = info, TooltipText = l.Item.StartsWith("mochila:", StringComparison.Ordinal) ? "" : l.Nome };
+                { var bs = new StyleBoxFlat { BgColor = new Color(0.07f, 0.075f, 0.095f, 0.85f), BorderColor = CorPreco(l.Preco),
+                    ContentMarginLeft = 10, ContentMarginRight = 10, ContentMarginTop = 6, ContentMarginBottom = 6 };
+                  bs.SetBorderWidthAll(1); bs.SetCornerRadiusAll(5); card.AddThemeStyleboxOverride("panel", bs); }
                 card.CustomMinimumSize = new Vector2(176, 0);
-                var v = new VBoxContainer();
+                var v = new VBoxContainer { MouseFilter = MouseFilterEnum.Ignore };
                 v.AddThemeConstantOverride("separation", 3);
                 card.AddChild(v);
                 var icon = new TextureRect
                 {
                     Texture = l.Item.StartsWith("mochila:", StringComparison.Ordinal) ? null : ItemIconRenderer.Get(info, l.Item), CustomMinimumSize = new Vector2(72, 72),
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+                    MouseFilter = MouseFilterEnum.Ignore,
                 };
                 v.AddChild(icon);
                 var nome = HudView.MakeLabel(l.Nome, 13, Colors.White, 2);
@@ -430,4 +435,13 @@ public sealed partial class MenuTabPanel : PanelContainer
             _conteudo.AddChild(new Control { CustomMinimumSize = new Vector2(0, 8) });
         }
     }
+}
+
+/// <summary>18/11: cartão da loja do TAB com a ficha do item (atributos, comparação) no passar do mouse.</summary>
+public sealed partial class CartaoComFicha : PanelContainer
+{
+    public string Def = "";
+    public ItemInfo? Info;
+    public override Control? _MakeCustomTooltip(string forText)
+        => Def.Length == 0 || Def.StartsWith("mochila:", StringComparison.Ordinal) ? null : ItemTooltip.Build(Info, Def, "comum", 1);
 }

@@ -78,6 +78,7 @@ public sealed class HudView
     private readonly Label _bossIntroSub = MakeLabel("", 18, new Color(0.85f, 0.8f, 0.7f));
     public float CameraYaw { set { _compass.Yaw = value; MiniMap.Yaw = value; } }
     public readonly MiniMapa MiniMap = new();
+    public Action? AbrirBusca;
     private readonly VBoxContainer _grupoBox = new() { MouseFilter = Control.MouseFilterEnum.Ignore };
     /// <summary>14/11: botão x1 da lista do grupo (o Main manda o desafio).</summary>
     public event Action<string>? Desafiar;
@@ -608,6 +609,10 @@ public sealed class HudView
         rightCol.AddThemeConstantOverride("separation", 6);
         var mapRow = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore, Alignment = BoxContainer.AlignmentMode.Begin };
         mapRow.AddChild(MiniMap);
+        // 18/11 ("colocar um ícone de buscar — nome do mapa, lugar, item"): lupa ao lado do minimapa (ou Ctrl+F)
+        var lupa = new BotaoLupa { CustomMinimumSize = new Vector2(34, 34), SizeFlagsVertical = Control.SizeFlags.ShrinkBegin, TooltipText = "Buscar lugar, mapa, NPC ou item (Ctrl+F)" };
+        lupa.Clicou = () => AbrirBusca?.Invoke();
+        mapRow.AddChild(lupa);
         _leftCol!.AddChild(mapRow);
         // 13/11 ("coloca o nome do amigo da party embaixo do minimapa"): grupo com vida e onde está
         _grupoBox.AddThemeConstantOverride("separation", 1);
@@ -848,6 +853,64 @@ public sealed class HudView
         portrait.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
     }
 
+    // ------------------------------------------------------------------ 18/11: cartão de nível
+    // dono: "fala que GANHA, mas eu ganho? deveria mostrar o que dá pra fazer agora que chegou no 20, e o que ganha todo
+    // nível". Texto do servidor: "Nível N|ganhou;...|pode;...|conseguir;...". Fica 14 s (clique fecha).
+    private PanelContainer? _nivelCard;
+    private double _nivelIdade;
+
+    public void MostrarNivel(string texto)
+    {
+        var p = texto.Split('|');
+        if (p.Length < 4) return;
+        _nivelCard?.QueueFree();
+        var card = _nivelCard = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Stop, CustomMinimumSize = new Vector2(540, 0) };
+        var st = new StyleBoxFlat { BgColor = new Color(0.07f, 0.05f, 0.03f, 0.93f), BorderColor = new Color(0.95f, 0.75f, 0.28f) };
+        st.SetBorderWidthAll(2); st.SetCornerRadiusAll(8); st.SetContentMarginAll(14);
+        st.ShadowColor = new Color(0, 0, 0, 0.55f); st.ShadowSize = 12;
+        card.AddThemeStyleboxOverride("panel", st);
+        var col = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+        col.AddThemeConstantOverride("separation", 4);
+        card.AddChild(col);
+        var t = MakeLabel("⚜  " + p[0].ToUpperInvariant() + "  ⚜", 26, Gold, 3);
+        if (TitleFont is not null) t.AddThemeFontOverride("font", TitleFont);
+        t.HorizontalAlignment = HorizontalAlignment.Center;
+        col.AddChild(t);
+        void Secao(string titulo, string lista, Color cor)
+        {
+            var itens = lista.Split(';', StringSplitOptions.RemoveEmptyEntries);
+            if (itens.Length == 0) return;
+            col.AddChild(MakeLabel(titulo, 13, cor, 2));
+            foreach (var it in itens)
+            {
+                var l = MakeLabel("  • " + it, 14, new Color(0.93f, 0.9f, 0.82f), 2);
+                l.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+                l.CustomMinimumSize = new Vector2(510, 0);
+                col.AddChild(l);
+            }
+        }
+        Secao("VOCÊ GANHOU (já é seu)", p[1], new Color(0.5f, 1f, 0.55f));
+        Secao("AGORA VOCÊ PODE", p[2], new Color(0.5f, 0.8f, 1f));
+        Secao("DÁ PARA CONSEGUIR A PARTIR DE AGORA (não vem sozinho — veja onde)", p[3], new Color(1f, 0.8f, 0.35f));
+        var rod = MakeLabel("TAB › Trilha mostra o caminho todo · clique para fechar", 11, new Color(0.65f, 0.62f, 0.55f));
+        rod.HorizontalAlignment = HorizontalAlignment.Center;
+        col.AddChild(rod);
+        card.GuiInput += e => { if (e is InputEventMouseButton { Pressed: true }) { card.QueueFree(); if (_nivelCard == card) _nivelCard = null; } };
+        Root.AddChild(card);
+        card.SetAnchorsPreset(Control.LayoutPreset.CenterTop);
+        card.Position = new Vector2(-270, 150);
+        Callable.From(() => { if (GodotObject.IsInstanceValid(card)) card.Position = new Vector2((Root.Size.X - card.Size.X) / 2f, 150); }).CallDeferred();
+        _nivelIdade = 0;
+    }
+
+    private void TickNivel(double dt)
+    {
+        if (_nivelCard is not { } c || !GodotObject.IsInstanceValid(c)) return;
+        _nivelIdade += dt;
+        if (_nivelIdade > 14) { c.QueueFree(); _nivelCard = null; return; }
+        c.Modulate = new Color(1, 1, 1, (float)Math.Clamp(14 - _nivelIdade, 0, 1));
+    }
+
     /// <summary>14/11 19h: avisos locais (atualizador etc.) também vão para o histórico (O).</summary>
     public static event Action<string>? AvisoLocal;
     public void ShowNotice(string text)
@@ -1033,6 +1096,7 @@ public sealed class HudView
         UpdateLootPopup(m, delta);
         _crosshair.Visible = crosshair;
         _noticeAge += delta;
+        TickNivel(delta);
         _zoneAge += delta;
         _notice.Modulate = new Color(1f, 1f, 1f, (float)Math.Clamp(4.0 - _noticeAge, 0.0, 1.0));
         _zone.Modulate = new Color(1f, 1f, 1f, (float)Math.Clamp(3.0 - _zoneAge, 0.0, 1.0));
@@ -1105,7 +1169,8 @@ public sealed class HudView
             _placaZona.Texto = zoneMap.DisplayName.ToUpperInvariant();
             _placaZona.Icone = zoneMap.Instanced ? "ico_zona_picareta.png" : "ico_zona_ancora.png";
         }
-        _targetPanel.Visible = target is not null && (boss is null || target.Id != boss.Id);   // 13/11: o chefe já tem a barra grande
+        _targetPanel.Visible = target is not null && (boss is null || target.Id != boss.Id)   // 13/11: o chefe já tem a barra grande
+            && !target.DefinitionId.Contains("boneco");   // 18/11 ("o boneco de treino aparece uma vida ali em cima, tira isso")
         if (target is not null)
         {
             var exposed = target.Action.StartsWith("recover", StringComparison.Ordinal) ? "  · EXPOSTO" : "";
@@ -1570,3 +1635,30 @@ public sealed partial class AnelDescanso : Control
     }
 }
 
+/// <summary>18/11: botãozinho da lupa (desenhado, sem depender de fonte com emoji).</summary>
+public sealed partial class BotaoLupa : Control
+{
+    public Action? Clicou;
+    private bool _sobre;
+    public BotaoLupa() { MouseFilter = MouseFilterEnum.Stop; MouseDefaultCursorShape = CursorShape.PointingHand; }
+    public override void _Notification(int what)
+    {
+        if (what == NotificationMouseEnter) { _sobre = true; QueueRedraw(); }
+        else if (what == NotificationMouseExit) { _sobre = false; QueueRedraw(); }
+    }
+    public override void _GuiInput(InputEvent e)
+    {
+        if (e is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left }) { Clicou?.Invoke(); AcceptEvent(); }
+    }
+    public override void _Draw()
+    {
+        var c = Size / 2f;
+        var r = Mathf.Min(Size.X, Size.Y) / 2f - 1f;
+        DrawCircle(c, r, new Color(0.08f, 0.06f, 0.05f, _sobre ? 0.95f : 0.8f));
+        DrawArc(c, r, 0, Mathf.Tau, 32, new Color(0.75f, 0.58f, 0.24f), 1.6f, true);
+        var ouro = _sobre ? new Color(1f, 0.88f, 0.5f) : new Color(0.95f, 0.78f, 0.3f);
+        var lente = c + new Vector2(-2.5f, -2.5f);
+        DrawArc(lente, r * 0.38f, 0, Mathf.Tau, 24, ouro, 2.4f, true);
+        DrawLine(lente + new Vector2(r * 0.28f, r * 0.28f), lente + new Vector2(r * 0.62f, r * 0.62f), ouro, 3.2f, true);
+    }
+}

@@ -514,6 +514,40 @@ public static class VisualFactory
 
     /// <summary>Criatura animada do lote de arte; null se o arquivo faltar (cai no visual antigo).</summary>
     /// <summary>14/11: multiplica a cor de todas as malhas (titãs).</summary>
+    /// <summary>18/11: some com uma parte do modelo pelo nome do material (ex.: a sela do dinossauro da montaria).</summary>
+    private static void EsconderSuperficie(Node3D raiz, string parteDoMaterial)
+    {
+        var nada = new StandardMaterial3D { Transparency = BaseMaterial3D.TransparencyEnum.Alpha, AlbedoColor = new Color(0, 0, 0, 0), ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded };
+        foreach (var n in raiz.FindChildren("*", nameof(MeshInstance3D), true, false))
+            if (n is MeshInstance3D mi && mi.Mesh is not null)
+                for (var i = 0; i < mi.Mesh.GetSurfaceCount(); i++)
+                    if (mi.Mesh.SurfaceGetMaterial(i) is { } mat && mat.ResourceName.Contains(parteDoMaterial, StringComparison.OrdinalIgnoreCase))
+                        mi.SetSurfaceOverrideMaterial(i, nada);
+    }
+
+    /// <summary>18/11: olhos amarelos presos aos ossos das asas, do peito e da cauda (seguem o bater de asas).</summary>
+    private static void MilOlhos(Node3D raiz)
+    {
+        if (raiz.FindChildren("*", nameof(Skeleton3D), true, false).FirstOrDefault() is not Skeleton3D esq) return;
+        var branco = VisualKit.Glow(new Color(1f, 0.82f, 0.2f), 1.3f);
+        var pupila = VisualKit.Mat(new Color(0.05f, 0.02f, 0.02f), 0.3f);
+        var rng = new Random(77);
+        foreach (var (osso, n) in new[] { ("AsaE1", 3), ("AsaE2", 3), ("AsaE3", 2), ("AsaD1", 3), ("AsaD2", 3), ("AsaD3", 2), ("Peito", 3), ("Cauda1", 2) })
+        {
+            if (esq.FindBone(osso) < 0) continue;
+            var preso = new BoneAttachment3D { BoneName = osso };
+            esq.AddChild(preso);
+            for (var i = 0; i < n; i++)
+            {
+                // o esqueleto do modelo é ~7× maior que o metro do jogo: tamanhos pequenos aqui
+                var r = 0.014f + (float)rng.NextDouble() * 0.008f;
+                var pos = new Vector3(((float)rng.NextDouble() - 0.5f) * 0.1f, 0.016f + (float)rng.NextDouble() * 0.01f, ((float)rng.NextDouble() - 0.5f) * 0.12f);
+                VisualKit.Part(preso, VisualKit.Sphere(r), branco, pos);
+                VisualKit.Part(preso, VisualKit.Sphere(r * 0.5f), pupila, pos + new Vector3(0, r * 0.7f, 0));
+            }
+        }
+    }
+
     private static void Tingir(Node3D raiz, Color c)
     {
         foreach (var n in raiz.FindChildren("*", nameof(MeshInstance3D), true, false))
@@ -628,6 +662,16 @@ public static class VisualFactory
             // 18/11 (dono: "coruja fantasma tá como morcego"): coruja de verdade — a fantasma azulada e translúcida, a de prata clara
             if (visual == "owl_fantasma") { Tingir(novo.Root, new Color(0.75f, 0.9f, 1.25f)); Translucido(novo.Root, 0.7f); }
             if (visual == "owl_prata") Tingir(novo.Root, new Color(1.35f, 1.35f, 1.45f));
+            // 18/11 (dono: "dinossauro do cânion e verme gigante, tem que melhorar o 3D"): o Dentuço vira o dinossauro de
+            // verdade (o da montaria, sem a sela, cor de pedra do cânion); o Verme da Fenda vira o verme espinhudo, grande
+            if (visual is "fab_dentuco" or "fab_dentuco_pai")
+            {
+                Tingir(novo.Root, visual == "fab_dentuco_pai" ? new Color(0.8f, 0.55f, 0.45f) : new Color(1.25f, 0.88f, 0.62f));
+                EsconderSuperficie(novo.Root, "sela");
+            }
+            if (definitionId == "monster_bst_verme_gigante") Tingir(novo.Root, new Color(0.95f, 0.6f, 0.5f));
+            // 18/11 ("a coruja de mil olhos"): coruja grande, de pena escura, com olhos amarelos abertos nas asas e no peito
+            if (definitionId == "monster_bosque_corujao") { Tingir(novo.Root, new Color(0.62f, 0.55f, 0.78f)); MilOlhos(novo.Root); }
             // 18/11 (dono: "chupa-cabra tá muito feio"): o réptil espinhudo das lendas (corpo do basilisco, cinza-esverdeado escuro)
             if (visual == "chupacabra") Tingir(novo.Root, new Color(0.95f, 0.85f, 0.95f));
             if (visual is "goat" or "goat_brava")

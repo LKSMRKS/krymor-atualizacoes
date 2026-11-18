@@ -32,6 +32,7 @@ public partial class Main : Node3D
         public float Lift;                       // 11/11 noite: gárgula no poleiro / no mergulho
         public bool? Sombra;                     // 13/11: monstro longe (26 m+) não projeta sombra
         public Node3D? Beam;                     // raio do olho alado / chefes
+        public Node3D? Chicote;                  // 18/11: chicotada que puxa
         public CpuParticles3D? Fire;             // 12/11: sopro de fogo (gárgula)
         public float ChillT;
         public OmniLight3D? FireLight;
@@ -124,7 +125,8 @@ public partial class Main : Node3D
     private MapView? _desobstrucaoMapa;
     private readonly ChatView _chat = new();
     private readonly LivroPanel _livro = new();
-    private readonly PesquisaPanel _pesquisa = new();   // 17/11: Catálogo da Biblioteca
+    private readonly PesquisaPanel _pesquisa = new();
+    private readonly MesclarPanel _mesclar = new();   // 18/11: Máquina de Mesclar Visual (Astrália)   // 17/11: Catálogo da Biblioteca
     private readonly Dicas _dicas = new();   // 13/11
     private readonly TrilhaPanel _trilha = new();   // 13/11: Trilha do Herói (F3)
     private bool _menuDemo;
@@ -698,6 +700,7 @@ public partial class Main : Node3D
     private void ProcessFrame(double delta)
     {
         if (_vitrine) { RunAutomation(delta); return; }
+        _ultimoDelta = delta;
         Perfil.Inicio();
         LogFps(delta);
         // painel aberto por mensagem do servidor (estação, armazém) depois de soltar o mouse: o aviso "mouse livre" sai da frente
@@ -1080,6 +1083,7 @@ public partial class Main : Node3D
             return;
         }
 
+        if (key.Keycode == Key.F && key.CtrlPressed && _model.Map is not null) { _pesquisa.Show(global: true); CaptureMouse(false); GetViewport().SetInputAsHandled(); return; }   // 18/11: busca
         switch (Teclas.Traduz(key.Keycode))   // 13/11: teclas trocadas pelo jogador viram as teclas-padrão aqui
         {
             case Key.O:
@@ -1125,6 +1129,7 @@ public partial class Main : Node3D
                 if (_posesPanel.Visible) { _posesPanel.Visible = false; CaptureMouse(true); break; }
                 if (_teclasPanel.Visible) { _teclasPanel.Visible = false; break; }
                 if (_livro.Open) { _livro.Close(); break; }
+                if (_mesclar.Open) { _mesclar.Close(); CaptureMouse(!_inventory.Visible && !_panels.AnyOpen); break; }
                 if (_hud.GanhouAberto) { _hud.FecharGanhouPorFora(); break; }   // 13/11: ESC fecha a caixa "Parabéns"
                 if (_bestiario.Open) { _bestiario.Hide(); CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
                 if (_trilha.Visible) { _trilha.Visible = false; CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
@@ -1380,7 +1385,11 @@ public partial class Main : Node3D
         var me = _model.Me;
         if (me is null) return;
         var typing = GetViewport().GuiGetFocusOwner() is LineEdit;
-        var keys = !typing && !_inventory.Visible && !_panels.AnyOpen && !_editor.Active && !_vinteUm.Open && !_livro.Open;
+        var keys = !typing && !_inventory.Visible && !_panels.AnyOpen && !_editor.Active && !_vinteUm.Open && !_livro.Open && !_mesclar.Open;
+        _mesclar.Update();
+        // 18/11 ("entrei no Bosque das Corujas, deu lag, atravessei o portão e não tinha carregado"): enquanto a tela de
+        // carga está de pé (ou o mapa ainda monta), o boneco não anda — antes a tecla segurada seguia andando às cegas
+        if (_carga is { Visible: true } || _mapMontando is not null) keys = false;
 
         _moveDir = keys
             ? CameraMove.Direction(Teclas.Pressionada(Key.W) || Input.IsKeyPressed(Key.Up), Teclas.Pressionada(Key.S) || Input.IsKeyPressed(Key.Down),
@@ -1452,7 +1461,8 @@ public partial class Main : Node3D
     }
 
     private static bool IsFree(PlayerView me)
-        => me.Action.Length == 0 || (me.Action.StartsWith("recover", StringComparison.Ordinal) && me.ActionT > 0.92);
+        => me.Action.Length == 0 || (me.Action.StartsWith("recover", StringComparison.Ordinal) && me.ActionT > 0.92)
+           || me.Action == "dodge";   // 18/11: o servidor guarda o golpe e solta no fim da esquiva (sem esperar a rede)
 
     private (double X, double Y) AimPoint(PlayerView me, double range)
     {
@@ -1869,6 +1879,9 @@ public partial class Main : Node3D
     private TextureRect? _cargaFoto;
     private ulong _cargaDesde;
     private ulong _cargaAte = ulong.MaxValue;
+    private ulong _cargaSaida;
+    private int _quadrosLisos;
+    private double _ultimoDelta;
     private ulong _loginAt;
     private double _fotoEm = 40;
     private double _postalEm = 12;
@@ -1877,6 +1890,7 @@ public partial class Main : Node3D
 
     private void MostrarCarga(string texto)
     {
+        _cargaSaida = 0; _quadrosLisos = 0;
         var eraVisivel = _carga is { Visible: true };
         if (_carga is null)
         {
@@ -1925,9 +1939,17 @@ public partial class Main : Node3D
             // troca parece que carregou e ainda não"): uma foto só, parada, do começo ao fim do carregamento
             _cargaFoto.Scale = Vector2.One;
         }
-        if (_mapView is null || agora < _cargaAte) return;
-        var a = 1f - (agora - _cargaAte) / 500f;   // meio segundo de saída suave
-        if (a <= 0f) { _carga.Visible = false; return; }
+        if (_mapView is null || agora < _cargaAte) { _quadrosLisos = 0; return; }
+        // 18/11: só sai quando o jogo parou de engasgar (sombras/shaders do mapa novo compilam nos primeiros quadros):
+        // 12 quadros seguidos abaixo de 50 ms, ou no máximo 5 s
+        if (_cargaSaida == 0)
+        {
+            _quadrosLisos = Engine.GetFramesPerSecond() > 0 && _ultimoDelta < 0.05 ? _quadrosLisos + 1 : 0;
+            if (_quadrosLisos < 12 && agora - _cargaAte < 5000) return;
+            _cargaSaida = agora;
+        }
+        var a = 1f - (agora - _cargaSaida) / 500f;   // meio segundo de saída suave
+        if (a <= 0f) { _carga.Visible = false; _cargaSaida = 0; _quadrosLisos = 0; return; }
         _cargaRaiz.Modulate = new Color(1, 1, 1, a);
     }
 
@@ -2129,7 +2151,9 @@ public partial class Main : Node3D
                 else if (notice.Kind == "legend") { Sfx.Play("nivel"); PulseMine(new Color(0.3f, 1f, 0.6f, 0.6f), 1.6f); }
                 else if (notice.Kind == "regiao") { Sfx.Play("nivel"); PulseMine(new Color(1f, 0.75f, 0.35f, 0.6f), 2.2f); }   // 13/11: região nova   // 11/11: drop/refino grande
                 else if (notice.Kind == "reward") Sfx.Play("ui_aviso", -4f);
+                else if (notice.Kind == "nivel") { Sfx.Play("nivel"); _hud.MostrarNivel(notice.Text); }   // 18/11: cartão de nível
                 else if (notice.Kind == "pesquisa_abrir") { _pesquisa.Show(); CaptureMouse(false); }   // 17/11: Catálogo
+                else if (notice.Kind == "mesclar_abrir") { _mesclar.Show(_model); CaptureMouse(false); }   // 18/11: Máquina de Mesclar Visual
                 else if (notice.Kind == "pedra" && notice.Text.Split('|') is { Length: 3 } pp
                          && double.TryParse(pp[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var px)
                          && double.TryParse(pp[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var py))
@@ -2546,7 +2570,11 @@ public partial class Main : Node3D
         Arrastador.Ligar(_livro.Root, "livro", 46f, porDesvio: true, fechar: () => _livro.Close());
         layer.AddChild(_pesquisa.Root);
         Arrastador.Ligar(_pesquisa.Root, "pesquisa", 46f, porDesvio: true, fechar: () => _pesquisa.Close());
-        _pesquisa.Pesquisar = texto => Send(new PesquisaIntent(texto));
+        layer.AddChild(_mesclar.Root);
+        Arrastador.Ligar(_mesclar.Root, "mesclar", 46f, porDesvio: true, fechar: () => { _mesclar.Close(); CaptureMouse(!_inventory.Visible && !_panels.AnyOpen); });
+        _mesclar.Send = Send;
+        _pesquisa.Pesquisar = texto => Send(new PesquisaIntent(texto) { Global = _pesquisa.Global });
+        _hud.AbrirBusca = () => { _pesquisa.Show(global: true); CaptureMouse(false); };
         layer.AddChild(_trilha);
         layer.AddChild(_menuTab);
         _menuTab.Send += Send;
@@ -2558,7 +2586,7 @@ public partial class Main : Node3D
         };
         _menuTab.Embutido += (id, on) =>
         {
-            if (id == "trilha" && on) { _trilha.Visible = false; Send(new TrilhaIntent()); }
+            if (id == "trilha" && on) { _trilha.Visible = false; Send(new TrilhaIntent()); _trilha.Focar(); }
             if (id == "mapa") { _panels.MapaNoMenu = on; if (on && _panels.IsOpen("map")) _panels.Toggle("map"); }
             if (id == "teclas") { if (on) { _teclasPanel.Visible = false; MontarTeclas(); } else _teclaEsperando = null; }
             if (id == "opcoes" && on) { _pausePedido = false; _pausePanel.Visible = false; }
@@ -4565,6 +4593,7 @@ void fragment() {
     /// <summary>Raio (olho alado, chefes): fio fino de mira na preparação; feixe grosso e brilhante no disparo.</summary>
     private void UpdateBeam(EntityState st, MonsterView m, bool windup, bool active)
     {
+        UpdateChicote(st, m, windup, active);
         var on = m.Alive && m.AimKind == "beam" && (windup || active);
         if (!on) { if (st.Beam is not null) st.Beam.Visible = false; return; }
         if (st.Beam is null)
@@ -4596,6 +4625,42 @@ void fragment() {
         light.Position = new Vector3(0, 0, Mathf.Min(len, 3f));
         light.LightEnergy = active ? 4f : 0.8f * (float)m.ActionT;
         if (active && IsNear(st.Pos, 12f)) _cam.AddShake(0.04f);
+    }
+
+    /// <summary>18/11: chicotada (corda, corrente, cipó, língua, arpão): na preparação o chicote enrola atrás; no golpe estica
+    /// até a ponta da marca, ondulando — sem brilho (não é magia).</summary>
+    private void UpdateChicote(EntityState st, MonsterView m, bool windup, bool active)
+    {
+        var on = m.Alive && m.AimKind == "chicote" && (windup || active);
+        if (!on) { if (st.Chicote is not null) st.Chicote.Visible = false; return; }
+        const int Gomos = 14;
+        if (st.Chicote is null)
+        {
+            st.Chicote = new Node3D { Name = "Chicote" };
+            var cor = m.DefinitionId.Contains("raiz") || m.DefinitionId.Contains("planta") || m.DefinitionId.Contains("urtiga") || m.DefinitionId.Contains("lodo") || m.DefinitionId.Contains("carvalho")
+                ? new Color(0.28f, 0.36f, 0.14f)
+                : m.DefinitionId.Contains("cavaleiro") || m.DefinitionId.Contains("capitao") || m.DefinitionId.Contains("cobrador") || m.DefinitionId.Contains("sepulcral")
+                    ? new Color(0.45f, 0.45f, 0.48f) : new Color(0.42f, 0.27f, 0.15f);
+            var mat = VisualKit.Mat(cor, 0.7f, cor.R < 0.5f && cor.B > 0.4f ? 0.8f : 0f);
+            for (var i = 0; i < Gomos; i++)
+                VisualKit.Part(st.Chicote, VisualKit.Cylinder(0.05f - i * 0.0025f, 0.05f - i * 0.0025f, 1f, 6), mat, Vector3.Zero, new Vector3(90, 0, 0)).Name = "g" + i;
+            _world.AddChild(st.Chicote);
+        }
+        var len = active ? (float)m.AimRadius : 1.2f + 0.6f * (float)m.ActionT;
+        var h = st.Visual.Height > 1.6f ? Mathf.Min(st.Visual.Height - 0.5f, 2.0f) : 0.9f;
+        st.Chicote.Visible = true;
+        st.Chicote.Position = new Vector3(st.Pos.X, h, st.Pos.Z);
+        st.Chicote.Rotation = new Vector3(0, Mathf.Atan2((float)m.FacingX, (float)m.FacingY) + (active ? 0f : Mathf.Pi * 0.85f), 0);
+        var passo = len / Gomos;
+        for (var i = 0; i < Gomos; i++)
+        {
+            var g = st.Chicote.GetNode<Node3D>("g" + i);
+            var k = i / (float)Gomos;
+            var onda = (active ? 0.25f : 0.5f) * Mathf.Sin(k * 9f - (float)_time * (active ? 30f : 8f)) * k;
+            g.Position = new Vector3(onda, -k * k * (active ? 0.6f : 0.4f) * h, (i + 0.5f) * passo);
+            g.Scale = new Vector3(1f, passo * 1.15f, 1f);
+        }
+        if (active && IsNear(st.Pos, 10f)) _cam.AddShake(0.012f);
     }
 
     private static Node3D? FabProjetil(string kind)
@@ -4780,6 +4845,7 @@ void fragment() {
             states[id].Visual.Dispose();
             states[id].Telegraph?.Root.QueueFree();
             states[id].Beam?.QueueFree();
+            states[id].Chicote?.QueueFree();
             states[id].Barrel?.QueueFree();
             states[id].Mound?.QueueFree();
             states.Remove(id);

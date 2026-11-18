@@ -61,6 +61,7 @@ public partial class Showcase : Node3D
             case "skins": s.SkinsPerto(camera); break;
             case "icones": s.Icones(OS.GetEnvironment("VITRINE_CONTENT") ?? "", int.TryParse(OS.GetEnvironment("VITRINE_PAG"), out var pgI) ? pgI : 0); break;   // 15/11 noite: folha de ícones   // 15/11 noite: 4 skins de perto (VITRINE_SKINS, VITRINE_YAW)   // 15/11 noite: o palco do lobby com 9 personagens
             case "menutab": s.MenuTab(camera, OS.GetEnvironment("VITRINE_PAG")); break;
+            case "ui18": s.Ui18(camera, OS.GetEnvironment("VITRINE_PAG")); break;   // 18/11: cartão de nível, busca, mesclar
             case "avisonoite": AvisoNoite.Mostrar(s, OS.GetEnvironment("VITRINE_PAG") != "dia"); break;   // 16/11: anúncio da noite
             case "base": s.Classes(camera, dressed: false); break;
             case "pet": s.Pet(camera); break;
@@ -916,6 +917,46 @@ public partial class Showcase : Node3D
         };
         menu.Mostrar(model, aba);
         menu.Atualizar(new CinzasDaMare.Shared.Net.ObjetivosMessage(1340, objs, loja));
+    }
+
+    /// <summary>18/11: telas novas do lote 02:01 — "nivel" (cartão de nível), "busca" (lupa), "mesclar", "trilha" (◆ pegar).</summary>
+    private void Ui18(Camera3D camera, string pag)
+    {
+        camera.Position = new Vector3(0, 3.2f, 6f); camera.LookAt(Vector3.Zero);
+        var layer = new CanvasLayer();
+        AddChild(layer);
+        switch (pag)
+        {
+            case "nivel":
+            {
+                var hud = new HudView();
+                layer.AddChild(hud.Root);
+                hud.Root.Visible = true;
+                hud.MostrarNivel("Nível 20|+5 pontos de atributo (tecla C);240 moedas e 1 Tônico Médio;🎁 +1 fileira na mochila (presente — já está na mochila)"
+                    + "|Missão secreta do Ezequiel (barqueiro do Porto): o caminho do Triângulo · Cânions dos Suplicantes · Floresta Oculta (Máscara);Ir para Cânions dos Suplicantes;Dungeon: Cripta do Sino;Poder novo: Chuva de Flechas (tomo)"
+                    + "|Montaria Lince (à venda com Lino, o Mascate do Céu (Astrália));Fênix (companheiro) (à venda com Tratadora Celeste (Santuário))");
+                break;
+            }
+            case "busca":
+            {
+                var p = new PesquisaPanel();
+                layer.AddChild(p.Root);
+                p.Show(global: true);
+                var livro = new LivroPanel();
+                layer.AddChild(livro.Root);
+                livro.Show("Busca · toca", "📍 VALE DAS CINZAS › TOCA DO URSO\nRegião de caça, monstros nível 12–14.\nComo chegar: passagem em Monte do Prefeito; tem pedra de viagem.\n\n🎒 VOCÊ TEM:\n  • Fênix — na mochila\n\n➜ A bússola agora aponta para Toca do Urso.", null);
+                break;
+            }
+            case "mesclar":
+            {
+                var model = new CinzasDaMare.Shared.Client.ClientModel();
+                var m = new MesclarPanel();
+                layer.AddChild(m.Root);
+                m.Show(model);
+                m.Update();
+                break;
+            }
+        }
     }
 
     // 15/11 noite: o palco do lobby cheio (9 vagas) para conferir que ninguém tampa ninguém

@@ -2279,7 +2279,7 @@ void fragment() {
                     VisualKit.Part(aberto, VisualKit.Cylinder(0.035f, 0.035f, 0.36f, 6), corda, new Vector3(0.02f * Mathf.Sin(y * 3f), y, 1.65f));
                 for (var y = 0.8f; y < 5f; y += 0.9f)
                     VisualKit.Part(aberto, VisualKit.Sphere(0.07f), corda, new Vector3(0, y, 1.65f));
-                VisualKit.Part(aberto, VisualKit.Box(0.7f, 0.45f, 0.5f), madeira, new Vector3(0.6f, 6.05f, 0));
+                // 18/11 ("todo baú deve sumir depois de pegar"): sem bauzinho — o prêmio já foi para a mochila
                 break;
             }
             case "casa_ruina":
@@ -2314,7 +2314,7 @@ void fragment() {
                 var folha = new Node3D { Position = new Vector3(-0.8f, 0, 0), RotationDegrees = new Vector3(0, -100, 0) };
                 aberto.AddChild(folha);
                 VisualKit.Part(folha, VisualKit.Box(1.6f, 3.1f, 0.15f), madeira, new Vector3(0.8f, 1.55f, 0));
-                VisualKit.Part(aberto, VisualKit.Box(0.9f, 0.6f, 0.6f), madeira, new Vector3(0, 0.3f, -1.2f));
+                // 18/11 ("os das portas com chave não sumiram"): sem baú atrás da porta aberta — o prêmio já foi para a mochila
                 break;
             }
         }
@@ -5150,6 +5150,43 @@ void fragment() {
             _interactables.Add((obj, lb));
             return;
         }
+        if (obj.Kind == "mesclar_visual")
+        {
+            // 18/11: Máquina de Mesclar Visual (Astrália) — base de pedra com dois anéis de latão girando em volta de um
+            // cristal violeta e dois pratos (um de cada lado: "este visual" → "naquela peça")
+            var mq = new Node3D { Position = P(obj.X, obj.Y) };
+            Root.AddChild(mq);
+            var pedra = StoneMat(0.42f, true);
+            var latao = VisualKit.Mat(new Color(0.78f, 0.6f, 0.28f), 0.35f, 0.85f);
+            VisualKit.Part(mq, VisualKit.Cylinder(1.1f, 1.25f, 0.35f, 10), pedra, new Vector3(0, 0.17f, 0));
+            VisualKit.Part(mq, VisualKit.Cylinder(0.55f, 0.75f, 0.9f, 8), pedra, new Vector3(0, 0.8f, 0));
+            foreach (var lado in new[] { -1f, 1f })
+            {
+                VisualKit.Part(mq, VisualKit.Cylinder(0.06f, 0.06f, 1.0f, 6), latao, new Vector3(lado * 0.95f, 0.85f, 0));
+                VisualKit.Part(mq, VisualKit.Cylinder(0.32f, 0.28f, 0.05f, 12), latao, new Vector3(lado * 0.95f, 1.37f, 0));
+                VisualKit.Part(mq, VisualKit.Sphere(0.09f), VisualKit.Glow(lado < 0 ? new Color(0.55f, 0.85f, 1f) : new Color(1f, 0.75f, 0.35f), 3f), new Vector3(lado * 0.95f, 1.46f, 0));
+            }
+            VisualKit.Part(mq, new SphereMesh { Radius = 0.22f, Height = 0.7f, RadialSegments = 6, Rings = 2 }, VisualKit.Glow(new Color(0.7f, 0.4f, 1f), 3.5f), new Vector3(0, 1.75f, 0));
+            var aneis = new Node3D { Position = new Vector3(0, 1.75f, 0) };
+            mq.AddChild(aneis);
+            foreach (var (rx, rz) in new[] { (60f, 0f), (-60f, 35f) })
+            {
+                var anel = new MeshInstance3D { Mesh = new TorusMesh { InnerRadius = 0.48f, OuterRadius = 0.54f, Rings = 24, RingSegments = 6 }, MaterialOverride = latao, RotationDegrees = new Vector3(rx, 0, rz) };
+                aneis.AddChild(anel);
+            }
+            var tw = mq.CreateTween().SetLoops();
+            tw.TweenProperty(aneis, "rotation_degrees:y", 360f, 6f).AsRelative();
+            var luz = new OmniLight3D { LightColor = new Color(0.75f, 0.5f, 1f), LightEnergy = 1.4f, OmniRange = 4.5f, Position = new Vector3(0, 1.8f, 0), ShadowEnabled = false };
+            mq.AddChild(luz);
+            Collider(P(obj.X, obj.Y, 0.6f), new CylinderShape3D { Radius = 1.0f, Height = 1.4f });
+            mq.AddChild(new Label3D
+            {
+                Text = obj.Label, FontSize = 34, OutlineSize = 8, PixelSize = 0.007f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+                Modulate = new Color(0.85f, 0.7f, 1f), Position = new Vector3(0, 2.6f, 0), VisibilityRangeEnd = 14f, VisibilityRangeEndMargin = 2f,
+            });
+            _interactables.Add((obj, mq));
+            return;
+        }
         if (obj.Kind is "livro" or "pesquisa")
         {
             // 12/11: atril de madeira com um livro aberto e uma vela (Biblioteca do Continente); o título flutua em cima
@@ -5398,6 +5435,7 @@ void fragment() {
     {
         "porta" => "F: bater na porta",
         "pesquisa" => "F: pesquisar no catálogo (item, material ou monstro)",
+        "mesclar_visual" => "F: mesclar o visual de um item no outro",
         "forja" => "chegue perto e aperte F: forjar e melhorar equipamento",
         "bancada" => "F: criar itens com materiais",
         "caldeirao" or "panela" => "F: preparar poções e comidas",

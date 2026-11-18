@@ -375,6 +375,23 @@ public sealed record MonsterAttackDef(
     /// no chão fica parada = janela de esquiva) e sai do chão com o golpe em círculo onde está.</summary>
     public bool Burrow { get; init; }
     public double BurrowSpeed { get; init; } = 7.0;
+
+    // ---- 18/11 (dono: "nossos ataques são sempre os mesmos — um que pula pra frente (pulando, não dash), outro que puxa,
+    // outro que gira e faz movimentos aleatórios, outro que atira girando, outro de chicotada, outro em zigue-zague") ----
+    /// <summary>Salto de verdade (forma "circle"): sobe num arco até onde o alvo estava no fim da mira e cai com o golpe
+    /// em círculo no pouso (a marca no chão é o ponto de pouso). Altura do arco em metros.</summary>
+    public bool Leap { get; init; }
+    public double LeapHeight { get; init; } = 2.2;
+    /// <summary>Puxão: quem é acertado é arrastado até quase o corpo do monstro (até estes metros). Chicote, gancho, língua.</summary>
+    public double PullM { get; init; }
+    /// <summary>Giro desembestado (forma "circle" em volta de si): a cada golpe da sequência sai numa direção nova
+    /// (metade das vezes puxando para o alvo), andando StepM por golpe.</summary>
+    public bool RandomStep { get; init; }
+    /// <summary>Tiro girando (forma "projectile" com Hits &gt; 1): cada disparo da sequência gira este tanto (espiral).
+    /// SpreadDeg 360 = rajada em volta toda.</summary>
+    public double SpinShotDeg { get; init; }
+    /// <summary>Zigue-zague (bote com Hits &gt; 1): cada bote sai inclinado para um lado, alternando (graus).</summary>
+    public double ZigzagDeg { get; init; }
 }
 
 public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double AggroRadius, double LeashRadius,

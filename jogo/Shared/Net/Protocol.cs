@@ -109,6 +109,7 @@ public static class Protocol
 [JsonDerivedType(typeof(ContentFileMessage), "content_file")]
 [JsonDerivedType(typeof(TrilhaIntent), "trilha_ask")]
 [JsonDerivedType(typeof(PesquisaIntent), "pesquisa")]
+[JsonDerivedType(typeof(MesclarIntent), "mesclar")]
 [JsonDerivedType(typeof(TrilhaMessage), "trilha")]
 public abstract record NetMessage;
 
@@ -117,12 +118,21 @@ public abstract record NetMessage;
 /// <summary>13/11 ("progressão para acompanhar o que você ganha em cada nível — montaria, TP... tipo um passe"): pede a trilha.</summary>
 public sealed record TrilhaIntent() : NetMessage;
 /// <summary>17/11: pesquisa no Catálogo da Biblioteca (item, material ou monstro); a resposta vem como BookMessage.</summary>
-public sealed record PesquisaIntent(string Texto) : NetMessage;
+/// <summary>18/11: Máquina de Mesclar Visual — a peça vestida (Alvo) fica com a aparência do item da mochila (Fonte, consumido).
+/// Fonte vazia = tirar o visual.</summary>
+public sealed record MesclarIntent(string AlvoItemId, string FonteItemId) : NetMessage;
+public sealed record PesquisaIntent(string Texto) : NetMessage
+{
+    /// <summary>18/11: busca do 🔍 (lugares, NPCs, seus itens e o catálogo); falso = só o catálogo da biblioteca.</summary>
+    public bool Global { get; init; }
+}
 /// <summary>Um marco da trilha do herói: nível, tipo (mapa, montaria, viagem, classe, poder, história, asas, extra), texto e se já tem.</summary>
 public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string Detalhe, bool Tem)
 {
     /// <summary>14/11 (passe de batalha): arte do prêmio — "item:&lt;id&gt;", "hab:&lt;skill&gt;" ou vazio (cartão do tipo).</summary>
     public string Arte { get; init; } = "";
+    /// <summary>18/11: o nível chegou, mas o prêmio (montaria, asa, capa...) ainda não é seu — Detalhe diz onde conseguir.</summary>
+    public bool Disponivel { get; init; }
 }
 public sealed record TrilhaMessage(int Nivel, IReadOnlyList<TrilhaItem> Itens) : NetMessage;
 
@@ -395,7 +405,11 @@ public sealed record SpendStatIntent(string Stat) : NetMessage;
 /// <summary>Viagem rápida: só parado num ponto seguro descoberto, fora de combate, para outro ponto descoberto.</summary>
 public sealed record TravelIntent(string WaypointId) : NetMessage;
 /// <summary>14/11: olhinho do bracelete — mostra ou esconde a skin (o bônus do bracelete continua).</summary>
-public sealed record SkinVisivelIntent(bool Visivel) : NetMessage;
+public sealed record SkinVisivelIntent(bool Visivel) : NetMessage
+{
+    /// <summary>18/11: qual visual ("skin" = bracelete, "capacete", "asas" = asas ou capa). Vazio = skin (clientes antigos).</summary>
+    public string Parte { get; init; } = "";
+}
 /// <summary>18/11 (dono: "a decoração eu tenho que escolher onde colocar — parede, chão ou sobre algo"): onde fica a peça.</summary>
 public sealed record DecorPlaceIntent(string DecorId, double X, double Y, double Yaw, double Altura = 0) : NetMessage;
 /// <summary>14/11: menu do TAB — "abrir", "resgatar" (Id = objetivo) ou "comprar" (Id = item da Loja de Cristais).</summary>

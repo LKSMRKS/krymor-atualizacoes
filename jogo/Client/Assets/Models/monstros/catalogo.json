@@ -284,7 +284,10 @@
       "monstros/harpy_sangue",
       "monstros/harpy_marcado"
     ],
-    "variacao_altura": 0.03
+    "variacao_altura": 0.03,
+    "por_definicao": {
+      "monster_bosque_corujao": "owl_milolhos"
+    }
   },
   "harpy_f": {
     "arquivo": "monstros/harpy_f",
@@ -588,7 +591,10 @@
     "altura": 1.7,
     "tipo": "criatura",
     "escala": 1.0,
-    "chefe": 1.5
+    "chefe": 1.5,
+    "por_definicao": {
+      "monster_bst_verme_gigante": "verme_fenda"
+    }
   },
   "slime_bog": {
     "arquivo": "monstros/slime_bog",
@@ -756,5 +762,34 @@
     "tipo": "criatura",
     "escala": 1.44,
     "chefe": 1.5
+  },
+  "owl_milolhos": {
+    "arquivo": "monstros/owl",
+    "altura": 1.7,
+    "tipo": "criatura",
+    "escala": 2.1,
+    "chefe": 1.0
+  },
+  "verme_fenda": {
+    "arquivo": "criaturas/verme_broca",
+    "altura": 1.7,
+    "tipo": "criatura",
+    "escala": 2.3,
+    "chefe": 1.5
+  },
+  "fab_dentuco": {
+    "arquivo": "montarias/montaria_dinossauro",
+    "altura": 1.9,
+    "tipo": "criatura",
+    "escala": 1.05,
+    "chefe": 1.5,
+    "variacao_altura": 0.08
+  },
+  "fab_dentuco_pai": {
+    "arquivo": "montarias/montaria_dinossauro",
+    "altura": 1.9,
+    "tipo": "criatura",
+    "escala": 1.9,
+    "chefe": 1.0
   }
 }

@@ -13,6 +13,9 @@ public sealed class PesquisaPanel
     public Control Root { get; }
     public bool Open => Root.Visible;
     public Action<string>? Pesquisar;
+    /// <summary>18/11: modo da lupa (busca global) — lugares, mapas, NPCs, seus itens e o catálogo.</summary>
+    public bool Global { get; private set; }
+    private readonly Label _titulo, _dica;
     private readonly LineEdit _campo;
 
     public PesquisaPanel()
@@ -25,12 +28,12 @@ public sealed class PesquisaPanel
         var col = new VBoxContainer();
         col.AddThemeConstantOverride("separation", 10);
         panel.AddChild(col);
-        var titulo = new Label { Text = "Catálogo da Biblioteca", HorizontalAlignment = HorizontalAlignment.Center };
+        var titulo = _titulo = new Label { Text = "Catálogo da Biblioteca", HorizontalAlignment = HorizontalAlignment.Center };
         if (HudView.TitleFont is { } tf) titulo.AddThemeFontOverride("font", tf);
         titulo.AddThemeFontSizeOverride("font_size", 24);
         titulo.AddThemeColorOverride("font_color", new Color(0.3f, 0.17f, 0.06f));
         col.AddChild(titulo);
-        var dica = new Label { Text = "Escreva o nome de um item, material ou monstro (ex.: quitina, caranguejo, ferro).", AutowrapMode = TextServer.AutowrapMode.WordSmart };
+        var dica = _dica = new Label { Text = "Escreva o nome de um item, material ou monstro (ex.: quitina, caranguejo, ferro).", AutowrapMode = TextServer.AutowrapMode.WordSmart };
         dica.AddThemeColorOverride("font_color", new Color(0.35f, 0.24f, 0.12f));
         dica.AddThemeFontSizeOverride("font_size", 14);
         col.AddChild(dica);
@@ -56,6 +59,14 @@ public sealed class PesquisaPanel
         Pesquisar?.Invoke(t);
     }
 
-    public void Show() { Root.Visible = true; _campo.GrabFocus(); _campo.SelectAll(); }
+    public void Show(bool global = false)
+    {
+        Global = global;
+        _titulo.Text = global ? "Buscar" : "Catálogo da Biblioteca";
+        _dica.Text = global
+            ? "Nome de um lugar, mapa, NPC, item ou monstro (ex.: toca, galeria, fênix, Otávio). Mostra onde fica, como chegar e se você tem o item — e a bússola aponta."
+            : "Escreva o nome de um item, material ou monstro (ex.: quitina, caranguejo, ferro).";
+        Root.Visible = true; _campo.GrabFocus(); _campo.SelectAll();
+    }
     public void Close() => Root.Visible = false;
 }

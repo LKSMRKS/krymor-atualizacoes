@@ -77,6 +77,7 @@ public sealed class InventoryPanel
     public Func<bool>? OverTrade { get; set; }
     private readonly Dictionary<string, ItemSlot> _equipSlots = new();
     private OlhoSkin _olho = null!;
+    private OlhoSkin _olhoElmo = null!, _olhoAsas = null!;   // 18/11
     private readonly Label _stats, _subtitle;
     private readonly VBoxContainer _details;
     private readonly HBoxContainer _buttons;
@@ -163,6 +164,13 @@ public sealed class InventoryPanel
         _olho = new OlhoSkin { Position = new Vector2(xs[3] + P - 21f, y2 + (G * 1.7f - P) / 2f + 1f), Visible = false };
         _olho.Clicked += () => Send?.Invoke(new SkinVisivelIntent(_olho.Oculta));
         grade.AddChild(_olho);
+        // 18/11 (dono: "tirar e desativar o visual de todos os itens, asa, capa, capacete"): mesmo olhinho no elmo e nas asas/capa
+        _olhoElmo = new OlhoSkin { Position = new Vector2(xs[2] + G - 21f, 1f), Visible = false };
+        _olhoElmo.Clicked += () => Send?.Invoke(new SkinVisivelIntent(_olhoElmo.Oculta) { Parte = "capacete" });
+        grade.AddChild(_olhoElmo);
+        _olhoAsas = new OlhoSkin { Position = new Vector2(xs[3] + P + Gap + G - 21f, 1f), Visible = false };
+        _olhoAsas.Clicked += () => Send?.Invoke(new SkinVisivelIntent(_olhoAsas.Oculta) { Parte = "asas" });
+        grade.AddChild(_olhoAsas);
         var gradeRow = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         gradeRow.AddChild(grade);
         column.AddChild(gradeRow);
@@ -338,6 +346,16 @@ public sealed class InventoryPanel
         if (_olho.Visible != temBracelete) _olho.Visible = temBracelete;
         var oculta = m.Flags.Contains("skin_oculta");
         if (_olho.Oculta != oculta) { _olho.Oculta = oculta; _olho.TooltipText = oculta ? "Skin escondida (o bônus continua). Clique para mostrar." : "Skin à mostra. Clique para esconder (o bônus continua)."; _olho.QueueRedraw(); }
+        void Olho(OlhoSkin o, string slot, string flag, string nome)
+        {
+            var tem = m.Equipment.Any(e => e.Slot == slot);
+            if (o.Visible != tem) o.Visible = tem;
+            var esc = m.Flags.Contains(flag);
+            if (o.Oculta != esc || o.TooltipText.Length == 0 || !o.TooltipText.Contains(nome))
+            { o.Oculta = esc; o.TooltipText = esc ? $"{nome} escondido(a) (os atributos continuam). Clique para mostrar." : $"{nome} à mostra. Clique para esconder o visual (os atributos continuam)."; o.QueueRedraw(); }
+        }
+        Olho(_olhoElmo, "head", "ocultar:capacete", "Elmo");
+        Olho(_olhoAsas, "asas", "ocultar:asas", "Asas/capa");
         if (_doll.IsInsideTree()) _doll.SetLook(m);
         RefreshPets(m);
         var signature = string.Join("|", m.Inventory.Select(i => i.ItemId + i.Quantity + "@" + i.Slot)) + "#" +

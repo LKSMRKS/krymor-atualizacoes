@@ -346,6 +346,7 @@ public sealed class WorldPanels
             UpdateMap(m);
             _canvas.Layout = m.Map;
             _canvas.Markers = m.QuestMarkers;
+            _canvas.XpDoNivel = m.Progress?.XpToNext ?? 0;   // 18/11: XP da missão em % do seu nível
             _canvas.Historia = m.ProximaHistoria;   // 17/11 noite: estrela da história no mapa M
             _canvas.NpcMarks = m.NpcMarkers;
             _canvas.NpcShown ??= m.NpcVisible;
@@ -396,16 +397,39 @@ public sealed class WorldPanels
 
     private bool _showLocked;
     private string _libOpen = "";
+    private string _libBusca = "";
+    private bool _libFoco;
+
+    internal static string SemAcento(string t)
+    {
+        var n = t.Normalize(System.Text.NormalizationForm.FormD);
+        var sb = new System.Text.StringBuilder(n.Length);
+        foreach (var c in n)
+            if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark) sb.Append(char.ToLowerInvariant(c));
+        return sb.ToString().Trim();
+    }
 
     /// <summary>12/11: Biblioteca do Continente — uma aba por região; aberta, lista cada monstro e o grupo de drop dele.</summary>
     private void AddLibrary(IReadOnlyList<LibraryEntry> lib)
     {
         _dialogBox.AddChild(Section("Bestiário e drops por região"));
         _dialogBox.AddChild(HudView.MakeLabel("Peças de conjunto: V1 é a mais comum; cada variação acima é mais rara. Chefes e dungeons vão mais alto.", 11, Dim));
+        // 18/11 ("quero o pesquisar no registro das criaturas da biblioteca do Cais"): busca por bicho ou pelo que ele deixa cair
+        var busca = new LineEdit { PlaceholderText = "🔍 Pesquisar criatura ou item (ex.: fantasma, couro)...", Text = _libBusca, CustomMinimumSize = new Vector2(440, 0), ClearButtonEnabled = true };
+        busca.TextChanged += t => { _libBusca = t; _libFoco = true; _dialogSig = ""; };
+        _dialogBox.AddChild(busca);
+        if (_libFoco) Callable.From(() => { if (GodotObject.IsInstanceValid(busca)) { busca.GrabFocus(); busca.CaretColumn = busca.Text.Length; } }).CallDeferred();
+        var q = SemAcento(_libBusca);
+        var filtrando = q.Length >= 2;
+        if (filtrando)
+        {
+            lib = lib.Where(e => SemAcento(e.Monster).Contains(q) || e.Drops.Any(d => SemAcento(d).Contains(q)) || SemAcento(e.Region).Contains(q)).ToList();
+            if (lib.Count == 0) _dialogBox.AddChild(HudView.MakeLabel($"Nada com \"{_libBusca}\" nestas fichas.", 13, Dim));
+        }
         foreach (var g in lib.GroupBy(e => e.Region))
         {
             var first = g.First();
-            var open = _libOpen == g.Key;
+            var open = _libOpen == g.Key || filtrando;
             var tab = new Button { Text = (open ? "▾ " : "▸ ") + $"{g.Key}  (nível {first.Levels}, {g.Count()} criaturas)", Flat = true,
                 SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin, FocusMode = Control.FocusModeEnum.None };
             var key = g.Key;
@@ -437,7 +461,7 @@ public sealed class WorldPanels
     private void UpdateDialog(ClientModel m)
     {
         var d = m.Dialog!;
-        var sig = $"{_showLocked}|{_libOpen}|{d.NpcId}|{string.Join(",", d.Quests.Select(q => q.Id + q.State + q.Progress))}|{m.Coins}|{m.Inventory.Count}|{(m.Buyback is { } bb ? bb.NpcId + bb.Items.Count : "")}|{d.RepairCost}";
+        var sig = $"{_showLocked}|{_libOpen}|{_libBusca}|{d.NpcId}|{string.Join(",", d.Quests.Select(q => q.Id + q.State + q.Progress))}|{m.Coins}|{m.Inventory.Count}|{(m.Buyback is { } bb ? bb.NpcId + bb.Items.Count : "")}|{d.RepairCost}";
         if (sig == _dialogSig) return;
         _dialogSig = sig;
         Clear(_dialogBox);
@@ -452,8 +476,20 @@ public sealed class WorldPanels
         _dialogBox.AddChild(head);
         var greet = new PanelContainer();
         greet.AddThemeStyleboxOverride("panel", HudView.CardStyle());
-        greet.AddChild(Wrap($"“{d.Greeting}”", 14, new Color(0.88f, 0.85f, 0.78f), 450));
+        greet.AddChild(Wrap(d.Role == "recados" ? d.Greeting : $"“{d.Greeting}”", 14, new Color(0.88f, 0.85f, 0.78f), 450));
         _dialogBox.AddChild(greet);
+        // 18/11 ("o quadro de recados do porto não tem nada nunca?"): escrever direto no quadro
+        if (d.Role == "recados")
+        {
+            var linha = new HBoxContainer();
+            var campo = new LineEdit { PlaceholderText = "Escreva um recado para o grupo...", MaxLength = 160, SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+            var fixar = new Button { Text = "📌 Fixar no quadro" };
+            void Envia() { var t = campo.Text.Trim(); if (t.Length == 0) return; Send?.Invoke(new ChatIntent("/recado " + t)); campo.Text = ""; Sfx.Play("ui_clique"); }
+            campo.TextSubmitted += _ => Envia();
+            fixar.Pressed += Envia;
+            linha.AddChild(campo); linha.AddChild(fixar);
+            _dialogBox.AddChild(linha);
+        }
         // 16/11 (dono: "os itens vão quebrando, tem que ir no ferreiro arrumar"): morrer gasta o equipamento
         if (d.RepairCost >= 0)
         {
@@ -1420,6 +1456,7 @@ public sealed partial class WorldMapCanvas : Control
     public Vector2 Me { get; set; }
     /// <summary>Marcadores de missão do servidor (horda caçando, carroça).</summary>
     public System.Collections.Generic.IReadOnlyDictionary<string, (double X, double Y, string Kind)>? Markers { get; set; }
+    public long XpDoNivel { get; set; }
     public QuestEntry? Historia { get; set; }
     public System.Collections.Generic.IReadOnlyDictionary<string, string>? NpcMarks { get; set; }
     public Func<CinzasDaMare.Shared.World.MapNpc, bool>? NpcShown { get; set; }
@@ -1512,6 +1549,13 @@ public sealed partial class WorldMapCanvas : Control
                 var linhas = new List<string> { $"Missão {i + 1}: {q.Name}" };
                 if (q.Hint.Length > 0) linhas.Add(q.Hint);
                 linhas.Add(q.State == "ready" ? $"pronta — entregue para {q.Giver}" : q.Count > 1 ? $"progresso {q.Progress}/{q.Count}" : "em andamento");
+                // 18/11 ("ao botar o mouse no ícone do mapa, mostrar o XP da missão pra ver se compensa"): XP, % do seu nível e moedas
+                if (q.RewardXp > 0 || q.RewardCoins > 0)
+                    linhas.Add("recompensa: " + string.Join(" · ", new[]
+                    {
+                        q.RewardXp > 0 ? $"{q.RewardXp:N0} XP".Replace(",", ".") + (XpDoNivel > 0 ? $" ({Math.Max(0.1, 100.0 * q.RewardXp / XpDoNivel):0.#}% do seu nível)" : "") : "",
+                        q.RewardCoins > 0 ? $"{q.RewardCoins:N0} moedas".Replace(",", ".") : "",
+                    }.Where(x => x.Length > 0)));
                 _alvos.Add((At(q.X, q.Y), 13f, linhas.ToArray(), q.State == "ready" ? new Color(0.45f, 0.95f, 0.5f) : new Color(1f, 0.8f, 0.32f)));
             }
         }
