@@ -1191,6 +1191,10 @@ public sealed class HudView
                 if (dx * dx + dy * dy < 9) continue;   // já está lá
                 marks.Add((Mathf.RadToDeg(Mathf.Atan2((float)dx, (float)-dy)), i + 1, q.State == "ready"));
             }
+        // 17/11 noite: o próximo passo da história = estrela na bússola (e no minimapa e no mapa M)
+        if (me is not null && m.Map is not null && m.ProximaHistoria is { } hq && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0)
+            && (hq.X - me.X) * (hq.X - me.X) + (hq.Y - me.Y) * (hq.Y - me.Y) >= 9)
+            marks.Add((Mathf.RadToDeg(Mathf.Atan2((float)(hq.X - me.X), (float)-(hq.Y - me.Y))), -2, false));
         // horda caçando você: pedrinha vermelha "!" na bússola e uma linha vermelha no topo das missões
         var horde = m.QuestMarkers.TryGetValue("horda", out var hm) && hm.Kind == "horda" ? hm : ((double X, double Y, string Kind)?)null;
         if (horde is { } hz && me is not null)

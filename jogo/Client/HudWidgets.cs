@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Godot;
@@ -177,6 +178,7 @@ public sealed partial class CompassStrip : Control
     public static void DrawQuestStone(CanvasItem c, Vector2 at, int n, bool ready, float r = 9f)
     {
         if (n == 0 && !ready) { DrawHorde(c, at, r * 1.35f); return; }
+        if (n == -2) { DrawStarStone(c, at, r * 1.15f); return; }   // 17/11 noite: história principal = estrela
         var rim = n == 0 ? new Color(1f, 0.80f, 0.32f) : ready ? new Color(0.45f, 0.95f, 0.5f) : new Color(1f, 0.80f, 0.32f);
         c.DrawCircle(at + new Vector2(1, 1.5f), r + 1.5f, new Color(0, 0, 0, 0.55f));
         c.DrawCircle(at, r + 1.5f, rim);
@@ -186,6 +188,24 @@ public sealed partial class CompassStrip : Control
         var size = (int)(r * 1.45f);
         var ts = font.GetStringSize(txt, HorizontalAlignment.Left, -1, size);
         c.DrawString(font, at + new Vector2(-ts.X / 2f, ts.Y * 0.32f), txt, HorizontalAlignment.Left, -1, size, rim);
+    }
+
+    /// <summary>17/11 noite (dono: "a missão História não mostra no mapa — com uma estrela, igual o ícone"): estrela laranja-dourada.</summary>
+    public static void DrawStarStone(CanvasItem c, Vector2 at, float r)
+    {
+        var laranja = new Color(1f, 0.66f, 0.25f);
+        var pulso = 0.5f + 0.5f * Mathf.Sin((float)Time.GetTicksMsec() / 260f);
+        c.DrawCircle(at, r + 2.5f + 1.5f * pulso, new Color(1f, 0.6f, 0.2f, 0.18f + 0.15f * pulso));
+        var pts = new Vector2[10];
+        for (var i = 0; i < 10; i++)
+        {
+            var ang = -Mathf.Pi / 2f + i * Mathf.Pi / 5f;
+            var rr = i % 2 == 0 ? r * 1.25f : r * 0.52f;
+            pts[i] = at + new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * rr;
+        }
+        c.DrawColoredPolygon(pts.Select(q => q + new Vector2(1f, 1.5f)).ToArray(), new Color(0, 0, 0, 0.55f));
+        c.DrawColoredPolygon(pts, laranja);
+        c.DrawPolyline(pts.Append(pts[0]).ToArray(), new Color(1f, 0.92f, 0.6f), Mathf.Max(1f, r * 0.12f), true);
     }
 
     /// <summary>

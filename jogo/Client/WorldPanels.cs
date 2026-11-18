@@ -346,6 +346,7 @@ public sealed class WorldPanels
             UpdateMap(m);
             _canvas.Layout = m.Map;
             _canvas.Markers = m.QuestMarkers;
+            _canvas.Historia = m.ProximaHistoria;   // 17/11 noite: estrela da história no mapa M
             _canvas.NpcMarks = m.NpcMarkers;
             _canvas.NpcShown ??= m.NpcVisible;
             _canvas.Flags = m.Flags;
@@ -1401,6 +1402,7 @@ public sealed partial class WorldMapCanvas : Control
     public Vector2 Me { get; set; }
     /// <summary>Marcadores de missão do servidor (horda caçando, carroça).</summary>
     public System.Collections.Generic.IReadOnlyDictionary<string, (double X, double Y, string Kind)>? Markers { get; set; }
+    public QuestEntry? Historia { get; set; }
     public System.Collections.Generic.IReadOnlyDictionary<string, string>? NpcMarks { get; set; }
     public Func<CinzasDaMare.Shared.World.MapNpc, bool>? NpcShown { get; set; }
 
@@ -1494,6 +1496,11 @@ public sealed partial class WorldMapCanvas : Control
                 linhas.Add(q.State == "ready" ? $"pronta — entregue para {q.Giver}" : q.Count > 1 ? $"progresso {q.Progress}/{q.Count}" : "em andamento");
                 _alvos.Add((At(q.X, q.Y), 13f, linhas.ToArray(), q.State == "ready" ? new Color(0.45f, 0.95f, 0.5f) : new Color(1f, 0.8f, 0.32f)));
             }
+        }
+        if (Historia is { } hq && hq.MapId == Layout.Id && (hq.X != 0 || hq.Y != 0))
+        {
+            CompassStrip.DrawStarStone(this, At(hq.X, hq.Y), 11f);
+            _alvos.Add((At(hq.X, hq.Y), 15f, new[] { hq.Name, hq.Hint }, new Color(1f, 0.66f, 0.25f)));
         }
         if (Markers is not null && Markers.TryGetValue("horda", out var hz) && hz.Kind == "horda")
         {

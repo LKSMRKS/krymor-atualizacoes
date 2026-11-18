@@ -130,6 +130,12 @@ public sealed partial class MiniMapa : Control
             DrawColoredPolygon(new[] { p + new Vector2(0, -s), p + new Vector2(s, 0), p + new Vector2(0, s), p + new Vector2(-s, 0) },
                 new Color(1f, 0.85f, 0.25f, far ? 0.7f : pulse));
         }
+        if (m.ProximaHistoria is { } hq && m.Map is not null && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0))
+        {
+            var ph = P(hq.X, hq.Y);
+            var longe = !Inside(ph, 10);
+            CompassStrip.DrawStarStone(this, ClampIn(ph, c, r - 10), longe ? 5f : 6.5f);
+        }
         // você: seta dourada apontando para onde o personagem olha (o alto é a câmera)
         var dir = ToScreen(new Vector2((float)me.FacingX, (float)me.FacingY));
         dir = dir.LengthSquared() < 1e-6f ? new Vector2(0, -1) : dir.Normalized();
