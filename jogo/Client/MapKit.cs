@@ -1070,12 +1070,18 @@ void fragment() {
             LightVolumetricFogEnergy = 1.2f, Position = at + new Vector3(0, -0.2f, 0) });
     }
 
+    /// <summary>18/11: montando enfeite (prop), não objeto de uso — sem o nome flutuante.</summary>
+    public static bool Enfeite;
+
     private static void Label(Node3D node, string text, Vector3 at)
-        => node.AddChild(new Label3D
+    {
+        if (Enfeite) return;
+        node.AddChild(new Label3D
         {
             Text = text, FontSize = 34, OutlineSize = 8, PixelSize = 0.01f, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
             Modulate = new Color(0.95f, 0.85f, 0.6f), Position = at,
         });
+    }
 }
 
 

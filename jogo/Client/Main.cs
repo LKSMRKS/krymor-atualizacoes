@@ -313,6 +313,50 @@ public partial class Main : Node3D
         _hud.Descanso(t, _model.DescansoNaCama);
     }
 
+    // 18/11 (dono: "enquanto estiver carregando a vida no círculo seguro, um efeitinho verde em volta do personagem, bem
+    // sutil; quando encher, para"): anel verde fraco no chão + faíscas verdes subindo devagar, só enquanto a vida enche
+    private CinzasDaMare.Shared.World.MapGeometry? _geoSeguro;
+    private string? _geoSeguroMapa;
+    private MeshInstance3D? _anelCura;
+    private StandardMaterial3D? _anelCuraMat;
+    private float _anelCuraA, _faiscaT;
+    private void AuraDeCura(float dt)
+    {
+        var me = _model.Me; var st = MyState();
+        var curando = false;
+        if (me is not null && st is not null && _model.Map is { } L && me.Alive && me.Health < me.MaxHealth - 0.5)
+        {
+            if (_geoSeguroMapa != L.Id) { _geoSeguro = new CinzasDaMare.Shared.World.MapGeometry(L); _geoSeguroMapa = L.Id; }
+            curando = _geoSeguro!.InSafeZone(me.X, me.Y);
+        }
+        _anelCuraA = Mathf.MoveToward(_anelCuraA, curando ? 1f : 0f, dt * 2.5f);
+        if (_anelCura is null)
+        {
+            if (_anelCuraA <= 0f) return;
+            _anelCuraMat = VisualKit.Unshaded(new Color(0.4f, 1f, 0.5f, 0f), true);
+            _anelCura = new MeshInstance3D { Mesh = VisualKit.Ring(0.75f, 0.05f, 40), MaterialOverride = _anelCuraMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off, TopLevel = true };
+            AddChild(_anelCura);
+        }
+        _anelCura.Visible = _anelCuraA > 0.01f && st is not null;
+        if (!_anelCura.Visible || st is null) return;
+        var t = (float)Time.GetTicksMsec() / 1000f;
+        _anelCura.GlobalPosition = st.Pos + new Vector3(0, 0.05f, 0);
+        _anelCura.Scale = Vector3.One * (1f + 0.06f * Mathf.Sin(t * 2.4f));
+        _anelCuraMat!.AlbedoColor = new Color(0.4f, 1f, 0.5f, 0.22f * _anelCuraA);
+        if (!curando) return;
+        _faiscaT -= dt;
+        if (_faiscaT > 0) return;
+        _faiscaT = 0.18f;
+        var ang = (float)GD.RandRange(0, Mathf.Tau);
+        var p0 = st.Pos + new Vector3(Mathf.Cos(ang) * 0.6f, 0.15f, Mathf.Sin(ang) * 0.6f);
+        var f = VisualKit.Part(_world, VisualKit.Sphere(0.025f), VisualKit.Glow(new Color(0.5f, 1f, 0.6f), 2.2f), p0);
+        f.TopLevel = true; f.GlobalPosition = p0; f.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        var tw = f.CreateTween().SetParallel();
+        tw.TweenProperty(f, "global_position", p0 + new Vector3(0, (float)GD.RandRange(0.9, 1.5), 0), 1.1f).SetEase(Tween.EaseType.Out);
+        tw.TweenProperty(f, "scale", Vector3.One * 0.2f, 1.1f).SetEase(Tween.EaseType.In);
+        tw.Chain().TweenCallback(Callable.From(f.QueueFree));
+    }
+
     // 14/11 ("o barulho de mar acompanha o jogo todo"): sons do lugar conforme você anda — mar perto da água, lava,
     // ruína/cemitério/covil com sons estranhos, sapos no charco. O tema do mapa fica só com o fundo (vento, pássaros...).
     private readonly Dictionary<string, float> _lugarPesos = new();
@@ -2585,6 +2629,7 @@ public partial class Main : Node3D
         _hud.CameraYaw = _cam.Yaw;
         SonsDoLugar(_model.Me, (float)delta);
         BolinhaDoDescanso((float)delta);
+        AuraDeCura((float)delta);   // 18/11: brilho verde enquanto a vida enche no círculo seguro
         if (_updaterOn)
         {
             _updater.Process(delta);

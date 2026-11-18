@@ -178,7 +178,7 @@ public sealed class WorldPanels
         _banner.HorizontalAlignment = HorizontalAlignment.Center;
         _banner.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         _banner.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.CenterTop);
-        _banner.Position = new Vector2(-400, 215);
+        _banner.Position = new Vector2(-400, 126);   // 18/11 (dono: "o texto do boato ficou muito no meio da tela, sobe mais — não na frente das coisas")
         _banner.Size = new Vector2(800, 50);
         Root.AddChild(_banner);
         // 17/11 noite: relógio do chefe de campo (perto do ponto dele, enquanto não renasce)
@@ -194,7 +194,7 @@ public sealed class WorldPanels
         _subBanner.HorizontalAlignment = HorizontalAlignment.Center;
         _subBanner.AutowrapMode = TextServer.AutowrapMode.WordSmart;   // 13/11: dica longa vira duas linhas, não sai da tela
         _subBanner.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.CenterTop);
-        _subBanner.Position = new Vector2(-400, 266);
+        _subBanner.Position = new Vector2(-400, 180);
         _subBanner.Size = new Vector2(800, 30);
         Root.AddChild(_subBanner);
 

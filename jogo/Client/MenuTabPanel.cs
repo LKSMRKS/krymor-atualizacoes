@@ -90,7 +90,7 @@ public sealed partial class MenuTabPanel : PanelContainer
         // faixa das abas
         _abas.AddThemeConstantOverride("separation", 2);
         col.AddChild(_abas);
-        foreach (var (id, nome) in new[] { ("loja", "Loja de Cristais"), ("objetivos", "Objetivos"), ("trilha", "Trilha"), ("mapa", "Mapa"), ("opcoes", "Opções") })
+        foreach (var (id, nome) in new[] { ("loja", "Loja de Cristais"), ("objetivos", "Objetivos"), ("trilha", "Trilha"), ("mapa", "Mapa"), ("notas", "Notas"), ("opcoes", "Opções") })
         {
             var b = Aba(nome, 17, new Vector2(150, 40));
             if (id is "loja" or "objetivos" && Cristal is not null) { b.Icon = Cristal; b.ExpandIcon = false; b.AddThemeConstantOverride("icon_max_width", 22); }
@@ -166,7 +166,7 @@ public sealed partial class MenuTabPanel : PanelContainer
     {
         _m = m;
         if (aba is "teclas") { _aba = "opcoes"; _sub = "teclas"; }
-        else if (aba is "loja" or "objetivos" or "trilha" or "mapa" or "opcoes") _aba = aba;
+        else if (aba is "loja" or "objetivos" or "trilha" or "mapa" or "notas" or "opcoes") _aba = aba;
         Visible = true;
         Send?.Invoke(new ObjetivosIntent("abrir"));
         Montar();
@@ -195,7 +195,7 @@ public sealed partial class MenuTabPanel : PanelContainer
         foreach (var (id, b) in _botoesSub) b.SetPressedNoSignal(id == _sub);
         _subAbas.Visible = _aba == "opcoes";
         foreach (var c in _conteudo.GetChildren()) { _conteudo.RemoveChild(c); c.QueueFree(); }
-        var proprio = _aba is "loja" or "objetivos";
+        var proprio = _aba is "loja" or "objetivos" or "notas";
         _scroll.Visible = proprio;
         _hospede.Visible = !proprio;
         _rodape.Text = _aba switch
@@ -203,12 +203,39 @@ public sealed partial class MenuTabPanel : PanelContainer
             "loja" or "objetivos" => "Os cristais são da CONTA: valem para todos os seus personagens. Diárias zeram à meia-noite; semanais, na segunda.",
             "trilha" => "O que abre em cada nível: regiões, dungeons, viagens, montarias, asas, poderes, classe e história.",
             "mapa" => "Rodinha: zoom · arraste para mover · clique numa pedra de viagem descoberta para viajar.",
+            "notas" => "O que mudou em cada atualização (a mais nova em cima).",
             _ => "TAB fecha o menu.",
         };
         if (!proprio) { Emprestar(_aba == "opcoes" ? _sub : _aba); return; }
         Devolver();
+        if (_aba == "notas") { MontarNotas(); return; }
         if (_dados is null) { _conteudo.AddChild(HudView.MakeLabel("carregando...", 14, Dim)); return; }
         if (_aba == "objetivos") MontarObjetivos(); else MontarLoja();
+    }
+
+    /// <summary>18/11 (dono: "coloca uma aba no TAB de NOTAS — as atualizações explicando o que teve"): uma carta por versão,
+    /// a mais nova em cima; cada novidade numa linha com marcador (Shared/NotasAtualizacao.cs, gerado a cada entrega).</summary>
+    private void MontarNotas()
+    {
+        var primeira = true;
+        foreach (var (versao, texto) in CinzasDaMare.Shared.NotasAtualizacao.Todas)
+        {
+            var card = new PanelContainer();
+            card.AddThemeStyleboxOverride("panel", HudView.CardStyle(primeira));
+            var col = new VBoxContainer();
+            col.AddThemeConstantOverride("separation", 3);
+            card.AddChild(col);
+            col.AddChild(HudView.MakeLabel((primeira ? "★ " : "") + versao + (primeira ? "  (a sua versão)" : ""), 16, primeira ? new Color(1f, 0.78f, 0.35f) : new Color(0.92f, 0.85f, 0.65f)));
+            foreach (var item in texto.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                var l = HudView.MakeLabel("•  " + char.ToUpper(item[0]) + item[1..], 13, new Color(0.9f, 0.88f, 0.82f));
+                l.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+                l.CustomMinimumSize = new Vector2(900, 0);
+                col.AddChild(l);
+            }
+            _conteudo.AddChild(card);
+            primeira = false;
+        }
     }
 
     private void Emprestar(string id)

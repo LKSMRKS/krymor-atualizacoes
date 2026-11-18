@@ -623,7 +623,16 @@ public static class VisualFactory
             if (visual == "goblin_skeleton") Tingir(novo.Root, new Color(1.9f, 1.85f, 1.7f));
             // 17/11 noite (dono: "as cabras chifrudas estão piscando e quadradas, feias"): a Chifruda usa o MESMO modelo
             // da Cabra-da-Serra (antes era o bicho de caixas), maior e com o pelo escuro
-            if (visual == "goat_brava") Tingir(novo.Root, new Color(0.55f, 0.47f, 0.42f));
+            // 18/11 (dono: "usa misturado, melhora essa cabra, pra ter variação"): cada cabra do bando sai com uma pelagem
+            // (branca, malhada, parda, preta, ruiva) — escolhida pela semente do bicho
+            if (visual is "goat" or "goat_brava")
+            {
+                var h = (uint)(seed.Length > 0 ? seed : definitionId).GetHashCode();
+                Color[] pelos = visual == "goat"
+                    ? new[] { new Color(1.05f, 1.02f, 0.98f), new Color(0.82f, 0.7f, 0.55f), new Color(0.95f, 0.85f, 0.72f), new Color(0.62f, 0.5f, 0.4f), new Color(0.9f, 0.62f, 0.45f) }
+                    : new[] { new Color(0.55f, 0.47f, 0.42f), new Color(0.4f, 0.36f, 0.34f), new Color(0.62f, 0.42f, 0.3f), new Color(0.3f, 0.28f, 0.28f) };
+                Tingir(novo.Root, pelos[h % (uint)pelos.Length]);
+            }
             return novo;
         }   // 14/11: monstros novos sem emenda (Visuals/MonstrosNovos.cs, Assets/Models/monstros/catalogo.json)
         if (visual.StartsWith("fab_", StringComparison.Ordinal) && FabulaVisuals.Criar(visual, boss) is { } fab) return fab;   // 13/11: Era Uma Vez e arredores

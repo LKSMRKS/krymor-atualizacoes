@@ -550,7 +550,9 @@ public sealed class ClientModel
                 ApplyCombatEvent(combat);
                 break;
             case ClaimResultMessage claim:
-                AddLog(claim.Success ? "Item coletado." : $"Coleta falhou: {ReasonText(claim.Reason)}.");
+                // 18/11: item que já sumiu do chão (outro pegou, ou o 2º clique) não é erro para mostrar
+                if (claim.Success || claim.Reason is not ("unknown_item" or "already_taken"))
+                    AddLog(claim.Success ? "Item coletado." : $"Coleta falhou: {ReasonText(claim.Reason)}.");
                 break;
             case ActionResultMessage action:
                 ApplyAction(action);

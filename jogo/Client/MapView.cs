@@ -4318,7 +4318,12 @@ void fragment() {
                 break;
             }
             default:
-                if (MapKit.TryBuild(this, node, p.Kind, wood))
+                // 18/11 (dono: "não consigo usar essa panela no Monte do Prefeito, tá bugada"): panela/forja/bancada de
+                // ENFEITE (vinheta de acampamento) não ganha o nome flutuante de oficina — só a de verdade (objeto) ganha
+                MapKit.Enfeite = true;
+                var montou = MapKit.TryBuild(this, node, p.Kind, wood);
+                MapKit.Enfeite = false;
+                if (montou)
                 {
                     if (p.Kind == "pinheiros")
                         foreach (var child in node.GetChildren())

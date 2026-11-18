@@ -432,7 +432,7 @@ public sealed class GodPanel
         a6.AddChild(Wrap("Chama na sua frente (nível da espécie). Natureza: o Guerreiro bate +15% em fera, o Mago em morto-vivo... (passe o mouse na Biblioteca).", 12, Dim));
         (string, Action) Mob(string id, string label, int qtd = 1) => (label, () => God("spawn", id, 0, qtd));
         a6.AddChild(Title("Chefes das ramificações"));
-        Grade(a6, 3, Mob("monster_monte_urso", "Urso das Pedras (16)"), Mob("monster_auto_centuriao", "Centurião a Vapor (47)"), Mob("monster_tri_capitao", "Capitão Fantasma (51)"),
+        Grade(a6, 3, Mob("monster_monte_urso", "Troll das Pedras (16)"), Mob("monster_auto_centuriao", "Centurião a Vapor (47)"), Mob("monster_tri_capitao", "Capitão Fantasma (51)"),
             Mob("monster_pico_gigante", "Gigante do Pico (50)"), Mob("monster_fundo_leviata", "Leviatã (55)"), Mob("monster_serp_serpente", "Serpente Celeste (56)"),
             Mob("monster_ilha_serpente", "Serpente Marinha (61)"));
         a6.AddChild(Title("Grupos de 5 (testar área, puxar, esquiva)"));
