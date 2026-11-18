@@ -5268,6 +5268,9 @@ void fragment() {
         if (ground is { } g)
             foreach (var (obj, node) in _interactables)
             {
+                // 17/11 noite (dono: "antes de eu achar a parede certa já apareceu o texto dando spoiler"): segredo e enigma
+                // não ganham nome ao passar a mira — só o "F" quando você está colado
+                if (obj.Kind is "runa" or "pedra_oca" or "pedra_oca_antiga" or "parede_rachada" or "esfera") continue;
                 var d = new Vector2((float)obj.X - g.X, (float)obj.Y - g.Z).Length();
                 if (d < bestD) { bestD = d; best = obj; bestNode = node; }
             }

@@ -4108,6 +4108,62 @@ void fragment() {
         }
     }
 
+    private static StandardMaterial3D? _fumacaMat;
+    /// <summary>Fumacinha de veneno: um sopro verde-musgo, macio (textura radial), que sobe, cresce e some.</summary>
+    private void Fumacinha(Node3D root)
+    {
+        if (_fumacaMat is null)
+        {
+            var grad = new Gradient();
+            grad.SetColor(0, new Color(1, 1, 1, 0.9f)); grad.SetColor(1, new Color(1, 1, 1, 0f));
+            var tex = new GradientTexture2D { Gradient = grad, Fill = GradientTexture2D.FillEnum.Radial, FillFrom = new Vector2(0.5f, 0.5f), FillTo = new Vector2(0.5f, 0f), Width = 64, Height = 64 };
+            _fumacaMat = new StandardMaterial3D
+            {
+                AlbedoTexture = tex, AlbedoColor = new Color(0.45f, 0.7f, 0.25f, 0.42f), ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+                Transparency = BaseMaterial3D.TransparencyEnum.Alpha, BillboardMode = BaseMaterial3D.BillboardModeEnum.Enabled, DepthDrawMode = BaseMaterial3D.DepthDrawModeEnum.Disabled,
+                VertexColorUseAsAlbedo = false,
+            };
+        }
+        var mat = (StandardMaterial3D)_fumacaMat.Duplicate();
+        mat.AlbedoColor = new Color(R(0.35f, 0.5f), R(0.62f, 0.78f), R(0.18f, 0.3f), 0.38f);
+        var inicio = root.GlobalPosition + new Vector3(R(-0.3f, 0.3f), R(0.4f, 1.3f), R(-0.3f, 0.3f));
+        var q = new MeshInstance3D { Mesh = new QuadMesh { Size = Vector2.One * R(0.25f, 0.4f) }, MaterialOverride = mat, TopLevel = true, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off };
+        _world.AddChild(q);
+        q.GlobalPosition = inicio;
+        var tw = q.CreateTween().SetParallel();
+        var dur = R(1.0f, 1.5f);
+        tw.TweenProperty(q, "global_position", inicio + new Vector3(R(-0.25f, 0.25f), R(0.5f, 0.9f), R(-0.25f, 0.25f)), dur).SetEase(Tween.EaseType.Out);
+        tw.TweenProperty(q, "scale", Vector3.One * R(2.0f, 2.8f), dur);
+        tw.TweenProperty(mat, "albedo_color:a", 0f, dur).SetEase(Tween.EaseType.In);
+        tw.Chain().TweenCallback(Callable.From(q.QueueFree));
+    }
+
+    /// <summary>Caveirinha da maldição: crânio pequeno roxo (testa, olhos fundos, dentes) que sobe balançando e some.</summary>
+    private void Caveirinha(Node3D root)
+    {
+        var g = new Node3D { TopLevel = true };
+        _world.AddChild(g);
+        var osso = VisualKit.Glow(new Color(0.72f, 0.45f, 1f), 1.6f);
+        osso.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+        var olho = VisualKit.Unshaded(new Color(0.08f, 0.02f, 0.12f), false);
+        VisualKit.Part(g, VisualKit.Sphere(0.075f), osso, new Vector3(0, 0.02f, 0), null, new Vector3(1f, 0.95f, 0.95f));
+        VisualKit.Part(g, VisualKit.Box(0.085f, 0.045f, 0.07f), osso, new Vector3(0, -0.055f, 0.01f));
+        foreach (var lado in new[] { -1f, 1f })
+            VisualKit.Part(g, VisualKit.Sphere(0.022f), olho, new Vector3(lado * 0.03f, 0.015f, 0.065f));
+        VisualKit.Part(g, VisualKit.Box(0.012f, 0.02f, 0.01f), olho, new Vector3(0, -0.02f, 0.072f));
+        foreach (var n in g.GetChildren()) if (n is GeometryInstance3D gi) gi.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        var inicio = root.GlobalPosition + new Vector3(R(-0.35f, 0.35f), R(1.0f, 1.7f), R(-0.35f, 0.35f));
+        g.GlobalPosition = inicio;
+        g.Scale = Vector3.One * 0.4f;
+        if (GetViewport().GetCamera3D() is { } cam) g.LookAt(cam.GlobalPosition with { Y = inicio.Y }, Vector3.Up, true);
+        var tw = g.CreateTween().SetParallel();
+        tw.TweenProperty(g, "scale", Vector3.One * R(0.9f, 1.2f), 0.25f).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+        tw.TweenProperty(g, "global_position", inicio + new Vector3(R(-0.15f, 0.15f), R(0.6f, 0.9f), R(-0.15f, 0.15f)), 1.3f).SetEase(Tween.EaseType.Out);
+        tw.TweenProperty(osso, "albedo_color:a", 0f, 0.6f).SetDelay(0.7f);
+        tw.TweenProperty(g, "scale", Vector3.One * 0.2f, 0.4f).SetDelay(0.9f);
+        tw.Chain().TweenCallback(Callable.From(g.QueueFree));
+    }
+
     private void StatusGotas(EntityState st, string status, float dt)
     {
         if (status.Length == 0) return;
@@ -4128,6 +4184,10 @@ void fragment() {
                 _ => (Colors.Transparent, false, 0f, 0f),
             };
             if (tam <= 0f) continue;
+            // 17/11 noite (dono: "o verde do veneno e o roxo do fantasma estão parecendo chiclete — efeitos sutis e bem
+            // feitos: fumacinha pro veneno e caveirinha pro roxo")
+            if (kind == "veneno") { if (R(0f, 1f) < 0.7f) Fumacinha(root); continue; }
+            if (kind == "maldicao") { if (R(0f, 1f) < 0.3f) Caveirinha(root); continue; }
             var inicio = root.GlobalPosition + new Vector3(R(-0.25f, 0.25f), R(0.7f, 1.4f), R(-0.25f, 0.25f));
             var mat = kind == "sangramento" ? SangueMat() : brilho > 1f ? VisualKit.Glow(cor, brilho) : VisualKit.Mat(cor, 0.2f);
             if (kind == "maldicao" || kind == "veneno") { mat.Transparency = BaseMaterial3D.TransparencyEnum.Alpha; mat.AlbedoColor = cor with { A = 0.7f }; }

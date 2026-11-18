@@ -36,6 +36,7 @@ public sealed class WorldPanels
     private readonly GradeItens _storageGrid;
     private readonly Label _storageInfo;
     private double _subDur = 3.0;
+    private readonly Label _relogioChefe;
     private static readonly StyleBoxFlat CaixaLeitura = new()
     {
         BgColor = new Color(0.12f, 0.12f, 0.13f, 0.82f), BorderColor = new Color(0.45f, 0.45f, 0.47f, 0.7f),
@@ -180,6 +181,15 @@ public sealed class WorldPanels
         _banner.Position = new Vector2(-400, 215);
         _banner.Size = new Vector2(800, 50);
         Root.AddChild(_banner);
+        // 17/11 noite: relógio do chefe de campo (perto do ponto dele, enquanto não renasce)
+        _relogioChefe = HudView.MakeLabel("", 17, new Color(1f, 0.78f, 0.45f), 5);
+        _relogioChefe.HorizontalAlignment = HorizontalAlignment.Center;
+        _relogioChefe.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.CenterTop);
+        _relogioChefe.Position = new Vector2(-260, 74);
+        _relogioChefe.Size = new Vector2(520, 30);
+        _relogioChefe.AddThemeStyleboxOverride("normal", CaixaLeitura);
+        _relogioChefe.Visible = false;
+        Root.AddChild(_relogioChefe);
         _subBanner = HudView.MakeLabel("", 18, new Color(0.92f, 0.90f, 0.84f), 5);
         _subBanner.HorizontalAlignment = HorizontalAlignment.Center;
         _subBanner.AutowrapMode = TextServer.AutowrapMode.WordSmart;   // 13/11: dica longa vira duas linhas, não sai da tela
@@ -272,9 +282,13 @@ public sealed class WorldPanels
             if (n.Kind == "area")
             {
                 var region = m.WorldMap?.Regions.FirstOrDefault(r => r.Here);
-                _banner.Text = n.Text;
+                // 17/11 noite: "Nome|Parte do mapa|faixa da área" (servidor novo) — o nível é o dos monstros DALI
+                var pa = n.Text.Split('|');
+                _banner.Text = pa[0];
                 _bannerAge = 0;
-                _subBanner.Text = region is not null && region.Levels != "cidade" ? $"{region.Name} · nível {region.Levels}" : "";
+                _subBanner.Text = pa.Length >= 3
+                    ? (region?.Levels == "cidade" ? "" : pa[1] + (pa[2].Length > 0 ? $" · nível {pa[2]}" : ""))
+                    : region is not null && region.Levels != "cidade" ? $"{region.Name} · nível {region.Levels}" : "";
                 _subBanner.AddThemeStyleboxOverride("normal", new StyleBoxEmpty()); _subBanner.Size = new Vector2(800, 0); _subDur = 3.0;
                 _subAge = 0;
             }
@@ -297,6 +311,13 @@ public sealed class WorldPanels
                 _subAge = 0;
             }
         }
+        if (m.ChefeVolta is { } cv && (DateTime.UtcNow - cv.Em).TotalSeconds < 2.5)
+        {
+            var falta = Math.Max(0, cv.Segundos - (int)(DateTime.UtcNow - cv.Em).TotalSeconds);
+            _relogioChefe.Text = falta > 0 ? $"⏳ {cv.Nome} volta em {falta / 60}:{falta % 60:00}" : $"⚔ {cv.Nome} está voltando!";
+            _relogioChefe.Visible = true;
+        }
+        else _relogioChefe.Visible = false;
         _bannerAge += delta;
         _subAge += delta;
         _banner.Modulate = new Color(1, 1, 1, (float)Math.Clamp(3.5 - _bannerAge, 0, 1));

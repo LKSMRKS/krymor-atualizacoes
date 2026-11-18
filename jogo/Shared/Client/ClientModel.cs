@@ -142,6 +142,8 @@ public sealed class ClientModel
     public StationMessage? Station { get; set; }
     /// <summary>Armazém comunitário ou baú da casa aberto.</summary>
     public StorageMessage? Storage { get; set; }
+    /// <summary>17/11 noite: chefe de campo morto perto de você — nome, segundos para voltar e quando chegou (some sem atualização).</summary>
+    public (string Nome, int Segundos, DateTime Em)? ChefeVolta { get; set; }
     public IReadOnlyList<PlotView> Plots { get; private set; } = Array.Empty<PlotView>();
     public CompanionsMessage? Companions { get; private set; }
     /// <summary>Mochila em grade estilo MU (0 = servidor antigo, sem grade).</summary>
@@ -486,9 +488,16 @@ public sealed class ClientModel
                 Historicar(chat.Channel, chat.Channel == "sistema" ? chat.Text : $"{chat.From}{(chat.To is { } para ? " → " + para : "")}: {chat.Text}");
                 ChatSeq++;
                 break;
+            case NoticeMessage { Kind: "chefe_volta" } relogio:
+            {
+                // 17/11 noite: relógio do chefe de campo morto (só chega para quem está perto do ponto dele)
+                var partes = relogio.Text.Split('|');
+                ChefeVolta = (partes[0], partes.Length > 1 && int.TryParse(partes[1], out var seg) ? seg : 0, DateTime.UtcNow);
+                break;
+            }
             case NoticeMessage notice when Historicar2(notice):
                 _notices.Enqueue(notice);
-                if (notice.Kind != "area") AddLog(notice.Kind == "pedra" ? notice.Text.Split('|')[0] : notice.Text);   // 17/11: "texto|x|y"
+                if (notice.Kind != "area" && (notice.Kind == "pedra" ? notice.Text.Split('|')[0] : notice.Text) is { Length: > 0 } linha) AddLog(linha);   // 17/11: "texto|x|y"
                 break;
             case CatalogMessage catalog:
                 Catalog = catalog;

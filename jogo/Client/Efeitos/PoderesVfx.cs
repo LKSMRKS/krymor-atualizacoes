@@ -253,13 +253,25 @@ public static partial class PoderesVfx
             var ator = c.Ator;
             Vector3 Onde() => ator is { } a && GodotObject.IsInstanceValid(a) ? a.GlobalPosition : c.Alvo;
             var mat = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
-            var bola = Parte(c.Cena, new SphereMesh { Radius = 0.55f, Height = 1.1f }, mat, Onde() + Vector3.Up * 1f);
+            var bola = Parte(c.Cena, new SphereMesh { Radius = 0.3f, Height = 0.6f }, mat, Onde() + Vector3.Up * 1f);
             var ultimo = Onde(); var parado = 0f; var andou = false; var pousou = false;
+            var inicio = c.Inicio;
             void Pousa()
             {
                 if (pousou) return;
                 pousou = true;
-                Choque(c, NoChao(Onde()), 2.4f, Terra, 1.5f, "cratera");
+                var fim = NoChao(Onde());
+                // 17/11 noite (dono: "a seta do pulo, a animação, você tirou? era só pra ajustar o círculo"): o arco do salto
+                // (a "seta") volta — agora de onde ele saiu até onde ele POUSOU de verdade, e a cratera nasce ali, embaixo dele
+                var a0 = inicio + Vector3.Up * 1f; var b0 = fim + Vector3.Up * 1f;
+                if ((b0 - a0).Length() > 0.8f)
+                {
+                    var matA = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
+                    var tubo = Parte(c.Cena, Tubo(Curva(a0, (a0 + b0) / 2f + Vector3.Up * 2.6f, b0, 14), 0.05f, 0.25f, 6), matA, Vector3.Zero);
+                    c.Cena.Add(tubo, 0.5, (x, t, dt) => matA.SetShaderParameter("alfa", 1f - t));
+                }
+                Choque(c, fim, 2.4f, Terra, 1.5f, "cratera");
+                c.Tremer(0.2f);
             }
             c.Cena.Add(bola, 0.9, (x, t, dt) =>
             {
