@@ -621,6 +621,9 @@ public static class VisualFactory
         {
             // 17/11 (dono: "o esqueleto que você colocou está muito escuro, não dá pra ver de longe"): osso mais claro
             if (visual == "goblin_skeleton") Tingir(novo.Root, new Color(1.9f, 1.85f, 1.7f));
+            // 17/11 noite (dono: "as cabras chifrudas estão piscando e quadradas, feias"): a Chifruda usa o MESMO modelo
+            // da Cabra-da-Serra (antes era o bicho de caixas), maior e com o pelo escuro
+            if (visual == "goat_brava") Tingir(novo.Root, new Color(0.55f, 0.47f, 0.42f));
             return novo;
         }   // 14/11: monstros novos sem emenda (Visuals/MonstrosNovos.cs, Assets/Models/monstros/catalogo.json)
         if (visual.StartsWith("fab_", StringComparison.Ordinal) && FabulaVisuals.Criar(visual, boss) is { } fab) return fab;   // 13/11: Era Uma Vez e arredores

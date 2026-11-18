@@ -120,6 +120,8 @@ public partial class Main : Node3D
     private readonly FaceThrottle _faceThrottle = new();
     private readonly MoveSender _moveSender = new();
     private readonly ThirdPersonCamera _cam = new();
+    private Desobstrucao? _desobstrucao;
+    private MapView? _desobstrucaoMapa;
     private readonly ChatView _chat = new();
     private readonly LivroPanel _livro = new();
     private readonly PesquisaPanel _pesquisa = new();   // 17/11: Catálogo da Biblioteca
@@ -361,6 +363,7 @@ public partial class Main : Node3D
             }
         }
         Sfx.Lugar(_lugarPesos, dt);
+        if (MyState() is { } euSom) Sfx.Lacos3DPerto(euSom.Pos);   // 17/11 noite: forja/caldeirão só perto
     }
 
     /// <summary>
@@ -632,6 +635,12 @@ public partial class Main : Node3D
             _cam.Update(dt, heroPos + new Vector3(0, _camLift + me.Ground, 0), locked is null ? null : new Vector3((float)locked.X, 0, (float)locked.Y),
                 GetWorld3D().DirectSpaceState);
             _mapView?.LuzDoHeroi(heroPos + new Vector3(0, me.Ground, 0));   // 15/11: luz fraca no herói à noite
+            // 16/11: poste/parede entre a câmera e o herói fica translúcido
+            if (_mapView is not null)
+            {
+                if (_desobstrucao is null || !ReferenceEquals(_desobstrucaoMapa, _mapView)) { _desobstrucao = new Desobstrucao(_mapView.Root); _desobstrucaoMapa = _mapView; }
+                _desobstrucao.Atualizar(dt, _cam.Camera.GlobalPosition, heroPos + new Vector3(0, me.Ground, 0));
+            }
             // câmera colada no herói (parede atrás): esconde o próprio boneco para não tapar a visão
             if (me.WasAlive) me.Visual.Root.Visible = !_cam.TooCloseToHero;
         }
@@ -2152,9 +2161,12 @@ public partial class Main : Node3D
         if (e.Heal)
         {
             // cura (número verde) ou barreira (escudo azul-esverdeado): sem "golpe"
-            var barrier = e.SkillId.Contains("barreira");
-            var c = barrier ? new Color(0.45f, 0.95f, 0.85f) : new Color(0.45f, 1f, 0.5f);
-            _hud.SpawnFloater(head, barrier ? $"◈ {e.Damage}" : $"+{e.Damage}", c, 24);
+            // 17/11 noite (dono: "o escudo do mago diz que recuperou vida e não recupera"): a Esfera de Proteção é ESCUDO
+            // (absorve golpes), não cura — mostra "◈ escudo N" azul, nunca "+N" verde
+            var barrier = e.SkillId.Contains("barreira") || e.SkillId.Contains("protecao") || e.SkillId.Contains("escudo")
+                || _model.Catalog?.Skills.Any(sk => sk.Id == e.SkillId && sk.TargetMode == "barrier") == true;
+            var c = barrier ? new Color(0.45f, 0.85f, 1f) : new Color(0.45f, 1f, 0.5f);
+            _hud.SpawnFloater(head, barrier ? $"◈ escudo {e.Damage}" : $"+{e.Damage}", c, 24);
             _effects.Pulse(target.Pos, new Color(c.R, c.G, c.B, 0.55f), 1.3f, 0.6);
             _effects.Impact(target.Pos + new Vector3(0, 1.1f, 0), new Color(1f, 0.85f, 0.4f), 6, 0.7f);
             if (attacker is not null && !ReferenceEquals(attacker, target))
@@ -3038,9 +3050,11 @@ public partial class Main : Node3D
             if (st.Sombra != sombra) { st.Sombra = sombra; SetShadows(st.Visual.Root, sombra); }
             var windup = m.Action.StartsWith("windup", StringComparison.Ordinal);
             var active = m.Action.StartsWith("active", StringComparison.Ordinal);
+            // 16/11: tática de bando (rugido, guarda, conjurar cura) — pose de preparo + voz, sem marca de golpe no chão
+            var tatica = m.Action.StartsWith("tatica:", StringComparison.Ordinal);
             if (m.Action != st.LastAction)
             {
-                if (windup && m.Alive && IsNear(st.Pos, 22f) && CreatureVoice(m) is { } voice)
+                if ((windup || tatica) && m.Alive && IsNear(st.Pos, 22f) && CreatureVoice(m) is { } voice)
                     Sfx.PlayAt(voice, st.Pos + Vector3.Up, m.Boss ? 2f : -5f, 0.12f);
                 if (m.Boss && m.Action == "active:pancada" && MyState() is { } mine && mine.Pos.DistanceTo(st.Pos) < 14f)
                 {
@@ -3059,7 +3073,7 @@ public partial class Main : Node3D
             }
             st.Visual.Update(new VisualFrame
             {
-                Speed = st.Speed, Action = m.Action, ActionT = (float)m.ActionT, ActionSeq = m.ActionSeq, Alive = m.Alive,
+                Speed = st.Speed, Action = tatica ? "windup:" + m.Action[7..] : m.Action, ActionT = (float)m.ActionT, ActionSeq = m.ActionSeq, Alive = m.Alive,
                 WindupGlow = windup ? 0.15f + 0.85f * (float)m.ActionT : active ? 1f : 0f,
             }, dt);
             // 10/11: monstro avançando também levanta poeira (os grandes, mais)
@@ -3107,11 +3121,13 @@ public partial class Main : Node3D
             }
 
             var exposed = m.Alive && m.Action.StartsWith("recover", StringComparison.Ordinal);
-            var affix = m.Affix switch { "rapido" => "Rápido · ", "vampiro" => "Vampírico · ", "blindado" => "Blindado · ", "furioso" => "Feroz · ", "dourado" => "✦ Dourado · ", _ => "" };
+            var affix = m.Affix switch { "rapido" => "Rápido · ", "vampiro" => "Vampírico · ", "blindado" => "Blindado · ", "furioso" => "Feroz · ", "dourado" => "✦ Dourado · ", "explosivo" => "Explosivo · ", _ => "" };
             // 13/11 (pedido do Barto: "áreas de risco — caveira nos monstros fortes demais pra você"): 6+ níveis acima = ☠
             var meuNivel = _model.Progress?.Level ?? _model.Me?.Level ?? 1;
             var caveira = m.Level >= meuNivel + 6;
-            var label = (caveira ? "☠ " : "") + (m.Enraged ? "Furioso · " : "") + (m.Rare ? "★ " : "") + (m.Elite ? "Elite · " : "") + affix + m.SpeciesName + (m.Level > 0 ? $"  Nv {m.Level}" : "") + (exposed ? "  · brecha!" : "");
+            // 16/11: temperamento em ação (táticas de bando)
+            var humor = m.Humor switch { "frenesi" => "FRENESI · ", "fugindo" => "Fugindo · ", "guarda" => "De guarda · ", "furia" => "Furioso · ", "cura" => "Curando · ", _ => "" };
+            var label = (caveira ? "☠ " : "") + (humor.Length > 0 ? humor : m.Enraged ? "Furioso · " : "") + (m.Rare ? "★ " : "") + (m.Elite ? "Elite · " : "") + affix + m.SpeciesName + (m.Level > 0 ? $"  Nv {m.Level}" : "") + (exposed ? "  · brecha!" : "");
             // 13/11 ("o boneco de treino não precisa mostrar a vida, só o dano que tira"): nome e nível, sem barra
             var boneco = m.DefinitionId == "monster_boneco_treino";
             if (boneco) label = $"Boneco de treino  Nv {m.Level}";
@@ -3237,7 +3253,7 @@ public partial class Main : Node3D
             if (gs.Kind.Length > 0)
             {
                 // pavio: anel vermelho mostra o raio da explosão e pisca cada vez mais rápido; a faísca treme
-                if (gs.Kind == "barril_aceso")
+                if (gs.Kind is "barril_aceso" or "estouro_aceso")
                 {
                     var t = (float)e.T;
                     var blink = 0.5f + 0.5f * Mathf.Sin(gs.Phase * (6f + 30f * t));
@@ -3320,7 +3336,7 @@ public partial class Main : Node3D
             return new GroundEffectState { Root = troot, Disc = tring, Kind = e.Kind };
         }
         // 11/11: barril da parede rachada — no chão, com o pavio aceso, e a explosão
-        if (e.Kind is "barril" or "barril_aceso" or "explosao")
+        if (e.Kind is "barril" or "barril_aceso" or "explosao" or "estouro_aceso")   // 16/11: + corpo do elite explosivo
         {
             var kroot = new Node3D();
             var ring = new MeshInstance3D
@@ -3344,7 +3360,7 @@ public partial class Main : Node3D
                 kroot.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.55f, 0.2f), LightEnergy = 6f, OmniRange = 12f, Position = new Vector3(0, 1.5f, 0) });
                 return new GroundEffectState { Root = kroot, Disc = ring, Kind = e.Kind };
             }
-            kroot.AddChild(KegNode());
+            if (e.Kind != "estouro_aceso") kroot.AddChild(KegNode());
             if (e.Kind == "barril_aceso")
             {
                 var spark = VisualKit.Part(kroot, VisualKit.Sphere(0.07f), VisualKit.Glow(new Color(1f, 0.75f, 0.3f), 6f), new Vector3(0.12f, 1.1f, 0));

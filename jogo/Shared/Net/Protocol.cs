@@ -261,14 +261,15 @@ public sealed record MonsterView(
     [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double FacingX = 1, double FacingY = 0, double AimX = 0, double AimY = 0, double AimRadius = 0,
     bool Rare = false, bool Boss = false, double AimArc = 0, string Visual = "", bool Elite = false, bool Enraged = false,
     bool Weakened = false, bool Marked = false, string AimKind = "", string Affix = "", [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] double Size = 1.0, double Lift = 0,
-    bool Chilled = false);   // 12/11: lento pela Estaca de Gelo
+    bool Chilled = false,    // 12/11: lento pela Estaca de Gelo
+    string Humor = "");      // 16/11: temperamento em ação ("frenesi", "fugindo", "guarda", "furia") — só mostra na placa
 
 /// <summary>Projétil em voo (seta do Mago, bola do Acólito). Hostile = vem de monstro.</summary>
 public sealed record ProjectileView(string Id, string Kind, double X, double Y, double DirX, double DirY, double Speed, bool Hostile);
 
 public sealed record WorldItemView(string ItemId, string DefinitionId, double X, double Y, [property: JsonIgnore(Condition = JsonIgnoreCondition.Never)] string Quality = "comum");
 
-public sealed record InventoryItemView(string ItemId, string DefinitionId, string Quality, int Slot, int Quantity, int Plus = 0, int Durability = 100);
+public sealed record InventoryItemView(string ItemId, string DefinitionId, string Quality, int Slot, int Quantity, int Plus = 0, int Durability = 100, int AffixSalt = 0);
 
 /// <summary>11/11: troca entre jogadores. Action: pedir (Target = personagem), aceitar, item, tirar, moedas, confirmar, cancelar.</summary>
 public sealed record TradeIntent(string Action, string? Target = null, string? ItemId = null, long Coins = 0) : NetMessage;
@@ -278,7 +279,7 @@ public sealed record TradeStateMessage(string State, string Partner, IReadOnlyLi
     long MyCoins, long TheirCoins, bool MyOk, bool TheirOk, string Reason = "", string PartnerId = "") : NetMessage;
 
 /// <summary>Durability: 16/11, % (0 = quebrado, sem atributos até consertar no ferreiro). Ausente = 100.</summary>
-public sealed record EquippedItemView(string Slot, string ItemId, string DefinitionId, string Quality, int Plus = 0, int Durability = 100);
+public sealed record EquippedItemView(string Slot, string ItemId, string DefinitionId, string Quality, int Plus = 0, int Durability = 100, int AffixSalt = 0);
 
 public sealed record Snapshot(
     long Tick,

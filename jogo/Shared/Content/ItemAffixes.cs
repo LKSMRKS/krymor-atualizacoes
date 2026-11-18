@@ -13,6 +13,9 @@ public static class ItemAffixes
 {
     public sealed record Affix(string Stat, double Value, string Text);
 
+    /// <summary>16/11: id usado no sorteio dos atributos — a Joia do Caos soma 1 ao "sal" do exemplar (0 = o de sempre).</summary>
+    public static string SeedId(string itemId, int salt) => salt <= 0 || string.IsNullOrEmpty(itemId) ? itemId : $"{itemId}~{salt}";
+
     public static int CountFor(string quality) => quality switch
     {
         "incomum" => 1, "raro" => 2, "epico" => 3, "chefe" => 2, "lendario" => 1, "excelente" => 3, _ => 0,

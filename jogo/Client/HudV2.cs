@@ -359,7 +359,7 @@ public sealed partial class GradeItens : Control
         var slot = CornerFor(at, size);
         _dragOver = null;
         // 11/11: joia em cima de arma/armadura = refino (estilo MU)
-        if (p[1] == Tipo && ItemAt(SlotAt(at)) is { } under && under.Id != p[2] && (Itens.FirstOrDefault(i => i.Id == p[2]).Def ?? DefDe?.Invoke(p[2])) is "joia_mare" or "joia_brasa" or "joia_vazio" && Refinar is not null)
+        if (p[1] == Tipo && ItemAt(SlotAt(at)) is { } under && under.Id != p[2] && (Itens.FirstOrDefault(i => i.Id == p[2]).Def ?? DefDe?.Invoke(p[2])) is "joia_mare" or "joia_brasa" or "joia_vazio" or "joia_forja" or "joia_vida" or "joia_caos" && Refinar is not null)
         {
             Refinar(p[2], under.Id);
             QueueRedraw();

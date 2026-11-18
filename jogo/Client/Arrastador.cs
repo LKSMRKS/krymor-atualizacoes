@@ -77,11 +77,24 @@ public sealed partial class Arrastador : Node
     /// 12/11 ("regra básica: toda aba arrastável e sempre dentro da margem do jogo"): a cada quadro, toda janela aberta cabe
     /// na tela — se for maior que a tela, encolhe (escala); se sair por qualquer lado, volta para dentro (8 px de margem).
     /// </summary>
+    private double _encolher;
+
     public override void _Process(double delta)
     {
+        // 17/11 noite (dono: "tem hora que o inventário cresce, ou outras caixas crescem, ficando muito poluído / fora do
+        // padrão"): no Godot o painel cresce quando o conteúdo cresce, mas NÃO volta quando o conteúdo diminui. A cada
+        // 0,25 s, janela aberta maior que o próprio conteúdo volta ao tamanho mínimo dela (o padrão de cada janela).
+        _encolher += delta;
+        var encolher = _encolher >= 0.25;
+        if (encolher) _encolher = 0;
         foreach (var r in _janelas)
         {
             if (!GodotObject.IsInstanceValid(r.C) || !r.C.IsVisibleInTree()) continue;
+            if (encolher && _arrastando is null && !r.Nome.StartsWith("editor_", System.StringComparison.Ordinal))
+            {
+                var min = r.C.GetCombinedMinimumSize();
+                if (r.C.Size.X > min.X + 1.5f || r.C.Size.Y > min.Y + 1.5f) r.C.Size = min;
+            }
             if (r.X is { } bx && GodotObject.IsInstanceValid(bx))
             {
                 var gr = r.C.GetGlobalRect();

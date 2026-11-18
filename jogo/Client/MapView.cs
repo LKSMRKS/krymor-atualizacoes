@@ -1692,11 +1692,32 @@ void fragment() {
                 var w = (float)o.W;
                 var d = (float)o.H;
                 var illusion = o.Kind == "muralha_ilusoria";
-                var mat = StoneMat(illusion ? 0.52f : 0.48f, true);
+                // 16/11 ("mesmo padrão"): na gruta/mina a parede era muralha de castelo (tijolo com ameias); agora é rocha bruta
+                var gruta = Map.Theme == "gruta";
+                var mat = gruta ? TexMat("ter_pedra.png", new Color(0.92f, 0.86f, 0.80f), 0.16f) : StoneMat(illusion ? 0.52f : 0.48f, true);
                 VisualKit.Part(Root, VisualKit.Box(w, h, d), mat, P(o.X, o.Y, h / 2f));
-                // ameias no topo
                 var along = w >= d;
                 var length = along ? w : d;
+                if (gruta)
+                {
+                    // saliências de rocha na face e no topo (quebra a parede reta), mesma rocha
+                    for (var s = -length / 2f + 0.8f; s < length / 2f - 0.4f; s += R(1.4f, 2.4f))
+                    {
+                        var off = along ? new Vector3(s, 0, 0) : new Vector3(0, 0, s);
+                        var bh = h * R(0.35f, 0.95f);
+                        foreach (var lado in new[] { -1f, 1f })
+                        {
+                            var face = along ? new Vector3(0, 0, lado * d * 0.5f) : new Vector3(lado * w * 0.5f, 0, 0);
+                            VisualKit.Part(Root, VisualKit.Box(R(0.7f, 1.5f), bh, R(0.5f, 0.9f)), mat, P(o.X, o.Y, bh / 2f) + off + face,
+                                new Vector3(R(-6, 6), R(0, 360), R(-6, 6)));
+                        }
+                        VisualKit.Part(Root, VisualKit.Box(R(0.8f, 1.6f), R(0.3f, 0.9f), R(0.8f, 1.4f)), mat, P(o.X, o.Y, h + 0.1f) + off,
+                            new Vector3(R(-12, 12), R(0, 360), R(-12, 12)));
+                    }
+                    if (!illusion && o.Solid) Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3(w, h, d) });
+                    break;
+                }
+                // ameias no topo
                 for (var s = -length / 2f + 0.6f; s < length / 2f - 0.3f; s += 1.6f)
                 {
                     var offset = along ? new Vector3(s, 0, 0) : new Vector3(0, 0, s);
@@ -1706,7 +1727,7 @@ void fragment() {
                 if (!illusion && o.Solid) Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3(w, h, d) });
                 break;
             }
-            case "penhasco" when Map.Theme == "praia" && CliffKit(o, h):
+            case "penhasco" when (Map.Theme == "praia" || TintoRocha is not null) && CliffKit(o, h):   // 16/11: todos os temas ao ar livre
                 break;
             case "penhasco":
             {
@@ -1756,8 +1777,11 @@ void fragment() {
                 var node = new Node3D { Position = P(o.X, o.Y), RotationDegrees = new Vector3(0, R(0, 360), 0) };
                 Root.AddChild(node);
                 // Costa: rocha do kit (cal em camadas, PBR); outros temas: pedra lascada gerada
-                if (Map.Theme == "praia" && MapKit.Glb(node, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f))
+                if ((Map.Theme == "praia" || TintoRocha is not null) && MapKit.Glb(node, "costa/costa_rocha_" + "abc"[(int)R(0, 2.99f)], Vector3.Zero, 0f, 1f))
+                {
                     node.Scale = new Vector3(r, h, r);
+                    if (TintoRocha is { } tr) Tingir(node, tr);   // 16/11: rocha do kit com a cor da região
+                }
                 else MapKit.Boulder(this, node, r, h);
                 Collider(P(o.X, o.Y, h / 2f), new CylinderShape3D { Radius = r, Height = h });
                 break;
@@ -2496,6 +2520,45 @@ void fragment() {
     /// Profundidade (feedback: "veja como o lobby fica bonito com profundidade"): fora dos limites do mapa, várias fileiras
     /// de silhuetas (árvores do tema, dunas, rochas) que somem na névoa — o mapa deixa de terminar num campo vazio.
     /// </summary>
+    /// <summary>
+    /// 16/11 ("deixar o jogo todo no mesmo padrão"): fora da Costa o penhasco era uma pilha de caixas com textura de tijolo.
+    /// Agora todo tema ao ar livre usa o paredão e as rochas do kit da Costa (PBR), tingidos com a cor da região.
+    /// null = tema sem tinta (Costa, que já é o original; gruta, cidade e interiores ficam como estavam).
+    /// </summary>
+    private Color? TintoRocha => Map.Theme switch
+    {
+        "vale" => new Color(0.56f, 0.53f, 0.56f),   // cinza de cinzas (o kit é cal quente)
+        "mata" => new Color(0.56f, 0.62f, 0.50f),
+        "canion" => new Color(0.95f, 0.60f, 0.44f),
+        "brejo" => new Color(0.44f, 0.48f, 0.40f),
+        "fantasma" => new Color(0.60f, 0.60f, 0.70f),
+        "neve" => new Color(0.95f, 1.0f, 1.08f),
+        "lava" => new Color(0.30f, 0.27f, 0.28f),
+        "acropole" => new Color(1.0f, 0.95f, 0.88f),
+        "lua" => new Color(0.62f, 0.62f, 0.68f),
+        _ => null,
+    };
+
+    private readonly Dictionary<(Material, Color), Material> _tintas = new();
+
+    /// <summary>Multiplica a cor de todos os materiais do modelo (uma cópia por material e cor, reaproveitada).</summary>
+    private void Tingir(Node n, Color c)
+    {
+        if (n is MeshInstance3D mi && mi.Mesh is { } mesh)
+            for (var i = 0; i < mesh.GetSurfaceCount(); i++)
+            {
+                if (mi.GetActiveMaterial(i) is not BaseMaterial3D bm) continue;
+                if (!_tintas.TryGetValue((bm, c), out var t))
+                {
+                    var d = (BaseMaterial3D)bm.Duplicate();
+                    d.AlbedoColor = new Color(bm.AlbedoColor.R * c.R, bm.AlbedoColor.G * c.G, bm.AlbedoColor.B * c.B, bm.AlbedoColor.A);
+                    _tintas[(bm, c)] = t = d;
+                }
+                mi.SetSurfaceOverrideMaterial(i, t);
+            }
+        foreach (var ch in n.GetChildren()) Tingir(ch, c);
+    }
+
     /// <summary>Paredão de cal em camadas (kit da Costa) a cada 10 m ao longo do penhasco, virado para o centro do mapa.</summary>
     private bool CliffKit(MapObstacle o, float h)
     {
@@ -2517,6 +2580,7 @@ void fragment() {
             };
             Root.AddChild(node);
             MapKit.Glb(node, "costa/costa_penhasco_" + (i % 2 == 0 ? "a" : "b"), Vector3.Zero, 0f, 1f);
+            if (TintoRocha is { } tr) Tingir(node, tr);
         }
         Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3(w, h, d) });
         return true;
@@ -4824,7 +4888,7 @@ void fragment() {
                 Root.AddChild(node);
                 if (!KitTapa.Oficina(this, node, propKind)) MapKit.TryBuild(this, node, propKind, wood);   // 12/11: modelos do pacote Vila
                 // som no lugar: forja martelando, caldeirão borbulhando (some com a distância)
-                if (obj.Kind == "forja") Sfx.Loop3D(node, "loop_forja", -4f, 4f, 24f);
+                if (obj.Kind == "forja") Sfx.Loop3D(node, "loop_forja", -6f, 2.5f, 14f);   // 17/11 noite: só perto da forja
                 else if (obj.Kind is "caldeirao" or "panela") Sfx.Loop3D(node, "loop_caldeirao", -6f, 2.5f, 12f);
                 return true;
             }

@@ -932,7 +932,9 @@ public sealed class WorldPanels
             var col = new VBoxContainer();
             card.AddChild(col);
             var head = new HBoxContainer();
-            var name = HudView.MakeLabel(s.DisplayName, 16, known ? Gold : Dim);
+            // 16/11 (FALTA_CRIAR: "mostrar II no Livro de Poderes"): poder melhorado pelo tomo II (marca up:<poder>)
+            var nivel2 = m.Flags.Contains("up:" + s.Id);
+            var name = HudView.MakeLabel(s.DisplayName + (nivel2 ? "  II" : ""), 16, nivel2 ? new Color(1f, 0.62f, 0.25f) : known ? Gold : Dim);
             name.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
             head.AddChild(name);
             var where = s.Slot switch
@@ -944,6 +946,7 @@ public sealed class WorldPanels
             head.AddChild(HudView.MakeLabel(where, 12, known ? new Color(0.5f, 0.9f, 0.5f) : Dim));
             col.AddChild(head);
             col.AddChild(Wrap($"{s.Description}  Custo {s.ResourceCost:0} · recarga {s.CooldownMs / 1000.0:0.#} s", 12, new Color(0.85f, 0.82f, 0.76f), 500));
+            if (nivel2) col.AddChild(Wrap("Nível II: +40% de força e recarga 20% menor.", 12, new Color(1f, 0.62f, 0.25f), 500));
             if (known && s.Slot != "weapon")
             {
                 var row = new HBoxContainer();

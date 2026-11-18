@@ -243,7 +243,7 @@ public static class Sfx
             var stream = Looping(names[i]);
             player.Stream = stream;
             // coro: bem baixinho, só acompanha (pedido do usuário)
-            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -20f : i == 0 ? -12f : -15f;
+            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -13f : i == 0 ? -12f : -15f;
             AmbienceLevels[player] = baseDb;
             player.VolumeDb = baseDb + AmbienceDb();
             if (stream is not null) player.Play();
@@ -259,6 +259,21 @@ public static class Sfx
     }
 
     /// <summary>Laço preso a um objeto do mundo (forja, caldeirão, fogueira): só se ouve de perto.</summary>
+    private static readonly List<(AudioStreamPlayer3D P, float Max)> Lacos3D = new();
+
+    /// <summary>17/11 noite: chamado todo quadro — laço 3D longe da câmera fica mudo (pausado), perto volta.</summary>
+    public static void Lacos3DPerto(Vector3 ouvinte)
+    {
+        for (var i = Lacos3D.Count - 1; i >= 0; i--)
+        {
+            var (p, max) = Lacos3D[i];
+            if (!GodotObject.IsInstanceValid(p)) { Lacos3D.RemoveAt(i); continue; }
+            if (!p.IsInsideTree()) continue;
+            var perto = p.GlobalPosition.DistanceTo(ouvinte) <= max && p.IsVisibleInTree();
+            if (p.StreamPaused == perto) p.StreamPaused = !perto;
+        }
+    }
+
     public static void Loop3D(Node3D parent, string name, float volumeDb, float unitSize, float maxDistance)
     {
         if (Looping(name) is not { } stream) return;
@@ -266,7 +281,11 @@ public static class Sfx
         {
             Stream = stream, VolumeDb = volumeDb + Mathf.LinearToDb(Math.Max(0.001f, Volume)), UnitSize = unitSize, MaxDistance = maxDistance,
             Position = new Vector3(0, 0.8f, 0),
+            // 17/11 noite (dono: "o som do ferreiro acompanha sempre, mesmo fora da base — o ferreiro só tem som onde tem ele"):
+            // queda logarítmica (some rápido) e corte duro: longe da câmera ele PARA de tocar (ver Sfx.Lacos3D)
+            AttenuationModel = AudioStreamPlayer3D.AttenuationModelEnum.Logarithmic,
         };
+        Lacos3D.Add((p, maxDistance));
         parent.AddChild(p);
         // começa em ponto diferente para duas forjas não baterem juntas
         p.Ready += () => p.Play((float)(Rng.NextDouble() * Math.Max(0.1, stream.GetLength() - 0.2)));

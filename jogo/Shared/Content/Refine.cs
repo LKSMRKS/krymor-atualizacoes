@@ -35,5 +35,5 @@ public static class Refine
         return (long)Math.Round(next <= 6 ? baseC : next <= 9 ? baseC * (1 + L / 20.0) : baseC * (1 + L / 8.0));
     }
 
-    public static bool IsJewel(string definitionId) => definitionId is "joia_mare" or "joia_brasa" or "joia_vazio" or "joia_forja";
+    public static bool IsJewel(string definitionId) => definitionId is "joia_mare" or "joia_brasa" or "joia_vazio" or "joia_forja" or "joia_vida" or "joia_caos";
 }

@@ -36,7 +36,7 @@ public sealed class InventoryPanel
         if (kind != "bag") return;
         var m = _model;
         var dragged = m?.Inventory.FirstOrDefault(i => i.ItemId == id);
-        if (dragged is not null && dragged.DefinitionId is "joia_mare" or "joia_brasa" or "joia_vazio"
+        if (dragged is not null && CinzasDaMare.Shared.Content.Refine.IsJewel(dragged.DefinitionId)
             && m!.Equipment.FirstOrDefault(e => e.Slot == slot) is { } worn)
         { Send?.Invoke(new RefineIntent(id, worn.ItemId)); return; }
         // 15/11: arma solta no espaço da mão secundária = segunda arma (Guerreiro com duas armas de uma mão)
@@ -567,7 +567,7 @@ public sealed class InventoryPanel
             "weapon" => GearIcon.IsStaffModel(info.Model) ? "Cajado" : "Arma",
             "armor" => "Armadura (corpo)",
             "helmet" => "Cabeça",
-            "offhand" => "Escudo (mão secundária)",
+            "offhand" => "Mão esquerda (escudo, broquel ou orbe)",
             "material" => "Material",
             "consumable" => "Consumível",
             _ => definition.StartsWith("consumable_") ? "Consumível" : "",

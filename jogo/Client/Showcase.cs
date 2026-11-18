@@ -122,6 +122,7 @@ public partial class Showcase : Node3D
             case "pegada": s.Pegada(camera, 0f, 0); break;
             case "classe2": s.Classe2(camera, 0f); break;
             case "recorrentes": s.Recorrentes(camera); break;
+            case "maoesquerda": s.MaoEsquerda(camera, float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var my) ? my : 150f); break;
             case "empunhadura": s.Empunhadura(camera, OS.GetEnvironment("VITRINE_PAG") == "2"); break;
             case "combo": s.Combo(camera, float.TryParse(OS.GetEnvironment("VITRINE_YAW"), out var cy) ? cy : 0f); break;
             case "regiao1": s.Regiao1(camera); break;
@@ -380,6 +381,24 @@ public partial class Showcase : Node3D
 
     // 12/11 ("segurando a espada pela lâmina, lança de uma mão com duas — siga a vida real"): todas as armas do Guerreiro
     // na mão, de lado, para conferir a pegada (cabo na mão, lâmina para fora)
+    // 16/11: broquel (Bruxa/Arqueiro) e orbe de mão (Mago)
+    private void MaoEsquerda(Camera3D camera, float yaw)
+    {
+        var list = new[] { ("bruxa", "talisman_moon", "shield_broquel_tabuas"), ("arqueiro", "arma_adaga_comum", "shield_broquel_mare"),
+            ("mago", "staff_crystal", "shield_orbe_cinza"), ("mago", "staff_crystal", "shield_orbe_brasa") };
+        for (var i = 0; i < list.Length; i++)
+        {
+            var x = -2.7f + i * 1.8f;
+            var v = VisualFactory.Player(list[i].Item1, true);
+            v.SetGear(list[i].Item2, list[i].Item3, null);
+            Place(v, new Vector3(x, 0, 0), yaw, 0f);
+            Label(list[i].Item3.Replace("shield_", ""), new Vector3(x, 2.25f, 0), 20);
+        }
+        camera.Position = new Vector3(0, 1.4f, 4.6f);
+        camera.LookAt(new Vector3(0, 1.0f, 0));
+        camera.Fov = 55;
+    }
+
     private void Empunhadura(Camera3D camera, bool pag2)
     {
         var all = new[] { "sword_p1_placeholder", "sword_claw", "sword_ornate", "sword_vein", "arma_espada_curta_comum", "arma_adaga_comum", "arma_faca_comum", "arma_cutelo_abissal",

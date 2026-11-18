@@ -419,6 +419,10 @@ public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double Aggr
     public double HesitateChance { get; init; } = -1;
     /// <summary>Depois de ter a preparação quebrada, fica este tempo sem poder ser quebrado de novo (0 = padrão 2000 ms).</summary>
     public int StaggerImmuneMs { get; init; }
+    /// <summary>16/11: táticas de bando (GameServer.Taticas.cs). null = padrão do tipo do monstro; [] = nenhuma.</summary>
+    public IReadOnlyList<string>? Taticas { get; init; }
+    /// <summary>16/11: temperamento fixo (bravo, covarde, matilha, astuto). null = sorteado por exemplar, pelo tipo.</summary>
+    public string? Temperamento { get; init; }
 }
 
 /// <summary>Entrada de loot. Item fixo ou Pick (sorteia um; com MatchClass prefere a classe de quem participou).</summary>
@@ -451,6 +455,9 @@ public sealed class WorldContent
     /// <summary>Monstros "vivos": nascem num ponto aleatório da região, andam à toa, alguns dormem; só o mundo real
     /// (world.json) liga — os testes de mapa montado à mão continuam com monstro parado no ponto exato.</summary>
     public bool LivelyMonsters { get; set; }
+    /// <summary>16/11: grupos de comportamento (grupos_comportamento.json) — cada espécie num grupo; o grupo define a mistura
+    /// de temperamentos dos seus bichos. null = sem arquivo (testes antigos): vale a mistura pelo tipo.</summary>
+    public GruposComportamento? Grupos { get; set; }
 
     public WorldContent(MapLayout map, IReadOnlyDictionary<string, MonsterBehaviorDef> behaviors,
         IReadOnlyDictionary<string, LootTable> lootTables)
@@ -489,6 +496,7 @@ public static class WorldContentLoader
     public const string WorldFile = "world.json";
     public const string ShopsFile = "shops.json";
     public const string QuestsFile = "quests.json";
+    public const string GruposFile = "grupos_comportamento.json";
 
     public static bool Exists(string directory)
         => File.Exists(Path.Combine(directory, WorldFile)) || File.Exists(Path.Combine(directory, MapFile));
@@ -507,6 +515,7 @@ public static class WorldContentLoader
         var quests = File.Exists(Path.Combine(directory, QuestsFile))
             ? ReadList<QuestDef>(directory, QuestsFile).ToDictionary(x => x.Id) : null;
         var content = new WorldContent(maps, world.StartMap, behaviors, loot, world.Regions, world.Links, shops, quests) { LivelyMonsters = true };
+        if (File.Exists(Path.Combine(directory, GruposFile))) content.Grupos = Read<GruposComportamento>(directory, GruposFile);
         if (File.Exists(Path.Combine(directory, RecipesFile)))
         {
             var receitas = ReadList<RecipeDef>(directory, RecipesFile).ToDictionary(x => x.Id);
@@ -554,4 +563,43 @@ public static class Marcas
         foreach (var m in exigida.Split('|')) if (set.Contains(m)) return true;
         return false;
     }
+}
+
+/// <summary>16/11 (dono): 4 GRUPOS de comportamento. Cada espécie pertence a um (pela lista "especies" ou pela primeira
+/// "regra" cujo trecho aparece no id/visual do monstro; senão o "padrao"). O grupo diz a mistura de temperamentos
+/// (bravo, covarde, matilha, astuto) dos bichos dele — mistura vazia = pelo tipo (tanque, ágil...) — e táticas a mais.</summary>
+public sealed record GrupoComportamentoDef
+{
+    public string Id { get; init; } = "";
+    public string Nome { get; init; } = "";
+    public string Descricao { get; init; } = "";
+    public Dictionary<string, int> Mistura { get; init; } = new();
+    public IReadOnlyList<string> Taticas { get; init; } = Array.Empty<string>();
+}
+
+public sealed record RegraGrupo
+{
+    public IReadOnlyList<string> Contem { get; init; } = Array.Empty<string>();
+    public string Grupo { get; init; } = "";
+}
+
+public sealed record GruposComportamento
+{
+    public string Padrao { get; init; } = "natural";
+    public IReadOnlyList<GrupoComportamentoDef> Grupos { get; init; } = Array.Empty<GrupoComportamentoDef>();
+    public Dictionary<string, string> Especies { get; init; } = new();
+    public IReadOnlyList<RegraGrupo> Regras { get; init; } = Array.Empty<RegraGrupo>();
+
+    /// <summary>Grupo de uma espécie (id do monstro + id do visual).</summary>
+    public string GrupoDe(string monsterId, string? visual)
+    {
+        if (Especies.TryGetValue(monsterId, out var g)) return g;
+        // o visual (o bicho que se vê) decide primeiro; o id (que leva o nome do mapa: "enforcados", "demonio"...) só depois
+        foreach (var alvo in new[] { (visual ?? "").ToLowerInvariant(), monsterId.ToLowerInvariant() })
+            foreach (var r in Regras)
+                if (alvo.Length > 0 && r.Contem.Any(c => alvo.Contains(c, StringComparison.Ordinal))) return r.Grupo;
+        return Padrao;
+    }
+
+    public GrupoComportamentoDef? Def(string id) => Grupos.FirstOrDefault(x => x.Id == id);
 }

@@ -46,6 +46,8 @@ public static class GearFactory
         "shield_planks" => "arma_escudo_t1_tabuas",
         "shield_stone" => "arma_escudo_t2_pipa_ferro",
         "shield_ember" => "arma_escudo_t3_nucleo_de_brasa",
+        // 16/11: mão esquerda que faltava — broquel (Bruxa/Arqueiro) e orbe de mão (Mago); Tools/arte/build_offhands.py
+        _ when model.StartsWith("shield_broquel_") || model.StartsWith("shield_orbe_") => "arma_" + model["shield_".Length..],
         // 11/11 (arsenal da noite do trabalhador): o que ainda era boneco de formas simples ganha modelo esculpido
         "club_driftwood" => "arma_clava_enferrujada",
         "spear_watch" => "arma_lanca_comum",
@@ -56,6 +58,9 @@ public static class GearFactory
     };
 
     /// <summary>Arco (desenhado ou esculpido do arsenal): vai na mão esquerda / nas costas e atira flecha.</summary>
+    /// <summary>16/11: orbe de mão do Mago — vai na palma (não no antebraço como o escudo).</summary>
+    public static bool IsOrb(string? model) => model?.StartsWith("shield_orbe_") == true;
+
     public static bool IsBow(string? model) => model is not null && (model.StartsWith("bow_") || model.StartsWith("arma_arco_") || model.StartsWith("arma_lend_arco_"));
 
     /// <summary>Ícone pintado de uma arma: o do lote 2 fica em Art/, o do arsenal em Art/icones/armas/.</summary>

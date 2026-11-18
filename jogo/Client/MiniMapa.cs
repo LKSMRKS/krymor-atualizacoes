@@ -123,6 +123,14 @@ public sealed partial class MiniMapa : Control
                 DrawLine(px + new Vector2(-5, 5), px + new Vector2(5, -5), xc, 3f, true);
                 continue;
             }
+            if (q.Kind == "horda")
+            {
+                // 17/11 noite (dono: "a horda quando vem caçar, mostra no mapa — pra eu saber, ir até ela ou fugir"):
+                // disco vermelho pulsando com espadas (o mesmo da bússola), preso na borda quando está longe
+                var ph = P(q.X, q.Y);
+                CompassStrip.DrawHorde(this, ClampIn(ph, c, r - 11), Inside(ph, 11) ? 7.5f : 6f);
+                continue;
+            }
             var p = P(q.X, q.Y);
             var far = !Inside(p, 10);
             p = ClampIn(p, c, r - 10);

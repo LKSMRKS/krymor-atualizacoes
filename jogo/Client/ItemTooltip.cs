@@ -68,7 +68,7 @@ public static class ItemTooltip
         ("attack_interval_ms", "Intervalo de ataque"),
         // 11/11: atributos exclusivos das peças e dos conjuntos
         ("power_pct", "Ataque"), ("attack_speed_pct", "Velocidade de ataque"), ("crit_pct", "Chance de crítico"), ("double_pct", "Dano dobrado"),
-        ("dodge_pct", "Esquiva"), ("thorns_pct", "Espinhos (devolve dano)"), ("damage_reduction_pct", "Redução de dano"),
+        ("dodge_pct", "Esquiva"), ("thorns_pct", "Reflete dano (espinhos)"), ("coin_pct", "Moedas dos inimigos"), ("heal_on_kill_pct", "Vida ao derrotar"), ("resource_on_kill_pct", "Mana/fúria ao derrotar"), ("damage_reduction_pct", "Redução de dano"),
         ("cdr_pct", "Redução de recarga"), ("xp_pct", "Experiência"), ("stamina_regen_pct", "Fôlego"),
         ("tenacity_pct", "Tenacidade"), ("hit_pct", "Precisão"), ("healing_received_pct", "Cura recebida"),
         ("mana_cost_pct", "Custo das habilidades"), ("foco_por_acerto", "Foco por flecha que acerta"), ("stun_resist_pct", "Resistência a atordoamento"), ("magic_resist_pct", "Resistência mágica"),
@@ -147,6 +147,10 @@ public static class ItemTooltip
         var equipment = info?.Slot is "weapon_main" or "off_hand" or "head" or "body" or "luvas" or "botas" or "calca" or "anel1" or "colar" or "asas" or "bracelete" or "montaria";
         var plus = m is null || itemId.Length == 0 ? 0
             : m.Inventory.FirstOrDefault(i => i.ItemId == itemId)?.Plus ?? m.Equipment.FirstOrDefault(e => e.ItemId == itemId)?.Plus ?? 0;
+        // 16/11: Joia do Caos — o exemplar tem um "sal" que muda o sorteio dos atributos
+        var salt = m is null || itemId.Length == 0 ? 0
+            : m.Inventory.FirstOrDefault(i => i.ItemId == itemId)?.AffixSalt ?? m.Equipment.FirstOrDefault(e => e.ItemId == itemId)?.AffixSalt ?? 0;
+        var seedId = ItemAffixes.SeedId(itemId, salt);
         var name = ClientModel.DisplayName(definition) + (plus > 0 ? $" +{plus}" : "") + (quantity > 1 ? $"  x{quantity}" : "");
         var title = Label(name, 18, QualityColor(quality, equipment));
         title.HorizontalAlignment = HorizontalAlignment.Center;
@@ -244,7 +248,7 @@ public static class ItemTooltip
         // VERDE fica só para o bônus de conjunto; vermelho = o que o feitio tira.
         if (info is not null && itemId.Length > 0 && ItemAffixes.TemFeitio(info.Category, info.MinLevel))
         {
-            var (fn, fl) = ItemAffixes.Feitio(itemId, info.Category, info.MinLevel);
+            var (fn, fl) = ItemAffixes.Feitio(seedId, info.Category, info.MinLevel);
             col.AddChild(Label($"Feitio: {fn}" + (fl.Count == 0 ? " (sem troca)" : ""), 12, Gold));
             foreach (var a in fl) col.AddChild(Label("   " + a.Text, 14, a.Value >= 0 ? Blue : Bad));
         }
@@ -254,7 +258,7 @@ public static class ItemTooltip
         var vNum = Variacao.Of(quality);
         if (info is not null && (vNum > 0 || nAff > 0 && info.AffixPool is "physical_weapon" or "armor"))
         {
-            var afs = itemId.Length > 0 ? ItemAffixes.Roll(itemId, quality, info.AffixPool, info.MinLevel) : Array.Empty<ItemAffixes.Affix>();
+            var afs = itemId.Length > 0 ? ItemAffixes.Roll(seedId, quality, info.AffixPool, info.MinLevel) : Array.Empty<ItemAffixes.Affix>();
             col.AddChild(Label(vNum > 0 ? $"Opções da variação V{vNum}" + (afs.Count > 0 ? $" ({afs.Count} linha{(afs.Count > 1 ? "s" : "")})" : "") : "Opções extras", 12, Gold));
             if (itemId.Length > 0 && afs.Count == 0) col.AddChild(Label("   nenhuma linha extra nesta (V baixo)", 12, Dim));
             if (itemId.Length > 0)
@@ -263,7 +267,7 @@ public static class ItemTooltip
                 col.AddChild(Label("   sorteadas em cada exemplar (quanto maior o V, mais linhas e mais fortes)", 12, Blue));
         }
         // 14/11: opções estilo MU (Sorte, Opção +N, Excelentes ★)
-        if (info is not null && itemId.Length > 0 && OpcoesMu.Rolar(itemId, quality, info.Category, info.MinLevel) is { Linhas.Count: > 0 } mu)
+        if (info is not null && itemId.Length > 0 && OpcoesMu.Rolar(seedId, quality, info.Category, info.MinLevel) is { Linhas.Count: > 0 } mu)
         {
             col.AddChild(Label(OpcoesMu.Excelente(quality) ? "Opções Excelentes" : "Opções do exemplar", 12, Gold));
             foreach (var a in mu.Linhas) col.AddChild(Label("   " + a.Text, 14, a.Text.StartsWith("★") ? new Color(0.35f, 1f, 0.55f) : Blue));

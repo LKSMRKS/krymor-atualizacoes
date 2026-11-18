@@ -254,6 +254,9 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
 
     // ------------------------------------------------------------ equipamento
 
+    // 16/11: orbe flutua acima da palma esquerda (ajuste fino pela vitrine "maoesquerda")
+    internal static Vector3 OrbPos = new(0.30f, 0.06f, 0.02f), OrbRot = new(0, 0, -90);
+
     public void SetGear(string? weapon, string? offhand, string? body)
     {
         if (weapon != _weaponModel) SetWeapon(weapon);
@@ -267,8 +270,8 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
             if (_shield is not null)
             {
                 _foreL.AddChild(_shield);
-                _shield.Position = new Vector3(0.12f, 0.0f, 0.06f);
-                _shield.RotationDegrees = new Vector3(0, 0, -90);
+                _shield.Position = GearFactory.IsOrb(offhand) ? OrbPos : new Vector3(0.12f, 0.0f, 0.06f);
+                _shield.RotationDegrees = GearFactory.IsOrb(offhand) ? OrbRot : new Vector3(0, 0, -90);
                 _shieldCheck = true;
             }
             else if (offhand is not null && !offhand.StartsWith("shield_") && !offhand.StartsWith("orb") && !offhand.Contains("aljava")
