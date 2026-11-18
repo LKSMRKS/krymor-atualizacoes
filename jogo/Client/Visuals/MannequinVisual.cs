@@ -2543,7 +2543,16 @@ void fragment() {
         }
         _wasAlive = true;
         // voando e andando: o corpo inclina para a frente (como quem plana)
-        _body.Rotation = _flyLift > 0.01f ? new Vector3(Mathf.DegToRad(Mathf.Clamp(f.Speed * (Flying ? 3f : 3.5f), 0f, Flying ? 22f : 22f) * Mathf.Min(1f, _flyLift / 0.85f)), 0, 0) : Vector3.Zero;
+        // 18/11 16h (dono: "o boneco não parece que está voando de fato, parece que tá duro no ar"): voando, o corpo inteiro
+        // vive — inclina com a velocidade (até 30°), dá um tranco para trás a cada batida (a asa empurra), deita de lado na
+        // curva (como quem plana) e, parado no ar, fica levemente para a frente balançando
+        var yawAgora = Root.GlobalRotation.Y;
+        var giroVel = delta > 0f ? Mathf.AngleDifference(_yawAnt, yawAgora) / delta : 0f;
+        _yawAnt = yawAgora;
+        var vooK = Mathf.Min(1f, _flyLift / 0.85f);
+        _bank = Mathf.Lerp(_bank, Flying ? Mathf.Clamp(-giroVel * 0.22f, -0.5f, 0.5f) * Mathf.Clamp(f.Speed / 4f, 0.3f, 1f) : 0f, 1f - Mathf.Exp(-5f * delta));
+        var tranco = Flying ? Mathf.Sin(_wingT + 1.2f) * 4f : 0f;
+        _body.Rotation = _flyLift > 0.01f ? new Vector3(Mathf.DegToRad((Flying ? 6f + Mathf.Clamp(f.Speed * 3.2f, 0f, 24f) + tranco : Mathf.Clamp(f.Speed * 3.5f, 0f, 22f)) * vooK), 0, _bank * vooK) : Vector3.Zero;
         _shownLift = Mathf.Lerp(_shownLift, _groundLift, 1f - Mathf.Exp(-14f * delta));
 
         if (f.Action != _lastAction)
@@ -2787,6 +2796,13 @@ void fragment() {
                 // para trás (uma mais que a outra), pés esticados; braços abertos para os lados e para baixo (~45°),
                 // cotovelos levemente dobrados, mãos abertas — e tudo balança junto com a batida das asas
                 var bal = Mathf.Sin(_wingT + 0.4f);
+                // 18/11 16h: coluna e pescoço acompanham a batida (onda que sobe do quadril à cabeça) e as pernas balançam
+                // mais solto — o corpo deixa de ser uma tábua pendurada nas asas
+                Pose("Spine", AxL, 0.06f * Mathf.Sin(_wingT + 0.9f), flyW);
+                Pose("Spine1", AxL, 0.05f * Mathf.Sin(_wingT + 0.3f), flyW);
+                Pose("Neck", AxL, -0.07f * Mathf.Sin(_wingT - 0.2f) - 0.08f, flyW);   // a cabeça olha à frente
+                Pose("Hips", AxL, 0.05f * Mathf.Sin(_wingT + 1.4f), flyW);
+                bal *= 2.6f;
                 Pose("LeftUpLeg", AxL, -0.42f + 0.05f * bal, flyW);
                 Pose("RightUpLeg", AxL, -0.28f + 0.05f * bal, flyW);
                 Pose("LeftLeg", AxL, 0.62f - 0.06f * bal, flyW);
@@ -4301,7 +4317,10 @@ void fragment() {
         var amp = Mathf.Lerp(6f + 38f * _wingFlap, 34f, _wingLift);
         var roll = abre - bate * amp;
         var sweep = Mathf.Sin(_wingT - 0.9f) * (3f + 12f * _wingFlap);
-        var giro = Mathf.Lerp(-60f + open + sweep, 8f + sweep * 0.5f, _wingLift);   // voando: plano da asa de frente para trás (um pouco para trás)
+        // 18/11 16h (dono: "as asas ainda não estão batendo pra frente e pra trás"): voando, a batida é de pássaro — desce
+        // indo para a FRENTE e sobe voltando para TRÁS (oito deitado: a varredura vem um quarto de ciclo antes da altura)
+        var remada = Mathf.Sin(_wingT + 0.6f) * 34f * _wingLift;
+        var giro = Mathf.Lerp(-60f + open + sweep, 8f + sweep * 0.5f, _wingLift) + remada;   // voando: plano da asa de frente para trás (um pouco para trás)
         foreach (var (pivot, side) in _wingPivots)
         {
             pivot.RotationDegrees = new Vector3(0, side * giro, -side * roll);
@@ -5928,11 +5947,16 @@ void fragment() {
     /// <summary>Corpo da 3ª classe: era 1,20 × 1,28; +15% (pedido do dono 14/11).</summary>
     private const float C3Altura = 1.38f, C3Largura = 1.47f;
     private bool _evolvedWanted;
-    private const float EvolvedHeadShrink = 0.7f;
+    // 18/11 16h (dono: "a cabecinha do personagem tá ficando pequena e o capacete muito grande"): o gato, o corvo e a
+    // serpente ficavam a 70% (pareciam cabeça de alfinete); o leão já é volumoso e continua como estava
+    private float EvolvedHeadShrink => _classId == "guerreiro" ? 0.72f : 0.86f;
     private bool HelmOn => _helmet is not null || _armorParts.Keys.Any(k => k.StartsWith("capacete", System.StringComparison.Ordinal));
     /// <summary>Cabeçona de capacete (classe evoluída): do tamanho da cabeça do bicho de cada classe.</summary>
-    private float BigHelmScale => _classId switch { "guerreiro" => 1.5f, "mago" => 1.45f, "arqueiro" => 1.45f, _ => 1.32f };   // 12/11: menor
+    // 18/11 16h: o capacete crescia até 150% para cobrir a cabeça do bicho — mas a cabeça do bicho some de capacete, então o
+    // capacete fica no tamanho de uma cabeça normal de quem usa armadura (o mesmo 1,1 do boneco sem classe evoluída)
+    private float BigHelmScale => _classId == "guerreiro" ? 1.16f : 1.12f;
     private readonly HashSet<Node3D> _hiddenForAnimal = new();
+    private float _yawAnt, _bank;   // 18/11 16h: inclinação de lado na curva voando
 
     /// <summary>
     /// Pedido do usuário: depois da troca de classe, o Guerreiro fica com cara de leão, o Mago de corvo, o Arqueiro de

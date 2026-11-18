@@ -723,13 +723,13 @@ public partial class Showcase : Node3D
     // prancha 03: kit modular
     private void Terreno(MapView map, Camera3D camera)
     {
-        var ids = new[] { "decor_terreno_boneco", "decor_terreno_portal", "decor_terreno_mascate", "decor_terreno_jukebox", "decor_terreno_cercado" };
+        var ids = (OS.GetEnvironment("VITRINE_PECAS") is { Length: > 0 } lp ? lp : "decor_terreno_boneco,decor_terreno_portal,decor_terreno_mascate,decor_terreno_jukebox,decor_terreno_cercado").Split(',');
         for (var i = 0; i < ids.Length; i++)
         {
-            var x = -12f + i * 6f;
+            var x = (i - (ids.Length - 1) / 2f) * (ids.Length > 5 ? 3.6f : 6f);
             CasaDecor.Build(map.Root, ids[i], (_, _) => new Vector3(x, 0, 0), onde: (0, 0, 0, 0));
             if (map.Root.GetChild(map.Root.GetChildCount() - 1) is Node3D n) n.Position = new Vector3(x, 0, 0);
-            Label(ids[i][14..], new Vector3(x, 4.2f, 0), 30);
+            Label(ids[i].Replace("decor_terreno_", "").Replace("decor_", ""), new Vector3(x, ids.Length > 5 ? 3.6f + (i % 2) * 0.5f : 4.2f, 0), ids.Length > 5 ? 20 : 30);
         }
         camera.Position = new Vector3(0, 7f, 15f);
         camera.LookAt(new Vector3(0, 1.2f, 0));

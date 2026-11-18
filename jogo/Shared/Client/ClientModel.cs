@@ -770,6 +770,9 @@ public sealed class ClientModel
                         "decor_terreno_mascate" => ("Comprar com o Mascate do Quintal", 0.8),
                         "decor_terreno_jukebox" => ("Vitrola: pôr um disco (+XP por 30 min)", 0.5),
                         "decor_terreno_cercado" => ("Cercado de Caça (fazer ovos de monstro)", 1.4),
+                        "decor_terreno_forja" => ("Usar: Forja do Quintal", 0.8),
+                        "decor_terreno_caldeirao" => ("Usar: Caldeirão do Quintal", 0.6),
+                        _ when id.StartsWith("decor_terreno_portal_", StringComparison.Ordinal) => ("Portal do Quintal (ir para " + (id[21..] switch { "vila_das_mos" => "a Vila das Mós", "astralia" => "Astrália", "candeia" => "Candeia", "brasaforte" => "Brasaforte", var o => o }) + ")", 0.8),
                         _ => ("", 0.0),
                     };
                     if (rotulo.Length == 0) continue;
