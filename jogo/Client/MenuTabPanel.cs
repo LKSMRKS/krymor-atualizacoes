@@ -364,7 +364,7 @@ public sealed partial class MenuTabPanel : PanelContainer
         }
         _conteudo.AddChild(abas);
         var algum = false;
-        foreach (var (tipo, titulo) in new[] { ("dia", "Diárias"), ("semana", "Semanais"), ("conta", "Da conta (uma vez só)") })
+        foreach (var (tipo, titulo) in new[] { ("dia", "Diárias"), ("semana", "Semanais"), ("conta", "Da conta (uma vez só)"), ("conquista", "Conquistas (baús, monstros, enigmas, missões)") })
         {
             var lista = _dados!.Lista.Where(o => o.Tipo == tipo && o.Resgatado == _verFeitas).OrderByDescending(o => o.Progresso >= o.Meta).ToList();
             if (lista.Count == 0) continue;

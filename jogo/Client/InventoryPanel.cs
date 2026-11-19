@@ -635,14 +635,7 @@ public sealed class InventoryPanel
             _details.AddChild(l);
         }
 
-        if (item is not null && info?.Slot != "material")
-        {
-            var isConsumable = info?.Slot == "consumable" || definition.StartsWith("consumable_");
-            var b = new Button { Text = isConsumable ? "Usar" : "Equipar", Disabled = !usable, CustomMinimumSize = new Vector2(96, 34) };
-            var it = item;
-            b.Pressed += () => Activate(m, it);
-            _buttons.AddChild(b);
-        }
+        // 19/11 (dono: "no inventário tira o botão de usar"): usar/vestir é com o botão direito ou duplo clique no item
         if (equipped is not null)
         {
             var b = new Button { Text = "Tirar", CustomMinimumSize = new Vector2(96, 34) };

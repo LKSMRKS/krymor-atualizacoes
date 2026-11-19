@@ -212,6 +212,18 @@ public sealed class ClientModel
 
     public bool InParty(string characterId) => Party?.Members.Any(m => m.CharacterId == characterId) == true;
 
+    /// <summary>19/11: passagem para dungeon que pede chave e você (e ninguém do seu grupo lá dentro) não tem — portal vermelho.
+    /// A primeira entrada em cada dungeon é livre.</summary>
+    public bool FaltaChaveDg(CinzasDaMare.Shared.World.MapPortal p)
+    {
+        if (!CinzasDaMare.Shared.World.ChavesDungeon.Dungeons.Contains(p.ToMap)) return false;
+        if (!_flags.Contains(CinzasDaMare.Shared.World.ChavesDungeon.MarcaPrimeira(p.ToMap))) return false;
+        var chave = CinzasDaMare.Shared.World.ChavesDungeon.Chave(p.ToMap);
+        if (Inventory.Any(i => i.DefinitionId == chave)) return false;
+        // alguém do grupo já está lá dentro: a chave dele abriu para todos
+        return !(Party is { } pt && pt.Members.Any(mb => mb.CharacterId != CharacterId && mb.Online && mb.MapName == p.Label));
+    }
+
     public ItemInfo? ItemInfoFor(string definitionId) => KnownItems.TryGetValue(definitionId, out var i) ? i : null;
     /// <summary>
     /// O personagem já pode usar este poder: básico sempre; arma pela arma; evolução evoluído; o resto só com o tomo lido
@@ -949,6 +961,7 @@ public sealed class ClientModel
         "CasterDead" => "você está morto",
         "WrongClass" => "não é da sua classe",
         "NoWeaponSkill" => "a arma equipada não tem essa habilidade",
+        "Renascendo" => "acabou de renascer (2 s de proteção: sem tomar nem dar dano)",
         "NotEvolved" => "só depois da evolução de classe",
         "NeedsShield" => "precisa de um escudo na mão esquerda",
         "NotLearned" => "você não tem essa habilidade (a tecla X é a do item vestido, ex.: Máscara do Pandemônio)",

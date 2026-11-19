@@ -57,6 +57,17 @@ public sealed partial class MiniMapa : Control
                 if (!Inside(a, -20) && !Inside(b, -20)) continue;
                 DrawLine(ClampIn(a, c, r - 4), ClampIn(b, c, r - 4), new Color(0.55f, 0.45f, 0.3f, 0.7f), Mathf.Max(1.5f, (float)road.Width * scale), true);
             }
+        // 19/11 (dono: "nas dungeons fica sem minimapa"): a dungeon não tem estrada nem ilustração — as salas (zonas) viram
+        // chão claro e os muros ficam grossos, para dar para ver o desenho dos corredores
+        if (map.Instanced || map.Kind == "dungeon")
+            foreach (var z in map.Zones)
+            {
+                if (z.Kind is "secreto" or "segredo" && !CinzasDaMare.Shared.World.SegredoNoMapa.Achado(map, z, Model?.Flags)) continue;
+                var hz = (float)z.W / 2; var vz = (float)z.H / 2;
+                var cz = new[] { P(z.X - hz, z.Y - vz), P(z.X + hz, z.Y - vz), P(z.X + hz, z.Y + vz), P(z.X - hz, z.Y + vz) };
+                if (cz.All(q => !Inside(q, -30))) continue;
+                DrawColoredPolygon(cz.Select(q => ClampIn(q, c, r - 3)).ToArray(), z.Kind == "seguro" ? new Color(0.3f, 0.42f, 0.3f, 0.45f) : new Color(0.32f, 0.29f, 0.25f, 0.55f));
+            }
         // muros e rochas (obstáculos grandes)
         var escondido = CinzasDaMare.Shared.World.SegredoNoMapa.Escondidos(map, Model?.Flags);
         foreach (var o in map.Obstacles)
@@ -71,7 +82,8 @@ public sealed partial class MiniMapa : Control
                 var hw = (float)o.W / 2; var hh = (float)o.H / 2;
                 var pts = new[] { P(o.X - hw, o.Y - hh), P(o.X + hw, o.Y - hh), P(o.X + hw, o.Y + hh), P(o.X - hw, o.Y + hh) };
                 if (pts.All(q => !Inside(q, -2))) continue;
-                for (var i = 0; i < 4; i++) DrawLine(ClampIn(pts[i], c, r - 3), ClampIn(pts[(i + 1) % 4], c, r - 3), new Color(0.5f, 0.47f, 0.42f, 0.85f), 2f);
+                var grosso = map.Instanced ? Mathf.Max(2.5f, Mathf.Min(hw, hh) * 2f * scale) : 2f;
+                for (var i = 0; i < 4; i++) DrawLine(ClampIn(pts[i], c, r - 3), ClampIn(pts[(i + 1) % 4], c, r - 3), new Color(0.62f, 0.58f, 0.5f, 0.95f), grosso);
             }
         }
         foreach (var w in map.Waypoints) { var p = P(w.X, w.Y); if (Inside(p)) DrawCircle(p, 4.5f, Model?.Flags.Contains("wp:" + w.Id) != false ? new Color(0.35f, 0.75f, 1f) : new Color(0.5f, 0.52f, 0.56f, 0.7f)); }
@@ -82,7 +94,7 @@ public sealed partial class MiniMapa : Control
             var p = P(pt.X, pt.Y);
             if (!Inside(p)) continue;
             // 14/11 23h: trancado (nível ou marca que falta) = vermelho, igual ao portal vermelho do mapa 3D
-            var trancado = (pt.LevelLock && pt.MinLevel > meuNivel) || !CinzasDaMare.Shared.World.Marcas.Tem(m.Flags, pt.RequiresFlag);
+            var trancado = (pt.LevelLock && pt.MinLevel > meuNivel) || !CinzasDaMare.Shared.World.Marcas.Tem(m.Flags, pt.RequiresFlag) || m.FaltaChaveDg(pt);   // 19/11: dungeon sem chave
             DrawArc(p, 5f, 0, Mathf.Tau, 16, trancado ? new Color(1f, 0.25f, 0.2f) : new Color(0.7f, 0.5f, 1f), 2f);
         }
         foreach (var n in map.Npcs)

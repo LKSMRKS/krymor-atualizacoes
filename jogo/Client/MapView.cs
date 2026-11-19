@@ -4542,8 +4542,9 @@ void fragment() {
                 Modulate = new Color(0.85f, 0.92f, 1f), PixelSize = 0.01f,
             };
             gnode.AddChild(gl);
-            if (portal.LevelLock && portal.MinLevel > 0) _travados.Add((portal, gl, gveil));
-            if (portal.RequiresFlag is { Length: > 0 }) _travadosMarca.Add((portal, gl, gveil));
+            var pedeChaveG = CinzasDaMare.Shared.World.ChavesDungeon.Dungeons.Contains(portal.ToMap);   // 19/11: dungeon com chave
+            if (portal.LevelLock && portal.MinLevel > 0 && !pedeChaveG) _travados.Add((portal, gl, gveil));
+            if (portal.RequiresFlag is { Length: > 0 } || pedeChaveG) _travadosMarca.Add((portal, gl, gveil));
             return;
         }
         // arco de pedra virado para o centro do mapa, com véu brilhante e o nome do destino
@@ -4569,8 +4570,9 @@ void fragment() {
             Modulate = new Color(0.85f, 0.92f, 1f), PixelSize = 0.01f,
         };
         node.AddChild(lbl);
-        if (portal.LevelLock && portal.MinLevel > 0) _travados.Add((portal, lbl, veil));
-        if (portal.RequiresFlag is { Length: > 0 }) _travadosMarca.Add((portal, lbl, veil));
+        var pedeChave = CinzasDaMare.Shared.World.ChavesDungeon.Dungeons.Contains(portal.ToMap);   // 19/11: dungeon com chave
+        if (portal.LevelLock && portal.MinLevel > 0 && !pedeChave) _travados.Add((portal, lbl, veil));
+        if (portal.RequiresFlag is { Length: > 0 } || pedeChave) _travadosMarca.Add((portal, lbl, veil));
     }
 
     /// <summary>13/11 ("passagens com limitação são vermelhas"): nome em vermelho com cadeado enquanto o nível não chega.</summary>
@@ -4605,6 +4607,8 @@ void fragment() {
         return veu;
     }
     public int NivelJogador { get; set; } = 99;
+    /// <summary>19/11: falta a chave da Máquina de Chaves para esta passagem (dungeon) — portal vermelho.</summary>
+    public Func<MapPortal, bool>? FaltaChaveDg { get; set; }
     private int _nivelPintado = -1;
 
     /// <summary>11/11 noite: marca que o jogador já tem (pedra de viagem descoberta acende).</summary>
@@ -5846,10 +5850,11 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
         _flames.RemoveAll(fl => !GodotObject.IsInstanceValid(fl.Light));   // 13/11: luz apagada pelo editor (dava erro)
         foreach (var (pt, lb, veu) in _travadosMarca)
         {
-            var trav = !Marcas.Tem(flags, pt.RequiresFlag) || NivelJogador < pt.MinLevel;
+            var trav = !Marcas.Tem(flags, pt.RequiresFlag) || NivelJogador < pt.MinLevel || (FaltaChaveDg?.Invoke(pt) ?? false);   // 19/11: dungeon sem chave
             veu.MaterialOverride = VortexMat(trav);
             lb.Modulate = trav ? new Color(1f, 0.35f, 0.3f) : new Color(0.85f, 0.92f, 1f);
-            lb.Text = (trav ? "Trancado · " : "→ ") + pt.Label + (pt.MinLevel > 0 ? $"  (nível {pt.MinLevel}+)" : "");
+            var semChave = FaltaChaveDg?.Invoke(pt) ?? false;
+            lb.Text = (trav ? (semChave && NivelJogador >= pt.MinLevel && Marcas.Tem(flags, pt.RequiresFlag) ? "Precisa da chave · " : "Trancado · ") : "→ ") + pt.Label + (pt.MinLevel > 0 ? $"  (nível {pt.MinLevel}+)" : "");
         }
         foreach (var (trava, portao) in _veusPorta)
             if (GodotObject.IsInstanceValid(portao)) portao.Visible = !flags.Contains(trava);

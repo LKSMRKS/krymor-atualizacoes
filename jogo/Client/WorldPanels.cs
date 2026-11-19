@@ -379,6 +379,7 @@ public sealed class WorldPanels
                 : m.Snapshot?.Players.Where(p => p.CharacterId != m.CharacterId).Select(p => new JogadorNoMapa(p.Name, p.X, p.Y, p.PartyId is not null && p.PartyId == m.Me?.PartyId)).ToList();
             _canvas.Markers = m.QuestMarkers;
             _canvas.XpDoNivel = m.Progress?.XpToNext ?? 0;   // 18/11: XP da missão em % do seu nível
+            _canvas.FaltaChave = m.FaltaChaveDg;   // 19/11
             _canvas.Flags = m.Flags;   // 18/11 15h: segredo e pedra de viagem só aparecem depois de achados
             _canvas.Historia = m.ProximaHistoria is { } hi && m.IsPinned(hi.Id) ? hi : null;   // 17/11 noite: estrela da história no mapa M
             _canvas.NpcMarks = _previa is { } pm
@@ -1566,6 +1567,8 @@ public sealed partial class WorldMapCanvas : Control
     public QuestEntry? Historia { get; set; }
     public System.Collections.Generic.IReadOnlyDictionary<string, string>? NpcMarks { get; set; }
     public Func<CinzasDaMare.Shared.World.MapNpc, bool>? NpcShown { get; set; }
+    /// <summary>19/11: passagem para dungeon sem a chave = vermelha.</summary>
+    public Func<CinzasDaMare.Shared.World.MapPortal, bool>? FaltaChave { get; set; }
 
     /// <summary>Para onde o personagem olha (seta do "você está aqui").</summary>
     public Vector2 MeFacing { get; set; } = new(0, -1);
@@ -1619,7 +1622,7 @@ public sealed partial class WorldMapCanvas : Control
             var p = At(portal.X, portal.Y);
             // 13/11 ("passagens com trava são vermelhas"): trancada pelo nível = vermelha, com o nível ao lado
             // 14/11 23h (dono: "os TPs bloqueados, com o portal vermelho, em vermelho no minimapa e no mapa"): mesma regra do portal 3D
-            var trancada = (portal.LevelLock && portal.MinLevel > MyLevel) || !CinzasDaMare.Shared.World.Marcas.Tem(Flags, portal.RequiresFlag);
+            var trancada = (portal.LevelLock && portal.MinLevel > MyLevel) || !CinzasDaMare.Shared.World.Marcas.Tem(Flags, portal.RequiresFlag) || (FaltaChave?.Invoke(portal) ?? false);
             DrawCircle(p, 7, new Color(0.15f, 0.08f, 0.25f, 0.9f));
             DrawCircle(p, 5, trancada ? new Color(1f, 0.25f, 0.2f) : new Color(0.72f, 0.45f, 1f));
             DrawString(font, p + new Vector2(9, 5), portal.Label + (trancada ? (portal.MinLevel > MyLevel ? $"  (trancado · nível {portal.MinLevel})" : "  (trancado)") : ""), HorizontalAlignment.Left, -1, 14,

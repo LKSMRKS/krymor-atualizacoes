@@ -1297,7 +1297,7 @@ public sealed class HudView
         {
             var exposed = target.Action.StartsWith("recover", StringComparison.Ordinal) ? "  · EXPOSTO" : "";
             // 11/11 noite: "Nome - Nv x" e pedrinha amarela à esquerda quando o bicho conta para uma missão ativa
-            var questTarget = m.Quests.Any(q => q.State == "active" && q.Targets.Contains(target.DefinitionId));
+            var questTarget = m.Quests.Any(q => q.State == "active" && q.Progress < q.Count && m.IsPinned(q.Id) && q.Targets.Contains(target.DefinitionId));
             // 13/11 23:39 ("no boneco de nível 1 dou 51, no de 10 dou 13, no de 20 dou 12 — qual a lógica?"): monstro de nível
             // MAIOR que o seu toma −12% por nível de diferença (mínimo 30%) e tem mais armadura. Agora a barra mostra isso.
             var acima = me is not null && target.Level > me.Level + 2 && !target.DefinitionId.Contains("boneco") ? target.Level - me.Level : 0;
@@ -1379,7 +1379,7 @@ public sealed class HudView
     private void LimitarQuests()
     {
         if (!_questPanel.Visible) return;
-        var max = Math.Max(180f, Root.GetViewportRect().Size.Y * 0.34f);
+        var max = Math.Max(220f, Root.GetViewportRect().Size.Y * 0.46f);   // 19/11: 34% → 46% da tela
         var filhos = _questBox.GetChildren().OfType<Control>().ToList();
         if (filhos.Count < 2) return;
         if (_questPanel.GetCombinedMinimumSize().Y <= max) return;
@@ -1402,7 +1402,7 @@ public sealed class HudView
         // o quadro mostra só o objetivo + 2 missões (as do próprio lugar primeiro); fora, até 5
         var naDg = m.Map?.Instanced == true;
         var tracked = open.Where(q => m.IsPinned(q.Id))
-            .OrderBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 2 : 5).ToList();
+            .OrderBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 3 : 7).ToList();   // 19/11 (dono: "agora mostra pouca missão, aumenta um pouco")
         // 10/11: número de cada missão (o mesmo da pedrinha na bússola e no mapa M)
         Tracked = tracked;
         // 19/11 (dono: "o que está marcado no J mostra no mapa até 10 ou 15"): no mapa (M) vão até 15 marcadas — as do canto

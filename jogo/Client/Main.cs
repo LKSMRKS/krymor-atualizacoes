@@ -857,7 +857,7 @@ public partial class Main : Node3D
         else HandleContinuousInput(now);
         if (_demoAuraAt >= 0 && (float)_time >= _demoAuraAt && MyState() is { } auraSt && _model.Me is { } auraMe) { _demoAuraAt = -1f; LevelUpAura(auraSt, auraMe.Level, true); }
         if (_mapView is not null) { _mapView.PlayerPos = MyState()?.Pos; _mapView.NodeDepleted ??= id => _model.NodeSecondsLeft(id) > 0; _mapView.HasFlag ??= f => _model.Flags.Contains(f); }
-        if (_mapView is not null && _model.Me is { } euNv) _mapView.NivelJogador = euNv.Level;
+        if (_mapView is not null && _model.Me is { } euNv) { _mapView.NivelJogador = euNv.Level; _mapView.FaltaChaveDg ??= _model.FaltaChaveDg; }
         Perfil.Marca("camera/entrada");
         _mapView?.Update(_model.Flags, (float)_time, dt, _model.MapDecor);
         if (_model.Me is { } viewer) _mapView?.SetViewer(viewer.X, viewer.Y);

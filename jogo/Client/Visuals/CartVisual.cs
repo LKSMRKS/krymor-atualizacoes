@@ -49,10 +49,12 @@ public sealed partial class CartVisual : Node3D
         AddChild(_puller.Root);
     }
 
+    private static float Chao(float x, float z) => EscadaCasa.Altura(x, z) + CinzasDaMare.Client.Relevo.Altura(x, z);
+
     public void SetTarget(Vector3 p)
     {
         _target = p;
-        if (!_placed) { Position = p; _placed = true; }
+        if (!_placed) { Position = new Vector3(p.X, Chao(p.X, p.Z), p.Z); _placed = true; }
     }
 
     public override void _Process(double delta)
@@ -61,15 +63,24 @@ public sealed partial class CartVisual : Node3D
         var step = _target - Position;
         step.Y = 0;
         var dist = step.Length();
-        if (dist > 6f) { Position = _target; return; }
+        if (dist > 6f) { Position = new Vector3(_target.X, Chao(_target.X, _target.Z), _target.Z); return; }
         if (dist > 0.01f)
         {
             var move = step * Mathf.Min(1f, dt * 4f);
             Position += move;
             var yaw = Mathf.Atan2(step.X, step.Z);
-            Rotation = new Vector3(0, Mathf.LerpAngle(Rotation.Y, yaw, Mathf.Min(1f, dt * 3f)), 0);
+            Rotation = new Vector3(Rotation.X, Mathf.LerpAngle(Rotation.Y, yaw, Mathf.Min(1f, dt * 3f)), 0);
             foreach (var w in _wheels) w.RotateX(move.Length() / 0.42f);
         }
+        // 19/11 (dono: "na Mata dos Enforcados a carroça passa por uma elevação e fica dentro da terra"): acompanha o chão
+        // (relevo + rampas), e inclina com a subida medindo a altura na frente e atrás
+        var y = Chao(Position.X, Position.Z);
+        Position = new Vector3(Position.X, Mathf.Lerp(Position.Y, y, Mathf.Min(1f, dt * 10f)), Position.Z);
+        var fwd = new Vector3(Mathf.Sin(Rotation.Y), 0, Mathf.Cos(Rotation.Y));
+        var frente = Chao(Position.X + fwd.X * 1.2f, Position.Z + fwd.Z * 1.2f);
+        var tras = Chao(Position.X - fwd.X * 1.2f, Position.Z - fwd.Z * 1.2f);
+        var incl = -Mathf.Atan2(frente - tras, 2.4f);
+        Rotation = new Vector3(Mathf.LerpAngle(Rotation.X, incl, Mathf.Min(1f, dt * 6f)), Rotation.Y, 0);
         _speed = Mathf.Lerp(_speed, dist > 0.05f ? Mathf.Min(2.4f, dist * 4f) : 0f, Mathf.Min(1f, dt * 6f));
         _puller?.Update(new VisualFrame { Alive = true, Action = _speed > 0.3f ? "" : "", Speed = _speed }, dt);
     }
