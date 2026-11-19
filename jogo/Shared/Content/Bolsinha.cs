@@ -8,7 +8,7 @@ public static class Bolsinha
 {
     public const int Base = 1000;
     public const int Colunas = 8;
-    public const int Linhas = 5;
+    public const int Linhas = 8;   // 19/11 (dono: "a bolsa com mais espaço"): 40 → 64 casas (só cresce; as casas antigas continuam)
     public const int Casas = Colunas * Linhas;
 
     public static bool EhDaBolsinha(int slot) => slot >= Base && slot < Base + Casas;

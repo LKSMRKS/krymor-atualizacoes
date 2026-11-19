@@ -522,6 +522,10 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
     {
         // mesmo material da pele do manequim (cor e brilho iguais aos da cabeça)
         Material skin = _baseMats.Count > 0 ? _baseMats[0] : VisualKit.Mat(new Color(0.5f, 0.33f, 0.21f), 0.5f);
+        // 19/11: os traços da classe ficam num nó próprio — com skin eles somem (a barba do mago furava a cara de todas as skins)
+        _rosto?.QueueFree();
+        _rosto = new Node3D { Name = "RostoClasse", Visible = _skinId is null };
+        _headSocket.AddChild(_rosto);
         switch (_classId)
         {
             case "mago":
@@ -530,30 +534,32 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 // barba branca de mago: nasce na mandíbula (abaixo da boca), volume no queixo e ponta longa caindo sobre
                 // o peito; bigode fino logo acima da boca. Nada acima da linha da boca (o rosto fica livre).
                 // (feedback: a barba ficava no meio da cara) → tudo abaixo da boca, rente ao queixo e caindo no peito
-                var chin = VisualKit.Part(_headSocket, VisualKit.Sphere(0.05f), white, new Vector3(0, -0.035f, 0.07f));
+                var chin = VisualKit.Part(_rosto!, VisualKit.Sphere(0.05f), white, new Vector3(0, -0.035f, 0.07f));
                 chin.Scale = new Vector3(1.15f, 1.05f, 0.65f);
-                var tip = VisualKit.Part(_headSocket, VisualKit.Capsule(0.04f, 0.2f), white, new Vector3(0, -0.12f, 0.08f), new Vector3(14, 0, 0));
+                var tip = VisualKit.Part(_rosto!, VisualKit.Capsule(0.04f, 0.2f), white, new Vector3(0, -0.12f, 0.08f), new Vector3(14, 0, 0));
                 tip.Scale = new Vector3(1.1f, 1f, 0.6f);
                 foreach (var side in new[] { -1f, 1f })
                 {
                     // costeleta fina pela linha da mandíbula, atrás e abaixo da bochecha
-                    var jaw = VisualKit.Part(_headSocket, VisualKit.Capsule(0.018f, 0.08f), white, new Vector3(side * 0.06f, -0.01f, 0.045f), new Vector3(-20, 0, side * -28));
+                    var jaw = VisualKit.Part(_rosto!, VisualKit.Capsule(0.018f, 0.08f), white, new Vector3(side * 0.06f, -0.01f, 0.045f), new Vector3(-20, 0, side * -28));
                     jaw.Scale = new Vector3(1f, 1f, 0.8f);
                     // bigode fino caindo dos cantos da boca
-                    VisualKit.Part(_headSocket, VisualKit.Capsule(0.007f, 0.045f), white, new Vector3(side * 0.02f, 0.005f, 0.098f), new Vector3(0, 0, side * 70));
+                    VisualKit.Part(_rosto!, VisualKit.Capsule(0.007f, 0.045f), white, new Vector3(side * 0.02f, 0.005f, 0.098f), new Vector3(0, 0, side * 70));
                 }
                 break;
             }
             case "arqueiro":
                 // nariz fino para a frente e queixo pontudo
                 // nariz: cunha vertical (prisma de 3 lados) com a aresta para a frente; queixo em ponta para baixo e à frente
-                var nose = VisualKit.Part(_headSocket, VisualKit.Cylinder(0.003f, 0.02f, 0.055f, 3), skin, new Vector3(0, 0.072f, 0.096f), new Vector3(-14, 0, 0));
+                var nose = VisualKit.Part(_rosto!, VisualKit.Cylinder(0.003f, 0.02f, 0.055f, 3), skin, new Vector3(0, 0.072f, 0.096f), new Vector3(-14, 0, 0));
                 nose.RotateObjectLocal(Vector3.Up, Mathf.Pi);
-                var point = VisualKit.Part(_headSocket, VisualKit.Cylinder(0.04f, 0.008f, 0.06f, 6), skin, new Vector3(0, -0.035f, 0.055f), new Vector3(14, 0, 0));
+                var point = VisualKit.Part(_rosto!, VisualKit.Cylinder(0.04f, 0.008f, 0.06f, 6), skin, new Vector3(0, -0.035f, 0.055f), new Vector3(14, 0, 0));
                 point.Scale = new Vector3(1f, 1f, 0.8f);
                 break;
         }
     }
+
+    private Node3D? _rosto;
 
     private Node3D? _hair;
 
@@ -1282,6 +1288,9 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
     }
 
     private ClothSkirt? _skirt;
+    private bool _armaGuardadaNaCama;
+    /// <summary>19/11: vitrine de retratos (ícones das skins): cabeça parada olhando para a frente.</summary>
+    public bool Retrato { get; set; }
 
     /// <summary>
     /// Capa de mago: tecido mole simulado (ClothCape) preso nos ombros e na nuca, emendando com o capuz caído;
@@ -1303,16 +1312,19 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
             foreach (var (a, b, r) in limbBones) limbs.Add((BoneWorld(a), BoneWorld(b), r * sc));
             return limbs;
         };
-        // presilha nos ombros (gola dobrada) — tampa a emenda do pano com o corpo
-        var gola = VisualKit.Part(_back, VisualKit.Cylinder(0.1f, 0.15f, 0.06f, 16), VisualKit.Mat(cloth, 0.9f), new Vector3(0, 0.21f, -0.07f));
         var node = new Node3D { Name = "Manto" };
         _back.AddChild(node);
-        gola.Reparent(node, false);
-        // gola de pano em volta do pescoço e "véu" sobre os ombros (capinha curta): é dali que a capa cai
+        // 19/11 (dono: "a capa tá maneira, mas o tecido ao redor da cabeça tá bugado"): saíram o cilindro e o disco do "véu"
+        // (viravam pratos inclinados em volta da cabeça quando o tronco gira). Fica só a borda da capa presa atrás da nuca,
+        // rente aos ombros, e um broche de cada lado do peito segurando o pano
         var clothMat = VisualKit.Mat(cloth, 0.9f);
-        // 17/11 (dono: skins "tortas" — esqueleto, mágico e corvo pareciam usar uma boia no pescoço): gola fina e véu raso
-        VisualKit.Part(node, new TorusMesh { InnerRadius = 0.112f, OuterRadius = 0.13f, Rings = 20, RingSegments = 10 }, clothMat, new Vector3(0, 0.13f, -0.025f), null, new Vector3(1f, 0.8f, 0.85f));
-        VisualKit.Part(node, VisualKit.Sphere(0.25f), clothMat, new Vector3(0, 0.06f, -0.04f), null, new Vector3(0.98f, 0.16f, 0.62f));
+        VisualKit.Part(node, VisualKit.Sphere(0.1f), clothMat, new Vector3(0, 0.06f, -0.075f), null, new Vector3(1.25f, 0.32f, 0.45f));   // dobra da capa na nuca
+        var broche = glow ? VisualKit.Glow(trim, Math.Max(0.6f, brilho)) : VisualKit.Mat(trim, 0.35f, 0.7f);
+        foreach (var sd in new[] { -1f, 1f })
+        {
+            VisualKit.Part(node, VisualKit.Capsule(0.022f, 0.16f), clothMat, new Vector3(sd * 0.13f, 0.07f, -0.02f), new Vector3(70, 0, sd * 12));   // alça por cima do ombro
+            VisualKit.Part(node, VisualKit.Sphere(0.022f), broche, new Vector3(sd * 0.1f, 0.03f, 0.075f), null, new Vector3(1f, 1f, 0.6f));
+        }
         _outfit.Add(node);
         return _cape;
     }
@@ -2674,6 +2686,18 @@ void fragment() {
         if (!SwingAlive() && !(f.Action ?? "").StartsWith("windup", StringComparison.Ordinal)) _attackCrouch = 0f;
         var bob = _flyLift > 0.01f ? Mathf.Sin(_wingT) * (Flying ? 0.07f : 0.03f) * Mathf.Min(1f, _flyLift / 0.85f) : 0f;   // sobe e desce com cada batida
         _body.Position = new Vector3(0, -crouch - 0.015f + _shownLift + _flyLift + bob, 0);   // sola encostada no chão (+ o que faltar para nada afundar)
+        // 19/11 (dono: "bota pra ficar deitado na cama"): de barriga para cima em cima do colchão, ao comprido da cama
+        var deitado = f.Action == "deitado";
+        if (deitado) { _body.Rotation = new Vector3(-Mathf.Pi / 2f, 0, 0); _body.Position = new Vector3(0, 0.62f, 0.88f); }
+        else if (_body.Rotation.X != 0f) _body.Rotation = Vector3.Zero;
+        // os panos simulados (capa, túnica) penduram no mundo: deitado eles somem, senão ficariam em pé ao lado da cama
+        if (_cape is not null && GodotObject.IsInstanceValid(_cape) && _cape.Visible == deitado) _cape.Visible = !deitado;
+        if (_skirt is not null && GodotObject.IsInstanceValid(_skirt) && _skirt.Visible == deitado) _skirt.Visible = !deitado;
+        if (deitado != _armaGuardadaNaCama)   // arma e escudo vão para o lado da cama
+        {
+            _armaGuardadaNaCama = deitado;
+            foreach (var n in new[] { _weapon, _shield, _focus, _segundaArma }) if (n is not null && GodotObject.IsInstanceValid(n)) n.Visible = !deitado;
+        }
         // esquiva = deslizada no chão (pedido: a cambalhota parecia "a bolinha do Sonic com quadros faltando")
         Malabares();
         if (_baloes is not null && GodotObject.IsInstanceValid(_baloes) && _baloes.IsInsideTree())
@@ -2834,6 +2858,25 @@ void fragment() {
             Pose("LeftUpLeg", AxL, -0.12f, 1f); Pose("RightUpLeg", AxL, 0.08f, 1f);
             Pose("RightLeg", AxL, 0.35f, 1f);
             Pose("Head", AxUp, 0.7f, 1f);
+            return;
+        }
+        // 19/11: retrato (ícone da skin) — cabeça e tronco parados, de frente (o clipe de espera vira a cabeça para os lados)
+        if (Retrato)
+        {
+            foreach (var osso in new[] { "Hips", "Spine", "Spine1", "Spine2", "Neck", "Head" })
+                if (Bone(osso) is var bo2 and >= 0) _skel.SetBonePoseRotation(bo2, _skel.GetBoneRest(bo2).Basis.GetRotationQuaternion());
+            AimArm("Left", new(0.2f, -0.95f, 0.12f), new(0.08f, -0.9f, 0.35f), 1f);
+            AimArm("Right", new(0.2f, -0.95f, 0.12f), new(0.08f, -0.9f, 0.35f), 1f);
+            return;
+        }
+        if (_frame.Action == "deitado")
+        {
+            // o clipe de animação (andar/esperar) continua mexendo os ossos: deitado, tudo volta à pose de descanso primeiro
+            foreach (var osso in new[] { "Hips", "Spine", "Spine1", "Spine2", "Neck", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot" })
+                if (Bone(osso) is var bo and >= 0) _skel.SetBonePoseRotation(bo, _skel.GetBoneRest(bo).Basis.GetRotationQuaternion());
+            AimArm("Left", new(0.06f, -1f, 0.08f), new(0.02f, -0.97f, 0.2f), 1f);
+            AimArm("Right", new(0.06f, -1f, 0.08f), new(0.02f, -0.97f, 0.2f), 1f);
+            Pose("Neck", AxL, -0.25f + 0.02f * Mathf.Sin(_time * 1.2f), 1f);   // cabeça no travesseiro, respirando
             return;
         }
         if (_frame.Action == "sleep")
@@ -3084,7 +3127,7 @@ void fragment() {
     private Vector2 _weaponSpan;
     private const float SwingSeconds = 0.2f;
     private int _swingSeq = -1, _swingCombo;
-    private float _swingStart, _swingStrike = -1f, _swingE, _attackCrouch;
+    private float _swingStart, _swingStrike = -1f, _swingE, _attackCrouch, _saltoT0 = -1f;
     private bool _swinging;
 
     /// <summary>Quadro-chave do golpe: braço da arma (direções no espaço do corpo: +X direita, +Y cima, +Z frente),
@@ -3954,11 +3997,39 @@ void fragment() {
                 }
                 break;
             case "salto":
-                // agacha, sobe com a arma no alto e desce batendo no chão
-                if (phase == "windup") { Pose("Hips", AxL, 0.3f, w); Pose("LeftUpLeg", AxL, -0.6f, w); Pose("RightUpLeg", AxL, -0.6f, w); Pose("LeftLeg", AxL, 0.9f, w); Pose("RightLeg", AxL, 0.9f, w); AimArm("Right", new(0.3f, -0.6f, -0.5f), new(0.2f, -0.3f, -0.9f), w); }
-                else if (strike) { AimArm("Right", new(0.1f, -0.5f, 0.85f), new(0.0f, -0.85f, 0.5f), w); AimArm("Left", new(-0.4f, -0.3f, 0.8f), new(-0.3f, -0.5f, 0.8f), w); Pose("Spine1", AxL, 0.5f, w); }
-                else { AimArm("Right", new(0.2f, 1f, 0.1f), new(0.1f, 0.9f, -0.3f), w); Pose("Spine1", AxL, -0.2f, w); }
+            {
+                // 19/11 (dono: "o boneco avança, chega no lugar e só depois a arma sobe na cabeça — não acompanha"): o servidor
+                // leva o boneco do ponto A ao B nos 0,3 s logo depois da preparação. Antes a pose era: bate no chão no começo da
+                // viagem e levanta a arma DEPOIS de chegar (ao contrário). Agora: agacha → voa com a arma no alto, pernas
+                // dobradas e o corpo subindo num arco → chega batendo a arma no chão.
+                if (phase == "windup")
+                {
+                    _saltoT0 = -1f;
+                    Pose("Hips", AxL, 0.3f, w); Pose("LeftUpLeg", AxL, -0.6f, w); Pose("RightUpLeg", AxL, -0.6f, w); Pose("LeftLeg", AxL, 0.9f, w); Pose("RightLeg", AxL, 0.9f, w);
+                    AimArm("Right", new(0.3f, -0.6f, -0.5f), new(0.2f, -0.3f, -0.9f), w);
+                    _attackCrouch = Mathf.Max(_attackCrouch, 0.18f * w);
+                    break;
+                }
+                if (_saltoT0 < 0f) _saltoT0 = _time;
+                var u = (_time - _saltoT0) / 0.3f;   // 0..1 = no ar (GameServer.Salto.cs: SaltoMs)
+                if (u < 1f)
+                {
+                    _attackCrouch = -Mathf.Sin(u * Mathf.Pi) * 0.5f;   // arco do pulo (negativo = sobe)
+                    AimArm("Right", new(0.15f, 1f, -0.1f), new(0.05f, 0.95f, -0.3f), 1f);
+                    AimArm("Left", new(-0.15f, 1f, -0.1f), new(-0.05f, 0.95f, -0.3f), 1f);
+                    Pose("Spine1", AxL, -0.25f, 1f);
+                    Pose("LeftUpLeg", AxL, -0.9f, 1f); Pose("RightUpLeg", AxL, -0.5f, 1f); Pose("LeftLeg", AxL, 1.2f, 1f); Pose("RightLeg", AxL, 0.8f, 1f);
+                }
+                else
+                {
+                    var k = Mathf.Clamp(1f - (u - 1f) / 1.2f, 0f, 1f);   // batida e volta
+                    AimArm("Right", new(0.1f, -0.5f, 0.85f), new(0.0f, -0.85f, 0.5f), k);
+                    AimArm("Left", new(-0.4f, -0.3f, 0.8f), new(-0.3f, -0.5f, 0.8f), k);
+                    Pose("Spine1", AxL, 0.55f, k);
+                    _attackCrouch = Mathf.Max(_attackCrouch, 0.22f * k);
+                }
                 break;
+            }
             case "estocadas":
             {
                 // 13/11 ("o goblin dá 3 golpes mas não mexe a mão conforme o ataque, só vai pra frente — sem impulso nem
@@ -4622,6 +4693,7 @@ void fragment() {
         // 14/11 tarde (dono: "a skin do bracelete não aplica, fica 'abaixo' da classe 2"): com skin, a cabeça de bicho da
         // classe 2/3 sai e a skin aparece inteira; tirou a skin, o bicho volta
         SetEvolved(_evolvedWanted);
+        if (_rosto is not null && GodotObject.IsInstanceValid(_rosto)) _rosto.Visible = _skinId is null;
         if (_hair is not null && !_hiddenForAnimal.Contains(_hair)) _hair.Visible = _skinId is null or "chef" or "pirata";   // 17/11: gravata sem o cabelo comprido (parecia mulher)   // 14/11: cartola/abóbora/balde cobrem o cabelo (o cabelo vazava pela aba, quadriculado)
         if (_skinId is null) return;
         _skinNo = new Node3D { Name = "Skin_" + skin };
@@ -4838,9 +4910,14 @@ void fragment() {
             {
                 // sem cabeça: a gola da armadura e uma chama azul no lugar
                 VisualKit.Part(peito, VisualKit.Cylinder(0.12f, 0.16f, 0.1f, 14), VisualKit.Mat(new Color(0.2f, 0.2f, 0.25f), 0.3f, 0.9f), new Vector3(0, 0.26f, 0));
-                for (var i = 0; i < 5; i++)
-                    VisualKit.Part(peito, VisualKit.Cylinder(0f, 0.07f - i * 0.008f, 0.2f + i * 0.04f, 7), VisualKit.Glow(new Color(0.3f, 0.5f, 1f), 2.2f - i * 0.2f),
-                        new Vector3(Mathf.Sin(i * 1.3f) * 0.04f, 0.4f + i * 0.02f, Mathf.Cos(i * 1.3f) * 0.03f), new Vector3(0, i * 40, (i - 2) * 6));
+                // 19/11 (referência do dono: chama azul macia no lugar da cabeça — os cones pontudos pareciam espinhos de gelo):
+                // camadas de luz somada (de fora azul-escuro para dentro quase branco) e três línguas finas subindo
+                VisualKit.Part(peito, VisualKit.Sphere(0.12f), VisualKit.Unshaded(new Color(0.15f, 0.3f, 1f, 0.45f), additive: true), new Vector3(0, 0.43f, 0), null, new Vector3(1f, 1.9f, 1f));
+                VisualKit.Part(peito, VisualKit.Sphere(0.085f), VisualKit.Unshaded(new Color(0.35f, 0.6f, 1f, 0.6f), additive: true), new Vector3(0, 0.42f, 0.01f), null, new Vector3(1f, 2.1f, 1f));
+                VisualKit.Part(peito, VisualKit.Sphere(0.05f), VisualKit.Unshaded(new Color(0.85f, 0.95f, 1f, 0.9f), additive: true), new Vector3(0, 0.37f, 0.02f), null, new Vector3(1f, 1.8f, 1f));
+                for (var i = 0; i < 3; i++)
+                    VisualKit.Part(peito, VisualKit.Cylinder(0f, 0.035f, 0.22f, 8), VisualKit.Unshaded(new Color(0.3f, 0.55f, 1f, 0.5f), additive: true),
+                        new Vector3((i - 1) * 0.045f, 0.6f + (i == 1 ? 0.05f : 0f), 0), null, new Vector3(1f, 1f, 0.6f));
                 peito.AddChild(new OmniLight3D { LightColor = new Color(0.4f, 0.55f, 1f), LightEnergy = 0.6f, OmniRange = 2f, Position = new Vector3(0, 0.45f, 0), ShadowEnabled = false });
                 cab.Visible = false;
                 foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(peito, VisualKit.Sphere(0.11f), VisualKit.Mat(new Color(0.22f, 0.22f, 0.27f), 0.3f, 0.9f), new Vector3(sd * 0.2f, 0.2f, 0), null, new Vector3(1f, 0.7f, 1f));   // ombreiras
@@ -5334,7 +5411,7 @@ void fragment() {
             EncostarNaPele(peito, "Spine2", peito.Position);
             EncostarNaPele(barriga, barriga.GetParent() == quadril ? "Hips" : "Spine", barriga.GetParent() == quadril ? Vector3.Zero : barriga.Position);
             EncostarNaPele(quadril, "Hips", Vector3.Zero);
-            EncostarNaPele(cab, "Head", Vector3.Zero, soFrente: true);
+            if (OS.GetEnvironment("SKIN_ENCAIXE_CABECA") == "1") EncostarNaPele(cab, "Head", Vector3.Zero, soFrente: true);
         }
     }
 

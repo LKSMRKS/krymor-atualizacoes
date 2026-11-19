@@ -162,6 +162,7 @@ public sealed class HudView
     }
     /// <summary>Missões no canto, na ordem dos números (o mapa M usa a mesma numeração).</summary>
     public static List<CinzasDaMare.Shared.Net.QuestEntry> Tracked { get; private set; } = new();
+    public static List<CinzasDaMare.Shared.Net.QuestEntry> NoMapa { get; private set; } = new();
     public string ClockText { set => _compass.Clock = value; }
     private CenterContainer _promptRow = null!;
     private void PosicionarAviso()
@@ -910,7 +911,7 @@ public sealed class HudView
 
     private ProgressBar NovaBarraCasa()
     {
-        var b = new ProgressBar { MinValue = 0, MaxValue = 1, Step = 0.001, ShowPercentage = false, Size = new Vector2(200, 7), CustomMinimumSize = new Vector2(200, 7), MouseFilter = Control.MouseFilterEnum.Ignore };
+        var b = new ProgressBar { MinValue = 0, MaxValue = 1, Step = 0.001, ShowPercentage = false, Size = new Vector2(120, 5), CustomMinimumSize = new Vector2(120, 5), MouseFilter = Control.MouseFilterEnum.Ignore };
         var fundo = new StyleBoxFlat { BgColor = new Color(0.11f, 0.1f, 0.08f, 0.9f), BorderColor = new Color(0.35f, 0.27f, 0.13f) };
         fundo.SetBorderWidthAll(1); fundo.SetCornerRadiusAll(3);
         var cheio = new StyleBoxFlat { BgColor = new Color(0.79f, 0.63f, 0.32f) };
@@ -952,7 +953,7 @@ public sealed class HudView
         // 18/11 15h: nível da casa — em cima da barra, à esquerda do meio (só na sua casa/terreno)
         if (_casaLabel is null)
         {
-            _casaLabel = MakeLabel("", 12, new Color(0.98f, 0.85f, 0.55f), 3);
+            _casaLabel = MakeLabel("", 10, new Color(0.98f, 0.85f, 0.55f), 2);   // 19/11: menor (dono: "tá muito grande")
             Root.AddChild(_casaLabel);
         }
         // 18/11 19h: "casa|nível|conforto|pontos|fração" — em cima da barra só "SUA CASA · NÍVEL N" e a barrinha (estilo grupo);
@@ -969,8 +970,8 @@ public sealed class HudView
         var xp = _barra.Xp;
         if (xp.IsInsideTree() && naCasa)
         {
-            _casaLabel.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 38f);
-            _casaBarra.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 18f);
+            _casaLabel.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 26f);
+            _casaBarra.Position = new Vector2(xp.GlobalPosition.X + 4f, xp.GlobalPosition.Y - 11f);
         }
         if (xp.IsInsideTree())
         {
@@ -1004,30 +1005,19 @@ public sealed class HudView
         if (TitleFont is not null) t.AddThemeFontOverride("font", TitleFont);
         t.HorizontalAlignment = HorizontalAlignment.Center;
         col.AddChild(t);
-        void Secao(string titulo, string lista, Color cor)
-        {
-            var itens = lista.Split(';', StringSplitOptions.RemoveEmptyEntries);
-            if (itens.Length == 0) return;
-            col.AddChild(MakeLabel(titulo, 13, cor, 2));
-            foreach (var it in itens)
-            {
-                var l = MakeLabel("  • " + it, 14, new Color(0.93f, 0.9f, 0.82f), 2);
-                l.AutowrapMode = TextServer.AutowrapMode.WordSmart;
-                l.CustomMinimumSize = new Vector2(510, 0);
-                col.AddChild(l);
-            }
-        }
-        Secao("VOCÊ GANHOU (já é seu)", p[1], new Color(0.5f, 1f, 0.55f));
-        Secao("AGORA VOCÊ PODE", p[2], new Color(0.5f, 0.8f, 1f));
-        Secao("DÁ PARA CONSEGUIR A PARTIR DE AGORA (não vem sozinho — veja onde)", p[3], new Color(1f, 0.8f, 0.35f));
-        var rod = MakeLabel("TAB › Trilha mostra o caminho todo · clique para fechar", 11, new Color(0.65f, 0.62f, 0.55f));
-        rod.HorizontalAlignment = HorizontalAlignment.Center;
-        col.AddChild(rod);
+        // 19/11 (dono: "tira esse quadrado de lvl, só deixa o NÍVEL 23 e os ícones do lado"): só o título com os ⚜, sem
+        // moldura; o que ganhou/liberou vai para o histórico (O) e para a Trilha (Tab)
+        foreach (var (titulo, lista) in new[] { ("Ganhou", p[1]), ("Agora pode", p[2]), ("Dá para conseguir", p[3]) })
+            foreach (var it in lista.Split(';', StringSplitOptions.RemoveEmptyEntries)) AvisoLocal?.Invoke($"{p[0]} — {titulo}: {it}");
+        t.AddThemeFontSizeOverride("font_size", 34);
+        st.BgColor = new Color(0, 0, 0, 0); st.BorderColor = new Color(0, 0, 0, 0); st.ShadowSize = 0;
+        card.CustomMinimumSize = new Vector2(420, 0);
         card.GuiInput += e => { if (e is InputEventMouseButton { Pressed: true }) { card.QueueFree(); if (_nivelCard == card) _nivelCard = null; } };
         Root.AddChild(card);
         card.SetAnchorsPreset(Control.LayoutPreset.CenterTop);
-        card.Position = new Vector2(-270, 150);
-        Callable.From(() => { if (GodotObject.IsInstanceValid(card)) card.Position = new Vector2((Root.Size.X - card.Size.X) / 2f, 150); }).CallDeferred();
+        card.Position = new Vector2(-210, 170);
+        card.MouseFilter = Control.MouseFilterEnum.Ignore;
+        Callable.From(() => { if (GodotObject.IsInstanceValid(card)) card.Position = new Vector2((Root.Size.X - card.Size.X) / 2f, 170); }).CallDeferred();
         _nivelIdade = 0;
     }
 
@@ -1035,8 +1025,8 @@ public sealed class HudView
     {
         if (_nivelCard is not { } c || !GodotObject.IsInstanceValid(c)) return;
         _nivelIdade += dt;
-        if (_nivelIdade > 14) { c.QueueFree(); _nivelCard = null; return; }
-        c.Modulate = new Color(1, 1, 1, (float)Math.Clamp(14 - _nivelIdade, 0, 1));
+        if (_nivelIdade > 5) { c.QueueFree(); _nivelCard = null; return; }
+        c.Modulate = new Color(1, 1, 1, (float)Math.Clamp(5 - _nivelIdade, 0, 1));
     }
 
     /// <summary>14/11 19h: avisos locais (atualizador etc.) também vão para o histórico (O).</summary>
@@ -1415,6 +1405,9 @@ public sealed class HudView
             .OrderBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 2 : 5).ToList();
         // 10/11: número de cada missão (o mesmo da pedrinha na bússola e no mapa M)
         Tracked = tracked;
+        // 19/11 (dono: "o que está marcado no J mostra no mapa até 10 ou 15"): no mapa (M) vão até 15 marcadas — as do canto
+        // primeiro (mesmo número), depois as outras marcadas
+        NoMapa = tracked.Concat(open.Where(q => m.IsPinned(q.Id) && !tracked.Contains(q))).Take(15).ToList();
         var me = m.Me;
         var marks = new List<(float Deg, int N, bool Ready)>();
         if (me is not null && m.Map is not null)

@@ -11,15 +11,15 @@ public static class Desbloqueios
 {
     public static readonly IReadOnlyList<(int Nivel, string Texto)> Lista = new (int, string)[]
     {
-        (5, "Galeria Funda (dungeon da Costa) e os prêmios de nível a cada 5"),
-        (6, "Missões do acampamento goblin na Costa"),
-        (7, "As páginas do livro no casarão da Costa"),
-        (10, "Vale das Cinzas · montaria Corcel · Monte do Prefeito (ramificação do Vale)"),
+        (5, "Galeria Funda (dungeon da Costa do Cal) e os prêmios de nível a cada 5"),
+        (6, "Missões do acampamento goblin na Costa do Cal"),
+        (7, "As páginas do livro no casarão da Costa do Cal"),
+        (10, "Vale das Cinzas · montaria Corcel · Monte do Prefeito (ramificação do Vale das Cinzas)"),
         (14, "Crônica de KRYMOR (Inês, Biblioteca do Cais): cada região vencida vira um capítulo"),
         (11, "Provas de classe com o seu mentor (4 provas: caçada, troféu, memória e chefe)"),
         (15, "Evolução de classe (2ª classe, depois das 4 provas) · fim das missões do Prefeito · CASA própria com o Prefeito (15 mil)"),
         (17, "Mata dos Enforcados e a Cripta do Sino"),
-        (20, "Missão secreta do Ezequiel (barqueiro do Porto): o caminho do Triângulo · Cânions dos Suplicantes · Floresta Oculta (Máscara)"),
+        (20, "Missão secreta do Ezequiel (barqueiro do Porto das Cinzas): o caminho do Triângulo · Cânions dos Suplicantes · Floresta Oculta (Máscara)"),
         (25, "Montaria Lobo · companheiro Raposa"),
         (28, "Brejo da Viúva e o Mosteiro Afundado"),
         (34, "Véspera e o Mercado dos Mortos"),

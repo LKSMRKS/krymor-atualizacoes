@@ -226,23 +226,21 @@ public sealed class InventoryPanel
         // 14/11: duas abas — Mochila (tudo) e Bolsinha (itens pequenos 1×1). Arrastando um item por cima da aba, ela abre.
         _abaMochila = new AbaSoltavel { Text = "Mochila", ToggleMode = true, ButtonPressed = true, FocusMode = Control.FocusModeEnum.None,
             CustomMinimumSize = new Vector2(86, 28), TooltipText = "Itens grandes (armas, armaduras...)" };
-        _abaBolsinha = new AbaSoltavel { Text = "Bolsinha", ToggleMode = true, FocusMode = Control.FocusModeEnum.None,
+        _abaBolsinha = new AbaSoltavel { Text = "Bolso", ToggleMode = true, FocusMode = Control.FocusModeEnum.None,
             CustomMinimumSize = new Vector2(100, 28), TooltipText = "Itens pequenos (1 casa): poções, joias, materiais.\nArraste um item por cima desta aba para abri-la." };
         _abaMochila.Pressed += () => MostrarBolsinha(false);
         _abaBolsinha.Pressed += () => MostrarBolsinha(true);
         _abaMochila.Passou += () => MostrarBolsinha(false);
         _abaBolsinha.Passou += () => MostrarBolsinha(true);
-        bagHeader.AddChild(_abaMochila);
-        bagHeader.AddChild(_abaBolsinha);
+        // 19/11 (dono montou o desenho do inventário): "Organizar" sozinho à direita, em cima da mochila; as abas Mochila e
+        // Bolso vão para baixo da grade (no lugar do texto do item escolhido); moedas embaixo, à direita
         bagHeader.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
         // 10/11 item 53: Organizar — o servidor reempacota a mochila (maiores primeiro, iguais juntos)
         var organize = new Button { Text = "Organizar", TooltipText = "Arruma a mochila: itens grandes primeiro e iguais lado a lado",
             FocusMode = Control.FocusModeEnum.None, CustomMinimumSize = new Vector2(92, 26) };
         organize.Pressed += () => Send?.Invoke(new MoveSlotIntent("@organizar", -1));
         bagHeader.AddChild(organize);
-        bagHeader.AddChild(new Control { CustomMinimumSize = new Vector2(10, 0) });
         _coins = HudView.MakeLabel("", 15, new Color(1f, 0.84f, 0.35f));
-        bagHeader.AddChild(_coins);
         column.AddChild(bagHeader);
         _bag = new GradeItens { Colunas = 8, Linhas = 8, Casa = 40f, Tipo = "bag", SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter };
         _bag.Info = def => _model?.ItemInfoFor(def);
@@ -302,15 +300,19 @@ public sealed class InventoryPanel
         _bolsa.SoltouFora += id => _bagFora(id);
         column.AddChild(_bolsa);
 
-        // ---- item escolhido: nome e botões (o resto aparece no quadro do mouse) ----
-        var detailsRow = new HBoxContainer { CustomMinimumSize = new Vector2(0, 40) };
+        // ---- embaixo: abas Mochila | Bolso, botões do item escolhido e as moedas ----
+        var detailsRow = new HBoxContainer { CustomMinimumSize = new Vector2(0, 34) };
         detailsRow.AddThemeConstantOverride("separation", 8);
-        _details = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, ClipContents = true, CustomMinimumSize = new Vector2(0, 40) };
+        detailsRow.AddChild(_abaMochila);
+        detailsRow.AddChild(_abaBolsinha);
+        _details = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, ClipContents = true, Visible = false };   // 19/11: sem o texto de baixo
         _details.AddThemeConstantOverride("separation", 0);
         detailsRow.AddChild(_details);
+        detailsRow.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
         _buttons = new HBoxContainer { SizeFlagsVertical = Control.SizeFlags.ShrinkCenter };
         _buttons.AddThemeConstantOverride("separation", 6);
         detailsRow.AddChild(_buttons);
+        detailsRow.AddChild(_coins);
         column.AddChild(detailsRow);
     }
 
@@ -447,7 +449,7 @@ public sealed class InventoryPanel
         }
         _abaBolsinha.Visible = grid;
         if (!grid && _naBolsinha) MostrarBolsinha(false);
-        _abaBolsinha.Text = $"Bolsinha {_bolsa.Itens.Count}/{Bolsinha.Casas}";
+        _abaBolsinha.Text = $"Bolso {_bolsa.Itens.Count}/{Bolsinha.Casas}";
         _bag.Selecionado = _selectedItem;
         _bolsa.Selecionado = _selectedItem;
         _bag.QueueRedraw();

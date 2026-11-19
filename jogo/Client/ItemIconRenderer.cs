@@ -56,6 +56,13 @@ public sealed partial class ItemIconRenderer : Node
         definition = BaseDaVariante(definition);
         var key = KeyFor(info, definition);
         if (Cache.TryGetValue(key, out var tex)) return tex;
+        // 19/11 (dono: "altera o ícone de todas as skins — versões diferentes usando a mesma caveira"): o bracelete mostra o
+        // ROSTO da própria skin (retrato tirado do boneco: vitrine "retratos", Tools/gerar_icones_skins.sh)
+        if (definition.StartsWith("bracelete_", StringComparison.Ordinal) && VisualAssets.Load("ico_" + definition + ".png") is { } retrato)
+        {
+            Cache[key] = retrato;
+            return retrato;
+        }
         // ícone pintado (ico_*.png) quando existe: mais bonito que a foto do modelo
         // 17/11 noite (dono: "não era pra mexer no que já tava daora — os ícones novos parecem massinha; só a joia da brasa
         // ficou boa"): a arte PINTADA volta a valer para todos. Itens que dividem o mesmo desenho (13 plantas na "erva") ficam

@@ -54,16 +54,21 @@ public static class ItemAffixes
         new("damage_reduction_pct", 0.01, 0.025, 0.0003, true, "de redução de dano"),
     };
 
-    private static IReadOnlyList<Affix> RollVariacao(string itemId, int v, int itemLevel)
+    /// <summary>19/11 (dono: "os anéis do touro e da coruja vieram todos iguais — tem que ter V1 até V10, mudando pouca coisa
+    /// do atributo"): anel e colar também caem com variação (V1–V10), com linhas mais fracas que as do conjunto.</summary>
+    public static bool Acessorio(string? category) => category is "ring" or "amulet";
+
+    private static IReadOnlyList<Affix> RollVariacao(string itemId, int v, int itemLevel, string? category = null)
     {
         var seed = Fnv(itemId + "#v");
-        var (min, max) = Variacao.Lines(v);
+        var acc = Acessorio(category);
+        var (min, max) = acc ? (1 + (Math.Min(v, 10) - 1) / 4, 1 + (Math.Min(v, 10) - 1) / 4) : Variacao.Lines(v);
         var n = min + (int)(Next(ref seed) % (uint)(max - min + 1));
         if (n == 0) return Array.Empty<Affix>();
         var picked = new List<Affix>(n);
         var used = new HashSet<int>();
         var lvl = Math.Max(1, itemLevel);
-        var boost = Variacao.Strength(v);
+        var boost = acc ? 0.35 + 0.05 * Math.Min(v, 10) : Variacao.Strength(v);
         for (var i = 0; i < n && used.Count < SetLines.Length; i++)
         {
             var k = (int)(Next(ref seed) % (uint)SetLines.Length);
@@ -78,9 +83,9 @@ public static class ItemAffixes
         return picked;
     }
 
-    public static IReadOnlyList<Affix> Roll(string itemId, string quality, string pool, int itemLevel)
+    public static IReadOnlyList<Affix> Roll(string itemId, string quality, string pool, int itemLevel, string? category = null)
     {
-        if (Variacao.Of(quality) is > 0 and var vv && !string.IsNullOrEmpty(itemId)) return RollVariacao(itemId, vv, itemLevel);
+        if (Variacao.Of(quality) is > 0 and var vv && !string.IsNullOrEmpty(itemId)) return RollVariacao(itemId, vv, itemLevel, category);
         var n = CountFor(quality);
         if (n == 0 || string.IsNullOrEmpty(itemId)) return Array.Empty<Affix>();
         var kinds = pool switch { "physical_weapon" => Weapon, "armor" => Armor, _ => null };

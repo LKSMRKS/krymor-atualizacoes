@@ -11,7 +11,8 @@ namespace CinzasDaMare.Shared.Content;
 /// </summary>
 public static class LigacoesSet
 {
-    public static readonly (string A, string B)[] Pares = { ("head", "body"), ("luvas", "body"), ("body", "calca"), ("calca", "botas") };
+    // 19/11 (dono: "a bota precisa ligar direto no peitoral, igual a luva — aqui tá ligando pelo anel"): tudo liga no peitoral
+    public static readonly (string A, string B)[] Pares = { ("head", "body"), ("luvas", "body"), ("calca", "body"), ("botas", "body") };
 
     /// <summary>Quantas ligações acendem e de qual conjunto (o que acende mais). slot → id do conjunto (null = sem set).</summary>
     public static (int Acesas, string? Set) Contar(IReadOnlyDictionary<string, string?> setPorSlot)

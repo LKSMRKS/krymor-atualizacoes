@@ -65,6 +65,8 @@ public static class Protocol
 [JsonDerivedType(typeof(SkinVisivelIntent), "skin_visivel")]
 [JsonDerivedType(typeof(DecorPlaceIntent), "decor_place")]
 [JsonDerivedType(typeof(ObjetivosIntent), "objetivos")]
+[JsonDerivedType(typeof(MapaPreviaIntent), "mapa_previa")]
+[JsonDerivedType(typeof(MapaPreviaMessage), "mapa_previa_msg")]
 [JsonDerivedType(typeof(ObjetivosMessage), "objetivos_lista")]
 [JsonDerivedType(typeof(HistoricoDiaMessage), "historico_dia")]
 [JsonDerivedType(typeof(PartyIntent), "party")]
@@ -418,6 +420,11 @@ public sealed record SkinVisivelIntent(bool Visivel) : NetMessage
 public sealed record DecorPlaceIntent(string DecorId, double X, double Y, double Yaw, double Altura = 0) : NetMessage;
 /// <summary>14/11: menu do TAB — "abrir", "resgatar" (Id = objetivo) ou "comprar" (Id = item da Loja de Cristais).</summary>
 public sealed record ObjetivosIntent(string Acao, string? Id = null) : NetMessage;
+/// <summary>19/11 (dono: "ao clicar no mapa geral nas bolinhas você entra em cada mapa, em vez de viajar — ver o que tem lá,
+/// se tem missão; e mostrar os jogadores"): pede o mapa de um lugar já visitado.</summary>
+public sealed record MapaPreviaIntent(string MapId) : NetMessage;
+public sealed record JogadorNoMapa(string Name, double X, double Y, bool Grupo);
+public sealed record MapaPreviaMessage(CinzasDaMare.Shared.World.MapLayout Map, IReadOnlyList<JogadorNoMapa> Jogadores) : NetMessage;
 public sealed record ObjetivoView(string Id, string Tipo, string Titulo, long Progresso, long Meta, int Cristais, bool Resgatado);
 public sealed record LojaCristalView(string Item, string Nome, int Preco, string Grupo, int Nivel, bool JaTem);
 /// <summary>14/11: objetivos (diários, semanais, da conta) e a Loja de Cristais, com o saldo de cristais azuis da conta.</summary>
@@ -480,7 +487,11 @@ public sealed record QuestLogMessage(IReadOnlyList<QuestEntry> Quests) : NetMess
 
 /// <summary>State: visited | known (vista/conectada, ainda não visitada) | unknown | future (não implementada).</summary>
 public sealed record WorldRegionView(string Id, string Name, string Kind, double X, double Y, string Levels,
-    string Description, string State, bool Here, IReadOnlyList<string>? Quests = null);
+    string Description, string State, bool Here, IReadOnlyList<string>? Quests = null)
+{
+    /// <summary>19/11: mapas desta região que você já visitou ([id, nome]) — clicar na bolinha abre o mapa deles.</summary>
+    public IReadOnlyList<string[]>? Mapas { get; init; }
+}
 public sealed record WaypointView(string Id, string Name, string MapId, string MapName, double X, double Y, string Region = "");
 public sealed record WorldMapMessage(IReadOnlyList<WorldRegionView> Regions, IReadOnlyList<string[]> Links,
     IReadOnlyList<WaypointView> Waypoints, string CurrentMap, string CurrentMapName, string CurrentRegion) : NetMessage;

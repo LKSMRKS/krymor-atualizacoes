@@ -228,7 +228,8 @@ public static class ItemTooltip
         // contra o que está equipado no mesmo lugar; o que só o equipado tem aparece logo abaixo, também pequeno
         // 14/11 ("a calça não mostra o que tem de melhor ou não comparado à que estou usando — regra pra tudo"): todo item
         // que se veste compara com o do mesmo lugar (calça, luvas, botas, asas/capa, anel, colar, pet, montaria...)
-        var cmpOn = m is not null && info is not null && info.Slot is { Length: > 0 } && info.Slot != "bracelete";
+        // 19/11 (dono: "as setas se é pior ou melhor não aparecem nos braceletes"): bracelete (skin) compara também
+        var cmpOn = m is not null && info is not null && info.Slot is { Length: > 0 };
         var diffs = cmpOn ? Diffs(m!, info!) : new Dictionary<string, double>();
         if (info?.Stats is { Count: > 0 } stats)
             foreach (var (key, label) in StatNames)
@@ -265,7 +266,7 @@ public static class ItemTooltip
         var vNum = Variacao.Of(quality);
         if (info is not null && (vNum > 0 || nAff > 0 && info.AffixPool is "physical_weapon" or "armor"))
         {
-            var afs = itemId.Length > 0 ? ItemAffixes.Roll(seedId, quality, info.AffixPool, info.MinLevel) : Array.Empty<ItemAffixes.Affix>();
+            var afs = itemId.Length > 0 ? ItemAffixes.Roll(seedId, quality, info.AffixPool, info.MinLevel, info.Category) : Array.Empty<ItemAffixes.Affix>();
             col.AddChild(Label(vNum > 0 ? $"Opções da variação V{vNum}" + (afs.Count > 0 ? $" ({afs.Count} linha{(afs.Count > 1 ? "s" : "")})" : "") : "Opções extras", 12, Gold));
             if (itemId.Length > 0 && afs.Count == 0) col.AddChild(Label("   nenhuma linha extra nesta (V baixo)", 12, Dim));
             if (itemId.Length > 0)

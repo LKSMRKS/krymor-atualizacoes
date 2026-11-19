@@ -188,6 +188,8 @@ public sealed class MapGeometry
         "entrada_galeria", "ruina_", "predio_", "casa", "sobrado", "casarao", "taverna", "edificio", "portao", "muralha", "torre",
         "arvore", "pinheir", "palmeira", "coqueiro", "mangue", "moita", "arbusto", "canteiro", "gargula_muro", "correntes", "estalactite",
         "observatorio", "moinho", "horta", "lustre", "quadro_mar", "cerca", "palafita", "farol", "elevador", "ninho",
+        // 19/11 (amigo: "o chefe da prova do mago ficou travado nas caveirinhas do chão e foi muito fácil"): enfeite miúdo de chão
+        "cranio", "caveira", "ossos", "pedrinha", "seixo", "cogumelo_pequeno",
     };
 
     private void AddPe(string kind, double x, double y, double yaw, double esc)
@@ -197,7 +199,7 @@ public sealed class MapGeometry
         if (k.StartsWith("glb:", StringComparison.Ordinal)) k = k[4..];
         foreach (var n in NaoBloqueia) if (k.Contains(n, StringComparison.Ordinal)) return;
         double w = (pe.X1 - pe.X0) * esc, d = (pe.Z1 - pe.Z0) * esc;
-        if (Math.Max(w, d) > 9 || Math.Max(w, d) < 0.12) return;
+        if (Math.Max(w, d) > 9 || Math.Max(w, d) < 0.35) return;   // 19/11: o que é menor que um palmo não segura ninguém
         double cx = (pe.X0 + pe.X1) / 2 * esc, cz = (pe.Z0 + pe.Z1) / 2 * esc;
         var a = yaw * Math.PI / 180.0;
         double Mx(double lx, double lz) => x + lx * Math.Cos(a) + lz * Math.Sin(a);

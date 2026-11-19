@@ -246,44 +246,52 @@ public static partial class PoderesVfx
 
         d = D("skill_guerreiro_salto", "Salto Esmagador", "guerreiro", "dash", 6.5f, 0);
         d.Prep = c => Particulas(c.Cena, null, c.Pos + Vector3.Up * 0.1f, Poeira(Terra, 0.6f, 12));
-        // 17/11 (dono: "a animação do pulo vai fora do pulo do boneco"): o rastro e a cratera seguem o PRÓPRIO boneco —
-        // o brilho vai junto dele no ar e a cratera nasce onde ele pousa (quando para), não no alcance máximo calculado
+        // 19/11 (dono: "o boneco avança, chega ao lugar final e só depois aparece a seta — não acompanha o movimento"):
+        // a seta (arco do pulo) agora nasce JUNTO com o boneco e vai sendo desenhada atrás dele enquanto ele voa, subindo e
+        // descendo num arco; a bola de brilho vai no peito dele; a cratera nasce onde ele pousa
         d.Golpe = c =>
         {
             var ator = c.Ator;
             Vector3 Onde() => ator is { } a && GodotObject.IsInstanceValid(a) ? a.GlobalPosition : c.Alvo;
             var mat = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
             var bola = Parte(c.Cena, new SphereMesh { Radius = 0.3f, Height = 0.6f }, mat, Onde() + Vector3.Up * 1f);
-            var ultimo = Onde(); var parado = 0f; var andou = false; var pousou = false;
+            var matA = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
+            var rastro = Parte(c.Cena, new ArrayMesh(), matA, Vector3.Zero);
             var inicio = c.Inicio;
+            var total = Mathf.Max(1f, new Vector2(c.Alvo.X - inicio.X, c.Alvo.Z - inicio.Z).Length());
+            var pts = new List<Vector3> { inicio + Vector3.Up * 1f };
+            var ultimo = Onde(); var parado = 0f; var andou = false; var pousou = false; var fade = 1f;
+            float Altura(Vector3 p) { var f = Mathf.Clamp(new Vector2(p.X - inicio.X, p.Z - inicio.Z).Length() / total, 0f, 1f); return 1f + 1.6f * Mathf.Sin(f * Mathf.Pi); }
             void Pousa()
             {
                 if (pousou) return;
                 pousou = true;
                 var fim = NoChao(Onde());
-                // 17/11 noite (dono: "a seta do pulo, a animação, você tirou? era só pra ajustar o círculo"): o arco do salto
-                // (a "seta") volta — agora de onde ele saiu até onde ele POUSOU de verdade, e a cratera nasce ali, embaixo dele
-                var a0 = inicio + Vector3.Up * 1f; var b0 = fim + Vector3.Up * 1f;
-                if ((b0 - a0).Length() > 0.8f)
-                {
-                    var matA = Fresnel(Terra, 1.8f, 1.2f, faixas: 1f, nucleo: 0.4f);
-                    var tubo = Parte(c.Cena, Tubo(Curva(a0, (a0 + b0) / 2f + Vector3.Up * 2.6f, b0, 14), 0.05f, 0.25f, 6), matA, Vector3.Zero);
-                    c.Cena.Add(tubo, 0.5, (x, t, dt) => matA.SetShaderParameter("alfa", 1f - t));
-                }
+                pts.Add(fim + Vector3.Up * 1f);
+                if (pts.Count >= 2) rastro.Mesh = Tubo(pts, 0.05f, 0.25f, 6);
                 Choque(c, fim, 2.4f, Terra, 1.5f, "cratera");
                 c.Tremer(0.2f);
             }
             c.Cena.Add(bola, 0.9, (x, t, dt) =>
             {
                 var agora = Onde();
-                x.GlobalPosition = agora + Vector3.Up * 1f;
+                x.GlobalPosition = agora + Vector3.Up * (pousou ? 1f : Altura(agora));
                 mat.SetShaderParameter("alfa", pousou ? 0f : 0.8f);
-                if (pousou || dt <= 0) return;
+                if (pousou) { fade = Mathf.Max(0f, fade - (float)dt * 2.5f); matA.SetShaderParameter("alfa", fade); return; }
+                matA.SetShaderParameter("alfa", 1f);
+                if (dt <= 0) return;
                 var v = (agora - ultimo).Length() / dt;
                 ultimo = agora;
-                if (v > 2f) { andou = true; parado = 0; Particulas(c.Cena, null, agora + Vector3.Up * 0.4f, Poeira(Terra, 0.35f, 3)); }
+                if (v > 2f)
+                {
+                    andou = true; parado = 0;
+                    var p = agora + Vector3.Up * Altura(agora);
+                    if ((p - pts[^1]).Length() > 0.15f) { pts.Add(p); if (pts.Count >= 2) rastro.Mesh = Tubo(pts, 0.05f, 0.25f, 6); }
+                    Particulas(c.Cena, null, agora + Vector3.Up * 0.4f, Poeira(Terra, 0.35f, 3));
+                }
                 else if (andou || t > 0.45f) { parado += dt; if (parado > 0.06f || t > 0.8f) Pousa(); }
             });
+            c.Cena.Add(rastro, 1.3, (x, t, dt) => { });
             c.Cena.Depois(0.88, Pousa);
         };
         d.Acerto = c => Impacto(c, Terra, 1.2f);

@@ -83,7 +83,8 @@ public partial class Showcase : Node3D
             case "bestiario": s.Bestiary(camera, 0); break;
             case "bestiario2": s.Bestiary(camera, 1); break;
             case "kit": s.Kit(map, camera); break;
-            case "terreno": s.Terreno(map, camera); break;   // 18/11 15h: peças de fora da casa
+            case "terreno": s.Terreno(map, camera); break;
+            case "retratos": s.Retratos(map, camera); break;   // 19/11: ícone de cada skin (rosto), um a cada 1,5 s   // 18/11 15h: peças de fora da casa
             case "glb": s.Glb(camera); break;
             case "classes": s.Classes(camera, dressed: true); break;
             case "poderes": Efeitos.VitrinePoderes.Montar(s, camera); break;   // gancho VFX 14/11 (vitrine dos poderes)
@@ -188,6 +189,44 @@ public partial class Showcase : Node3D
             default: s.Characters(camera); break;
         }
         return s;
+    }
+
+    // 19/11 (dono: "altera o ícone de todas as skins — versões diferentes estão usando a mesma caveira"): retrato de cada
+    // skin, fundo liso, para virar o ícone do bracelete (Tools/gerar_icones_skins.sh recorta). VITRINE_SKINS = lista.
+    private MannequinVisual? _retrato;
+    private string[]? _retratoSkins;
+    private float _retratoT;
+    private int _retratoI = -1;
+    private float _retratoYaw;
+
+    private void Retratos(MapView map, Camera3D camera)
+    {
+        map.Root.Visible = false;
+        foreach (var we in GetTree().Root.FindChildren("*", "WorldEnvironment", true, false))
+            if (we is WorldEnvironment w && w.Environment is { } env)
+            {
+                env.BackgroundMode = Godot.Environment.BGMode.Color;
+                env.BackgroundColor = new Color(0.13f, 0.11f, 0.16f);
+                env.FogEnabled = false; env.VolumetricFogEnabled = false;
+                env.AmbientLightSource = Godot.Environment.AmbientSource.Color;
+                env.AmbientLightColor = new Color(0.75f, 0.72f, 0.8f);
+                env.AmbientLightEnergy = 0.55f;
+            }
+        if (map.Sun is { } sun) { sun.RotationDegrees = new Vector3(-35f, 200f, 0); sun.LightEnergy = 1.1f; }
+        AddChild(new OmniLight3D { Position = new Vector3(-1.2f, 2.2f, -1.5f), LightEnergy = 1.2f, OmniRange = 6f, LightColor = new Color(1f, 0.92f, 0.8f) });
+        AddChild(new OmniLight3D { Position = new Vector3(1.3f, 1.9f, 0.8f), LightEnergy = 0.9f, OmniRange = 5f, LightColor = new Color(0.6f, 0.55f, 1f) });   // luz de recorte roxa
+        _retratoSkins = (OS.GetEnvironment("VITRINE_SKINS") ?? "coelho").Split(',', StringSplitOptions.RemoveEmptyEntries);
+        // mesmo palco do "classe2" (que mostra os rostos de frente): os 4 bonecos, câmera colada no 2º (x = −0,9)
+        Classe2(camera, 0f);
+        _retrato = _actors.Count > 1 ? _actors[1].Item1 as MannequinVisual : null;
+        foreach (var (a, _) in _actors) if (!ReferenceEquals(a, _retrato)) a.Root.Visible = false;
+        foreach (var n in GetChildren()) if (n is Label3D l) l.Visible = false;
+        _retrato?.SetEvolved(false);
+        if (_retrato is not null) _retrato.Retrato = true;
+        _retrato?.SetHead(null);
+        camera.Position = new Vector3(-0.9f + 0.12f, 1.6f, -1.35f);
+        camera.LookAt(new Vector3(-0.9f, 1.46f, 0f));
+        camera.Fov = 34;
     }
 
     private void Place(IEntityVisual v, Vector3 at, float yawDeg = 0f, float phase = 0f)
@@ -906,6 +945,12 @@ public partial class Showcase : Node3D
     public override void _Process(double delta)
     {
         if (Passo > 0f) delta = Passo;
+        if (_retrato is not null && _retratoSkins is not null)
+        {
+            _retratoT += (float)delta;
+            var k = (int)(_retratoT / 1.5f);
+            if (k != _retratoI && k < _retratoSkins.Length) { _retratoI = k; _retrato.SetSkin(_retratoSkins[k]); }
+        }
         _uiTick?.Invoke();
         _frameNo++;
         // 16/11 (otimização): VITRINE_MEDIR=1 imprime, no quadro 30, chamadas de desenho/objetos/triângulos e nós da cena

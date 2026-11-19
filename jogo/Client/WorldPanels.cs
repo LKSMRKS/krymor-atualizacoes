@@ -15,6 +15,11 @@ namespace CinzasDaMare.Client;
 /// </summary>
 public sealed class WorldPanels
 {
+    private MapaPreviaMessage? _previa;
+    private int _previaVersao;
+    private string? _ultimoMapaAqui;
+    private Action<bool>? _abaMapa;
+    private Button? _abaLocal;
     private static readonly Color Gold = new(0.95f, 0.78f, 0.30f);
     private static readonly Color Dim = new(0.70f, 0.68f, 0.62f);
     private static readonly Color Good = new(0.55f, 0.85f, 0.5f);
@@ -114,11 +119,22 @@ public sealed class WorldPanels
         var abaGeral = new Button { Text = "VER MAPA GERAL", ToggleMode = true, FocusMode = Control.FocusModeEnum.None, SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         void Aba(bool local)
         {
+            _previa = null;   // 19/11: "Mapa local" sempre volta para o mapa daqui
+            abaLocal.Text = "Mapa local";
             _canvas.AreaMode = local;
             abaLocal.SetPressedNoSignal(local);
             abaGeral.SetPressedNoSignal(!local);
             _canvas.QueueRedraw();
         }
+        _abaMapa = Aba;
+        _abaLocal = abaLocal;
+        // 19/11 (dono: "clicando no mapa geral nas bolinhas você entra em cada mapa, ao invés de viajar"): pede o mapa do lugar
+        _canvas.AbrirMapa += id =>
+        {
+            if (id == _ultimoMapaAqui) { Aba(true); return; }
+            Send?.Invoke(new MapaPreviaIntent(id));
+            Sfx.Play("ui_clique");
+        };
         abaLocal.Pressed += () => Aba(true);
         abaGeral.Pressed += () => Aba(false);
         abas.AddChild(abaLocal);
@@ -344,12 +360,31 @@ public sealed class WorldPanels
         if (_map.Visible || MapaNoMenu)
         {
             UpdateMap(m);
-            _canvas.Layout = m.Map;
+            // 19/11: chegou o mapa de outro lugar (clique no mapa geral / 🗺 do diário): mostra ele no lugar do local
+            if (m.MapaPreviaVersao != _previaVersao)
+            {
+                _previaVersao = m.MapaPreviaVersao;
+                if (m.MapaPrevia is { } pv)
+                {
+                    _previa = pv;
+                    _canvas.AreaMode = true;
+                    _canvas.ResetView();
+                    if (_abaLocal is { } al) { al.Text = "◂ Voltar: mapa daqui"; al.SetPressedNoSignal(false); }
+                }
+            }
+            _ultimoMapaAqui = m.Map?.Id;
+            _canvas.Layout = _previa?.Map ?? m.Map;
+            _canvas.Aqui = m.Map?.Id;
+            _canvas.Jogadores = _previa is { } pj ? pj.Jogadores
+                : m.Snapshot?.Players.Where(p => p.CharacterId != m.CharacterId).Select(p => new JogadorNoMapa(p.Name, p.X, p.Y, p.PartyId is not null && p.PartyId == m.Me?.PartyId)).ToList();
             _canvas.Markers = m.QuestMarkers;
             _canvas.XpDoNivel = m.Progress?.XpToNext ?? 0;   // 18/11: XP da missão em % do seu nível
             _canvas.Flags = m.Flags;   // 18/11 15h: segredo e pedra de viagem só aparecem depois de achados
             _canvas.Historia = m.ProximaHistoria;   // 17/11 noite: estrela da história no mapa M
-            _canvas.NpcMarks = m.NpcMarkers;
+            _canvas.NpcMarks = _previa is { } pm
+                // 19/11: no mapa de outro lugar, quem tem missão sua para entregar fica verde
+                ? pm.Map.Npcs.Where(n => m.Quests.Any(q => q.State == "ready" && q.Giver == n.Name)).ToDictionary(n => n.Id, _ => "entregar")
+                : m.NpcMarkers;
             _canvas.NpcShown ??= m.NpcVisible;
             _canvas.Flags = m.Flags;
             if (m.Me is { } me) { _canvas.MyLevel = me.Level; _canvas.Me = new Vector2((float)me.X, (float)me.Y); _canvas.MeFacing = new Vector2((float)me.FacingX, (float)me.FacingY); }
@@ -739,9 +774,14 @@ public sealed class WorldPanels
                     // 18/11 15h: ver no mapa (abre o M com a missão piscando)
                     var ver = new Button { Text = "🗺", TooltipText = "Mostrar no mapa (M)" + (q.MapId != m.Map?.Id && q.MapId.Length > 0 ? " — fica em outro mapa: marca a passagem para lá" : "") };
                     var (qx, qy, qn) = (q.X, q.Y, q.Name);
+                    var qmap = q.MapId;
                     ver.Pressed += () =>
                     {
                         Toggle("map");
+                        // 19/11 (dono: "o mostrar no mapa do J abre o mapa local do lugar, pra você se situar"): abre o mapa
+                        // do lugar da missão (o daqui, ou o de lá, se já visitou)
+                        _abaMapa?.Invoke(true);
+                        if (qmap.Length > 0 && qmap != m.Map?.Id) Send?.Invoke(new MapaPreviaIntent(qmap));
                         _canvas.Destaque = (qx, qy, qn);
                         _canvas.DestaqueAte = Time.GetTicksMsec() + 8000;
                         Sfx.Play("ui_clique");
@@ -1493,6 +1533,11 @@ public sealed partial class WorldMapCanvas : Control
     /// <summary>13/11 ("no mapa geral consigo dar TP só clicando nas bolinhas, nas que já fui"): clique numa região visitada
     /// com pedra de viagem descoberta → viaja para a primeira pedra dela.</summary>
     public event Action<string>? ViajarPara;
+    /// <summary>19/11: clique numa bolinha do mapa geral abre o mapa daquele lugar (id do mapa).</summary>
+    public event Action<string>? AbrirMapa;
+    /// <summary>19/11: id do mapa onde você está (a seta "Você" só aparece nele) e quem mais está no mapa mostrado.</summary>
+    public string? Aqui { get; set; }
+    public IReadOnlyList<JogadorNoMapa>? Jogadores { get; set; }
     private readonly List<(Vector2 P, string Id)> _wpTela = new();   // 17/11: losangos das pedras desenhados (duplo clique)
     /// <summary>Mapa da área: ilustração Art/mapa_&lt;id do mapa&gt;.png (cobre −130..130 em x e y, norte = y negativo no topo).</summary>
     public bool AreaMode { get; set; } = true;
@@ -1587,9 +1632,9 @@ public sealed partial class WorldMapCanvas : Control
                 : new[] { "Pedra de viagem apagada", "vá até ela e aperte F para acender" }, ativa ? new Color(0.45f, 0.75f, 1f) : new Color(0.65f, 0.67f, 0.7f)));
         }
         // 10/11: missões do canto da tela, com o mesmo número
-        for (var i = 0; i < HudView.Tracked.Count; i++)
+        for (var i = 0; i < HudView.NoMapa.Count; i++)
         {
-            var q = HudView.Tracked[i];
+            var q = HudView.NoMapa[i];
             if (q.MapId == Layout.Id && (q.X != 0 || q.Y != 0))
             {
                 CompassStrip.DrawQuestStone(this, At(q.X, q.Y), i + 1, q.State == "ready", 11f);
@@ -1628,6 +1673,23 @@ public sealed partial class WorldMapCanvas : Control
             }
             DrawString(font, pd + new Vector2(14, -16), dq.Nome, HorizontalAlignment.Left, 260, 14, new Color(1f, 0.9f, 0.55f));
             QueueRedraw();
+        }
+        // 19/11 (dono: "mostrar os players no mapa também"): quem mais está neste mapa — verde = do seu grupo
+        foreach (var j in Jogadores ?? Array.Empty<JogadorNoMapa>())
+        {
+            var pj = At(j.X, j.Y);
+            var cj = j.Grupo ? new Color(0.45f, 1f, 0.5f) : new Color(0.92f, 0.92f, 1f);
+            DrawCircle(pj, 6.5f, new Color(0, 0, 0, 0.6f));
+            DrawCircle(pj, 4.5f, cj);
+            DrawString(font, pj + new Vector2(8, 4), j.Name, HorizontalAlignment.Left, -1, 12, cj);
+            _alvos.Add((pj, 8f, new[] { j.Name, j.Grupo ? "do seu grupo" : "jogador" }, cj));
+        }
+        if (Aqui is not null && Layout.Id != Aqui)
+        {
+            DrawString(font, new Vector2(origin.X + 14, origin.Y + 28), Layout.DisplayName, HorizontalAlignment.Left, -1, 22, tex is not null ? new Color(0.15f, 0.08f, 0.03f) : new Color(0.95f, 0.85f, 0.6f));
+            DrawString(font, new Vector2(12, Size.Y - 14), "Você não está aqui — duplo clique numa pedra de viagem (losango azul) viaja", HorizontalAlignment.Left, -1, 13, new Color(1f, 0.9f, 0.6f));
+            DesenharDica();
+            return true;
         }
         // 12/11 ("coloca o ícone do jogador no mapa"): seta dourada grande, apontando para onde você olha, com halo e "Você"
         var me = At(Me.X, Me.Y);
@@ -1807,8 +1869,19 @@ public sealed partial class WorldMapCanvas : Control
             var alvo = Shown.Select(r => (r, d: P(Onde(r).X, Onde(r).Y).DistanceTo(clk.Position))).Where(t => t.d < (ArteMundo is null ? 18 : 34)).OrderBy(t => t.d).Select(t => t.r).FirstOrDefault();
             if (alvo is not null)
             {
-                var wp = Data.Waypoints.FirstOrDefault(w => w.Region == alvo.Id);
-                if (wp is not null && !alvo.Here) { ViajarPara?.Invoke(wp.Id); Sfx.Play("ui_clique"); }
+                // 19/11 (dono: "clicar nas bolinhas entra em cada mapa ao invés de viajar; algumas áreas têm vários mapas"):
+                // um mapa visitado = abre direto; vários = escolhe na lista; nenhum = ainda não esteve lá
+                var mapas = alvo.Mapas ?? Array.Empty<string[]>();
+                if (mapas.Count == 1) AbrirMapa?.Invoke(mapas[0][0]);
+                else if (mapas.Count > 1)
+                {
+                    var menu = new PopupMenu();
+                    for (var i = 0; i < mapas.Count; i++) menu.AddItem(mapas[i][1], i);
+                    menu.IdPressed += i => { AbrirMapa?.Invoke(mapas[(int)i][0]); menu.QueueFree(); };
+                    menu.PopupHide += () => menu.QueueFree();
+                    AddChild(menu);
+                    menu.Popup(new Rect2I((Vector2I)(GetScreenPosition() + clk.Position), Vector2I.Zero));
+                }
                 else Sfx.Play("ui_erro");
                 AcceptEvent();
                 return;

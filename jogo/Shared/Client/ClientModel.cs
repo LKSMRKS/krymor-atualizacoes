@@ -201,7 +201,9 @@ public sealed class ClientModel
 
     /// <summary>Objeto de missão (relíquia) aparece só com a missão ativa e ainda não feita.</summary>
     public bool ObjectVisible(MapObject obj)
-        => obj.Quest is null || Quests.Any(q => q.Id == obj.Quest && q.State == "active" && q.Progress < q.Count);
+        // 19/11 (amigo "não consegue passar pra Arcano"): o Grimório Afogado era da missão antiga (q_evo_m1) e sumia para quem
+        // fazia a prova nova (q_prova_m_3) — vale qualquer missão ativa que tenha o objeto como alvo
+        => obj.Quest is null || Quests.Any(q => q.State == "active" && q.Progress < q.Count && (q.Id == obj.Quest || q.Targets.Contains(obj.Id)));
 
     public bool InParty(string characterId) => Party?.Members.Any(m => m.CharacterId == characterId) == true;
 
@@ -411,6 +413,7 @@ public sealed class ClientModel
                 ClockHour = time.Hour; ClockHoursPerSecond = time.HoursPerSecond; ClockAtUtc = DateTime.UtcNow; HasClock = true;
                 break;
             case HistoricoDiaMessage hist: HistoricoDia = hist; break;   // 18/11 19h
+            case MapaPreviaMessage previa: MapaPrevia = previa; MapaPreviaVersao++; break;   // 19/11: mapa de outro lugar
             case ObjetivosMessage obj:   // 14/11: menu do TAB
                 Objetivos = obj;
                 break;
@@ -613,6 +616,8 @@ public sealed class ClientModel
     /// <summary>14/11: objetivos e Loja de Cristais (menu do TAB).</summary>
     public ObjetivosMessage? Objetivos { get; private set; }
     public HistoricoDiaMessage? HistoricoDia { get; private set; }
+    public MapaPreviaMessage? MapaPrevia { get; private set; }
+    public int MapaPreviaVersao { get; private set; }
 
     private void ApplyAction(ActionResultMessage a)
     {
@@ -768,7 +773,7 @@ public sealed class ClientModel
                     if (!double.TryParse(p[1], System.Globalization.NumberStyles.Float, ci, out var px) || !double.TryParse(p[2], System.Globalization.NumberStyles.Float, ci, out var py)) continue;
                     var (rotulo, folga) = id switch
                     {
-                        "decor_terreno_portal" => ("Portal do Quintal (ir para o Porto)", 0.8),
+                        "decor_terreno_portal" => ("Portal do Quintal (ir para o Porto das Cinzas)", 0.8),
                         "decor_terreno_mascate" => ("Comprar com o Mascate do Quintal", 0.8),
                         "decor_terreno_jukebox" => ("Vitrola: pôr um disco (+XP por 30 min)", 0.5),
                         "decor_terreno_cercado" => ("Cercado de Caça (fazer ovos de monstro)", 1.4),
@@ -789,7 +794,7 @@ public sealed class ClientModel
                 if (d <= bestD) { bestD = d; best = ("waypoint", "wp:" + wp.Id, "Viajar (pedra de viagem)"); }
             }
             // 11/11 noite ("dá pra sentar nos bancos da praça"): perto de um banco, F senta (andar levanta)
-            if (me.Action != "sit")
+            if (me.Action is not ("sit" or "deitado"))
                 foreach (var assento in CinzasDaMare.Shared.World.AssentosCasa.Lista(Map, _flags))
                 {
                     // 18/11: cadeiras, trono e sofá da casa também — na sua casa, sentar carrega o Conforto do Lar ×1,5

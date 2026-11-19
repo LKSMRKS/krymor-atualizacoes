@@ -310,7 +310,7 @@ public partial class Main : Node3D
     private double _sentadoHa = -1, _cheioHa;
     private void BolinhaDoDescanso(float dt)
     {
-        var sentado = _model.Me is { } me && me.Action == "sit";
+        var sentado = _model.Me is { } me && me.Action is "sit" or "deitado";
         var dur = _model.DescansoSegundos;
         if (!sentado) { _sentadoHa = -1; _hud.Descanso(null, false); return; }
         if (_sentadoHa < 0) { _sentadoHa = 0; _cheioHa = 0; }
@@ -3114,7 +3114,7 @@ public partial class Main : Node3D
             var faceX = p.FacingX;
             var faceY = p.FacingY;
             // 13/11 ("sentar tem que vir de costas pro banco, de qualquer lado que eu chegue"): sentado vale a direção do banco
-            if (isMe && _desiredFace is { } d && !p.Action.StartsWith("windup", StringComparison.Ordinal) && p.Action != "dodge" && p.Action != "sit")
+            if (isMe && _desiredFace is { } d && !p.Action.StartsWith("windup", StringComparison.Ordinal) && p.Action != "dodge" && p.Action != "sit" && p.Action != "deitado")
             {
                 faceX = d.X;
                 faceY = d.Y;
