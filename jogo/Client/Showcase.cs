@@ -224,8 +224,12 @@ public partial class Showcase : Node3D
         _retrato?.SetEvolved(false);
         if (_retrato is not null) _retrato.Retrato = true;
         _retrato?.SetHead(null);
-        camera.Position = new Vector3(-0.9f + 0.12f, 1.6f, -1.35f);
-        camera.LookAt(new Vector3(-0.9f, 1.46f, 0f));
+        // 19/11 (skins "com o mesmo trabalho do sapo", pelas referências — que são de três quartos): câmera de lado, para o
+        // bico do corvo, o nariz do gnomo e o focinho do tubarão aparecerem no ícone; luz de frente mais forte
+        var lado = float.TryParse(OS.GetEnvironment("VITRINE_RET_X"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var lx) ? lx : 0.55f;
+        camera.Position = new Vector3(-0.9f + lado, 1.6f, -1.3f);
+        camera.LookAt(new Vector3(-0.9f, 1.47f, 0f));
+        AddChild(new OmniLight3D { Position = new Vector3(-0.9f + lado * 0.6f, 1.7f, -1.1f), LightEnergy = 0.7f, OmniRange = 3f, LightColor = new Color(1f, 0.95f, 0.9f) });
         camera.Fov = 34;
     }
 

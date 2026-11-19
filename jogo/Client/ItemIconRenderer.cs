@@ -70,7 +70,8 @@ public sealed partial class ItemIconRenderer : Node
         if (!definition.StartsWith("tomo_") && (!HasOwnIcon(definition) || Visuals.GearFactory.ArteDaPrancha(definition)) && Visuals.GearFactory.PaintedIcon(info?.Model, definition) is { } painted
             && VisualAssets.Load(painted) is { } png)
         {
-            var pintada = Visuals.GearFactory.LotTwoDrop(info?.Model, definition) is { } drop && !ArteDona(drop, definition) ? Tingido(png, definition) : png;
+            var pintada = Visuals.GearFactory.LotTwoDrop(info?.Model, definition) is { } drop && !ArteDona(drop, definition) ? Tingido(png, definition)
+                : Visuals.GearFactory.Tom(info?.Model).Tom is { } tom ? Tingido(png, definition, tom) : png;   // 19/11: talismã tingido
             Cache[key] = pintada;
             return pintada;
         }
@@ -394,7 +395,7 @@ public sealed partial class ItemIconRenderer : Node
 
     /// <summary>O desenho pintado recolorido para este item: a luz e a forma são as mesmas (o traço do artista fica), só a cor
     /// muda — nada de modelo de massinha. Mistura 70% da cor nova com 30% do original para não ficar chapado.</summary>
-    private static Texture2D Tingido(Texture2D png, string id)
+    private static Texture2D Tingido(Texture2D png, string id, Color? forcada = null)
     {
         try
         {
@@ -403,7 +404,8 @@ public sealed partial class ItemIconRenderer : Node
             img = (Image)img.Duplicate();
             img.Convert(Image.Format.Rgba8);
             Color alvo;
-            if (!CorDoItem.TryGetValue(id, out alvo))
+            if (forcada is { } fc) alvo = fc;
+            else if (!CorDoItem.TryGetValue(id, out alvo))
             {
                 var h = 0u; foreach (var ch in id) h = h * 31 + ch;
                 alvo = Color.FromHsv((h % 360) / 360f, 0.55f, 0.9f);

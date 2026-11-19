@@ -691,7 +691,7 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
     public static Node3D TalismanModel(string model) => Talisman(model);
 
     /// <summary>11/11 (arsenal da noite): arcos e talismãs esculpidos; null = fica o desenho de formas simples.</summary>
-    internal static string? ArsenalFile(string model) => model switch
+    internal static string? ArsenalFile(string model) => GearFactory.Tom(model).Base switch
         {
             "bow_twig" => "arma_arco_curto_enferrujada",
             "bow_short" => "arma_arco_curto_comum",
@@ -754,7 +754,11 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
     private static Node3D Talisman(string model)
     {
         // o talismã esculpido fica pendurado da mão como o antigo (de ponta-cabeça: o cordão para cima)
-        if (ArsenalGlb(model, Vector3.Zero, new Vector3(180, 0, 0)) is { } sculpted) return sculpted;
+        if (ArsenalGlb(model, Vector3.Zero, new Vector3(180, 0, 0)) is { } sculpted)
+        {
+            if (GearFactory.Tom(model).Tom is { } tom) GearFactory.Tingir(sculpted, tom);   // 19/11: talismã tingido por região
+            return sculpted;
+        }
         var root = new Node3D { Name = "Talisma" };
         var cord = VisualKit.Mat(new Color(0.25f, 0.17f, 0.10f), 0.9f);
         var charm = model switch
@@ -2495,7 +2499,8 @@ void fragment() {
         Socket("Spine2").AddChild(gola);
         _outfit.Add(gola);
         foreach (var sd in new[] { -1f, 1f })
-            VisualKit.Part(gola, VisualKit.Box(0.06f, 0.16f, 0.012f), f, new Vector3(sd * 0.055f, 0.13f, 0.1f), new Vector3(-12, sd * -18, sd * 18));
+            // 19/11 (retrato do Yong: as lapelas subiam na frente do rosto — o Spine2 fica na linha dos ombros): lapela no peito
+            VisualKit.Part(gola, VisualKit.Box(0.055f, 0.17f, 0.012f), f, new Vector3(sd * 0.05f, -0.07f, 0.125f), new Vector3(-6, sd * -12, sd * 22));
         return node;
     }
 
@@ -4670,8 +4675,8 @@ void fragment() {
     private static readonly Dictionary<string, (string Tipo, Color Cor)> RostoDaSkin = new()
     {
         ["cartola"] = ("humano", new Color(0.25f, 0.18f, 0.12f)), ["gravata"] = ("humano", new Color(0.2f, 0.3f, 0.45f)),
-        ["chef"] = ("humano", new Color(0.3f, 0.2f, 0.1f)), ["magico"] = ("humano", new Color(0.25f, 0.15f, 0.4f)),
-        ["rei"] = ("humano", new Color(0.2f, 0.35f, 0.5f)), ["cozinheiro_insano"] = ("louco", new Color(0.6f, 0.1f, 0.1f)),
+        // 19/11 (referências): Mágico, Rei de Terno e Cozinheiro Insano são de rosto liso escuro (só olhos acesos) — saíram daqui
+        ["chef"] = ("humano", new Color(0.3f, 0.2f, 0.1f)),
         ["palhaco"] = ("palhaco", new Color(0.1f, 0.4f, 0.9f)), 
         ["bobo"] = ("humano", new Color(0.35f, 0.2f, 0.1f)), ["macaco_vermelho"] = ("humano", new Color(0.35f, 0.18f, 0.05f)),
         ["demonio"] = ("brilho", new Color(1f, 0.15f, 0.05f)), ["lava"] = ("brilho", new Color(1f, 0.6f, 0.1f)),
@@ -4779,6 +4784,17 @@ void fragment() {
         Root.AddChild(_skinNo);
         StandardMaterial3D M(Color c, float r = 0.6f) => VisualKit.Mat(c, r);
         var branco = M(new Color(0.96f, 0.95f, 0.92f));
+        // 19/11 (referências: Mafioso, Mágico, Rei de Terno, Cozinheiro, Demônio, Marionete, Espantalho — rosto liso, só os olhos
+        // acesos): o rosto do boneco (sobrancelha, nariz, boca) aparecia por baixo da cor da skin; uma casca lisa da cor da
+        // cabeça cobre as feições e deixa só os olhos da skin para fora
+        var casco = skin switch
+        {
+            "mafioso" => new Color(0.1f, 0.08f, 0.07f), "magico" => new Color(0.06f, 0.05f, 0.06f), "rei" => new Color(0.08f, 0.06f, 0.06f),
+            "cozinheiro_insano" => new Color(0.09f, 0.07f, 0.06f), "demonio" => new Color(0.55f, 0.05f, 0.06f),
+            "marionete" => new Color(0.62f, 0.42f, 0.24f), "espantalho" => new Color(0.62f, 0.5f, 0.32f), _ => (Color?)null,
+        };
+        if (casco is { } cc)
+            VisualKit.Part(cab, VisualKit.Sphere(0.118f), VisualKit.Mat(cc, skin is "marionete" ? 0.55f : 0.75f), new Vector3(0, 0.02f, -0.002f), null, new Vector3(0.98f, 1.06f, 1f));
         switch (skin)
         {
             case "coelho":
@@ -4981,15 +4997,28 @@ void fragment() {
             }
             case "corvo":
             {
+                // 19/11 (referência "Corvo Sombrio"): cabeça de penas preta-azulada, bico grosso curvado para baixo, olhos roxos
+                // acesos sob a sobrancelha, topete de penas para trás e manto de penas com cachecol roxo
                 var preto = M(new Color(0.06f, 0.06f, 0.08f), 0.6f);
-                VisualKit.Part(cab, VisualKit.Cylinder(0f, 0.06f, 0.24f, 8), M(new Color(0.12f, 0.12f, 0.12f), 0.3f), new Vector3(0, -0.01f, 0.2f), new Vector3(100, 0, 0));   // bico
-                foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Sphere(0.022f), VisualKit.Glow(new Color(0.75f, 0.35f, 1f), 2.4f), new Vector3(sd * 0.06f, 0.04f, 0.095f));
-                for (var i = 0; i < 6; i++)   // penas do alto da cabeça
-                    VisualKit.Part(cab, VisualKit.Box(0.03f, 0.13f, 0.01f), preto, new Vector3((i - 2.5f) * 0.03f, 0.15f, -0.04f), new Vector3(-40, 0, (i - 2.5f) * 12));
-                for (var i = 0; i < 10; i++)   // capa de penas nos ombros
+                var pena = VisualKit.Mat(new Color(0.09f, 0.09f, 0.13f), 0.45f, 0.15f);
+                VisualKit.Part(cab, VisualKit.Sphere(0.135f), pena, new Vector3(0, 0.03f, 0f), null, new Vector3(1f, 1.02f, 1.12f));   // cabeça de penas
+                var bicoM = VisualKit.Mat(new Color(0.16f, 0.16f, 0.18f), 0.3f, 0.2f);
+                var bico = new Node3D { Position = new Vector3(0, -0.005f, 0.12f), RotationDegrees = new Vector3(14, 0, 0) };
+                cab.AddChild(bico);
+                VisualKit.Part(bico, VisualKit.Cylinder(0f, 0.052f, 0.2f, 10), bicoM, new Vector3(0, 0.012f, 0.09f), new Vector3(90, 0, 0), new Vector3(1f, 1f, 0.75f));   // bico de cima
+                VisualKit.Part(bico, VisualKit.Cylinder(0f, 0.016f, 0.05f, 8), bicoM, new Vector3(0, -0.012f, 0.19f), new Vector3(150, 0, 0));   // ponta em gancho
+                VisualKit.Part(bico, VisualKit.Cylinder(0f, 0.04f, 0.14f, 10), bicoM, new Vector3(0, -0.026f, 0.06f), new Vector3(96, 0, 0), new Vector3(1f, 1f, 0.5f));   // bico de baixo
+                foreach (var sd in new[] { -1f, 1f })
                 {
-                    var a = i / 10f * Mathf.Pi - Mathf.Pi / 2;
-                    VisualKit.Part(peito, VisualKit.Box(0.07f, 0.2f, 0.012f), preto, new Vector3(Mathf.Sin(a) * 0.2f, 0.12f, -Mathf.Cos(a) * 0.12f - 0.02f), new Vector3(10, Mathf.RadToDeg(a), 0));
+                    VisualKit.Part(cab, VisualKit.Sphere(0.026f), VisualKit.Glow(new Color(0.75f, 0.35f, 1f), 2.8f), new Vector3(sd * 0.065f, 0.05f, 0.1f), null, new Vector3(1.1f, 0.85f, 0.6f));
+                    VisualKit.Part(cab, VisualKit.Box(0.07f, 0.018f, 0.03f), pena, new Vector3(sd * 0.062f, 0.085f, 0.105f), new Vector3(0, 0, sd * -18));   // sobrancelha brava
+                }
+                for (var i = 0; i < 7; i++)   // topete de penas para trás
+                    VisualKit.Part(cab, VisualKit.Box(0.035f, 0.16f - Mathf.Abs(i - 3) * 0.02f, 0.01f), preto, new Vector3((i - 3) * 0.022f, 0.16f, -0.05f), new Vector3(-55, 0, (i - 3) * 9));
+                for (var i = 0; i < 12; i++)   // manto de penas nos ombros
+                {
+                    var a = i / 12f * Mathf.Pi * 1.2f - Mathf.Pi * 0.6f;
+                    VisualKit.Part(peito, VisualKit.Box(0.07f, 0.22f, 0.012f), preto, new Vector3(Mathf.Sin(a) * 0.21f, 0.11f, -Mathf.Cos(a) * 0.13f - 0.01f), new Vector3(12, Mathf.RadToDeg(a), 0));
                 }
                 VisualKit.Part(peito, new TorusMesh { InnerRadius = 0.08f, OuterRadius = 0.13f, Rings = 16, RingSegments = 8 }, M(new Color(0.38f, 0.12f, 0.55f)), new Vector3(0, 0.23f, 0.02f));   // cachecol roxo
                 break;
@@ -5050,10 +5079,24 @@ void fragment() {
                 else
                 {
                     // tricórnio com caveira e gancho na mão esquerda (preso no quadril)
-                    var feltro = M(new Color(0.06f, 0.05f, 0.05f), 0.6f);
-                    VisualKit.Part(cab, VisualKit.Cylinder(0.2f, 0.2f, 0.02f, 3), feltro, new Vector3(0, 0.15f, -0.01f), new Vector3(0, 30, 0));
-                    VisualKit.Part(cab, VisualKit.Cylinder(0.11f, 0.12f, 0.12f, 16), feltro, new Vector3(0, 0.22f, -0.01f));
-                    VisualKit.Part(cab, VisualKit.Sphere(0.03f), osso, new Vector3(0, 0.23f, 0.12f), null, new Vector3(1f, 1f, 0.4f));
+                    // 19/11 (referência "Pirata Morto-Vivo"): tricórnio de verdade — copa baixa e três abas viradas para cima
+                    // (uma ponta na frente), debrum dourado e caveira com ossos cruzados na frente
+                    var feltro = M(new Color(0.07f, 0.055f, 0.05f), 0.6f);
+                    var debrum = VisualKit.Mat(new Color(0.85f, 0.65f, 0.25f), 0.35f, 0.8f);
+                    VisualKit.Part(cab, VisualKit.Cylinder(0.105f, 0.13f, 0.1f, 18), feltro, new Vector3(0, 0.19f, -0.01f));
+                    VisualKit.Part(cab, VisualKit.Cylinder(0.17f, 0.17f, 0.012f, 18), feltro, new Vector3(0, 0.145f, -0.01f));
+                    for (var k = 0; k < 3; k++)
+                    {
+                        var a = Mathf.DegToRad(k * 120f + 60f);   // pontas: frente-esquerda, frente-direita? (a de 180° fica atrás)
+                        var aba = new Node3D { Position = new Vector3(Mathf.Sin(a) * 0.15f, 0.17f, Mathf.Cos(a) * 0.15f - 0.01f), RotationDegrees = new Vector3(0, Mathf.RadToDeg(a), 0) };
+                        cab.AddChild(aba);
+                        VisualKit.Part(aba, VisualKit.Box(0.2f, 0.085f, 0.014f), feltro, Vector3.Zero, new Vector3(-62, 0, 0));
+                        VisualKit.Part(aba, VisualKit.Box(0.2f, 0.01f, 0.018f), debrum, new Vector3(0, 0.04f, -0.02f), new Vector3(-62, 0, 0));
+                    }
+                    var cranio = new Node3D { Position = new Vector3(0, 0.205f, 0.125f) };
+                    cab.AddChild(cranio);
+                    VisualKit.Part(cranio, VisualKit.Sphere(0.025f), osso, Vector3.Zero, null, new Vector3(1f, 1f, 0.45f));
+                    foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cranio, VisualKit.Box(0.07f, 0.009f, 0.006f), osso, new Vector3(0, -0.03f, 0), new Vector3(0, 0, sd * 35));
                     var gancho = new Node3D { Position = new Vector3(-0.22f, -0.05f, 0.08f) };
                     quadril.AddChild(gancho);
                     VisualKit.Part(gancho, new TorusMesh { InnerRadius = 0.04f, OuterRadius = 0.055f, Rings = 14, RingSegments = 6 }, VisualKit.Mat(new Color(0.75f, 0.76f, 0.8f), 0.25f, 0.9f), Vector3.Zero, new Vector3(90, 0, 0));
@@ -5153,14 +5196,25 @@ void fragment() {
             }
             case "samurai":
             {
+                // 19/11 (referência "Samurai Fantasma"): kabuto de verdade — copa em domo com gomos, aba larga caída atrás e dos
+                // lados (shikoro em 3 lâminas), crista dourada em V na testa e máscara (menpo) escura com os olhos azuis acesos
                 var azul = VisualKit.Glow(new Color(0.25f, 0.45f, 1f), 1.4f);
-                VisualKit.Part(cab, VisualKit.Sphere(0.135f), VisualKit.Mat(new Color(0.12f, 0.16f, 0.38f), 0.35f, 0.6f), new Vector3(0, 0.04f, -0.01f), null, new Vector3(1.05f, 0.9f, 1.05f));   // kabuto
+                var laca = VisualKit.Mat(new Color(0.1f, 0.13f, 0.32f), 0.3f, 0.6f);
+                var ouroS = VisualKit.Mat(new Color(0.9f, 0.7f, 0.3f), 0.3f, 0.9f);
+                VisualKit.Part(cab, VisualKit.Sphere(0.13f), laca, new Vector3(0, 0.06f, -0.01f), null, new Vector3(1.04f, 0.78f, 1.06f));   // copa
+                for (var i = 0; i < 8; i++)   // gomos da copa
+                    VisualKit.Part(cab, VisualKit.Box(0.008f, 0.012f, 0.24f), ouroS, new Vector3(0, 0.15f, -0.01f), new Vector3(0, i * 22.5f, 0), new Vector3(1f, 1f, 1f));
+                for (var k = 0; k < 3; k++)   // shikoro: lâminas da aba, cada uma mais larga
+                    VisualKit.Part(cab, VisualKit.Cylinder(0.14f + k * 0.025f, 0.165f + k * 0.03f, 0.035f, 18), laca, new Vector3(0, 0.04f - k * 0.035f, -0.04f), new Vector3(8, 0, 0), new Vector3(1f, 1f, 0.92f));
                 foreach (var sd in new[] { -1f, 1f })
                 {
-                    VisualKit.Part(cab, VisualKit.Cylinder(0f, 0.03f, 0.22f, 6), azul, new Vector3(sd * 0.09f, 0.2f, 0.06f), new Vector3(-20, 0, sd * -30));   // chifres
-                    VisualKit.Part(cab, VisualKit.Sphere(0.02f), VisualKit.Glow(new Color(0.6f, 0.85f, 1f), 3f), new Vector3(sd * 0.045f, 0.02f, 0.11f));
+                    VisualKit.Part(cab, VisualKit.Box(0.022f, 0.2f, 0.01f), ouroS, new Vector3(sd * 0.05f, 0.21f, 0.11f), new Vector3(-12, 0, sd * -28));   // kuwagata (crista em V)
+                    VisualKit.Part(cab, VisualKit.Cylinder(0f, 0.025f, 0.18f, 6), azul, new Vector3(sd * 0.1f, 0.16f, 0.04f), new Vector3(-25, 0, sd * -40));   // chamas-chifre
+                    VisualKit.Part(cab, VisualKit.Sphere(0.019f), VisualKit.Glow(new Color(0.6f, 0.85f, 1f), 3.2f), new Vector3(sd * 0.042f, 0.015f, 0.112f), null, new Vector3(1.4f, 0.7f, 0.5f));
                 }
-                VisualKit.Part(cab, VisualKit.Box(0.2f, 0.08f, 0.02f), VisualKit.Mat(new Color(0.08f, 0.1f, 0.25f), 0.35f, 0.6f), new Vector3(0, -0.06f, 0.11f));   // máscara
+                VisualKit.Part(cab, VisualKit.Sphere(0.03f), ouroS, new Vector3(0, 0.12f, 0.12f), null, new Vector3(1f, 1f, 0.4f));   // mon na testa
+                VisualKit.Part(cab, VisualKit.Box(0.17f, 0.09f, 0.03f), VisualKit.Mat(new Color(0.05f, 0.06f, 0.14f), 0.4f, 0.5f), new Vector3(0, -0.06f, 0.105f));   // menpo
+                for (var i = 0; i < 4; i++) VisualKit.Part(cab, VisualKit.Box(0.012f, 0.04f, 0.01f), ouroS, new Vector3((i - 1.5f) * 0.03f, -0.06f, 0.122f));   // dentes da máscara
                 foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(peito, VisualKit.Box(0.15f, 0.1f, 0.17f), VisualKit.Mat(new Color(0.12f, 0.16f, 0.38f), 0.35f, 0.6f), new Vector3(sd * 0.21f, 0.17f, -0.01f), new Vector3(0, 0, sd * -25));   // sode
                 var fx = new CpuParticles3D
                 {
@@ -5385,9 +5439,11 @@ void fragment() {
                 }
                 foreach (var sd in new[] { -1f, 1f })
                 {
-                    VisualKit.Part(cab, VisualKit.Sphere(0.02f), M(new Color(0.95f, 0.95f, 0.9f), 0.2f), new Vector3(sd * 0.08f, 0.07f, 0.12f));
-                    VisualKit.Part(cab, VisualKit.Sphere(0.011f), M(new Color(0.02f, 0.02f, 0.02f)), new Vector3(sd * 0.082f, 0.07f, 0.138f));
-                    VisualKit.Part(cab, VisualKit.Box(0.05f, 0.012f, 0.01f), azul, new Vector3(sd * 0.075f, 0.1f, 0.13f), new Vector3(0, 0, sd * -20));   // cenho bravo
+                    // 19/11 (retrato: os olhos ficavam DENTRO do focinho — a esfera esticada passa da frente deles): olhos na
+                    // superfície, dos lados do focinho, com cenho bravo por cima
+                    VisualKit.Part(cab, VisualKit.Sphere(0.027f), M(new Color(0.97f, 0.96f, 0.9f), 0.2f), new Vector3(sd * 0.09f, 0.085f, 0.165f), null, new Vector3(0.8f, 1f, 0.9f));
+                    VisualKit.Part(cab, VisualKit.Sphere(0.014f), M(new Color(0.02f, 0.02f, 0.02f)), new Vector3(sd * 0.095f, 0.083f, 0.185f));
+                    VisualKit.Part(cab, VisualKit.Box(0.065f, 0.016f, 0.03f), azul, new Vector3(sd * 0.082f, 0.118f, 0.165f), new Vector3(0, sd * 15, sd * -24));   // cenho bravo
                     for (var g = 0; g < 3; g++) VisualKit.Part(cab, VisualKit.Box(0.004f, 0.05f, 0.01f), M(new Color(0.15f, 0.18f, 0.32f)), new Vector3(sd * (0.12f + g * 0.012f), -0.02f, 0.02f - g * 0.02f));   // guelras
                 }
                 VisualKit.Part(peito, VisualKit.Cylinder(0f, 0.12f, 0.3f, 3), azul, new Vector3(0, 0.15f, -0.2f), new Vector3(-35, 0, 0), new Vector3(0.25f, 1f, 1f));   // barbatana das costas
@@ -5418,6 +5474,17 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Box(0.22f, 0.22f, 0.22f), rocha, new Vector3(0, 0.02f, 0), new Vector3(6, 12, 4));
                 foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Box(0.05f, 0.025f, 0.01f), VisualKit.Glow(new Color(1f, 0.8f, 0.2f), 3.2f), new Vector3(sd * 0.05f, 0.04f, 0.118f), new Vector3(0, 0, sd * -15));
                 VisualKit.Part(cab, VisualKit.Box(0.08f, 0.012f, 0.01f), magma, new Vector3(0, -0.05f, 0.118f));
+                // 19/11 (referência "Boneco de Lava"): rachaduras de magma na cabeça de pedra e chama saindo do alto
+                foreach (var (x, y, r) in new[] { (-0.08f, 0.09f, 30f), (0.07f, 0.1f, -40f), (0.09f, -0.04f, 70f), (-0.09f, -0.06f, -60f) })
+                    VisualKit.Part(cab, VisualKit.Box(0.006f, 0.07f, 0.01f), magma, new Vector3(x, y, 0.117f), new Vector3(0, 0, r));
+                foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Box(0.01f, 0.08f, 0.006f), magma, new Vector3(sd * 0.117f, 0.02f, 0.03f), new Vector3(0, 90, sd * 25));
+                cab.AddChild(new CpuParticles3D
+                {
+                    Amount = 18, Lifetime = 0.7f, Position = new Vector3(0, 0.13f, 0), EmissionShape = CpuParticles3D.EmissionShapeEnum.Sphere, EmissionSphereRadius = 0.07f,
+                    Direction = Vector3.Up, Spread = 15f, Gravity = new Vector3(0, 1.5f, 0), InitialVelocityMin = 0.2f, InitialVelocityMax = 0.45f,
+                    ScaleAmountMin = 0.03f, ScaleAmountMax = 0.07f, LocalCoords = false,
+                    Mesh = new SphereMesh { Radius = 0.5f, Height = 1f, RadialSegments = 6, Rings = 3, Material = new StandardMaterial3D { AlbedoColor = new Color(1f, 0.55f, 0.1f), EmissionEnabled = true, Emission = new Color(1f, 0.5f, 0.1f), EmissionEnergyMultiplier = 3.5f, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded, Transparency = BaseMaterial3D.TransparencyEnum.Alpha, BlendMode = BaseMaterial3D.BlendModeEnum.Add } },
+                });
                 for (var i = 0; i < 5; i++) VisualKit.Part(peito, VisualKit.Box(0.11f, 0.1f, 0.06f), rocha, new Vector3((i % 3 - 1) * 0.12f, 0.16f - (i / 3) * 0.12f, 0.13f), new Vector3(0, 0, i * 17));   // placas de rocha
                 foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(peito, VisualKit.Sphere(0.09f), rocha, new Vector3(sd * 0.2f, 0.19f, -0.01f), new Vector3(0, 0, sd * -20), new Vector3(1.25f, 0.75f, 1.15f));   // 17/11: ombreira redonda
                 for (var i = 0; i < 7; i++)   // veios de magma entre as placas

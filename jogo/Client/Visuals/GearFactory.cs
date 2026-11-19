@@ -59,6 +59,41 @@ public static class GearFactory
 
     /// <summary>Arco (desenhado ou esculpido do arsenal): vai na mão esquerda / nas costas e atira flecha.</summary>
     /// <summary>16/11: orbe de mão do Mago — vai na palma (não no antebraço como o escudo).</summary>
+    /// <summary>19/11 (dono: "talismã" — só existem 3 modelos): "talisman_vein@gelo" = o mesmo modelo tingido. A cor vai
+    /// no 3D (Tingir) e no ícone (ItemIconRenderer).</summary>
+    public static readonly Dictionary<string, Color> Tons = new()
+    {
+        ["raiz"] = new Color(0.55f, 0.85f, 0.35f), ["lodo"] = new Color(0.45f, 0.75f, 0.45f), ["vozes"] = new Color(0.75f, 0.5f, 1f),
+        ["gelo"] = new Color(0.55f, 0.9f, 1f), ["brasa"] = new Color(1f, 0.55f, 0.25f), ["bronze"] = new Color(1f, 0.8f, 0.4f),
+        ["cinza"] = new Color(0.8f, 0.78f, 0.75f), ["sangue"] = new Color(1f, 0.35f, 0.35f), ["lamento"] = new Color(0.6f, 0.65f, 0.9f),
+    };
+
+    public static (string Base, Color? Tom) Tom(string? model)
+    {
+        if (model is null) return ("", null);
+        var i = model.IndexOf('@');
+        if (i < 0) return (model, null);
+        return (model[..i], Tons.TryGetValue(model[(i + 1)..], out var c) ? c : null);
+    }
+
+    /// <summary>Multiplica a cor de todos os materiais do modelo pelo tom (copia os materiais: o original do GLB fica igual).</summary>
+    public static void Tingir(Node node, Color tom)
+    {
+        foreach (var ch in node.GetChildren())
+        {
+            if (ch is MeshInstance3D mi && mi.Mesh is not null)
+                for (var sfc = 0; sfc < mi.Mesh.GetSurfaceCount(); sfc++)
+                    if ((mi.GetSurfaceOverrideMaterial(sfc) ?? mi.Mesh.SurfaceGetMaterial(sfc)) is StandardMaterial3D sm)
+                    {
+                        var nm = (StandardMaterial3D)sm.Duplicate();
+                        nm.AlbedoColor = new Color(sm.AlbedoColor.R * tom.R * 1.15f, sm.AlbedoColor.G * tom.G * 1.15f, sm.AlbedoColor.B * tom.B * 1.15f, sm.AlbedoColor.A);
+                        if (nm.EmissionEnabled) nm.Emission = tom;
+                        mi.SetSurfaceOverrideMaterial(sfc, nm);
+                    }
+            Tingir(ch, tom);
+        }
+    }
+
     public static bool IsOrb(string? model) => model?.StartsWith("shield_orbe_") == true;
 
     public static bool IsBow(string? model) => model is not null && (model.StartsWith("bow_") || model.StartsWith("arma_arco_") || model.StartsWith("arma_lend_arco_"));

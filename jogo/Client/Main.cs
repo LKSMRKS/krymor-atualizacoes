@@ -1692,14 +1692,15 @@ public partial class Main : Node3D
         var grump = n.Look is "guarda" or "ferreiro";
         var jolly = n.Look == "bobo" || n.Name.Contains("Pescador");
         var pick = Random.Shared.NextDouble();
+        // 19/11: falas novas no mesmo estilo (eita, ufa, uhu, tsc, hmm, ahé) entram de vez em quando
         return mood switch
         {
-            "ola" => jolly ? (pick < 0.5 ? "haha" : "ola") : grump ? (pick < 0.6 ? "hum" : "aham") : pick < 0.6 ? "ola" : pick < 0.8 ? "oh" : "hum",
-            "feliz" => jolly || pick < 0.5 ? "haha" : "risada",
-            "concorda" => pick < 0.5 ? "aham" : "oh",
-            "bravo" => grump || pick < 0.6 ? "bravo" : "ai",
-            "duvida" => pick < 0.6 ? "hein" : "hum",
-            _ => "hum",
+            "ola" => jolly ? (pick < 0.4 ? "haha" : pick < 0.8 ? "ola" : "uhu") : grump ? (pick < 0.5 ? "hum" : pick < 0.8 ? "aham" : "hmm") : pick < 0.5 ? "ola" : pick < 0.7 ? "oh" : pick < 0.85 ? "hum" : "eita",
+            "feliz" => jolly || pick < 0.4 ? "haha" : pick < 0.8 ? "risada" : "uhu",
+            "concorda" => pick < 0.4 ? "aham" : pick < 0.75 ? "oh" : "ahe",
+            "bravo" => grump || pick < 0.5 ? "bravo" : pick < 0.8 ? "tsc" : "ai",
+            "duvida" => pick < 0.5 ? "hein" : pick < 0.8 ? "hum" : "hmm",
+            _ => pick < 0.8 ? "hum" : "ufa",
         };
     }
 
@@ -1889,6 +1890,7 @@ public partial class Main : Node3D
                     _loginPanel.Visible = false;
                     _statusText = "";
                     _lobby.Show(lobby);
+                    Sfx.Ambience("musica_porto");   // 19/11: trilha principal na tela de escolha do personagem
                     TryAutoEnter(lobby);
                     break;
                 case LoginResult login:
@@ -4047,7 +4049,7 @@ public partial class Main : Node3D
 
     /// <summary>Voz da criatura ao preparar um ataque (família pelo id/visual).</summary>
     /// <summary>17/11: as 5 saudações que um NPC pode soltar quando você chega perto (voz_m_* / voz_f_*).</summary>
-    private static readonly string[] SaudacoesNpc = { "ola", "hum", "oh", "aham", "haha" };
+    private static readonly string[] SaudacoesNpc = { "ola", "hum", "oh", "aham", "haha", "eita", "uhu", "hmm" };
 
     private static string? CreatureVoice(MonsterView m)
     {

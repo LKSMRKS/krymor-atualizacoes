@@ -127,7 +127,11 @@ public static class Sfx
         ["amb2_vento"] = new[] { "ambiente/ambiente_vento_loop" },
         ["amb2_caverna"] = new[] { "ambiente/ambiente_caverna_gotejar_loop" },
         ["loop_fogueira"] = new[] { "ambiente/ambiente_fogueira_loop" },
-        ["musica_porto"] = new[] { "musica/musica_porto_calma_loop" },
+        ["musica_porto"] = new[] { "musica/musica_porto_calma_loop" },   // 19/11: a TRILHA PRINCIPAL (tela de entrada, cidades)
+        // 19/11: três variações da trilha principal (Tools/gerar_musicas_variacoes.sh): mesma melodia, outro clima
+        ["musica_masmorra"] = new[] { "musica/musica_variacao_masmorra_loop" },
+        ["musica_campo"] = new[] { "musica/musica_variacao_campo_loop" },
+        ["musica_noite"] = new[] { "musica/musica_variacao_noite_loop" },
     };
 
     private static AudioStream? LoadOgg(string rel)
@@ -207,7 +211,10 @@ public static class Sfx
     {
         var name = $"voz_{(female ? "f" : "m")}_{kind}";
         if (_root is null || Volume <= 0.001f || !Throttle("voz" + position.Round(), 350)) return;
-        var stream = Load(name);
+        // 19/11 (dono: "mais variação do mesmo estilo de fala"): cada fala tem até 3 versões (voz_m_ola, ola2, ola3) — sorteia
+        var versoes = new List<AudioStream>(3);
+        foreach (var v in new[] { name, name + "2", name + "3" }) if (Load(v) is { } st) versoes.Add(st);
+        var stream = versoes.Count == 0 ? null : versoes[Rng.Next(versoes.Count)];
         if (stream is null) return;
         var player = World.Find(p => !p.Playing) ?? World[0];
         player.Stream = stream;
@@ -243,7 +250,7 @@ public static class Sfx
             var stream = Looping(names[i]);
             player.Stream = stream;
             // coro: bem baixinho, só acompanha (pedido do usuário)
-            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -11f : i == 0 ? -12f : -15f;
+            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -11f : names[i].StartsWith("musica_", StringComparison.Ordinal) ? -16f : i == 0 ? -12f : -15f;
             AmbienceLevels[player] = baseDb;
             player.VolumeDb = baseDb + AmbienceDb();
             if (stream is not null) player.Play();
@@ -325,25 +332,28 @@ public static class Sfx
     /// <summary>Camadas de ambiente por tema do mapa (vento, mar, pássaros, grilos, sapos, gotas, criaturas ao longe).</summary>
     public static string AmbienceFor(string theme, bool instanced, bool town) => AmbienceBase(theme, instanced, town) + "+amb2_coro";
 
+    // 19/11 (dono: "a música quero como trilha principal do jogo, e umas 3 variações para outras ambientações"): a trilha
+    // principal toca na tela de entrada e nas cidades; a de masmorra nas dungeons e lugares mortos; a de campo nos campos;
+    // a de noite/neve no frio. Baixinha, por baixo do ambiente (baseDb −16)
     private static string AmbienceBase(string theme, bool instanced, bool town) => instanced ? theme switch
     {
-        "lava" => "amb2_lava+amb2_caverna",
+        "lava" => "amb2_lava+amb2_caverna+musica_masmorra",
         "cidade" => "amb2_vento+loop_fogueira",          // casa do jogador: lareira e vento lá fora
-        _ => "amb2_caverna+amb_masmorra",
+        _ => "amb2_caverna+amb_masmorra+musica_masmorra",
     } : theme switch
     {
         _ when town => "amb2_sinos+amb2_vento+musica_porto",   // 14/11: mar e gaivotas só perto do cais (Sfx.Lugar)   // 11/11: música calma do porto, baixinha
-        "praia" => "amb2_vento+amb2_passaros",   // 14/11: o mar vem pelo lugar (mais forte perto da água)
-        "vale" => "amb2_vento+amb2_passaros+amb2_grilos",
-        "mata" => "amb2_floresta+amb2_criaturas+amb2_grilos",
-        "canion" => "amb2_vento_forte+amb2_criaturas",
-        "brejo" => "amb2_sapos+amb2_grilos+amb2_vento",
-        "vespera" or "fantasma" => "amb2_vento+amb_masmorra+amb2_criaturas",
-        "neve" => "amb2_vento_forte",
-        "lava" => "amb2_lava+amb2_vento",
-        "acropole" => "amb2_vento+amb2_passaros",
-        "gruta" => "amb2_caverna+amb_masmorra",
-        "cidade" => "amb2_sinos+amb2_vento",
-        _ => "amb2_vento+amb2_passaros",
+        "praia" => "amb2_vento+amb2_passaros+musica_campo",   // 14/11: o mar vem pelo lugar (mais forte perto da água)
+        "vale" => "amb2_vento+amb2_passaros+amb2_grilos+musica_campo",
+        "mata" => "amb2_floresta+amb2_criaturas+amb2_grilos+musica_campo",
+        "canion" => "amb2_vento_forte+amb2_criaturas+musica_campo",
+        "brejo" => "amb2_sapos+amb2_grilos+amb2_vento+musica_noite",
+        "vespera" or "fantasma" => "amb2_vento+amb_masmorra+amb2_criaturas+musica_masmorra",
+        "neve" => "amb2_vento_forte+musica_noite",
+        "lava" => "amb2_lava+amb2_vento+musica_masmorra",
+        "acropole" => "amb2_vento+amb2_passaros+musica_campo",
+        "gruta" => "amb2_caverna+amb_masmorra+musica_masmorra",
+        "cidade" => "amb2_sinos+amb2_vento+musica_porto",
+        _ => "amb2_vento+amb2_passaros+musica_campo",
     };
 }
