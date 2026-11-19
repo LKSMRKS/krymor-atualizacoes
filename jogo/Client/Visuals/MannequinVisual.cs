@@ -1314,19 +1314,45 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
         };
         var node = new Node3D { Name = "Manto" };
         _back.AddChild(node);
-        // 19/11 (dono: "a capa tá maneira, mas o tecido ao redor da cabeça tá bugado"): saíram o cilindro e o disco do "véu"
-        // (viravam pratos inclinados em volta da cabeça quando o tronco gira). Fica só a borda da capa presa atrás da nuca,
-        // rente aos ombros, e um broche de cada lado do peito segurando o pano
+        // 19/11 (dono: "eu gostava do círculo da capa, não era pra tirar — era só ajustar, tava voando e desconexo"): a gola
+        // redonda volta, mas como uma CAPINHA em cone que nasce no pescoço e desce encostada nos ombros (antes era um disco
+        // chato acima dos ombros, que ficava flutuando e entortava com o tronco). Rolinho de pano no alto (o "círculo") e
+        // broche na frente. Tudo no osso Spine2: gira junto com o tronco
         var clothMat = VisualKit.Mat(cloth, 0.9f);
-        VisualKit.Part(node, VisualKit.Sphere(0.1f), clothMat, new Vector3(0, 0.06f, -0.075f), null, new Vector3(1.25f, 0.32f, 0.45f));   // dobra da capa na nuca
-        var broche = glow ? VisualKit.Glow(trim, Math.Max(0.6f, brilho)) : VisualKit.Mat(trim, 0.35f, 0.7f);
-        foreach (var sd in new[] { -1f, 1f })
+        clothMat.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
+        VisualKit.Part(node, VisualKit.Cylinder(GolaTopo, GolaBase, GolaAltura, 24), clothMat, new Vector3(0, GolaY, GolaZ), null, new Vector3(1f, 1f, GolaFundo));   // capinha nos ombros
+        VisualKit.Part(node, new TorusMesh { InnerRadius = GolaTopo - 0.012f, OuterRadius = GolaTopo + 0.016f, Rings = 24, RingSegments = 8 }, clothMat,
+            new Vector3(0, GolaY + GolaAltura / 2f, GolaZ), null, new Vector3(1f, 0.9f, GolaFundo));   // o círculo (rolinho da gola)
+        // o ombro (osso do braço) sobe e desce com o braço e furava a capinha: cada ombro ganha a sua dobra de pano, presa no
+        // próprio osso do braço — acompanha o movimento e emenda com a capinha
+        foreach (var lado in new[] { "LeftArm", "RightArm" })
         {
-            VisualKit.Part(node, VisualKit.Capsule(0.022f, 0.16f), clothMat, new Vector3(sd * 0.13f, 0.07f, -0.02f), new Vector3(70, 0, sd * 12));   // alça por cima do ombro
-            VisualKit.Part(node, VisualKit.Sphere(0.022f), broche, new Vector3(sd * 0.1f, 0.03f, 0.075f), null, new Vector3(1f, 1f, 0.6f));
+            if (Bone(lado) < 0) continue;
+            var ombro = Socket(lado);
+            VisualKit.Part(ombro, VisualKit.Sphere(0.074f), clothMat, new Vector3(0, 0.012f, 0), null, new Vector3(1.08f, 0.92f, 1.08f));
+            _outfit.Add((Node3D)ombro.GetParent());
         }
+        var broche = glow ? VisualKit.Glow(trim, Math.Max(0.6f, brilho)) : VisualKit.Mat(trim, 0.35f, 0.7f);
+        VisualKit.Part(node, VisualKit.Sphere(0.026f), broche, new Vector3(0, GolaY + GolaAltura * 0.2f, GolaZ + (GolaTopo + GolaBase) / 2f * GolaFundo + 0.012f), null, new Vector3(1f, 1f, 0.55f));
         _outfit.Add(node);
         return _cape;
+    }
+
+    // medidas da gola da capa (no osso Spine2, que fica na linha dos ombros); dá para testar sem compilar: CDM_GOLA="topo,base,altura,y,z,fundo"
+    private static readonly float[] Gola = LerGola();
+    private static float GolaTopo => Gola[0];
+    private static float GolaBase => Gola[1];
+    private static float GolaAltura => Gola[2];
+    private static float GolaY => Gola[3];
+    private static float GolaZ => Gola[4];
+    private static float GolaFundo => Gola[5];
+    private static float[] LerGola()
+    {
+        var padrao = new[] { 0.085f, 0.215f, 0.1f, 0.02f, -0.01f, 0.78f };
+        var env = OS.GetEnvironment("CDM_GOLA");
+        if (string.IsNullOrEmpty(env)) return padrao;
+        var p = env.Split(',').Select(x => float.TryParse(x, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var v) ? v : float.NaN).ToArray();
+        return p.Length == 6 && p.All(v => !float.IsNaN(v)) ? p : padrao;
     }
 
     private ClothCape? _cape;
@@ -1549,6 +1575,7 @@ void fragment() {
     private void RefreshBodyMask()
     {
         if (_mon is not null || _skin.Skin is null || OS.GetEnvironment("CDM_SEM_MASCARA") == "1") return;
+        if (OS.GetEnvironment("CDM_SEM_CORPO") == "1") _skin.Visible = false;   // depuração: o que sobra é só a armadura
         _unmasked ??= _skin.Mesh;
         var mask = BodyRegion.None;
         if (_armorParts.ContainsKey("peitoral")) mask |= BodyRegion.Torso;
@@ -1639,6 +1666,12 @@ void fragment() {
     }
 
     private const float MaskInset = 0.035f;
+
+    /// <summary>18/11: roupa de baixo das armaduras (aparece pelas frestas das peças): couro/pano escuro, fosco.</summary>
+    private static readonly StandardMaterial3D RoupaDeBaixoMat = new()
+    {
+        AlbedoColor = new Color(0.085f, 0.07f, 0.06f), Roughness = 0.95f, Metallic = 0f,
+    };
     private static Vector3I KeyOf(Vector3 v) => new((int)Mathf.Round(v.X * 200f), (int)Mathf.Round(v.Y * 200f), (int)Mathf.Round(v.Z * 200f));
 
     private ArrayMesh MaskedMesh(ArrayMesh src, BodyRegion mask)
@@ -1667,6 +1700,7 @@ void fragment() {
         }
         foreach (var k in avg.Keys.ToList()) avg[k] = avg[k].Normalized();
         var outMesh = new ArrayMesh();
+        var roupaDeBaixo = new List<(Mesh.PrimitiveType, Godot.Collections.Array, Mesh.ArrayFormat)>();
         for (var sIdx = 0; sIdx < src.GetSurfaceCount(); sIdx++)
         {
             var arr = src.SurfaceGetArrays(sIdx);
@@ -1679,6 +1713,7 @@ void fragment() {
             var hidden = new bool[vs.Length];
             var inset = new float[vs.Length];
             var drop = new bool[vs.Length];
+            var pano = new bool[vs.Length];   // 18/11: vira roupa de baixo (tudo coberto, menos a cabeça: o rosto aparece no elmo)
             for (var v = 0; v < vs.Length; v++)
             {
                 var best = 0; var bw = -1f;
@@ -1689,6 +1724,7 @@ void fragment() {
                 // tronco recua mais (6 cm), cabeça recua 4 cm sob o capacete (o rosto continua aparecendo nas aberturas)
                 inset[v] = best >= 0 && best < insetOfBind.Length ? insetOfBind[best] : MaskInset;
                 drop[v] = hidden[v] && best >= 0 && best < dropOfBind.Length && dropOfBind[best];
+                pano[v] = hidden[v] && reg != BodyRegion.Head;
             }
             // teste (11/11 noite): tirar a parte coberta deixava a peça oca (buracos entre as peças, o avesso aparecendo).
             // Então a parte coberta ENCOLHE para dentro da peça — some debaixo dela, mas fecha as frestas por dentro.
@@ -1698,15 +1734,35 @@ void fragment() {
             arr[(int)Mesh.ArrayType.Vertex] = vs;
             // 11/11 noite (manchas escuras nas costas = o corpo visto pelos furos das peças geradas): o tronco debaixo do
             // peitoral sai de vez; pelo furo aparece o lado de dentro da peça (2ª passada com a textura dela)
+            // 18/11 (dono: "armaduras ficaram todas rachadas atrás, dando pra ver o corpo do boneco"): as peças geradas têm
+            // centenas de frestas. Em vez de tirar o tronco (pela fresta aparecia o vazio/o avesso) ou deixar a pele (aparecia
+            // o boneco), a parte coberta vira uma ROUPA DE BAIXO escura (gibão acolchoado) numa superfície própria — pela
+            // fresta se vê pano escuro, como em armadura de verdade.
             if (idx is not null && OS.GetEnvironment("CDM_TRONCO_FICA") != "1")
             {
                 var keep = new List<int>(idx.Length);
+                var baixo = new List<int>();
                 for (var t = 0; t + 2 < idx.Length; t += 3)
-                    if (!(drop[idx[t]] && drop[idx[t + 1]] && drop[idx[t + 2]])) { keep.Add(idx[t]); keep.Add(idx[t + 1]); keep.Add(idx[t + 2]); }
+                {
+                    var coberto = pano[idx[t]] && pano[idx[t + 1]] && pano[idx[t + 2]];
+                    (coberto ? baixo : keep).AddRange(new[] { idx[t], idx[t + 1], idx[t + 2] });
+                }
                 arr[(int)Mesh.ArrayType.Index] = keep.ToArray();
+                if (baixo.Count > 0)
+                {
+                    var ab = (Godot.Collections.Array)arr.Duplicate();
+                    ab[(int)Mesh.ArrayType.Index] = baixo.ToArray();
+                    roupaDeBaixo.Add((src.SurfaceGetPrimitiveType(sIdx), ab, src.SurfaceGetFormat(sIdx) & Mesh.ArrayFormat.FlagUse8BoneWeights));
+                }
             }
             outMesh.AddSurfaceFromArrays(src.SurfaceGetPrimitiveType(sIdx), arr, new Godot.Collections.Array<Godot.Collections.Array>(), new Godot.Collections.Dictionary(), src.SurfaceGetFormat(sIdx) & Mesh.ArrayFormat.FlagUse8BoneWeights);
             outMesh.SurfaceSetMaterial(sIdx, src.SurfaceGetMaterial(sIdx));
+        }
+        // superfícies extras no FIM (as de cima mantêm o índice e o material de sempre)
+        foreach (var (prim, ab, fmt) in roupaDeBaixo)
+        {
+            outMesh.AddSurfaceFromArrays(prim, ab, new Godot.Collections.Array<Godot.Collections.Array>(), new Godot.Collections.Dictionary(), fmt);
+            outMesh.SurfaceSetMaterial(outMesh.GetSurfaceCount() - 1, RoupaDeBaixoMat);
         }
         return outMesh;
     }

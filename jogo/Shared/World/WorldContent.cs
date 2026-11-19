@@ -63,6 +63,8 @@ public sealed record MapChest(string Id, double X, double Y, string LootTable, d
     public bool Secret { get; init; }
     /// <summary>12/11: só abre com TODOS os monstros do mapa (a cópia da dungeon) derrotados.</summary>
     public bool RequiresClear { get; init; }
+    /// <summary>18/11: baú trancado — só abre gastando 1 deste item (Chave de Cofre; cai dos monstros do mapa).</summary>
+    public string? Chave { get; init; }
 }
 
 /// <summary>Ponto de monstro. Kind referencia monsters.json; Group liga monstros que entram em combate juntos.</summary>
@@ -162,6 +164,9 @@ public sealed record MapObject(string Id, string Kind, double X, double Y, strin
     /// certa (estátua: 0..3 quartos de volta; espelho: 0..7 oitavos). Inicio = posição em que a estátua/espelho começa.</summary>
     public int Ordem { get; init; }
     public int Inicio { get; init; }
+    /// <summary>18/11 (pacote do trabalhador): Ordem também serve à alavanca_seq; AbreMs = quanto tempo a porta da
+    /// placa_porta fica aberta (ms).</summary>
+    public int AbreMs { get; init; } = 8000;
 }
 
 /// <summary>Checkpoint de dungeon: ao passar, quem morrer renasce aqui (vale para a cópia toda).</summary>
@@ -396,6 +401,19 @@ public sealed record MonsterAttackDef(
     public double SpinShotDeg { get; init; }
     /// <summary>Zigue-zague (bote com Hits &gt; 1): cada bote sai inclinado para um lado, alternando (graus).</summary>
     public double ZigzagDeg { get; init; }
+    // ---- 18/11: variedade de golpes (GameServer.Golpes.cs; todos opcionais) ----
+    /// <summary>Pulo: o monstro SALTA até a marca (círculo no alvo) durante o golpe e o círculo acerta na queda.</summary>
+    public bool Salto { get; init; }
+    /// <summary>Altura do pulo (m), só visual.</summary>
+    public double SaltoAltura { get; init; } = 1.8;
+    /// <summary>Agarrão: quem é acertado é puxado até esta distância para junto do monstro (use com status "atordoado" curto).</summary>
+    public double PuxaM { get; init; }
+    /// <summary>Empurrão: quem é acertado é jogado para trás esta distância.</summary>
+    public double EmpurraM { get; init; }
+    /// <summary>Projétil que persegue (graus por segundo que consegue virar atrás do jogador mais perto). 0 = reto.</summary>
+    public double Persegue { get; init; }
+    /// <summary>Círculo que deixa uma poça no chão por este tempo (ms): quem pisa fica lento (status da poça = Status).</summary>
+    public int PocaMs { get; init; }
 }
 
 public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double AggroRadius, double LeashRadius,
@@ -442,6 +460,8 @@ public sealed record MonsterBehaviorDef(string Id, double MoveSpeed, double Aggr
     public int StaggerImmuneMs { get; init; }
     /// <summary>16/11: táticas de bando (GameServer.Taticas.cs). null = padrão do tipo do monstro; [] = nenhuma.</summary>
     public IReadOnlyList<string>? Taticas { get; init; }
+    /// <summary>18/11: voo baixo — fica pairando a esta altura (m) e só desce para golpear (morcego, harpia, espectro).</summary>
+    public double VooBaixo { get; init; }
     /// <summary>16/11: temperamento fixo (bravo, covarde, matilha, astuto). null = sorteado por exemplar, pelo tipo.</summary>
     public string? Temperamento { get; init; }
 }
@@ -479,6 +499,8 @@ public sealed class WorldContent
     /// <summary>16/11: grupos de comportamento (grupos_comportamento.json) — cada espécie num grupo; o grupo define a mistura
     /// de temperamentos dos seus bichos. null = sem arquivo (testes antigos): vale a mistura pelo tipo.</summary>
     public GruposComportamento? Grupos { get; set; }
+    /// <summary>18/11: golpes variados por espécie do norte do Cal em diante (variedade_golpes.json). null = sem troca.</summary>
+    public VariedadeGolpes? Variedade { get; set; }
 
     public WorldContent(MapLayout map, IReadOnlyDictionary<string, MonsterBehaviorDef> behaviors,
         IReadOnlyDictionary<string, LootTable> lootTables)
@@ -518,6 +540,7 @@ public static class WorldContentLoader
     public const string ShopsFile = "shops.json";
     public const string QuestsFile = "quests.json";
     public const string GruposFile = "grupos_comportamento.json";
+    public const string VariedadeFile = "variedade_golpes.json";
 
     public static bool Exists(string directory)
         => File.Exists(Path.Combine(directory, WorldFile)) || File.Exists(Path.Combine(directory, MapFile));
@@ -537,6 +560,12 @@ public static class WorldContentLoader
             ? ReadList<QuestDef>(directory, QuestsFile).ToDictionary(x => x.Id) : null;
         var content = new WorldContent(maps, world.StartMap, behaviors, loot, world.Regions, world.Links, shops, quests) { LivelyMonsters = true };
         if (File.Exists(Path.Combine(directory, GruposFile))) content.Grupos = Read<GruposComportamento>(directory, GruposFile);
+        if (File.Exists(Path.Combine(directory, VariedadeFile)))
+        {
+            content.Variedade = Read<VariedadeGolpes>(directory, VariedadeFile);
+            foreach (var b in content.Variedade.Especies.Values.Concat(content.Variedade.Variantes.Values.SelectMany(x => x)))
+                if (!behaviors.ContainsKey(b)) throw new InvalidDataException($"{VariedadeFile}: comportamento '{b}' não existe");
+        }
         if (File.Exists(Path.Combine(directory, RecipesFile)))
         {
             var receitas = ReadList<RecipeDef>(directory, RecipesFile).ToDictionary(x => x.Id);
@@ -623,4 +652,35 @@ public sealed record GruposComportamento
     }
 
     public GrupoComportamentoDef? Def(string id) => Grupos.FirstOrDefault(x => x.Id == id);
+}
+
+/// <summary>18/11 (dono: "todos os monstros atacam iguais; mudar a partir da parte norte do Cal, a parte sul tá safe"):
+/// troca o jogo de golpes por espécie. Os mapas seguros e o sul da Costa do Cal (y ≥ SulYMin) ficam com o de sempre.
+/// Ordem: "especies" (id do monstro) → "variantes" do comportamento original (cada espécie sorteia uma, fixa pelo id).
+/// Chefes não mudam.</summary>
+public sealed record VariedadeGolpes
+{
+    public IReadOnlyList<string> MapasSeguros { get; init; } = Array.Empty<string>();
+    public string MapaSul { get; init; } = "costa_do_cal";
+    public double SulYMin { get; init; }
+    public Dictionary<string, string> Especies { get; init; } = new();
+    public Dictionary<string, List<string>> Variantes { get; init; } = new();
+
+    public bool Seguro(string mapa, double y) => MapasSeguros.Contains(mapa) || (mapa == MapaSul && y >= SulYMin);
+
+    /// <summary>Comportamento para um monstro neste ponto do mundo; null = o do próprio monstro.</summary>
+    public string? ComportamentoDe(string mapa, double y, string monsterId, string behaviorId, bool chefe)
+    {
+        if (chefe || Seguro(mapa, y)) return null;
+        if (Especies.TryGetValue(monsterId, out var b)) return b;
+        if (Variantes.TryGetValue(behaviorId, out var lista) && lista.Count > 0) return lista[(int)(Fnv(monsterId) % (uint)lista.Count)];
+        return null;
+    }
+
+    private static uint Fnv(string s)
+    {
+        var h = 2166136261u;
+        foreach (var ch in s) { h ^= ch; h *= 16777619u; }
+        return h;
+    }
 }

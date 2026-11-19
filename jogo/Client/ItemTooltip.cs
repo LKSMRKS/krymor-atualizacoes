@@ -72,6 +72,8 @@ public static class ItemTooltip
         ("cdr_pct", "Redução de recarga"), ("xp_pct", "Experiência"), ("stamina_regen_pct", "Fôlego"),
         ("tenacity_pct", "Tenacidade"), ("hit_pct", "Precisão"), ("healing_received_pct", "Cura recebida"),
         ("mana_cost_pct", "Custo das habilidades"), ("foco_por_acerto", "Foco por flecha que acerta"), ("stun_resist_pct", "Resistência a atordoamento"), ("magic_resist_pct", "Resistência mágica"),
+        // 19/11: assinaturas das capas, asas e skins
+        ("lifesteal_pct", "Roubo de vida"), ("max_health_pct", "Vida máxima"),
     };
 
     /// <summary>12/11: cor da variação de conjunto (V1 cinza → V15 dourado radiante); null se não for variação.</summary>

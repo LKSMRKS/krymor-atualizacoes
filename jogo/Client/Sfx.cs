@@ -243,7 +243,7 @@ public static class Sfx
             var stream = Looping(names[i]);
             player.Stream = stream;
             // coro: bem baixinho, só acompanha (pedido do usuário)
-            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -13f : i == 0 ? -12f : -15f;
+            var baseDb = names[i] == "amb2_coro" ? -27f : names[i] == "musica_porto" ? -11f : i == 0 ? -12f : -15f;
             AmbienceLevels[player] = baseDb;
             player.VolumeDb = baseDb + AmbienceDb();
             if (stream is not null) player.Play();

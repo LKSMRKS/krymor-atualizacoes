@@ -1420,7 +1420,7 @@ public sealed class HudView
                 marks.Add((Mathf.RadToDeg(Mathf.Atan2((float)dx, (float)-dy)), i + 1, q.State == "ready"));
             }
         // 17/11 noite: o próximo passo da história = estrela na bússola (e no minimapa e no mapa M)
-        if (me is not null && m.Map is not null && m.ProximaHistoria is { } hq && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0)
+        if (me is not null && m.Map is not null && m.ProximaHistoria is { } hq && m.IsPinned(hq.Id) && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0)
             && (hq.X - me.X) * (hq.X - me.X) + (hq.Y - me.Y) * (hq.Y - me.Y) >= 9)
             marks.Add((Mathf.RadToDeg(Mathf.Atan2((float)(hq.X - me.X), (float)-(hq.Y - me.Y))), -2, false));
         // horda caçando você: pedrinha vermelha "!" na bússola e uma linha vermelha no topo das missões
@@ -1436,7 +1436,8 @@ public sealed class HudView
         if (objetivo.Key is not null && me is not null)
             hordeLine = (hordeLine.Length > 0 ? hordeLine + "\n" : "") + $"{objetivo.Key[(objetivo.Key.IndexOf('|') + 1)..]} — {(int)(Math.Sqrt((objetivo.Value.X - me.X) * (objetivo.Value.X - me.X) + (objetivo.Value.Y - me.Y) * (objetivo.Value.Y - me.Y)) / 5) * 5} m";
         // 17/11: o próximo passo da história sempre no topo do quadro (laranja-dourado)
-        var hist = m.ProximaHistoria;
+        // 19/11 (dono: "a história principal tem que marcar e desmarcar também"): desmarcada no J, sai do quadro, da bússola e dos mapas
+        var hist = m.ProximaHistoria is { } ph0 && m.IsPinned(ph0.Id) ? ph0 : null;
         var sig = hordeLine + (hist is null ? "" : hist.Name + hist.Hint) + string.Join("|", tracked.Select(q => q.Id + q.State + q.Progress + q.Count));
         _questPanel.Visible = (tracked.Count > 0 || hordeLine.Length > 0 || hist is not null) && !MissoesMinimizadas;
         if (sig == _questSig) return;

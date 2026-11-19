@@ -51,6 +51,7 @@ public partial class Main : Node3D
         public TelegraphView? Telegraph;
         public string ClassId = "";
         public float DustT;                       // próxima poeira de passo
+        public int XisFase;                       // 18/11: garras da unhada em X já desenhadas neste golpe
         public float Ground;                     // 11/11: altura do chão (escada/assoalho do casarão), suavizada
         public float Lean, Bank;                 // inclinação ao arrancar/frear e ao fazer curva (peso no corpo)
         public Vector3 SnapPos, SnapVel;         // última posição do servidor e velocidade estimada entre fotos
@@ -130,6 +131,7 @@ public partial class Main : Node3D
     private readonly MesclarPanel _mesclar = new();   // 18/11: Máquina de Mesclar Visual (Astrália)   // 17/11: Catálogo da Biblioteca
     private readonly Dicas _dicas = new();   // 13/11
     private readonly TrilhaPanel _trilha = new();   // 13/11: Trilha do Herói (F3)
+    private readonly AmigosPanel _amigos = new();   // 18/11: lista de amigos (F4)
     private bool _menuDemo;
     private readonly MenuTabPanel _menuTab = new();   // 14/11: menu do TAB (objetivos, cristais)
     private readonly LivroMonstrosPanel _bestiario = new();   // 12/11: Livro dos Monstros pessoal (L)       // 12/11: livros da Biblioteca do Continente
@@ -895,6 +897,7 @@ public partial class Main : Node3D
         _mapView?.SetMarkers(_model.NpcMarkers);
         _mapView?.UpdateVisibility(_model.NpcVisible, _model.ObjectVisible);
         _mapView?.SetRuneFlags(_model.Flags);
+        _mapView?.SetAlavancas(_model.Alavancas, _model.Flags, (float)delta);   // 18/11
         _mapView?.UpdatePlots(_model.Plots, (float)Time.GetTicksMsec() / 1000f);
         if (_arena is not null) AnimateArenaFlames();
         Perfil.Marca("marcadores");
@@ -941,6 +944,7 @@ public partial class Main : Node3D
         _livro.Update();
         _bestiario.Update();
         _trilha.Atualizar(_model.Trilha, _model.TrilhaSeq, _model);
+        _amigos.Atualizar(_model.Amigos, _model.AmigosSeq);
         _menuTab.Atualizar(_model.Objetivos);
         if (!_menuDemo && _model.LoggedIn && OS.GetEnvironment("CDM_MENU") is { Length: > 0 } aba) { _menuDemo = true; _menuTab.Mostrar(_model, aba); }   // verificação visual
         _god?.Update(_model);
@@ -1105,7 +1109,7 @@ public partial class Main : Node3D
             if (mouse.ButtonIndex == MouseButton.WheelDown) { if (_lockedId is not null && Input.MouseMode == Input.MouseModeEnum.Captured) CycleLock(-1); else _cam.Zoom(-1); return; }
             if (Input.MouseMode != Input.MouseModeEnum.Captured)
             {
-                if (!_inventory.Visible && !_panels.AnyOpen && !GodOpen && !_troca.Open && !_vinteUm.Open && !_livro.Open && !_bestiario.Open && !_trilha.Visible && !_menuTab.Visible && !_chat.Typing
+                if (!_inventory.Visible && !_panels.AnyOpen && !GodOpen && !_troca.Open && !_vinteUm.Open && !_livro.Open && !_bestiario.Open && !_trilha.Visible && !_amigos.Visible && !_menuTab.Visible && !_chat.Typing
                     && !_pesquisa.Root.Visible && !_mesclar.Open && mouse.ButtonIndex == MouseButton.Left) CaptureMouse(true);   // 18/11: busca/mesclar abertas = mouse livre
                 return;
             }
@@ -1164,6 +1168,12 @@ public partial class Main : Node3D
                 if (_trilha.Visible) { Send(new TrilhaIntent()); Sfx.Play("ui_abrir"); } else Sfx.Play("ui_fechar");
                 CaptureMouse(!_trilha.Visible && !_inventory.Visible && !_panels.AnyOpen && !GodOpen);
                 break;
+            case Key.F4:
+                // 18/11: lista de amigos
+                _amigos.Visible = !_amigos.Visible;
+                if (_amigos.Visible) { Send(new AmigosIntent("listar")); Sfx.Play("ui_abrir"); } else Sfx.Play("ui_fechar");
+                CaptureMouse(!_amigos.Visible && !_trilha.Visible && !_inventory.Visible && !_panels.AnyOpen && !GodOpen);
+                break;
             case Key.F2:
                 // 13/11 ("F2 entra e sai do modo edição direto"): fora do editor, F2 entra; dentro, o próprio editor sai
                 if (_god is null || AmigoBuild || _editor.Active) break;
@@ -1183,6 +1193,7 @@ public partial class Main : Node3D
                 if (_hud.GanhouAberto) { _hud.FecharGanhouPorFora(); break; }   // 13/11: ESC fecha a caixa "Parabéns"
                 if (_bestiario.Open) { _bestiario.Hide(); CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
                 if (_trilha.Visible) { _trilha.Visible = false; CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
+                if (_amigos.Visible) { _amigos.Visible = false; CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
                 if (_menuTab.Visible) { _menuTab.Visible = false; CaptureMouse(!_inventory.Visible && !_panels.AnyOpen && !GodOpen); break; }
                 if (_vinteUm.Open) { _vinteUm.Leave(); break; }
                 if (_troca.Open) { Send(new TradeIntent("cancelar")); break; }
@@ -1363,7 +1374,7 @@ public partial class Main : Node3D
         // 13/11 ("entrei e o ESC está ativado na frente"): o menu só aparece quando você aperta ESC (não toda vez que o mouse solta)
         if (capture) _pausePedido = false;
         _pausePanel.Visible = _pausePedido && !capture && !_inventory.Visible && !_panels.AnyOpen && !GodOpen && _model.LoggedIn
-                              && !_livro.Open && !_vinteUm.Open && !_troca.Open && !_bestiario.Open && !_trilha.Visible && !_menuTab.Visible;
+                              && !_livro.Open && !_vinteUm.Open && !_troca.Open && !_bestiario.Open && !_trilha.Visible && !_amigos.Visible && !_menuTab.Visible;
     }
 
     private string? _bindsFor;
@@ -2417,7 +2428,7 @@ public partial class Main : Node3D
             // cura (número verde) ou barreira (escudo azul-esverdeado): sem "golpe"
             // 17/11 noite (dono: "o escudo do mago diz que recuperou vida e não recupera"): a Esfera de Proteção é ESCUDO
             // (absorve golpes), não cura — mostra "◈ escudo N" azul, nunca "+N" verde
-            var barrier = e.SkillId.Contains("barreira") || e.SkillId.Contains("protecao") || e.SkillId.Contains("escudo")
+            var barrier = e.Shield || e.SkillId.Contains("barreira") || e.SkillId.Contains("protecao") || e.SkillId.Contains("escudo")
                 || _model.Catalog?.Skills.Any(sk => sk.Id == e.SkillId && sk.TargetMode == "barrier") == true;
             var c = barrier ? new Color(0.45f, 0.85f, 1f) : new Color(0.45f, 1f, 0.5f);
             _hud.SpawnFloater(head, barrier ? $"◈ escudo {e.Damage}" : $"+{e.Damage}", c, 24);
@@ -2637,6 +2648,8 @@ public partial class Main : Node3D
 
         layer.AddChild(_trilha);
         _trilha.Escolher = (n, id) => { Send(new TrilhaEscolhaIntent(n, id)); Sfx.Play("moeda"); };   // 18/11 17h: prêmio 1 de 3
+        layer.AddChild(_amigos);
+        _amigos.Send += Send;
         layer.AddChild(_menuTab);
         _menuTab.Send += Send;
         // 14/11 tarde (dono: "no TAB não é pra abrir coisas por cima, é pra trocar de aba"): o TAB pega emprestado o
@@ -3283,7 +3296,8 @@ public partial class Main : Node3D
             SleepMark(st, m.Alive && m.Action == "sleep" && !m.DefinitionId.Contains("boneco"));   // boneco não dorme (nem desenhado)
             st.WasAlive = m.Alive;
             Advance(st, m.X, m.Y, m.FacingX, m.FacingY, dt, 14f);
-            st.Lift = m.Action == "dive" ? (float)m.Lift : Mathf.Lerp(st.Lift, (float)m.Lift, 1f - Mathf.Exp(-10f * dt));
+            // 18/11: no golpe (pulo) o corpo segue o arco do servidor sem atraso
+            st.Lift = m.Action == "dive" || m.Action.StartsWith("active:", StringComparison.Ordinal) ? (float)m.Lift : Mathf.Lerp(st.Lift, (float)m.Lift, 1f - Mathf.Exp(-10f * dt));
             if (st.Lift > 0.002f) st.Visual.Root.Position += new Vector3(0, st.Lift, 0);
             // 11/11 ("o fantasma de cal anda voando, tipo quando a gente está de asa"): flutua acima do chão, balançando
             if (st.Visual is MannequinVisual ghostMv && (m.Visual == "fantasma_cal" || m.DefinitionId.Contains("fantasma"))) ghostMv.Hover = m.Alive;
@@ -3356,6 +3370,19 @@ public partial class Main : Node3D
                 st.Telegraph!.Show(new Vector3((float)m.AimX, 0, (float)m.AimY), Mathf.Atan2((float)m.FacingX, (float)m.FacingY),
                     (float)m.AimRadius, (float)m.AimArc, (float)m.ActionT, active, m.AimKind);
             else st.Telegraph!.Hide();
+            // 18/11: unhada em X — uma garra de luz por risco (o primeiro "\", o segundo "/")
+            if (m.Alive && active && m.AimKind == "xis")
+            {
+                var fase = m.ActionT < 0.45 ? 1 : 2;
+                if (st.XisFase < fase)
+                {
+                    st.XisFase = fase;
+                    var centro = new Vector3((float)m.AimX, st.Pos.Y, (float)m.AimY);
+                    _effects.Garras(centro, Mathf.Atan2((float)m.FacingX, (float)m.FacingY), (float)m.AimRadius, fase == 1 ? 1 : -1, new Color(0.75f, 0.45f, 1f, 0.9f));
+                    Sfx.PlayAt("golpe_pesado", centro, -6f);
+                }
+            }
+            else st.XisFase = 0;
             UpdateBeam(st, m, windup, active);
             UpdateFire(st, m, windup, active);
             CrabFx(st, m);
@@ -3527,6 +3554,8 @@ public partial class Main : Node3D
                     if (gs.Root.GetNodeOrNull<Node3D>("Faisca") is { } f) f.Position = new Vector3(0.12f + 0.03f * Mathf.Sin(gs.Phase * 40f), 1.1f - 0.25f * t, 0);
                     if (gs.Root.GetNodeOrNull<OmniLight3D>("Luz") is { } l) l.LightEnergy = 0.6f + 1.2f * blink;
                 }
+                if (gs.Kind is "poca" or "poca_fogo")   // T = segundos que faltam: some no último 1,5 s
+                    gs.Root.Scale = Vector3.One * Mathf.Clamp((float)e.T / 1.5f, 0.05f, 1f) * (0.97f + 0.03f * Mathf.Sin(gs.Phase * 3f));
                 continue;
             }
             // some aos poucos no fim (T: 0 = começou, 1 = acabou)
@@ -3629,6 +3658,34 @@ public partial class Main : Node3D
                 if (IsNear(tpos, 6f)) _cam.AddShake(0.25f);
             }
             return new GroundEffectState { Root = troot, Disc = tring, Kind = e.Kind };
+        }
+        // 18/11: poça de lodo do sapo (deixa lento) e de brasa do elemental (queima) — some aos poucos no fim
+        if (e.Kind is "poca" or "poca_fogo")
+        {
+            var fogo = e.Kind == "poca_fogo";
+            var proot = new Node3D();
+            var cor = fogo ? new Color(1f, 0.38f, 0.08f, 0.55f) : new Color(0.16f, 0.26f, 0.06f, 0.78f);
+            var pdisc = new MeshInstance3D
+            {
+                Mesh = new CylinderMesh { TopRadius = (float)e.Radius, BottomRadius = (float)e.Radius, Height = 0.03f, RadialSegments = 28 },
+                MaterialOverride = new StandardMaterial3D
+                {
+                    AlbedoColor = cor, Transparency = BaseMaterial3D.TransparencyEnum.Alpha, Roughness = 0.05f, Metallic = 0.1f,
+                    EmissionEnabled = true, Emission = fogo ? new Color(1f, 0.35f, 0.05f) : new Color(0.2f, 0.45f, 0.05f),
+                    EmissionEnergyMultiplier = fogo ? 1.6f : 0.35f, CullMode = BaseMaterial3D.CullModeEnum.Disabled,
+                },
+            };
+            proot.AddChild(pdisc);
+            var prng = new Random(e.Id.GetHashCode());
+            for (var i = 0; i < 6; i++)   // bolhas (lodo) / brasas (fogo) espalhadas
+            {
+                var a = prng.NextDouble() * Math.PI * 2; var d = Math.Sqrt(prng.NextDouble()) * e.Radius * 0.8;
+                VisualKit.Part(proot, VisualKit.Sphere(fogo ? 0.07f : 0.09f), fogo ? VisualKit.Glow(new Color(1f, 0.6f, 0.2f), 4f)
+                    : VisualKit.Mat(new Color(0.25f, 0.38f, 0.1f), 0.1f), new Vector3((float)(Math.Cos(a) * d), 0.04f, (float)(Math.Sin(a) * d)));
+            }
+            if (fogo) proot.AddChild(new OmniLight3D { LightColor = new Color(1f, 0.5f, 0.2f), LightEnergy = 1.2f, OmniRange = (float)e.Radius + 2f, Position = new Vector3(0, 0.6f, 0) });
+            Sfx.PlayAt(fogo ? "hab_impacto" : "plantar", new Vector3((float)e.X, 0.3f, (float)e.Y), -6f);
+            return new GroundEffectState { Root = proot, Disc = pdisc, Kind = e.Kind };
         }
         // 11/11: barril da parede rachada — no chão, com o pavio aceso, e a explosão
         if (e.Kind is "barril" or "barril_aceso" or "explosao" or "estouro_aceso")   // 16/11: + corpo do elite explosivo
@@ -4695,11 +4752,14 @@ void fragment() {
         if (st.Beam is null)
         {
             st.Beam = new Node3D { Name = "Raio" };
-            var core = VisualKit.Part(st.Beam, VisualKit.Cylinder(1f, 1f, 1f, 10), VisualKit.Glow(new Color(1f, 0.25f, 0.15f), 6f), Vector3.Zero, new Vector3(90, 0, 0));
+            // 18/11: língua do sapo (rosa, sem brilho) e ferrão do escorpião (verde de veneno) usam o mesmo traço
+            var lingua = m.Action.Contains("linguada"); var ferrao = m.Action.Contains("ferrao");
+            var cor = lingua ? new Color(0.95f, 0.45f, 0.55f) : ferrao ? new Color(0.5f, 1f, 0.25f) : new Color(1f, 0.25f, 0.15f);
+            var core = VisualKit.Part(st.Beam, VisualKit.Cylinder(1f, 1f, 1f, 10), lingua ? VisualKit.Mat(cor, 0.3f) : VisualKit.Glow(cor, 6f), Vector3.Zero, new Vector3(90, 0, 0));
             core.Name = "Nucleo";
-            var halo = VisualKit.Part(st.Beam, VisualKit.Cylinder(1f, 1f, 1f, 10), VisualKit.Unshaded(new Color(1f, 0.35f, 0.2f, 0.35f), true), Vector3.Zero, new Vector3(90, 0, 0));
+            var halo = VisualKit.Part(st.Beam, VisualKit.Cylinder(1f, 1f, 1f, 10), VisualKit.Unshaded(new Color(cor.R, cor.G, cor.B, lingua ? 0f : 0.35f), true), Vector3.Zero, new Vector3(90, 0, 0));
             halo.Name = "Halo";
-            st.Beam.AddChild(new OmniLight3D { Name = "Luz", LightColor = new Color(1f, 0.3f, 0.15f), LightEnergy = 3f, OmniRange = 5f });
+            st.Beam.AddChild(new OmniLight3D { Name = "Luz", LightColor = cor, LightEnergy = lingua ? 0f : 3f, OmniRange = 5f });
             _world.AddChild(st.Beam);
         }
         var len = (float)m.AimRadius;
@@ -4825,6 +4885,29 @@ void fragment() {
                     EmissionEnabled = true, Emission = new Color(0.25f, 0.7f, 0.1f), EmissionEnergyMultiplier = 0.9f };
                 VisualKit.Part(n, VisualKit.Sphere(0.26f), lodo, Vector3.Zero);
                 VisualKit.Part(n, VisualKit.Sphere(0.08f), VisualKit.Glow(new Color(0.6f, 1f, 0.3f), 2f), new Vector3(0.08f, 0.1f, 0.12f));
+                return n;
+            }
+            case "corvos":
+            {
+                // 18/11: corvo do espantalho — corpo preto, bico amarelo, asas abertas (faz curva atrás do jogador)
+                var pena = VisualKit.Mat(new Color(0.06f, 0.06f, 0.08f), 0.7f);
+                VisualKit.Part(n, VisualKit.Sphere(0.13f), pena, Vector3.Zero, null, new Vector3(0.8f, 0.75f, 1.5f));
+                VisualKit.Part(n, VisualKit.Sphere(0.08f), pena, new Vector3(0, 0.05f, 0.18f));
+                VisualKit.Part(n, VisualKit.Cylinder(0f, 0.025f, 0.09f, 4), VisualKit.Mat(new Color(0.85f, 0.65f, 0.15f), 0.5f), new Vector3(0, 0.04f, 0.29f), new Vector3(90, 0, 0));
+                foreach (var lado in new[] { -1f, 1f })
+                    VisualKit.Part(n, VisualKit.Box(0.42f, 0.02f, 0.18f), pena, new Vector3(lado * 0.24f, 0.05f, -0.02f), new Vector3(0, 0, lado * -22f));
+                VisualKit.Part(n, VisualKit.Box(0.12f, 0.015f, 0.16f), pena, new Vector3(0, 0, -0.22f));
+                VisualKit.Part(n, VisualKit.Sphere(0.018f), VisualKit.Glow(new Color(1f, 0.25f, 0.1f), 3f), new Vector3(0.04f, 0.08f, 0.22f));
+                return n;
+            }
+            case "corrente_espectral":
+            {
+                // 18/11: corrente do fantasma — elos de luz fria e um gancho na ponta (puxa quem acerta)
+                var luz = VisualKit.Glow(new Color(0.55f, 0.95f, 1f), 3f);
+                for (var i = 0; i < 4; i++)
+                    VisualKit.Part(n, new TorusMesh { InnerRadius = 0.05f, OuterRadius = 0.09f, Rings = 12, RingSegments = 6 }, luz, new Vector3(0, 0, -0.18f * i), new Vector3(0, 90 * (i % 2), 90));
+                VisualKit.Part(n, VisualKit.Cylinder(0f, 0.09f, 0.22f, 5), luz, new Vector3(0, 0, 0.16f), new Vector3(90, 0, 0));
+                Rastro(new Color(0.5f, 0.9f, 1f, 0.3f), 0.1f, 1.2f);
                 return n;
             }
         }

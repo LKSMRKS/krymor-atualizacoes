@@ -990,10 +990,50 @@ void fragment() {
         _coreMat.AlbedoColor = new Color(1f, 0.55f, 0.3f, active ? 0.9f : 0.35f + 0.45f * progress);
     }
 
+    /// <summary>18/11: unhada em X — duas faixas cruzadas no centro (a ±45° da frente), comprimento = radius, largura = -arc.</summary>
+    private void ShowXis(float len, float width, float progress, bool active)
+    {
+        _fill.Visible = _edge.Visible = false;
+        if (_laneMat is null) { _laneMat = VisualKit.Unshaded(new Color(1f, 0.25f, 0.12f, 0.12f)); _laneMat.NoDepthTest = true; }
+        if (_coreMat is null) { _coreMat = VisualKit.Unshaded(new Color(1f, 0.55f, 0.3f, 0.7f), additive: true); _coreMat.NoDepthTest = true; }
+        while (_rays.Count < 2)
+        {
+            var lane = new MeshInstance3D { MaterialOverride = _laneMat, Position = new Vector3(0, 0.04f, 0) };
+            var core = new MeshInstance3D { MaterialOverride = _coreMat, Position = new Vector3(0, 0.05f, 0) };
+            Root.AddChild(lane); Root.AddChild(core);
+            _rays.Add((lane, core));
+        }
+        for (var i = 0; i < _rays.Count; i++)
+        {
+            var (lane, core) = _rays[i];
+            lane.Visible = core.Visible = i < 2;
+            if (i >= 2) continue;
+            var rot = new Vector3(0, Mathf.DegToRad(i == 0 ? 45f : -45f), 0);
+            lane.Mesh = new PlaneMesh { Size = new Vector2(width, len) };
+            lane.Rotation = rot;
+            var l = active ? len : Mathf.Max(0.3f, len * progress);
+            core.Mesh = new PlaneMesh { Size = new Vector2(0.07f, l) };
+            core.Rotation = rot;
+        }
+        _laneMat.AlbedoColor = new Color(1f, 0.25f, 0.12f, active ? 0.3f : 0.08f + 0.14f * progress);
+        _coreMat.AlbedoColor = new Color(1f, 0.55f, 0.3f, active ? 0.95f : 0.35f + 0.45f * progress);
+    }
+
     /// <summary>shape: arc &gt; 0 leque, arc == 0 círculo, arc &lt; 0 faixa. progress 0..1 da preparação. kind "raiosN:r" = N projéteis.</summary>
     public void Show(Vector3 at, float yaw, float radius, float arc, float progress, bool active, string kind = "")
     {
         if (radius <= 0.05f) { Root.Visible = false; return; }
+        if (kind == "xis")
+        {
+            Root.Visible = true;
+            Root.Position = at + new Vector3(0, EscadaCasa.Altura(at.X, at.Z), 0);
+            Root.Rotation = new Vector3(0, yaw, 0);
+            ShowXis(radius, Mathf.Max(0.3f, -arc), progress, active);
+            foreach (var (f, e, nn) in _extras) f.Visible = e.Visible = nn.Visible = false;
+            if (_num is not null) _num.Visible = false;
+            _key = "";
+            return;
+        }
         if (kind.StartsWith("raios", StringComparison.Ordinal))
         {
             var parts = kind[5..].Split(':');

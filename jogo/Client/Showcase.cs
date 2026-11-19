@@ -429,13 +429,16 @@ public partial class Showcase : Node3D
             var x = (i - (ids.Length - 1) / 2f) * 1.3f;
             var v = VisualFactory.Player(cls, true);
             v.SetGear(null, null, ids[i] + ":peitoral");
-            if (v is MannequinVisual mv) { mv.SetHead(ids[i] + ":capacete"); mv.SetLimbs(ids[i] + ":luvas+bracadeiras", ids[i] + ":botas"); mv.SetPants(ids[i] + ":perneiras"); }
+            var conj = ids[i].StartsWith("arm_");   // conjuntos novos: luvas e calça com esses nomes (como nos itens)
+            if (v is MannequinVisual mv) { mv.SetHead(ids[i] + ":capacete"); mv.SetLimbs(ids[i] + (conj ? ":luvas" : ":luvas+bracadeiras"), ids[i] + ":botas"); mv.SetPants(ids[i] + (conj ? ":calca" : ":perneiras")); }
             if (v is MannequinVisual gv && int.TryParse(System.Environment.GetEnvironmentVariable("CDM_GLOW"), out var glow)) gv.SetArmorGlow(glow + i * 5);
             Place(v, new Vector3(x, 0, 0), yaw, 0f);
             Label(ids[i].Replace("armadura_", ""), new Vector3(x, 2.15f, 0), 20);
         }
-        var head = System.Environment.GetEnvironmentVariable("CDM_ZOOM") == "cabeca";
-        camera.Position = head ? new Vector3(0, 1.75f, 2.6f) : new Vector3(0, 1.2f, 4.2f);
+        var zoom = System.Environment.GetEnvironmentVariable("CDM_ZOOM");
+        var head = zoom == "cabeca";
+        if (zoom == "pes") { camera.Position = new Vector3(0, 0.55f, 2.4f); camera.LookAt(new Vector3(0, 0.15f, 0)); camera.Fov = 40; return; }
+        camera.Position = head ? new Vector3(0, 1.75f, 2.6f) : new Vector3(0, 1.2f, 4.2f + Mathf.Max(0, ids.Length - 3) * 1.1f);
         camera.LookAt(head ? new Vector3(0, 1.6f, 0) : new Vector3(0, 1.0f, 0));
         camera.Fov = head ? 40 : 50;
     }

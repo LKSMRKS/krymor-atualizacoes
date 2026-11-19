@@ -115,6 +115,9 @@ public static class Protocol
 [JsonDerivedType(typeof(MesclarIntent), "mesclar")]
 [JsonDerivedType(typeof(TrilhaEscolhaIntent), "trilha_escolha")]
 [JsonDerivedType(typeof(TrilhaMessage), "trilha")]
+[JsonDerivedType(typeof(AmigosIntent), "amigos_ask")]
+[JsonDerivedType(typeof(AmigosMessage), "amigos")]
+[JsonDerivedType(typeof(AlavancasMessage), "alavancas")]
 public abstract record NetMessage;
 
 /// <summary>13/11 ("quero poder mexer em tudo pelo editor, sem falar com você"): arquivos do jogo (Content/*.json) — a lista,
@@ -130,6 +133,13 @@ public sealed record PesquisaIntent(string Texto) : NetMessage
     /// <summary>18/11: busca do 🔍 (lugares, NPCs, seus itens e o catálogo); falso = só o catálogo da biblioteca.</summary>
     public bool Global { get; init; }
 }
+/// <summary>18/11: lista de amigos (F4). Acao: "listar", "adicionar" (Nome), "aceitar" (Nome), "recusar" (Nome), "remover" (Nome).</summary>
+public sealed record AmigosIntent(string Acao, string Nome = "") : NetMessage;
+/// <summary>Estado: "ok" (amigos), "recebido" (pediu para ser seu amigo), "enviado" (você pediu, esperando).</summary>
+public sealed record AmigoView(string Nome, string Estado, bool Online, int Nivel, string Classe, string Mapa);
+public sealed record AmigosMessage(IReadOnlyList<AmigoView> Amigos) : NetMessage;
+/// <summary>18/11: quantas alavancas do grupo já estão abaixadas (0 = voltaram todas).</summary>
+public sealed record AlavancasMessage(string Grupo, int Puxadas) : NetMessage;
 /// <summary>Um marco da trilha do herói: nível, tipo (mapa, montaria, viagem, classe, poder, história, asas, extra), texto e se já tem.</summary>
 public sealed record TrilhaItem(int Nivel, string Tipo, string Titulo, string Detalhe, bool Tem)
 {
@@ -312,7 +322,7 @@ public sealed record CastResultMessage(
 /// <summary>Evaded = acertaria, mas o alvo estava invulnerável (esquiva). Exposed = acerto no monstro em recuperação (bônus).</summary>
 public sealed record CombatEvent(
     string AttackerId, string TargetId, string SkillId, int Damage, bool Crit, bool TargetDied,
-    bool Evaded = false, bool Exposed = false, bool Staggered = false, bool Heal = false, int Absorbed = 0) : NetMessage;
+    bool Evaded = false, bool Exposed = false, bool Staggered = false, bool Heal = false, int Absorbed = 0, bool Shield = false) : NetMessage;   // Shield (19/11): Heal veio de barreira — é escudo, não vida
 
 public sealed record ClaimResultMessage(string RequestId, bool Success, string Reason, int Slot) : NetMessage;
 
@@ -482,6 +492,12 @@ public sealed record QuestEntry(string Id, string Name, string Hint, string Stat
     public long RewardCoins { get; init; }
     /// <summary>13/11: nível que trava a entrada do lugar da missão (0 = sem trava). Abaixo dele a missão aparece em vermelho.</summary>
     public int NivelLugar { get; init; }
+    /// <summary>19/11 (dono: "ao clicar no mapa abre o mapa exatamente onde está a missão — aqui mostra pelo número e TP, não
+    /// onde realmente se encontra"): o lugar DE VERDADE da missão (MapId/X/Y apontam a passagem daqui quando é em outro
+    /// mapa). Vazio = sem lugar.</summary>
+    public string LugarMapa { get; init; } = "";
+    public double LugarX { get; init; }
+    public double LugarY { get; init; }
 }
 public sealed record QuestLogMessage(IReadOnlyList<QuestEntry> Quests) : NetMessage;
 

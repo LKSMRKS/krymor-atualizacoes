@@ -140,7 +140,18 @@ public sealed partial class MiniMapa : Control
             DrawColoredPolygon(new[] { p + new Vector2(0, -s), p + new Vector2(s, 0), p + new Vector2(0, s), p + new Vector2(-s, 0) },
                 new Color(1f, 0.85f, 0.25f, far ? 0.7f : pulse));
         }
-        if (m.ProximaHistoria is { } hq && m.Map is not null && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0))
+        // 19/11 (dono: "mostra as missões ativadas no minimapa também"): as marcadas no J (até 15), com o mesmo número do
+        // canto da tela e do mapa (M); longe = presa na borda, apontando o caminho (passagem, se for em outro mapa)
+        if (m.Map is not null)
+            for (var i = HudView.NoMapa.Count - 1; i >= 0; i--)
+            {
+                var q = HudView.NoMapa[i];
+                if (q.MapId != m.Map.Id || (q.X == 0 && q.Y == 0)) continue;
+                var pq = P(q.X, q.Y);
+                var longeQ = !Inside(pq, 10);
+                CompassStrip.DrawQuestStone(this, ClampIn(pq, c, r - 10), i + 1, q.State == "ready", longeQ ? 6f : 7.5f);
+            }
+        if (m.ProximaHistoria is { } hq && m.IsPinned(hq.Id) && m.Map is not null && hq.MapId == m.Map.Id && (hq.X != 0 || hq.Y != 0))
         {
             var ph = P(hq.X, hq.Y);
             var longe = !Inside(ph, 10);

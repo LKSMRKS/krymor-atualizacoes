@@ -192,6 +192,11 @@ public sealed class ClientModel
     /// <summary>13/11: Trilha do Herói (o que abre em cada nível).</summary>
     public TrilhaMessage? Trilha { get; private set; }
     public int TrilhaSeq { get; private set; }
+    /// <summary>18/11: lista de amigos (AmigosSeq muda a cada mensagem).</summary>
+    public AmigosMessage? Amigos { get; private set; }
+    public int AmigosSeq { get; private set; }
+    /// <summary>18/11: alavancas em ordem — quantas abaixadas por grupo.</summary>
+    public Dictionary<string, int> Alavancas { get; } = new();
     public int ArquivoSeq { get; private set; }
 
     public PlotView? PlotFor(string plotId) => Plots.FirstOrDefault(p => p.PlotId == plotId);
@@ -420,6 +425,13 @@ public sealed class ClientModel
             case TrilhaMessage tr:
                 Trilha = tr;
                 TrilhaSeq++;
+                break;
+            case AmigosMessage am:
+                Amigos = am;
+                AmigosSeq++;
+                break;
+            case AlavancasMessage al:
+                Alavancas[al.Grupo] = al.Puxadas;
                 break;
             case ContentFileMessage cf:
                 Arquivo = cf;

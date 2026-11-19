@@ -380,7 +380,7 @@ public sealed class WorldPanels
             _canvas.Markers = m.QuestMarkers;
             _canvas.XpDoNivel = m.Progress?.XpToNext ?? 0;   // 18/11: XP da missão em % do seu nível
             _canvas.Flags = m.Flags;   // 18/11 15h: segredo e pedra de viagem só aparecem depois de achados
-            _canvas.Historia = m.ProximaHistoria;   // 17/11 noite: estrela da história no mapa M
+            _canvas.Historia = m.ProximaHistoria is { } hi && m.IsPinned(hi.Id) ? hi : null;   // 17/11 noite: estrela da história no mapa M
             _canvas.NpcMarks = _previa is { } pm
                 // 19/11: no mapa de outro lugar, quem tem missão sua para entregar fica verde
                 ? pm.Map.Npcs.Where(n => m.Quests.Any(q => q.State == "ready" && q.Giver == n.Name)).ToDictionary(n => n.Id, _ => "entregar")
@@ -706,6 +706,43 @@ public sealed class WorldPanels
         _dialogBox.AddChild(close);
     }
 
+    /// <summary>18/11 15h + 19/11 (dono: "ao clicar no mapa abre o mapa exatamente onde está a missão, pra pessoa ver onde é —
+    /// aqui mostrava pelo número e o TP, não onde realmente fica"): abre o mapa do LUGAR da missão (o daqui ou o de lá) com
+    /// a missão piscando no ponto de verdade.</summary>
+    private Button? BotaoMapa(ClientModel m, QuestEntry q)
+    {
+        var (lm, lx, ly) = q.LugarMapa.Length > 0 ? (q.LugarMapa, q.LugarX, q.LugarY) : (q.MapId, q.X, q.Y);
+        if (lm.Length == 0 || (lx == 0 && ly == 0)) return null;
+        var outro = lm != m.Map?.Id;
+        var ver = new Button { Text = "🗺", TooltipText = "Mostrar no mapa (M)" + (outro ? " — abre o mapa de lá, com o ponto da missão" : "") };
+        var nome = q.Name;
+        ver.Pressed += () =>
+        {
+            if (!_map.Visible) Toggle("map");
+            _abaMapa?.Invoke(true);
+            if (outro) Send?.Invoke(new MapaPreviaIntent(lm));
+            _canvas.Destaque = (lx, ly, nome);
+            _canvas.DestaqueMapa = lm;
+            _canvas.DestaqueAte = Time.GetTicksMsec() + 10000;
+            _canvas.CentrarEm(lx, ly);
+            Sfx.Play("ui_clique");
+        };
+        return ver;
+    }
+
+    private Button BotaoMarcar(ClientModel m, string qid)
+    {
+        var pinned = m.IsPinned(qid);
+        var pin = new Button { Text = pinned ? "Desmarcar" : "Marcar", TooltipText = "Mostra esta missão no canto da tela, na bússola, no minimapa e no mapa (M)" };
+        pin.Pressed += () =>
+        {
+            if (!m.UnpinnedQuests.Remove(qid)) m.UnpinnedQuests.Add(qid);
+            m.PinsVersion++;
+            Sfx.Play("ui_clique");
+        };
+        return pin;
+    }
+
     private void UpdateJournal(ClientModel m)
     {
         var sig = string.Join(",", m.Quests.Select(q => q.Id + q.State + q.Progress)) + "#" + m.PinsVersion + "#" + HudView.MissoesMinimizadas + "#" + m.ProximaHistoria?.Name + m.ProximaHistoria?.Hint;
@@ -725,7 +762,14 @@ public sealed class WorldPanels
             hc.AddThemeStyleboxOverride("panel", HudView.CardStyle(true));
             var hv = new VBoxContainer();
             hc.AddChild(hv);
-            hv.AddChild(HudView.MakeLabel(hist.Name, 16, new Color(1f, 0.66f, 0.25f)));
+            var hh = new HBoxContainer();
+            var ht = HudView.MakeLabel((m.IsPinned(hist.Id) ? "▶ " : "◆ ") + hist.Name, 16, new Color(1f, 0.66f, 0.25f));
+            ht.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+            ht.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+            hh.AddChild(ht);
+            if (BotaoMapa(m, hist) is { } hm) hh.AddChild(hm);
+            hh.AddChild(BotaoMarcar(m, hist.Id));   // 19/11: a história também marca e desmarca
+            hv.AddChild(hh);
             hv.AddChild(Wrap(hist.Hint, 13, new Color(0.95f, 0.88f, 0.72f)));
             _journalBox.AddChild(hc);
         }
@@ -769,38 +813,8 @@ public sealed class WorldPanels
                 if (q.State != "done" && (q.RewardXp > 0 || q.RewardCoins > 0))
                     head.AddChild(HudView.MakeLabel((q.RewardXp > 0 ? $"+{q.RewardXp:N0} XP" : "") + (q.RewardXp > 0 && q.RewardCoins > 0 ? "  ·  " : "") +
                         (q.RewardCoins > 0 ? $"{q.RewardCoins:N0} moedas" : ""), 13, new Color(0.55f, 0.85f, 1f)));
-                if (q.State != "done" && (q.X != 0 || q.Y != 0))
-                {
-                    // 18/11 15h: ver no mapa (abre o M com a missão piscando)
-                    var ver = new Button { Text = "🗺", TooltipText = "Mostrar no mapa (M)" + (q.MapId != m.Map?.Id && q.MapId.Length > 0 ? " — fica em outro mapa: marca a passagem para lá" : "") };
-                    var (qx, qy, qn) = (q.X, q.Y, q.Name);
-                    var qmap = q.MapId;
-                    ver.Pressed += () =>
-                    {
-                        Toggle("map");
-                        // 19/11 (dono: "o mostrar no mapa do J abre o mapa local do lugar, pra você se situar"): abre o mapa
-                        // do lugar da missão (o daqui, ou o de lá, se já visitou)
-                        _abaMapa?.Invoke(true);
-                        if (qmap.Length > 0 && qmap != m.Map?.Id) Send?.Invoke(new MapaPreviaIntent(qmap));
-                        _canvas.Destaque = (qx, qy, qn);
-                        _canvas.DestaqueAte = Time.GetTicksMsec() + 8000;
-                        Sfx.Play("ui_clique");
-                    };
-                    head.AddChild(ver);
-                }
-                if (q.State != "done")
-                {
-                    var pinned = m.IsPinned(q.Id);
-                    var pin = new Button { Text = pinned ? "Desmarcar" : "Marcar na tela", TooltipText = "Mostra esta missão no canto da tela (todas vêm marcadas)" };
-                    var qid = q.Id;
-                    pin.Pressed += () =>
-                    {
-                        if (!m.UnpinnedQuests.Remove(qid)) m.UnpinnedQuests.Add(qid);
-                        m.PinsVersion++;
-                        Sfx.Play("ui_clique");
-                    };
-                    head.AddChild(pin);
-                }
+                if (q.State != "done" && BotaoMapa(m, q) is { } verNoMapa) head.AddChild(verNoMapa);
+                if (q.State != "done") head.AddChild(BotaoMarcar(m, q.Id));
                 col.AddChild(head);
                 // 17/11 noite (dono: "coloca no J o nome do NPC de quem é a missão — fica mais fácil de falar pra um amigo")
                 if (q.Giver.Length > 0)
@@ -1043,7 +1057,7 @@ public sealed class WorldPanels
         var skills = m.Catalog?.Skills.Where(s => s.Slot is not ("basic" or "basic_unarmed")).GroupBy(s => s.Id).Select(g => g.First()).ToList()
                      ?? new List<SkillInfo>();
         var keys = new[] { "Q", "E", "R", "T", "Dir" };   // "Dir" = botão direito do mouse (10/11)
-        var sig = $"{level}|{string.Join(",", m.Flags)}|{string.Join(",", keys.Select(k => m.SkillForKey(k)?.Id))}|{skills.Count}";
+        var sig = $"{level}|{string.Join(",", m.Flags)}|{string.Join(",", keys.Select(k => m.SkillForKey(k)?.Id))}|{skills.Count}|{m.WeaponSkill?.Id}";
         if (sig == _powersSig) return;
         _powersSig = sig;
         Clear(_powersBox, keepTitle: true);
@@ -1056,7 +1070,10 @@ public sealed class WorldPanels
         _powersBox.AddChild(bar);
         _powersBox.AddChild(new HSeparator());
         // 13/11 ("no K só tem que ter poderes desbloqueados, nada a mais — começando do zero, não vai ter nada")
-        var conhecidos = skills.Where(s => m.Knows(s, level)).ToList();
+        // 19/11 (dono: "não precisa mostrar os poderes que vêm da arma se não tiver a arma — só se estiver com ela, aí
+        // mostra e explica"): poder de arma só aparece o da arma equipada
+        var daArma = m.WeaponSkill?.Id;
+        var conhecidos = skills.Where(s => m.Knows(s, level) && (s.Slot != "weapon" || s.Id == daArma)).ToList();
         if (conhecidos.Count == 0)
             _powersBox.AddChild(Wrap("Nenhum poder aprendido ainda.", 14, Dim));
         foreach (var s in conhecidos.OrderBy(s => s.Slot == "weapon" ? 2 : s.Slot == "skill3" ? 1 : 0).ThenBy(s => s.TomeLevel))
@@ -1074,7 +1091,7 @@ public sealed class WorldPanels
             head.AddChild(name);
             var where = s.Slot switch
             {
-                "weapon" => "vem da arma",
+                "weapon" => "da arma equipada (tecla R)",
                 "skill3" => known ? "evolução" : "evolução (nível 20 + mentor)",
                 _ => known ? "aprendido" : s.TomeLevel > 0 ? $"tomo · nível {s.TomeLevel} · mentor" : $"nível {s.UnlockLevel}",
             };
@@ -1562,6 +1579,14 @@ public sealed partial class WorldMapCanvas : Control
         // 13/11: a arte da Costa foi feita cobrindo −130..130; as novas (Porto e os outros) cobrem a borda do mapa + 2 m
         var ext = tex is not null ? (Layout.Id == "costa_do_cal" ? 130.0 : Layout.HalfSize + 2) : Layout.HalfSize + 4;
         // 11/11 noite: rodinha dá zoom (no ponto do mouse), arrastar move; abre centralizado
+        // 19/11: "mostrar no mapa" do J — chega já com zoom e centrado no ponto da missão (quando o mapa certo estiver na tela)
+        if (_centrar is { } cc && (DestaqueMapa is null || DestaqueMapa == Layout.Id))
+        {
+            _centrar = null;
+            _zoom = 2f;
+            var lado0 = Mathf.Min(Size.X, Size.Y) * _zoom;
+            _pan = -new Vector2((float)((cc.X + ext) / (2 * ext) - 0.5), (float)((cc.Y + ext) / (2 * ext) - 0.5)) * lado0;
+        }
         var side = Mathf.Min(Size.X, Size.Y) * _zoom;
         var origin = (Size - new Vector2(side, side)) / 2f + _pan;
         DrawRect(new Rect2(Vector2.Zero, Size), new Color(0.08f, 0.07f, 0.06f));
@@ -1635,8 +1660,13 @@ public sealed partial class WorldMapCanvas : Control
         for (var i = 0; i < HudView.NoMapa.Count; i++)
         {
             var q = HudView.NoMapa[i];
-            if (q.MapId == Layout.Id && (q.X != 0 || q.Y != 0))
+            // 19/11 (dono: "as missões ativadas não aparecem no mapa quando clica e dá zoom"): no mapa de um lugar vai o
+            // ponto DE VERDADE da missão; o da passagem ("vá por aqui") só no mapa onde você está
+            var (qmx, qx0, qy0) = q.LugarMapa.Length > 0 ? (q.LugarMapa, q.LugarX, q.LugarY) : (q.MapId, q.X, q.Y);
+            if (qmx != Layout.Id && q.MapId == Layout.Id && Layout.Id == Aqui) (qmx, qx0, qy0) = (q.MapId, q.X, q.Y);
+            if (qmx == Layout.Id && (qx0 != 0 || qy0 != 0))
             {
+                q = q with { X = qx0, Y = qy0 };
                 CompassStrip.DrawQuestStone(this, At(q.X, q.Y), i + 1, q.State == "ready", 11f);
                 var linhas = new List<string> { $"Missão {i + 1}: {q.Name}" };
                 if (q.Hint.Length > 0) linhas.Add(q.Hint);
@@ -1651,10 +1681,15 @@ public sealed partial class WorldMapCanvas : Control
                 _alvos.Add((At(q.X, q.Y), 13f, linhas.ToArray(), q.State == "ready" ? new Color(0.45f, 0.95f, 0.5f) : new Color(1f, 0.8f, 0.32f)));
             }
         }
-        if (Historia is { } hq && hq.MapId == Layout.Id && (hq.X != 0 || hq.Y != 0))
+        if (Historia is { } hq0)
         {
-            CompassStrip.DrawStarStone(this, At(hq.X, hq.Y), 11f);
-            _alvos.Add((At(hq.X, hq.Y), 15f, new[] { hq.Name, hq.Hint }, new Color(1f, 0.66f, 0.25f)));
+            var hq = hq0.LugarMapa == Layout.Id && (hq0.LugarX != 0 || hq0.LugarY != 0) ? hq0 with { MapId = hq0.LugarMapa, X = hq0.LugarX, Y = hq0.LugarY }
+                : Layout.Id == Aqui ? hq0 : hq0 with { MapId = "" };
+            if (hq.MapId == Layout.Id && (hq.X != 0 || hq.Y != 0))
+            {
+                CompassStrip.DrawStarStone(this, At(hq.X, hq.Y), 11f);
+                _alvos.Add((At(hq.X, hq.Y), 15f, new[] { hq.Name, hq.Hint }, new Color(1f, 0.66f, 0.25f)));
+            }
         }
         if (Markers is not null && Markers.TryGetValue("horda", out var hz) && hz.Kind == "horda")
         {
@@ -1662,7 +1697,7 @@ public sealed partial class WorldMapCanvas : Control
             _alvos.Add((At(hz.X, hz.Y), 16f, new[] { "Horda caçando você", "vença o bando inteiro e ganhe um prêmio" }, new Color(1f, 0.35f, 0.3f)));
         }
         // 18/11 15h ("um ícone no J nas missões: mostrar no mapa"): a missão escolhida pisca com anéis por 8 s
-        if (Destaque is { } dq && Time.GetTicksMsec() < DestaqueAte)
+        if (Destaque is { } dq && Time.GetTicksMsec() < DestaqueAte && (DestaqueMapa is null || DestaqueMapa == Layout.Id))
         {
             var pd = At(dq.X, dq.Y);
             var fase = (Time.GetTicksMsec() % 1200) / 1200f;
@@ -1801,6 +1836,10 @@ public sealed partial class WorldMapCanvas : Control
     /// <summary>18/11 15h: missão escolhida no J ("ver no mapa").</summary>
     public (double X, double Y, string Nome)? Destaque;
     public ulong DestaqueAte;
+    /// <summary>19/11: mapa do ponto em destaque (o anel só pisca nele) e pedido de centrar a vista ali.</summary>
+    public string? DestaqueMapa;
+    private (double X, double Y)? _centrar;
+    public void CentrarEm(double x, double y) { _centrar = (x, y); QueueRedraw(); }
 
     // mapa de pergaminho: regiões são pontos (sem caixas sobrepostas); passar o mouse mostra o quadro da região
     private Vector2 P(double x, double y)

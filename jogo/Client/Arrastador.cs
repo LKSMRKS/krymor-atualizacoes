@@ -11,7 +11,7 @@ namespace CinzasDaMare.Client;
 /// </summary>
 public sealed partial class Arrastador : Node
 {
-    private sealed class Reg { public Control C = null!; public string Nome = ""; public float Faixa; public bool PorDesvio; public Button? X; }
+    private sealed class Reg { public Control C = null!; public string Nome = ""; public float Faixa; public bool PorDesvio; public Button? X; public Vector2 Padrao; }
 
     /// <summary>13/11 ("coloca um X no ESC e em todas as caixas"): alguém fechou uma janela pelo X (o Main devolve o mouse ao jogo).</summary>
     public static event System.Action? Fechou;
@@ -108,6 +108,16 @@ public sealed partial class Arrastador : Node
                     if (!ReferenceEquals(o, r) && GodotObject.IsInstanceValid(o.C) && o.C.IsVisibleInTree() && o.C.IsGreaterThan(r.C)
                         && o.C.GetGlobalRect().Intersects(xr)) { coberto = true; break; }
                 bx.Visible = !coberto;
+            }
+            // 19/11 ("o inventário cresce, ou outras caixas crescem, ficando poluído / fora do padrão"): no Godot o contêiner
+            // cresce quando o conteúdo pede, mas NUNCA volta a encolher. Guardamos o tamanho padrão de cada janela (o da
+            // primeira vez que abriu) e, quando o conteúdo volta ao normal, ela volta ao padrão.
+            if (r.Padrao == Vector2.Zero && r.C.Size.X > 1f) r.Padrao = r.C.Size;
+            else if (r.Padrao != Vector2.Zero)
+            {
+                var min = r.C.GetCombinedMinimumSize();
+                var alvo = new Vector2(Mathf.Max(r.Padrao.X, min.X), Mathf.Max(r.Padrao.Y, min.Y));
+                if (r.C.Size.X > alvo.X + 1f || r.C.Size.Y > alvo.Y + 1f) r.C.Size = alvo;
             }
             var view = r.C.GetViewportRect().Size;
             const float m = 8f;

@@ -39,6 +39,7 @@ public sealed partial class MapView
         public Node3D? Root;
         public float Sumindo = -1f;   // 17/11: segundos desde que abriu (o baú some para quem abriu)
         public bool Visto;
+        public Node3D? Cadeado;                   // 18/11: baú trancado (some quando abre)
     }
 
     private readonly List<GateView> _gates = new();
@@ -2408,7 +2409,7 @@ void fragment() {
             var light = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
             root.AddChild(light);
             Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
-            _chests.Add(new ChestView { Chest = c, Lid = glbLid, LidSign = 1f, Glow = light, Root = root });
+            _chests.Add(new ChestView { Chest = c, Lid = glbLid, LidSign = 1f, Glow = light, Root = root, Cadeado = Cadeado(root, c) });
             return;
         }
         var wood = VisualKit.Mat(new Color(0.40f, 0.26f, 0.13f), 0.85f);
@@ -2422,7 +2423,20 @@ void fragment() {
         var glow = new OmniLight3D { LightColor = new Color(1f, 0.8f, 0.35f), LightEnergy = 0.9f, OmniRange = 3.2f, Position = new Vector3(0, 0.9f, 0), Visible = !c.Secret };
         root.AddChild(glow);
         Collider(P(c.X, c.Y, 0.4f), new BoxShape3D { Size = new Vector3(1f, 0.8f, 0.7f) });
-        _chests.Add(new ChestView { Chest = c, Lid = lid, Glow = glow, Root = root });
+        _chests.Add(new ChestView { Chest = c, Lid = lid, Glow = glow, Root = root, Cadeado = Cadeado(root, c) });
+    }
+
+    /// <summary>18/11: cadeado de ferro na frente do baú trancado (abre com Chave de Cofre).</summary>
+    private static Node3D? Cadeado(Node3D root, MapChest c)
+    {
+        if (c.Chave is null) return null;
+        var ferro = VisualKit.Mat(new Color(0.32f, 0.3f, 0.28f), 0.45f, 0.85f);
+        var n = new Node3D { Position = new Vector3(0, 0.42f, 0.4f) };
+        root.AddChild(n);
+        VisualKit.Part(n, VisualKit.Box(0.2f, 0.18f, 0.07f), ferro, Vector3.Zero);
+        VisualKit.Part(n, new TorusMesh { InnerRadius = 0.05f, OuterRadius = 0.075f, Rings = 14, RingSegments = 6 }, ferro, new Vector3(0, 0.12f, 0), new Vector3(90, 0, 0));
+        VisualKit.Part(n, VisualKit.Box(0.03f, 0.06f, 0.02f), VisualKit.Mat(new Color(0.05f, 0.05f, 0.05f), 1f), new Vector3(0, -0.02f, 0.04f));
+        return n;
     }
 
     /// <summary>Casa modular de enxaimel em coordenadas locais (frente = +Z). variant muda toldo/placa/chaminé.</summary>
@@ -4914,7 +4928,13 @@ void fragment() {
                 Root.AddChild(node);
                 if (!KitTapa.Oficina(this, node, propKind)) MapKit.TryBuild(this, node, propKind, wood);   // 12/11: modelos do pacote Vila
                 // som no lugar: forja martelando, caldeirão borbulhando (some com a distância)
-                if (obj.Kind == "forja") Sfx.Loop3D(node, "loop_forja", -6f, 2.5f, 14f);   // 17/11 noite: só perto da forja
+                // 19/11 ("o som do ferreiro acompanha sempre, mesmo fora da base; o ferreiro só tem som onde tem ele"):
+                // a martelada só toca na forja que tem ferreiro do lado, e cai rápido com a distância (some a ~14 m)
+                if (obj.Kind == "forja")
+                {
+                    if (Map.Npcs.Any(n => n.Look == "ferreiro" && (n.X - obj.X) * (n.X - obj.X) + (n.Y - obj.Y) * (n.Y - obj.Y) < 10 * 10))
+                        Sfx.Loop3D(node, "loop_forja", -8f, 2f, 14f);
+                }
                 else if (obj.Kind is "caldeirao" or "panela") Sfx.Loop3D(node, "loop_caldeirao", -6f, 2.5f, 12f);
                 return true;
             }
@@ -5026,6 +5046,36 @@ void fragment() {
             return;
         }
         if (AddEnigma(obj)) return;   // 18/11 21h: alavancas, sinos, guardiões, espelhos e braseiro do cofre
+        // 18/11: alavanca do quebra-cabeça (puxar na ordem certa) e placa que segura a porta de pedra aberta
+        if (obj.Kind == "alavanca_seq")
+        {
+            var al = new Node3D { Position = P(obj.X, obj.Y) };
+            Root.AddChild(al);
+            VisualKit.Part(al, VisualKit.Box(0.55f, 0.7f, 0.45f), StoneMat(0.42f, false), new Vector3(0, 0.35f, 0));
+            VisualKit.Part(al, VisualKit.Box(0.12f, 0.5f, 0.06f), VisualKit.Mat(new Color(0.1f, 0.09f, 0.08f), 1f), new Vector3(0, 0.7f, 0.2f));   // fenda do curso
+            var cabo = VisualKit.Joint(al, new Vector3(0, 0.7f, 0.12f));
+            VisualKit.Part(cabo, VisualKit.Cylinder(0.04f, 0.04f, 0.85f, 6), VisualKit.Mat(new Color(0.42f, 0.28f, 0.15f), 0.8f), new Vector3(0, 0.42f, 0));
+            VisualKit.Part(cabo, VisualKit.Sphere(0.08f), VisualKit.Mat(new Color(0.5f, 0.48f, 0.45f), 0.35f, 0.8f), new Vector3(0, 0.86f, 0));
+            cabo.RotationDegrees = new Vector3(-40, 0, 0);
+            _alavancas.Add((obj, cabo));
+            _objects.Add((obj, al));
+            _interactables.Add((obj, al));
+            return;
+        }
+        if (obj.Kind == "placa_porta")
+        {
+            var pl = new Node3D { Position = P(obj.X, obj.Y) };
+            Root.AddChild(pl);
+            if (Visuals.GlbCache.Instance("interior/puzzle_placa") is { } placaGlb) pl.AddChild(placaGlb);
+            else VisualKit.Part(pl, VisualKit.Box(1.2f, 0.06f, 1.2f), StoneMat(0.4f, false), new Vector3(0, 0.03f, 0));
+            // correntes saindo da placa e sumindo no chão (pista de que ela puxa alguma coisa longe)
+            var corrente = VisualKit.Mat(new Color(0.3f, 0.28f, 0.26f), 0.5f, 0.8f);
+            for (var i = 0; i < 4; i++)
+                VisualKit.Part(pl, new TorusMesh { InnerRadius = 0.03f, OuterRadius = 0.06f, Rings = 10, RingSegments = 5 }, corrente,
+                    new Vector3(0.7f + i * 0.11f, 0.03f, 0.1f), new Vector3(0, i % 2 == 0 ? 0 : 90, 90));
+            _objects.Add((obj, pl));
+            return;
+        }
         // 11/11 (dungeon estilo Skyrim): runa do quebra-cabeça (acende com a marca "runa:id") e placa de pressão
         if (obj.Kind is "runa" or "placa_pressao" or "placa_enig")
         {
@@ -5364,6 +5414,19 @@ void fragment() {
             Modulate = new Color(1f, 0.88f, 0.6f) });
     }
     private readonly List<(MapObject Obj, Node3D Glow, OmniLight3D Light)> _runes = new();
+    private readonly List<(MapObject Obj, Node3D Cabo)> _alavancas = new();
+
+    /// <summary>18/11: alavancas em ordem — abaixadas as que já foram puxadas certo (todas, se o selo já abriu).</summary>
+    public void SetAlavancas(IReadOnlyDictionary<string, int> puxadas, IReadOnlySet<string> flags, float delta)
+    {
+        foreach (var (obj, cabo) in _alavancas)
+        {
+            var grupo = obj.RequiresFlag ?? "";
+            var baixa = flags.Contains(grupo) || obj.Ordem <= puxadas.GetValueOrDefault(grupo);
+            var alvo = baixa ? 40f : -40f;
+            cabo.RotationDegrees = new Vector3(Mathf.MoveToward(cabo.RotationDegrees.X, alvo, delta * 300f), 0, 0);
+        }
+    }
 
     /// <summary>11/11: runas acesas por este personagem (marca "runa:id") brilham.</summary>
     private readonly List<(MapObject Obj, Node3D Node)> _esferas = new();
@@ -5777,6 +5840,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
             }
             c.Open = Mathf.MoveToward(c.Open, open, delta * 2f);
             c.Lid.RotationDegrees = new Vector3(100f * c.LidSign * c.Open, 0, 0);
+            if (c.Cadeado is not null) c.Cadeado.Visible = c.Open < 0.05f;
             if (c.Glow is not null) c.Glow.LightEnergy = (1f - c.Open) * (0.7f + 0.3f * Mathf.Sin(time * 3f));
         }
         _flames.RemoveAll(fl => !GodotObject.IsInstanceValid(fl.Light));   // 13/11: luz apagada pelo editor (dava erro)

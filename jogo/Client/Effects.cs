@@ -141,6 +141,23 @@ public sealed class Effects
         _active.Add(fx);
     }
 
+    /// <summary>18/11: unhada em X (lobisomem, wendigo) — três riscos de garra brilhando na diagonal, como garras de luz.
+    /// lado +1 = "\\", -1 = "/"; yaw = para onde o bicho olha.</summary>
+    public void Garras(Vector3 centro, float yaw, float comprimento, int lado, Color cor)
+    {
+        var fx = new Fx { Life = 0.32 };
+        var basis = new Basis(Vector3.Up, yaw) * new Basis(Vector3.Up, Mathf.DegToRad(45f * lado));
+        for (var k = -1; k <= 1; k++)
+        {
+            var off = basis * new Vector3(k * 0.16f, 0, 0);
+            var part = AddPart(fx, new BoxMesh { Size = new Vector3(0.05f, 0.03f, comprimento) }, cor, centro + off + new Vector3(0, 1.0f + k * 0.08f, 0), 0.32);
+            part.Node.Basis = basis * new Basis(Vector3.Right, Mathf.DegToRad(-35f * lado));
+            part.StartScale = new Vector3(1.4f, 1f, 0.25f);
+            part.EndScale = new Vector3(0.5f, 0.5f, 1.15f);
+        }
+        _active.Add(fx);
+    }
+
     /// <summary>Clarão e faíscas no ponto de impacto.</summary>
     public void Impact(Vector3 at, Color color, int sparks = 8, float size = 1f)
     {

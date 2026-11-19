@@ -350,6 +350,7 @@ public sealed partial class ItemIconRenderer : Node
         "consumable_c08_frasco_foco", "consumable_c09_frasco_foco_grande",   // 14/11: Foco do Arqueiro (laranja)
         "esfera_macaco_",   // 14/11: esfera do macaco virou item
         "mat_chifre_cabra",   // 14/11: a cabra larga chifre (não carne de javali)
+        "chave_",   // 18/11: Chave de Cofre (baú trancado)
     };
 
     public static bool HasOwnIcon(string definition) => Array.Exists(OwnIconIds, definition.StartsWith);
@@ -884,6 +885,20 @@ public sealed partial class ItemIconRenderer : Node
                 var m = new StandardMaterial3D { AlbedoColor = c with { A = 0.85f }, Transparency = BaseMaterial3D.TransparencyEnum.Alpha, Roughness = 0.15f, EmissionEnabled = true, Emission = c.Darkened(0.6f) };
                 if (id == "mat_cera") VisualKit.Part(root, VisualKit.Cylinder(0.24f, 0.24f, 0.22f, 6), m, Vector3.Zero);
                 else { VisualKit.Part(root, VisualKit.Sphere(0.22f), m, Vector3.Zero, null, new Vector3(1f, 1.3f, 0.9f)); VisualKit.Part(root, VisualKit.Sphere(0.12f), m, new Vector3(0.2f, -0.12f, 0.05f)); }
+                return root;
+            }
+            case "chave_cofre":
+            {
+                // 18/11: chave de ferro enferrujada, cabeça em argola com um dente torto
+                var ferro = VisualKit.Mat(new Color(0.42f, 0.33f, 0.26f), 0.6f, 0.75f);
+                var ferrugem = VisualKit.Mat(new Color(0.55f, 0.28f, 0.12f), 0.9f);
+                root.RotationDegrees = new Vector3(10, 20, -40);
+                VisualKit.Part(root, new TorusMesh { InnerRadius = 0.09f, OuterRadius = 0.16f, Rings = 18 }, ferro, new Vector3(0, 0.27f, 0), new Vector3(90, 0, 0));
+                VisualKit.Part(root, VisualKit.Cylinder(0.04f, 0.04f, 0.5f, 8), ferro, new Vector3(0, -0.06f, 0));
+                VisualKit.Part(root, VisualKit.Box(0.12f, 0.06f, 0.045f), ferro, new Vector3(0.07f, -0.26f, 0));
+                VisualKit.Part(root, VisualKit.Box(0.08f, 0.05f, 0.045f), ferro, new Vector3(0.06f, -0.15f, 0), new Vector3(0, 0, 12));
+                VisualKit.Part(root, VisualKit.Sphere(0.045f), ferrugem, new Vector3(-0.1f, 0.33f, 0.03f));
+                VisualKit.Part(root, VisualKit.Sphere(0.03f), ferrugem, new Vector3(0.02f, 0.05f, 0.03f));
                 return root;
             }
             case "mat_chave_bronze" or "mat_chave_ferro" or "mat_chave_prata" or "mat_chave_ouro":
