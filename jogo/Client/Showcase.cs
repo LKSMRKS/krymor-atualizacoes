@@ -28,6 +28,35 @@ public partial class Showcase : Node3D
             kind.StartsWith("cassino", StringComparison.Ordinal)
                 ? new[] { new MapProp("mesa_vinteum", 0, 0, 0), new MapProp("movel_banqueta", -1.3, 1.3, 135), new MapProp("movel_banqueta", 0, 1.6, 180), new MapProp("movel_banqueta", 1.3, 1.3, 225), new MapProp("mesa_cartas", 3.2, -0.5, 0) }
                 : Array.Empty<MapProp>()) { Theme = "cidade", Kind = "cidade" };
+        // 18/11 21h: "enigmas" = as travas novas do cofre lado a lado (braseiro + 2 espelhos + selo, 3 sinos, alavanca, guardião)
+        if (kind == "enigmas")
+        {
+            const string g = "enig:vitrine";
+            layout = layout with
+            {
+                Theme = "mata", Kind = "campo",
+                Objects = new[]
+                {
+                    new MapObject("v_fonte", "fonte_luz", -6, 3, "Braseiro") { RequiresFlag = g },
+                    new MapObject("v_espelho_1", "espelho", -6, -2, "Espelho") { RequiresFlag = g, Ordem = 1, Inicio = 1 },
+                    new MapObject("v_espelho_2", "espelho", -1.5, -3, "Espelho") { RequiresFlag = g, Ordem = 4, Inicio = 4 },
+                    new MapObject("v_sino_a", "sino", 2.5, 1, "Sino pequeno da Lua") { RequiresFlag = "x" },
+                    new MapObject("v_sino_b", "sino", 4.8, 1, "Sino médio da Raiz") { RequiresFlag = "x" },
+                    new MapObject("v_sino_c", "sino", 7.4, 1, "Sino grande do Corvo") { RequiresFlag = "x" },
+                    new MapObject("v_alav", "alavanca_enig", 3, 5, "Alavanca do Corvo") { RequiresFlag = "y" },
+                    new MapObject("v_estatua", "estatua_giro", 7, 5, "Guardião") { RequiresFlag = "z", Inicio = 1 },
+                    new MapObject("v_placa", "placa_enig", 0, 4, "Pedra de chão") { RequiresFlag = "w" },
+                },
+                Gates = new[] { new MapGate("v_selo", g, 2.5, -5, 2.4, 0.8, 2.5, -4) { Kind = "selo", Lever = false } },
+            };
+        }
+        if (kind == "taverna")   // 18/11 21h: balcão da taverna (VITRINE_NPC=x,y põe o taverneiro para conferir o lugar)
+        {
+            var npcs = OS.GetEnvironment("VITRINE_NPC") is { Length: > 0 } np && np.Split(',') is { Length: 2 } nps
+                ? new[] { new MapNpc("v_boris", "Bóris", "loja", double.Parse(nps[0], System.Globalization.CultureInfo.InvariantCulture), double.Parse(nps[1], System.Globalization.CultureInfo.InvariantCulture), 0) }
+                : Array.Empty<MapNpc>();
+            layout = layout with { Props = new[] { new MapProp("taverna_grande", 0, 0, 0) }, Npcs = npcs };
+        }
         // 12/11: "mapa" = um mapa de verdade do Content (VITRINE_CONTENT = pasta, VITRINE_MAPA = id; VITRINE_CAM = "x,y,z,lx,ly,lz")
         if (kind == "mapa" && OS.GetEnvironment("VITRINE_CONTENT") is { Length: > 0 } dir)
         {
@@ -74,6 +103,26 @@ public partial class Showcase : Node3D
             case "laboratorio": s.Laboratorio(camera); break;
             case "monstro": s.MonstroLista(camera); break;
             case "vila": s.Vila(camera); break;
+            case "taverna":
+            {
+                var c = (OS.GetEnvironment("VITRINE_CAM") is { Length: > 0 } cs2 ? cs2 : "0,14,6,0,0,-1").Split(',');
+                float F2(int i) => float.Parse(c[i], System.Globalization.CultureInfo.InvariantCulture);
+                camera.Position = new Vector3(F2(0), F2(1), F2(2));
+                camera.LookAt(new Vector3(F2(3), F2(4), F2(5)));
+                camera.Fov = 60;
+                map.SetViewer(0f, 0f);
+                map.Update(new HashSet<string>(), 0f, 0.1f);
+                break;
+            }
+            case "enigmas":
+            {
+                camera.Position = new Vector3(1.5f, 6.5f, 11f);
+                camera.LookAt(new Vector3(1.5f, 0.8f, 0f));
+                camera.Fov = 60;
+                map.SetViewer(1.5f, 0f);
+                map.SetRuneFlags(new HashSet<string>((OS.GetEnvironment("VITRINE_FLAGS") ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries)));
+                break;
+            }
             case "mapa":
             {
                 var c = (OS.GetEnvironment("VITRINE_CAM") is { Length: > 0 } cs ? cs : "0,14,14,0,0,0").Split(',');
@@ -82,6 +131,8 @@ public partial class Showcase : Node3D
                 camera.LookAt(new Vector3(F(3), F(4), F(5)));
                 camera.Fov = 60;
                 map.SetViewer(F(3), F(5));
+                // 18/11 21h: VITRINE_FLAGS=marca1,marca2 — conferir enigma resolvido (raio dos espelhos, alavancas descidas)
+                map.SetRuneFlags(new HashSet<string>((OS.GetEnvironment("VITRINE_FLAGS") ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries)));
                 if (float.TryParse(OS.GetEnvironment("VITRINE_HORA"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var hora))
                     map.SetHour(hora);   // 15/11: conferir o céu (luas, planetas, aurora) de dia e de noite
                 // 13/11 ("manda a versão final do mapa pra eu criar a arte"): VITRINE_ORTO=lado (m) = vista de cima reta,
@@ -589,7 +640,8 @@ public partial class Showcase : Node3D
             var cx = float.TryParse(OS.GetEnvironment("VITRINE_X"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var vx) ? vx : 0f;
             var cy = float.TryParse(OS.GetEnvironment("VITRINE_Y"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var vy) ? vy : 1.55f;
             var cz = float.TryParse(OS.GetEnvironment("VITRINE_Z"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var vz) ? vz : 3.2f;
-            camera.Position = new Vector3(cx, cy + 0.07f, cz);
+            var ang = float.TryParse(OS.GetEnvironment("VITRINE_ANG"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var va) ? Mathf.DegToRad(va) : 0f;
+            camera.Position = new Vector3(cx + cz * Mathf.Sin(ang), cy + 0.07f, cz * Mathf.Cos(ang));   // VITRINE_ANG: olha de lado
             camera.LookAt(new Vector3(cx, cy, 0));
             camera.Fov = 34;
         }

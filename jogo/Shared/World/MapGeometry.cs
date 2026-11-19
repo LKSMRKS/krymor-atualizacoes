@@ -41,7 +41,7 @@ public sealed class MapGeometry
     public static double CorpoDeObjeto(MapObject o) => o.Kind switch
     {
         "caldeirao" => 0.6, "panela" => 0.45, "forja" => 0.9, "bancada" => 0.7, "altar" => 0.8, "caos" => 0.9, "armazem" => 0.7,
-        "barris_polvora" => 0.6, "bau_casa" => 0.45, "livro" => 0.3, "runa" => 0.35,
+        "barris_polvora" => 0.6, "bau_casa" => 0.45, "livro" => 0.3, "runa" => 0.35, "sino" => 0.35, "estatua_giro" => 0.55, "espelho" => 0.35, "fonte_luz" => 0.45, "alavanca_enig" => 0.25,
         "maquina_dg" or "mesclar_visual" => 0.6,   // 18/11 19h (dono: "a máquina da chave está sem física, atravessando")
         "veio" when !PedraSolida(o) => 0.3,
         _ => 0,

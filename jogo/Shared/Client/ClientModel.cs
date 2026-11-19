@@ -847,6 +847,17 @@ public sealed class ClientModel
                 return "Desamarrar " + obj.Label.Replace(", amarrado", "");
             case "runa":
                 return _flags.Contains("runa:" + obj.Id) ? "Runa acesa" : "Tocar a runa antiga";
+            // 18/11 21h: travas novas do cofre (GameServer.Enigmas.cs)
+            case "alavanca_enig":
+                return _flags.Contains("runa:" + obj.Id) ? obj.Label + " (já desceu)" : "Puxar: " + obj.Label;
+            case "sino":
+                return _flags.Contains("runa:" + obj.Id) ? obj.Label + " (ainda vibrando)" : "Tocar: " + obj.Label;
+            case "estatua_giro":
+                return obj.RequiresFlag is { } gg && _flags.Contains(gg) ? obj.Label + " (olha para o selo)" : "Girar: " + obj.Label;
+            case "espelho":
+                return obj.RequiresFlag is { } ge && _flags.Contains(ge) ? obj.Label + " (no lugar)" : "Girar: " + obj.Label;
+            case "fonte_luz": return "Examinar: " + obj.Label;
+            case "placa_enig": return obj.Label + " (pise nela)";
             case "barris_polvora":
                 return Me?.Carry is not null ? "Barris de pólvora (suas mãos estão ocupadas)" : "Pegar um barril de pólvora";
             case "canteiro":

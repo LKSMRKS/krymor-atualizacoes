@@ -12,7 +12,7 @@ namespace CinzasDaMare.Client;
 /// números). Formas simples: chão por região, muralhas, penhascos, rochas, árvores, colunas, ruínas, portão com
 /// alavanca, baús e enfeites (fogueira, tochas, tendas). Colisores estáticos só para a câmera não atravessar.
 /// </summary>
-public sealed class MapView
+public sealed partial class MapView
 {
     private sealed class GateView
     {
@@ -5025,8 +5025,9 @@ void fragment() {
                 if (Root.GetChild(i) is Node3D n && n is not MeshInstance3D) _interactables.Add((obj, n));
             return;
         }
+        if (AddEnigma(obj)) return;   // 18/11 21h: alavancas, sinos, guardiões, espelhos e braseiro do cofre
         // 11/11 (dungeon estilo Skyrim): runa do quebra-cabeça (acende com a marca "runa:id") e placa de pressão
-        if (obj.Kind is "runa" or "placa_pressao")
+        if (obj.Kind is "runa" or "placa_pressao" or "placa_enig")
         {
             var pz = new Node3D { Position = P(obj.X, obj.Y), RotationDegrees = new Vector3(0, R(0, 360), 0) };
             Root.AddChild(pz);
@@ -5395,6 +5396,7 @@ void fragment() {
             var lit = flags.Contains("runa:" + obj.Id);
             if (glow.Visible != lit) { glow.Visible = lit; light.Visible = lit; }
         }
+        EnigmaFlags(flags);
     }
     private Node3D? _hoverBox;
     private Label3D? _hoverLabel;
@@ -5745,6 +5747,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
             if (g.Veu is not null) g.Veu.Visible = Map.Theme == "biblioteca" ? g.Open < 0.4f : g.Open > 0.6f;
             g.Lever.RotationDegrees = new Vector3(Mathf.Lerp(40f, -40f, Mathf.Min(1f, g.Open * 3f)), 0, 0);
         }
+        AnimarEnigmas(delta);
         foreach (var (pobj, tampa, pmats) in _placas)
         {
             if (!GodotObject.IsInstanceValid(tampa)) continue;

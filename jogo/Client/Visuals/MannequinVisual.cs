@@ -769,6 +769,88 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
 
     private sealed record Layer(int Regions, float YMin, float YMax, Color Cloth, Color Trim, float Grow, float Rough = 0.85f,
         float Metal = 0f, int Pattern = 0, Color? Emit = null, Color? Camisa = null);
+    private const float SapoOsso = 0.72f;
+
+    /// <summary>Fio liso (bigode, lábio): cilindros entre os pontos + bolinha em cada junta.</summary>
+    private static void Corda(Node3D pai, IReadOnlyList<Vector3> pts, Func<int, float> raio, Material mat)
+    {
+        for (var i = 0; i < pts.Count; i++)
+        {
+            VisualKit.Part(pai, VisualKit.Sphere(raio(i)), mat, pts[i]);
+            if (i == 0) continue;
+            var d = pts[i] - pts[i - 1];
+            if (d.Length() < 1e-5f) continue;
+            var cil = VisualKit.Cylinder(raio(i), raio(i - 1), d.Length() * 1.05f, 12);
+            cil.CapTop = false; cil.CapBottom = false;
+            var mi = VisualKit.Part(pai, cil, mat, (pts[i] + pts[i - 1]) * 0.5f);
+            var yv = d.Normalized();
+            var xv = yv.Cross(Mathf.Abs(yv.Z) < 0.9f ? Vector3.Back : Vector3.Right).Normalized();
+            var zv = xv.Cross(yv).Normalized();
+            mi.Transform = new Transform3D(new Basis(xv, yv, zv), mi.Position);
+        }
+    }
+
+    /// <summary>Rosto do skin sapo (referência do dono 18/11 21h). Cabeça = elipsoide; tudo é posto na superfície dela.</summary>
+    private static void SapoRosto(Node3D cab)
+    {
+        static StandardMaterial3D Mt(Color c, float r) => VisualKit.Mat(c, r, 0f);
+        var verde = Mt(new Color(0.36f, 0.6f, 0.24f), 0.6f);
+        var verdeEsc = Mt(new Color(0.2f, 0.38f, 0.14f), 0.65f);
+        var papo = Mt(new Color(0.8f, 0.83f, 0.55f), 0.7f);
+        var escuro = Mt(new Color(0.07f, 0.05f, 0.04f), 0.55f);
+        var preto = Mt(new Color(0.02f, 0.02f, 0.02f), 0.35f);
+        const float cz = 0.02f, ax = 0.1755f, by = 0.1107f, cz2 = 0.155f;
+        // focinho: o queixo do boneco fica mais à frente que a cabeça redonda — o focinho largo cobre o queixo
+        static float Elip(float x, float y, Vector3 c, Vector3 r) { var k = 1f - (x - c.X) * (x - c.X) / (r.X * r.X) - (y - c.Y) * (y - c.Y) / (r.Y * r.Y); return k <= 0 ? -1f : c.Z + r.Z * Mathf.Sqrt(k); }
+        static float Sup(float x, float y) => Mathf.Max(Mathf.Max(Elip(x, y, new Vector3(0, 0, cz), new Vector3(ax, by, cz2)), Elip(x, y, new Vector3(0, -0.04f, 0.1f), new Vector3(0.15f, 0.062f, 0.118f))), 0.05f);
+        VisualKit.Part(cab, VisualKit.Sphere(0.135f), verde, new Vector3(0, 0, cz), null, new Vector3(1.3f, 0.82f, 1.15f));        // cabeça larga
+        VisualKit.Part(cab, VisualKit.Sphere(0.125f), verdeEsc, new Vector3(0, 0.02f, -0.03f), null, new Vector3(1.25f, 0.8f, 1f));   // nuca mais escura
+        VisualKit.Part(cab, VisualKit.Sphere(0.1f), verde, new Vector3(0, -0.04f, 0.1f), null, new Vector3(1.5f, 0.62f, 1.18f));       // focinho largo
+        VisualKit.Part(cab, VisualKit.Sphere(0.12f), papo, new Vector3(0, -0.094f, 0.07f), null, new Vector3(1.22f, 0.42f, 1.2f));    // papo claro
+        var miudo = new Node3D { Name = "SemEncaixe" }; cab.AddChild(miudo);
+        cab = miudo;   // daqui para baixo (olhos, boca, bigode) fica onde foi desenhado
+        // boca: lábio grosso de orelha a orelha, cantos caídos (cara emburrada)
+        var lab = new List<Vector3>();
+        for (var i = 0; i <= 30; i++)
+        {
+            var x = -0.14f + i * 0.28f / 30f;
+            var y = -0.05f - 0.04f * Mathf.Pow(Mathf.Abs(x) / 0.14f, 2.0f);
+            lab.Add(new Vector3(x, y, Sup(x, y) + 0.002f));
+        }
+        Corda(cab, lab, k => 0.0048f * (1f - 0.35f * Mathf.Abs(k - 15) / 15f), escuro);
+        foreach (var sd in new[] { -1f, 1f })
+        {
+            // olhão saltado no alto, íris amarelo-esverdeada
+            var olho = new Vector3(sd * 0.088f, 0.078f, 0.085f);
+            VisualKit.Part(cab, VisualKit.Sphere(0.052f), verde, olho - new Vector3(0, 0.004f, 0.012f));                                      // calombo
+            VisualKit.Part(cab, VisualKit.Sphere(0.047f), Mt(new Color(0.9f, 0.84f, 0.32f), 0.2f), olho);                                   // íris
+            VisualKit.Part(cab, VisualKit.Sphere(0.016f), preto, olho + new Vector3(sd * 0.004f, -0.008f, 0.043f), null, new Vector3(1.6f, 0.55f, 0.5f));   // pupila deitada
+            VisualKit.Part(cab, VisualKit.Sphere(0.005f), VisualKit.Glow(Colors.White, 1.2f), olho + new Vector3(-sd * 0.012f, 0.004f, 0.045f));          // brilho
+            // pálpebra pesada: meia esfera verde inclinada para a frente cobre a metade de cima do olho
+            var lid = new SphereMesh { Radius = 0.051f, Height = 0.051f, IsHemisphere = true, RadialSegments = 20, Rings = 8 };
+            VisualKit.Part(cab, lid, verde, olho, new Vector3(-6, 0, sd * -10));
+            VisualKit.Part(cab, new TorusMesh { InnerRadius = 0.046f, OuterRadius = 0.054f, Rings = 20, RingSegments = 6 }, verdeEsc, olho, new Vector3(-6, 0, sd * -10));   // borda da pálpebra
+            // narina
+            VisualKit.Part(cab, VisualKit.Sphere(0.007f), escuro, new Vector3(sd * 0.024f, 0.012f, Sup(sd * 0.024f, 0.012f)));
+            // bigode preto: desce da narina para a bochecha e enrola a ponta para cima
+            var big = new List<Vector3>();
+            var raios = new List<float>();
+            for (var i = 0; i <= 28; i++)
+            {
+                var t = i / 28f;
+                float x, y;
+                if (t < 0.75f) { var u = t / 0.75f; x = 0.012f + 0.105f * u; y = -0.014f - 0.018f * Mathf.Sin(u * Mathf.Pi * 0.85f) + 0.014f * u * u; }
+                else { var u = (t - 0.75f) / 0.25f; var a = -Mathf.Pi * 0.5f + u * Mathf.Pi * 1.5f; x = 0.117f + 0.014f * Mathf.Cos(a) - 0.0f; y = -0.004f + 0.014f * Mathf.Sin(a) + 0.006f; }
+                var p = new Vector3(sd * x, y, Sup(x, y) + 0.006f);
+                big.Add(p); raios.Add(0.0125f * (1f - 0.7f * t));
+            }
+            for (var it = 0; it < 2; it++)   // suaviza a profundidade (o focinho e a cabeça se encontram num vinco)
+                for (var k = 1; k < big.Count - 1; k++)
+                    big[k] = new Vector3(big[k].X, big[k].Y, Mathf.Max(big[k].Z, (big[k - 1].Z + big[k + 1].Z) * 0.5f));
+            Corda(cab, big, k => raios[k], preto);
+        }
+    }
+
     // 17/11 (dono: "a roupa ainda tá voando, desgolada — sapo, gravata, cartola"): Pattern 5 = terno com camisa em V e gravata,
     // 6 = fraque com peitilho e gravata-borboleta. PINTADOS na própria roupa (que deforma com o corpo): nunca descolam.
     private const int PTerno = 5, PFraque = 6;
@@ -2734,6 +2816,10 @@ void fragment() {
         // 16/11: skin "sem cabeça" — a cabeça do boneco aparecia por dentro da chama azul; o osso encolhe até sumir
         if (_skinId == "sem_cabeca" && _mon is null && Bone("Head") is var semc and >= 0)
             _skel.SetBonePoseScale(semc, Vector3.One * 0.02f);
+        // 18/11 21h: skin sapo — o rosto do boneco furava a cabeça de sapo (queixo saindo pelo focinho); o osso encolhe e a
+        // cabeça de sapo (no encaixe da cabeça) é aumentada na mesma proporção, então fica do mesmo tamanho
+        if (_skinId == "sapo" && _mon is null && Bone("Head") is var sapb and >= 0)
+            _skel.SetBonePoseScale(sapb, Vector3.One * SapoOsso);
         if (_mon is { Hunch: > 0 } hs)
         {
             // corcunda permanente (goblin, saqueador, carniçal), cabeça erguida para olhar à frente
@@ -4784,29 +4870,27 @@ void fragment() {
                 VisualKit.Part(cab, VisualKit.Cylinder(0.121f, 0.121f, 0.03f, 20), M(new Color(0.06f, 0.06f, 0.06f)), new Vector3(0, 0.16f, -0.01f));
                 if (skin == "sapo")
                 {
-                    // 18/11 17h (dono: "o sapo tem potencial, mas olha esse rosto — parece um sapo de balão comprido de palhaço"):
-                    // cabeça de sapo de verdade — larga e achatada por cima da cabeça do boneco, papo claro embaixo, bocão
-                    // de orelha a orelha (risco escuro), olhos saltados no alto com íris amarela e pupila deitada, narinas
-                    var verde = M(new Color(0.33f, 0.58f, 0.22f), 0.55f);
-                    var papo = M(new Color(0.78f, 0.82f, 0.5f), 0.7f);
-                    VisualKit.Part(cab, VisualKit.Sphere(0.135f), verde, new Vector3(0, 0.0f, 0.02f), null, new Vector3(1.3f, 0.82f, 1.15f));   // cabeça larga
-                    VisualKit.Part(cab, VisualKit.Sphere(0.12f), papo, new Vector3(0, -0.055f, 0.035f), null, new Vector3(1.18f, 0.5f, 1.05f));   // papo
-                    var boca = M(new Color(0.12f, 0.06f, 0.05f), 0.6f);
-                    VisualKit.Part(cab, VisualKit.Box(0.19f, 0.009f, 0.012f), boca, new Vector3(0, -0.03f, 0.152f));
-                    foreach (var sd in new[] { -1f, 1f })
-                    {
-                        VisualKit.Part(cab, VisualKit.Box(0.05f, 0.009f, 0.012f), boca, new Vector3(sd * 0.115f, -0.022f, 0.128f), new Vector3(0, sd * 38f, sd * 14f));   // canto da boca subindo
-                        VisualKit.Part(cab, VisualKit.Sphere(0.048f), verde, new Vector3(sd * 0.078f, 0.072f, 0.072f));                         // calombo do olho
-                        VisualKit.Part(cab, VisualKit.Sphere(0.036f), M(new Color(0.96f, 0.78f, 0.18f), 0.15f), new Vector3(sd * 0.08f, 0.084f, 0.098f));   // íris
-                        VisualKit.Part(cab, VisualKit.Box(0.034f, 0.011f, 0.006f), M(new Color(0.02f, 0.02f, 0.02f), 0.1f), new Vector3(sd * 0.081f, 0.085f, 0.133f));   // pupila deitada
-                        VisualKit.Part(cab, VisualKit.Sphere(0.006f), VisualKit.Glow(new Color(1f, 1f, 1f), 1.4f), new Vector3(sd * 0.072f, 0.098f, 0.131f));   // brilho
-                        VisualKit.Part(cab, VisualKit.Sphere(0.0065f), boca, new Vector3(sd * 0.022f, 0.018f, 0.168f));                         // narina
-                    }
+                    // 18/11 21h (dono mandou a referência: sapo ranzinza de charuto): cabeça larga e achatada, olhões amarelos
+                    // com pálpebra pesada caída (cara de tédio), pupila deitada, bocão de canto caído e bigode preto enrolado.
+                    cab.Scale = Vector3.One / SapoOsso;
+                    SapoRosto(cab);
                 }
                 else foreach (var sd in new[] { -1f, 1f }) VisualKit.Part(cab, VisualKit.Sphere(0.02f), VisualKit.Glow(new Color(1f, 0.7f, 0.15f), 2.4f), new Vector3(sd * 0.045f, 0.03f, 0.105f));
-                // charuto aceso
-                VisualKit.Part(cab, VisualKit.Cylinder(0.012f, 0.014f, 0.12f, 8), M(new Color(0.35f, 0.2f, 0.1f)), new Vector3(0.04f, -0.04f, 0.16f), new Vector3(80, 20, 0));
-                VisualKit.Part(cab, VisualKit.Sphere(0.014f), VisualKit.Glow(new Color(1f, 0.4f, 0.1f), 2.5f), new Vector3(0.06f, -0.03f, 0.22f));
+                // charuto aceso (no sapo, no canto da boca, como na referência)
+                if (skin == "sapo")
+                {
+                    var semE = cab.GetNodeOrNull<Node3D>("SemEncaixe") ?? cab;
+                    var c0 = new Vector3(0.112f, -0.078f, 0.165f);
+                    var dirC = new Vector3(0.8f, -0.12f, 0.5f).Normalized();
+                    Corda(semE, new[] { c0, c0 + dirC * 0.02f }, _ => 0.0125f, M(new Color(0.75f, 0.2f, 0.12f)));                      // anel do charuto
+                    Corda(semE, new[] { c0 + dirC * 0.02f, c0 + dirC * 0.095f }, _ => 0.0115f, M(new Color(0.42f, 0.24f, 0.12f)));
+                    VisualKit.Part(semE, VisualKit.Sphere(0.0118f), VisualKit.Glow(new Color(1f, 0.4f, 0.1f), 2.5f), c0 + dirC * 0.1f);   // brasa
+                }
+                else
+                {
+                    VisualKit.Part(cab, VisualKit.Cylinder(0.012f, 0.014f, 0.12f, 8), M(new Color(0.35f, 0.2f, 0.1f)), new Vector3(0.04f, -0.04f, 0.16f), new Vector3(80, 20, 0));
+                    VisualKit.Part(cab, VisualKit.Sphere(0.014f), VisualKit.Glow(new Color(1f, 0.4f, 0.1f), 2.5f), new Vector3(0.06f, -0.03f, 0.22f));
+                }
                 // camisa, gravata vermelha
                 // 17/11 (dono: "a roupa ainda tá voando, desgolada"): camisa e gravata agora são pintadas na roupa (PTerno)
                 break;
@@ -5377,6 +5461,7 @@ void fragment() {
                 if (n is not MeshInstance3D mi || mi.Mesh is null) continue;
                 var pai = mi.GetParent() as Node3D;
                 if (pai is null) continue;
+                if (pai.Name == "SemEncaixe") continue;   // 18/11 21h: rosto montado ponto a ponto (bigode do sapo) — cada pedaço descia sozinho e virava tracejado
                 var restPai = pai == grupo ? restGrupo : restGrupo * RelativoT(pai, grupo);
                 var caixa = restPai * mi.Transform * mi.GetAabb();
                 var fino = caixa.Size.Z <= 0.05f || Mathf.Max(caixa.Size.X, Mathf.Max(caixa.Size.Y, caixa.Size.Z)) <= 0.075f;

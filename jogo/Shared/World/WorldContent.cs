@@ -158,6 +158,10 @@ public sealed record MapObject(string Id, string Kind, double X, double Y, strin
     public int ConsumeQty { get; init; } = 1;
     public string? Summons { get; init; }
     public int SummonLevel { get; init; } = 1;
+    /// <summary>18/11 21h (enigmas variados, Tools/gerar_enigmas.py): vez da peça (alavanca/sino: 1, 2, 3) ou posição
+    /// certa (estátua: 0..3 quartos de volta; espelho: 0..7 oitavos). Inicio = posição em que a estátua/espelho começa.</summary>
+    public int Ordem { get; init; }
+    public int Inicio { get; init; }
 }
 
 /// <summary>Checkpoint de dungeon: ao passar, quem morrer renasce aqui (vale para a cópia toda).</summary>
