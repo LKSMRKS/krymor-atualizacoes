@@ -857,7 +857,9 @@ public sealed class WorldPanels
             }
         }
         Group("Prontas para entregar", m.Quests.Where(q => q.State == "ready" || (q.State == "active" && q.Progress >= q.Count)), Good);
-        Group("Em andamento", m.Quests.Where(q => q.State == "active" && q.Progress < q.Count), Gold);
+        // 19/11 noite: as de destaque (☆, estrela cinza) em grupo próprio, logo acima das outras
+        Group("☆ Destaques — não deixe passar", m.Quests.Where(q => q.State == "active" && q.Progress < q.Count && q.Name.StartsWith("☆")), new Color(0.82f, 0.84f, 0.9f));
+        Group("Em andamento", m.Quests.Where(q => q.State == "active" && q.Progress < q.Count && !q.Name.StartsWith("☆")), Gold);
         Group("Concluídas", m.Quests.Where(q => q.State == "done"), Dim);
     }
 
@@ -1668,11 +1670,11 @@ public sealed partial class WorldMapCanvas : Control
             var mk = NpcMarks is not null && NpcMarks.TryGetValue(npc.Id, out var mkv) ? mkv : "";
             // 14/11 ("círculo preto bugado em cima da pedra de viagem"): NPC sem missão colado na pedra não desenha bolinha
             if (mk.Length == 0 && Layout.Waypoints.Any(w => Math.Abs(w.X - npc.X) < 4 && Math.Abs(w.Y - npc.Y) < 4)) { _alvos.Add((at, 6f, new[] { npc.Name, npc.Shop is not null ? "loja" : "conversa" }, new Color(0.96f, 0.96f, 0.94f))); continue; }
-            var col = mk == "entregar" ? new Color(0.4f, 1f, 0.45f) : mk.Length > 0 ? new Color(1f, 0.82f, 0.25f) : new Color(0.96f, 0.96f, 0.94f);
+            var col = mk == "entregar" ? new Color(0.4f, 1f, 0.45f) : mk == "destaque" ? new Color(0.82f, 0.84f, 0.9f) : mk.Length > 0 ? new Color(1f, 0.82f, 0.25f) : new Color(0.96f, 0.96f, 0.94f);
             DrawCircle(at, 5f, new Color(0.08f, 0.06f, 0.05f, 0.9f));
             DrawCircle(at, 3.8f, col);
             if (_zoom >= 1.8f) DrawString(font, at + new Vector2(7, 4), npc.Name, HorizontalAlignment.Left, -1, 11, new Color(0.15f, 0.1f, 0.05f));
-            _alvos.Add((at, 7f, new[] { npc.Name, mk == "entregar" ? "missão pronta para entregar aqui" : mk.Length > 0 ? "tem missão para você" : npc.Shop is not null ? "loja" : "conversa" }, col));
+            _alvos.Add((at, 7f, new[] { npc.Name, mk == "entregar" ? "missão pronta para entregar aqui" : mk == "destaque" ? "☆ missão de destaque (não deixe passar)" : mk.Length > 0 ? "tem missão para você" : npc.Shop is not null ? "loja" : "conversa" }, col));
         }
         // 14/11 ("a pedra de viagem em azul"): por cima dos NPCs, losango azul com borda clara
         _wpTela.Clear();

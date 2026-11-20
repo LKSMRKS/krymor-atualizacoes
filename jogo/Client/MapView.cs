@@ -5728,7 +5728,7 @@ void fragment() { ALBEDO = vec3(1.0, 0.82, 0.35) * (0.45 + 0.25 * pulse); ALPHA 
             {
                 var done = kind == "entregar";
                 var main = kind == "principal";   // 13/11: caminho principal = estrela laranja-dourada
-                var col = done ? new Color(0.35f, 1f, 0.45f) : main ? new Color(1f, 0.6f, 0.15f) : new Color(1f, 0.82f, 0.25f);
+                var col = done ? new Color(0.35f, 1f, 0.45f) : main ? new Color(1f, 0.6f, 0.15f) : kind == "destaque" ? new Color(0.82f, 0.84f, 0.9f) : new Color(1f, 0.82f, 0.25f);   // 19/11 noite: destaque = cinza-prata
                 if (marker.GetNodeOrNull<Node3D>("Gema") is { } gem)
                     foreach (var child in gem.GetChildren())
                         if (child is MeshInstance3D mi) mi.MaterialOverride = done ? MarkerDone : MarkerNew;

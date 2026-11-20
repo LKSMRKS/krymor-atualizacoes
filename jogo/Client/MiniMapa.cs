@@ -103,7 +103,7 @@ public sealed partial class MiniMapa : Control
             if (!Inside(p)) continue;
             // 14/11 19h (dono: "deixa amarelo só os que têm missão"): com missão = amarelo (verde = entregar); o resto, pontinho cinza
             var marca = m.NpcMarkers is { } nm && nm.TryGetValue(n.Id, out var k) ? k : "";
-            if (marca.Length > 0) DrawCircle(p, 3.6f, marca == "entregar" ? new Color(0.4f, 1f, 0.45f) : new Color(1f, 0.85f, 0.35f));
+            if (marca.Length > 0) DrawCircle(p, 3.6f, marca == "entregar" ? new Color(0.4f, 1f, 0.45f) : marca == "destaque" ? new Color(0.82f, 0.84f, 0.9f) : new Color(1f, 0.85f, 0.35f));
             else DrawCircle(p, 2f, new Color(0.75f, 0.73f, 0.68f, 0.55f));
         }
         if (m.Snapshot is { } snap)

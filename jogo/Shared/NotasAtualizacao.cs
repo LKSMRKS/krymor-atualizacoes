@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u170 · pedidos de 19/11 22h31", "F nos objetos de missão (Cânions); Biblioteca do Continente mostra tudo; Pó de Estrela fora da Torre; Baú de Joias; Cansaço em 5 monstros do 30+; lupa e TP das bibliotecas no mapa; Voltar volta ao mapa geral; alavancas mais longe; estátuas guardiãs explicadas; barra de coleta menor; machado do Enforcado antigo."),
+        ("u171 · missões de destaque", "Missões de destaque com estrela cinza (☆): classe, transformações e as que dão MUITO XP — marcador cinza no NPC, grupo próprio no diário. Ala IV da Biblioteca (ceifador e anjo) abre no 35."),
+        ("u170", "F nos objetos de missão (Cânions); Biblioteca do Continente mostra tudo; Pó de Estrela fora da Torre; Baú de Joias; Cansaço em 5 monstros do 30+; lupa e TP das bibliotecas no mapa; Voltar volta ao mapa geral; alavancas mais longe; estátuas guardiãs explicadas; barra de coleta menor; machado do Enforcado antigo."),
         ("u169", "35 skins refeitas no nível do sapo (olhos do coelho/palhaço sinistro, cabeças novas, padrões pintados no corpo); skin nova Ninja; palhaço com o babado e os olhos do sinistro; +8 músicas (mata, praia, cânion, neve, acrópole, fantasma, gruta, casa)."),
         ("u168", "35 skins refeitas no nível do sapo (olhos do coelho/palhaço sinistro, cabeças novas, padrões pintados no corpo); skin nova Ninja; palhaço com o babado e os olhos do sinistro; +8 músicas (mata, praia, cânion, neve, acrópole, fantasma, gruta, casa)."),
         ("u167", "partida 1-60 revisada (historia sem buracos, xp das provas); 53 pecas novas para todas as classes; prova de classe com o Eco do chefe nivel 18; Rei Caido so para nivel 90+ em grupo; talismas tingidos e armas de cada regiao; biblioteca maior (alas V e VI e sala de leitura); skins revistas pelas referencias e icones novos; vozes dos NPCs com mais variacao; trilha principal e 3 variacoes (masmorra, campo, noite)"),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u114", "Dividir pilha (botão Dividir na mochila)|NPC que ainda não apareceu não marca mais o minimapa|Uma Luz no Caminho e O Primeiro Golpe: rastro no Areal (antes caía atrás do muro)|Desafio do Bobo (goblin arqueiro) só depois de abrir a parede do muro|Rocha pesada: Força de verdade ou Pé de Cabra (Forja do Brás)"),
         ("u113", "Missão nova da Sibila (Porto): O Destino Refeito — ensina a resetar os atributos, e o 1º reset é grátis"),
         ("u112", "Conserto do Jogar (erro de parêntese que fechava o jogo ao abrir)|Frasco de Foco (laranja) para o Arqueiro: tecla 2, lojas e drops|Energia dá +5 de mana/foco por ponto (era +1)"),
-        ("u111", "Atributos: Agilidade agora se chama Destreza; cada classe mostra os 2 padrões (★ e ☆)|Tecla 2 aceita qualquer poção, frasco ou comida arrastada da mochila|Bolsa Maior avisa quanto custa e quanto falta"),
     };
 }
