@@ -48,6 +48,9 @@ public static class GearFactory
         "shield_ember" => "arma_escudo_t3_nucleo_de_brasa",
         // 16/11: mão esquerda que faltava — broquel (Bruxa/Arqueiro) e orbe de mão (Mago); Tools/arte/build_offhands.py
         _ when model.StartsWith("shield_broquel_") || model.StartsWith("shield_orbe_") => "arma_" + model["shield_".Length..],
+        // 19/11 ("modelo de escudo 30+"): um escudo esculpido por faixa do Guerreiro (Tools/arte/build_escudos.py)
+        _ when model.StartsWith("shield_escudo_") => "arma_" + model["shield_".Length..],
+        "maul" => "arma_martelo_carneiro_fundido",   // 19/11: o martelo do Dorval era cilindros; vira o martelo esculpido
         // 11/11 (arsenal da noite do trabalhador): o que ainda era boneco de formas simples ganha modelo esculpido
         "club_driftwood" => "arma_clava_enferrujada",
         "spear_watch" => "arma_lanca_comum",
@@ -568,6 +571,8 @@ public static class GearFactory
     public static string? PaintedIcon(string? model, string definitionId)
     {
         definitionId = ItemIconRenderer.BaseDaVariante(definitionId);   // 17/11 noite: variantes usam a arte da base
+        // 19/11: elmo antigo de caixas → ícone do elmo esculpido que ele virou (MannequinVisual.ElmoEsculpido)
+        if (model?.StartsWith("head_") == true && MannequinVisual.ElmoEsculpido(model) is { } esc && esc != model) return "ico_" + esc.Replace(':', '_') + ".png";
         // 10/11: companheiros como item (sem arte própria ainda): vagalume = essência; dragão e fênix = joia de brasa
         if (definitionId.StartsWith("wings_") || definitionId.StartsWith("asas_")) return "ico_" + definitionId + ".png";   // 11/11: asas como item (14/11: + as 25 da prancha)
         if (ArteDaPrancha(definitionId)) return "ico_" + definitionId + ".png";   // 14/11 noite: skins com o desenho da prancha do dono

@@ -2414,6 +2414,41 @@ public partial class Main : Node3D
     }
 
     /// <summary>Um golpe aconteceu (decidido e transmitido pelo servidor).</summary>
+    private double _ultimoPoderSet;
+
+    /// <summary>19/11: poder do conjunto lendário (5 peças) — explosão na cor do tema e o nome do poder, uma vez por disparo.</summary>
+    private void PoderDoConjunto(string skillId, Vector3 at, bool mine)
+    {
+        var agora = Time.GetTicksMsec() / 1000.0;
+        if (agora - _ultimoPoderSet < 0.4) return;
+        _ultimoPoderSet = agora;
+        var nome = skillId["skill_set_".Length..];
+        var cor = nome switch
+        {
+            "runico_ancestral" or "abismo" => new Color(0.4f, 0.8f, 1f), "pedra" => new Color(0.75f, 0.62f, 0.45f),
+            "floresta" => new Color(0.45f, 0.95f, 0.4f), "cavaleiro_sagrado" or "celestial" => new Color(1f, 0.92f, 0.55f),
+            "gelo_eterno" => new Color(0.7f, 0.9f, 1f), "necromante" => new Color(0.6f, 1f, 0.7f), "abissal_profundo" => new Color(0.2f, 0.45f, 0.9f),
+            "dragao_fogo" or "demoniaco" => new Color(1f, 0.45f, 0.15f), "faraonico" => new Color(0.95f, 0.8f, 0.4f),
+            "tempo" => new Color(0.85f, 0.75f, 1f), "vazio" => new Color(0.55f, 0.25f, 0.85f), "anjo_caido" => new Color(0.35f, 0.3f, 0.45f),
+            _ => new Color(1f, 0.85f, 0.4f),
+        };
+        _effects.Pulse(at, new Color(cor.R, cor.G, cor.B, 0.6f), 3.2f, 0.7);
+        _effects.Impact(at + Vector3.Up * 0.6f, cor, 22, 2.0f);
+        if (mine)
+        {
+            _cam.AddShake(0.18f);
+            var titulo = _model.SkillById(skillId)?.DisplayName ?? nome switch
+            {
+                "runico_ancestral" => "Runa Ancestral", "pedra" => "Tremor de Pedra", "floresta" => "Espinhos da Floresta", "cavaleiro_sagrado" => "Juízo Sagrado",
+                "gelo_eterno" => "Nevasca", "necromante" => "Mão dos Mortos", "abissal_profundo" => "Maré Abissal", "dragao_fogo" => "Sopro do Dragão",
+                "abismo" => "Fenda do Abismo", "faraonico" => "Maldição do Faraó", "celestial" => "Raio Celestial", "demoniaco" => "Chamas do Inferno",
+                "tempo" => "Fratura do Tempo", "vazio" => "Implosão do Vazio", "anjo_caido" => "Asas Caídas", _ => "Poder do Conjunto",
+            };
+            _hud.SpawnFloater(at + Vector3.Up * 2.6f, "✦ " + titulo, cor, 20);
+        }
+        Sfx.PlayAt("golpe_pesado", at + Vector3.Up, -4f);
+    }
+
     private void ShowCombat(CombatEvent e)
     {
         var target = FindState(e.TargetId);
@@ -2423,7 +2458,8 @@ public partial class Main : Node3D
         var taken = e.TargetId == _model.CharacterId;
         var fromMonster = _monsters.ContainsKey(e.AttackerId);
         var head = target.Pos + new Vector3(0f, target.Visual.Height * 0.9f, 0f);
-        if (!e.Evaded) Efeitos.PoderesVfx.Acerto(_effects.Root, e.SkillId, target.Pos, target.Visual.Height, attacker?.Pos, e.Heal, mine, _cam.AddShake);   // gancho VFX 14/11 (Missão Terça)
+        if (!e.Evaded) Efeitos.PoderesVfx.Acerto(_effects.Root, e.SkillId, target.Pos, target.Visual.Height, attacker?.Pos, e.Heal, mine, _cam.AddShake);   // gancho VFX 14/11
+        if (e.SkillId.StartsWith("skill_set_", StringComparison.Ordinal)) PoderDoConjunto(e.SkillId, target.Pos, mine);   // 19/11
 
         if (e.Heal)
         {
@@ -2583,6 +2619,7 @@ public partial class Main : Node3D
         // telas do mundo antes da mochila: a mochila (e suas janelas) fica por cima dos avisos
         AddChild(new Arrastador());   // 12/11: janelas arrastáveis pela faixa do título
         _panels = new WorldPanels();
+        HudView.MissaoClicada += q => _panels.AbrirMapaNaMissao(q, _model);   // 20/11
         _panels.Send += Send;
         _god = new GodPanel();
         _god.Send += Send;
@@ -3289,6 +3326,7 @@ public partial class Main : Node3D
                 catch (Exception e) { GameLog.Warn("cliente.visual", $"visual de {m.DefinitionId} falhou ({e.Message}); usando o genérico"); vis = VisualFactory.Monster(m.DefinitionId, m.Boss, m.Rare, "", m.Id); }
                 st = new EntityState { Visual = vis, Telegraph = CreateTelegraph(), Def = m.DefinitionId + "|" + m.Visual };
                 if (m.DefinitionId.EndsWith("_dourado", StringComparison.Ordinal)) Dourar(st.Visual.Root);   // 13/11: versão dourada (rara)
+                if (_mapView is { } mvr) VarianteRegional.Aplicar(st.Visual.Root, m.DefinitionId, mvr.Map.Id, mvr.Map.Theme, m.Boss);   // 19/11: a cara da região
                 st.Rim = MonsterStandOut(st.Visual.Root, m.Boss || m.Elite || m.Rare,
                     rimOn: !(m.Visual.Contains("rat") || m.Visual.Contains("rato") || m.DefinitionId.Contains("rato")));
                 _world.AddChild(st.Visual.Root);

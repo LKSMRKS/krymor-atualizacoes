@@ -742,20 +742,27 @@ public sealed class WorldPanels
         if (lm.Length == 0 || (lx == 0 && ly == 0)) return null;
         var outro = lm != m.Map?.Id;
         var ver = new Button { Text = "🗺", TooltipText = "Mostrar no mapa (M)" + (outro ? " — abre o mapa de lá, com o ponto da missão" : "") };
-        var nome = q.Name;
-        ver.Pressed += () =>
-        {
-            if (!_map.Visible) Toggle("map");
-            _abaMapa?.Invoke(true);
-            if (outro) Send?.Invoke(new MapaPreviaIntent(lm));
-            _canvas.Destaque = (lx, ly, nome);
-            _canvas.DestaqueMapa = lm;
-            _canvas.DestaqueAte = Time.GetTicksMsec() + 10000;
-            _canvas.CentrarEm(lx, ly);
-            Sfx.Play("ui_clique");
-        };
+        ver.Pressed += () => VerNoMapa(m, q);
         return ver;
     }
+
+    /// <summary>Abre o mapa (M) centrado no ponto da missão — mesmo em outro mapa. 20/11 (trabalhador): também pelo clique no
+    /// nome da missão no canto da tela (HudView.MissaoClicada).</summary>
+    private void VerNoMapa(ClientModel m, QuestEntry q)
+    {
+        var (lm, lx, ly) = q.LugarMapa.Length > 0 ? (q.LugarMapa, q.LugarX, q.LugarY) : (q.MapId, q.X, q.Y);
+        if (lm.Length == 0 || (lx == 0 && ly == 0)) return;
+        if (!_map.Visible) Toggle("map");
+        _abaMapa?.Invoke(true);
+        if (lm != m.Map?.Id) Send?.Invoke(new MapaPreviaIntent(lm));
+        _canvas.Destaque = (lx, ly, q.Name);
+        _canvas.DestaqueMapa = lm;
+        _canvas.DestaqueAte = Time.GetTicksMsec() + 10000;
+        _canvas.CentrarEm(lx, ly);
+        Sfx.Play("ui_clique");
+    }
+    /// <summary>20/11 (trabalhador): clique no nome da missão no canto da tela (Main liga HudView.MissaoClicada aqui).</summary>
+    public void AbrirMapaNaMissao(QuestEntry q, ClientModel m) => VerNoMapa(m, q);
 
     private Button BotaoMarcar(ClientModel m, string qid)
     {

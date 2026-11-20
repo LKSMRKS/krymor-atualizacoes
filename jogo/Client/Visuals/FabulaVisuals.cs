@@ -17,8 +17,9 @@ public static class FabulaVisuals
         switch (visual)
         {
             case "fab_merlin_sombra": return Npc("merlin_sombra", "");   // 13/11: o Reflexo de Merlin (chefe da torre)
-            case "fab_dentuco": return new DinoVisual(false);
-            case "fab_dentuco_pai": return new DinoVisual(true);
+            // 19/11 ("fora do padrão"): o Dentuço era um boneco de caixas; agora é o lagartão esculpido (com animação de ataque)
+            case "fab_dentuco": return MonstrosNovos.Criar("basilisk", false, "fab_dentuco", "monster_fab_dentuco") ?? new DinoVisual(false);
+            case "fab_dentuco_pai": return MonstrosNovos.Criar("basilisk", true, "fab_dentuco_pai", "monster_fab_dentuco_pai") ?? new DinoVisual(true);
             case "fab_gnomo" when MannequinVisual.MonsterBody("humanoides/mo_gnomo_areal", 0.62f) is { } gnomo:
                 gnomo.SetBuild(0.65f, 0.68f);
                 gnomo.Enfeite("cogumelo", new Color(0.7f, 0.3f, 1f));   // o feitiço: cogumelinho roxo aceso na cabeça

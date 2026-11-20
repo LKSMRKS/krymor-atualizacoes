@@ -1283,7 +1283,7 @@ void fragment() {
             if (Map.Theme == "cidade") groundMat.Roughness = 0.72f;
         }
         if (Map.Theme == "cidade") AddPuddles(size);
-        else if (Map.Theme != "gruta") { AddScatter(size); AddHorizon(size); }
+        else if (Map.Theme != "gruta") { AddScatter(size); DetalhesDoChao(size); AddHorizon(size); }
         // 10/11 item 56 ("mar do lado certo da Costa; hoje parece lago"): o mar aberto fica a leste, do lado do farol e da
         // muralha do cais; a linha d'água passa logo depois do penhasco e vai até o horizonte (sem serras desse lado)
         if (Map.Theme == "praia") MarDaCosta.Construir(Root, (float)Map.HalfSize, "leste", recuo: -5f);
@@ -1695,10 +1695,17 @@ void fragment() {
                 var illusion = o.Kind == "muralha_ilusoria";
                 // 16/11 ("mesmo padrão"): na gruta/mina a parede era muralha de castelo (tijolo com ameias); agora é rocha bruta
                 var gruta = Map.Theme == "gruta";
-                var mat = gruta ? TexMat("ter_pedra.png", new Color(0.92f, 0.86f, 0.80f), 0.16f) : StoneMat(illusion ? 0.52f : 0.48f, true);
+                var tema = MuroDoTema();   // 19/11: cada região com o seu muro (antes: o mesmo tijolo com ameias em todo mapa)
+                var mat = gruta ? TexMat("ter_pedra.png", new Color(0.92f, 0.86f, 0.80f), 0.16f) : tema?.Mat ?? StoneMat(illusion ? 0.52f : 0.48f, true);
                 VisualKit.Part(Root, VisualKit.Box(w, h, d), mat, P(o.X, o.Y, h / 2f));
                 var along = w >= d;
                 var length = along ? w : d;
+                if (!gruta && tema is { } tm)
+                {
+                    TopoDoMuro(tm, o, w, d, h, along, length);
+                    if (!illusion && o.Solid) Collider(P(o.X, o.Y, h / 2f), new BoxShape3D { Size = new Vector3(w, h, d) });
+                    break;
+                }
                 if (gruta)
                 {
                     // saliências de rocha na face e no topo (quebra a parede reta), mesma rocha
@@ -2804,6 +2811,180 @@ void fragment() {
             mm.SetInstanceTransform(i, new Transform3D(basis, pos + new Vector3(0, kind == "duna" ? -scale.Y * 0.3f : scale.Y / 2f, 0)));
         }
         Root.AddChild(new MultiMeshInstance3D { Multimesh = mm, MaterialOverride = mat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+    }
+
+    /// <summary>
+    /// 19/11 ("chão com vida, sem deixar o jogo pesado"): flores, cogumelos, lascas, montinhos de neve e brasas por tema.
+    /// Cada tipo é UM MultiMesh (2 se tem caule) sem sombra e que some a 50 m — poucas chamadas de desenho no mapa todo.
+    /// Costa, Porto e Vale ficam como estão (já têm o kit deles).
+    /// </summary>
+    private void DetalhesDoChao(float size)
+    {
+        if (Map.Instanced || Map.Id is "costa_do_cal" or "porto_das_cinzas" or "vale_das_cinzas") return;
+        var tema = Map.Id == "reino_inferno" ? "lava" : Map.Theme;
+        var half = size / 2f - 16f;
+        var area = Mathf.Clamp(size * size / (90f * 90f), 1f, 6f) * GraphicsQuality.ScatterScale;
+        int N(float b) => (int)(b * area);
+        Material Mat(Color? brilho = null, float rough = 0.85f)
+        {
+            var m = new StandardMaterial3D { VertexColorUseAsAlbedo = true, Roughness = rough, AlbedoColor = Colors.White };
+            if (brilho is { } b) { m.EmissionEnabled = true; m.Emission = b; m.EmissionEnergyMultiplier = 1.3f; }
+            return m;
+        }
+        // espalha N instâncias (em manchas) e desenha cada parte com a mesma posição
+        void Espalhar(int count, float minS, float maxS, float mancha, Color[] cores, params (Mesh Malha, Material Mat, Transform3D Local, bool Tinge)[] partes)
+        {
+            if (count <= 0) return;
+            var ts = new List<Transform3D>(); var cs = new List<Color>();
+            float cx = 0, cy = 0; var left = 0;
+            for (var tries = 0; tries < count * 4 && ts.Count < count; tries++)
+            {
+                if (left <= 0) { cx = R(-half, half); cy = R(-half, half); left = (int)R(3, 9); }
+                var x = cx + R(-mancha, mancha); var y = cy + R(-mancha, mancha); left--;
+                if (!Clear(x, y, 0.35f) || OnRoad(x, y)) continue;
+                var sc = R(minS, maxS);
+                ts.Add(new Transform3D(new Basis(Vector3.Up, R(0, Mathf.Tau)).Scaled(new Vector3(sc, sc, sc)), new Vector3(x, Visuals.EscadaCasa.ElevBase(x, y, 0.6), y)));
+                cs.Add(cores[(int)R(0, cores.Length - 0.01f)]);
+            }
+            foreach (var (malha, mat, local, tinge) in partes)
+            {
+                var mm = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, UseColors = true, Mesh = malha, InstanceCount = ts.Count };
+                for (var i = 0; i < ts.Count; i++) { mm.SetInstanceTransform(i, ts[i] * local); mm.SetInstanceColor(i, tinge ? cs[i] : Colors.White); }
+                Root.AddChild(new MultiMeshInstance3D { Multimesh = mm, MaterialOverride = mat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off, VisibilityRangeEnd = 50f, VisibilityRangeEndMargin = 6f });
+            }
+        }
+        var caule = new CylinderMesh { TopRadius = 0.008f, BottomRadius = 0.012f, Height = 0.32f, RadialSegments = 4, Rings = 1 };
+        var flor = new SphereMesh { Radius = 0.06f, Height = 0.05f, RadialSegments = 6, Rings = 2 };
+        var pe = new CylinderMesh { TopRadius = 0.03f, BottomRadius = 0.04f, Height = 0.16f, RadialSegments = 6, Rings = 1 };
+        var chapeu = new SphereMesh { Radius = 0.11f, Height = 0.11f, RadialSegments = 8, Rings = 3, IsHemisphere = true };
+        var lasca = new BoxMesh { Size = new Vector3(0.28f, 0.1f, 0.18f) };
+        var monte = new SphereMesh { Radius = 0.6f, Height = 0.35f, RadialSegments = 8, Rings = 3, IsHemisphere = true };
+        var ponta = new CylinderMesh { TopRadius = 0.0f, BottomRadius = 0.07f, Height = 0.45f, RadialSegments = 5, Rings = 1 };
+        var semente = new SphereMesh { Radius = 0.035f, Height = 0.07f, RadialSegments = 5, Rings = 2 };
+        var verde = new Color(0.25f, 0.42f, 0.16f);
+        var tCaule = new Transform3D(Basis.Identity, new Vector3(0, 0.16f, 0));
+        var tFlor = new Transform3D(Basis.Identity, new Vector3(0, 0.33f, 0));
+        var tPe = new Transform3D(Basis.Identity, new Vector3(0, 0.08f, 0));
+        var tChapeu = new Transform3D(Basis.Identity, new Vector3(0, 0.15f, 0));
+        var tChao = new Transform3D(Basis.Identity, new Vector3(0, 0.03f, 0));
+        var tPonta = new Transform3D(new Basis(Vector3.Right, 0.15f), new Vector3(0, 0.2f, 0));
+        var caulesVerdes = new StandardMaterial3D { VertexColorUseAsAlbedo = true, Roughness = 0.9f, AlbedoColor = verde };   // branco (sem cor de vértice) × verde
+        void Flores(float n, params Color[] cores) => Espalhar(N(n), 0.8f, 1.3f, 1.8f, cores, (caule, caulesVerdes, tCaule, false), (flor, Mat(), tFlor, true));
+        void Cogumelos(float n, Color? brilho, params Color[] cores) => Espalhar(N(n), 0.6f, 1.6f, 1.2f, cores, (pe, Mat(), tPe, false), (chapeu, Mat(brilho), tChapeu, true));
+        void Lascas(float n, Color? brilho, params Color[] cores) => Espalhar(N(n), 0.6f, 1.8f, 2.5f, cores, (lasca, Mat(brilho, 0.6f), tChao, true));
+        switch (tema)
+        {
+            case "mata":
+                Flores(160, new Color(0.95f, 0.95f, 0.9f), new Color(1f, 0.85f, 0.3f), new Color(0.7f, 0.5f, 0.95f));
+                Cogumelos(90, null, new Color(0.85f, 0.2f, 0.15f), new Color(0.75f, 0.6f, 0.45f));
+                break;
+            case "brejo":
+                Cogumelos(140, null, new Color(0.55f, 0.42f, 0.3f), new Color(0.6f, 0.65f, 0.35f));
+                Espalhar(N(70), 0.7f, 1.2f, 2f, new[] { new Color(0.3f, 0.5f, 0.25f) }, (new CylinderMesh { TopRadius = 0.32f, BottomRadius = 0.32f, Height = 0.02f, RadialSegments = 10, Rings = 1 }, Mat(), tChao, true));   // folhas de lírio no lodo
+                break;
+            case "vale":
+                Flores(140, new Color(1f, 0.82f, 0.25f), new Color(1f, 0.55f, 0.2f));
+                break;
+            case "neve":
+                Espalhar(N(110), 0.5f, 1.4f, 3f, new[] { new Color(0.95f, 0.97f, 1f) }, (monte, Mat(null, 0.5f), Transform3D.Identity, true));
+                Espalhar(N(60), 0.6f, 1.4f, 1.2f, new[] { new Color(0.7f, 0.88f, 1f) }, (ponta, Mat(new Color(0.35f, 0.55f, 0.75f), 0.2f), tPonta, true));
+                break;
+            case "lava":
+                Lascas(220, null, new Color(0.16f, 0.14f, 0.14f), new Color(0.24f, 0.2f, 0.19f));
+                Espalhar(N(160), 0.7f, 1.4f, 2.5f, new[] { new Color(1f, 0.45f, 0.1f), new Color(1f, 0.7f, 0.2f) }, (semente, Mat(new Color(1f, 0.4f, 0.08f)), tChao, true));   // brasas no chão
+                break;
+            case "lua":
+                Cogumelos(130, new Color(0.35f, 0.6f, 1f), new Color(0.55f, 0.75f, 1f), new Color(0.75f, 0.65f, 1f));
+                Flores(80, new Color(0.85f, 0.9f, 1f));
+                break;
+            case "fantasma":
+                Cogumelos(110, null, new Color(0.7f, 0.72f, 0.7f), new Color(0.5f, 0.45f, 0.5f));
+                Espalhar(N(70), 0.8f, 1.2f, 2f, new[] { new Color(0.4f, 0.3f, 0.2f) }, (new CylinderMesh { TopRadius = 0.25f, BottomRadius = 0.28f, Height = 0.015f, RadialSegments = 7, Rings = 1 }, Mat(), tChao, true));   // folhas secas
+                break;
+            case "ceu":
+                Flores(170, new Color(1f, 1f, 0.95f), new Color(1f, 0.85f, 0.45f));
+                Lascas(60, null, new Color(1.2f, 1.18f, 1.12f));
+                break;
+            case "acropole":
+                Lascas(160, null, new Color(1.1f, 1.06f, 1f), new Color(0.9f, 0.86f, 0.8f));
+                Flores(60, new Color(1f, 0.8f, 0.3f));
+                break;
+            case "canion":
+                Lascas(120, null, new Color(0.85f, 0.55f, 0.38f), new Color(0.7f, 0.45f, 0.3f));
+                Flores(40, new Color(0.95f, 0.4f, 0.3f));   // florzinhas do deserto
+                break;
+            case "praia":
+                Lascas(60, null, new Color(0.95f, 0.9f, 0.82f));   // conchas/pedrinhas claras
+                break;
+        }
+    }
+
+    private sealed record MuroTema(Material Mat, string Topo, Color Cor);
+    private MuroTema? _muroTema; private bool _muroTemaFeito;
+
+    /// <summary>19/11 ("cada mapa com uma pegada"): muro/muralha com material e acabamento do tema (null = o de sempre).</summary>
+    private MuroTema? MuroDoTema()
+    {
+        if (_muroTemaFeito) return _muroTema;
+        _muroTemaFeito = true;
+        var tema = Map.Id == "reino_inferno" ? "lava" : Map.Theme;
+        _muroTema = tema switch
+        {
+            "lua" => new MuroTema(TexMat("ter_pedra.png", new Color(0.55f, 0.58f, 0.74f), 0.18f), "luas", new Color(0.65f, 0.78f, 1f)),
+            "ceu" => new MuroTema(TexMat("ter_pedra.png", new Color(1.5f, 1.48f, 1.42f), 0.14f), "ouro", new Color(1f, 0.82f, 0.4f)),
+            "lava" => new MuroTema(TexMat("ter_pedra.png", new Color(0.32f, 0.28f, 0.28f), 0.2f), "brasa", new Color(1f, 0.38f, 0.1f)),
+            "fantasma" => new MuroTema(TexMat("ter_pedra.png", new Color(0.48f, 0.5f, 0.52f), 0.2f), "lancas", new Color(0.2f, 0.2f, 0.22f)),
+            "neve" => new MuroTema(TexMat("ter_pedra.png", new Color(0.82f, 0.88f, 0.98f), 0.18f), "neve", new Color(0.95f, 0.97f, 1f)),
+            "mata" or "brejo" => new MuroTema(TexMat("ter_pedra.png", new Color(0.62f, 0.66f, 0.56f), 0.2f), "musgo", new Color(0.3f, 0.45f, 0.18f)),
+            "canion" => new MuroTema(TexMat("ter_pedra.png", new Color(1.1f, 0.78f, 0.58f), 0.18f), "pedras", new Color(0.9f, 0.62f, 0.45f)),
+            "acropole" => new MuroTema(TexMat("ter_pedra.png", new Color(1.35f, 1.3f, 1.2f), 0.16f), "cornija", new Color(1.2f, 1.15f, 1.05f)),
+            _ => null,
+        };
+        return _muroTema;
+    }
+
+    /// <summary>Acabamento do topo do muro por tema: poucas peças (o muro todo continua sendo uma caixa só).</summary>
+    private void TopoDoMuro(MuroTema t, MapObstacle o, float w, float d, float h, bool along, float length)
+    {
+        Vector3 Off(float s) => along ? new Vector3(s, 0, 0) : new Vector3(0, 0, s);
+        var corMat = VisualKit.Mat(t.Cor, 0.7f);
+        switch (t.Topo)
+        {
+            case "neve" or "musgo":
+                // capa irregular por cima (neve ou musgo), um pouco mais larga que o muro
+                VisualKit.Part(Root, VisualKit.Box(w + 0.12f, 0.22f, d + 0.12f), corMat, P(o.X, o.Y, h + 0.08f));
+                for (var s = -length / 2f + 0.8f; s < length / 2f - 0.5f; s += R(1.6f, 2.8f))
+                    VisualKit.Part(Root, new SphereMesh { Radius = R(0.3f, 0.55f), Height = R(0.25f, 0.45f), RadialSegments = 8, Rings = 4 }, corMat, P(o.X, o.Y, h + 0.15f) + Off(s));
+                break;
+            case "ouro" or "cornija":
+                VisualKit.Part(Root, VisualKit.Box(w + 0.18f, 0.18f, d + 0.18f), corMat, P(o.X, o.Y, h + 0.09f));
+                VisualKit.Part(Root, VisualKit.Box(w + 0.1f, 0.12f, d + 0.1f), corMat, P(o.X, o.Y, 0.06f));
+                break;
+            case "brasa":
+            {
+                var brasa = new StandardMaterial3D { AlbedoColor = t.Cor, EmissionEnabled = true, Emission = t.Cor, EmissionEnergyMultiplier = 2.2f };
+                VisualKit.Part(Root, VisualKit.Box(along ? w * 0.96f : w + 0.02f, 0.06f, along ? d + 0.02f : d * 0.96f), brasa, P(o.X, o.Y, h * R(0.3f, 0.6f)));
+                for (var s = -length / 2f + 0.6f; s < length / 2f - 0.3f; s += R(1.2f, 2.2f))
+                    VisualKit.Part(Root, VisualKit.Box(0.7f, R(0.25f, 0.6f), 0.7f), (Material)_muroTema!.Mat, P(o.X, o.Y, h + 0.2f) + Off(s), new Vector3(R(-10, 10), R(0, 90), R(-10, 10)));
+                break;
+            }
+            case "lancas":
+                for (var s = -length / 2f + 0.4f; s < length / 2f - 0.2f; s += 0.7f)
+                    VisualKit.Part(Root, new CylinderMesh { TopRadius = 0.005f, BottomRadius = 0.035f, Height = 0.7f, RadialSegments = 5 }, corMat, P(o.X, o.Y, h + 0.35f) + Off(s));
+                break;
+            case "luas":
+            {
+                var luz = new StandardMaterial3D { AlbedoColor = t.Cor, EmissionEnabled = true, Emission = t.Cor, EmissionEnergyMultiplier = 1.4f };
+                VisualKit.Part(Root, VisualKit.Box(w + 0.1f, 0.14f, d + 0.1f), (Material)_muroTema!.Mat, P(o.X, o.Y, h + 0.07f));
+                for (var s = -length / 2f + 1f; s < length / 2f - 0.6f; s += 3.2f)
+                    VisualKit.Part(Root, new SphereMesh { Radius = 0.14f, Height = 0.28f, RadialSegments = 8, Rings = 4 }, luz, P(o.X, o.Y, h + 0.3f) + Off(s));
+                break;
+            }
+            default:   // pedras soltas no topo (cânion)
+                for (var s = -length / 2f + 0.6f; s < length / 2f - 0.3f; s += R(1.0f, 1.8f))
+                    VisualKit.Part(Root, VisualKit.Box(R(0.5f, 0.9f), R(0.25f, 0.55f), R(0.5f, 0.9f)), (Material)_muroTema!.Mat, P(o.X, o.Y, h + 0.15f) + Off(s), new Vector3(R(-8, 8), R(0, 90), R(-8, 8)));
+                break;
+        }
     }
 
     private void AddScatter(float size)

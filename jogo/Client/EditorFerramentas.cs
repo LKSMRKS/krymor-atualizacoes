@@ -33,6 +33,9 @@ public sealed partial class EditorView
     private Vector3 _ultimoCarimbo;
     private Node3D? _fantasma;
     private string _fantasmaKind = "";
+    private float _fantasmaYaw;   // 19/11: giro da peça na mão (a prévia mostra e o clique usa o mesmo)
+    private Node3D? _giroPrevia;  // 19/11: cópia da peça girando junto da alça (antes só o círculo girava e a peça "pulava" ao soltar)
+    private string _giroPreviaKind = "";
     private readonly List<(MeshInstance3D Anel, float T)> _pops = new();
 
     private void BuildFerramentas()
@@ -279,7 +282,24 @@ public sealed partial class EditorView
         if (_fantasma is null) return;
         _fantasma.Visible = chao is not null && Active;
         if (chao is { } c) _fantasma.Position = Encaixe(c);
+        _fantasma.RotationDegrees = new Vector3(0, _fantasmaYaw, 0);
         if (_cursorPincel is not null) _cursorPincel.Visible = false;
+    }
+
+    /// <summary>19/11: enquanto arrasta a alça de girar, mostra a PRÓPRIA peça (translúcida) no ângulo novo; some ao soltar.</summary>
+    private void PreviaDoGiro(bool soltou)
+    {
+        var kind = _selList == "props" && _selJson is not null && System.Text.Json.Nodes.JsonNode.Parse(_selJson) is System.Text.Json.Nodes.JsonObject o ? o["kind"]?.ToString() ?? "" : "";
+        if (soltou || kind.Length == 0) { if (_giroPrevia is not null) _giroPrevia.Visible = false; return; }
+        if (kind != _giroPreviaKind)
+        {
+            _giroPrevia?.QueueFree(); _giroPrevia = null; _giroPreviaKind = kind;
+            if (CurrentMap?.Invoke()?.PreviewProp(kind) is { } f) { Translucido(f, 0.6f); _giroPrevia = f; AddChild(f); }
+        }
+        if (_giroPrevia is null) return;
+        _giroPrevia.Visible = true;
+        _giroPrevia.Position = new Vector3((float)_selX, 0.02f, (float)_selY);
+        _giroPrevia.RotationDegrees = new Vector3(0, (float)_giro, 0);
     }
 
     private MeshInstance3D? _cursorPincel;

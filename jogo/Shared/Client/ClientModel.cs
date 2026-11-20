@@ -30,6 +30,9 @@ public sealed class ClientModel
     public string MapId { get; private set; } = "";
     public IReadOnlyList<InventoryItemView> Inventory { get; private set; } = Array.Empty<InventoryItemView>();
     public IReadOnlyList<EquippedItemView> Equipment { get; private set; } = Array.Empty<EquippedItemView>();
+    /// <summary>20/11: outro mapa aberto no M para ver as missões de lá (null = o mapa onde você está).</summary>
+    public CinzasDaMare.Shared.World.MapLayout? MapaVisto { get; set; }
+    public int MapaVistoSeq { get; private set; }
     public IReadOnlyList<string> Log => _log;
 
     // ---- E8: lobby, mapa, catálogo e marcas ----
@@ -231,13 +234,19 @@ public sealed class ClientModel
     /// </summary>
     public bool Knows(SkillInfo skill, int level)
     {
-        if (skill.Slot is "basic" or "basic_unarmed" or "weapon") return true;
+        if (skill.Slot is "basic" or "basic_unarmed") return true;
+        // 20/11 (dono: "não precisa mostrar esses poderes que vêm de arma se não tiver a arma; com a arma, mostra e explica")
+        if (skill.Slot == "weapon") return ArmaDoPoder(skill.Id) is not null;
         if (skill.Slot == "skill3") return Evolved;
         if (skill.Tome is null) return level >= skill.UnlockLevel;
         return _flags.Contains("tomo:" + skill.Id) && level >= skill.UnlockLevel;
     }
 
     public bool Knows(SkillInfo skill) => Knows(skill, Progress?.Level ?? Me?.Level ?? 1);
+
+    /// <summary>20/11: a peça vestida que dá este poder de arma (null = não está com ela).</summary>
+    public ItemInfo? ArmaDoPoder(string skillId)
+        => Equipment.Select(e => Catalog?.Items.FirstOrDefault(i => i.Id == e.DefinitionId)).FirstOrDefault(i => i?.WeaponSkill == skillId);
 
     /// <summary>Teclas de poder (Q, E, R, T) → habilidade escolhida no Livro de Poderes. Vazio = padrão da classe.</summary>
     public Dictionary<string, string> Binds { get; } = new();
@@ -437,6 +446,10 @@ public sealed class ClientModel
             case TrilhaMessage tr:
                 Trilha = tr;
                 TrilhaSeq++;
+                break;
+            case MapaVerMessage ver:   // 20/11
+                MapaVisto = ver.Map;
+                MapaVistoSeq++;
                 break;
             case AmigosMessage am:
                 Amigos = am;

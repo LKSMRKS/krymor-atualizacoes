@@ -707,6 +707,95 @@ public static partial class PoderesVfx
         d.Acerto = c => { ImpactoFogo(c, 0.8f); Particulas(c.Cena, null, c.Alvo + Vector3.Up * 0.8f, Fogo(0.3f, 16)); };
         d = D("skill_pet_fenix", "Brasa da Fênix", "guerreiro", "single", 10, 0);
         d.Acerto = c => { ImpactoFogo(c, 0.9f); Particulas(c.Cena, null, c.Alvo + Vector3.Up, Brasas(new Color(1f, 0.6f, 0.2f), 18)); };
+        GolpesNovos();
+    }
+
+    /// <summary>19/11: os 16 golpes novos (4 por classe, livros dos níveis 20–45; Tools/gerar_golpes_novos.py).</summary>
+    private static void GolpesNovos()
+    {
+        // ======================= GUERREIRO
+        var d = D("skill_guerreiro_quebra_couraca", "Quebra-Couraça", "guerreiro", "cone", 3.2f, 0);
+        d.Prep = c => Carga(c, Aco, 0.8f, 0.35);
+        d.Golpe = c => { Lamina(c, c.Peito + c.Frente * 0.3f, c.Frente, 2.6f, 1.1f, 110f, -80f, new Color(1f, 0.6f, 0.3f), Branco, 0.35, false, 0.8f, 3.2f); Choque(c, c.Pos + c.Frente * 2f, 1.6f, Terra, 0.9f); };
+        d.Acerto = c => { Impacto(c, new Color(1f, 0.6f, 0.3f), 1f); Particulas(c.Cena, null, c.Alvo + Vector3.Up, Brasas(Aco, 12)); };
+
+        d = D("skill_guerreiro_avanco_touro", "Avanço do Touro", "guerreiro", "dash", 8f, 0);
+        d.Prep = c => Particulas(c.Cena, null, c.Pos + Vector3.Up * 0.1f, Poeira(Terra, 0.7f, 14));
+        d.Golpe = c => { Rastro(c, c.Inicio + Vector3.Up * 0.9f, c.Alvo + Vector3.Up * 0.9f, Terra, true); c.Cena.Depois(0.2, () => Choque(c, c.Alvo, 2.0f, Terra, 1.1f)); };
+        d.Acerto = c => Impacto(c, Terra, 1.1f);
+
+        d = D("skill_guerreiro_martelo_sismico", "Martelo Sísmico", "guerreiro", "nova", 0, 4.5f);
+        d.Prep = c => Carga(c, Terra, 1.2f, 0.6);
+        d.Golpe = c => { Choque(c, c.Pos, 4.5f, Terra, 1.8f, "cratera"); Brotar(c, c.Pos, 4.2f, 10, "rocha", 0.9); Onda(c, c.Pos, 4.5f, Terra, Branco, 0.6); c.Tremer(0.35f); };
+        d.Acerto = c => Impacto(c, Terra, 1.0f);
+
+        d = D("skill_guerreiro_tempestade_aco", "Tempestade de Aço", "guerreiro", "nova", 0, 4.2f);
+        d.Golpe = c => Giro(c, 4.2f, 1.6, Aco, Branco, true, 16f);
+        d.Acerto = c => Impacto(c, Aco, 0.6f);
+
+        // ======================= MAGO
+        d = D("skill_mago_corrente_raios", "Corrente de Raios", "mago", "projectile", 20f, 0.55f);
+        d.Golpe = c => Mao(c, new Color(0.7f, 0.85f, 1f), 0.3f);
+        d.Proj = () => Bola(new Color(0.6f, 0.8f, 1f), Colors.White, 0.7f, raio: true);
+        d.Acerto = c => { Impacto(c, new Color(0.7f, 0.85f, 1f), 0.9f); c.Cena.Add(Relampago(c.Cena, c.Alvo + Vector3.Up * 2.2f, c.Alvo + Vector3.Up * 0.3f, new Color(0.75f, 0.9f, 1f), 6, 0.2f, 0.025f), 0.15); };
+
+        d = D("skill_mago_nevasca", "Nevasca", "mago", "ground", 14f, 4.5f);
+        d.Prep = c => { Runas(c, c.Alvo, 4.5f, Gelo with { A = 0.8f }, 0.8, 0.8f); Carga(c, Gelo, 0.9f, 0.6); };
+        d.Golpe = c => { Cristais(c, c.Alvo, 4.5f, 12, 1.6, Gelo); Particulas(c.Cena, null, c.Alvo + Vector3.Up * 3f, Brasas(new Color(0.9f, 0.95f, 1f), 40)); Onda(c, c.Alvo, 4.5f, Gelo, Branco, 0.7); };
+        d.Acerto = c => Impacto(c, Gelo, 0.7f);
+
+        d = D("skill_mago_orbe_vazio", "Orbe do Vazio", "mago", "projectile", 16f, 1.0f);
+        d.Prep = c => Carga(c, Sombra, 1.0f, 0.5);
+        d.Golpe = c => Mao(c, Sombra, 0.45f);
+        d.Proj = () => Bola(Sombra, new Color(0.1f, 0f, 0.15f), 1.6f, nevoa: true);
+        d.Acerto = c => Explosao(c, c.Alvo, 3f, Sombra, new Color(0.15f, 0.08f, 0.2f), 0.8f);
+
+        d = D("skill_mago_supernova", "Supernova", "mago", "nova", 0, 6f);
+        d.Prep = c => { Aura(c, c.Pos, 2.4f, Ouro, Branco, 1.0, true); Carga(c, Ouro, 1.6f, 0.9); };
+        d.Golpe = c => { Clarao(c, c.Pos + Vector3.Up, Branco, 2.2f, 0.45); Explosao(c, c.Pos, 6f, new Color(1f, 0.85f, 0.45f), new Color(0.4f, 0.3f, 0.25f), 1.8f); Onda(c, c.Pos, 6f, Ouro, Branco, 0.7); c.Tremer(0.5f); };
+        d.Acerto = c => Impacto(c, Ouro, 0.8f);
+
+        // ======================= BRUXA
+        d = D("skill_bruxa_enxame", "Enxame de Vagalumes", "bruxa", "projectile", 16f, 0.45f);
+        d.Golpe = c => Mao(c, new Color(0.75f, 1f, 0.45f), 0.3f);
+        d.Proj = () => Bola(new Color(0.75f, 1f, 0.45f), new Color(1f, 1f, 0.8f), 0.45f);
+        d.Acerto = c => Impacto(c, new Color(0.75f, 1f, 0.45f), 0.6f);
+
+        d = D("skill_bruxa_pantano", "Pântano Venenoso", "bruxa", "ground", 13f, 4f);
+        d.Prep = c => { Runas(c, c.Alvo, 4f, new Color(0.4f, 0.85f, 0.3f, 0.8f), 0.8, 0.6f); Carga(c, Verde, 0.8f, 0.5); };
+        d.Golpe = c => { Onda(c, c.Alvo, 4f, new Color(0.35f, 0.6f, 0.2f), new Color(0.6f, 1f, 0.3f), 1.6, preenche: 0.5f); Particulas(c.Cena, null, c.Alvo + Vector3.Up * 0.3f, Poeira(new Color(0.4f, 0.75f, 0.25f), 3.5f, 26)); };
+        d.Acerto = c => Impacto(c, new Color(0.45f, 0.85f, 0.3f), 0.6f);
+
+        d = D("skill_bruxa_casulo", "Casulo de Seiva", "bruxa", "barrier", 10f, 0);
+        d.Prep = c => Carga(c, new Color(0.9f, 0.75f, 0.3f), 0.8f, 0.3);
+        d.Golpe = c => { Escudo(c, c.Pos + Vector3.Up * 1f, new Vector3(1.0f, 1.3f, 1.0f), new Color(0.95f, 0.7f, 0.25f), 0.9f, 1.8); Cura(c, c.Pos, 1.6f, new Color(0.95f, 0.8f, 0.35f), true, 3); };
+
+        d = D("skill_bruxa_ira_terra", "Ira da Terra", "bruxa", "ground", 15f, 5.5f);
+        d.Prep = c => { Runas(c, c.Alvo, 5.5f, Verde with { A = 0.8f }, 1.0, 0.7f); Carga(c, Verde, 1.4f, 0.9); };
+        d.Golpe = c => { Brotar(c, c.Alvo, 5.2f, 18, "rocha", 1.4); Choque(c, c.Alvo, 5.5f, Terra, 2.0f, "rachado", Verde); c.Tremer(0.45f); };
+        d.Acerto = c => Impacto(c, Terra, 1f);
+
+        // ======================= ARQUEIRO
+        d = D("skill_arqueiro_flecha_gelo", "Flecha de Gelo", "arqueiro", "projectile", 24f, 0.5f);
+        d.Golpe = c => Mao(c, Gelo, 0.3f);
+        d.Proj = () => Flecha(Gelo, 1.4f, brilho: true);
+        d.Acerto = c => { Impacto(c, Gelo, 0.8f); Cristais(c, c.Alvo, 0.9f, 4, 1.0, Gelo); };
+
+        d = D("skill_arqueiro_leque", "Leque de Lâminas", "arqueiro", "projectile", 16f, 0.45f);
+        d.Golpe = c => { Mao(c, Aco, 0.3f); Lamina(c, c.Mao, c.Frente, 1.4f, 0.4f, 80f, 0f, Aco, Branco, 0.2); };
+        d.Proj = () => Flecha(Aco, 1.0f);
+        d.Acerto = c => Impacto(c, Aco, 0.6f);
+
+        d = D("skill_arqueiro_armadilha", "Armadilha de Espinhos", "arqueiro", "ground", 12f, 3f);
+        d.Prep = c => Carga(c, Terra, 0.6f, 0.3);
+        d.Golpe = c => { EspinhosEmLeque(c, c.Alvo, 3f, 1.6); Choque(c, c.Alvo, 3f, Terra, 0.8f); };
+        d.Acerto = c => Impacto(c, Terra, 0.7f);
+
+        d = D("skill_arqueiro_tiro_cometa", "Tiro Cometa", "arqueiro", "projectile", 30f, 0.9f);
+        d.Prep = c => Carga(c, Fogo_, 1.1f, 0.9);
+        d.Golpe = c => Mao(c, Fogo_, 0.5f);
+        d.Proj = () => Bola(Fogo_, new Color(1f, 0.9f, 0.6f), 1.4f, fogo: true);
+        d.Acerto = c => Explosao(c, c.Alvo, 3.5f, Fogo_, new Color(0.3f, 0.28f, 0.27f), 1.2f);
     }
 
     // ------------------------------------------------------------------ projéteis (frente = +Z)

@@ -163,6 +163,8 @@ public sealed class HudView
     /// <summary>Missões no canto, na ordem dos números (o mapa M usa a mesma numeração).</summary>
     public static List<CinzasDaMare.Shared.Net.QuestEntry> Tracked { get; private set; } = new();
     public static List<CinzasDaMare.Shared.Net.QuestEntry> NoMapa { get; private set; } = new();
+    /// <summary>20/11: clique no nome da missão do canto da tela abre o mapa no lugar dela.</summary>
+    public static event Action<CinzasDaMare.Shared.Net.QuestEntry>? MissaoClicada;
     public string ClockText { set => _compass.Clock = value; }
     private CenterContainer _promptRow = null!;
     private void PosicionarAviso()
@@ -1461,8 +1463,17 @@ public sealed class HudView
             num++;
             var done = q.State == "ready" || q.Progress >= q.Count;
             var trav = !done && q.NivelLugar > (m.Me?.Level ?? 99);   // 13/11: lugar trancado pelo nível
-            _questBox.AddChild(Quebra(MakeLabel($"[{num}] " + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
-                done ? new Color(0.55f, 0.9f, 0.5f) : trav ? new Color(1f, 0.45f, 0.4f) : Gold)));
+            var titulo = Quebra(MakeLabel($"[{num}] " + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
+                done ? new Color(0.55f, 0.9f, 0.5f) : trav ? new Color(1f, 0.45f, 0.4f) : Gold));
+            if (q.X != 0 || q.Y != 0)
+            {
+                var qq = q;
+                titulo.MouseFilter = Control.MouseFilterEnum.Stop;
+                titulo.MouseDefaultCursorShape = Control.CursorShape.PointingHand;
+                titulo.TooltipText = "Clique para ver no mapa";
+                titulo.GuiInput += ev => { if (ev is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left }) MissaoClicada?.Invoke(qq); };
+            }
+            _questBox.AddChild(titulo);
             var line = done ? $"Volte a {q.Giver}" + (q.Where.Length > 0 ? $" ({q.Where})" : "") : $"{q.Hint}  {q.Progress}/{q.Count}";
             var l = MakeLabel(line, 12, new Color(0.88f, 0.85f, 0.78f), 3);
             l.AutowrapMode = TextServer.AutowrapMode.WordSmart;

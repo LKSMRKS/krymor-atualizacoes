@@ -287,8 +287,22 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
         if (body != _bodyModel) BuildOutfit(body);
     }
 
+    /// <summary>19/11 ("verifica tudo que está fora do padrão"): os 6 elmos antigos feitos de caixas e cilindros (22 itens)
+    /// viram o elmo esculpido de conjunto mais parecido — o item e o id continuam iguais, só muda o desenho.</summary>
+    public static string? ElmoEsculpido(string? model) => model switch
+    {
+        "head_iron" => "armadura_soldado_ferro:capacete",
+        "head_guardian" => "armadura_cavaleiro_aco:capacete",
+        "head_hood" => "arm_feiticeiro:capacete",
+        "head_hood_travel" => "arm_patrulheiro:capacete",
+        "head_plume" => "arm_cavaleiro:capacete",
+        "head_cap" => "armadura_acolchoada:capacete",
+        _ => model,
+    };
+
     public void SetHead(string? model)
     {
+        model = ElmoEsculpido(model);
         if (model == _headModel) return;
         _headModel = model;
         _helmet?.QueueFree();

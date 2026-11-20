@@ -70,10 +70,38 @@ public partial class Showcase : Node3D
                 layout = layout with { Props = layout.Props.Where(p => Perto(p.X, p.Y)).ToList(), Obstacles = layout.Obstacles.Where(o => Perto(o.X, o.Y)).ToList() };
             }
         }
+        // 19/11: AUDIT_PROPS=arquivo com um tipo de peça por linha — monta todas numa grade e conta o que é modelo e o que é forma
+        string[]? auditKinds = null;
+        if (kind == "auditoria" && OS.GetEnvironment("AUDIT_PROPS") is { Length: > 0 } ap)
+        {
+            auditKinds = System.IO.File.ReadAllLines(ap).Where(l => l.Length > 0).ToArray();
+            var lado = (int)Math.Ceiling(Math.Sqrt(auditKinds.Length));
+            layout = layout with { HalfSize = lado * 4 + 10, Props = auditKinds.Select((k, i) => new MapProp(k, (i % lado) * 8 - lado * 4, (i / lado) * 8 - lado * 4, 0)).ToList() };
+            layout = layout with { Theme = OS.GetEnvironment("AUDIT_TEMA") is { Length: > 0 } tt ? tt : "mata", Kind = "campo" };
+        }
         var swMapa = System.Diagnostics.Stopwatch.StartNew();
         var map = new MapView(layout);
         s.AddChild(map.Root);
         MsMontagem = swMapa.Elapsed.TotalMilliseconds;   // 16/11: medição de otimização (VITRINE_MEDIR)
+        if (auditKinds is not null)
+        {
+            var lado = (int)Math.Ceiling(Math.Sqrt(auditKinds.Length));
+            var conta = new Dictionary<int, (int P, int A)>();
+            foreach (var n in map.Root.FindChildren("*", nameof(MeshInstance3D), true, false))
+                if (n is MeshInstance3D mi && mi.Mesh is { } me && mi.IsInsideTree() is var _ )
+                {
+                    var g = mi.Transform; Node? q = mi.GetParent(); var pos = mi.Position;
+                    while (q is Node3D q3 && q3 != map.Root) { pos = q3.Transform * pos; q = q3.GetParent(); }
+                    var cx = (int)Math.Round((pos.X + lado * 4) / 8f); var cy = (int)Math.Round((pos.Z + lado * 4) / 8f);
+                    if (cx < 0 || cy < 0 || cx >= lado) continue;
+                    var idx = cy * lado + cx; if (idx >= auditKinds.Length) continue;
+                    var c = conta.GetValueOrDefault(idx);
+                    conta[idx] = me is PrimitiveMesh ? (c.P + 1, c.A) : (c.P, c.A + 1);
+                }
+            for (var i = 0; i < auditKinds.Length; i++) { var c = conta.GetValueOrDefault(i); GD.Print($"AUDITP|{auditKinds[i]}|{c.P}|{c.A}"); }
+            s.GetTree()?.Quit();
+            return s;
+        }
         // luz de estúdio: sol baixo vindo de trás da câmera (os bonecos ficam de frente para a luz)
         if (map.Sun is { } sun) sun.RotationDegrees = new Vector3(-30f, 20f, 0);
         switch (kind)
@@ -103,6 +131,7 @@ public partial class Showcase : Node3D
             case "encaixe": s.Encaixe(camera); break;
             case "laboratorio": s.Laboratorio(camera); break;
             case "monstro": s.MonstroLista(camera); break;
+            case "auditoria": s.Auditoria(); break;   // 19/11: lista que visual é modelo de verdade e qual é boneco de formas
             case "vila": s.Vila(camera); break;
             case "taverna":
             {
@@ -390,6 +419,59 @@ public partial class Showcase : Node3D
         camera.Fov = 50;
     }
 
+    /// <summary>19/11 ("verifica tudo que está fora do padrão"): para cada visual de monstro do conteúdo, imprime
+    /// AUDIT|visual|classe|glb|primitivas|malhas|animações — boneco de formas (primitivas sem .glb) fica fora do padrão.</summary>
+    private void Auditoria()
+    {
+        var dir = OS.GetEnvironment("VITRINE_CONTENT");
+        if (OS.GetEnvironment("AUDIT_ITENS") == "1") { AuditoriaItens(dir); GetTree().Quit(); return; }
+        var vistos = new HashSet<string>(); var feitos = 0;
+        var pular = int.TryParse(OS.GetEnvironment("AUDIT_DE"), out var de) ? de : 0;
+        foreach (var f in System.IO.Directory.GetFiles(dir, "monsters*.json"))
+            foreach (var m in System.Text.Json.JsonDocument.Parse(System.IO.File.ReadAllText(f)).RootElement.EnumerateArray())
+            {
+                var id = m.GetProperty("id").GetString()!; var vis = m.GetProperty("visual_asset_id").GetString()!;
+                var boss = m.TryGetProperty("boss", out var b) && b.GetBoolean();
+                if (!vistos.Add(vis + (boss ? "|chefe" : ""))) continue;
+                if (vistos.Count <= pular) continue;
+                IEntityVisual v;
+                try { v = VisualFactory.Monster(id, boss, false, vis, id); } catch (Exception e) { GD.Print($"AUDIT|{vis}|ERRO|{e.Message}"); continue; }
+                int prim = 0, arr = 0; var glb = false; var anims = new List<string>();
+                foreach (var n in v.Root.FindChildren("*", "", true, false))
+                {
+                    if (n.SceneFilePath.EndsWith(".glb", StringComparison.OrdinalIgnoreCase)) glb = true;
+                    if (n is MeshInstance3D mi && mi.Mesh is { } me) { if (me is PrimitiveMesh) prim++; else { arr++; if (me.ResourcePath.Contains(".glb")) glb = true; } }
+                    if (n is AnimationPlayer ap) anims.AddRange(ap.GetAnimationList());
+                }
+                GD.Print($"AUDIT|{vis}|{(boss ? "chefe" : "")}|{v.GetType().Name}|{(glb ? "glb" : "-")}|{prim}|{arr}|{anims.Count}|{string.Join(",", anims.Take(14))}|{id}");
+                v.Root.Free();
+                if (++feitos % 20 == 0) GC.Collect();
+            }
+        GetTree().Quit();
+    }
+
+    private static void AuditoriaItens(string dir)
+    {
+        var vistos = new HashSet<string>();
+        foreach (var f in System.IO.Directory.GetFiles(dir, "items*.json"))
+            foreach (var it in System.Text.Json.JsonDocument.Parse(System.IO.File.ReadAllText(f)).RootElement.EnumerateArray())
+            {
+                var id = it.GetProperty("id").GetString()!; var cat = it.GetProperty("category").GetString()!;
+                var model = it.TryGetProperty("model_asset_id", out var mm) ? mm.GetString() ?? "" : "";
+                var pintado = GearFactory.PaintedIcon(model, id) is not null || ItemIconRenderer.HasOwnIcon(id);
+                if (!vistos.Add(cat + "|" + model)) { if (!pintado) GD.Print($"AUDITI|{cat}|{model}|{id}|sem_icone_pintado|-|-"); continue; }
+                Node3D? n = null;
+                try { n = cat switch { "weapon" => GearFactory.Weapon(model), "offhand" or "shield" => GearFactory.Shield(model), "helmet" => GearFactory.Helmet(model), _ => null }; } catch { }
+                int prim = 0, arr = 0;
+                if (n is not null)
+                {
+                    foreach (var c in n.FindChildren("*", "", true, false)) if (c is MeshInstance3D mi && mi.Mesh is { } me) { if (me is PrimitiveMesh) prim++; else arr++; }
+                    n.Free();
+                }
+                GD.Print($"AUDITI|{cat}|{model}|{id}|{(pintado ? "icone" : "sem_icone_pintado")}|{prim}|{arr}");
+            }
+    }
+
     // 12/11: lista livre de monstros (CDM_VIS="def:visual,def:visual") lado a lado, com referência de altura (jogador)
     private void MonstroLista(Camera3D camera)
     {
@@ -400,6 +482,7 @@ public partial class Showcase : Node3D
         {
             var parts = list[i].Split(':');
             var v = VisualFactory.Monster(parts[0], false, false, parts.Length > 1 ? parts[1] : "", parts.Length > 2 ? parts[2] : "");   // 16/11: 3º campo = semente (variante)
+            if (parts.Length > 4) VarianteRegional.Aplicar(v.Root, parts[0], parts[3], parts[4], false);   // 19/11 (trabalhador): def:visual:semente:mapa:tema
             var x = (i - (list.Length - 1) / 2f) * 1.6f;
             Place(v, new Vector3(x, 0, 0), 0f, i * 0.3f);
             Label(parts.Length > 2 ? parts[1] + " " + parts[2] : parts.Length > 1 && parts[1].Length > 0 ? parts[1] : parts[0], new Vector3(x, 2.4f, 0), 20);
@@ -491,6 +574,12 @@ public partial class Showcase : Node3D
     {
         var list = new[] { ("bruxa", "talisman_moon", "shield_broquel_tabuas"), ("arqueiro", "arma_adaga_comum", "shield_broquel_mare"),
             ("mago", "staff_crystal", "shield_orbe_cinza"), ("mago", "staff_crystal", "shield_orbe_brasa") };
+        // 19/11: VITRINE_ESCUDOS=1|2 mostra os escudos esculpidos do Guerreiro (4 por página)
+        if (OS.GetEnvironment("VITRINE_ESCUDOS") is { Length: > 0 } pg)
+        {
+            var esc = new[] { "mata", "canion", "brejo", "vespera", "geada", "escoria", "acropole", "vigilia_morta" }.Skip(pg == "2" ? 4 : 0).Take(4);
+            list = esc.Select(e => ("guerreiro", "sword_vein", "shield_escudo_" + e)).ToArray();
+        }
         for (var i = 0; i < list.Length; i++)
         {
             var x = -2.7f + i * 1.8f;

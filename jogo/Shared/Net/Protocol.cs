@@ -117,6 +117,8 @@ public static class Protocol
 [JsonDerivedType(typeof(TrilhaMessage), "trilha")]
 [JsonDerivedType(typeof(AmigosIntent), "amigos_ask")]
 [JsonDerivedType(typeof(AmigosMessage), "amigos")]
+[JsonDerivedType(typeof(MapaVerIntent), "mapa_ver_ask")]
+[JsonDerivedType(typeof(MapaVerMessage), "mapa_ver")]
 [JsonDerivedType(typeof(AlavancasMessage), "alavancas")]
 public abstract record NetMessage;
 
@@ -135,6 +137,10 @@ public sealed record PesquisaIntent(string Texto) : NetMessage
 }
 /// <summary>18/11: lista de amigos (F4). Acao: "listar", "adicionar" (Nome), "aceitar" (Nome), "recusar" (Nome), "remover" (Nome).</summary>
 public sealed record AmigosIntent(string Acao, string Nome = "") : NetMessage;
+/// <summary>20/11 (dono: "ao clicar no mapa, abre o mapa exatamente onde está a missão"): pede o desenho de outro mapa
+/// (sem peças de enfeite, monstros e baús) para ver onde ficam as missões de lá sem viajar.</summary>
+public sealed record MapaVerIntent(string MapId) : NetMessage;
+public sealed record MapaVerMessage(CinzasDaMare.Shared.World.MapLayout Map) : NetMessage;
 /// <summary>Estado: "ok" (amigos), "recebido" (pediu para ser seu amigo), "enviado" (você pediu, esperando).</summary>
 public sealed record AmigoView(string Nome, string Estado, bool Online, int Nivel, string Classe, string Mapa);
 public sealed record AmigosMessage(IReadOnlyList<AmigoView> Amigos) : NetMessage;

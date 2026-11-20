@@ -286,7 +286,8 @@ public static class MapKit
                     P(node, VisualKit.Cylinder(0.3f, 0.3f, 0.05f, 10), iron, at + new Vector3(0, 0.25f, 0));
                 }
                 return true;
-            case "pinheiros" when v.Map.Theme is "praia" or "cidade" && Glb(node, "costa/costa_pinheiro_" + "abc"[(int)v.R(0, 2.99f)], new Vector3(v.R(-2, 2), 0, v.R(-2, 2)), v.R(0, 360), v.R(0.75f, 1.0f)):
+            // 19/11: o pinheiro esculpido da Costa em todo tema (antes, fora da Costa/cidade, eram cones de formas)
+            case "pinheiros" when v.Map.Theme is not "neve" && Glb(node, "costa/costa_pinheiro_" + "abc"[(int)v.R(0, 2.99f)], new Vector3(v.R(-2, 2), 0, v.R(-2, 2)), v.R(0, 360), v.R(0.75f, 1.0f)):
                 // Costa (kit): 2–3 pinheiros-mansos, uma rocha e capim no pé
                 if (v.R(0, 1) < 0.7f) Glb(node, "costa/costa_pinheiro_" + "abc"[(int)v.R(0, 2.99f)], new Vector3(v.R(-2, 2), 0, v.R(-2, 2)), v.R(0, 360), v.R(0.7f, 0.95f));
                 Glb(node, "costa/costa_pinheiro_" + "abc"[(int)v.R(0, 2.99f)], new Vector3(v.R(-2, 2), 0, v.R(-2, 2)), v.R(0, 360), v.R(0.6f, 0.9f));
@@ -479,7 +480,9 @@ public static class MapKit
             }
             case "cristal_gelo":
                 for (var i = 0; i < 4; i++)
-                    P(node, VisualKit.Cylinder(0f, v.R(0.25f, 0.5f), v.R(1.2f, 2.8f), 5), VisualKit.Glow(new Color(0.65f, 0.85f, 1f), 0.6f),
+                    // 19/11: na Lua o cristal é pedra-da-lua (violeta), no céu é quartzo dourado; gelo azul só no frio
+                    P(node, VisualKit.Cylinder(0f, v.R(0.25f, 0.5f), v.R(1.2f, 2.8f), 5), VisualKit.Glow(v.Map.Theme switch
+                        { "lua" => new Color(0.72f, 0.6f, 1f), "ceu" => new Color(1f, 0.85f, 0.5f), "lava" => new Color(1f, 0.4f, 0.15f), "fantasma" => new Color(0.55f, 1f, 0.75f), _ => new Color(0.65f, 0.85f, 1f) }, 0.6f),
                         new Vector3(v.R(-0.8f, 0.8f), 0.8f, v.R(-0.8f, 0.8f)), new Vector3(v.R(-20, 20), 0, v.R(-20, 20)));
                 return true;
             case "rocha_lava":

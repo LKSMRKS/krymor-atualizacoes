@@ -418,6 +418,9 @@ public sealed partial class EditorView : Node3D
                 case Key.V when k.CtrlPressed: if (_clip is { } c && GroundUnderMouse() is { } p) Paste(c, p); return true;
                 case Key.D when k.CtrlPressed: Duplicate(); return true;
                 case Key.Delete: if (_selJson is not null) { ParaTodos(() => Op("remove")); _multi.Clear(); ClearSel(); } return true;
+                // 19/11 ("o móvel tá alinhado com a parede, eu coloco e ele vira"): com uma peça na mão, R gira a PRÉVIA
+                // (90°, Shift = 15°) e ela é posta exatamente como aparece
+                case Key.R when _tool is { Op: "prop" }: _fantasmaYaw = (_fantasmaYaw + (k.ShiftPressed ? 15f : 90f)) % 360f; _status.Text = $"Peça na mão girada: {_fantasmaYaw:0}° (R = 90°, Shift+R = 15°)"; return true;
                 case Key.R: if (_selJson is not null) ParaTodos(() => Op("rotate", 0, 0, null, k.ShiftPressed ? -45 : 45)); return true;
                 case Key.Tab: TogglePaleta(); return true;
                 case Key.Pageup: if (_selJson is not null) Subir(0.25); return true;
@@ -586,7 +589,7 @@ public sealed partial class EditorView : Node3D
         }
         if (t.Op == "remove") { Op("select", p.X, p.Z); Op("remove", p.X, p.Z); return; }
         if (t.Op == "add") { Op("paste", p.X, p.Z, t.Extra); return; }
-        var yaw = t.Op == "prop" ? 0 : GD.Randf() * 360f;
+        var yaw = t.Op == "prop" ? Math.Round(_fantasmaYaw, 1) : GD.Randf() * 360f;   // 19/11: igual à prévia
         Op(t.Op, p.X, p.Z, t.Extra, yaw, t.Op == "spawn" ? (long)_level.Value : 0);
     }
 
@@ -959,6 +962,7 @@ public sealed partial class EditorView : Node3D
             _giro = (ang % 360 + 360) % 360;
             _status.Text = $"Girando: {_giro:0}° (Shift = de 15 em 15°)";
             DesenharColisao();
+            PreviaDoGiro(gravar);
             if (gravar) Op("rotate_to", 0, 0, null, Math.Round(_giro, 1));
             return;
         }

@@ -19,18 +19,15 @@ public static class KitAcervo
         // Vale das Cinzas
         [("vale", "arvore")] = (L("cenario/vale_arvore_queimada_", "abc"), 0.35f, 1f),
         // Mata dos Enforcados (e Floresta Oculta / Ilha, tema "mata")
-        [("mata", "arvore_seca")] = (new[] { "cenario/mata_arvore_forca_a", "cenario/mata_arvore_forca_b", "cenario/vale_arvore_queimada_c" }, 0.6f, 1f),
         [("mata", "lapide")] = (L("cenario/vespera_lapide_", "abcd"), 1f, 1f),
         // Cânions dos Suplicantes
         [("canion", "vagonete")] = (new[] { "cenario/canion_vagonete_tombado" }, 0.5f, 1f),
         // Brejo da Viúva
-        [("brejo", "arvore_seca")] = (new[] { "cenario/brejo_mangue" }, 0.5f, 1f),
         [("brejo", "arvore")] = (new[] { "cenario/brejo_mangue" }, 0.35f, 1f),
         [("brejo", "estacas")] = (new[] { "cenario/brejo_palafita" }, 1f, 0.8f),
         // Véspera (e Castelo / Transilvânia, tema "fantasma")
         [("fantasma", "lapide")] = (L("cenario/vespera_lapide_", "abcd"), 1f, 1f),
         [("fantasma", "poste")] = (new[] { "cenario/vespera_poste_apagado" }, 1f, 1f),
-        [("fantasma", "arvore_seca")] = (L("cenario/vale_arvore_queimada_", "abc"), 0.5f, 0.9f),
         // Coroa da Geada (e Pico do Vento / Fortaleza, tema "neve")
         [("neve", "arvore")] = (L("cenario/geada_arvore_neve_", "abc"), 1f, 1f),
         [("neve", "pinheiros")] = (L("cenario/geada_arvore_neve_", "abc"), 1f, 1f),
@@ -43,6 +40,29 @@ public static class KitAcervo
         [("acropole", "estatua_bronze")] = (new[] { "cenario/acropole_estatua_juramento" }, 0.6f, 0.6f),
         [("ceu", "coluna_quebrada")] = (L("cenario/acropole_coluna_", "ab"), 1f, 1f),
         [("ceu", "estatua_bronze")] = (new[] { "cenario/acropole_estatua_juramento" }, 0.6f, 0.6f),
+        // 19/11 ("verifica tudo que está fora do padrão"): as peças que ainda eram de caixas/cilindros em algum tema
+        [("mata", "arvore_seca")] = (new[] { "cenario/mata_arvore_forca_a", "cenario/mata_arvore_forca_b", "cenario/vale_arvore_queimada_c" }, 1f, 1f),
+        [("brejo", "arvore_seca")] = (new[] { "cenario/brejo_mangue", "cenario/mata_arvore_forca_b" }, 1f, 1f),
+        [("fantasma", "arvore_seca")] = (L("cenario/vale_arvore_queimada_", "abc"), 1f, 0.9f),
+        [("vale", "arvore_seca")] = (L("cenario/vale_arvore_queimada_", "abc"), 1f, 1f),
+        [("canion", "arvore_seca")] = (L("cenario/vale_arvore_queimada_", "bc"), 1f, 1f),
+        [("lava", "arvore_seca")] = (L("cenario/vale_arvore_queimada_", "abc"), 1f, 1f),
+        [("neve", "arvore_seca")] = (L("cenario/geada_arvore_neve_", "abc"), 1f, 0.9f),
+        [("lua", "arvore_seca")] = (new[] { "cenario/mata_arvore_forca_a", "cenario/vale_arvore_queimada_c" }, 1f, 1f),
+        [("lua", "coluna_quebrada")] = (L("cenario/acropole_coluna_", "ab"), 1f, 1f),
+        [("lua", "lapide")] = (L("cenario/vespera_lapide_", "abcd"), 1f, 1f),
+        [("brejo", "lapide")] = (L("cenario/vespera_lapide_", "abcd"), 1f, 1f),
+    };
+
+    /// <summary>19/11: qualquer tema — a peça de formas antiga vira o modelo esculpido genérico.</summary>
+    private static readonly Dictionary<string, (string[] Arquivos, float Escala)> TrocaGeral = new()
+    {
+        ["arvore_seca"] = (new[] { "cenario/cenario_arvore_seca" }, 1f),
+        ["coluna_quebrada"] = (new[] { "cenario/cenario_coluna", "cenario/acropole_coluna_b" }, 1f),
+        ["lapide"] = (L("cenario/vespera_lapide_", "abcd"), 1f),
+        ["panela"] = (new[] { "cenario/cenario_panela" }, 1f),
+        ["bancada"] = (new[] { "cenario/cenario_bancada" }, 1f),
+        ["rocha_lava"] = (L("cenario/escoria_basalto_brasa_", "abc"), 1f),
     };
 
     /// <summary>Troca a peça pelo modelo da região. true = modelo colocado (pule o desenho antigo, mantenha a colisão).</summary>
@@ -50,7 +70,11 @@ public static class KitAcervo
     {
         // 14/11 (u81 travava o desenho): peça montada fora de um mapa (o boneco de treino usa o mesmo construtor) não tem tema
         if (v?.Map is null) return false;
-        if (!Troca.TryGetValue((v.Map.Theme, tipo), out var t)) return false;
+        if (!Troca.TryGetValue((v.Map.Theme, tipo), out var t))
+        {
+            if (v.Map.Theme is "cidade" or "biblioteca" or "casarao" || !TrocaGeral.TryGetValue(tipo, out var g)) return false;
+            t = (g.Arquivos, 1f, g.Escala);
+        }
         if (t.Chance < 1f && v.R(0f, 1f) > t.Chance) return false;
         var arq = t.Arquivos[System.Math.Clamp((int)v.R(0f, t.Arquivos.Length), 0, t.Arquivos.Length - 1)];
         if (!MapKit.Glb(node, arq, Vector3.Zero, 0f, t.Escala * v.R(0.9f, 1.1f))) return false;
