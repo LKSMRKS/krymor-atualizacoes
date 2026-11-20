@@ -562,6 +562,7 @@ public sealed class InventoryPanel
     {
         var info = m.ItemInfoFor(item.DefinitionId);
         if (item.DefinitionId == "portal_viagem") { OpenTravel?.Invoke(); return; }   // 11/11: Pedra de Portal abre o mapa
+        if (item.DefinitionId == "bau_joias") { Send?.Invoke(new StorageIntent(Guid.NewGuid().ToString("N"), "open", "joias", "")); Sfx.Play("ui_clique"); return; }   // 19/11 noite: Baú de Joias
         if (info?.Slot == "material") return;
         if (info?.Slot == "consumable" || item.DefinitionId.StartsWith("consumable_")) Send?.Invoke(new UseItemIntent(item.ItemId));
         else Send?.Invoke(new EquipIntent(item.ItemId));

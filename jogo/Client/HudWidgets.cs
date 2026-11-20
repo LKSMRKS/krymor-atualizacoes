@@ -139,7 +139,7 @@ public sealed partial class GlassOrb : Control
                 {
                     "veneno" => ("VENENO", new Color(0.45f, 1f, 0.35f)), "lentidao" => ("LENTO", new Color(0.5f, 0.85f, 1f)),
                     "queimadura" => ("QUEIMANDO", new Color(1f, 0.55f, 0.2f)),
-                    "sangramento" => ("SANGRANDO", new Color(1f, 0.2f, 0.2f)), "maldicao" => ("MALDITO", new Color(0.75f, 0.45f, 1f)), "atordoado" => ("ATORDOADO", new Color(1f, 0.9f, 0.4f)), _ => (st.ToUpperInvariant(), Colors.White),
+                    "sangramento" => ("SANGRANDO", new Color(1f, 0.2f, 0.2f)), "maldicao" => ("MALDITO", new Color(0.75f, 0.45f, 1f)), "atordoado" => ("ATORDOADO", new Color(1f, 0.9f, 0.4f)), "cansaco" => ("CANSADO", new Color(0.8f, 0.75f, 0.55f)), _ => (st.ToUpperInvariant(), Colors.White),
                 };
                 var f2 = ThemeDB.FallbackFont;
                 var sz = f2.GetStringSize(label, HorizontalAlignment.Left, -1, 11);

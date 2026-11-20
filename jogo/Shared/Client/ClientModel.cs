@@ -776,13 +776,17 @@ public sealed class ClientModel
             }
             foreach (var obj in Map.Objects)
             {
-                if (!ObjectVisible(obj)) continue;
+                // 19/11 noite (dono: "tô apertando F nos Cânions e nada acontece" — o Diário do acampamento, de missão que ele não
+                // tinha): objeto de missão sem a missão ativa continua respondendo ao F (o servidor diz de quem é e o que falta)
+                var semMissao = !ObjectVisible(obj);
+                if (semMissao && obj.Quest is null) continue;
                 if (obj.RequiresFlag is not null && obj.Kind == "canteiro" && !_flags.Contains(obj.RequiresFlag)) continue;
                 if (obj.Kind is "placa_pressao" or "pedra_oca") continue;   // 17/11: rocha oca é segredo — sem "Examinar", só no golpe
                 if (obj.Kind == "esfera" && obj.GrantFlag is { } eg && _flags.Contains(eg)) continue;   // 14/11: já pegou — sumiu   // 11/11: armadilha — pisa, não aperta F
                 var d = Distance(me.X, me.Y, obj.X, obj.Y) - (obj.Kind is "forja" or "bancada" or "armazem" ? 0.6 : 0) + Behind(me, obj.X, obj.Y)
                         - (obj.Id == AimedObjId && Distance(me.X, me.Y, obj.X, obj.Y) <= 2.75 ? 1.0 : 0);   // 13/11 22:26: o que você mira (porta na parede) ganha preferência (até onde o servidor aceita)
-                if (d <= bestD) { bestD = d; best = ("object", "obj:" + obj.Id, ObjectPrompt(obj)); }
+                if (semMissao) d += 0.3;   // o que é da sua missão ganha
+                if (d <= bestD) { bestD = d; best = ("object", "obj:" + obj.Id, semMissao ? "Examinar: " + obj.Label : ObjectPrompt(obj)); }
             }
             // 18/11 15h: peças de fora no SEU terreno (portal, mascate, vitrola, cercado)
             if (CinzasDaMare.Shared.World.AssentosCasa.Lote(Map.Id) && _flags.Contains("casa:propria"))

@@ -897,9 +897,10 @@ public sealed class HudView
                 "veneno" => ("Veneno", new Color(0.45f, 1f, 0.35f), "☠"), "lentidao" => ("Lento", new Color(0.5f, 0.85f, 1f), "❄"),
                 "queimadura" => ("Queimando", new Color(1f, 0.55f, 0.2f), "🔥"), "sangramento" => ("Sangrando", new Color(1f, 0.25f, 0.25f), "✚"),
                 "maldicao" => ("Maldição", new Color(0.75f, 0.45f, 1f), "☠"), "atordoado" => ("Atordoado", new Color(1f, 0.9f, 0.4f), "✶"),
+                "cansaco" => ("Cansaço", new Color(0.8f, 0.75f, 0.55f), "≈"),
                 _ => (st, Colors.White, "!"),
             };
-            l.Add(new Efeito("st_" + st, simb, nome, "efeito ruim — passa sozinho", null, 1, true, cor));
+            l.Add(new Efeito("st_" + st, simb, nome, st == "cansaco" ? "o fôlego não volta enquanto durar" : "efeito ruim — passa sozinho", null, 1, true, cor));
         }
         return l;
     }
@@ -1136,15 +1137,15 @@ public sealed class HudView
         if (_channel is null)
         {
             _channel = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Ignore, Visible = false };
-            _channel.AddThemeStyleboxOverride("panel", PanelStyle(8f, 0.85f));
+            _channel.AddThemeStyleboxOverride("panel", PanelStyle(5f, 0.8f));
             _channel.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.Center);
-            _channel.Position += new Vector2(-150, 90);
+            _channel.Position += new Vector2(-95, -165);   // 19/11 noite (dono: "em cima do aviso do F não dá — e pode diminuir"): pequena, acima da cabeça
             var box = new VBoxContainer();
             _channel.AddChild(box);
-            _channelText = MakeLabel("", 15, new Color(0.95f, 0.85f, 0.55f));
+            _channelText = MakeLabel("", 12, new Color(0.95f, 0.85f, 0.55f));
             _channelText.HorizontalAlignment = HorizontalAlignment.Center;
             box.AddChild(_channelText);
-            _channelBar = MakeBar(new Color(0.55f, 0.80f, 0.35f), new Vector2(300, 14));
+            _channelBar = MakeBar(new Color(0.55f, 0.80f, 0.35f), new Vector2(190, 8));
             box.AddChild(_channelBar);
             Root.AddChild(_channel);
         }
@@ -1153,7 +1154,7 @@ public sealed class HudView
         _channel.Visible = gathering;
         if (!gathering) return;
         var near = m.NearestObjectLabel ?? "";
-        _channelText!.Text = near.Contains("rvore") ? "Cortando tábuas…  (fique parado)" : near.Contains("eio") ? "Minerando…  (fique parado)" : "Colhendo…  (fique parado)";
+        _channelText!.Text = near.Contains("rvore") ? "Cortando tábuas… (parado)" : near.Contains("eio") ? "Minerando… (parado)" : "Colhendo… (parado)";
         _channelBar!.Value = Math.Clamp(me!.ActionT, 0.0, 1.0);
     }
 

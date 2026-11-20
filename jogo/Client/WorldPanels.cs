@@ -135,7 +135,9 @@ public sealed class WorldPanels
             Send?.Invoke(new MapaPreviaIntent(id));
             Sfx.Play("ui_clique");
         };
-        abaLocal.Pressed += () => Aba(true);
+        // 19/11 noite (dono: "clicar num mapa no geral e depois em Voltar tem que voltar para o mapa GRANDE, para escolher
+        // livremente"): vendo o mapa de outro lugar, o botão volta ao mapa geral
+        abaLocal.Pressed += () => Aba(_previa is null);
         abaGeral.Pressed += () => Aba(false);
         abas.AddChild(abaLocal);
         abas.AddChild(abaGeral);
@@ -158,6 +160,19 @@ public sealed class WorldPanels
         rolagem.AddChild(lista);
         side.AddChild(rolagem);
         lista.AddChild(Wrap("Viagem rápida: fique parado num ponto de viagem, fora de combate, e escolha o destino.", 12, Dim, 260));
+        // 19/11 noite (dono: "perto dos TP (Ir) coloca uma lupa pra pesquisar o que eu quero"): filtra os pontos de viagem e, se
+        // o lugar não tiver pedra (ou você ainda não achou), "Onde fica?" pergunta ao catálogo (lugar, mapa, NPC, item)
+        var linhaLupa = new HBoxContainer();
+        linhaLupa.AddThemeConstantOverride("separation", 4);
+        var lupa = new LineEdit { PlaceholderText = "🔍 Procurar lugar (ex.: biblioteca)", ClearButtonEnabled = true, SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        lupa.TextChanged += t => { _mapaBusca = t; _mapSig = ""; };
+        var onde = new Button { Text = "Onde fica?", FocusMode = Control.FocusModeEnum.None, TooltipText = "Procura em tudo: lugar, mapa, NPC, item ou monstro — diz onde fica e como chegar" };
+        void Onde() { var t = lupa.Text.Trim(); if (t.Length >= 2) { Send?.Invoke(new PesquisaIntent(t) { Global = true }); Sfx.Play("ui_clique"); } }
+        onde.Pressed += Onde;
+        lupa.TextSubmitted += _ => Onde();
+        linhaLupa.AddChild(lupa);
+        linhaLupa.AddChild(onde);
+        lista.AddChild(linhaLupa);
         _waypoints = new VBoxContainer();
         _waypoints.AddThemeConstantOverride("separation", 4);
         lista.AddChild(_waypoints);
@@ -369,7 +384,7 @@ public sealed class WorldPanels
                     _previa = pv;
                     _canvas.AreaMode = true;
                     _canvas.ResetView();
-                    if (_abaLocal is { } al) { al.Text = "◂ Voltar: mapa daqui"; al.SetPressedNoSignal(false); }
+                    if (_abaLocal is { } al) { al.Text = "◂ Voltar ao mapa geral"; al.SetPressedNoSignal(false); }
                 }
             }
             _ultimoMapaAqui = m.Map?.Id;
@@ -435,6 +450,8 @@ public sealed class WorldPanels
     private bool _showLocked;
     private string _libOpen = "";
     private string _libBusca = "";
+    private string _libAuto = "";
+    private string _mapaBusca = "";
     private bool _libFoco;
 
     internal static string SemAcento(string t)
@@ -471,7 +488,16 @@ public sealed class WorldPanels
         if (filtrando)
         {
             lib = lib.Where(e => SemAcento(e.Monster).Contains(q) || e.Drops.Any(d => SemAcento(d).Contains(q)) || SemAcento(e.Region).Contains(q)).ToList();
-            if (lib.Count == 0) _dialogBox.AddChild(HudView.MakeLabel($"Nada com \"{_libBusca}\" nestas fichas.", 13, Dim));
+            if (lib.Count == 0)
+            {
+                // 19/11 noite (dono: "pesquisei pó de estrela e não apareceu"): sem nada nas fichas, busca em tudo sozinho
+                _dialogBox.AddChild(HudView.MakeLabel($"Nada com \"{_libBusca}\" nas fichas dos monstros — procurando em tudo (itens, lugares, NPCs)...", 13, Dim));
+                if (q.Length >= 3 && _libAuto != q && Root.IsInsideTree())
+                {
+                    _libAuto = q; var t0 = _libBusca.Trim();
+                    Root.GetTree().CreateTimer(1.0).Timeout += () => { if (SemAcento(_libBusca) == q) Send?.Invoke(new PesquisaIntent(t0) { Global = true }); };   // espera parar de digitar
+                }
+            }
         }
         foreach (var g in lib.GroupBy(e => e.Region))
         {
@@ -988,7 +1014,7 @@ public sealed class WorldPanels
             if (_proximos.GetChildCount() == 0) _proximos.AddChild(Wrap("Tudo liberado. Agora é farmar o melhor equipamento.", 12, Dim, 260));
         }
         var w = m.WorldMap;
-        var sig = w is null ? "" : $"{w.CurrentMap}|{string.Join(",", w.Regions.Select(r => r.Id + r.State + string.Join("/", r.Quests ?? Array.Empty<string>())))}|{w.Waypoints.Count}|{m.CountInInventory("portal_viagem")}|{m.Flags.Contains("casa:propria")}";
+        var sig = w is null ? "" : $"{w.CurrentMap}|{string.Join(",", w.Regions.Select(r => r.Id + r.State + string.Join("/", r.Quests ?? Array.Empty<string>())))}|{w.Waypoints.Count}|{m.CountInInventory("portal_viagem")}|{m.Flags.Contains("casa:propria")}|{_mapaBusca}";
         if (sig == _mapSig) return;
         _mapSig = sig;
         _canvas.Data = w;
@@ -1016,7 +1042,11 @@ public sealed class WorldPanels
             rowC.AddChild(goC);
             _waypoints.AddChild(rowC);
         }
-        foreach (var grupo in w.Waypoints.GroupBy(x => x.MapName))
+        var qb = SemAcento(_mapaBusca);
+        var pontos = qb.Length < 2 ? w.Waypoints.ToList() : w.Waypoints.Where(x => SemAcento(x.Name).Contains(qb) || SemAcento(x.MapName).Contains(qb)).ToList();
+        if (qb.Length >= 2 && pontos.Count == 0)
+            _waypoints.AddChild(Wrap($"Nenhuma pedra de viagem sua com \"{_mapaBusca.Trim()}\". Aperte \"Onde fica?\" para saber onde é e como chegar (a pedra só entra na lista depois de você tocar nela).", 12, Dim, 270));
+        foreach (var grupo in pontos.GroupBy(x => x.MapName))
         {
             var aqui = grupo.Key == w.CurrentMapName;
             var titulo = HudView.MakeLabel(grupo.Key + (aqui ? "  (você está aqui)" : ""), 13, aqui ? Good : Gold, 2);
@@ -1430,8 +1460,8 @@ public sealed class WorldPanels
     private void MontarAbas(ClientModel m, StorageMessage st)
     {
         foreach (var c in _storageAbas.GetChildren()) c.QueueFree();
-        _storageAbas.Visible = st.Container != "casa";
-        if (st.Container == "casa") return;
+        _storageAbas.Visible = st.Container is not ("casa" or "joias");
+        if (st.Container is "casa" or "joias") return;
         var compradas = 1;
         while (compradas < 6 && m.Flags.Contains("armazem:aba" + (compradas + 1))) compradas++;
         for (var n = 1; n <= 6; n++)
@@ -1486,7 +1516,7 @@ public sealed class WorldPanels
             _storageClose.Pressed += () => { m.Storage = null; _storage.Visible = false; };
         }
         var grid = m.InventoryColumns > 0;
-        if (_storage is JanelaV2 jw) jw.Titulo = st.Container == "casa" ? "BAÚ" : "ARMAZÉM";
+        if (_storage is JanelaV2 jw) jw.Titulo = st.Container == "casa" ? "BAÚ" : st.Container == "joias" ? "BAÚ DE JOIAS" : "ARMAZÉM";
         _storage.QueueRedraw();
         _storageGrid.Tipo = "store:" + st.Container;
         _storageGrid.Colunas = 8;
