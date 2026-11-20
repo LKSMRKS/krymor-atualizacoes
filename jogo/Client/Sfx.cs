@@ -132,6 +132,15 @@ public static class Sfx
         ["musica_masmorra"] = new[] { "musica/musica_variacao_masmorra_loop" },
         ["musica_campo"] = new[] { "musica/musica_variacao_campo_loop" },
         ["musica_noite"] = new[] { "musica/musica_variacao_noite_loop" },
+        // 19/11 noite (dono: "vamos fazer mais pra ter mais conteúdo, sem tirar essas"): mais 8 (Tools/gerar_musicas_mais.sh)
+        ["musica_mata"] = new[] { "musica/musica_variacao_mata_loop" },
+        ["musica_praia"] = new[] { "musica/musica_variacao_praia_loop" },
+        ["musica_canion"] = new[] { "musica/musica_variacao_canion_loop" },
+        ["musica_neve"] = new[] { "musica/musica_variacao_neve_loop" },
+        ["musica_acropole"] = new[] { "musica/musica_variacao_acropole_loop" },
+        ["musica_fantasma"] = new[] { "musica/musica_variacao_fantasma_loop" },
+        ["musica_gruta"] = new[] { "musica/musica_variacao_gruta_loop" },
+        ["musica_casa"] = new[] { "musica/musica_variacao_casa_loop" },
     };
 
     private static AudioStream? LoadOgg(string rel)
@@ -338,21 +347,21 @@ public static class Sfx
     private static string AmbienceBase(string theme, bool instanced, bool town) => instanced ? theme switch
     {
         "lava" => "amb2_lava+amb2_caverna+musica_masmorra",
-        "cidade" => "amb2_vento+loop_fogueira",          // casa do jogador: lareira e vento lá fora
+        "cidade" => "amb2_vento+loop_fogueira+musica_casa",          // casa do jogador: lareira e vento lá fora
         _ => "amb2_caverna+amb_masmorra+musica_masmorra",
     } : theme switch
     {
         _ when town => "amb2_sinos+amb2_vento+musica_porto",   // 14/11: mar e gaivotas só perto do cais (Sfx.Lugar)   // 11/11: música calma do porto, baixinha
-        "praia" => "amb2_vento+amb2_passaros+musica_campo",   // 14/11: o mar vem pelo lugar (mais forte perto da água)
+        "praia" => "amb2_vento+amb2_passaros+musica_praia",   // 14/11: o mar vem pelo lugar (mais forte perto da água)
         "vale" => "amb2_vento+amb2_passaros+amb2_grilos+musica_campo",
-        "mata" => "amb2_floresta+amb2_criaturas+amb2_grilos+musica_campo",
-        "canion" => "amb2_vento_forte+amb2_criaturas+musica_campo",
+        "mata" => "amb2_floresta+amb2_criaturas+amb2_grilos+musica_mata",
+        "canion" => "amb2_vento_forte+amb2_criaturas+musica_canion",
         "brejo" => "amb2_sapos+amb2_grilos+amb2_vento+musica_noite",
-        "vespera" or "fantasma" => "amb2_vento+amb_masmorra+amb2_criaturas+musica_masmorra",
-        "neve" => "amb2_vento_forte+musica_noite",
+        "vespera" or "fantasma" => "amb2_vento+amb_masmorra+amb2_criaturas+musica_fantasma",
+        "neve" => "amb2_vento_forte+musica_neve",
         "lava" => "amb2_lava+amb2_vento+musica_masmorra",
-        "acropole" => "amb2_vento+amb2_passaros+musica_campo",
-        "gruta" => "amb2_caverna+amb_masmorra+musica_masmorra",
+        "acropole" => "amb2_vento+amb2_passaros+musica_acropole",
+        "gruta" => "amb2_caverna+amb_masmorra+musica_gruta",
         "cidade" => "amb2_sinos+amb2_vento+musica_porto",
         _ => "amb2_vento+amb2_passaros+musica_campo",
     };

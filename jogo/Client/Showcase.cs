@@ -231,6 +231,12 @@ public partial class Showcase : Node3D
         camera.LookAt(new Vector3(-0.9f, 1.47f, 0f));
         AddChild(new OmniLight3D { Position = new Vector3(-0.9f + lado * 0.6f, 1.7f, -1.1f), LightEnergy = 0.7f, OmniRange = 3f, LightColor = new Color(1f, 0.95f, 0.9f) });
         camera.Fov = 34;
+        // 19/11 noite (skins refeitas): corpo inteiro na mesma luz, para conferir roupa e enfeites
+        if (OS.GetEnvironment("VITRINE_RET_CORPO") == "1")
+        {
+            camera.Position = new Vector3(-0.9f + lado * 2.6f, 1.25f, -3.9f);
+            camera.LookAt(new Vector3(-0.9f, 0.98f, 0f));
+        }
     }
 
     private void Place(IEntityVisual v, Vector3 at, float yawDeg = 0f, float phase = 0f)

@@ -1012,7 +1012,7 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 layers.Add(Boots(new Color(0.03f, 0.03f, 0.03f)));
                 break;
             case "skin_marionete":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.62f, 0.44f, 0.26f), new Color(0.45f, 0.3f, 0.16f), 0.008f, 0.85f, Pattern: 1));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.62f, 0.44f, 0.26f), new Color(0.45f, 0.3f, 0.16f), 0.008f, 0.55f, Pattern: 12));   // 19/11 noite: madeira envernizada
                 break;
             case "skin_peste":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.12f, 0.1f, 0.09f), new Color(0.06f, 0.05f, 0.05f), 0.006f, 0.6f));
@@ -1053,19 +1053,19 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 mantle = (new Color(0.6f, 0.05f, 0.08f), new Color(0.95f, 0.93f, 0.88f), false);
                 break;
             case "skin_pedra":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.42f, 0.42f, 0.44f), new Color(0.3f, 0.6f, 0.9f), 0.02f, 0.95f, Pattern: 1, Emit: new Color(0.02f, 0.06f, 0.1f)));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.46f, 0.45f, 0.43f), new Color(0.12f, 0.13f, 0.14f), 0.02f, 0.95f, Pattern: 7, Emit: new Color(0.02f, 0.05f, 0.09f)));   // 19/11 noite: pedra em blocos rachados
                 break;
             case "skin_cristal":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.55f, 0.35f, 1f), new Color(0.85f, 0.75f, 1f), 0.01f, 0.08f, 0.3f, Pattern: 1, Emit: new Color(0.35f, 0.2f, 0.8f)));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.5f, 0.3f, 0.95f), new Color(0.92f, 0.85f, 1f), 0.01f, 0.08f, 0.3f, Pattern: 7, Emit: new Color(0.45f, 0.3f, 0.9f)));   // 19/11 noite: facetas com aresta acesa
                 break;
             case "skin_minotauro":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.38f, 0.24f, 0.15f), new Color(0.25f, 0.15f, 0.08f), 0.008f, 0.9f));
-                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.3f, 0.2f, 0.13f), new Color(0.18f, 0.12f, 0.07f), 0.016f, 0.85f, Pattern: 1));
+                layers.Add(new Layer(Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.3f, 0.2f, 0.13f), new Color(0.18f, 0.12f, 0.07f), 0.016f, 0.85f, Pattern: 11));
                 layers.Add(Belt());
                 layers.Add(Boots(new Color(0.2f, 0.13f, 0.08f)));
                 break;
             case "skin_mumia":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.86f, 0.8f, 0.66f), new Color(0.6f, 0.52f, 0.38f), 0.016f, 1f, Pattern: 2));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.86f, 0.8f, 0.66f), new Color(0.6f, 0.52f, 0.38f), 0.016f, 1f, Pattern: 10));   // 19/11 noite: faixas enroladas
                 break;
             case "skin_peixe":
                 layers.Add(new Layer(Head | Hand, 0f, 1f, new Color(0.18f, 0.25f, 0.42f), new Color(0.1f, 0.15f, 0.3f), 0.006f, 0.4f));
@@ -1073,17 +1073,17 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 layers.Add(Boots(new Color(0.06f, 0.07f, 0.1f)));
                 break;
             case "skin_urso":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.62f, 0.42f, 0.24f), new Color(0.48f, 0.3f, 0.16f), 0.02f, 1f, Pattern: 1));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.62f, 0.42f, 0.24f), new Color(0.48f, 0.3f, 0.16f), 0.02f, 1f, Pattern: 11));
                 layers.Add(new Layer(Chest | Belly, 0.45f, 0.72f, new Color(0.82f, 0.66f, 0.45f), new Color(0.62f, 0.42f, 0.24f), 0.024f, 1f));   // barriga clara
                 break;
             // ---------------- 14/11 noite: 6 skins da 2ª prancha do dono
             case "skin_macaco_vermelho":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.62f, 0.08f, 0.07f), new Color(0.85f, 0.18f, 0.12f), 0.02f, 1f, Pattern: 1));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Thigh | Shin, 0f, 1f, new Color(0.62f, 0.08f, 0.07f), new Color(0.85f, 0.18f, 0.12f), 0.02f, 1f, Pattern: 11));
                 layers.Add(new Layer(Chest | Belly, 0.5f, 0.76f, new Color(0.86f, 0.66f, 0.5f), new Color(0.7f, 0.5f, 0.38f), 0.024f, 0.9f));   // peito pelado
                 layers.Add(new Layer(Hand | Foot, 0f, 1f, new Color(0.86f, 0.66f, 0.5f), new Color(0.7f, 0.5f, 0.38f), 0.008f, 0.9f));
                 break;
             case "skin_caveira":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.93f, 0.89f, 0.8f), new Color(0.55f, 0.5f, 0.42f), 0.006f, 0.75f, Pattern: 2));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.93f, 0.89f, 0.8f), new Color(0.08f, 0.06f, 0.07f), 0.006f, 0.75f, Pattern: 8));   // 19/11 noite: costelas e barriga oca
                 break;
             case "skin_alien":
                 layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.56f, 0.78f, 0.32f), new Color(0.42f, 0.62f, 0.22f), 0.006f, 0.45f));
@@ -1097,7 +1097,14 @@ public sealed partial class MannequinVisual : IPlayerVisual   // 14/11 partial: 
                 robe = (new Color(0.94f, 0.92f, 0.96f), new Color(0.82f, 0.8f, 0.86f));
                 break;
             case "skin_lava":
-                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.14f, 0.09f, 0.08f), new Color(1f, 0.45f, 0.08f), 0.02f, 0.95f, Pattern: 1, Emit: new Color(0.42f, 0.11f, 0.02f)));
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.15f, 0.1f, 0.09f), new Color(1f, 0.5f, 0.1f), 0.02f, 0.95f, Pattern: 7, Emit: new Color(1f, 0.35f, 0.04f)));   // 19/11 noite: rachaduras acesas (padrão 7)
+                break;
+            case "skin_ninja":
+                // 19/11 noite (dono: "faz um ninja, todo preto, apenas os olhos visíveis, e uma faixa vermelha na cabeça")
+                layers.Add(new Layer(Head | Chest | Belly | Arm | Fore | Hand | Thigh | Shin | Foot, 0f, 1f, new Color(0.035f, 0.035f, 0.045f), new Color(0.02f, 0.02f, 0.025f), 0.012f, 0.75f, Pattern: 1));
+                layers.Add(new Layer(Fore, 0f, 1f, new Color(0.07f, 0.07f, 0.085f), new Color(0.03f, 0.03f, 0.04f), 0.02f, 0.85f, Pattern: 10));   // ataduras nos antebraços
+                layers.Add(new Layer(Shin, 0f, 0.75f, new Color(0.07f, 0.07f, 0.085f), new Color(0.03f, 0.03f, 0.04f), 0.02f, 0.85f, Pattern: 10));   // e nas canelas
+                layers.Add(new Layer(Belly, 0.535f, 0.585f, new Color(0.1f, 0.1f, 0.12f), new Color(0.05f, 0.05f, 0.06f), 0.026f, 0.7f));            // faixa da cintura
                 break;
             case "skin_bobo":
             {
@@ -2540,7 +2547,7 @@ void vertex() {
     v_xz = vec2((COLOR.b - 0.5) * 0.5, (COLOR.a - 0.5) * 0.5);
     VERTEX += NORMAL * grow;
     // 17/11 (dono: «o cartola e o gravata tão parecendo mulher»): o paletó enche a cintura — a silhueta fica reta, de terno
-    if (pattern >= 5) {
+    if (pattern == 5 || pattern == 6) {
         int rg = int(v_region + 0.5);
         float cint = smoothstep(0.54, 0.61, v_h) * (1.0 - smoothstep(0.71, 0.77, v_h));
         if (rg == 1 || rg == 2) VERTEX += NORMAL * cint * 0.017;
@@ -2567,7 +2574,7 @@ void fragment() {
     }
     c *= 1.0 + n;
     // 17/11: terno (5) e fraque (6) — camisa e gravata pintadas na frente do peito (x e z de repouso, em fração da altura)
-    if (pattern >= 5) {
+    if (pattern == 5 || pattern == 6) {
         n = (sin(UV.x * 1800.0) * sin(UV.y * 1800.0)) * 0.05;
         c = cloth.rgb * (1.0 + n);
         float ax = abs(v_xz.x);
@@ -2584,11 +2591,62 @@ void fragment() {
             if (v_h > 0.666 && v_h < 0.80 && ax < 0.0025 && fract(v_h * 45.0) < 0.35) c = vec3(0.1);   // botões
         }
     }
+    // 19/11 noite (dono: «deixa todas no nível do sapo»): padrões pintados no corpo, na posição de REPOUSO (não escorregam
+    // com a animação): 7 pedra rachada (lava, pedra, cristal: células de Voronoi; a racha usa trim e acende com emit),
+    // 8 costelas (caveira), 10 faixas (múmia), 11 pelo, 12 madeira (marionete)
+    vec3 rp = vec3(v_xz.x, v_h, v_xz.y);
+    float acesa = 0.0;
+    if (pattern == 7) {
+        vec3 q = rp * 24.0; vec3 ci = floor(q); vec3 cf = fract(q);
+        float d1 = 8.0, d2 = 8.0; vec3 idm = vec3(0.0);
+        for (int z = -1; z <= 1; z++) for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) {
+            vec3 g = vec3(float(x), float(y), float(z));
+            vec3 cc = ci + g;
+            vec3 o = vec3(hash(cc.xy + cc.z * 7.13), hash(cc.yz + 13.7), hash(cc.zx + 29.3));
+            vec3 rr = g + o - cf; float d = dot(rr, rr);
+            if (d < d1) { d2 = d1; d1 = d; idm = cc; } else if (d < d2) d2 = d;
+        }
+        float borda = sqrt(d2) - sqrt(d1);
+        float racha = 1.0 - smoothstep(0.03, 0.1, borda);
+        float tom = 0.72 + 0.5 * hash(idm.xy + idm.z * 3.1);
+        c = cloth.rgb * tom * (1.0 - 0.3 * (1.0 - smoothstep(0.0, 0.35, borda)));
+        c *= 1.0 + (hash(floor(UV * 300.0)) - 0.5) * 0.08;
+        c = mix(c, trim.rgb, racha);
+        acesa = racha;
+    } else if (pattern == 8) {
+        c = cloth.rgb * (1.0 + (hash(floor(UV * 300.0)) - 0.5) * 0.05);
+        float ax = abs(v_xz.x);
+        bool frente = v_xz.y > -0.004;
+        float vazio = 0.0;
+        if (r == 1 && frente && v_h > 0.665 && ax > 0.011 && ax < 0.085) {      // costelas (descem para os lados)
+            float s = (v_h + ax * 0.55) * 34.0;
+            vazio = smoothstep(0.55, 0.62, fract(s)) * (1.0 - smoothstep(0.9, 0.97, fract(s)));
+        }
+        if (r == 2 && frente && v_h > 0.585 && v_h < 0.665) {                    // barriga oca: só a coluna
+            vazio = 1.0 - step(ax, 0.012);
+            if (ax < 0.012 && fract(v_h * 90.0) < 0.22) vazio = 0.7;
+        }
+        if ((r == 1 || r == 2) && frente && ax < 0.011 && v_h > 0.665 && fract(v_h * 70.0) < 0.15) vazio = 0.6;   // esterno em gomos
+        c = mix(c, trim.rgb, vazio);
+    } else if (pattern == 10) {
+        float s = v_h + v_xz.x * 0.35 + v_xz.y * 0.22 + sin(v_xz.x * 50.0 + v_h * 9.0) * 0.003;
+        float b = fract(s * 52.0); float id = floor(s * 52.0);
+        c = cloth.rgb * (0.8 + 0.32 * hash(vec2(id, 3.0)));
+        c *= 1.0 - 0.5 * smoothstep(0.8, 0.97, b) - 0.15 * (1.0 - smoothstep(0.0, 0.12, b));
+        c *= 1.0 + (hash(floor(UV * 500.0)) - 0.5) * 0.1;
+    } else if (pattern == 11) {
+        float fio = hash(floor(vec2((v_xz.x + v_xz.y * 0.7) * 700.0, v_h * 110.0)));
+        float fio2 = hash(floor(vec2((v_xz.x - v_xz.y * 0.5) * 300.0, v_h * 45.0)));
+        c = cloth.rgb * (0.78 + 0.3 * fio + 0.14 * fio2);
+    } else if (pattern == 12) {
+        float veio = sin(v_h * 140.0 + sin(v_xz.x * 70.0 + v_xz.y * 40.0) * 2.2);
+        c = cloth.rgb * (0.88 + 0.14 * veio) * (1.0 + (hash(floor(UV * 250.0)) - 0.5) * 0.06);
+    }
     c = mix(c, trim.rgb, pattern >= 5 ? 0.0 : band);
     ALBEDO = c;
     ROUGHNESS = rough - (pattern == 3 ? n * 0.5 : 0.0);
     METALLIC = mix(metal, 0.6, band * step(0.5, metal));
-    EMISSION = emit.rgb * (0.6 + band);
+    EMISSION = pattern == 7 ? emit.rgb * (0.15 + acesa * 3.5) : emit.rgb * (0.6 + band);
 }
 ";
 
@@ -4755,7 +4813,7 @@ void fragment() {
         // classe 2/3 sai e a skin aparece inteira; tirou a skin, o bicho volta
         SetEvolved(_evolvedWanted);
         if (_rosto is not null && GodotObject.IsInstanceValid(_rosto)) _rosto.Visible = _skinId is null;
-        if (_hair is not null && !_hiddenForAnimal.Contains(_hair)) _hair.Visible = _skinId is null or "chef" or "pirata";   // 17/11: gravata sem o cabelo comprido (parecia mulher)   // 14/11: cartola/abóbora/balde cobrem o cabelo (o cabelo vazava pela aba, quadriculado)
+        if (_hair is not null && !_hiddenForAnimal.Contains(_hair)) _hair.Visible = _skinId is null;   // 19/11 noite: chef e pirata também (a cabeça nova cobre tudo)   // 17/11: gravata sem o cabelo comprido (parecia mulher)   // 14/11: cartola/abóbora/balde cobrem o cabelo (o cabelo vazava pela aba, quadriculado)
         if (_skinId is null) return;
         _skinNo = new Node3D { Name = "Skin_" + skin };
         var cab = new Node3D(); _headSocket.AddChild(cab);
@@ -4793,9 +4851,11 @@ void fragment() {
             "cozinheiro_insano" => new Color(0.09f, 0.07f, 0.06f), "demonio" => new Color(0.55f, 0.05f, 0.06f),
             "marionete" => new Color(0.62f, 0.42f, 0.24f), "espantalho" => new Color(0.62f, 0.5f, 0.32f), _ => (Color?)null,
         };
-        if (casco is { } cc)
+        if (casco is { } cc && !SkinsRefeitas.Contains(_skinId))
             VisualKit.Part(cab, VisualKit.Sphere(0.118f), VisualKit.Mat(cc, skin is "marionete" ? 0.55f : 0.75f), new Vector3(0, 0.02f, -0.002f), null, new Vector3(0.98f, 1.06f, 1f));
-        switch (skin)
+        // 19/11 noite: as skins refeitas (MannequinVisual.SkinsNovas.cs) montam a cabeça e os enfeites lá
+        if (SkinsRefeitas.Contains(_skinId)) SkinNova(_skinId!, cab, peito, quadril, barriga);
+        else switch (skin)
         {
             case "coelho":
             {
@@ -5525,7 +5585,7 @@ void fragment() {
         }
         // 15/11 noite ("rosto, olhos"): skins de cara humana ganham rosto (olhos com íris, sobrancelhas, nariz, boca); as de
         // bicho/criatura, olhos acesos ou buracos — só as que ainda não tinham olhos próprios
-        if (RostoDaSkin.TryGetValue(skin, out var rosto)) Rosto(cab, rosto.Tipo, rosto.Cor);
+        if (!SkinsRefeitas.Contains(_skinId) && RostoDaSkin.TryGetValue(skin!, out var rosto)) Rosto(cab, rosto.Tipo, rosto.Cor);
         // 17/11 (dono: "as skins ainda estão tortas, os detalhes não estão encaixados — só a do coelho é boa"): cada enfeite
         // fino (peitilho, gravata, botões, bolinhas, olhos, bigode…) é encostado na PELE de verdade do boneco — medida na malha
         // em pose de referência —, em vez de ficar na profundidade chutada (voando na frente ou enterrado no peito)

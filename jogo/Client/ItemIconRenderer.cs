@@ -752,7 +752,7 @@ public sealed partial class ItemIconRenderer : Node
                 "bracelete_ouro" => new Color(1f, 0.8f, 0.25f), "bracelete_cristal" => new Color(0.7f, 0.45f, 1f), "bracelete_samurai" => new Color(0.3f, 0.55f, 1f),
                 "bracelete_sem_cabeca" => new Color(0.35f, 0.5f, 1f), "bracelete_demonio" => new Color(0.85f, 0.05f, 0.05f), "bracelete_peste" => new Color(0.4f, 1f, 0.3f),
                 "bracelete_corvo" => new Color(0.6f, 0.25f, 0.9f), "bracelete_esqueleto" => new Color(0.92f, 0.9f, 0.84f), "bracelete_gnomo" => new Color(0.45f, 0.75f, 0.25f),
-                "bracelete_sapo" => new Color(0.35f, 0.7f, 0.25f), "bracelete_peixe" => new Color(0.5f, 0.9f, 1f), "bracelete_pedra" => new Color(0.3f, 0.7f, 1f),
+                "bracelete_sapo" => new Color(0.35f, 0.7f, 0.25f), "bracelete_ninja" => new Color(0.8f, 0.07f, 0.09f), "bracelete_peixe" => new Color(0.5f, 0.9f, 1f), "bracelete_pedra" => new Color(0.3f, 0.7f, 1f),
                 _ => Color.FromHsv((id.Sum(ch => (int)ch) * 37 % 360) / 360f, 0.7f, 1f),
             };
             root.RotationDegrees = new Vector3(60, 20, 0);
