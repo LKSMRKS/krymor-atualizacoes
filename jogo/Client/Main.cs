@@ -1392,6 +1392,9 @@ public partial class Main : Node3D
         _model.UnpinnedQuests.Clear();
         if (cfg.HasSectionKey(id, "desmarcadas"))
             foreach (var q in ((string)cfg.GetValue(id, "desmarcadas")).Split(',', StringSplitOptions.RemoveEmptyEntries)) _model.UnpinnedQuests.Add(q);
+        _model.PriorityQuests.Clear();
+        if (cfg.HasSectionKey(id, "prioridade"))
+            _model.PriorityQuests.AddRange(((string)cfg.GetValue(id, "prioridade")).Split(',', StringSplitOptions.RemoveEmptyEntries));
         _pinsSaved = _model.PinsVersion;
     }
 
@@ -1405,6 +1408,7 @@ public partial class Main : Node3D
         var cfg = new ConfigFile();
         cfg.Load("user://poderes.cfg");
         cfg.SetValue(id, "desmarcadas", string.Join(",", _model.UnpinnedQuests));
+        cfg.SetValue(id, "prioridade", string.Join(",", _model.PriorityQuests));
         cfg.Save("user://poderes.cfg");
     }
 

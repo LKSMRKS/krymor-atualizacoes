@@ -254,6 +254,28 @@ public sealed class ClientModel
     /// <summary>11/11: toda missão aberta já vem marcada (no canto da tela); aqui ficam só as que o jogador DESMARCOU no J.</summary>
     public HashSet<string> UnpinnedQuests { get; } = new();
     public bool IsPinned(string questId) => !UnpinnedQuests.Contains(questId);
+    /// <summary>22/11 (dono: "quero destacar uma missão pra colocar em prioridade — marca e deixa em 1, depois 2, e assim
+    /// vai"): ordem de prioridade escolhida no J. A 1ª destacada fica em [1] no quadro da tela, a 2ª em [2]...; as outras
+    /// marcadas vêm depois, como antes. Guardado por personagem (user://poderes.cfg, "prioridade").</summary>
+    public List<string> PriorityQuests { get; } = new();
+    /// <summary>Posição na prioridade contando só as missões ainda abertas (1, 2, ...); 0 = sem prioridade.</summary>
+    public int PriorityOf(string questId)
+    {
+        var n = 0;
+        foreach (var id in PriorityQuests)
+        {
+            if (!Quests.Any(q => q.Id == id && q.State is "active" or "ready")) continue;
+            n++;
+            if (id == questId) return n;
+        }
+        return 0;
+    }
+    /// <summary>Destaca (vai para o fim da fila de prioridade, e fica marcada) ou tira o destaque.</summary>
+    public void TogglePriority(string questId)
+    {
+        if (!PriorityQuests.Remove(questId)) { PriorityQuests.Add(questId); UnpinnedQuests.Remove(questId); }
+        PinsVersion++;
+    }
     /// <summary>Muda quando o jogador fixa/desafixa (a Main grava em user://).</summary>
     public int PinsVersion { get; set; }
 
@@ -509,6 +531,8 @@ public sealed class ClientModel
                 // 17/11: a entrada "historia" é o próximo passo da história (fica fora da lista de missões)
                 ProximaHistoria = log.Quests.FirstOrDefault(q => q.State == "historia");
                 Quests = log.Quests.Where(q => q.State != "historia").ToList();
+                // 22/11: missão entregue sai da fila de prioridade (a de baixo sobe: [2] vira [1])
+                if (PriorityQuests.RemoveAll(id => Quests.Any(q => q.Id == id && q.State == "done")) > 0) PinsVersion++;
                 break;
             }
             case QuestMarkerMessage qm:

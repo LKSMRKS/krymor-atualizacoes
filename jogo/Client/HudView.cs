@@ -1404,8 +1404,10 @@ public sealed class HudView
         // 18/11 (dono: "quando entra em dungeon as missões do J crescem e ficam na tela, ocupando muito espaço"): na dungeon
         // o quadro mostra só o objetivo + 2 missões (as do próprio lugar primeiro); fora, até 5
         var naDg = m.Map?.Instanced == true;
+        // 22/11: as destacadas no J vêm primeiro, na ordem escolhida ([1], [2], ...)
         var tracked = open.Where(q => m.IsPinned(q.Id))
-            .OrderBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 3 : 7).ToList();   // 19/11 (dono: "agora mostra pouca missão, aumenta um pouco")
+            .OrderBy(q => m.PriorityOf(q.Id) is var pr && pr > 0 ? pr : int.MaxValue)
+            .ThenBy(q => naDg && q.MapId == m.Map?.Id ? 0 : 1).ThenBy(q => q.State == "ready" ? 0 : 1).Take(naDg ? 3 : 7).ToList();   // 19/11 (dono: "agora mostra pouca missão, aumenta um pouco")
         // 10/11: número de cada missão (o mesmo da pedrinha na bússola e no mapa M)
         Tracked = tracked;
         // 19/11 (dono: "o que está marcado no J mostra no mapa até 10 ou 15"): no mapa (M) vão até 15 marcadas — as do canto
@@ -1441,7 +1443,7 @@ public sealed class HudView
         // 17/11: o próximo passo da história sempre no topo do quadro (laranja-dourado)
         // 19/11 (dono: "a história principal tem que marcar e desmarcar também"): desmarcada no J, sai do quadro, da bússola e dos mapas
         var hist = m.ProximaHistoria is { } ph0 && m.IsPinned(ph0.Id) ? ph0 : null;
-        var sig = hordeLine + (hist is null ? "" : hist.Name + hist.Hint) + string.Join("|", tracked.Select(q => q.Id + q.State + q.Progress + q.Count));
+        var sig = hordeLine + (hist is null ? "" : hist.Name + hist.Hint) + string.Join("|", tracked.Select(q => q.Id + q.State + q.Progress + q.Count + "#" + m.PriorityOf(q.Id)));
         _questPanel.Visible = (tracked.Count > 0 || hordeLine.Length > 0 || hist is not null) && !MissoesMinimizadas;
         if (sig == _questSig) return;
         _questSig = sig;
@@ -1463,15 +1465,22 @@ public sealed class HudView
             num++;
             var done = q.State == "ready" || q.Progress >= q.Count;
             var trav = !done && q.NivelLugar > (m.Me?.Level ?? 99);   // 13/11: lugar trancado pelo nível
-            var titulo = Quebra(MakeLabel($"[{num}] " + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
+            var prio = m.PriorityOf(q.Id) > 0;   // 22/11: destacada (prioridade) = alfinete antes do nome
+            var titulo = Quebra(MakeLabel($"[{num}] " + (prio ? "📌 " : "") + (trav ? "🔒 " : "") + q.Name + (trav ? $" (nível {q.NivelLugar})" : ""), 15,
                 done ? new Color(0.55f, 0.9f, 0.5f) : trav ? new Color(1f, 0.45f, 0.4f) : Gold));
-            if (q.X != 0 || q.Y != 0)
             {
                 var qq = q;
+                var temLugar = q.X != 0 || q.Y != 0;
                 titulo.MouseFilter = Control.MouseFilterEnum.Stop;
                 titulo.MouseDefaultCursorShape = Control.CursorShape.PointingHand;
-                titulo.TooltipText = "Clique para ver no mapa";
-                titulo.GuiInput += ev => { if (ev is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left }) MissaoClicada?.Invoke(qq); };
+                // 22/11: botão direito destaca/tira o destaque (prioridade) sem abrir o J
+                titulo.TooltipText = (temLugar ? "Clique: ver no mapa\n" : "") + (prio ? "Botão direito: tirar o destaque" : "Botão direito: destacar (sobe para o topo)");
+                titulo.GuiInput += ev =>
+                {
+                    if (ev is not InputEventMouseButton { Pressed: true } mb) return;
+                    if (mb.ButtonIndex == MouseButton.Left && temLugar) MissaoClicada?.Invoke(qq);
+                    else if (mb.ButtonIndex == MouseButton.Right) { m.TogglePriority(qq.Id); _questSig = ""; Sfx.Play("ui_clique"); }
+                };
             }
             _questBox.AddChild(titulo);
             var line = done ? $"Volte a {q.Giver}" + (q.Where.Length > 0 ? $" ({q.Where})" : "") : $"{q.Hint}  {q.Progress}/{q.Count}";

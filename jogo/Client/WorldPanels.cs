@@ -770,11 +770,27 @@ public sealed class WorldPanels
         var pin = new Button { Text = pinned ? "Desmarcar" : "Marcar", TooltipText = "Mostra esta missão no canto da tela, na bússola, no minimapa e no mapa (M)" };
         pin.Pressed += () =>
         {
-            if (!m.UnpinnedQuests.Remove(qid)) m.UnpinnedQuests.Add(qid);
+            if (!m.UnpinnedQuests.Remove(qid)) { m.UnpinnedQuests.Add(qid); m.PriorityQuests.Remove(qid); }   // desmarcada perde o destaque
             m.PinsVersion++;
             Sfx.Play("ui_clique");
         };
         return pin;
+    }
+
+    /// <summary>22/11 (dono: "uma forma que MARCA e destaca, deixando ali em 1, depois 2, e assim vai"): 📌 Destacar põe a
+    /// missão na fila de prioridade — a primeira destacada vira [1] no quadro da tela, a segunda [2]... Clicar de novo tira.</summary>
+    private Button BotaoDestacar(ClientModel m, string qid)
+    {
+        var p = m.PriorityOf(qid);
+        var b = new Button
+        {
+            Text = p > 0 ? $"📌 {p}  ✕" : "📌 Destacar",
+            TooltipText = p > 0 ? $"Prioridade {p} no quadro da tela. Clique para tirar o destaque (as de baixo sobem)."
+                                : "Põe esta missão no topo do quadro da tela, na ordem em que você destacar: a 1ª fica em [1], a 2ª em [2]...",
+        };
+        if (p > 0) b.AddThemeColorOverride("font_color", new Color(1f, 0.78f, 0.3f));
+        b.Pressed += () => { m.TogglePriority(qid); Sfx.Play("ui_clique"); };
+        return b;
     }
 
     private void UpdateJournal(ClientModel m)
@@ -813,18 +829,18 @@ public sealed class WorldPanels
             _journalBox.AddChild(Wrap("Fale com a Capitã Ondina, perto do portão norte do Porto, ou procure NPCs com losango amarelo sobre a cabeça. Missões ajudam, não obrigam: dá para só sair e caçar.", 13, Dim));
             return;
         }
-        void Group(string title, IEnumerable<QuestEntry> list, Color color)
+        void Group(string title, IEnumerable<QuestEntry> list, Color color, bool naOrdem = false)
         {
             // 13/11 ("separador no J para separar as missões por lugar, senão fica tudo bagunçado"): dentro de cada grupo,
             // as missões vêm juntas por lugar (onde está quem deu), com um separador
-            var items = list.OrderBy(q => q.Where.Length == 0 ? "~" : q.Where, StringComparer.CurrentCulture).ToList();
+            var items = naOrdem ? list.ToList() : list.OrderBy(q => q.Where.Length == 0 ? "~" : q.Where, StringComparer.CurrentCulture).ToList();
             if (items.Count == 0) return;
             _journalBox.AddChild(Section($"{title} ({items.Count})"));
             string? lugar = null;
             foreach (var q in items)
             {
                 var aqui = q.Where.Length > 0 ? q.Where : "Outros lugares";
-                if (aqui != lugar)
+                if (!naOrdem && aqui != lugar)
                 {
                     lugar = aqui;
                     var sep = new HBoxContainer();
@@ -848,7 +864,7 @@ public sealed class WorldPanels
                     head.AddChild(HudView.MakeLabel((q.RewardXp > 0 ? $"+{q.RewardXp:N0} XP" : "") + (q.RewardXp > 0 && q.RewardCoins > 0 ? "  ·  " : "") +
                         (q.RewardCoins > 0 ? $"{q.RewardCoins:N0} moedas" : ""), 13, new Color(0.55f, 0.85f, 1f)));
                 if (q.State != "done" && BotaoMapa(m, q) is { } verNoMapa) head.AddChild(verNoMapa);
-                if (q.State != "done") head.AddChild(BotaoMarcar(m, q.Id));
+                if (q.State != "done") { head.AddChild(BotaoDestacar(m, q.Id)); head.AddChild(BotaoMarcar(m, q.Id)); }
                 col.AddChild(head);
                 // 17/11 noite (dono: "coloca no J o nome do NPC de quem é a missão — fica mais fácil de falar pra um amigo")
                 if (q.Giver.Length > 0)
@@ -863,10 +879,13 @@ public sealed class WorldPanels
                 _journalBox.AddChild(card);
             }
         }
-        Group("Prontas para entregar", m.Quests.Where(q => q.State == "ready" || (q.State == "active" && q.Progress >= q.Count)), Good);
+        // 22/11: as destacadas (📌) no topo, na ordem da prioridade — é a mesma ordem do quadro da tela
+        bool Prio(QuestEntry q) => m.PriorityOf(q.Id) > 0;
+        Group("📌 Prioridade — ordem do quadro da tela", m.Quests.Where(Prio).OrderBy(q => m.PriorityOf(q.Id)), new Color(1f, 0.78f, 0.3f), naOrdem: true);
+        Group("Prontas para entregar", m.Quests.Where(q => !Prio(q) && (q.State == "ready" || (q.State == "active" && q.Progress >= q.Count))), Good);
         // 19/11 noite: as de destaque (☆, estrela cinza) em grupo próprio, logo acima das outras
-        Group("☆ Destaques — não deixe passar", m.Quests.Where(q => q.State == "active" && q.Progress < q.Count && q.Name.StartsWith("☆")), new Color(0.82f, 0.84f, 0.9f));
-        Group("Em andamento", m.Quests.Where(q => q.State == "active" && q.Progress < q.Count && !q.Name.StartsWith("☆")), Gold);
+        Group("☆ Destaques — não deixe passar", m.Quests.Where(q => !Prio(q) && q.State == "active" && q.Progress < q.Count && q.Name.StartsWith("☆")), new Color(0.82f, 0.84f, 0.9f));
+        Group("Em andamento", m.Quests.Where(q => !Prio(q) && q.State == "active" && q.Progress < q.Count && !q.Name.StartsWith("☆")), Gold);
         Group("Concluídas", m.Quests.Where(q => q.State == "done"), Dim);
     }
 
