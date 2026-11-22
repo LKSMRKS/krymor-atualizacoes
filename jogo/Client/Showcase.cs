@@ -133,6 +133,11 @@ public partial class Showcase : Node3D
             case "monstro": s.MonstroLista(camera); break;
             case "auditoria": s.Auditoria(); break;   // 19/11: lista que visual é modelo de verdade e qual é boneco de formas
             case "vila": s.Vila(camera); break;
+            case "dorval":   // 21/11: o Mestre Dorval com o martelão (de frente e de lado, e o martelo de perto)
+                foreach (var (x, yaw) in new[] { (-1.2f, 15f), (1.2f, 75f) })
+                    s.Place(VisualFactory.NpcVisual("mentor", "mestre_dorval", "Mestre Dorval"), new Vector3(x, 0, 0), yaw);
+                camera.Position = new Vector3(0, 1.4f, OS.GetEnvironment("VITRINE_PAG") == "costas" ? -5.2f : 5.2f); camera.LookAt(new Vector3(0, 1.0f, 0)); camera.Fov = 40;
+                break;
             case "taverna":
             {
                 var c = (OS.GetEnvironment("VITRINE_CAM") is { Length: > 0 } cs2 ? cs2 : "0,14,6,0,0,-1").Split(',');

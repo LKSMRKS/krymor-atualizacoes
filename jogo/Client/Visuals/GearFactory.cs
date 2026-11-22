@@ -50,7 +50,8 @@ public static class GearFactory
         _ when model.StartsWith("shield_broquel_") || model.StartsWith("shield_orbe_") => "arma_" + model["shield_".Length..],
         // 19/11 ("modelo de escudo 30+"): um escudo esculpido por faixa do Guerreiro (Tools/arte/build_escudos.py)
         _ when model.StartsWith("shield_escudo_") => "arma_" + model["shield_".Length..],
-        "maul" => "arma_martelo_carneiro_fundido",   // 19/11: o martelo do Dorval era cilindros; vira o martelo esculpido
+        // 21/11 (dono: "quero que o Dorval tenha o martelão dele — pode até melhorar, mas mantenha as características"):
+        // "maul" volta a ser o martelão feito aqui (MartelaoDoDorval), não o martelo esculpido do arsenal
         // 11/11 (arsenal da noite do trabalhador): o que ainda era boneco de formas simples ganha modelo esculpido
         "club_driftwood" => "arma_clava_enferrujada",
         "spear_watch" => "arma_lanca_comum",
@@ -116,6 +117,56 @@ public static class GearFactory
         return root;
     }
 
+    /// <summary>
+    /// O martelão do Mestre Dorval, com as características de sempre: cabeça de marreta ENORME (cilindro de ferro escuro de
+    /// 0,62 m atravessado no cabo, raio 0,19), anéis de latão nas duas pontas e cabo comprido de aço escuro. Melhorado (21/11):
+    /// cabeça facetada com bocas de batida de aço gasto, cinta de latão no meio com rebites, talas de ferro descendo pelo cabo,
+    /// empunhadura de couro trançado e pomo de latão.
+    /// </summary>
+    private static void MartelaoDoDorval(Node3D root)
+    {
+        var ferro = VisualKit.Mat(new Color(0.22f, 0.2f, 0.2f), 0.5f, 0.7f);
+        var aco = VisualKit.Mat(new Color(0.55f, 0.56f, 0.58f), 0.3f, 0.9f);
+        var latao = VisualKit.Mat(Brass, 0.35f, 0.75f);
+        var couro = VisualKit.Mat(new Color(0.3f, 0.17f, 0.09f), 0.8f);
+        var tira = VisualKit.Mat(new Color(0.2f, 0.11f, 0.06f), 0.85f);
+        const float y = 1.05f;
+        // cabo: aço escuro, com colar de latão logo abaixo da cabeça e pomo embaixo
+        VisualKit.Part(root, VisualKit.Cylinder(0.034f, 0.04f, 1.2f, 12), VisualKit.Mat(DarkSteel, 0.4f, 0.75f), new Vector3(0, 0.42f, 0));
+        VisualKit.Part(root, VisualKit.Cylinder(0.05f, 0.046f, 0.06f, 12), latao, new Vector3(0, y - 0.24f, 0));
+        VisualKit.Part(root, VisualKit.Sphere(0.06f), latao, new Vector3(0, -0.2f, 0), null, new Vector3(1f, 0.8f, 1f));
+        VisualKit.Part(root, VisualKit.Cylinder(0.045f, 0.045f, 0.04f, 12), latao, new Vector3(0, -0.14f, 0));
+        // empunhadura de couro com tiras em espiral
+        VisualKit.Part(root, VisualKit.Cylinder(0.046f, 0.046f, 0.42f, 12), couro, new Vector3(0, 0.1f, 0));
+        for (var i = 0; i < 9; i++)
+            VisualKit.Part(root, VisualKit.Cylinder(0.049f, 0.049f, 0.014f, 12), tira, new Vector3(0, -0.08f + i * 0.045f, 0), new Vector3(0, 0, i % 2 == 0 ? 12f : -12f));
+        // talas de ferro que prendem a cabeça ao cabo
+        foreach (var sd in new[] { -1f, 1f })
+        {
+            VisualKit.Part(root, VisualKit.Box(0.02f, 0.3f, 0.06f), ferro, new Vector3(0, y - 0.2f, sd * 0.042f));
+            for (var k = 0; k < 2; k++) VisualKit.Part(root, VisualKit.Sphere(0.013f), latao, new Vector3(0, y - 0.3f + k * 0.1f, sd * 0.074f));
+        }
+        // cabeça: cilindro facetado atravessado (o martelão de sempre)
+        VisualKit.Part(root, VisualKit.Cylinder(0.19f, 0.19f, 0.62f, 10), ferro, new Vector3(0, y, 0), new Vector3(0, 0, 90));
+        foreach (var end in new[] { -1f, 1f })
+        {
+            VisualKit.Part(root, VisualKit.Cylinder(0.215f, 0.215f, 0.07f, 10), latao, new Vector3(end * 0.3f, y, 0), new Vector3(0, 0, 90));    // anéis de latão
+            VisualKit.Part(root, VisualKit.Cylinder(0.17f, 0.19f, 0.04f, 10), aco, new Vector3(end * 0.345f, y, 0), new Vector3(0, 0, end * -90));   // boca de batida
+            VisualKit.Part(root, VisualKit.Cylinder(0.12f, 0.12f, 0.006f, 10), VisualKit.Mat(new Color(0.7f, 0.71f, 0.72f), 0.2f, 0.95f), new Vector3(end * 0.368f, y, 0), new Vector3(0, 0, 90));   // brilho gasto
+        }
+        // cinta de latão no meio, com rebites, e o olho do cabo
+        VisualKit.Part(root, VisualKit.Cylinder(0.2f, 0.2f, 0.1f, 10), latao, new Vector3(0, y, 0), new Vector3(0, 0, 90));
+        for (var k = 0; k < 6; k++)
+        {
+            var a = k / 6f * Mathf.Tau;
+            VisualKit.Part(root, VisualKit.Sphere(0.018f), ferro, new Vector3(0, y + Mathf.Sin(a) * 0.2f, Mathf.Cos(a) * 0.2f));
+        }
+        VisualKit.Part(root, VisualKit.Cylinder(0.05f, 0.05f, 0.03f, 12), ferro, new Vector3(0, y + 0.2f, 0));   // ponta do cabo saindo em cima
+        // marcas de uso: lascas e um entalhe de forja (sem brilho mágico: é martelo de ferreiro velho)
+        foreach (var (x, a) in new[] { (-0.18f, 40f), (0.13f, 200f), (0.2f, 110f) })
+            VisualKit.Part(root, VisualKit.Box(0.04f, 0.012f, 0.02f), VisualKit.Mat(new Color(0.12f, 0.11f, 0.11f), 0.7f), new Vector3(x, y + Mathf.Sin(Mathf.DegToRad(a)) * 0.19f, Mathf.Cos(Mathf.DegToRad(a)) * 0.19f), new Vector3(a, 0, 0));
+    }
+
     /// <summary>Arma na mão (null se o ID não for conhecido: a mão fica vazia).</summary>
     public static Node3D? Weapon(string? model)
     {
@@ -148,8 +199,10 @@ public static class GearFactory
             case "mace_flanged":
                 CabecaDeMaca(root, model);
                 break;
-            case "hammer_foreman":
             case "maul":
+                MartelaoDoDorval(root);
+                break;
+            case "hammer_foreman":
                 Grip(root, 1.15f, model == "maul" ? DarkSteel : Wood, 0.04f, 0.3f);
                 // cabeça de marreta: cilindro atravessado no cabo, com anéis de latão nas pontas
                 VisualKit.Part(root, VisualKit.Cylinder(0.19f, 0.19f, 0.62f, 10), VisualKit.Mat(model == "maul" ? new Color(0.22f, 0.2f, 0.2f) : DarkSteel, 0.5f, 0.7f),

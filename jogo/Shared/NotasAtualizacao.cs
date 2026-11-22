@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u172 · pacote do trabalhador (8 a 12)", "Juntado o pacote POS_TERCA_12 do trabalhador: 16 golpes novos (livros nos mentores), poder dos conjuntos lendários, 8 escudos esculpidos, mapas com formatos variados e identidade (árvores da região, menos caveira, cena-assinatura), monstros com a cara da região, elmos esculpidos, editor (R gira a peça), clique no nome da missão abre o mapa."),
+        ("u173 · martelão do Dorval", "O Mestre Dorval voltou a usar o martelão dele (melhorado: bocas de aço, cinta de latão com rebites, cabo de couro trançado)."),
+        ("u172", "Juntado o pacote POS_TERCA_12 do trabalhador: 16 golpes novos (livros nos mentores), poder dos conjuntos lendários, 8 escudos esculpidos, mapas com formatos variados e identidade (árvores da região, menos caveira, cena-assinatura), monstros com a cara da região, elmos esculpidos, editor (R gira a peça), clique no nome da missão abre o mapa."),
         ("u171", "Missões de destaque com estrela cinza (☆): classe, transformações e as que dão MUITO XP — marcador cinza no NPC, grupo próprio no diário. Ala IV da Biblioteca (ceifador e anjo) abre no 35."),
         ("u170", "F nos objetos de missão (Cânions); Biblioteca do Continente mostra tudo; Pó de Estrela fora da Torre; Baú de Joias; Cansaço em 5 monstros do 30+; lupa e TP das bibliotecas no mapa; Voltar volta ao mapa geral; alavancas mais longe; estátuas guardiãs explicadas; barra de coleta menor; machado do Enforcado antigo."),
         ("u169", "35 skins refeitas no nível do sapo (olhos do coelho/palhaço sinistro, cabeças novas, padrões pintados no corpo); skin nova Ninja; palhaço com o babado e os olhos do sinistro; +8 músicas (mata, praia, cânion, neve, acrópole, fantasma, gruta, casa)."),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u116", "Torre Partida virou dungeon (nível 8, perto do Farol)|Duas armas para o Guerreiro: arraste a 2ª arma para a Mão 2|Arqueiro recupera Foco a cada flecha (Mira Firme) e as peças dele devolvem mais|Asas e capas em 3 níveis: capa do nível 25+ também voa|Missões do lado de lá do muro só aparecem depois da parede explodida"),
         ("u115", "Em grupo, cada drop fica na vez de um (rodízio), equipamento para quem é da classe|Frasco da sua classe cai mais (Mana, Foco, Tônico)|Frasco de Foco no caldeirão (Gosma de Meleca)|Ícone próprio para cada poção|Barril seguro por baixo, com as duas mãos|Missão nova da Nara: O Pavio Curto (marca rocha, barris e muro)|Meleca solta Gosma, não casca|Menos Caixas das Cinzas nas missões|Peitorais dos conjuntos 3D com mais vida|Torre Partida explica que está lacrada|ABRIR_SERVIDOR.cmd: só o servidor"),
         ("u114", "Dividir pilha (botão Dividir na mochila)|NPC que ainda não apareceu não marca mais o minimapa|Uma Luz no Caminho e O Primeiro Golpe: rastro no Areal (antes caía atrás do muro)|Desafio do Bobo (goblin arqueiro) só depois de abrir a parede do muro|Rocha pesada: Força de verdade ou Pé de Cabra (Forja do Brás)"),
-        ("u113", "Missão nova da Sibila (Porto): O Destino Refeito — ensina a resetar os atributos, e o 1º reset é grátis"),
     };
 }
