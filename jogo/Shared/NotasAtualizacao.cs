@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u174 · prioridade de missões e cofres", "Missões: botão 📌 Destacar no J (a 1ª vira [1] no quadro, a 2ª [2]...; botão direito no nome também destaca). O cofre do enigma que ficou colado no portal (Bosque das Corujas e mais 3 mapas) foi para um lugar livre."),
+        ("u175 · chave de baú por lugar", "Cada baú trancado pede a chave do seu lugar (Chave de Baú — nome do mapa), que só cai ali; a Chave de Cofre antiga ainda abre qualquer um. Alavancas dos enigmas mais espaçadas (Bosque das Corujas e mais 7 mapas)."),
+        ("u174", "Missões: botão 📌 Destacar no J (a 1ª vira [1] no quadro, a 2ª [2]...; botão direito no nome também destaca). O cofre do enigma que ficou colado no portal (Bosque das Corujas e mais 3 mapas) foi para um lugar livre."),
         ("u173", "O Mestre Dorval voltou a usar o martelão dele (melhorado: bocas de aço, cinta de latão com rebites, cabo de couro trançado)."),
         ("u172", "Juntado o pacote POS_TERCA_12 do trabalhador: 16 golpes novos (livros nos mentores), poder dos conjuntos lendários, 8 escudos esculpidos, mapas com formatos variados e identidade (árvores da região, menos caveira, cena-assinatura), monstros com a cara da região, elmos esculpidos, editor (R gira a peça), clique no nome da missão abre o mapa."),
         ("u171", "Missões de destaque com estrela cinza (☆): classe, transformações e as que dão MUITO XP — marcador cinza no NPC, grupo próprio no diário. Ala IV da Biblioteca (ceifador e anjo) abre no 35."),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u118", "Missões da Torre Partida com o Sargento Ivo: Luz na Torre, O Eco da Escadaria e O Carcereiro da Torre"),
         ("u117", "12 anéis e colares novos (nível 22 ao 58), caem dos monstros da faixa"),
         ("u116", "Torre Partida virou dungeon (nível 8, perto do Farol)|Duas armas para o Guerreiro: arraste a 2ª arma para a Mão 2|Arqueiro recupera Foco a cada flecha (Mira Firme) e as peças dele devolvem mais|Asas e capas em 3 níveis: capa do nível 25+ também voa|Missões do lado de lá do muro só aparecem depois da parede explodida"),
-        ("u115", "Em grupo, cada drop fica na vez de um (rodízio), equipamento para quem é da classe|Frasco da sua classe cai mais (Mana, Foco, Tônico)|Frasco de Foco no caldeirão (Gosma de Meleca)|Ícone próprio para cada poção|Barril seguro por baixo, com as duas mãos|Missão nova da Nara: O Pavio Curto (marca rocha, barris e muro)|Meleca solta Gosma, não casca|Menos Caixas das Cinzas nas missões|Peitorais dos conjuntos 3D com mais vida|Torre Partida explica que está lacrada|ABRIR_SERVIDOR.cmd: só o servidor"),
     };
 }

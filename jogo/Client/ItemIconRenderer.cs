@@ -606,6 +606,7 @@ public sealed partial class ItemIconRenderer : Node
     private static Node3D? OwnIcon(string id)
     {
         if (!HasOwnIcon(id)) return null;
+        if (id.StartsWith("chave_cofre_")) id = "chave_cofre";   // 22/11: a chave de baú de cada mapa usa o mesmo desenho
         var root = new Node3D { RotationDegrees = new Vector3(18, 25, 0) };
         var iron = VisualKit.Mat(new Color(0.55f, 0.56f, 0.58f), 0.35f, 0.9f);
         var leather = VisualKit.Mat(new Color(0.45f, 0.28f, 0.15f), 0.85f);
