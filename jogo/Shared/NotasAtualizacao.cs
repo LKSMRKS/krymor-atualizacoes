@@ -6,7 +6,8 @@ public static class NotasAtualizacao
 {
     public static readonly (string Versao, string Texto)[] Todas =
     {
-        ("u176 · máquina de chaves e mapas no lugar", "Máquina de Chaves com botão FABRICAR e chave usada na porta (mochila → Usar); chaves de dungeon ainda fechada voltam em moedas e partes. 12 mapas girados para bater com o mapa geral. Mapa geral mostra as missões MARCADAS com o número; o J também mostra o número. Enigma resolvido diz onde está o selo."),
+        ("u177 · guardião resolvido explica", "Guardião de enigma já resolvido diz isso com todas as letras e avisa se o baú do selo já foi pego."),
+        ("u176", "Máquina de Chaves com botão FABRICAR e chave usada na porta (mochila → Usar); chaves de dungeon ainda fechada voltam em moedas e partes. 12 mapas girados para bater com o mapa geral. Mapa geral mostra as missões MARCADAS com o número; o J também mostra o número. Enigma resolvido diz onde está o selo."),
         ("u175", "Máquina de Chaves com botão FABRICAR e chave usada na porta (mochila → Usar); chaves de dungeon ainda fechada voltam em moedas e partes. 12 mapas girados para bater com o mapa geral. Mapa geral mostra as missões MARCADAS com o número; o J também mostra o número. Enigma resolvido diz onde está o selo."),
         ("u174", "Máquina de Chaves com botão FABRICAR e chave usada na porta (mochila → Usar); chaves de dungeon ainda fechada voltam em moedas e partes. 12 mapas girados para bater com o mapa geral. Mapa geral mostra as missões MARCADAS com o número; o J também mostra o número. Enigma resolvido diz onde está o selo."),
         ("u173", "Cada baú trancado pede a chave do seu lugar (Chave de Baú — nome do mapa), que só cai ali; a Chave de Cofre antiga ainda abre qualquer um. Alavancas dos enigmas mais espaçadas (Bosque das Corujas e mais 7 mapas)."),
@@ -65,6 +66,5 @@ public static class NotasAtualizacao
         ("u120", "Máscara do Pandemônio nova (casca de árvore, como a referência)|Aurora na horizontal, ondulada|Desafios espalhados: paredões com Corda com Gancho, casas destruídas para reconstruir, portas com Chave de Ferro|Mapas novos: Charco das Lanternas (Brejo, 36–42) e Necrópole dos Juramentos (Acrópole, 61–66)"),
         ("u119", "Céu: duas luas e dois planetas (dia e noite) e aurora boreal à noite"),
         ("u118", "Lanterna de Cal (bancada): na mochila, avisa quando tem segredo por perto e a direção"),
-        ("u117", "Elmos novos e mais ameaçadores por região (barbuta, chifres, caveira, coroa de gelo, demônio, senhor da guerra)|3 maças com cabeças novas (Cravejada, Estrela-da-Manhã, Flanges)|5 armas novas de Mago, Bruxa e Arqueiro (níveis 27 e 36)"),
     };
 }
