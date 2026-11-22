@@ -795,7 +795,8 @@ public sealed class WorldPanels
 
     private void UpdateJournal(ClientModel m)
     {
-        var sig = string.Join(",", m.Quests.Select(q => q.Id + q.State + q.Progress)) + "#" + m.PinsVersion + "#" + HudView.MissoesMinimizadas + "#" + m.ProximaHistoria?.Name + m.ProximaHistoria?.Hint;
+        var sig = string.Join(",", m.Quests.Select(q => q.Id + q.State + q.Progress)) + "#" + m.PinsVersion + "#" + HudView.MissoesMinimizadas + "#" + m.ProximaHistoria?.Name + m.ProximaHistoria?.Hint
+            + "#" + string.Join(",", HudView.NoMapa.Select(q => q.Id));   // 22/11: o número [n] acompanha a ordem do quadro
         if (sig == _journalSig) return;
         _journalSig = sig;
         Clear(_journalBox, keepTitle: true);
@@ -855,7 +856,9 @@ public sealed class WorldPanels
                 card.AddChild(col);
                 var head = new HBoxContainer();
                 var travado = q.State != "done" && q.NivelLugar > (m.Me?.Level ?? 99);   // 13/11: lugar trancado pelo nível = vermelho
-                var qTitle = HudView.MakeLabel((travado ? "🔒 " : m.IsPinned(q.Id) ? "▶ " : "◆ ") + q.Name + (travado ? $"  (nível {q.NivelLugar} para entrar)" : ""), 15,
+                // 22/11 (dono: "no J, as missões marcadas mostram o número que elas são ali mesmo"): [n] = o número do quadro/mapa
+                var nTela = HudView.NoMapa.FindIndex(x => x.Id == q.Id) + 1;
+                var qTitle = HudView.MakeLabel((travado ? "🔒 " : "") + (m.IsPinned(q.Id) ? (nTela > 0 ? $"[{nTela}] " : "▶ ") : travado ? "" : "◆ ") + q.Name + (travado ? $"  (nível {q.NivelLugar} para entrar)" : ""), 15,
                     travado ? new Color(1f, 0.45f, 0.4f) : color);
                 qTitle.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
                 head.AddChild(qTitle);
@@ -1725,6 +1728,14 @@ public sealed partial class WorldMapCanvas : Control
             // ponto DE VERDADE da missão; o da passagem ("vá por aqui") só no mapa onde você está
             var (qmx, qx0, qy0) = q.LugarMapa.Length > 0 ? (q.LugarMapa, q.LugarX, q.LugarY) : (q.MapId, q.X, q.Y);
             if (qmx != Layout.Id && q.MapId == Layout.Id && Layout.Id == Aqui) (qmx, qx0, qy0) = (q.MapId, q.X, q.Y);
+            // 22/11 (dono: "navegando pelo mapa, clicando nos lugares, não aparece missão nenhuma"): a missão é num lugar que
+            // se entra por uma passagem DESTE mapa (dungeon, casa, torre)? a pedrinha fica na passagem
+            if (qmx != Layout.Id && qmx.Length > 0 && Layout.Portals.FirstOrDefault(pp => pp.ToMap == qmx) is { } porta)
+            {
+                CompassStrip.DrawQuestStone(this, At(porta.X, porta.Y), i + 1, q.State == "ready", 11f);
+                _alvos.Add((At(porta.X, porta.Y), 13f, new[] { $"Missão {i + 1}: {q.Name}", $"lá dentro: {porta.Label}", q.Hint }, new Color(1f, 0.8f, 0.32f)));
+                continue;
+            }
             if (qmx == Layout.Id && (qx0 != 0 || qy0 != 0))
             {
                 q = q with { X = qx0, Y = qy0 };
@@ -1930,6 +1941,16 @@ public sealed partial class WorldMapCanvas : Control
     };
     private (double X, double Y) Onde(WorldRegionView r) => ArteMundo is not null && NaArte.TryGetValue(r.Id, out var a) ? a : (r.X, r.Y);
 
+    /// <summary>22/11: missões MARCADAS nesta região, com o número do quadro da tela (HudView.NoMapa).</summary>
+    private static List<(int N, string Nome)> Marcadas(WorldRegionView r)
+    {
+        var res = new List<(int, string)>();
+        if (r.QuestIds is not { Count: > 0 } ids) return res;
+        for (var i = 0; i < HudView.NoMapa.Count; i++)
+            if (ids.Contains(HudView.NoMapa[i].Id)) res.Add((i + 1, HudView.NoMapa[i].Name));
+        return res;
+    }
+
     private IEnumerable<WorldRegionView> Shown => Data?.Regions.Where(r => r.State != "future") ?? Enumerable.Empty<WorldRegionView>();
 
     public override void _GuiInput(InputEvent @event)
@@ -1976,7 +1997,11 @@ public sealed partial class WorldMapCanvas : Control
                 else if (mapas.Count > 1)
                 {
                     var menu = new PopupMenu();
-                    for (var i = 0; i < mapas.Count; i++) menu.AddItem(mapas[i][1], i);
+                    for (var i = 0; i < mapas.Count; i++)
+                    {
+                        var aqui = HudView.NoMapa.Select((q, k) => (q, k)).Where(t => (t.q.LugarMapa.Length > 0 ? t.q.LugarMapa : t.q.MapId) == mapas[i][0]).Select(t => $"[{t.k + 1}]").ToList();
+                        menu.AddItem(mapas[i][1] + (aqui.Count > 0 ? "   ◆ missão " + string.Join(" ", aqui) : ""), i);   // 22/11
+                    }
                     menu.IdPressed += i => { AbrirMapa?.Invoke(mapas[(int)i][0]); menu.QueueFree(); };
                     menu.PopupHide += () => menu.QueueFree();
                     AddChild(menu);
@@ -2044,11 +2069,17 @@ public sealed partial class WorldMapCanvas : Control
             if (r.Kind == "cidade") DrawCircle(c, rad * 0.4f, new Color(0.95f, 0.85f, 0.5f));
             var name = known ? r.Name : "?";
             if (ArteMundo is null) DrawString(font, c + new Vector2(-70, rad + 16), name, HorizontalAlignment.Center, 140, hover ? 13 : 11, ink);   // a arte já tem os nomes
-            if (r.Quests is { Count: > 0 } quests)
+            // 22/11 (dono: "fala que tem 4 missões ali, mas eu deixei marcada só a 5 — deveria mostrar as que eu marquei"):
+            // a pedrinha da região mostra só as MARCADAS, com o número delas (o mesmo do quadro da tela)
+            var marcadas = Marcadas(r);
+            if (marcadas.Count > 0)
             {
+                var txt = string.Join(",", marcadas.Take(3).Select(x => x.N)) + (marcadas.Count > 3 ? "…" : "");
+                var larg = Mathf.Max(16f, 8f + txt.Length * 7f);
                 var badge = c + new Vector2(rad + 4, -rad - 4);
-                DrawCircle(badge, 8, new Color(0.95f, 0.72f, 0.15f));
-                DrawString(font, badge + new Vector2(-4, 5), quests.Count > 1 ? quests.Count.ToString() : "!", HorizontalAlignment.Left, 20, 12, new Color(0.12f, 0.08f, 0.02f));
+                DrawRect(new Rect2(badge - new Vector2(larg / 2, 8), new Vector2(larg, 16)), new Color(0.95f, 0.72f, 0.15f));
+                DrawRect(new Rect2(badge - new Vector2(larg / 2, 8), new Vector2(larg, 16)), new Color(0.3f, 0.18f, 0.05f), false, 1.2f);
+                DrawString(font, badge + new Vector2(-larg / 2, 5), txt, HorizontalAlignment.Center, larg, 12, new Color(0.12f, 0.08f, 0.02f));
             }
         }
         // quadro da região sob o mouse
@@ -2058,7 +2089,11 @@ public sealed partial class WorldMapCanvas : Control
             var lines = new List<(string T, int S, Color C)> { (known ? h.Name : "Região desconhecida", 15, new Color(0.95f, 0.8f, 0.4f)) };
             if (known) lines.Add((h.Kind == "cidade" ? "cidade segura" : "nível " + h.Levels, 12, new Color(0.85f, 0.82f, 0.75f)));
             if (known && h.Description.Length > 0) lines.Add((h.Description, 11, new Color(0.75f, 0.72f, 0.65f)));
-            if (h.Quests is { Count: > 0 } q) lines.Add(($"{q.Count} missão(ões) aqui", 11, new Color(0.95f, 0.72f, 0.15f)));
+            var mh = Marcadas(h);
+            foreach (var (n, nome) in mh) lines.Add(($"[{n}] {nome}", 12, new Color(1f, 0.8f, 0.32f)));
+            var outras = (h.Quests?.Count ?? 0) - mh.Count;
+            if (outras > 0) lines.Add(($"+{outras} missão(ões) não marcada(s) aqui (J)", 11, new Color(0.7f, 0.66f, 0.58f)));
+            if (mh.Count > 0 || (h.Mapas?.Count ?? 0) > 0) lines.Add(("clique para abrir o mapa daqui e ver as missões", 11, new Color(0.55f, 0.85f, 1f)));
             if (h.Here) lines.Add(("você está aqui", 11, new Color(1f, 0.85f, 0.3f)));
             else if (Data.Waypoints.Any(w => w.Region == h.Id)) lines.Add(("clique para viajar (pedra de viagem)", 11, new Color(0.55f, 0.85f, 1f)));
             const float w = 240;

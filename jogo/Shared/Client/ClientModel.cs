@@ -904,7 +904,7 @@ public sealed class ClientModel
         switch (obj.Kind)
         {
             case "mesclar_visual": return "Usar a Máquina de Mesclar Visual";
-            case "maquina_dg": return "Máquina de Chaves (ver a receita / fazer a chave da dungeon)";
+            case "maquina_dg": return "Máquina de Chaves (receita e botão Fabricar)";
             case "veio":
                 var herb = obj.Yields is { } y && (y.Contains("erva") || y.Contains("folha") || y.Contains("cogumelo"));
                 var label = System.Text.RegularExpressions.Regex.Replace(obj.Label, @"\s*\((machado|picareta|foice)\)", "");

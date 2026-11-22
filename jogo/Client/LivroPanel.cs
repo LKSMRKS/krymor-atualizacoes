@@ -8,6 +8,10 @@ public sealed class LivroPanel
     public Control Root { get; }
     public bool Open => Root.Visible;
     private readonly Label _title, _text, _found;
+    private readonly Button _acao;
+    private string? _acaoObjeto;
+    /// <summary>22/11: clicou no botão de ação (manda o InteractIntent com este id).</summary>
+    public event System.Action<string>? Acao;
 
     public LivroPanel()
     {
@@ -31,16 +35,32 @@ public sealed class LivroPanel
         _found.AddThemeFontSizeOverride("font_size", 16);
         _found.AddThemeColorOverride("font_color", new Color(0.55f, 0.12f, 0.05f));
         col.AddChild(_found);
-        var close = new Button { Text = "Fechar (Esc)", FocusMode = Control.FocusModeEnum.None, SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter };
+        // 22/11: botão de ação opcional (Máquina de Chaves: "⚙ FABRICAR") ao lado do Fechar
+        var botoes = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
+        botoes.AddThemeConstantOverride("separation", 18);
+        _acao = new Button { FocusMode = Control.FocusModeEnum.None, Visible = false, CustomMinimumSize = new Vector2(170, 40) };
+        _acao.AddThemeFontSizeOverride("font_size", 18);
+        var sbA = new StyleBoxFlat { BgColor = new Color(0.45f, 0.24f, 0.08f) }; sbA.SetCornerRadiusAll(5); sbA.SetContentMarginAll(8);
+        _acao.AddThemeStyleboxOverride("normal", sbA);
+        var sbH = (StyleBoxFlat)sbA.Duplicate(); sbH.BgColor = new Color(0.6f, 0.33f, 0.1f);
+        _acao.AddThemeStyleboxOverride("hover", sbH);
+        _acao.AddThemeColorOverride("font_color", new Color(1f, 0.9f, 0.65f));
+        _acao.Pressed += () => { if (_acaoObjeto is { } o) { Sfx.Play("ui_clique"); Acao?.Invoke(o); } };
+        botoes.AddChild(_acao);
+        var close = new Button { Text = "Fechar (Esc)", FocusMode = Control.FocusModeEnum.None };
         close.Pressed += Close;
-        col.AddChild(close);
+        botoes.AddChild(close);
+        col.AddChild(botoes);
         Root = panel;
     }
 
     public event System.Action? Closed;
 
-    public void Show(string title, string text, string? found)
+    public void Show(string title, string text, string? found, string? acaoTexto = null, string? acaoObjeto = null)
     {
+        _acaoObjeto = acaoObjeto;
+        _acao.Text = acaoTexto ?? "";
+        _acao.Visible = acaoTexto is not null && acaoObjeto is not null;
         _title.Text = title;
         _text.Text = text;
         _found.Text = found ?? "";

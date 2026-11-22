@@ -5748,7 +5748,7 @@ void fragment() {
         "porta" => "F: bater na porta",
         "pesquisa" => "F: pesquisar (item, monstro, lugar ou NPC)",
         "mesclar_visual" => "F: mesclar o visual de um item no outro",
-        "maquina_dg" => "F: receita da chave da dungeon (F de novo faz)",
+        "maquina_dg" => "F: Máquina de Chaves (receita e botão Fabricar)",
         "forja" => "chegue perto e aperte F: forjar e melhorar equipamento",
         "bancada" => "F: criar itens com materiais",
         "caldeirao" or "panela" => "F: preparar poções e comidas",

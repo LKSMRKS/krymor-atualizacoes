@@ -2197,7 +2197,7 @@ public partial class Main : Node3D
                 _bestiario.Handle(bm);
                 break;
             case BookMessage book:
-                _livro.Show(book.Title, book.Text, book.Discovery);
+                _livro.Show(book.Title, book.Text, book.Discovery, book.AcaoTexto, book.AcaoObjeto);
                 CaptureMouse(false);
                 break;
             case VinteUmStateMessage vu:
@@ -2710,6 +2710,7 @@ public partial class Main : Node3D
         };
         layer.AddChild(_bestiario.Root);
         Arrastador.Ligar(_bestiario.Root, "livro_monstros", 46f, porDesvio: true, fechar: () => _bestiario.Hide());
+        _livro.Acao += id => Send(new InteractIntent(id));   // 22/11: ⚙ FABRICAR (Máquina de Chaves)
         _livro.Closed += () => CaptureMouse(!GodOpen && !_inventory.Visible && !_panels.AnyOpen);
         _vinteUm.Send += Send;
         layer.AddChild(_vinteUm.Root);

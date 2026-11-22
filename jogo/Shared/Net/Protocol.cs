@@ -513,6 +513,8 @@ public sealed record WorldRegionView(string Id, string Name, string Kind, double
 {
     /// <summary>19/11: mapas desta região que você já visitou ([id, nome]) — clicar na bolinha abre o mapa deles.</summary>
     public IReadOnlyList<string[]>? Mapas { get; init; }
+    /// <summary>22/11: ids das missões de Quests (mesma ordem) — o mapa geral mostra só as MARCADAS, com o número delas.</summary>
+    public IReadOnlyList<string>? QuestIds { get; init; }
 }
 public sealed record WaypointView(string Id, string Name, string MapId, string MapName, double X, double Y, string Region = "");
 public sealed record WorldMapMessage(IReadOnlyList<WorldRegionView> Regions, IReadOnlyList<string[]> Links,
@@ -527,7 +529,13 @@ public sealed record NoticeMessage(string Text, [property: JsonIgnore(Condition 
 /// <summary>12/11: chat. Texto normal = global (todos os mapas); "/nome texto" ou "@nome texto" = privado; "/g texto" = grupo.</summary>
 public sealed record ChatIntent(string Text) : NetMessage;
 /// <summary>12/11: livro aberto (Biblioteca do Continente). Discovery = texto de "você descobriu algo" (null = nada novo).</summary>
-public sealed record BookMessage(string Title, string Text, string? Discovery = null) : NetMessage;
+public sealed record BookMessage(string Title, string Text, string? Discovery = null) : NetMessage
+{
+    /// <summary>22/11: botão de ação na janela (ex.: "⚙ FABRICAR" na Máquina de Chaves). Null = só "Fechar".</summary>
+    public string? AcaoTexto { get; init; }
+    /// <summary>22/11: o botão manda InteractIntent com este id (ex.: "fabricar:dgmaq_galerias_piedade").</summary>
+    public string? AcaoObjeto { get; init; }
+}
 /// <summary>Channel: global | privado | grupo | sistema. To = destinatário (só no privado, para quem mandou ver "para X").</summary>
 /// <summary>12/11: mesa de Vinte-e-Um (blackjack) do 2º andar do casarão. Action: abrir | apostar | pedir | parar | dobrar | separar | sair.</summary>
 public sealed record VinteUmIntent(string NpcId, string Action, int Bet = 0) : NetMessage;
